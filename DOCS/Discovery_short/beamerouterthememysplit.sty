@@ -1,0 +1,102 @@
+\ProvidesPackageRCS $Header: /home/CVS/viewgraal/VIEWGRAAL/talks/P2P/2008/Soutenance02102008/beamerouterthememysplit.sty,v 1.2 2008/09/16 15:29:34 ctedesch Exp $
+
+% Changed the 04/05/18 by Y. Caniou in order to have the number of pages
+%   included in the footline
+
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+\mode<presentation>
+
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette primary}
+
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+
+\setbeamercolor*{mytitle in foot}{use=structure,fg=black,bg=structure.fg!60!white}
+\setbeamercolor*{myauthor in foot}{use=structure,fg=white,bg=structure.fg!65!white}
+
+\usesectionheadtemplate
+  {\hfill\insertsectionhead}
+  {\hfill\color{fg!50!bg}\insertsectionhead}
+
+                                % Head
+\ifbeamer@compress
+
+\defbeamertemplate*{headline}{split theme}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex]{section in head/foot}%
+    \insertsectionnavigationhorizontal{.5\paperwidth}{\hskip0pt plus1filll}{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex]{subsection in head/foot}%
+    \insertsubsectionnavigationhorizontal{.5\paperwidth}{}{\hskip0pt plus1filll}%
+  \end{beamercolorbox}%
+}
+
+\else
+
+\defbeamertemplate*{headline}{split theme}
+{%
+  \leavevmode%
+  \@tempdimb=2.4375ex%
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+    \multiply\@tempdimb by\beamer@sectionmax%
+  \else%
+    \multiply\@tempdimb by\beamer@subsectionmax%
+  \fi%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{section in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsectionnavigation{.5\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsubsectionnavigation{.5\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+  \fi%
+}
+
+\fi
+
+%% \defbeamertemplate*{footline}{split theme}
+%% {%
+%%   \leavevmode%
+%%   \hbox{\begin{beamercolorbox}[wd=.55\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.5cm plus1fill,rightskip=.3cm]{title in head/foot}%
+%%       \usebeamerfont{author in head/foot}\insertshortauthor
+%%   \end{beamercolorbox}}%
+%%   \hbox{\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+%%     \usebeamerfont{title in head/foot} A Repair mechanism for a P2P system\hfill
+%%   \end{beamercolorbox}}%
+%%   \hbox{\begin{beamercolorbox}[wd=.05\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.5cm plus1fill,rightskip=.3cm]{author in head/foot}%
+%%       \usebeamerfont{author in head/foot} \hfill \insertframenumber%/21%/\inserttotalframenumber
+%%   \end{beamercolorbox}}%
+
+%%   \vskip0pt%
+%% }
+
+%\newcommand{\ligne}[1]{\rule[0.5ex]{\textwidth}{#1}\\}
+
+\defbeamertemplate*{footline}{split theme}
+{%
+  \leavevmode%
+%  \hbox{
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.8ex,dp=1.125ex,leftskip=.5cm plus1fil,rightskip=.3cm]{myauthor in foot}%
+      \usebeamerfont{author in head/foot} C\'edric Tedeschi%\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.8ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{mytitle in foot}%
+      \usebeamerfont{title in head/foot} \hfill The Discovery Project
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.8ex,dp=1.125ex,leftskip=.5cm plus1fill,rightskip=.3cm]{myauthor in foot}%
+      \usebeamerfont{author in head/foot} \hfill\insertframenumber
+    \end{beamercolorbox}
+%  }
+
+  \vskip0pt%
+}
+
+
+\mode
+<all>
