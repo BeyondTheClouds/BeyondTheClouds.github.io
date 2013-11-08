@@ -1,0 +1,243 @@
+\documentclass[a4paper,twoside]{article}
+
+\usepackage{RR}
+\usepackage{hyperref}
+%\usepackage[frenchb]{babel}
+%\usepackage[T1]{fontenc} % avec T1 comme option  d'encodage c'est ben mieux, surtout pour taper du français.
+\usepackage[utf8]{inputenc}
+\usepackage[table]{xcolor}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm}
+\usepackage{stmaryrd}
+\usepackage{lscape}
+
+\usepackage{url} \urlstyle{sf}%
+\usepackage{graphicx}%
+\usepackage{subfigure}
+\usepackage{listings}%
+
+\lstset{%
+  basicstyle=\scriptsize,%
+  numbers=left,
+  %columns=fullflexible,%
+  language=XML,%
+  %frame=shadowbox,
+    frame=lbtr,%
+  frameround=tttt,%
+  tabsize=2,
+  breaklines=true
+}%
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,positioning}
+\usepackage{array}
+\usepackage{xspace}
+
+\sloppy
+
+%%% FORMAT DOCUMENT
+
+\def\textfraction{0}
+\def\floatpagefraction{1}
+\def\topnumber{3}
+\def\bottomnumber{3}
+\def\totalnumber{3}
+\def\topfraction{1}
+\def\bottomfraction{1}
+
+%%.
+\usepackage{bold-extra,graphicx,latexsym,mathrsfs,subfigure,xspace}
+
+\usepackage{color}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{ifthen}
+
+\usepackage{hyperref}
+
+\newcolumntype{M}[1]{>{\raggedleft}m{#1}}
+\newcommand{\discovery}{DISCOVERY\xspace}
+
+%% CT %%
+\newcommand{\ftodo}[2][\relax]  % \TODO[editor]{text} 
+  {\ensuremath{{}^{\mbox{\tiny\bf #1}}}~\textbf{#2}}
+
+\begin{document}
+
+\RRNo{XXXX}
+\RRdate{June 2013}
+
+\RRprojet{Ascola, Asap, Avalon, Myriads}
+
+% \author{Adrien L?bre\inst{1,3} \and Jonathan Pastor\inst{1,3} \and Marin Bertier \inst{2,3} \and Fr?d?ric Desprez\inst{3} \and Jonathan Rouzaud-Cornabas\inst{3} \and C?dric Tedeschi \inst{3,4}\and Paolo Anedda\inst{5} \and Gianluigi Zanetti\inst{5} 
+% \and Ramon Nou\inst{6} \and Toni Cortes\inst{6} \and Etienne Riviere\inst{7} \and Thomas Ropars\inst{8}}
+% \institute{LINA / Mines Nantes, France 
+% \and IRISA / INSA de Rennes, France
+% \and INRIA, France
+% \and IRISA / Universit? de Rennes 1, France
+% \and Center for Advanced Studies, Research and Development in Sardinia (CRS4), Italy
+% \and Barcelona Supercomputing Center (BSC), Spain
+% \and Universit? de Neuch?tel (UniNe), Switzerland
+% \and Ecole Polytechnique F?d?rale de Lausanne (EPFL), Switzerland} 
+
+%
+% Title and Authors
+%
+\RRauthor{
+A. L{\`e}bre\thanks[INRIA]{INRIA, France, Email: \url{FirstName.LastName@inria.fr}}\thanks[EMN]{LINA / Mines Nantes, France.}%\inst{1} 
+\and 
+J. Pastor\thanksref{INRIA}\thanksref{EMN} 
+\and 
+M. Bertier\thanks[IRISA-INSA]{IRISA / INSA de Rennes, France.}\thanksref{INRIA} 
+\and 
+F. Desprez\thanksref{INRIA}  
+\and 
+J. Rouzaud-Cornabas\thanks[CC-IN2P3]{CC-IN2P3, CNRS, France.}  
+\and 
+C. Tedeschi\thanks[IRISA-RENNES1]{IRISA / Universit{\'e} de Rennes 1, France.}\thanksref{INRIA} 
+\and 
+P. Anedda\thanks[CRS4]{Center for Advanced Studies, Research and Development in Sardinia (CRS4), Italy.}
+\and 
+G. Zanetti\thanksref{CRS4}  
+\and 
+R. Nou\thanks[BSC]{Barcelona Supercomputing Center (BSC), Spain.}
+\and 
+T. Cortes\thanksref{BSC}  
+\and 
+E. Riviere\thanks[UNINE]{Universit{\'e} de Neuch{\^a}tel (UniNe), Switzerland.}
+\and 
+T. Ropars\thanks[EPFL]{Ecole Polytechnique F{\'e}d{\'e}rale de Lausanne (EPFL), Switzerland.}
+}
+
+\authorhead{A.Lèbre et al.}
+
+\RRtitle{Informatique utilitaire, pourquoi et comment devons nous concevoir une nouvelle génération de centrales numériques?}
+\RRetitle{Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed?}%\thanks{This report ....}}
+
+\RRnote {XXXX}
+
+\RRkeyword{Locality-Based Utility Computing, 
+Peer To Peer,
+Self-*,
+Sustainability,
+Efficiency,
+Future Internet.
+}
+
+\RRmotcle{Calcul utilitaire basé sur la localité, systèmes pair-à-pair, self-*, durabilité,
+Internet du futur}
+
+%
+% Abstract
+%
+\RRabstract{
+
+  {\small To accommodate the ever-increasing demand for Utility Computing (UC)
+resources, while taking into account both energy and economical issues, the
+current trend consists in building larger and larger data centers in a few
+strategic locations. Although such an approach enables to cope with the actual
+demand while continuing to operate UC resources through centralized software
+system, it is far from delivering sustainable and efficient UC infrastructures.
+
+	 We claim that a disruptive change in UC infrastructures is required: UC
+resources should be managed differently, considering locality as a primary
+concern. We propose to leverage any facilities available through the Internet
+in order to deliver widely distributed UC platforms that can better match the
+geographical dispersal of users as well as the unending demand.  Critical to
+the emergence of such locality-based UC (LUC) platforms is the availability of
+appropriate operating mechanisms. In this paper, we advocate the implementation
+of a unified system driving the use of resources at an unprecedented scale by
+turning a complex and diverse infrastructure into a collection of abstracted
+computing facilities that is both easy to operate and reliable.
+%
+	 By deploying and using such a \emph{LUC Operating System} on backbones, our
+ultimate vision is to make possible to host/operate a large part of the
+Internet by its internal structure itself: A scalable and nearly infinite set
+of resources delivered by any computing facilities forming the Internet,
+starting from the larger hubs operated by ISPs, government and academic
+institutions to any idle resources that may be provided by end-users.
+%
+	 Unlike previous researches on distributed operating systems, we propose to
+consider virtual machines (VMs) instead of processes as the basic element.
+System virtualization offers several capabilities that increase the flexibility
+of resources management, allowing to investigate novel decentralized schemes.
+}
+}
+
+\RRresume{
+
+  {\small Afin de supporter la demande croissante de calcul utilitaire
+	 (UC) tout en prenant en compte les aspects énergétique et financier, la
+tendance actuelle consiste à construire des centres de données (ou centrales
+numériques) de plus en plus grands dans un nombre limité de lieux stratégiques.
+Cette approche permet sans aucun doute de satisfaire la demande tout en
+conservant une approche centralisée
+    de la gestion de ces ressources mais elle reste loin de pouvoir fournir des
+    infrastructures de calcul utilitaire efficaces et durables.
+
+	 Après avoir indiqué pourquoi cette tendance n'est pas appropriée, nous
+proposons au travers de ce rapport, une proposition radicalement différente. De
+notre point de vue, les ressources de calcul utilitaire doivent être gérées de
+manière à pouvoir prendre en compte la localité des demandes dès le départ.
+Pour ce faire, nous proposons de tirer parti de tous les équipements
+disponibles sur l'Internet afin de fournir des infrastructures de calcul
+utilitaire  qui permettront de part leur distribution de prendre en compte plus
+efficacement la dispersion géographique des utilisateurs et leur demande
+toujours croissante. Un des aspects critique pour l'émergence de telles
+plates-formes de calcul utilitaire ''local'' (LUC) est la disponibilité de
+mécanismes de gestion appropriés. Dans la deuxième partie de ce document, nous défendons la mise en \oe uvre d'un système
+unifié gérant l'utilisation des ressources à une échelle sans précédent en
+transformant une infrastructure complexe et hétérogène en une collection
+d'équipements virtualisés qui seront à la fois plus simples à gérer et plus
+sûrs. 
+%
+    En déployant un système de type LUC sur les c{\oe}urs de réseau, notre vision ultime est de
+    rendre possible l'hébergement et la gestion de l'Internet sur sa propre infrastructure
+    interne: un ensemble de ressources extensible et quasiment infini fourni par n'importe
+    quel équipement constituant l'Internet, partant des gros n\oe ud réseaux gérés par les ISPs, les
+    gouvernements et les institutions acadèmiques jusqu'à n'importe quelle ressource inactive
+    fournie par les utilisateurs finaux. 
+%
+    Contrairement aux approches précédentes appliquées aux systèmes distribués, nous
+    proposons de considérer les machines virtuelles comme la granularité élémentaire du système (à la place
+    des processus). La virtualisation système offre plusieurs fonctionnalités qui
+    améliorent la flexibilité de la gestion de ressources, permettant l'étude de nouveaux
+    schémas de décentralisation. 
+}
+}
+
+\URRhoneAlpes
+\makeRR
+
+%%%
+
+\input{introduction}
+
+\input{challenges}
+
+\input{background}
+
+\input{architecture}
+
+\input{futur}
+
+\input{conclusion}
+
+%
+% Section: Acknowledgment
+%
+\section*{Acknowledgments}
+
+XXX.
+
+%
+% Bibliography
+%
+%\bibliographystyle{elsarticle-num}
+\bibliographystyle{plain}
+\bibliography{main}
+
+\end{document}
