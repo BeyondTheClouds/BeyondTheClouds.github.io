@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a contributed volume
+%
+% Use this file as a template for your own input.
+%
+% SPRINGER  RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[graybox]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+\usepackage{courier}        % selects Courier as typewriter font
+\usepackage{type1cm}        % activate if the above 3 fonts are
+                            % not available on your system
+%
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+% see the list of further useful packages
+% in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ADDED BY OURSELVES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Package WE added
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{xspace}
+%% Definition WE made
+\newcommand{\discovery}{DISCOVERY\xspace}
+\newcommand{\ie}{\textit{i.e.}\xspace}
+%% CT %%
+\newcommand{\ftodo}[2][\relax]  % \TODO[editor]{text} 
+  {\ensuremath{{}^{\mbox{\tiny\bf #1}}}~\textbf{#2}}
+
+
+\begin{document}
+
+\title*{Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed?}
+\titlerunning{Beyond The Cloud, The Discovery Initiative}
+% Use \titlerunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\author{Marin Bertier, Frédéric Desprez, Gilles Fedak, Adrien Lebre, Anne-Cécile Orgerie, Jonathan Pastor, Flavien Quesnel, Jonathan Rouzaud-Cornabas and Cédric Tedeschi}
+\authorrunning{Lebre \and al.} 
+% Use \authorrunning{} for an abbreviated version of
+% your contribution title if the original one is too long
+%\institute{Name of First Author \at Name, Address of Institute, \email{name@email.address}
+%\and Name of Second Author \at Name, Address of Institute \email{name@email.address}}
+\institute{INRIA, France, \email{firstname.lastname@inria.fr}}
+%
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+%
+\maketitle
+
+\abstract*{
+To accommodate the ever-increasing demand for Utility Computing (UC)
+resources, while taking into account both energy and economical issues, the 
+current trend consists in building larger and larger data centers in a few 
+strategic locations. Although such an approach enables to cope with the actual
+demand while continuing to operate UC resources through centralized software
+system, it is far from delivering sustainable and efficient UC infrastructures.
+%
+    We claim that a disruptive change in UC infrastructures is required: UC
+resources should be managed differently, considering locality as a primary
+concern. We propose to leverage any facilities available through the Internet
+in order to deliver widely distributed UC platforms that can better match the 
+geographical dispersal of users as well as the unending demand.  Critical to
+the emergence of such locality-based UC (LUC) platforms is the availability of
+appropriate operating mechanisms. In this paper, we advocate the implementation
+of a unified system driving the use of resources at an unprecedented scale by
+turning a complex and diverse infrastructure into a collection of abstracted
+computing facilities that is both easy to operate and reliable.
+%
+    By deploying and using such a \emph{LUC Operating System} on backbones, our
+ultimate vision is to make possible to host/operate a large part of the
+Internet by its internal structure itself: A scalable and nearly infinite set
+of resources delivered by any computing facilities forming the Internet,
+starting from the larger hubs operated by ISPs, government and academic
+institutions to any idle resources that may be provided by end-users.
+%
+    Unlike previous researches on distributed operating systems, we propose to
+consider virtual machines (VMs) instead of processes as the basic element.
+System virtualization offers several capabilities that increase the flexibility
+of resources management, allowing to investigate novel decentralized schemes.
+}
+
+%\abstract{Each chapter should be preceded by an abstract (10--15 lines long) that summarizes the content. The abstract will appear \textit{online} at \url{www.SpringerLink.com} and be available with unrestricted access. This allows unregistered users to read the abstract as a teaser for the complete chapter. As a general rule the abstracts will not appear in the printed version of your book unless it is the style of your particular book or that of the series to which your book belongs.\newline\indent
+%Please use the 'starred' version of the new Springer \texttt{abstract} command for typesetting the text of the online abstracts (cf. source file of this chapter template \texttt{abstract}) and include them with the source files of your manuscript. Use the plain \texttt{abstract} command if the abstract is also to appear in the printed version of the book.}
+
+\input{motivation}
+\input{challenges}
+\input{background}
+\input{architecture}
+\input{futur}
+\input{conclusion}
+
+\begin{acknowledgement}
+If you want to include acknowledgments of assistance and the like at the end of an individual chapter please use the \verb|acknowledgement| environment -- it will automatically render Springer's preferred layout.
+\end{acknowledgement}
+%
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+%
+%
+When placed at the end of a chapter or contribution (as opposed to at the end of the book), the numbering of tables, figures, and equations in the appendix section continues on from that in the main text. Hence please \textit{do not} use the \verb|appendix| command when writing an appendix at the end of your chapter or contribution. If there is only one the appendix is designated ``Appendix'', or ``Appendix 1'', or ``Appendix 2'', etc. if there is more than one.
+
+%\input{referenc}
+\bibliographystyle{plain}
+\bibliography{main}
+\end{document}
