@@ -1,0 +1,93 @@
+%%%
+\section{Background\label{sec:background}}
+
+Several generations of UC infrastructures have been proposed and still
+co-exist~\cite{foster:2011}. However, neither Desktop, nor Grid, nor Cloud Computing
+platforms provide a satisfying UC model.  Contrary to the current trend that promotes
+large offshore centralized DCs as the UC platform of choice, we claim that the only way to
+achieve sustainable and highly efficient UC services is to target a new infrastructure
+that better matches the Internet structure.  Because it aims at gathering an unprecedented
+amount of widely distributed computing resources into a single platform providing UC
+services close to the end-users, a LUC infrastructure is fundamentally different from
+existing ones.  Keeping in mind the aforementioned objectives, recycling UC resource
+management solutions developed in the past is doomed to failure.
+
+As previously mentioned, our vision significantly differs from hybrid Cloud Computing
+solutions.  Although these research activities address important concerns related to the
+use of federated cloud platforms such as the standardization of the interfaces for
+supporting cooperation and resource sharing over Cloud federations, their propositions are
+incremental improvements of the existing UC models. From our point of view, hybrid and
+cloud federation investigations are comparable in some ways to previous works that have
+been done for Grids and where, the purpose of the Grid middleware is to interact with each
+resource management system composing the Grid
+\cite{buyya:2010,rochwerger:2009,zhao:2012}. By taking into account network issues in
+addition to traditional computing and storage concerns in Cloud Computing systems, the
+European SAIL
+project\footnote{\href{http://www.sail-project.eu}{\url{http://www.sail-project.eu}}} is
+probably the one which targets the biggest advances in comparison with previous works on
+Grid systems. Concretely, this project investigates new network technologies in order to
+provide end-users of hybrid/federated Clouds with the possibility to configure and
+virtually operate the network backbone that interconnects the different sites they
+use~\cite{sail:2012}.
+%
+More recently, the \emph{Fog Computing} concept has been proposed
+as a promising solution to applications and services that
+cannot be put into the cloud due to locality issues (mainly latency and
+mobility concerns)~\cite{bonomi:2012}.  Although it might look similar to our vision as they
+propose to extend the Cloud Computing paradigm to the edge of the network,
+\emph{Fog Computing} does not target a unified system but rather proposes to
+add a third party layer (\textit{i.e.} the \emph{Fog}) between cloud vendors and
+end-users.
+%
+In our vision, UC resources (\textit{i.e.} Cloud Computing ones) should be repacked in
+the different network hub of backbones and operated through a unified system, \textit{i.e.} the LUC OS.
+%
+As far as we know, the only system that investigated whether a
+widely distributed infrastructure can be operated by a single system, was the
+XtreemOS Project \cite{morin:2007}. Although this project was sharing some of
+the goals of the LUC OS, it did not investigate how the geographical
+distribution of resources can be leveraged to deliver more efficient and sustainable
+UC infrastructures. 
+%
+%In addition to consider \emph{Locality} as a primary concern, 
+%the novelty of the LUC OS proposal is a new way of designing systems to operate UC resources.
+%Unlike existing research on distributed operating systems that consider processes as
+%the basic object they manipulate, a LUC OS  will manipulate virtual
+%machines. Virtualization technologies abstract hardware
+%heterogeneity, and allow transparent deployment, preemption, and
+%migration of VEs.
+%% That is why we think that leveraging virtualization can have a deep impact on the way
+%%distributed resources can be operated. 
+%By dramatically increasing the flexibility of resource management,  virtualization will
+%allow to leverage state-of-the-art results from other distributed
+%systems areas such as autonomous and P2P/decentralized-based techniques. 
+
+To sum up,  we argue for the design and the implementation of a distributed OS,
+manipulating VEs instead of processes and considering locality as a primary concern. 
+Referred as a LUC Operating System, such
+a system will include most of the mechanisms that are common to actual UC
+management systems~\cite{cloudstack,nimbus,opennebula,openstack,lowe:wiley11,moreno:2012}.  However,
+each of them will have to be rethought in order to leverage P2P algorithms.
+% that are mandatory 
+%to meet the characteristics as well as the objectives of the targeted LUC platform. 
+%
+While largely unexplored for building operating systems,
+P2P/decentralized-based techniques have the potential to achieve the scalability required
+for LUC systems.
+Using all these technologies for establishing the foundation mechanisms of
+massive-scale distributed operating systems will be a major breakthrough from
+current static, centralized or hierarchical management solutions.
+
+%Finally, looking one step ahead and considering that large part of the Internet may be
+%seen as computing services hosted by UC platforms, the question might
+%be extended to : Will \discovery make possible to host/operate a large  part of
+%the Internet by its internal structure itself?
+%Similarly to the interconnection of academics and private networks and the use of the TCP/IP standard
+%that resulted in the Internet, the deployment and the use of the \discovery system through the
+%different networks might lead to a global UC platform, \textit{i.e.} \emph{the
+%\discovery infrastructure}: A scalable and nearly infinite set of resources
+%delivered by any computing facilities forming the Internet, starting from the
+%larger hubs operated by ISPs, government and academic institutions to any idle
+%resources that may be provided by end-users.
+%\ftodo{AL}{Copy/Paste from the abstract}
+%
