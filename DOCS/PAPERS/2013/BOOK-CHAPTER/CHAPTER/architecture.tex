@@ -75,7 +75,33 @@ network, \emph{i.e.}, close nodes in the network are given close coordinates in
 the plane. This is achieved by every node periodically checking the round trip
 time between itself and another node (from its view, a different one at each
 step) and adapting its distance (by changing its coordinates) with this node in
-the plane accordingly. Note that a global accurate positioning of nodes can be
+the plane accordingly. 
+
+\begin{figure}
+  \begin{minipage}[c]{.45\linewidth}
+	\vspace*{.5cm}
+   \hspace*{-0.5cm}
+      	\centering \includegraphics[width=4cm]{./FIGS/vivaldi_before.pdf}
+
+   \hspace*{0.5cm}
+	\vspace*{.4cm}
+		\caption{Vivaldi plot before updating positions.}
+		{\small Each node ping other nodes. Each node maintains a map of distance.}
+\label{fig:vivaldi_before}
+   \end{minipage}
+\hspace*{0.6cm}
+   \begin{minipage}[c]{.45\linewidth}
+   	\centering \includegraphics[width=4cm]{./FIGS/vivaldi_after.pdf}
+	\vspace*{0.20cm}
+		\caption{Vivaldi plot after updating positions.}
+		\label{fig:vivaldi_after} 
+{\small The computed positions of other nodes are periodically updated.}
+  \end{minipage} \hfill
+\end{figure}
+
+\newpage
+
+Note that a global accurate positioning of nodes can be
 obtained if nodes have a few long-distance nodes in their
 view~\cite{dabek:2001:sigcomm04}. These long distance links can be easily
 maintained through a simple gossip protocol.
