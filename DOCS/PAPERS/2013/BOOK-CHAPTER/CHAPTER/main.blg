@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/MacPorts 2013_3)
+This is BibTeX, Version 0.99d (TeX Live 2012)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
@@ -8,45 +8,45 @@ Warning--to sort, need author or key in nimbus
 Warning--to sort, need author or key in opennebula
 Warning--to sort, need author or key in openstack
 Warning--to sort, need author or key in dvms:wiki
-You've used 45 entries,
+You've used 46 entries,
             2118 wiz_defined-function locations,
-            751 strings with 13344 characters,
-and the built_in function-call counts, 17617 in all, are:
-= -- 1699
-> -- 947
+            758 strings with 13511 characters,
+and the built_in function-call counts, 17960 in all, are:
+= -- 1734
+> -- 965
 < -- 20
-+ -- 375
-- -- 330
-* -- 1246
-:= -- 2773
-add.period$ -- 136
-call.type$ -- 45
-change.case$ -- 296
++ -- 382
+- -- 336
+* -- 1274
+:= -- 2832
+add.period$ -- 139
+call.type$ -- 46
+change.case$ -- 302
 chr.to.int$ -- 0
-cite$ -- 50
-duplicate$ -- 684
-empty$ -- 1354
-format.name$ -- 330
-if$ -- 3799
+cite$ -- 51
+duplicate$ -- 695
+empty$ -- 1378
+format.name$ -- 336
+if$ -- 3867
 int.to.chr$ -- 0
-int.to.str$ -- 45
-missing$ -- 40
-newline$ -- 215
-num.names$ -- 82
-pop$ -- 362
+int.to.str$ -- 46
+missing$ -- 41
+newline$ -- 220
+num.names$ -- 84
+pop$ -- 366
 preamble$ -- 1
-purify$ -- 254
+purify$ -- 259
 quote$ -- 0
-skip$ -- 547
+skip$ -- 554
 stack$ -- 0
-substring$ -- 894
-swap$ -- 211
+substring$ -- 918
+swap$ -- 212
 text.length$ -- 20
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 174
+type$ -- 178
 warning$ -- 5
-while$ -- 151
-width$ -- 47
-write$ -- 485
+while$ -- 155
+width$ -- 48
+write$ -- 496
 (There were 5 warnings)
