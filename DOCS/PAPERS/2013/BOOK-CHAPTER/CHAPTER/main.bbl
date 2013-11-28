@@ -178,6 +178,11 @@ Ming Mao and Marty Humphrey.
 \newblock In {\em Proceedings of the 2012 IEEE Fifth International Conference
   on Cloud Computing}, CLOUD '12, pages 423--430. IEEE Computer Society, 2012.
 
+\bibitem{Miller:2010:TWT:1907636.1907726}
+Keith~W. Miller, Jeffrey Voas, and Phil Laplante.
+\newblock In trust we trust.
+\newblock {\em Computer}, 43:85--87, October 2010.
+
 \bibitem{moreno:2012}
 R.~Moreno-Vozmediano, R.S. Montero, and I.M. Llorente.
 \newblock {IaaS Cloud Architecture: From Virtualized Datacenters to Federated
