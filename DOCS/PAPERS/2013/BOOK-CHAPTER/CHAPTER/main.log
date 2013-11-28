@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.10.22)  28 NOV 2013 03:11
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.10.22)  28 NOV 2013 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -774,29 +774,28 @@ Package pdftex.def Info: ./FIGS/vivaldi_after.pdf used on input line 94.
 (pdftex.def)             Requested size: 113.81102pt x 110.67271pt.
  [9] [10 <./FIGS/vivaldi_before.pdf> <./FIGS/vivaldi_after.pdf>] [11] [12] (./r
 eliability.tex [13]) [14]
-<./FIGS/these_supervisor.png, id=301, 314.17375pt x 364.36125pt>
-File: ./FIGS/these_supervisor.png Graphic file (type png)
+<./FIGS/PeerActor.pdf, id=301, 333.245pt x 390.45876pt>
+File: ./FIGS/PeerActor.pdf Graphic file (type pdf)
 
-<use ./FIGS/these_supervisor.png>
-Package pdftex.def Info: ./FIGS/these_supervisor.png used on input line 520.
-(pdftex.def)             Requested size: 113.81102pt x 131.98721pt.
+<use ./FIGS/PeerActor.pdf>
+Package pdftex.def Info: ./FIGS/PeerActor.pdf used on input line 520.
+(pdftex.def)             Requested size: 113.81102pt x 133.35pt.
 
-<./FIGS/these_service_peer_archi_legend.png, id=303, 518.93875pt x 430.60875pt>
-File: ./FIGS/these_service_peer_archi_legend.png Graphic file (type png)
-<use ./FIGS/these_service_peer_archi_legend.png>
-Package pdftex.def Info: ./FIGS/these_service_peer_archi_legend.png used on inp
-ut line 530.
-(pdftex.def)             Requested size: 184.9429pt x 153.4618pt.
+<./FIGS/PeerActorServices.pdf, id=302, 417.56pt x 489.83pt>
+File: ./FIGS/PeerActorServices.pdf Graphic file (type pdf)
+
+<use ./FIGS/PeerActorServices.pdf>
+Package pdftex.def Info: ./FIGS/PeerActorServices.pdf used on input line 530.
+(pdftex.def)             Requested size: 184.9429pt x 216.95343pt.
 
 Overfull \hbox (1.84842pt too wide) in paragraph at lines 530--532
  [][] 
  []
 
-[15 <./FIGS/these_supervisor.png> <./FIGS/these_service_peer_archi_legend.png>]
-) (./futur.tex [16] [17]) (./conclusion.tex [18]) (./main.bbl [19] [20])
+[15] [16 <./FIGS/PeerActor.pdf> <./FIGS/PeerActorServices.pdf>]) (./futur.tex
+[17]) (./conclusion.tex [18]) (./main.bbl [19] [20] [21])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
-
-[21]
+ [22]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
@@ -806,13 +805,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
  ) 
 Here is how much of TeX's memory you used:
- 6569 strings out of 493488
- 95665 string characters out of 3141325
- 190704 words of memory out of 3000000
+ 6570 strings out of 493488
+ 95567 string characters out of 3141325
+ 191705 words of memory out of 3000000
  9642 multiletter control sequences out of 15000+200000
  40672 words of font info for 79 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,8n,30p,517b,454s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,8n,30p,517b,455s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
@@ -820,10 +819,10 @@ xlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
 ist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2012/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on main.pdf (21 pages, 604309 bytes).
+Output written on main.pdf (22 pages, 625264 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 365 compressed objects within 4 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 605 PDF objects out of 1000 (max. 8388607)
+ 480 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
