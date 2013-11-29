@@ -1,8 +1,10 @@
-This is BibTeX, Version 0.99d (TeX Live 2012)
+This is BibTeX, Version 0.99d (TeX Live 2013/MacPorts 2013_3)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: main.bib
+Warning--I didn't find a database entry for "xxx"
+Warning--I didn't find a database entry for "xxxx"
 Warning--to sort, need author or key in cloudstack
 Warning--to sort, need author or key in nimbus
 Warning--to sort, need author or key in opennebula
@@ -10,7 +12,7 @@ Warning--to sort, need author or key in openstack
 Warning--to sort, need author or key in dvms:wiki
 You've used 46 entries,
             2118 wiz_defined-function locations,
-            758 strings with 13511 characters,
+            760 strings with 13518 characters,
 and the built_in function-call counts, 17960 in all, are:
 = -- 1734
 > -- 965
@@ -49,4 +51,4 @@ warning$ -- 5
 while$ -- 155
 width$ -- 48
 write$ -- 496
-(There were 5 warnings)
+(There were 7 warnings)

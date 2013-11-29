@@ -1,9 +1,9 @@
 \BOOKMARK [0][-]{section*.1}{Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed?}{}% 1
 \BOOKMARK [0][-]{section*.1}{Marin Bertier, Fr\351d\351ric Desprez, Gilles Fedak, Adrien Lebre, Anne-C\351cile Orgerie, Jonathan Pastor, Flavien Quesnel, Jonathan Rouzaud-Cornabas and C\351dric Tedeschi}{}% 2
 \BOOKMARK [1][-]{section.0.1}{Context and Motivations}{section*.1}% 3
-\BOOKMARK [2][-]{subsection.0.1.1}{Large-Scale Data Centers}{section.0.1}% 4
+\BOOKMARK [2][-]{subsection.0.1.1}{Inherent limitation of large-scale DCs}{section.0.1}% 4
 \BOOKMARK [2][-]{subsection.0.1.2}{Oversized Network Backbone.}{section.0.1}% 5
-\BOOKMARK [2][-]{subsection.0.1.3}{Chapter Outline}{section.0.1}% 6
+\BOOKMARK [2][-]{subsection.0.1.3}{Locality Based Utility Computing}{section.0.1}% 6
 \BOOKMARK [1][-]{section.0.2}{Overall Vision and Major Challenges}{section*.1}% 7
 \BOOKMARK [1][-]{section.0.3}{Background}{section*.1}% 8
 \BOOKMARK [1][-]{section.0.4}{Premises of a LUC OS: The DISCOVERY Proposal}{section*.1}% 9
