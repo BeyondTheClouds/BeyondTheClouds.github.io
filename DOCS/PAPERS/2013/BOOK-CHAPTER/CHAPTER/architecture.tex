@@ -515,19 +515,19 @@ overlay while the second service uses an additional \emph{Peer Actor} implementi
  
 \begin{figure}
   \begin{minipage}[c]{.35\linewidth}
-	\vspace*{.5cm}
+	\vspace*{2.5cm}
    \hspace*{-0.5cm}
-      	\centering \includegraphics[width=4cm]{./FIGS/these_supervisor.png}
+      	\centering \includegraphics[width=4cm]{./FIGS/PeerActor.pdf}
 
    \hspace*{0.5cm}
-	\vspace*{.4cm}
+	\vspace*{.8cm}
 		\caption{The Peer Actor Model}
 		{\small The Supervisor actor monitors all the actors it encapsulates while the Peer actor acts as an interface between the services and the overlay.}
 \label{fig:supervisor}
    \end{minipage}
 \hspace*{0.6cm}
    \begin{minipage}[c]{.55\linewidth}
-   	\centering \includegraphics[width=6.5cm]{./FIGS/these_service_peer_archi_legend.png}
+   	\centering \includegraphics[width=6.5cm]{./FIGS/PeerActorServices.pdf}
 	\vspace*{-0.25cm}
 		\caption{A Peer Actor Instantiation}
 		\label{fig:peeractor} 
@@ -583,7 +583,9 @@ leveraging the SCALA/akka\footnote{\href{http://www.akka.io}{\url{http://www.akk
 As a proof of concept, we are implementing a first high level service in charge
 of dynamically scheduling VMs across a LUC infrastructure by leveraging the
 DVMS~\cite{quesnel:2012} proposal (see Section \ref{ssec:vem}). The low-level
-overlay that is currently implemented, is a robust ring based on the  Chord  algorithm. 
+overlay that is currently implemented, is a robust ring based on the  Chord  algorithm
+combined with Vivaldi positionning system: it enables services to select nodes that have
+low latency, so that collaboration will be more efficient. 
 
 % When a node cannot guarantee the QoS for its
 %hosted VMs, it starts an iterative scheduling procedure (ISP) by querying its
