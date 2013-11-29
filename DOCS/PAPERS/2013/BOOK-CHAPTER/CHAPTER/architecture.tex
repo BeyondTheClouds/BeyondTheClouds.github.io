@@ -158,10 +158,27 @@ spiral construction.
 
 \subsubsection*{Routing}
 
-Still based on the minimal design, and independently from the spiral
-constructions, there is a need for routing.
+In the context of a LUC infrastructure, one crucial feature is to be able to
+locate an existing VM. Having the same stratery consisting in improving the
+performance of the overlay based on the application's activity, we envision a
+routing mechanism which will be improved by past routing requests. Thanks to the
+spiral mechanism described above, a node is able to contact its neighbouring
+nodes to start the path of a message.
 
-\ftodo[CT]{TODO}
+This initial routing mechanism can be very expensive, as the number of hops can
+be linear in the size of the network. From previous communications, one is able
+to memorize long links to different locations of the network. Consequently, 
+
+From each routing request, the source of the request and each node on the path
+to the destination is able to learn long links, which will significantly reduce
+the number of hops of future requests. We currently study the amount of requests
+needed to approach a logarithmic routing complexity.
+
+More generally, we work on the estimation of the application's activity required
+to (i) guarantee the constant efficiency of the overlay, (ii) converge, started
+from a random configuration, to a fully-efficient overlay network.
+
+%\ftodo[CT]{TODO}
 
 % Each node doing so in parallel, a number of clusters are created inside which we
 % can ensure a certain level of locality -- all nodes inside this group can
