@@ -1,25 +1,32 @@
 \section{Context and Motivations}
 \label{sec:intro}
-\ftodo[AL]{Add a preamble dealing with successive generations of cloud, mainframe, network of worktations, grids, clouds}
 The success of Cloud Computing has driven the advent of Utility Computing.
 However Cloud Computing is a victim of its own success: In order to answer the
 ever increasing demand for computing resources, Cloud Computing providers must
-build data centers (DCs) of ever-increasing size. 
+build data centers (DCs) of ever-increasing size. Besides facing the well-known
+issues of large-scale platforms management, large-scale DCs have to deal with
+energy considerations that limit the number of physical resources that one
+location can host.
+%
+However, instead of investigating other solutions that can tackle both
+concerns, the current trend consists in deploying  DCs in few
+strategic locations that deliver energy advantages.  For example, Western North
+Carolina, USA, is an attractive area due to its abundant capacity of coal
+and nuclear power following the departure of the region's textile and furniture
+manufacturing \cite{}.  More recently, several proposal suggest building next
+generation DCs close to the polar circle  in order to leverage free cooling
+techniques, considering that cooling is accounting for a big part of the
+consumed electricity \cite{}. 
 
 
 \subsection{Inherent limitation of large-scale DCs}
 
-\ftodo[CT$\rightarrow$AL]{Comme discuté au tel, revoir la première phrase, moins
-energy-oriented.}
-
-Besides facing the well-known
-issues of large-scale platforms management, large-scale DCs have to deal with
-energy considerations that limit the number of physical resources that one
-location can host. As a consequence, several proposals suggest building next
-generation DCs in strategic locations close to the polar circle. However, this
-approach is far from solving all issues. In addition to requiring the
-construction and the deployment of a complete network infrastructure to reach
-each DC, it exacerbates the inherent limitations of the Cloud Computing model:
+Although building large scale DCs  enables to cope with the actual demand while
+continuing to operate UC resources through centralized software system, it is
+far from delivering sustainable and efficient UC infrastructures.  In addition
+to requiring the construction and the deployment of a complete network
+infrastructure to reach each DC, it exacerbates the inherent limitations of the
+Cloud Computing model:
 
 \begin{itemize}
 \item The externalization of private applications/data often faces legal issues
