@@ -8,6 +8,10 @@ build data centers (DCs) of ever-increasing size.
 
 
 \subsection{Inherent limitation of large-scale DCs}
+
+\ftodo[CT$\rightarrow$AL]{Comme discuté au tel, revoir la première phrase, moins
+energy-oriented.}
+
 Besides facing the well-known
 issues of large-scale platforms management, large-scale DCs have to deal with
 energy considerations that limit the number of physical resources that one
@@ -35,25 +39,25 @@ sites.\footnote{“Amazon outages – lessons learned”,
 (valid on Oct 2013, the 15\textsuperscript{th}).} 
 \end{itemize}
 
-Although hybrid or federated Cloud solutions \cite{armbrust:2010} that aim at extending
-the available resource delivered by one Cloud  with another one
-can partially tackle the two former points, the latter one requires a disruptive change in
-the way of managing UC resources.  Deploying a broadcasting service of local events or an
-online service to order pizza at the edge of the polar circle leads to important overheads
+Although hybrid or federated Cloud solutions~\cite{armbrust:2010} that aim at extending
+the resources available on one Cloud  with another one
+can partially tackle the two former points, the latter requires a disruptive change in
+the way UC resources are managed. Deploying a local events broadcasting service or an
+online service to order pizza at the edge of the polar circle leads to an important overhead
 in terms of energy footprint, network exchanges as well as latency since it can be assumed
 that a vast majority of the users are located in the neighborhood of the event/the
 pizzeria.  According to some projections of a recent IEEE report
 \cite{ieeenetreport:2012}, the network traffic continues to double roughly each
-year. Bringing the IT services closer to the end-users will become soon crucial to limit
+year. Bringing the IT services closer to the end-users is becoming crucial to limit
 the energy impact of these exchanges and to save the bandwidth of some links. Similarly,
 this notion of locality is also critical for the adoption of the UC model by applications
-that should deal with a large amount of data as getting them in and out from actual UC
+that need to deal with a large amount of data as getting them in and out actual UC
 infrastructures may significantly impact the global performance~\cite{Fos11}. 
 
 The concept of micro data centers at the edge of the backbone
 \cite{greenberg:sigcomm09} may be seen as the complementary solution to hybrid
 platforms in order to reduce the overhead of network exchanges.  However, the
-number of such micro data centers will stay limited and the question of how
+number of such micro data centers will remain limited and the question of how
 federating a large number of such facilities is still not solved.  
 
 At the same time, people are (and will be more and more) surrounded by
@@ -64,7 +68,7 @@ a consequence, several initiatives started investigating how they could be
 better leveraged to support the requirements and constraints of current IT
 usages.  The concept of \emph{data furnaces} \cite{liu:hotcloud11} is one of
 the promising idea that seeks to mitigate the cost of operating
-network/computing resources by using them as sources of heat inside public
+network/computing resources by using them as a source of heat inside public
 buildings such as hospitals or universities. 
 
 %Our vision is that both network as well as UC resources should be operated in a
@@ -77,7 +81,7 @@ map of RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, th
 institutions in France. It reveals several important points: 
 \begin{itemize} 
 \item It clearly shows that most of the resources are barely used (only two links are used between 45\% and 55\%, a few between 25\% and 40\% and the majority below the threshold of 25\%). 
-\item The backbone has been deployed and is renewed according to the demand: the density of
+\item The backbone has been deployed and is renewed according to demand: the density of
 points of presence (PoP) of the network as well as the bandwidth of each link are more important on the edge of large cities such as Paris, Lyon or
 Marseille. 
 \item The backbone has been deployed in order to face disconnections, \textit{i.e.} 95\% of the PoPs can be reached by at least two distinct routes.
@@ -96,20 +100,25 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 
 \subsection{Locality Based Utility Computing}
 
-This chapter aims at introducing a new generation of UC platforms that can be seen as an extension of the concept of micro DCs in somehow: 
+\ftodo[CT$\rightarrow$AL]{Change title --- something with ``LUC'' / ``our proposal''}
+
+This chapter aims at introducing a new generation of UC platforms that can be
+seen somehow as an extension of the concept of micro DCs: 
 Instead of building and deploying dedicated facilities, we claim that next UC
 infrastructures should be tightly coupled with any facilities available through
 the Internet, starting from the core routers of the backbone, the different
 network access points and any small and medium-size computing infrastructures
 that may be provisioned by public and private institutions. 
  Although it involves radical changes in the way
-physical and virtual resources are managed, locating and operating computing and data on
+physical and virtual resources are managed, locating and operating computing
+power and data on
 facilities close to the end-users is the only way to deliver highly efficient
 and sustainable UC services. 
 
 From the physical point of view, network backbones such as the RENATER one provide
 appropriate infrastructures, that is, reliable and efficient enough to operate UC
-resources spread across the different PoPs. In a perfect model, UC resources may directly
+resources spread across the different PoPs. Ideally, UC resources would be able to
+directly
 take advantage of computation cycles available on network servers, \textit{i.e.} the one
 in charge of routing packets. However, leveraging network resources to make external
 computations may lead to important security concerns. Hence, we propose to extend each
@@ -118,20 +127,24 @@ distribution between network traffics and UC demands would be proportional, larg
 hubs will be completed by more UC resources than the smaller ones. Moreover by deploying
 UC services on relevant PoPs, a LUC infrastructure will be able to natively confine
 network exchanges to a minimal scope, minimizing both the energy footprint of the network
-as well as the latency impact.
+and the impact on latency.
+
+\ftodo[CT$\rightarrow$AL]{LUC is first used here, without being defined.}
 
 From the software point of view, the main challenge is to design a complete distributed
 system in charge of turning a complex and diverse network of resources into a collection
 of abstracted computing facilities that is both reliable and easy to operate.
 
 \begin{svgraybox}
-By designing an advanced system that offers the possibly to operate  in a unified manner a large number of UC resources spread throughout distinct sites, \ie the \emph{LUC Operating System},
+By designing an advanced system that offers the possibility to operate a large
+number of UC resources spread throughout distinct sites \ie, a \emph{LUC
+  Operating System}, in a unified manner,
 ISPs as well as academic and private institutions in
 charge of operating a network backbone will be able to build an extreme-scale
 LUC infrastructure with a limited additional cost. Instead of redeploying a
 complete installation, they will be able to leverage IT resources and
 specific devices such as computer room air conditioning units, inverters or
-redundant power supplies that are already present on each hub of their
+redundant power supplies already present on each hub of their
 backbone. 
 \end{svgraybox}
 
@@ -144,23 +157,22 @@ backbone.
 In addition to consider \emph{Locality} as a primary concern, the novelty of the LUC OS
 proposal is to consider VM as the basic object it manipulates.  Unlike existing
 research on distributed operating systems that have been designed on the process concept, a LUC OS will manipulate VMs throughout a federation of widely distributed
-physical machines. Virtualization technologies abstract hardware heterogeneity, and allow
-transparent deployment, preemption, and migration of VEs.
+physical machines. Virtualization technologies abstract out hardware heterogeneity, and allow
+transparent deployment, preemption, and migration of virtualized
+environments (VEs), \ie a set of interconnected VMs.
 By dramatically increasing the flexibility of resource management, virtualization 
 allows to leverage state-of-the-art results from other distributed
-systems areas such as autonomous and decentralized-based techniques.  
-Our goal is to deliver a system that allows end-users to launch virtualized
-environments (VEs), \textit{i.e.} a set of interconnected VMs, throughout a
+systems areas such as autonomous and decentralized systems.  
+Our goal is to build a system that allows end-users to launch VEs over a
 distributed infrastructure as simply as they launch processes on a
 local machine, \ie  without the burden of dealing with resources
-availability or location. 
+availability or location.
 
 %\paragraph{Chapter Outline.} 
 Section \ref{sec:challenges} describes the key objectives of a LUC OS and the associated challenges. 
 Section \ref{sec:background} explains why our vision differs from actual and previous UC solutions. In
 Section \ref{sec:archi}, we present how such a unified system may be designed
-by delivering the premises of the \discovery system, an agent based system
-enabling distributed and cooperative management of virtual environments through a
+by delivering the premises of the \discovery system, an agent-based system
+enabling distributed and cooperative management of virtual environments over a
 large-scale distributed infrastructure.
-Future work as well as opportunities  are addressed in Section \ref{sec:future}. Finally Section
-\ref{sec:conclusion} concludes this chapter. 
+Future work as well as opportunities  are addressed in Section \ref{sec:future}. Finally Section~\ref{sec:conclusion} concludes this chapter. 
