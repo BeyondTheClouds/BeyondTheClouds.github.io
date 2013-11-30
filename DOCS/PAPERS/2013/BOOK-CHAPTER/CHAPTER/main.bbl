@@ -21,6 +21,10 @@ Gul Agha.
   Systems}}.
 \newblock MIT Press, Cambridge, MA, USA, 1986.
 
+\bibitem{Andrew:2003}
+Odlyzko Andrew.
+\newblock Data networks are lightly utilized, and will stay that way, 2003.
+
 \bibitem{armbrust:2010}
 Michael Armbrust, Armando Fox, Rean Griffith, Anthony~D. Joseph, Randy Katz,
   Andy Konwinski, Gunho Lee, David Patterson, Ariel Rabkin, Ion Stoica, and
@@ -41,6 +45,12 @@ Jean Bacon, David Evans, David~M. Eyers, Matteo Migliavacca, Peter Pietzuch,
 Daniel Balouek, Adrien L\`{e}bre, and Flavien Quesnel.
 \newblock Flauncher and dvms -- deploying and scheduling thousands of virtual
   machines on hundreds of nodes distributed geographically.
+
+\bibitem{Benson:2010}
+Theophilus Benson, Aditya Akella, and David~A. Maltz.
+\newblock Network traffic characteristics of data centers in the wild.
+\newblock In {\em Proceedings of the 10th ACM SIGCOMM Conference on Internet
+  Measurement}, IMC '10, pages 267--280, New York, NY, USA, 2010. ACM.
 
 \bibitem{rouzaud_book13b}
 Mathieu Blanc, Jeremy Briffaut, Laurent Clevy, Damien Gros, Jonathan
@@ -116,6 +126,10 @@ Arijit Ganguly, Abhishek Agrawal, P.~Oscar Boykin, and Renato Figueiredo.
 \newblock In {\em Proceedings of the 20th international conference on Parallel
   and distributed processing}, IPDPS'06, pages 49--49, Washington, DC, USA,
   2006. IEEE Computer Society.
+
+\bibitem{greenpeace:2013}
+Jodie Van~Horn Gary~Cook.
+\newblock How dirty is your data ?, 2013.
 
 \bibitem{gerofi:2012}
 Balazs Gerofi and Yutaka Ishikawa.
