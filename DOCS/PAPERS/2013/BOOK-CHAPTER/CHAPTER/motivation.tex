@@ -1,4 +1,3 @@
-% TEST COMMIT 3
 \section{Context and Motivations}
 \label{sec:intro}
 The success of Cloud Computing has driven the advent of Utility Computing.
@@ -9,22 +8,22 @@ issues of large-scale platforms management, large-scale DCs have to deal with
 energy considerations that limit the number of physical resources that one
 location can host.
 %
-However, instead of investigating other solutions that can tackle both
-concerns, the current trend consists in deploying  DCs in few
+However, instead of investigating other solutions that can tackle aforementioned 
+concerns, the current trend consists in deploying larger and larger DCs in few
 strategic locations that deliver energy advantages.  For example, Western North
 Carolina, USA, is an attractive area due to its abundant capacity of coal
 and nuclear power following the departure of the region's textile and furniture
-manufacturing \cite{xxx}.  More recently, several proposal suggest building next
+manufacturing \cite{greenpeace:2013}.  More recently, several proposal suggest building next
 generation DCs close to the polar circle  in order to leverage free cooling
 techniques, considering that cooling is accounting for a big part of the
-consumed electricity \cite{xxxx}. 
+consumed electricity \cite{greenberg=sigcomm09}. 
 
 
 \subsection{Inherent limitation of large-scale DCs}
 
-Although building large scale DCs  enables to cope with the actual demand while
-continuing to operate UC resources through centralized software system, it is
-far from delivering sustainable and efficient UC infrastructures.  In addition
+Although building large scale DCs  enables to cope with the actual demand
+% while continuing to operate UC resources through centralized software system 
+, it is far from delivering sustainable and efficient UC infrastructures.  In addition
 to requiring the construction and the deployment of a complete network
 infrastructure to reach each DC, it exacerbates the inherent limitations of the
 Cloud Computing model:
@@ -44,14 +43,14 @@ dedicated centers, especially if they are located in a similar geographical
 zone. The only way to ensure disaster recovery is to leverage distinct
 sites.\footnote{“Amazon outages – lessons learned”,
 \href{http://gigaom.com/cloud/amazon-outages-lessons-learned/}{http://gigaom.com/cloud/amazon-outages-lessons-learned/}
-(valid on Oct 2013, the 15\textsuperscript{th}).} 
+(valid on  Nov 2013, the 30\textsuperscript{th}).} 
 \end{itemize}
 
 Although hybrid or federated Cloud solutions~\cite{armbrust:2010} that aim at extending
 the resources available on one Cloud  with another one
 can partially tackle the two former points, the latter requires a disruptive change in
 the way UC resources are managed. Deploying a local events broadcasting service or an
-online service to order pizza at the edge of the polar circle leads to an important overhead
+online service to order pizza at the edge of the polar circle for instance, leads to an important overhead
 in terms of energy footprint, network exchanges as well as latency since it can be assumed
 that a vast majority of the users are located in the neighborhood of the event/the
 pizzeria.  According to some projections of a recent IEEE report
@@ -62,33 +61,41 @@ this notion of locality is also critical for the adoption of the UC model by app
 that need to deal with a large amount of data as getting them in and out actual UC
 infrastructures may significantly impact the global performance~\cite{Fos11}. 
 
-The concept of micro data centers at the edge of the backbone
+The concept of micro/nano DCs at the edge of the backbone
 \cite{greenberg:sigcomm09} may be seen as the complementary solution to hybrid
-platforms in order to reduce the overhead of network exchanges.  However, the
-number of such micro data centers will remain limited and the question of how
-federating a large number of such facilities is still not solved.  
+platforms in order to reduce the overhead of network exchanges.  However, operating multiple small DCs breaks
+the idea of resources mutualization for energy saving, making this approach questionable. Moreover, 
+the number of such micro/nano DCs will remain limited and the question of how
+federating a large number of such facilities is still not solved.
 
-At the same time, people are (and will be more and more) surrounded by
-computing resources, especially the ones in charge of interconnecting all IT
-equipments.  Even though these small and medium-size facilities include
-resources that are sometimes barely used, they can hardly be removed (\textit{e.g.} routers). As
-a consequence, several initiatives started investigating how they could be
-better leveraged to support the requirements and constraints of current IT
-usages.  The concept of \emph{data furnaces} \cite{liu:hotcloud11} is one of
-the promising idea that seeks to mitigate the cost of operating
-network/computing resources by using them as a source of heat inside public
-buildings such as hospitals or universities. 
+\subsection{Ubiquitous and Oversized Network Backbones.}
+While larger and larger DCs are created, people are (and will be more and more)
+surrounded by computing resources, especially the ones in charge of
+interconnecting all IT equipments. Even though these small and medium-size
+facilities include resources that are barely used \cite{Andrew:2003,
+Benson:2010}, they can hardly be removed (\textit{e.g.} routers).  Considering
+this important aspect, we claim that a new generation of UC platorms can be
+delivered by deploying the concept of the  micro/nano DCs directly inside the
+internet backbone, starting from the core nodes of the backbone to the
+different network access points in charge of interconnecting public and private
+institutions.  By such a mean, network and UC providers would be enable to
+mutualize resources, reducing the energy impact while taking the advantage of
+delivering UC services as close as possible to the end users. 
 
-%Our vision is that both network as well as UC resources should be operated in a
-%federated fashion. This is the only way to deliver a
-%sustainable as well as an efficient UC model.
+% TODO: AL -> ACO, please introduce this point latter in the chapter
+% As a consequence, several initiatives started investigating how they could be
+%better leveraged to support the requirements and constraints of current IT
+%usages.  The concept of \emph{data furnaces} \cite{liu:hotcloud11} is one of
+%the promising idea that seeks to mitigate the cost of operating
+%network/computing resources by using them as a source of heat inside public
+%buildings such as hospitals or universities. 
 
-\subsection{Oversized Network Backbone.}
-Figure \ref{fig:renater} is a snapshot of the network weather
+To illustrate the advantages of our proposal, 
+Figure \ref{fig:renater} shows a snapshot of the network weather
 map of RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, the network backbone dedicated to universities and research
 institutions in France. It reveals several important points: 
 \begin{itemize} 
-\item It clearly shows that most of the resources are barely used (only two links are used between 45\% and 55\%, a few between 25\% and 40\% and the majority below the threshold of 25\%). 
+\item As indicated, it clearly shows that most of the resources are under-used (only two links are used between 45\% and 55\%, a few between 25\% and 40\% and the majority below the threshold of 25\%). 
 \item The backbone has been deployed and is renewed according to demand: the density of
 points of presence (PoP) of the network as well as the bandwidth of each link are more important on the edge of large cities such as Paris, Lyon or
 Marseille. 
@@ -108,19 +115,21 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 
 \subsection{Locality Based Utility Computing}
 
-\ftodo[CT$\rightarrow$AL]{Change title --- something with ``LUC'' / ``our proposal''}
+\ftodo[ACO$\rightarrow$AL]{Although multiple small or medium size DCs break the idea of mutualization of resources for energy saving, it is important to...} 
 
 This chapter aims at introducing a new generation of UC platforms that can be
-seen somehow as an extension of the concept of micro DCs: 
-Instead of building and deploying dedicated facilities, we claim that next UC
-infrastructures should be tightly coupled with any facilities available through
-the Internet, starting from the core routers of the backbone, the different
-network access points and any small and medium-size computing infrastructures
-that may be provisioned by public and private institutions. 
+seen somehow as an extension of the concept of micro DCs. The main change is to
+consider locality as a key point of UC services and to leverage facilities
+composing the internet backbone.  %Instead of building and deploying dedicated
+facilities, we claim that next UC
+%infrastructures should be tightly coupled with any facilities available through
+%the Internet, starting from the core routers of the backbone, the different
+%network access points and any small and medium-size computing infrastructures
+%that may be provisioned by public and private institutions. 
  Although it involves radical changes in the way
 physical and virtual resources are managed, locating and operating computing
 power and data on
-facilities close to the end-users is the only way to deliver highly efficient
+facilities close to the end-users will deliver highly efficient
 and sustainable UC services. 
 
 From the physical point of view, network backbones such as the RENATER one provide
