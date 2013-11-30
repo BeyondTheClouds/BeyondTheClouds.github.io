@@ -133,10 +133,10 @@ process: Among the spiral view, it chooses the node with the smallest distance
 to $s$, say $b$, and adds it in the spiral -- $a$ becomes the predecessor of $b$
 and $b$ becomes the successor of $a$. Then, the spiral view is sent to $b$ which
 updates it with the nodes it has in its own view. The process is repeated until
-we consider we have gathered enough nodes with regard to the requesting
+we consider enough nodes have been gathered in regards to the requesting
 application.
 
-One risk to be mitigated is not to blocked by a spiral view containing only
+One risk to be mitigated is not to be blocked by a spiral view containing only
 nodes that are already in the spiral. However, this problem can be easily
 addressed by forcing the presence of a few long distance nodes whenever it is
 updated.
@@ -167,16 +167,14 @@ nodes to start the path of a message.
 
 This initial routing mechanism can be very expensive, as the number of hops can
 be linear in the size of the network. From previous communications, one is able
-to memorize long links to different locations of the network. Consequently, 
-
-From each routing request, the source of the request and each node on the path
-to the destination is able to learn long links, which will significantly reduce
-the number of hops of future requests. We currently study the amount of requests
-needed to approach a logarithmic routing complexity.
-
-More generally, we work on the estimation of the application's activity required
-to (i) guarantee the constant efficiency of the overlay, (ii) converge, started
-from a random configuration, to a fully-efficient overlay network.
+to memorize long links to different locations of the network. Consequently, from
+each routing request, the source of the request and each node on the path to the
+destination is able to learn long links, which will significantly reduce the
+number of hops of future requests. We currently study the amount of requests
+needed to approach a logarithmic routing complexity. More generally, we work on
+the estimation of the application's activity required to (i) guarantee the
+constant efficiency of the overlay, (ii) converge, started from a random
+configuration, to a fully-efficient overlay network.
 
 %\ftodo[CT]{TODO}
 
