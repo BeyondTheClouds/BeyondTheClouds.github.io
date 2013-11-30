@@ -16,7 +16,7 @@ and nuclear power following the departure of the region's textile and furniture
 manufacturing \cite{greenpeace:2013}.  More recently, several proposal suggest building next
 generation DCs close to the polar circle  in order to leverage free cooling
 techniques, considering that cooling is accounting for a big part of the
-consumed electricity \cite{greenberg=sigcomm09}. 
+consumed electricity \cite{greenberg:sigcomm09}. 
 
 
 \subsection{Inherent limitation of large-scale DCs}
@@ -79,8 +79,9 @@ delivered by deploying the concept of the  micro/nano DCs directly inside the
 internet backbone, starting from the core nodes of the backbone to the
 different network access points in charge of interconnecting public and private
 institutions.  By such a mean, network and UC providers would be enable to
-mutualize resources, reducing the energy impact while taking the advantage of
-delivering UC services as close as possible to the end users. 
+mutualize resources that are mandatory to operate network/data centers while
+delivering widely distributed UC platforms that can better match the
+geographical dispersal of users. 
 
 % TODO: AL -> ACO, please introduce this point latter in the chapter
 % As a consequence, several initiatives started investigating how they could be
@@ -90,8 +91,8 @@ delivering UC services as close as possible to the end users.
 %network/computing resources by using them as a source of heat inside public
 %buildings such as hospitals or universities. 
 
-To illustrate the advantages of our proposal, 
-Figure \ref{fig:renater} shows a snapshot of the network weather
+Figure \ref{fig:renater} illustrates the advantages of our proposal. It
+ shows a snapshot of the network weather
 map of RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, the network backbone dedicated to universities and research
 institutions in France. It reveals several important points: 
 \begin{itemize} 
@@ -115,38 +116,41 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 
 \subsection{Locality Based Utility Computing}
 
-\ftodo[ACO$\rightarrow$AL]{Although multiple small or medium size DCs break the idea of mutualization of resources for energy saving, it is important to...} 
-
-This chapter aims at introducing a new generation of UC platforms that can be
-seen somehow as an extension of the concept of micro DCs. The main change is to
-consider locality as a key point of UC services and to leverage facilities
-composing the internet backbone.  %Instead of building and deploying dedicated
-facilities, we claim that next UC
+%This chapter aims at introducing a new generation of UC platforms that can be
+%seen somehow as an extension of the concept of micro DCs. The main change is to
+%consider locality as a key point of UC services and to leverage facilities
+%composing the internet backbone.  %Instead of building and deploying dedicated
+%facilities, we claim that next UC
 %infrastructures should be tightly coupled with any facilities available through
 %the Internet, starting from the core routers of the backbone, the different
 %network access points and any small and medium-size computing infrastructures
 %that may be provisioned by public and private institutions. 
- Although it involves radical changes in the way
-physical and virtual resources are managed, locating and operating computing
-power and data on
-facilities close to the end-users will deliver highly efficient
-and sustainable UC services. 
+
+% Although it involves radical changes in the way
+%physical and virtual resources are managed, locating and operating computing
+%power and data on
+%facilities close to the end-users will deliver highly efficient
+%and sustainable UC services, resolving inherent limitations of the cloud computing model leveraging large-scale DCs. 
+
+This chapter aims at introducing locality-based UC infrastructures, a new
+generation of UC platforms that resolves the lack of locality of current
+solutions relying on large-scale DCs. Although it involves radical changes in
+the way physical and virtual resources are managed,  leveraging network centers
+is a promising way to deliver highly efficient and sustainable UC services, 
 
 From the physical point of view, network backbones such as the RENATER one provide
 appropriate infrastructures, that is, reliable and efficient enough to operate UC
 resources spread across the different PoPs. Ideally, UC resources would be able to
 directly
-take advantage of computation cycles available on network servers, \textit{i.e.} the one
+take advantage of computation cycles available on network active devices, \textit{i.e.} the one
 in charge of routing packets. However, leveraging network resources to make external
 computations may lead to important security concerns. Hence, we propose to extend each
-network hub with a number of servers dedicated to host VMs. As we can expect that the
+network center with a number of servers dedicated to host VMs. As we can expect that the
 distribution between network traffics and UC demands would be proportional, larger network
-hubs will be completed by more UC resources than the smaller ones. Moreover by deploying
+centers will be completed by more UC resources than the smaller ones. Moreover by deploying
 UC services on relevant PoPs, a LUC infrastructure will be able to natively confine
 network exchanges to a minimal scope, minimizing both the energy footprint of the network
 and the impact on latency.
-
-\ftodo[CT$\rightarrow$AL]{LUC is first used here, without being defined.}
 
 From the software point of view, the main challenge is to design a complete distributed
 system in charge of turning a complex and diverse network of resources into a collection
@@ -161,7 +165,7 @@ charge of operating a network backbone will be able to build an extreme-scale
 LUC infrastructure with a limited additional cost. Instead of redeploying a
 complete installation, they will be able to leverage IT resources and
 specific devices such as computer room air conditioning units, inverters or
-redundant power supplies already present on each hub of their
+redundant power supplies already present on each center of their
 backbone. 
 \end{svgraybox}
 
