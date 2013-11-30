@@ -15,7 +15,7 @@ objectives to be considered when designing a LUC OS:
   medium-sized computing facilities as well as any idle resource that their owner would make available. These resources might be
   highly volatile, especially if the LUC infrastructure allows to include resources hosted by
   end-users.
-\item Reactivity: To deal with the infrastructure's dynamicity, a LUC OS
+\item Reactivity: To deal with the dynamicity of the infrastructure, a LUC OS
   should swiftly handle events that require performing particular
   operations, either on virtual or on physical resources, with the
   objective of maximizing the system utilization while meeting QoS expectations of VEs. 
@@ -24,16 +24,19 @@ objectives to be considered when designing a LUC OS:
 \item Resiliency: In addition to the inherent dynamicity of the
   infrastructure, failures and faults should be considered as the norm rather than the
 exception at such a scale. The goal is therefore to transparently leverage the
-underlying infrastructure redundancy to (i) allow the LUC OS to continue
-working despite node failures and network disconnections and (ii) provide
+underlying infrastructure redundancy to (i)~allow the LUC OS to keep
+working despite node failures and network disconnections and to (ii)~provide
 snapshotting as well as high availability mechanisms for VEs.
 
-\ftodo[CT$\rightarrow$AL]{les points (i) et (ii) ne sont pas indépendants, j'ai
+\ftodo[CT (+FQ)$\rightarrow$AL]{les points (i) et (ii) ne sont pas indépendants, j'ai
   l'impression que pour résoudre le point (i), on va utiliser ce que tu
   mentionnes dans le point (ii), du coup, c'est pas vraiment une énumération.}
 
 \item Sustainability: Although the LUC approach natively reduces the energy
-footprint of UC services by minimizing the network impact, it is important to go one
+footprint of UC services by minimizing the network impact, 
+\ftodo[FQ$\rightarrow$AL]{Ce n'est pas l'avis du reviewer de Middleware. Et nous n'avons à ma connaissance 
+pas de données pour affirmer une telle chose}
+it is important to go one
 step further by considering energy aspects at each level of a LUC OS
 and propose advanced mechanisms in charge of an optimal usage of each source of energy. 
 %Minimizing the energy footprint is a

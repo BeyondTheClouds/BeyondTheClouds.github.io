@@ -131,7 +131,7 @@ This chapter aims at introducing a new generation of UC platforms that can be
 seen somehow as an extension of the concept of micro DCs. The main change is to
 consider locality as a key point of UC services and to leverage facilities
 composing the Internet backbone.  %Instead of building and deploying dedicated
-facilities, we claim that next UC
+%facilities, we claim that next UC
 %infrastructures should be tightly coupled with any facilities available through
 %the Internet, starting from the core routers of the backbone, the different
 %network access points and any small and medium-size computing infrastructures
@@ -143,13 +143,15 @@ facilities close to the end-users will deliver highly efficient
 and sustainable UC services. 
 
 From the physical point of view, network backbones such as the RENATER one provide
-appropriate infrastructures, that is, reliable and efficient enough to operate UC
+appropriate infrastructures, \textit{i.e.}, reliable and efficient enough to operate UC
 resources spread across the different PoPs. Ideally, UC resources would be able to
 directly
-take advantage of computation cycles available on network servers, \textit{i.e.} the one
+take advantage of computation cycles available on network servers, \textit{i.e.} those
 in charge of routing packets. However, leveraging network resources to make external
 computations may lead to important security concerns. Hence, we propose to extend each
-network hub with a number of servers dedicated to host VMs. As we can expect that the
+network hub with a number of servers dedicated to VMs hosting. 
+\ftodo[FQ$\rightarrow$AL]{Network hub == PoP ? Si oui, s/network hub/PoP/g ?}
+As we can expect that the
 distribution between network traffics and UC demands would be proportional, larger network
 hubs will be completed by more UC resources than the smaller ones. Moreover by deploying
 UC services on relevant PoPs, a LUC infrastructure will be able to natively confine
@@ -163,11 +165,11 @@ system in charge of turning a complex and diverse network of resources into a co
 of abstracted computing facilities that is both reliable and easy to operate.
 
 \begin{svgraybox}
-By designing an advanced system that offers the possibility to operate a large
-number of UC resources spread throughout distinct sites \ie, a \emph{LUC
-  Operating System}, in a unified manner,
-ISPs as well as academic and private institutions in
-charge of operating a network backbone will be able to build an extreme-scale
+An advanced system being able to operate 
+many UC resources distributed on distinct sites (in other words, a \emph{LUC
+  Operating System}) would enable% in a unified manner,
+Internet service providers~(ISPs) and other institutions in
+charge of operating a network backbone to build an extreme-scale
 LUC infrastructure with a limited additional cost. Instead of redeploying a
 complete installation, they will be able to leverage IT resources and
 specific devices such as computer room air conditioning units, inverters or
@@ -181,12 +183,12 @@ backbone.
 %generation of highly efficient and sustainable UC can emerge through an integrated
 %system, \ie the \emph{LUC Operating System}, leveraging advanced and P2P system mechanisms.
 
-In addition to consider \emph{Locality} as a primary concern, the novelty of the LUC OS
-proposal is to consider VM as the basic object it manipulates.  Unlike existing
+In addition to consider \emph{locality} as a primary concern, the novelty of the LUC OS
+proposal is to consider VMs as the basic objects it manipulates.  Unlike existing
 research on distributed operating systems that have been designed on the process concept, a LUC OS will manipulate VMs throughout a federation of widely distributed
 physical machines. Virtualization technologies abstract out hardware heterogeneity, and allow
-transparent deployment, preemption, and migration of virtualized
-environments (VEs), \ie a set of interconnected VMs.
+transparent deployment, preemption, and migration of virtual
+environments~(VEs), \ie a set of interconnected VMs.
 By dramatically increasing the flexibility of resource management, virtualization 
 allows to leverage state-of-the-art results from other distributed
 systems areas such as autonomous and decentralized systems.  
