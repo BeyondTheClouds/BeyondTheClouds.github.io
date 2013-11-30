@@ -12,13 +12,13 @@ location can host.
 
 Instead of investigating alternative solutions that can tackle the aforementioned 
 concerns, the current trend consists in deploying larger and larger DCs in few
-strategic locations that deliver energy advantages.  For example, Western North
+strategic locations presenting energy advantages.  For example, Western North
 Carolina, USA, is an attractive area due to its abundant capacity of coal
 and nuclear power following the departure of the textile and furniture
 industry~\cite{greenpeace:2013}.  More recently, several proposals suggested building next
 generation DCs close to the polar circle  in order to leverage free cooling
 techniques, considering that cooling is accounting for a big part of the
-consumed electricity \cite{greenberg:sigcomm09}. 
+consumed electricity~\cite{greenberg:sigcomm09}. 
 
 
 \subsection{Inherent Limitations of Large-scale DCs}
@@ -38,7 +38,7 @@ especially when located in other countries.
 distant platforms is wasteful and costly in several situations: Deploying a
 broadcasting service of local events or an online service to order pizzas at the
 edge of the polar circle leads to important overheads since
-most of the users may be located in the neighborhood of the
+most of the users are \emph{a priori} located in the neighborhood of the
 event/the pizzeria.  
 \item The connectivity to the application/data cannot be ensured by centralized
 dedicated centers, especially if they are located in a similar geographical
@@ -61,7 +61,7 @@ the way UC resources are managed.
 
 Another issue is that, according to some projections of a recent IEEE
 report~\cite{ieeenetreport:2012}, the network traffic continues to double roughly each
-year. Bringing the IT services closer to the end-users is becoming crucial to limit
+year. Consequently, bringing the IT services closer to the end-users is becoming crucial to limit
 the energy impact of these exchanges and to save the bandwidth of some links. Similarly,
 this notion of locality is also critical for the adoption of the UC model by applications
 that need to deal with a large amount of data as getting them in and out actual UC
@@ -82,7 +82,7 @@ DCs, alors qu'ils sont à la base de Discovery.. Faut que je cherche... Je tic a
 
 \subsection{Ubiquitous and Oversized Network Backbones}
 While larger and larger DCs are created, people are (and will be more and more)
-surrounded by computing resources, especially the ones in charge of
+surrounded by computing resources, especially those in charge of
 interconnecting all IT equipments. Even though these small and medium-size
 facilities include resources that are barely used~\cite{Andrew:2003,
 Benson:2010}, they can hardly be removed (\textit{e.g.} routers).  Considering
@@ -103,7 +103,7 @@ geographical dispersal of users.
 %network/computing resources by using them as a source of heat inside public
 %buildings such as hospitals or universities. 
 
-Figure \ref{fig:renater} illustrates the advantages of our proposal. It
+Figure~\ref{fig:renater} allows to better capture the advantages of our proposal. It
  shows a snapshot of the network weather
 map of RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, the network backbone dedicated to universities and research
 institutions in France. It reveals several important points: 
@@ -145,21 +145,21 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 %and sustainable UC services, resolving inherent limitations of the cloud computing model leveraging large-scale DCs. 
 
 This chapter aims at introducing locality-based UC infrastructures, a new
-generation of UC platforms that resolves the lack of locality of current
+generation of UC platforms that solves the lack of locality of current
 solutions relying on large-scale DCs. Although it involves radical changes in
 the way physical and virtual resources are managed,  leveraging network centers
 is a promising way to deliver highly efficient and sustainable UC services, 
 
 From the physical point of view, network backbones such as the RENATER one provide
-appropriate infrastructures, that is, reliable and efficient enough to operate UC
+appropriate infrastructures, \ie that are reliable and efficient enough to operate UC
 resources spread across the different PoPs. Ideally, UC resources would be able to
 directly
 take advantage of computation cycles available on network active devices, \textit{i.e.} the one
 in charge of routing packets. However, leveraging network resources to make external
 computations may lead to important security concerns. Hence, we propose to extend each
-network center with a number of servers dedicated to host VMs. As we can expect that the
-distribution between network traffics and UC demands would be proportional, larger network
-centers will be completed by more UC resources than the smaller ones. Moreover by deploying
+network center with a number of servers dedicated to VM hosting. Because it is
+natural to assume that the network traffic and UC demands are proportional, larger network
+centers will be completed by more UC resources than the smaller ones. Moreover, by deploying
 UC services on relevant PoPs, a LUC infrastructure will be able to natively confine
 network exchanges to a minimal scope, minimizing both the energy footprint of the network
 and the impact on latency.
@@ -177,7 +177,7 @@ charge of operating a network backbone will be able to build an extreme-scale
 LUC infrastructure with a limited additional cost. Instead of redeploying a
 complete installation, they will be able to leverage IT resources and
 specific devices such as computer room air conditioning units, inverters or
-redundant power supplies already present on each center of their
+redundant power supplies already present in each center of their
 backbone. 
 \end{svgraybox}
 
@@ -188,8 +188,8 @@ backbone.
 %system, \ie the \emph{LUC Operating System}, leveraging advanced and P2P system mechanisms.
 
 In addition to consider \emph{Locality} as a primary concern, the novelty of the LUC OS
-proposal is to consider VM as the basic object it manipulates.  Unlike existing
-research on distributed operating systems that have been designed on the process concept, a LUC OS will manipulate VMs throughout a federation of widely distributed
+proposal is to consider the VM as the basic object it manipulates.  Unlike existing
+research on distributed operating systems designed around the process concept, a LUC OS will manipulate VMs throughout a federation of widely distributed
 physical machines. Virtualization technologies abstract out hardware heterogeneity, and allow
 transparent deployment, preemption, and migration of virtualized
 environments (VEs), \ie a set of interconnected VMs.
