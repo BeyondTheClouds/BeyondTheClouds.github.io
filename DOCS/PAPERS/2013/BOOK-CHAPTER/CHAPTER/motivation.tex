@@ -37,7 +37,7 @@ especially when located in other countries.
 \item The overhead implied by the unavoidable use of the Internet to reach
 distant platforms is wasteful and costly in several situations: Deploying a
 broadcasting service of local events or an online service to order pizzas at the
-edge of the polar circle leads to important overheads since
+edge of the polar circle, for instance, leads to important overheads since
 most of the users are \emph{a priori} located in the neighborhood of the
 event/the pizzeria.  
 \item The connectivity to the application/data cannot be ensured by centralized
@@ -126,6 +126,8 @@ Marseille.
 \end{itemize}
 
 
+\ftodo[AL -> ALL]{It might make sense to talk of congestion effects that we can see in Marseille and Paris, the two path to the rest of Internet.}
+
 \subsection{Locality-based Utility Computing}
 
 %This chapter aims at introducing a new generation of UC platforms that can be
@@ -145,13 +147,14 @@ Marseille.
 %and sustainable UC services, resolving inherent limitations of the cloud computing model leveraging large-scale DCs. 
 
 This chapter aims at introducing locality-based UC infrastructures, a new
-generation of UC platforms that solves the lack of locality of current
-solutions relying on large-scale DCs. Although it involves radical changes in
+generation of UC platforms that solves inherent limitations of the Cloud Computing 
+paradigm relying on large-scale DCs. Although it involves radical changes in
 the way physical and virtual resources are managed,  leveraging network centers
 is a promising way to deliver highly efficient and sustainable UC services. 
 
-From the physical point of view, network backbones such as National Research and Educational Networks (NRENs) provide
-appropriate infrastructures, \ie, reliable and efficient enough to operate UC
+From the physical point of view, network backbones 
+%such as National Research and Educational Networks (NRENs) 
+provide appropriate infrastructures, \ie, reliable and efficient enough to operate UC
 resources spread across the different PoPs. Ideally, UC resources would be able to
 directly
 take advantage of computation cycles available on network active devices, \textit{i.e.} those
@@ -161,17 +164,16 @@ POP with a number of servers dedicated to VM hosting.
 Because it is natural to assume that the network traffic and UC demands are proportional, larger network
 centers will be completed by more UC resources than the smaller ones. Moreover, by deploying
 UC services on relevant PoPs, a LUC infrastructure will be able to natively confine
-network exchanges to a minimal scope, minimizing both the energy footprint of the network
-and the impact on latency.
+network exchanges to a minimal scope, minimizing both the energy footprint of the network, 
+the impact on latency and the congestion phenomena that may occur on critical paths (for instance Paris and Marseille on RENATER). 
 
 From the software point of view, the main challenge is to design a complete distributed
 system in charge of turning a complex and diverse network of resources into a collection
 of abstracted computing facilities that is both reliable and easy to operate.
 
 \begin{svgraybox}
-An advanced system being able to operate 
-many UC resources distributed on distinct sites (in other words, a \emph{LUC
-  Operating System}) would enable% in a unified manner,
+The \emph{LUC Operating System}, an advanced system being able to operate 
+many UC resources distributed on distinct sites  would enable 
 Internet service providers~(ISPs) and other institutions in
 charge of operating a network backbone to build an extreme-scale
 LUC infrastructure with a limited additional cost. Instead of redeploying a
