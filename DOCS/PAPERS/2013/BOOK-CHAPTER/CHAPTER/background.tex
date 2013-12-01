@@ -3,53 +3,49 @@
 
 Several generations of UC infrastructures have been proposed and still
 co-exist~\cite{foster:2011}. However, neither Desktop, nor Grid, nor Cloud Computing
-platforms provide a satisfying UC model.  Contrary to the current trend that promotes
-large offshore centralized DCs as the UC platform of choice, we claim that the only way to
+platforms provide a satisfying UC model. Contrary to the current trends that promotes large
+offshore centralized DCs as the UC platform of choice, we claim that the only way to
 achieve sustainable and highly efficient UC services is to target a new infrastructure
-that better matches the Internet structure.  Because it aims at gathering an unprecedented
+that better matches the Internet structure. Because it aims at gathering an unprecedented
 amount of widely distributed computing resources into a single platform providing UC
 services close to the end-users, a LUC infrastructure is fundamentally different from
-existing ones.  Keeping in mind the aforementioned objectives, recycling UC resource
+existing ones. Keeping in mind the aforementioned objectives, recycling UC resource
 management solutions developed in the past is doomed to failure.
 
 As previously mentioned, our vision significantly differs from hybrid Cloud Computing
 solutions.  Although these research activities address important concerns related to the
-use of federated Cloud platforms, such as interface standardization for
-supporting cooperation and resource sharing, their propositions are
-incremental improvements of existing UC models. Recent investigations on hybrid Clouds and
-Cloud federation are comparable in some ways to previous works done on
-Grids, since the purpose of a Grid middleware is to interact with each
-resource management system composing the Grid~\cite{buyya:2010,rochwerger:2009,zhao:2012}.
+use of federated Cloud platforms, such as interface standardization for supporting
+cooperation and resource sharing, their propositions are incremental improvements of
+existing UC models. Recent investigations on hybrid Clouds and Cloud federation are
+comparable in some ways to previous works done on Grids, since the purpose of a Grid
+middleware is to interact with each resource management system composing the
+Grid~\cite{buyya:2010,rochwerger:2009,zhao:2012}.
 
-By taking into account network issues, in
-addition to traditional computing and storage concerns in Cloud Computing systems, the
-European SAIL
-project\footnote{\href{http://www.sail-project.eu}{\url{http://www.sail-project.eu}}} is
-probably the one which targets the biggest advances with regard to previous works on
-Grid systems. More concretely, this project investigates new network
-technologies to
-provide end-users of hybrid/federated Clouds with the possibility to configure and
-virtually operate the network backbone interconnecting the different sites they
+By taking into account network issues, in addition to traditional computing and storage
+concerns in Cloud Computing systems, the European SAIL
+project~\footnote{\href{http://www.sail-project.eu}{\url{http://www.sail-project.eu}}} is
+probably the one which targets the biggest advances with regard to previous works on Grid
+systems. More concretely, this project investigates new network technologies to provide
+end-users of hybrid/federated Clouds with the possibility to configure and virtually
+operate the network backbone interconnecting the different sites they
 use~\cite{sail:2012}.
 
-More recently, the \emph{Fog Computing} concept has been proposed
-as a promising solution to applications and services that
-cannot be put into the Cloud due to locality issues (mainly latency and
-mobility concerns)~\cite{bonomi:2012}.  Although it might look similar to our vision as they
-propose to extend the Cloud Computing paradigm to the edge of the network,
-\emph{Fog Computing} does not target a unified system but rather proposes to
-add a third party layer (\textit{i.e.} the \emph{Fog}) between Cloud vendors and
-end-users.
+More recently, the \emph{Fog Computing} concept has been proposed as a promising solution
+to applications and services that cannot be put into the Cloud due to locality issues
+(mainly latency and mobility concerns)~\cite{bonomi:2012}. Although it might look similar
+to our vision as they propose to extend the Cloud Computing paradigm to the edge of the
+network, \emph{Fog Computing} does not target a unified system but rather proposes to add
+a third party layer (\textit{i.e.} the \emph{Fog}) between Cloud vendors and end-users.
 
-In our vision, UC resources (\textit{i.e.} Cloud Computing ones) should be repacked in
-the different points of presence of backbones and operated through a unified system, the LUC OS.
+In our vision, UC resources (\textit{i.e.} Cloud Computing ones) should be repacked in the
+different points of presence of backbones and operated through a unified system, the LUC
+OS.
 %
-As far as we know, the only system that investigated whether a
-widely distributed infrastructure can be operated by a single system, was the
-XtreemOS Project~\cite{morin:2007}. Although this project shared some of
-the goals of the LUC OS, it did not investigate how the geographical
-distribution of resources can be leveraged to deliver more efficient and sustainable
-UC infrastructures. 
+As far as we know, the only system that investigated whether a widely distributed
+infrastructure can be operated by a single system, was the XtreemOS
+Project~\cite{morin:2007}. Although this project shared some of the goals of the LUC OS,
+it did not investigate how the geographical distribution of resources can be leveraged to
+deliver more efficient and sustainable UC infrastructures.
 %
 %In addition to consider \emph{Locality} as a primary concern, 
 %the novelty of the LUC OS proposal is a new way of designing systems to operate UC resources.
@@ -64,21 +60,20 @@ UC infrastructures.
 %allow to leverage state-of-the-art results from other distributed
 %systems areas such as autonomous and P2P/decentralized-based techniques. 
 
-To sum up,  we argue for the design and the implementation of a kind of distributed OS,
-manipulating VEs instead of processes and considering locality as a primary concern. 
-Referred to as a LUC OS, such
-a system will include most of the mechanisms that are common to current UC
-management systems~\cite{cloudstack,nimbus,opennebula,openstack,lowe:wiley11,moreno:2012}.  However,
+To sum up, we argue for the design and the implementation of a kind of distributed OS,
+manipulating VEs instead of processes and considering locality as a primary concern.
+Referred to as a LUC OS, such a system will include most of the mechanisms that are common
+to current UC management
+systems~\cite{cloudstack,nimbus,opennebula,openstack,lowe:wiley11,moreno:2012}. However,
 each of them will have to be rethought in order to leverage peer-to-peer algorithms.
 % that are mandatory 
 %to meet the characteristics as well as the objectives of the targeted LUC platform. 
 %
-While largely unexplored for building operating systems,
-peer-to-peer/decentralized mechanisms have the potential to achieve the scalability required
-to manage LUC infrastructures.
-Using this technology for establishing the base mechanisms of a
-massive-scale LUC OS will be a major breakthrough from
-current static, centralized or hierarchical management solutions.
+While largely unexplored for building operating systems, peer-to-peer/decentralized
+mechanisms have the potential to achieve the scalability required to manage LUC
+infrastructures. Using this technology for establishing the base mechanisms of a
+massive-scale LUC OS will be a major breakthrough from current static, centralized or
+hierarchical management solutions.
 
 %Finally, looking one step ahead and considering that large part of the Internet may be
 %seen as computing services hosted by UC platforms, the question might
