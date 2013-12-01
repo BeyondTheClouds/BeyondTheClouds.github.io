@@ -54,7 +54,7 @@ fashion, its mechanisms should be built on top of an overlay network able to
 abstract out changes that occur at the physical level. The specific requirements
 of this platform will lead to the development of a novel kind of overlay
 networks, based on locality and a minimalistic design.
-
+%
 More concretely, the first step is to design, at the lowest level, an overlay
 layer intended to hide the details of the physical routes and computing
 utilities, while satisfying some basic requirements such as locality and
@@ -65,27 +65,6 @@ feature to implement a LUC OS:  retrieving nodes that are geographically close
 to a given departure node.
 
 \subsubsection*{Giving Nodes a Position}
-
-\begin{figure}[!b]
-  \begin{minipage}[c]{.45\linewidth}
-	\vspace*{.5cm}
-   \hspace*{-0.5cm}
-      	\centering \includegraphics[width=3.8cm]{./FIGS/vivaldi_before.pdf}
-
-   \hspace*{0.5cm}
-	\vspace*{.4cm}
-		\caption{Vivaldi plot before updating positions. Each node pings other nodes. Each node maintains a map of distance.}
-\label{fig:vivaldi_before}
-   \end{minipage}
-\hspace*{0.6cm}
-   \begin{minipage}[c]{.45\linewidth}
-   	\centering \includegraphics[width=3.8cm]{./FIGS/vivaldi_after.pdf}
-	\vspace*{0.40cm}
-		\caption{Vivaldi plot after updating positions. The computed
-                  positions of other nodes have been updated.}
-		\label{fig:vivaldi_after} 
-  \end{minipage} \hfill
-\end{figure}
 
 The initial configuration of the physical network can take an arbitrary
 shape. We choose to rely on the Vivaldi
@@ -99,13 +78,33 @@ periodically checks the round trip time between itself and another node
 (randomly chosen among nodes in its view) and adapts its distance (by changing
 its coordinates) with this node in the plane accordingly. See
 Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:vivaldi_after} for an
-illustration of 4 nodes(A, B, C and D) moving according to the Vivaldi
+illustration of 4 nodes~(A, B, C and D) moving according to the Vivaldi
 protocol. 
-
-Note that a globally accurate positioning of nodes can be
+%
+A globally accurate positioning of nodes can be
 obtained if nodes have a few long-distance nodes in their
 view~\cite{dabek:2001:sigcomm04}. These long distance links can be easily
 maintained by means of a simple gossip protocol.
+
+\begin{figure}[!b]
+	\vspace*{-.3cm}
+  \begin{minipage}[c]{.45\linewidth}
+   \hspace*{-0.5cm}
+      	\centering \includegraphics[width=3.4cm]{./FIGS/vivaldi_before.pdf}
+
+   \hspace*{0.5cm}
+		\caption{Vivaldi plot before updating positions. Each node pings other nodes. Each node maintains a map of distance.}
+\label{fig:vivaldi_before}
+   \end{minipage}
+\hspace*{0.6cm}
+   \begin{minipage}[c]{.45\linewidth}
+   	\centering \includegraphics[width=3.4cm]{./FIGS/vivaldi_after.pdf}
+		\caption{Vivaldi plot after updating positions. The computed
+                  positions of other nodes have been updated.}
+		\label{fig:vivaldi_after} 
+  \end{minipage} \hfill
+\end{figure}
+
 
 \subsubsection*{Searching for Close Nodes}
 
@@ -164,7 +163,7 @@ In the context of a LUC infrastructure, one crucial feature is to be able to
 locate an existing VM. Having the same strategy consisting in improving the
 performance of the overlay based on the activity of the application, we envision a
 routing mechanism which will be improved by past routing requests. By means of the
-spiral mechanism described above, a node is able to contact its neighboring
+spiral mechanism, a node is able to contact its neighboring
 nodes to start routing a message.
 
 This initial routing mechanism can be very expensive, as the number of hops can

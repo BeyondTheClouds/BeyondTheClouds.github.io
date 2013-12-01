@@ -11,24 +11,24 @@ we have pointed out the following
 key objectives to be considered when designing a LUC OS:
 
 \begin{itemize} 
-\item Scalability: a LUC OS must be able to manage hundreds of
+\item \textbf{Scalability:} a LUC OS must be able to manage hundreds of
   thousands of virtual machines~(VMs) running on thousands of 
   geographically distributed computing resources.  These resources are small or
   medium-sized computing facilities and may become highly volatile according to the network disconnections.  
-\item Reactivity: To deal with the dynamicity of the infrastructure, a LUC OS
+\item \textbf{Reactivity:} To deal with the dynamicity of the infrastructure, a LUC OS
   should swiftly handle events that require performing particular
   operations, either on virtual or on physical resources. This has to be done with the
   objective of maximizing the system utilization while meeting the quality of service~(QoS) expectations of VEs. 
   Some examples of operations that should be performed as fast as possible include (i)~the reconfiguration
   of VEs over distributed resources, sometimes spread across wide area networks, or (ii)~the migration of VMs, 
   while preserving their active connections.
-\item Resiliency: In addition to the inherent dynamicity of the
+\item \textbf{Resiliency:} In addition to the inherent dynamicity of the
   infrastructure, failures and faults should be considered as the norm rather than the
 exception at such a scale. The goal is therefore to transparently leverage the
 underlying infrastructure redundancy to (i)~allow the LUC OS to keep
 working despite node failures and network disconnections (LUC OS robustness) and to (ii)~provide
 snapshotting as well as high availability mechanisms for VEs (VM Robustness).
-\item Sustainability: Although the LUC approach would reduce the energy
+\item \textbf{Sustainability:} Although the LUC approach would reduce the energy
 footprint of UC services by minimizing the cost of the network, 
 it is important to go one
 step further by considering energy aspects at each level of a LUC OS

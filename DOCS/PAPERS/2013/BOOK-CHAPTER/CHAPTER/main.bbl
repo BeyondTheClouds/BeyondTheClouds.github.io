@@ -1,7 +1,7 @@
 \begin{thebibliography}{10}
 
 \bibitem{akka:www}
-{akka - Build powerful concurrent and distributed applications more easily}.
+{Build powerful concurrent \& distributed applications more easily}.
 \newblock \url{http://www.akka.io}.
 
 \bibitem{cloudstack}
