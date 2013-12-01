@@ -60,9 +60,7 @@ techniques related to replication and deduplication. Also, the LUC OS must take 
 account VM images location, for instance (i)~to allocate the right resources to a VE or
 (ii)~to prefetch VM images, to improve deployment performance or VM relocations.
 
-\ftodo[FQ$\rightarrow$ALL]{I completely rephrased the last paragraph of this section. I
-  find it clearer, but I am not sure I preserved all ideas of the original
-  paragraph. Please check and merge if necessary} Finally, one last scientific and
+Finally, one last scientific and
 technical challenge is the lack of a global view of the infrastructure.  Maintaining a
 global view would indeed limit the scalability of the LUC OS, which is inconsistent with
 our objective to manage large-scale geographically distributed systems.  Therefore, we
@@ -96,10 +94,6 @@ In a LUC OS, decentralized and self-organizing overlays will enable to maintain 
 information about the current state of both virtual and physical resources, their
 characteristics and availabilities. Such information is mandatory to build higher-level
 mechanisms ensuring the correct execution of VEs throughout the whole infrastructure.
-However, it is worth noting that simultaneous local actions can lead to the global
-emergence of complex behaviors.
-
-% To ensure scalability as well as flexibility, they should be constructed and operated using gossip-based techniques. 
-%Considerable research needs to be conducted to provide core operating systems services in a
-%fully decentralized way and without centrally maintained comprehensive knowledge of system's resources
+%However, it is worth noting that simultaneous local actions can lead to the global
+%emergence of complex behaviors.
 
