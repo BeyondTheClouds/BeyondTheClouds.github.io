@@ -1,39 +1,35 @@
-\section{Context and Motivations}
-\label{sec:intro}
-The success of Cloud Computing has driven the advent of Utility Computing.
-However, Cloud Computing is a victim of its own success: In order to answer the
-escalating demand for computing resources, Cloud Computing providers must
-build data centers~(DCs) of ever-increasing size.
+%%%
+\section{Context and Motivations\label{sec:intro}}
 
-Besides facing the well-known
-issues of large-scale platforms management, large-scale DCs have to deal with
-energy considerations that limit the number of physical resources that one
-location can host.
+The success of Cloud Computing has driven the advent of Utility Computing. However, Cloud
+Computing is a victim of its own success: In order to answer the escalating demand for
+computing resources, Cloud Computing providers must build data centers~(DCs) of
+ever-increasing size. Besides facing the well-known issues of large-scale platforms
+management, large-scale DCs have to deal with energy considerations that limit the number
+of physical resources that one location can host.
 
-Instead of investigating alternative solutions that can tackle the aforementioned 
-concerns, the current trend consists in deploying larger and larger DCs in few
-strategic locations presenting energy advantages.  For example, Western North
-Carolina, USA, is an attractive area due to its abundant capacity of coal
-and nuclear power following the departure of the textile and furniture
-industry~\cite{greenpeace:2013}.  More recently, several proposals suggested building next
-generation DCs close to the polar circle  in order to leverage free cooling
-techniques, considering that cooling is accounting for a big part of the
-electricity consumption~\cite{greenberg:sigcomm09}. 
+Instead of investigating alternative solutions that can tackle the aforementioned
+concerns, the current trend consists in deploying larger and larger DCs in few strategic
+locations presenting energy advantages. For example, Western North Carolina, USA, is an
+attractive area due to its abundant capacity of coal and nuclear power following the
+departure of the textile and furniture industry~\cite{greenpeace:2013}. More recently,
+several proposals suggested building next generation DCs close to the polar circle in
+order to leverage free cooling techniques, considering that cooling is accounting for a
+big part of the electricity consumption~\cite{greenberg:sigcomm09}.
 
-
+%%%
 \subsection{Inherent Limitations of Large-scale DCs}
 
 Although building large scale DCs  enables to cope with the actual demand,
 % while continuing to operate UC resources through centralized software system 
-it is far from delivering sustainable and efficient UC infrastructures.  In addition
-to requiring the construction and the deployment of a complete network
-infrastructure to reach each DC, it exacerbates the inherent limitations of the
-Cloud Computing model:
+it is far from delivering sustainable and efficient UC infrastructures. In addition to
+requiring the construction and the deployment of a complete network infrastructure to
+reach each DC, it exacerbates the inherent limitations of the Cloud Computing model:
 
 \begin{itemize}
-\item The externalization of private applications/data often faces legal issues
-that restrain companies from outsourcing them on external infrastructures,
-especially when located in other countries. 
+\item The externalization of private applications/data often faces legal issues that
+  restrain companies from outsourcing them on external infrastructures, especially when
+  located in other countries.
 \item The overhead implied by the unavoidable use of the Internet to reach
 distant platforms is wasteful and costly in several situations: Deploying a
 broadcasting service of local events or an online service to order pizzas at the
