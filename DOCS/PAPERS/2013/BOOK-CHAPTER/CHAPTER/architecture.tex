@@ -49,35 +49,24 @@ will rely on dedicated mechanisms related to:
 
 \subsection{Resource Localization and Monitoring Mechanisms\label{ssec:p2p}}
 
-Keeping in mind that \discovery should be designed in a fully distributed way,
-most of the mechanisms should be built on top of overlays in order to abstract changes
-that occur at the physical level. The specific requirements of this platform
-will lead to the development of a particular kind of overlays, having minimalism in mind.
+Keeping in mind that \discovery should be designed in a fully decentralized
+fashion, its mechanisms should be built on top of an overlay network able to
+abstract out changes that occur at the physical level. The specific requirements
+of this platform will lead to the development of a novel kind of overlay
+networks, based on locality and a minimalistic design.
 
-More concretely, the first step is to design, at the lowest level, a first
-overlay layer intended to abstract out the details of the physical routes and
-computing utilities, while satisfying some basic requirements such as
-locality and availability. This overlay needs to enable the communications
-between any two nodes in the platform. While overlay computing has been
-extensively studied over the last decade, we emphasize here on minimalism, and
-especially on one key feature to implement a LUC OS: 
-retrieving nodes that are close (geographically speaking) to a given starting node.
+More concretely, the first step is to design, at the lowest level, an overlay
+layer intended to hide the details of the physical routes and computing
+utilities, while satisfying some basic requirements such as locality and
+availability. This overlay needs to enable the communications between any two
+nodes in the platform. While overlay computing has been extensively studied over
+the last decade, we emphasize here on minimalism, and especially on one key
+feature to implement a LUC OS:  retrieving nodes that are geographically close
+to a given departure node.
 
 \subsubsection*{Giving Nodes a Position}
 
-The physical network connections are considered as arbitrary. We choose to
-rely on the Vivaldi protocol~\cite{dabek:2001:sigcomm04}. Vivaldi is a
-distributed algorithm assigning coordinates in the plane to nodes of a
-distributed system. Each node is equipped with a \emph{view} of the network,
-\emph{i.e.}, a set of nodes it knows. This view is initially assumed as
-arbitrary. Coordinates obtained by a node reflects its \emph{position} in the
-network, \emph{i.e.}, close nodes in the network are given close coordinates in
-the plane. To achieve this, each node periodically checks the round trip
-time between itself and another node (from its view, a different one at each
-step) and adapts its distance (by changing its coordinates) with this node in
-the plane accordingly (see Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:vivaldi_after}). 
-
-\begin{figure}[b]
+\begin{figure}[!b]
   \begin{minipage}[c]{.45\linewidth}
 	\vspace*{.5cm}
    \hspace*{-0.5cm}
@@ -92,12 +81,28 @@ the plane accordingly (see Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:v
    \begin{minipage}[c]{.45\linewidth}
    	\centering \includegraphics[width=3.8cm]{./FIGS/vivaldi_after.pdf}
 	\vspace*{0.40cm}
-		\caption{Vivaldi plot after updating positions. The computed positions of other nodes are periodically updated.}
+		\caption{Vivaldi plot after updating positions. The computed
+                  positions of other nodes have been updated.}
 		\label{fig:vivaldi_after} 
   \end{minipage} \hfill
 \end{figure}
 
-Note that a global accurate positioning of nodes can be
+The initial configuration of the physical network can take an arbitrary
+shape. We choose to rely on the Vivaldi
+protocol~\cite{dabek:2001:sigcomm04}. Vivaldi is a distributed algorithm
+assigning coordinates in the plane to nodes of a distributed system. Each node
+is equipped with a \emph{view} of the network, \emph{i.e.}, a set of nodes it
+knows. This view is initially assumed as random. Coordinates obtained by a node
+reflects its \emph{position} in the network, \emph{i.e.}, close nodes in the
+network are given close coordinates in the plane. To achieve this, each node
+periodically checks the round trip time between itself and another node
+(randomly chosen among nodes in its view) and adapts its distance (by changing
+its coordinates) with this node in the plane accordingly. See
+Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:vivaldi_after} for an
+illustration of 4 nodes(A, B, C and D) moving according to the Vivaldi
+protocol. 
+
+Note that a globally accurate positioning of nodes can be
 obtained if nodes have a few long-distance nodes in their
 view~\cite{dabek:2001:sigcomm04}. These long distance links can be easily
 maintained by means of a simple gossip protocol.
@@ -105,7 +110,7 @@ maintained by means of a simple gossip protocol.
 \subsubsection*{Searching for Close Nodes}
 
 Once the map is achieved (each node knows its coordinates), we are able to decide
-whether two nodes are close by calculating their distance. However, the view of
+whether two nodes are \emph{close} by calculating their distance. However, the view of
 each node does not \emph{a priori} contain its closest nodes. Therefore, we need additional
 mechanisms to locate a set of nodes that are close to a given initial node --
 Vivaldi gives a \emph{location} to each node, but not a neighborhood. To achieve
@@ -118,41 +123,40 @@ path constructed, the nodes are always further from the initial node.}
 interconnecting the nodes in the plane that are the closest ones to a given initial
 node.
 
-Let us consider that our starting point is node $s$. The first step is to find
-a node to build a two-node spiral with $s$. Such a node is sought in the current
-view of $s$ by selecting the node, say $a$, having the smallest distance with
-$s$. $s$ then sends its view to $a$, $s$ stores $a$ as its
-successor in the spiral, and $a$ adds $s$ as its predecessor in the spiral. Then
-$s$ forwards its view to $a$. $a$ then creates a new view by keeping the $n$
-node which are the closest to $a$ in the views of $s$ and $a$. This last view is
-then referred to as the \emph{spiral view} and is intended to contain a set of
-nodes in which to find the next step of the spiral. Then $a$ restarts the same
-process: Among the spiral view, it chooses the node with the smallest distance
-to $s$, say $b$, and adds it in the spiral -- $a$ becomes the predecessor of $b$
-and $b$ becomes the successor of $a$. Then, the spiral view is sent to $b$ which
+Let us consider that our initial point is a node called $I$. The first step is
+to find a node to build a two-node spiral with $I$. Such a node is sought in the
+view of $I$ by selecting the node, say $S$, having the smallest distance with
+$I$. $I$ then sends its view to $S$, $I$ stores $S$ as its successor in the
+spiral, and $S$ adds $I$ as its predecessor in the spiral. Then $I$ forwards its
+view to $S$. $S$ creates a new view by keeping the $n$ nodes which are the
+closest to $I$ in the views of $I$ and $S$. This last view is then referred to
+as the \emph{spiral view} and is intended to contain a set of nodes among which
+to find the next step of the spiral. Then $S$ restarts the same process: Among
+the spiral view, it chooses the node with the smallest distance to $I$, say
+$S'$, and adds it in the spiral -- $S$ becomes the predecessor of $S'$ and $S'$
+becomes the successor of $S$. Then, the spiral view is sent to $S'$ which
 updates it with the nodes it has in its own view. The process is repeated until
-we consider that enough nodes have been gathered with regard to the requesting
-application.
+we consider that enough nodes have been gathered (a parameter sent by the
+application).
 
-One risk is to be blocked by a spiral view containing only
-nodes that are already in the spiral. However, this problem can be easily
-addressed by forcing the presence of a few long distance nodes whenever it is
-updated.
+Note that one risk is to be blocked by having a spiral view containing only
+nodes that are already in the spiral, leading to the impossibility to build the
+spiral further. However, this problem can be easily addressed by forcing the
+presence of a few long distance nodes whenever it is updated.
 
 \subsubsection*{Learning}
 
 Applying the protocol described above, the quality of the spiral is
 questionable in the sense that the nodes that are actually close to the starting
 node $s$ may not be included. The only property ensured is that one step
-forward on the built path always takes us further from the starting node.
+forward on the built path always takes us further from the initial node.
 
 To improve the \emph{quality} of the spiral, \emph{i.e.}, reduce the average
 distance between the nodes it comprises and the initial node, we add a learning
-mechanism coming with no extra communication cost, as it does not require any
-extra message. When a node is contacted for becoming the next node in one
-spiral, and receives the associated spiral view, it can also keep the nodes that
-are the closest to itself, thus potentially increasing the quality of a future
-spiral construction.
+mechanism coming with no extra communication cost: when a node is contacted for
+becoming the next node in one spiral, and receives the associated spiral view,
+it can also keep the nodes that are the closest to itself, thus potentially
+increasing the quality of a future spiral construction.
 
 \subsubsection*{Routing}
 
@@ -161,18 +165,19 @@ locate an existing VM. Having the same strategy consisting in improving the
 performance of the overlay based on the activity of the application, we envision a
 routing mechanism which will be improved by past routing requests. By means of the
 spiral mechanism described above, a node is able to contact its neighboring
-nodes to start the path of a message.
+nodes to start routing a message.
 
 This initial routing mechanism can be very expensive, as the number of hops can
-be linear in the size of the network. From previous communications, a node is able
-to memorize long links to different locations of the network. Consequently, from
-each routing request, the source of the request and each node on the path to the
-destination are able to learn long links, which will significantly reduce the
-number of hops of future requests. We are currently studying the amount of requests
-needed to approach a logarithmic routing complexity. More generally, we are working on
-estimating the activity of the application required to (i)~guarantee the
-constant efficiency of the overlay and to (ii)~converge, starting from a random
-configuration, to a fully-efficient overlay network.
+be linear in the size of the network. However, from previous communications, a
+node is able to memorize long links to different locations of the
+network. Consequently, from each routing request, the source of the request and
+each node on the path to the destination are able to learn long links, which
+will significantly reduce the number of hops of future requests. We are
+currently studying the amount of requests needed to get close to a logarithmic
+routing complexity. More generally, we are working on the estimation if the
+activity of the application required to (i)~guarantee the constant efficiency of
+the overlay and to (ii)~converge, starting from a random configuration, to a
+fully-efficient overlay network.
 
 %\ftodo[CT]{TODO}
 
