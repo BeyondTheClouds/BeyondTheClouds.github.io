@@ -3,7 +3,7 @@
 
 In this section, we propose to go one step further by discussing preliminary
 investigations around the design and the implementation of a first LUC OS
-proposal: the \discovery system (DIStributed and COoperative Management of
+proposal: the \discovery system~(DIStributed and COoperative framework to manage
 Virtual EnviRonments autonomouslY). We draw the premises of the \discovery
 system by emphasizing some of the challenges as well as some research directions
 to solve them. Finally, we give some details regarding the prototype that is
@@ -13,38 +13,48 @@ under development and how we are going to evaluate it.
 
 The \discovery system relies on a multi-agent peer-to-peer system deployed on
 each physical resource composing the LUC infrastructure. Agents are autonomous
-entities that collaborate to efficiently use the LUC resources. In our context,
-efficiency means that a good trade-off is found between satisfying user's
-expectations, ensuring reliability, reactiveness as well as availability of the
-services while limiting the energy consumption of the system and providing
-scalability. We propose thus to leverage P2P techniques, that
-allow self-* properties, such as self-adaptation and self-repairing of overlays. 
-%
-To reduce the management complexity as well as the design and the
-implementation of the different mechanisms that are mandatory, we strongly
-support to use micro-kernel concepts. Such an approach should enable to design
-and implement services at higher level while leveraging P2P mechanisms
-at the lower ones.  Furthermore, to address the different objectives and reduce
-the management complexity, we also underline that self-* properties should be
-present at every level of the system.  We think that relying on a multi-agent
-peer-to-peer system is the best solution to cope with the scale as well as the
+entities that collaborate with one another to efficiently use the LUC resources. In our context,
+efficiency means that a good trade-off is found between users'
+expectations, reliability, reactiveness and availability,
+while limiting the energy consumption of the system and providing
+scalability. We propose to leverage peer-to-peer techniques since they
+allow self-* properties, such as self-adaptation and self-reparation of overlays.
+They are particularly useful to cope with the scale as well as the
 network disconnections that may create temporary partitions in a LUC platform.
 
-In \discovery, each agent has two purposes: (i) maintaining knowledge base on the
-LUC platform composition (ii) ensuring the correct execution of the VEs. 
-Concretely, the knowledge base will consist of overlays that will be used 
-for the autonomous management of the
-VEs life cycle. This includes the configuration, deployment and monitoring of
+\ftodo[FQ$\rightarrow$AL]{I merged the two first paragraphs, since they were redundant; for
+now, I also removed the reference to micro kernels, since I do not feel comfortable
+with the argument that they will make the development and the management easier;
+however, we may argue that using micro kernels will make the LUC OS more modular
+and extensible; this is more or less the promise of component-oriented programming}
+
+%To reduce the management complexity as well as the design and the
+%implementation of the critical mechanisms, we strongly
+%support the use of micro-kernel concepts. Such an approach should enable us to design
+%and implement services at higher level while leveraging peer-to-peer mechanisms
+%at the lower ones.
+%Furthermore, to address the different objectives and reduce
+%the management complexity, we also underline that self-* properties should be
+%present at every level of the system.  We think that relying on a multi-agent
+%peer-to-peer system is the best solution to cope with the scale as well as the
+%network disconnections that may create temporary partitions in a LUC platform.
+
+In \discovery, each agent has two purposes: (i)~maintaining a knowledge base on the
+composition of the LUC platform and (ii)~ensuring the correct execution of VEs. 
+%Concretely, the knowledge base will consist of overlays that will be used 
+%for the autonomous management of the
+%VEs life cycle.
+This includes the configuration, deployment and monitoring of
 VEs as well as the dynamic allocation or relocation of VMs to adapt to changes
 in VEs requirements and physical resources availability. To this end, agents
-will need to rely on dedicated mechanisms that can be classified as follows: 
+will rely on dedicated mechanisms related to: 
 
 \begin{itemize}
-\item Mechanisms related to physical resource localization and monitoring, 
-\item Mechanisms related to VEs management, 
-\item Mechanisms related to the VM images management, 
-\item Mechanisms related to reliability,
-\item Mechanisms related to security and privacy.
+\item The localization and monitoring of physical resources, 
+\item The management of VEs, 
+\item The management of VM images, 
+\item Reliability,
+\item Security and privacy.
 \end{itemize}
 
 \subsection{Resource Localization and Monitoring Mechanisms\label{ssec:p2p}}
