@@ -4,14 +4,14 @@
 The success of Cloud Computing has driven the advent of Utility Computing. However, Cloud
 Computing is a victim of its own success: In order to answer the escalating demand for
 computing resources, Cloud Computing providers must build data centers~(DCs) of
-ever-increasing size. Besides facing the well-known issues of large-scale platforms
-management, large-scale DCs have to deal with energy considerations that limit the number
+ever-increasing size. As a consequence, besides facing the well-known issues of large-scale platforms
+management, large-scale DCs have now to deal with energy considerations that limit the number
 of physical resources that one location can host.
 
-Instead of investigating alternative solutions that can tackle the aforementioned
+Instead of investigating alternative solutions that could tackle the aforementioned
 concerns, the current trend consists in deploying larger and larger DCs in few strategic
 locations presenting energy advantages. For example, Western North Carolina, USA, is an
-attractive area due to its abundant capacity of coal and nuclear power following the
+attractive area due to its abundant capacity of coal and nuclear power brought about the
 departure of the textile and furniture industry~\cite{greenpeace:2013}. More recently,
 several proposals suggested building next generation DCs close to the polar circle in
 order to leverage free cooling techniques, considering that cooling is accounting for a
@@ -54,17 +54,17 @@ UC resources are managed.
 %pizzeria.
 
 Another issue is that, according to some projections of a recent IEEE
-report~\cite{ieeenetreport:2012}, the network traffic continues to double roughly each
+report~\cite{ieeenetreport:2012}, the network traffic continues to double roughly every
 year. Consequently, bringing the IT services closer to the end-users is becoming crucial
 to limit the energy impact of these exchanges and to save the bandwidth of some
-links. Similarly, this notion of locality is also critical for the adoption of the UC
+links. Similarly, this notion of locality is critical for the adoption of the UC
 model by applications that need to deal with a large amount of data as getting them in and
 out actual UC infrastructures may significantly impact the global
 performance~\cite{Fos11}.
 
 The concept of micro/nano DCs at the edge of the backbone~\cite{greenberg:sigcomm09} may
 be seen as a complementary solution to hybrid platforms in order to reduce the overhead of
-network exchanges. However, operating multiple small DCs breaks in somehow the idea of
+network exchanges. However, operating multiple small DCs breaks somehow the idea of
 mutualization in terms of physical resources and administration simplicity, making this
 approach questionable.
 % Moreover, the number of such micro/nano DCs will remain limited and the question of
@@ -84,7 +84,7 @@ delivered by leveraging existing network centers, starting from the core nodes o
 backbone to the different network access points in charge of interconnecting public and
 private institutions. By such a mean, network and UC providers would be able to mutualize
 resources that are mandatory to operate network/data centers while delivering widely
-distributed UC platforms that can better match the geographical dispersal of users.
+distributed UC platforms able to better match the geographical dispersal of users.
 %
 % TODO: AL -> ACO, please introduce this point latter in the chapter
 % As a consequence, several initiatives started investigating how they could be
@@ -99,7 +99,7 @@ Figure~\ref{fig:renater} allows to better capture the advantages of such a propo
 % We did, cf. above : WE CLAIM
 It shows a snapshot of the network weather map of
 RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, the backbone
-dedicated to universities and research institutions in France. It reveals several
+dedicated to universities and research institutes in France. It reveals several
 important points:
 \begin{figure}[b]
 \vspace*{-.3cm}
@@ -112,12 +112,13 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 \end{figure}
 
 
+
 \begin{itemize} 
-\item As mentioned before, most of the resources are under-used (only two links are used
+\item As mentioned before, most of the resources are underutilized (only two links are used
   between 45\% and 55\%, a few between 25\% and 40\%, and the majority below the threshold
   of 25\%).
 \item The backbone was deployed and is renewed to match the demand: The density of points
-  of presence~(PoP, \ie a small or medium-sized network centers) as well as the bandwidth
+  of presence~(PoP, \ie a small or medium-sized network center) as well as the bandwidth
   of each link are more important on the edge of large cities such as Paris, Lyon or
   Marseille.
 \item The backbone was designed to avoid disconnections, since 95\% of the PoPs can be
@@ -162,11 +163,11 @@ extend each PoP with a number of servers dedicated to VMs hosting. Because it is
 to assume that the network traffic and UC demands are proportional, larger network centers
 will be completed by more UC resources than the smaller ones. Moreover, by deploying UC
 services on relevant PoPs, a LUC infrastructure will be able to natively confine network
-exchanges to a minimal scope, minimizing both the energy footprint of the network, the
+exchanges to a minimal scope, minimizing altogether the energy footprint of the network, the
 impact on latency and the congestion phenomena that may occur on critical paths (for
 instance Paris and Marseille on RENATER).
 
-From the software point of view, the main challenge is to design a complete distributed
+From the software point of view, the main challenge is to design a comprehensive distributed
 system in charge of turning a complex and diverse network of resources into a collection
 of abstracted computing facilities that is both reliable and easy to operate.
 
@@ -201,7 +202,7 @@ availability or location.
 
 \subsection{Chapter Outline} 
 Section~\ref{sec:challenges} describes the key objectives of a LUC OS and the associated
-challenges.  Section~\ref{sec:background} explains why our vision differs from actual and
+challenges.  Section~\ref{sec:background} explains why our vision differs from current and
 previous UC solutions. In Section~\ref{sec:archi}, we present how such a unified system
 may be designed by delivering the premises of the \discovery system, an agent-based system
 enabling distributed and cooperative management of virtual environments over a large-scale
