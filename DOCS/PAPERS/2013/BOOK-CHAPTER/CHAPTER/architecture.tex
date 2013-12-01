@@ -15,19 +15,9 @@ The \discovery system relies on a multi-agent peer-to-peer system deployed on
 each physical resource composing the LUC infrastructure. Agents are autonomous
 entities that collaborate with one another to efficiently use the LUC resources. In our context,
 efficiency means that a good trade-off is found between users'
-expectations, reliability, reactiveness and availability,
+expectations, reliability, reactivity and availability,
 while limiting the energy consumption of the system and providing
-scalability. We propose to leverage peer-to-peer techniques since they
-allow self-* properties, such as self-adaptation and self-reparation of overlays.
-They are particularly useful to cope with the scale as well as the
-network disconnections that may create temporary partitions in a LUC platform.
-
-\ftodo[FQ$\rightarrow$AL]{I merged the two first paragraphs, since they were redundant; for
-now, I also removed the reference to micro kernels, since I do not feel comfortable
-with the argument that they will make the development and the management easier;
-however, we may argue that using micro kernels will make the LUC OS more modular
-and extensible; this is more or less the promise of component-oriented programming}
-
+scalability. 
 %To reduce the management complexity as well as the design and the
 %implementation of the critical mechanisms, we strongly
 %support the use of micro-kernel concepts. Such an approach should enable us to design
@@ -87,7 +77,7 @@ time between itself and another node (from its view, a different one at each
 step) and adapts its distance (by changing its coordinates) with this node in
 the plane accordingly (see Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:vivaldi_after}). 
 
-\begin{figure}
+\begin{figure}[b]
   \begin{minipage}[c]{.45\linewidth}
 	\vspace*{.5cm}
    \hspace*{-0.5cm}
@@ -95,21 +85,17 @@ the plane accordingly (see Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:v
 
    \hspace*{0.5cm}
 	\vspace*{.4cm}
-		\caption{Vivaldi plot before updating positions.}
-		{\small Each node pings other nodes. Each node maintains a map of distance.}
+		\caption{Vivaldi plot before updating positions. Each node pings other nodes. Each node maintains a map of distance.}
 \label{fig:vivaldi_before}
    \end{minipage}
 \hspace*{0.6cm}
    \begin{minipage}[c]{.45\linewidth}
    	\centering \includegraphics[width=4cm]{./FIGS/vivaldi_after.pdf}
 	\vspace*{0.40cm}
-		\caption{Vivaldi plot after updating positions.}
+		\caption{Vivaldi plot after updating positions. The computed positions of other nodes are periodically updated.}
 		\label{fig:vivaldi_after} 
-{\small The computed positions of other nodes are periodically updated.}
   \end{minipage} \hfill
 \end{figure}
-
-\newpage
 
 Note that a global accurate positioning of nodes can be
 obtained if nodes have a few long-distance nodes in their
