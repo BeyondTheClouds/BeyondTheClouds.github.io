@@ -1,26 +1,29 @@
 %%%
 \section{Overall Vision and Major Challenges\label{sec:challenges}}
 
-Similarly to traditional operating systems (OSes), a LUC OS will be composed of a
-significant number of mechanisms. Trying to identify all of them and establishing how they
-interact is an on-going work (see Section~\ref{sec:archi}). However, having in
-mind the goal of delivering a unified system in charge of operating a complex and diverse
-infrastructure, and transform it into a LUC platform, we have identified the following
-objectives to be considered when designing a LUC OS:
+Similarly to traditional operating systems~(OSes), a LUC OS will be composed of
+many mechanisms. Trying to identify all of them and establishing how they
+interact is an on-going work (see Section~\ref{sec:archi}). However,
+%having in
+%mind the goal of delivering a unified system in charge of operating a complex and diverse
+%infrastructure, and transforming it into a LUC platform,
+we have identified the following
+key objectives to be considered when designing a LUC OS:
 
 \begin{itemize} 
 \item Scalability: a LUC OS must be able to manage hundreds of
-  thousands of virtual machines (VMs) running on thousands of 
-  geographically distributed computing resources, including small and
-  medium-sized computing facilities as well as any idle resource that their owner would make available. These resources might be
-  highly volatile, especially if the LUC infrastructure allows to include resources hosted by
+  thousands of virtual machines~(VMs) running on thousands of 
+  geographically distributed computing resources.  These resources may be small or
+  medium-sized computing facilities, as well as idle resources that their owners would make available. These resources might be
+  highly volatile, especially if they are provided by
   end-users.
 \item Reactivity: To deal with the dynamicity of the infrastructure, a LUC OS
   should swiftly handle events that require performing particular
-  operations, either on virtual or on physical resources, with the
-  objective of maximizing the system utilization while meeting QoS expectations of VEs. 
-  Reconfiguring  VEs over distributed resources, sometimes spread across wide area networks, or moving VMs, 
-  while preserving their active connections, are examples of operations that should be performed as fast as possible.
+  operations, either on virtual or on physical resources. This has to be done with the
+  objective of maximizing the system utilization while meeting the quality of service~(QoS) expectations of VEs. 
+  Some examples of operations that should be performed as fast as possible include (i)~the reconfiguration
+  of VEs over distributed resources, sometimes spread across wide area networks, or (ii)~the migration of VMs, 
+  while preserving their active connections.
 \item Resiliency: In addition to the inherent dynamicity of the
   infrastructure, failures and faults should be considered as the norm rather than the
 exception at such a scale. The goal is therefore to transparently leverage the
@@ -38,60 +41,75 @@ footprint of UC services by minimizing the network impact,
 pas de données pour affirmer une telle chose}
 it is important to go one
 step further by considering energy aspects at each level of a LUC OS
-and propose advanced mechanisms in charge of an optimal usage of each source of energy. 
+and propose advanced mechanisms in charge of making an optimal usage of each source of energy. 
 %Minimizing the energy footprint is a
 %  transversal concern that has to be considered at each level of the
 %  design of \discovery.
- To achieve such an objective, data related to the energy
-  consumption of the VEs  and the computing resources
+ To achieve such an objective, the LUC OS should take account of data related to the energy
+  consumption of the VEs  and the computing resources,
   as well as the environmental conditions (computer room air conditioning unit, location of the
-  site, etc.) should be taken into account by the system.
+  site, etc.).
 \item Security and Privacy: Similarly to resiliency, security and privacy issues affect the LUC OS itself and the VEs running on it.
-For the LUC OS security and privacy, the goals are to (i) create trust relationships between
-different locations, (ii) secure the P2P layers, 
-(iii) include security and privacy decision and enforcement points in the LUC OS and (iv) make them collaborate through the secured P2P layers to provide a secured infrastructure that enforces both security and privacy.
+Regarding the LUC OS, the goals are to (i)~create trust relationships between
+different locations, (ii)~secure the peer-to-peer layers, 
+(iii)~include security and privacy decision and enforcement points in the LUC OS and (iv)~make them collaborate through the secured peer-to-peer layers. 
 %  at different layers and locations to provide a end-to-end and in-depth security enforcement.
-For the VEs security, we need to provide users with a way to express their security and privacy requirements that will be enforced by collaborating 
-several LUC OS security and privacy decision and enforcement points.
+Regarding the VEs, users should be able to express their requirements in terms of security and privacy; these requirements would then be enforced by the LUC OS.
 
 % \ftodo[AL/JP]{More on privacy? Only security is mentioned.}
 
 \end{itemize}
 
-In addition to the aforementioned objectives, targeting a distributed system
-where VM is the elementary granularity requires to deal with important issues
-regarding the management of the VM images. Managing VM images in a distributed
-way across a WAN is a real challenge that will require to adapt
-state-of-the-art techniques of replication and deduplication. Also,
-several mechanisms of a LUC OS must take into account VM images'
-location, for instance to allocate the right resources to a VE  or to request
-VM images prefetching to improve deployment performance or VM relocations.
+In addition to the aforementioned objectives, working on a virtual infrastructure 
+requires to deal with
+the management of VM images. Managing VM images in a distributed
+way across a wide area network~(WAN) is a real challenge that will require to adapt
+state-of-the-art techniques related to replication and deduplication. Also,
+the LUC OS must take into account VM images
+location, for instance (i)~to allocate the right resources to a VE  or (ii)~to prefetch
+VM images, to improve deployment performance or VM relocations.
 
-Amongst the numerous scientific and technical challenges that should be addressed, 
-the lack of a global view of the system introduces a lot
-of complexity. In order to tackle it while addressing the above-mentioned
-challenges, we claim that internal mechanisms of a LUC OS should be based
-on decentralized mechanisms specifically designed for it.
-% the latest contributions in distributed and
-% cooperative algorithms such as gossip-based approaches and self-* techniques.
-These techniques should provide mechanisms which are fully decentralized and
-autonomous, so to allow self-adapting control and monitoring of complex
-large-scale systems. Simple locality-based actions by each of the entities
-composing the system can lead to the global emergence of complex and
-sophisticated behaviors, such as the self-optimization of resource allocation,
-or the creation of decentralized directories. These techniques are starting to
-be used in well-known large systems. As an example, the Amazon website relies on
-its decentralized Dynamo service~\cite{decandia:2007} to create largely distributed indexes and recover from data
-inconsistencies. Facebook’s Cassandra massive scale structured
-store~\cite{lakshman:2010} also leverages P2P techniques for its core
-operation.
+\ftodo[FQ$\rightarrow$ALL]{I completely rephrased the last paragraph of this section. I find it clearer,
+but I am not sure I preserved all ideas of the original paragraph. Please check and merge if necessary}
+Finally, one last scientific and technical challenge is the lack of a global view
+of the infrastructure.
+Maintaining a global view would indeed limit the scalability of the LUC OS, which is
+inconsistent with our objective to manage large-scale geographically distributed 
+systems.
+Therefore, we claim that the LUC OS should rely on decentralized and autonomous mechanisms,
+that can match and adapt to the volatile topology of the infrastructure.
+Several decentralized mechanisms are already used in production on large-scale systems;
+for instance, Amazon relies on the Dynamo service~\cite{decandia:2007} to create
+distributed indexes and recover from data inconsistencies; moreover, Facebook uses
+Cassandra~\cite{lakshman:2010}, a massive scale structured store that leverages peer-to-peer techniques.
+%
+%Among the numerous scientific and technical challenges that should be addressed, 
+%the lack of a global view of the system introduces a lot
+%of complexity. In order to tackle it while addressing the above-mentioned
+%challenges, we claim that internal mechanisms of a LUC OS should be based
+%on decentralized mechanisms specifically designed for it.
+%% the latest contributions in distributed and
+%% cooperative algorithms such as gossip-based approaches and self-* techniques.
+%These techniques should provide mechanisms which are fully decentralized and
+%autonomous, so to allow self-adapting control and monitoring of complex
+%large-scale systems. Simple locality-based actions by each of the entities
+%composing the system can lead to the global emergence of complex and
+%sophisticated behaviors, such as the self-optimization of resource allocation,
+%or the creation of decentralized directories. These techniques are starting to
+%be used in well-known large systems. As an example, the Amazon website relies on
+%its decentralized Dynamo service~\cite{decandia:2007} to create largely distributed indexes and recover from data
+%inconsistencies. Facebook’s Cassandra massive scale structured
+%store~\cite{lakshman:2010} also leverages P2P techniques for its core
+%operation.
 %
 In a LUC OS, decentralized and self-organizing overlays will enable to maintain
 the information about
 the current state of both virtual and physical resources, their characteristics and
 availabilities. Such information is mandatory to build higher-level mechanisms ensuring the correct execution of VEs throughout 
 the whole infrastructure. 
- 
+However, it is worth noting that simultaneous local actions can lead to the global emergence of complex
+behaviors.
+
 % To ensure scalability as well as flexibility, they should be constructed and operated using gossip-based techniques. 
 %Considerable research needs to be conducted to provide core operating systems services in a
 %fully decentralized way and without centrally maintained comprehensive knowledge of system's resources
