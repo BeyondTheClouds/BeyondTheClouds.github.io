@@ -81,7 +81,7 @@ the plane accordingly (see Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:v
   \begin{minipage}[c]{.45\linewidth}
 	\vspace*{.5cm}
    \hspace*{-0.5cm}
-      	\centering \includegraphics[width=4cm]{./FIGS/vivaldi_before.pdf}
+      	\centering \includegraphics[width=3.8cm]{./FIGS/vivaldi_before.pdf}
 
    \hspace*{0.5cm}
 	\vspace*{.4cm}
@@ -90,7 +90,7 @@ the plane accordingly (see Figure~\ref{fig:vivaldi_before} and Figure~\ref{fig:v
    \end{minipage}
 \hspace*{0.6cm}
    \begin{minipage}[c]{.45\linewidth}
-   	\centering \includegraphics[width=4cm]{./FIGS/vivaldi_after.pdf}
+   	\centering \includegraphics[width=3.8cm]{./FIGS/vivaldi_after.pdf}
 	\vspace*{0.40cm}
 		\caption{Vivaldi plot after updating positions. The computed positions of other nodes are periodically updated.}
 		\label{fig:vivaldi_after} 
@@ -528,25 +528,23 @@ overlay while the second service uses an additional \emph{Peer Actor} implementi
  
 \begin{figure}
   \begin{minipage}[c]{.35\linewidth}
-	\vspace*{2.5cm}
+	\vspace*{.5cm}
    \hspace*{-0.5cm}
-      	\centering \includegraphics[width=4cm]{./FIGS/PeerActor.pdf}
-
+      	\centering \includegraphics[width=2.8cm]{./FIGS/PeerActor.pdf}
    \hspace*{0.5cm}
-	\vspace*{.8cm}
-		\caption{The Peer Actor Model}
-		{\small The Supervisor actor monitors all the actors it encapsulates while the Peer actor acts as an interface between the services and the overlay.}
+	\vspace*{.5cm}
+		\caption{The Peer Actor Model. The Supervisor actor monitors all the actors it encapsulates while the Peer actor acts as an interface between the services and the overlay.}
 \label{fig:supervisor}
    \end{minipage}
 \hspace*{0.6cm}
    \begin{minipage}[c]{.55\linewidth}
-   	\centering \includegraphics[width=6.5cm]{./FIGS/PeerActorServices.pdf}
+   	\centering \includegraphics[width=4cm]{./FIGS/PeerActorServices.pdf}
 	\vspace*{-0.25cm}
-		\caption{A Peer Actor Instantiation}
-		\label{fig:peeractor} 
-{\small The first service relies on a \emph{Peer Actor} implementing a Chord
+		\caption{A Peer Actor Instantiation. The first service relies on a \emph{Peer Actor} implementing a Chord
 overlay while the second service uses an additional \emph{PeerActor} implementing a CAN structure.}
+		\label{fig:peeractor} 
   \end{minipage} \hfill
+	\vspace*{-0.4cm}
 \end{figure}
 
 By such a mean, higher-level services can take the advantage of the advanced
@@ -591,7 +589,7 @@ introduce self-healing and self-organizing properties to the \discovery system.
 
 This building block has been fully implemented\footnote{Code is available at:
 \href{https://github.com/BeyondTheClouds}{\url{https://github.com/BeyondTheClouds}}} by 
-leveraging the SCALA/akka\footnote{\href{http://www.akka.io}{\url{http://www.akka.io}}} framework.
+leveraging the SCALA/akka framework~\cite{akka:www}.
 
 As a proof of concept, we are implementing a first high level service in charge
 of dynamically scheduling VMs across a LUC infrastructure by leveraging the
@@ -620,18 +618,24 @@ low latency, so that collaboration will be more efficient.
 %with the \emph{Peer Actor}. 
 %
 
+%To validate the behavior, the performance as well as the reliability of our
+%POC, we rely first on the Simgrid~\cite{Casanova:2008:SGF:1397760.1398183}
+%toolkit. Simgrid has been recently extended to integrate virtualization abstractions and accurate migration models. 
+%Simulations enable us to analyze particular situations and get several metrics
+%that cannot be easily monitored  on a real platform.
+%Second, results obtained from simulations are then compared to real experiments on the Grid'5000 platform. 
+%Grid'5000 provides a testbed supporting experiments on various types of
+%distributed systems (high-performance computing, grids, peer-to-peer systems,
+%Cloud Computing, and others), on all layers of the software stack. The core
+%testbed currently comprises 10 sites geographically spread across France. 
+%For the Discovery purpose, we developed a set of scripts that enables to deploy in a \emph{one-click} fashion a large number of VMs throughout 
+%the whole infrastructure\cite{flauncher}. 
+%
 To validate the behavior, the performance as well as the reliability of our
-POC, we rely first on the Simgrid~\cite{Casanova:2008:SGF:1397760.1398183}
-toolkit. Simgrid has been recently extended to integrate virtualization abstractions and accurate migration models. 
-Simulations enable us to analyze particular situations and get several metrics
-that cannot be easily monitored  on a real platform.
-Second, results obtained from simulations are then compared to real experiments on the Grid'5000 platform. 
-Grid'5000 provides a testbed supporting experiments on various types of
-distributed systems (high-performance computing, grids, peer-to-peer systems,
-Cloud Computing, and others), on all layers of the software stack. The core
-testbed currently comprises 10 sites geographically spread across France. 
+POC, we are conducting several experiments on the Grid'5000 testbed that currently comprises 10 sites geographically spread across France. 
 For the Discovery purpose, we developed a set of scripts that enables to deploy in a \emph{one-click} fashion a large number of VMs throughout 
-the whole infrastructure\cite{flauncher}. By deploying our POC on each node and by
+the whole infrastructure\cite{flauncher}. 
+By deploying our POC on each node and by
 leveraging the VM deployment scripts, we can evaluate real scenario usages by conducting specific workloads in the different VMs. 
 The validation of this first POC is almost completed. 
 The resulting system will be the first to provide reactive,
