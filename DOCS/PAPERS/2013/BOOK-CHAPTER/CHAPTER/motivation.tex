@@ -30,25 +30,23 @@ reach each DC, it exacerbates the inherent limitations of the Cloud Computing mo
 \item The externalization of private applications/data often faces legal issues that
   restrain companies from outsourcing them on external infrastructures, especially when
   located in other countries.
-\item The overhead implied by the unavoidable use of the Internet to reach
-distant platforms is wasteful and costly in several situations: Deploying a
-broadcasting service of local events or an online service to order pizzas at the
-edge of the polar circle, for instance, leads to important overheads since
-most of the users are \emph{a priori} located in the neighborhood of the
-event/the pizzeria.  
-\item The connectivity to the application/data cannot be ensured by centralized
-dedicated centers, especially if they are located in a similar geographical
-zone. The only way to ensure disaster recovery is to leverage distinct
-sites.\footnote{``Amazon outages – lessons learned'',
-\href{http://gigaom.com/cloud/amazon-outages-lessons-learned/}{http://gigaom.com/cloud/amazon-outages-lessons-learned/}
-(valid on  Nov 2013, the 30\textsuperscript{th}).} 
+\item The overhead implied by the unavoidable use of the Internet to reach distant
+  platforms is wasteful and costly in several situations: Deploying a broadcasting service
+  of local events or an online service to order pizzas at the edge of the polar circle,
+  for instance, leads to important overheads since most of the users are \emph{a priori}
+  located in the neighborhood of the event/the pizzeria.
+\item The connectivity to the application/data cannot be ensured by centralized dedicated
+  centers, especially if they are located in a similar geographical zone. The only way to
+  ensure disaster recovery is to leverage distinct sites.\footnote{``Amazon outages –
+    lessons learned'',
+    \href{http://gigaom.com/cloud/amazon-outages-lessons-learned/}{http://gigaom.com/cloud/amazon-outages-lessons-learned/}
+    (valid on Nov 2013, the 30\textsuperscript{th}).}
 \end{itemize}
 
 The two first points could be partially tackled by hybrid or federated Cloud
-solutions~\cite{armbrust:2010}, that aim at extending
-the resources available on one Cloud with those of another one; however, the third 
-one requires a disruptive change in
-the way UC resources are managed.
+solutions~\cite{armbrust:2010}, that aim at extending the resources available on one Cloud
+with those of another one; however, the third one requires a disruptive change in the way
+UC resources are managed.
 %Deploying a local events broadcasting service or an
 %online service to order pizza at the edge of the polar circle for instance, leads to an important overhead
 %in terms of energy footprint, network exchanges as well as latency since it can be assumed
@@ -57,35 +55,36 @@ the way UC resources are managed.
 
 Another issue is that, according to some projections of a recent IEEE
 report~\cite{ieeenetreport:2012}, the network traffic continues to double roughly each
-year. Consequently, bringing the IT services closer to the end-users is becoming crucial to limit
-the energy impact of these exchanges and to save the bandwidth of some links. Similarly,
-this notion of locality is also critical for the adoption of the UC model by applications
-that need to deal with a large amount of data as getting them in and out actual UC
-infrastructures may significantly impact the global performance~\cite{Fos11}. 
+year. Consequently, bringing the IT services closer to the end-users is becoming crucial
+to limit the energy impact of these exchanges and to save the bandwidth of some
+links. Similarly, this notion of locality is also critical for the adoption of the UC
+model by applications that need to deal with a large amount of data as getting them in and
+out actual UC infrastructures may significantly impact the global
+performance~\cite{Fos11}.
 
-The concept of micro/nano DCs at the edge of the 
-backbone~\cite{greenberg:sigcomm09} may be seen as a complementary solution to
-hybrid platforms in order to reduce the overhead of network exchanges.
-However, operating multiple small DCs breaks in somehow the idea of
-mutualization in terms of physical resources and administration simplicity, making this approach questionable.
-%Moreover,  the number of such micro/nano DCs will remain limited and the question of where and
-%how federating a large number of such facilities are still not solved.
+The concept of micro/nano DCs at the edge of the backbone~\cite{greenberg:sigcomm09} may
+be seen as a complementary solution to hybrid platforms in order to reduce the overhead of
+network exchanges. However, operating multiple small DCs breaks in somehow the idea of
+mutualization in terms of physical resources and administration simplicity, making this
+approach questionable.
+% Moreover, the number of such micro/nano DCs will remain limited and the question of
+% where and how federating a large number of such facilities are still not solved.
 
+%%%
 \subsection{Ubiquitous and Oversized Network Backbones}
-One way to partially resolve the mutualization concern enlightened 
-by the defenders of large-scale DCs is to directly deploy the concept of micro/nano DCs upon the Internet backbone.
-People are (and will be) more and more
-surrounded by computing resources, especially those in charge of
-interconnecting all IT equipments. Even though these small and medium-sized
-facilities include resources that are barely used~\cite{Andrew:2003,
-Benson:2010}, they can hardly be removed (\textit{e.g.} routers).  Considering
-this important aspect, we claim that a new generation of UC platforms can be
-delivered by leveraging existing network centers, starting from the core nodes of the backbone to the
-different network access points in charge of interconnecting public and private
-institutions.  By such a mean, network and UC providers would be able to
-mutualize resources that are mandatory to operate network/data centers while
-delivering widely distributed UC platforms that can better match the
-geographical dispersal of users. 
+
+One way to partially solve the mutualization concern enlightened by the defenders of
+large-scale DCs is to directly deploy the concept of micro/nano DCs upon the Internet
+backbone. People are (and will be) more and more surrounded by computing resources,
+especially those in charge of interconnecting all IT equipments. Even though these small
+and medium-sized facilities include resources that are barely
+used~\cite{Andrew:2003,Benson:2010}, they can hardly be removed (\textit{e.g.} routers).
+Considering this important aspect, we claim that a new generation of UC platforms can be
+delivered by leveraging existing network centers, starting from the core nodes of the
+backbone to the different network access points in charge of interconnecting public and
+private institutions. By such a mean, network and UC providers would be able to mutualize
+resources that are mandatory to operate network/data centers while delivering widely
+distributed UC platforms that can better match the geographical dispersal of users.
 %
 % TODO: AL -> ACO, please introduce this point latter in the chapter
 % As a consequence, several initiatives started investigating how they could be
@@ -98,10 +97,10 @@ geographical dispersal of users.
 Figure~\ref{fig:renater} allows to better capture the advantages of such a proposal.
 %\ftodo[FQ$\rightarrow$ALL]{Nous n'avons pas encore introduit la contribution à ce stade $\rightarrow$ enlever cette phrase~?}
 % We did, cf. above : WE CLAIM
-It
- shows a snapshot of the network weather
-map of RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, the backbone dedicated to universities and research
-institutions in France. It reveals several important points: 
+It shows a snapshot of the network weather map of
+RENATER\footnote{\href{http://www.renater.fr}{http://www.renater.fr}}, the backbone
+dedicated to universities and research institutions in France. It reveals several
+important points:
 \begin{figure}[b]
 \vspace*{-.3cm}
 \includegraphics[width=10cm]{./FIGS/renater.png}
@@ -114,11 +113,15 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 
 
 \begin{itemize} 
-\item As mentioned before, most of the resources are under-used (only two links are used between 45\% and 55\%, a few between 25\% and 40\% and the majority below the threshold of 25\%). 
-\item The backbone was deployed and is renewed to match the demand: The density of
-points of presence~(PoP, \ie a small or medium-sized network centers) as well as the bandwidth of each link are more important on the edge of large cities such as Paris, Lyon or
-Marseille. 
-\item The backbone was designed to avoid disconnections, since 95\% of the PoPs can be reached by at least two distinct routes.
+\item As mentioned before, most of the resources are under-used (only two links are used
+  between 45\% and 55\%, a few between 25\% and 40\%, and the majority below the threshold
+  of 25\%).
+\item The backbone was deployed and is renewed to match the demand: The density of points
+  of presence~(PoP, \ie a small or medium-sized network centers) as well as the bandwidth
+  of each link are more important on the edge of large cities such as Paris, Lyon or
+  Marseille.
+\item The backbone was designed to avoid disconnections, since 95\% of the PoPs can be
+  reached by at least two distinct routes.
 \end{itemize}
 
 
@@ -142,41 +145,39 @@ Marseille.
 %facilities close to the end-users will deliver highly efficient
 %and sustainable UC services, resolving inherent limitations of the cloud computing model leveraging large-scale DCs. 
 
-This chapter aims at introducing locality-based UC infrastructures, a new
-generation of UC platforms that solves inherent limitations of the Cloud Computing 
-paradigm relying on large-scale DCs. Although it involves radical changes in
-the way physical and virtual resources are managed,  leveraging network centers
-is a promising way to deliver highly efficient and sustainable UC services. 
+This chapter aims at introducing locality-based UC infrastructures, a new generation of UC
+platforms that solves inherent limitations of the Cloud Computing paradigm relying on
+large-scale DCs. Although it involves radical changes in the way physical and virtual
+resources are managed, leveraging network centers is a promising way to deliver highly
+efficient and sustainable UC services.
 
 From the physical point of view, network backbones 
 %such as National Research and Educational Networks (NRENs) 
 provide appropriate infrastructures, \ie, reliable and efficient enough to operate UC
 resources spread across the different PoPs. Ideally, UC resources would be able to
-directly
-take advantage of computation cycles available on network active devices, \textit{i.e.} those
-in charge of routing packets. However, leveraging network resources to make external
-computations may lead to important security concerns. Hence, we propose to extend each
-POP with a number of servers dedicated to VM hosting.
-Because it is natural to assume that the network traffic and UC demands are proportional, larger network
-centers will be completed by more UC resources than the smaller ones. Moreover, by deploying
-UC services on relevant PoPs, a LUC infrastructure will be able to natively confine
-network exchanges to a minimal scope, minimizing both the energy footprint of the network, 
-the impact on latency and the congestion phenomena that may occur on critical paths (for instance Paris and Marseille on RENATER). 
+directly take advantage of computation cycles available on network active devices,
+\textit{i.e.} those in charge of routing packets. However, leveraging network resources to
+make external computations may lead to important security concerns. Hence, we propose to
+extend each POP with a number of servers dedicated to VM hosting. Because it is natural
+to assume that the network traffic and UC demands are proportional, larger network centers
+will be completed by more UC resources than the smaller ones. Moreover, by deploying UC
+services on relevant PoPs, a LUC infrastructure will be able to natively confine network
+exchanges to a minimal scope, minimizing both the energy footprint of the network, the
+impact on latency and the congestion phenomena that may occur on critical paths (for
+instance Paris and Marseille on RENATER).
 
 From the software point of view, the main challenge is to design a complete distributed
 system in charge of turning a complex and diverse network of resources into a collection
 of abstracted computing facilities that is both reliable and easy to operate.
 
 \begin{svgraybox}
-The \emph{LUC Operating System}, an advanced system being able to operate 
-many UC resources distributed on distinct sites  would enable 
-Internet service providers~(ISPs) and other institutions in
-charge of operating a network backbone to build an extreme-scale
-LUC infrastructure with a limited additional cost. Instead of redeploying a
-complete installation, they will be able to leverage IT resources and
-specific devices such as computer room air conditioning units, inverters or
-redundant power supplies already present in each center of their
-backbone. 
+  The \emph{LUC Operating System}, an advanced system being able to operate many UC
+  resources distributed on distinct sites would enable Internet service providers~(ISPs)
+  and other institutions in charge of operating a network backbone to build an
+  extreme-scale LUC infrastructure with a limited additional cost. Instead of redeploying
+  a complete installation, they will be able to leverage IT resources and specific devices
+  such as computer room air conditioning units, inverters or redundant power supplies
+  already present in each center of their backbone.
 \end{svgraybox}
 
 
@@ -187,23 +188,22 @@ backbone.
 
 In addition to considering \emph{locality} as a primary concern, the novelty of the LUC OS
 proposal is to consider the VM as the basic object it manipulates.  Unlike existing
-research on distributed operating systems designed around the process concept, a LUC OS will manipulate VMs throughout a federation of widely distributed
-physical machines. Virtualization technologies abstract out hardware heterogeneity, and allow
-transparent deployment, preemption, and migration of virtual
-environments~(VEs), \ie a set of interconnected VMs.
-By dramatically increasing the flexibility of resource management, virtualization 
-allows to leverage state-of-the-art results from other distributed
-systems areas such as autonomous and decentralized systems.  
-Our goal is to build a system that allows end-users to launch VEs over a
-distributed infrastructure as simply as they launch processes on a
-local machine, \ie  without the burden of dealing with resources
+research on distributed operating systems designed around the process concept, a LUC OS
+will manipulate VMs throughout a federation of widely distributed physical
+machines. Virtualization technologies abstract out hardware heterogeneity, and allow
+transparent deployment, preemption, and migration of virtual environments~(VEs), \ie a set
+of interconnected VMs.  By dramatically increasing the flexibility of resource management,
+virtualization allows to leverage state-of-the-art results from other distributed systems
+areas such as autonomous and decentralized systems.  Our goal is to build a system that
+allows end-users to launch VEs over a distributed infrastructure as simply as they launch
+processes on a local machine, \ie without the burden of dealing with resources
 availability or location.
 
 %\paragraph{Chapter Outline.} 
-Section~\ref{sec:challenges} describes the key objectives of a LUC OS and the associated challenges. 
-Section~\ref{sec:background} explains why our vision differs from actual and previous UC solutions. In
-Section~\ref{sec:archi}, we present how such a unified system may be designed
-by delivering the premises of the \discovery system, an agent-based system
-enabling distributed and cooperative management of virtual environments over a
-large-scale distributed infrastructure.
-Future work as well as opportunities  are addressed in Section~\ref{sec:future}. Finally Section~\ref{sec:conclusion} concludes this chapter. 
+Section~\ref{sec:challenges} describes the key objectives of a LUC OS and the associated
+challenges.  Section~\ref{sec:background} explains why our vision differs from actual and
+previous UC solutions. In Section~\ref{sec:archi}, we present how such a unified system
+may be designed by delivering the premises of the \discovery system, an agent-based system
+enabling distributed and cooperative management of virtual environments over a large-scale
+distributed infrastructure.  Future work as well as opportunities are addressed in
+Section~\ref{sec:future}. Finally Section~\ref{sec:conclusion} concludes this chapter.
