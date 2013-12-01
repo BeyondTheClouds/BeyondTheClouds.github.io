@@ -1,5 +1,9 @@
 \begin{thebibliography}{10}
 
+\bibitem{akka:www}
+{akka - Build powerful concurrent and distributed applications more easily}.
+\newblock \url{http://www.akka.io}.
+
 \bibitem{cloudstack}
 {CloudStack, Open Source Cloud Computing}.
 \newblock \url{http://cloudstack.apache.org}.
@@ -10,15 +14,15 @@
 
 \bibitem{nimbus}
 {Nimbus is Cloud Computing for Science}.
-\newblock \url{http://www.nimbusproject.org/}.
+\newblock \url{http://www.nimbusproject.org}.
 
 \bibitem{opennebula}
 {Open Source Data Center Virtualization}.
-\newblock \url{http://www.opennebula.org/}.
+\newblock \url{http://www.opennebula.org}.
 
 \bibitem{openstack}
 {The Open Source, Open Standards Cloud}.
-\newblock \url{ttp://www.openstack.org/}.
+\newblock \url{ttp://www.openstack.org}.
 
 \bibitem{agha:1986}
 G.~Agha.
@@ -76,13 +80,6 @@ R.~Buyya, R.~Ranjan, and R.~N. Calheiros.
 \newblock In {\em Proceedings of the 10th international conference on
   Algorithms and Architectures for Parallel Processing - Volume Part I},
   ICA3PP'10, pages 13--31, Berlin, Heidelberg, 2010. Springer-Verlag.
-
-\bibitem{Casanova:2008:SGF:1397760.1398183}
-H.~Casanova, A.~Legrand, and M.~Quinson.
-\newblock {SimGrid: a Generic Framework for Large-Scale Distributed
-  Experiments}.
-\newblock In {\em Proceedings of the Tenth International Conference on Computer
-  Modeling and Simulation}, pages 126--131, 2008.
 
 \bibitem{Castro:2002:SRS:844128.844156}
 M.~Castro, P.~Druschel, A.~Ganesh, A.~Rowstron, and D.~S. Wallach.
