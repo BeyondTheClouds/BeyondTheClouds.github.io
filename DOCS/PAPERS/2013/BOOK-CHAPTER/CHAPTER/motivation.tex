@@ -125,7 +125,7 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 \end{itemize}
 
 
-\ftodo[AL -> ALL]{It might make sense to talk of congestion effects that we can see in Marseille and Paris, the two path to the rest of Internet.}
+%\ftodo[AL -> ALL]{It might make sense to talk of congestion effects that we can see in Marseille and Paris, the two path to the rest of Internet.}
 
 \subsection{Locality-based Utility Computing}
 
@@ -158,7 +158,7 @@ resources spread across the different PoPs. Ideally, UC resources would be able 
 directly take advantage of computation cycles available on network active devices,
 \textit{i.e.} those in charge of routing packets. However, leveraging network resources to
 make external computations may lead to important security concerns. Hence, we propose to
-extend each POP with a number of servers dedicated to VM hosting. Because it is natural
+extend each PoP with a number of servers dedicated to VMs hosting. Because it is natural
 to assume that the network traffic and UC demands are proportional, larger network centers
 will be completed by more UC resources than the smaller ones. Moreover, by deploying UC
 services on relevant PoPs, a LUC infrastructure will be able to natively confine network
@@ -171,8 +171,8 @@ system in charge of turning a complex and diverse network of resources into a co
 of abstracted computing facilities that is both reliable and easy to operate.
 
 \begin{svgraybox}
-  The \emph{LUC Operating System}, an advanced system being able to operate many UC
-  resources distributed on distinct sites would enable Internet service providers~(ISPs)
+  The design of the \emph{LUC  Operating System},  an advanced system being able to unify many UC
+  resources distributed on distinct sites,  would enable Internet service providers~(ISPs)
   and other institutions in charge of operating a network backbone to build an
   extreme-scale LUC infrastructure with a limited additional cost. Instead of redeploying
   a complete installation, they will be able to leverage IT resources and specific devices
@@ -199,7 +199,7 @@ allows end-users to launch VEs over a distributed infrastructure as simply as th
 processes on a local machine, \ie without the burden of dealing with resources
 availability or location.
 
-%\paragraph{Chapter Outline.} 
+\subsection{Chapter Outline} 
 Section~\ref{sec:challenges} describes the key objectives of a LUC OS and the associated
 challenges.  Section~\ref{sec:background} explains why our vision differs from actual and
 previous UC solutions. In Section~\ref{sec:archi}, we present how such a unified system
