@@ -7,16 +7,16 @@ interact is an on-going work (see Section~\ref{sec:archi}). However,
 %having in
 %mind the goal of delivering a unified system in charge of operating a complex and diverse
 %infrastructure, and transforming it into a LUC platform,
-we have identified the following
+we have pointed out the following
 key objectives to be considered when designing a LUC OS:
 
 \begin{itemize} 
 \item Scalability: a LUC OS must be able to manage hundreds of
   thousands of virtual machines~(VMs) running on thousands of 
-  geographically distributed computing resources.  These resources may be small or
-  medium-sized computing facilities, as well as idle resources that their owners would make available. These resources might be
-  highly volatile, especially if they are provided by
-  end-users.
+  geographically distributed computing resources.  These resources are small or
+  medium-sized computing facilities and may become highly volatile according to the network disconnections.  
+%as well as idle resources that their owners would make available. 
+%These resources might be highly volatile%, especially if they are provided by  end-users.
 \item Reactivity: To deal with the dynamicity of the infrastructure, a LUC OS
   should swiftly handle events that require performing particular
   operations, either on virtual or on physical resources. This has to be done with the
@@ -28,13 +28,8 @@ key objectives to be considered when designing a LUC OS:
   infrastructure, failures and faults should be considered as the norm rather than the
 exception at such a scale. The goal is therefore to transparently leverage the
 underlying infrastructure redundancy to (i)~allow the LUC OS to keep
-working despite node failures and network disconnections and to (ii)~provide
-snapshotting as well as high availability mechanisms for VEs.
-
-\ftodo[CT (+FQ)$\rightarrow$AL]{les points (i) et (ii) ne sont pas indépendants, j'ai
-  l'impression que pour résoudre le point (i), on va utiliser ce que tu
-  mentionnes dans le point (ii), du coup, c'est pas vraiment une énumération.}
-
+working despite node failures and network disconnections (LUC OS robustness) and to (ii)~provide
+snapshotting as well as high availability mechanisms for VEs (VM Robustness).
 \item Sustainability: Although the LUC approach natively reduces the energy
 footprint of UC services by minimizing the network impact, 
 \ftodo[FQ$\rightarrow$AL]{Ce n'est pas l'avis du reviewer de Middleware. Et nous n'avons à ma connaissance 
