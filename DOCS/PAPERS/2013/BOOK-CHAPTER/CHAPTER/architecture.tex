@@ -245,82 +245,84 @@ fully-efficient overlay network.
 \label{ssec:vem}
 In the \discovery system, we define a VE as a set of VMs that may have specific
 requirements in terms of hardware, software and also in terms of placement:~
-some VMs must be on the same node/site in order to cope with performance objectives while
-others should not be collocated in oder to ensure
+For instance, some VMs must be on the same node/site to cope with performance objectives while
+others should not be collocated to ensure
 high-availability criteria~\cite{hermenier:2013}.
 As operations on a VE may occur in any place from any location, each agent should provide the capability
-to configure and start a VE, to suspend/resume/stop it, to relocate some of its VM if need be or simply to retrieve the location of a particular VE. 
-Most of these mechanisms are integrated on current UC platforms. However as mentioned, they
+to configure and start a VE, to suspend/resume/stop it, to relocate some of its VMs if need be or simply to retrieve the location of a particular VE. 
+Most of these mechanisms are provided by current UC platforms. However, as mentioned before, they
 should be revisited to correctly run on the infrastructure we target
 (\textit{i.e.} in terms of scalability, resiliency and reliability).
-To this aim, the \discovery system relies on the aforementioned P2P mechanisms. 
+To this aim, the \discovery system relies on the aforementioned peer-to-peer mechanisms. 
+
 As a first example, placing the VMs of a VE requires to be able to find available nodes that
-fulfills the VM needs (in terms of resource needs as well as placement
+fulfill the VM needs (in terms of resource requirements as well as placement
 constraints). Such a placement can start locally, close to the client
 application requesting it, \textit{i.e.}, in its local group. If no such node is
-found, simple navigation ensures that the request will encounter a bridge
-eventually, leading to the exploration of further nodes. This navigation goes
-on until one sufficiently available node is found.
+found, a simple navigation ensures that the request will encounter a bridge,
+leading to the exploration of further nodes. This navigation goes
+on until an adequate node is found.
 A similar process is performed by the mechanism in charge of  dynamically
-controlling and adapting the placement of VEs during their lifetime.  For instance, in
-order to ensure particular needs of a VM, it can be necessary to relocate other
-ones. According to the predefined constraints of VEs, some VMs might be
-relocated on far nodes while other would prefer to be suspended.  Such a
+controlling and adapting the placement of VEs during their lifetime.  For instance, 
+to ensure the particular needs of a VM, it can be necessary to relocate other VMs.
+According to the predefined constraints of VEs, some VMs might be
+relocated on far nodes while others would prefer to be suspended.  Such a
 mechanism has been deeply studied and validated in the DVMS
-mechanism~\cite{dvms:wiki,quesnel:2012}. DVMS (Distributed Virtual
-Machines Scheduler) enables to dynamically schedule a significant number of VMs
+framework~\cite{dvms:wiki,quesnel:2012}. DVMS~(Distributed Virtual
+Machine Scheduler) is able to dynamically schedule a significant number of VMs
 throughout a large-scale distributed infrastructure while guaranteeing VM
 resource expectations.  
 
-A second example regards the configuration of the network elements of a VE. 
-Although it might look simple, assigning the right IPs to
+A second example regards the networking configuration of VEs.
+Although it might look simple, assigning the right IP to
 each VM as well as maintaining the intra-connectivity of a VE becomes a bit more complex than in
-the case of a single network domain, \textit{i.e.} a mono-site deployment.
+the case of a single network domain, \textit{i.e.} a single site deployment.
 %
 Keeping in mind that a LUC infrastructure is
 by definition spread WANwide, a VE can be hosted between distinct network
 domains during its lifetime. No solution has been chosen yet. 
 Our first investigations led us to leverage techniques
-such as the IP over P2P project \cite{ganguly:2006}. However, the definition of
-software network becomes more and more important. Investigating proposals such as
-the Open vSwitch project \cite{pfaff:2009} looks a promising direction to solve such issue.
+such as the IP over P2P project~\cite{ganguly:2006}. However,
+software-defined networking becomes more and more important; investigating proposals such as
+the Open vSwitch project~\cite{pfaff:2009} looks promising to solve such an issue.
 %
 
 \subsection{VM Images Management}
 
 In a LUC infrastructure, VM images could be deployed in any place from any
-other location, but being in a large-scale, heterogeneous and widely spread
-environment makes the management of VM images more difficult than more
-conventional  centralized repositories.  
-At coarse grain, the management of the VM images should be (i) consistent
-with regards to the location of each VM throughout the \discovery infrastructure and
-(ii) reachable in case of failures.
+other location. However, being in a decentralized, large-scale, heterogeneous and widely spread
+environment makes the management of VM images more difficult than with
+conventional centralized repositories.  
+At coarse grain, the management of the VM images should be (i)~consistent
+with regard to the location of each VM in the \discovery infrastructure and
+(ii)~reachable in case of failures.
 %
-The envisioned mechanisms dedicated to the management of the VM images have been
-classified into two sub-classes.
+The envisioned mechanisms to manage VM images have been
+classified into two categories.
 %
-First, it will be mandatory to deliver appropriate mechanisms to efficiently
-upload and replicate VM images among a high number of nodes in order to ensure
-efficiency as well as reliability.  Second, the \discovery system should 
-include specific mechanisms devoted to the scheduling of the VM image
+First, some mechanisms are required to efficiently
+upload VM images and replicate them across many nodes, to ensure
+efficiency as well as reliability.  Second, other mechanisms 
+are needed to schedule VM image
 transfers. Advanced policies are important to improve the efficiency of each
-transfer that may occur either at the boot time or during VM relocations. 
+transfer that may occur either during the first deployment of a VM or during its relocations. 
 
 Regarding storage and replication mechanisms,  an analysis of an IBM Cloud concludes
-that a fully distributed model using P2P technology is not the best choice to manage VM images as the
+that a fully distributed approach using peer-to-peer technology is not the best choice to manage VM images, since the
 number of instances of the same VM image is rather small~\cite{peng:2012}. However, central or
 hierarchical solutions are not suited for the infrastructure we target.
-Consequently, an augmented P2P solution working with replicas and
-deduplication will have to be investigated in order to provide more
+Consequently, an improved peer-to-peer solution working with replicas and
+deduplication has to be investigated, to provide more
 reliability, speed, and scalability to the system. For example, analyzing
 different VM images shows that at least 30\% of the image is shared between
-different VMs. This 30\% can become a 30\% space reduction, a
-30\% increased reliability or a 30\% of speed increase. Depending on the
+different VMs. This 30\% can become a 30\% reduction in space, or a
+30\% increase in reliability or in transfer speed. Depending on the
 situation, we should decide to go from one scenario to another. 
 %Finally, the number of replicas and deduplicated data should be dynamically balanced.
 
-Regarding the scheduling mechanisms, it has been shown that a storage system with VMs being used by I/O intensive tasks 
-can increase boot time from 10 to 240 seconds \cite{tan:2008}. Some actions like providing the
+Regarding the scheduling mechanisms, a study showed that VM boot time can increase
+from 10 to 240 seconds when multiple VMs running I/O intensive tasks use the
+same storage system~\cite{tan:2008}. Some actions, like providing the
 image chunks needed to boot first~\cite{tang:2011}, defining a new
 image format, and pausing the rest of the I/O operations, can provide a
 performance boost and limit the overhead that is still observed in commercial
@@ -331,11 +333,11 @@ Clouds~\cite{mao:2012}.
 %4Wh. Considering the size of VM images, any improvement aiming at reducing
 %data movement will make a big difference.
 
-More generally, the amount of data related to VM images is significant.
-Actions involving data  should be aware of their implications on metrics like
-(but not limited to): energy efficiency, bandwidth, reliability, proximity, and
-hardware usage. The scheduler could also anticipate actions like moving images when
-the load is low or the energy is cheaper.
+More generally, the amount of data linked with VM images is significant.
+Actions involving data  should be aware of consequences on metrics like
+(but not limited to): energy efficiency, reliability, proximity, bandwidth and
+hardware usage. The scheduler could also anticipate actions, for instance moving images when
+the load is low or the energy is cheap.
 
 %% \subsection{Reliability Mechanisms}
 %% %These mechanisms should ensure  reliability and high availability of the
