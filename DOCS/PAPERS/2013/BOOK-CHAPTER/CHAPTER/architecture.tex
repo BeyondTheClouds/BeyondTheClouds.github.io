@@ -487,9 +487,9 @@ infrastructure by leveraging appropriate overlays.
 % Finally, as traditional distributed systems, \discovery should ensure the good behavior of resources and users.
 % To this aim, authentication and certification mechanisms should be provided. 
 
-\subsection{Toward a First Proof-of-Concept}
+\subsection{Toward a First Proof of Concept}
 
-The first prototype is under heavy implementation. It aims at delivering a
+The first prototype is under heavy development. It aims at delivering a
 simple mock-up for integration/collaboration purposes.  Following the
 coarse-grained architecture described in the previous sections, we have
 started to identify all the components participating in the system, their
@@ -498,28 +498,28 @@ Conducting such a work now is mandatory to move towards a more complete as well
 as more complex system. 
 
 To ensure a scalable and reliable design, we  chose to rely on the use
-of high-level programming abstractions, more precisely, we are using distributed
-complex event programming \cite{janiesch:2011} in association with actors
-model \cite{agha:1986}. This enables to easily switch between a push and a pull
-oriented model according to our needs. 
+of high-level programming abstractions; more precisely, we are using distributed
+complex event programming~\cite{janiesch:2011} in association with the actors
+model~\cite{agha:1986}. This enables us to easily switch between a push and a pull
+oriented approach depending on our needs. 
 %To make the integration of the mechanisms easier, we propose to follow a Service
 %Oriented Architecture \cite{valipour:iccsit09}.
 
 Our preliminary studies showed that a common building block is mandatory to
-handle resilience concerns in all components. Concretely, it corresponds to a
+handle resiliency concerns in all components. Concretely, it corresponds to a
 mechanism in charge of throwing notifications that are triggered by the low
 level network overlay each time a node joins or leaves it.  Such a mechanism
 makes the design and the development of higher building blocks easier as they do
 not have to provide specific portions of code to monitor infrastructure
 changes. 
 
-This building block has been designed around the \emph{Peer Actor} concept (see~Figure~\ref{fig:supervisor} and
-~\ref{fig:peeractor}).
+This building block has been designed around the \emph{Peer Actor} concept (see Figure~\ref{fig:supervisor} and
+Figure~\ref{fig:peeractor}).
  The \emph{Peer Actor} serves as an interface between higher services
 and the communication layer. It provides methods that enable to define the behaviors of a
-service when a resource joins or leaves a particular P2P overlay as well as
+service when a resource joins or leaves a particular peer-to-peer overlay as well as
 when neighbors change.
-Considering that several overlays may co-exist through the \discovery system, 
+Considering that several overlays may co-exist in the \discovery system, 
 the association between a \emph{Peer Actor} and its \emph{Overlay Actor} is
 done at runtime and can be changed on the fly if need be. However, it is noteworthy that 
 each \emph{Peer Actor} takes part to one and only one overlay at the same time.  
@@ -528,9 +528,9 @@ In addition to the \emph{Overlay Actor}, a \emph{Peer Actor}  is composed of a
 \emph{Notification Actor}  that processes events and notifies registered actors.
 %
 As illustrated in Figure~\ref{fig:peeractor}, a service can use more than one \emph{Peer Actor} (and reciprocally). 
-Mutualizing a \emph{Peer Actor} enables for instance to reduce the network overhead implied by the overlays' maintenance. 
+Mutualizing a \emph{Peer Actor} enables for instance to reduce the network overhead implied by the maintenance of the overlays. 
 In the example, the first service relies on a \emph{Peer Actor} implementing a Chord
-overlay while the second service uses an additional \emph{Peer Actor} implementing a CAN structure.
+overlay, while the second service uses an additional \emph{Peer Actor} implementing a CAN structure.
  
 \begin{figure}
   \begin{minipage}[c]{.35\linewidth}
@@ -580,28 +580,28 @@ Service actors can thus react accordingly to the behavior that has been specifie
 Regarding the design and the implementation of the \discovery system, each
 service is executed inside its own actor and communicates by
 exchanging messages with the other ones. This ensures that each
-service is isolated from the others : When a service crashes and needs to be
+service is isolated from the others: When a service crashes and needs to be
 restarted, the execution of other services is not affected. 
 % Besides, each service will be supervised by a global actor that encapsulates all
 % services, ie. the \discovery agent. Each time a service fails, the \discovery
 % agent catches and analyzes the failure so that it can decide which operations
 % to perform. 
 %
-As previously mentioned, we consider that at the LUC scale, failures are the norm
-rather than the exception, hence we decided that each actor will be monitored
-by a \emph{Supervisor Actor} (see Figure~\ref{fig:supervisor}). \discovery services are under the supervision of the \discovery agent: this design makes it possible to precisely define strategy
-that will be executed in case of service failures. This will be the way we
+As previously mentioned, we consider that at the LUC infrastructure scale, failures are the norm
+rather than the exception; hence we decided that each actor would be monitored
+by a \emph{Supervisor Actor} (see Figure~\ref{fig:supervisor}). \discovery services are under the supervision of the \discovery agent: This design allows to precisely define a strategy
+that will be executed in case of service failures. This will be the way to
 introduce self-healing and self-organizing properties to the \discovery system.
 
 This building block has been fully implemented\footnote{Code is available at:
 \href{https://github.com/BeyondTheClouds}{\url{https://github.com/BeyondTheClouds}}} by 
-leveraging the SCALA/akka framework~\cite{akka:www}.
+leveraging the Akka/Scala framework~\cite{akka:www}.
 
 As a proof of concept, we are implementing a first high level service in charge
 of dynamically scheduling VMs across a LUC infrastructure by leveraging the
-DVMS~\cite{quesnel:2012} proposal (see Section \ref{ssec:vem}). The low-level
-overlay that is currently implemented, is a robust ring based on the  Chord  algorithm
-combined with Vivaldi positionning system: it enables services to select nodes that have
+DVMS~\cite{quesnel:2012} proposal (see Section~\ref{ssec:vem}). The low-level
+overlay that is being currently implemented is a robust ring based on the  Chord  algorithm
+combined with the Vivaldi positioning system: It enables services to select nodes that have
 low latency, so that collaboration will be more efficient. 
 
 % When a node cannot guarantee the QoS for its
@@ -638,11 +638,11 @@ low latency, so that collaboration will be more efficient.
 %the whole infrastructure\cite{flauncher}. 
 %
 To validate the behavior, the performance as well as the reliability of our
-POC, we are conducting several experiments on the Grid'5000 testbed that currently comprises 10 sites geographically spread across France. 
-For the Discovery purpose, we developed a set of scripts that enables to deploy in a \emph{one-click} fashion a large number of VMs throughout 
-the whole infrastructure\cite{flauncher}. 
+proof of concept~(POC), we are performing several experiments on the Grid'5000 testbed that comprises hundreds of nodes distributed on 10 computing sites that are geographically spread across France. 
+To make experiments with \discovery easier, we developed a set of scripts that can deploy thousands of VMs throughout 
+the whole infrastructure in a \emph{one-click} fashion~\cite{flauncher}.  
 By deploying our POC on each node and by
-leveraging the VM deployment scripts, we can evaluate real scenario usages by conducting specific workloads in the different VMs. 
+leveraging the VM deployment scripts, we can evaluate real scenario by injecting specific workloads in the different VMs. 
 The validation of this first POC is almost completed. 
 The resulting system will be the first to provide reactive,
 reliable and scalable
