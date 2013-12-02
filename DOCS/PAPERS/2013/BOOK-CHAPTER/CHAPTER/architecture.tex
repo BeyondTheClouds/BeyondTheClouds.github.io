@@ -9,6 +9,7 @@ system by emphasizing some of the challenges as well as some research directions
 to solve them. Finally, we give some details regarding the prototype that is
 under development and how we are going to evaluate it.  
 
+\vspace*{-.4cm}
 \subsection{Overview}
 
 The \discovery system relies on a multi-agent peer-to-peer system deployed on
@@ -47,6 +48,7 @@ will rely on dedicated mechanisms related to:
 \item Security and privacy.
 \end{itemize}
 
+\vspace*{-.4cm}
 \subsection{Resource Localization and Monitoring Mechanisms\label{ssec:p2p}}
 
 Keeping in mind that \discovery should be designed in a fully decentralized
@@ -64,7 +66,9 @@ the last decade, we emphasize here on minimalism, and especially on one key
 feature to implement a LUC OS:  retrieving nodes that are geographically close
 to a given departure node.
 
+\vspace*{-.4cm}
 \subsubsection*{Giving Nodes a Position}
+\vspace*{-.2cm}
 
 The initial configuration of the physical network can take an arbitrary
 shape. We choose to rely on the Vivaldi
@@ -106,7 +110,9 @@ maintained by means of a simple gossip protocol.
 \end{figure}
 
 
+\vspace*{-.4cm}
 \subsubsection*{Searching for Close Nodes}
+\vspace*{-.2cm}
 
 Once the map is achieved (each node knows its coordinates), we are able to decide
 whether two nodes are \emph{close} by calculating their distance. However, the view of
@@ -143,7 +149,9 @@ nodes that are already in the spiral, leading to the impossibility to build the
 spiral further. However, this problem can be easily addressed by forcing the
 presence of a few long distance nodes whenever it is updated.
 
+\vspace*{-.4cm}
 \subsubsection*{Learning}
+\vspace*{-.2cm}
 
 Applying the protocol described above, the quality of the spiral is
 questionable in the sense that the nodes that are actually close to the starting
@@ -157,7 +165,9 @@ becoming the next node in one spiral, and receives the associated spiral view,
 it can also keep the nodes that are the closest to itself, thus potentially
 increasing the quality of a future spiral construction.
 
+\vspace*{-.4cm}
 \subsubsection*{Routing}
+\vspace*{-.2cm}
 
 In the context of a LUC infrastructure, one crucial feature is to be able to
 locate an existing VM. Having the same strategy consisting in improving the
@@ -530,9 +540,10 @@ In addition to the \emph{Overlay Actor}, a \emph{Peer Actor}  is composed of a
 As illustrated in Figure~\ref{fig:peeractor}, a service can use more than one \emph{Peer Actor} (and reciprocally). 
 Mutualizing a \emph{Peer Actor} enables for instance to reduce the network overhead implied by the maintenance of the overlays. 
 In the example, the first service relies on a \emph{Peer Actor} implementing a Chord
-overlay~\cite{stioca:ton03}, while the second service uses an additional \emph{Peer Actor} implementing a CAN structure~\cite{ratnasamy:sigcomm01}.
+overlay~\cite{stoica:2001:sigcomm01}, while the second service uses an additional \emph{Peer Actor} implementing a CAN structure~\cite{ratnasamy:sigcomm01}.
  
 \begin{figure}
+\vspace*{-.5cm}
   \begin{minipage}[c]{.35\linewidth}
 	\vspace*{.5cm}
    \hspace*{-0.5cm}
@@ -650,6 +661,3 @@ reliable and scalable
 reconfiguration mechanisms of virtual machines in a fully distributed and
 autonomous way. This new result will pave the way for a complete proposal of
 the \discovery system. 
-
-
-
