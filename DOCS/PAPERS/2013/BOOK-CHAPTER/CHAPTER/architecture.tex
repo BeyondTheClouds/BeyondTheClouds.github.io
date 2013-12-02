@@ -251,9 +251,9 @@ high-availability criteria~\cite{hermenier:2013}.
 As operations on a VE may occur in any place from any location, each agent should provide the capability
 to configure and start a VE, to suspend/resume/stop it, to relocate some of its VMs if need be or simply to retrieve the location of a particular VE. 
 Most of these mechanisms are provided by current UC platforms. However, as mentioned before, they
-should be revisited to correctly run on the infrastructure we target
+should be revisited and leverage peer-to-peer mechanisms to correctly run on the infrastructure we target
 (\textit{i.e.} in terms of scalability, resiliency and reliability).
-To this aim, the \discovery system relies on the aforementioned peer-to-peer mechanisms. 
+%To this aim, the \discovery system relies on the aforementioned peer-to-peer mechanisms. 
 
 As a first example, placing the VMs of a VE requires to be able to find available nodes that
 fulfill the VM needs (in terms of resource requirements as well as placement
@@ -267,7 +267,7 @@ controlling and adapting the placement of VEs during their lifetime.  For instan
 to ensure the particular needs of a VM, it can be necessary to relocate other VMs.
 According to the predefined constraints of VEs, some VMs might be
 relocated on far nodes while others would prefer to be suspended.  Such a
-mechanism has been deeply studied and validated in the DVMS
+mechanism has been deeply studied in the DVMS
 framework~\cite{dvms:wiki,quesnel:2012}. DVMS~(Distributed Virtual
 Machine Scheduler) is able to dynamically schedule a significant number of VMs
 throughout a large-scale distributed infrastructure while guaranteeing VM
@@ -295,7 +295,7 @@ environment makes the management of VM images more difficult than with
 conventional centralized repositories.  
 At coarse grain, the management of the VM images should be (i)~consistent
 with regard to the location of each VM in the \discovery infrastructure and
-(ii)~reachable in case of failures.
+(ii)~reachable in case of node failures or network disconnections.
 %
 The envisioned mechanisms to manage VM images have been
 classified into two categories.
@@ -315,7 +315,7 @@ Consequently, an improved peer-to-peer solution working with replicas and
 deduplication has to be investigated, to provide more
 reliability, speed, and scalability to the system. For example, analyzing
 different VM images shows that at least 30\% of the image is shared between
-different VMs. This 30\% can become a 30\% reduction in space, or a
+different VMs~\cite{jin:systor2009}. This 30\% can become a 30\% reduction in space, or a
 30\% increase in reliability or in transfer speed. Depending on the
 situation, we should decide to go from one scenario to another. 
 %Finally, the number of replicas and deduplicated data should be dynamically balanced.
@@ -530,7 +530,7 @@ In addition to the \emph{Overlay Actor}, a \emph{Peer Actor}  is composed of a
 As illustrated in Figure~\ref{fig:peeractor}, a service can use more than one \emph{Peer Actor} (and reciprocally). 
 Mutualizing a \emph{Peer Actor} enables for instance to reduce the network overhead implied by the maintenance of the overlays. 
 In the example, the first service relies on a \emph{Peer Actor} implementing a Chord
-overlay, while the second service uses an additional \emph{Peer Actor} implementing a CAN structure.
+overlay~\cite{stioca:ton03}, while the second service uses an additional \emph{Peer Actor} implementing a CAN structure~\cite{ratnasamy:sigcomm01}.
  
 \begin{figure}
   \begin{minipage}[c]{.35\linewidth}

@@ -161,6 +161,12 @@ C.~Janiesch, M.~Matzner, and O.~M\"{u}ller.
 \newblock In {\em Proceedings of the 9th international conference on Business
   process management}, BPM'11, pages 17--28. Springer-Verlag, 2011.
 
+\bibitem{jin:systor2009}
+K.~Jin and E.~L. Miller.
+\newblock The effectiveness of deduplication on virtual machine disk images.
+\newblock In {\em Proceedings of SYSTOR 2009: The Israeli Experimental Systems
+  Conference}, SYSTOR '09, pages 7:1--7:12, New York, NY, USA, 2009. ACM.
+
 \bibitem{lakshman:2010}
 A.~Lakshman and P.~Malik.
 \newblock {Cassandra: A Decentralized Structured Storage System}.
@@ -257,6 +263,14 @@ S.~Rajagopalan, B.~Cully, R.~O'Connor, and A.~Warfield.
 \newblock {SecondSite: Disaster Tolerance as a Service}.
 \newblock In {\em Proceedings of the 8th ACM SIGPLAN/SIGOPS conference on
   Virtual Execution Environments}, VEE '12, pages 97--108. ACM, 2012.
+
+\bibitem{ratnasamy:sigcomm01}
+S.~Ratnasamy, P.~Francis, M.~Handley, R.~Karp, and S.~Shenker.
+\newblock {A scalable content-addressable network}.
+\newblock In {\em \mbox{SIGCOMM} '01: Proceedings of the 2001 conference on
+  Applications, technologies, architectures, and protocols for computer
+  communications}, SIGCOMM '01, pages 161--172, New York, NY, USA, Aug. 2001.
+  ACM.
 
 \bibitem{rochwerger:2009}
 B.~Rochwerger, D.~Breitgand, E.~Levy, A.~Galis, K.~Nagin, I.~M. Llorente,
