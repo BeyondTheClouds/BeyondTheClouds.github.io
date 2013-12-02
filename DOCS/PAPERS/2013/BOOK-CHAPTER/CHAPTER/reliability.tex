@@ -2,31 +2,31 @@
 %These mechanisms should ensure  reliability and high availability of the
 %\discovery system despite the scale and dynamicity of the underlying physical
 %infrastructure.   
-In a LUC, failures will be much more frequent than in actual UC
-platforms. Furthermore, since resources could be highly distributed,
+In a LUC infrastructure, failures will be much more frequent than in current UC
+platforms. Furthermore, since resources will be highly distributed,
 the expected mean time to repair failed equipments might be much
-larger than in other UC platforms. For all these reasons, a set of
-dedicated mechanisms should be designed in order to provide fully
-transparent failure management with minimum downtime. 
+higher than in other UC platforms. For all these reasons, some 
+mechanisms should be designed to manage failures transparently
+with a minimum downtime. 
 
 %% It includes
 %% mechanisms to ensure the high availability of the \discovery system
 %% itself and mechanisms to allow executing VEs reliably.
 
 Ensuring the high availability of the \discovery system requires being able to
-autonomously restart any service by relocating it on a healthy agent each time
-it is mandatory. To avoid losing or corrupting important information regarding
-the state of the system, a Cassandra-like system~\cite{lakshman:2010} is
-required to provide a reliable and highly available back-end for stateful
-services.
+autonomously relocate and restart any service on a healthy node in case of failure.
+Moreover, a Cassandra-like framework~\cite{lakshman:2010} is required
+to avoid losing or corrupting
+information belonging to stateful services, 
+since it provides a reliable and highly available back-end.
 
 Regarding VEs reliability, a first level of fault tolerance can be
-provided by leveraging VMs snapshotting capabilities. Periodical
-snapshots will allow restarting the VE from its last snapshot in the
-event of a failure. Performing VM snapshotting in a large-scale,
+provided by leveraging periodical VM snapshotting capabilities.
+In case of failure, a VE can be restarted from its latest snapshot.
+Performing VM snapshotting in a large-scale,
 heterogeneous, and widely spread environment is a challenging
-task. However, we believe that adapting recently proposed
-ideas~\cite{nicolae:2011} in this field would allow us to provide such
+task. However, we believe that adapting ideas that were recently proposed
+in this field~\cite{nicolae:2011} would allow us to provide such
 a feature.
 
 Snapshotting is not enough for services that should be made highly
@@ -34,10 +34,10 @@ available, but a promising solution is to use VM
 replication~\cite{Petrovic2012}. To implement VM replication in a WAN,
 solutions to optimize synchronizations between
 replicas~\cite{gerofi:2012,rajagopalan:2012} should be
-investigated. Also, we think that a LUC has the major advantage over
-other UC platforms, that it is tightly coupled with the network
+investigated. Also, we think that a LUC infrastructure has a major advantage over
+other UC platforms, since it is tightly coupled with the network
 infrastructure. As such, we can expect \emph{low} latencies between
-nodes and so, to be able to provide strong consistency between
+nodes, that would enable us to provide a strong consistency between
 replicas while achieving acceptable response time for the replicated
 services. 
 %Note that the overlays presented in Section~\ref{ssec:p2p}
@@ -47,11 +47,11 @@ services.
 %simultaneously.
 
 
-Reliability techniques will of course make uses of the overlays
+Reliability techniques will of course make use of the overlays
 for resource localization and monitoring. 
 Replicated VMs should be hosted on nodes that have a low
 probability to fail simultaneously. Following the previously defined
-overlay structure, this can be done through a navigating scheme where
+overlay structure, this can be done through a navigation scheme where
 at least one bridge is encountered. Monitoring a replica can then be
 done by having a \emph{watcher} in the same local group as the
 replica.
