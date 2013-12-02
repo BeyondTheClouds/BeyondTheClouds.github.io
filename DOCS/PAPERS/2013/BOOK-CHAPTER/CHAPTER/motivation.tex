@@ -1,7 +1,7 @@
 %%%
 \section{Context and Motivations\label{sec:intro}}
 
-The success of Cloud Computing has driven the advent of Utility Computing. However, Cloud
+The success of Cloud Computing has driven the advent of Utility Computing~(UC). However, Cloud
 Computing is a victim of its own success: In order to answer the escalating demand for
 computing resources, Cloud Computing providers must build data centers~(DCs) of
 ever-increasing size. As a consequence, besides facing the well-known issues of large-scale platforms
@@ -146,7 +146,7 @@ at: \href{http://www.renater.fr/raccourci}{http://www.renater.fr/raccourci}}
 %facilities close to the end-users will deliver highly efficient
 %and sustainable UC services, resolving inherent limitations of the cloud computing model leveraging large-scale DCs. 
 
-This chapter aims at introducing locality-based UC infrastructures, a new generation of UC
+This chapter aims at introducing locality-based UC~(LUC) infrastructures, a new generation of UC
 platforms that solves inherent limitations of the Cloud Computing paradigm relying on
 large-scale DCs. Although it involves radical changes in the way physical and virtual
 resources are managed, leveraging network centers is a promising way to deliver highly
@@ -159,7 +159,7 @@ resources spread across the different PoPs. Ideally, UC resources would be able 
 directly take advantage of computation cycles available on network active devices,
 \textit{i.e.} those in charge of routing packets. However, leveraging network resources to
 make external computations may lead to important security concerns. Hence, we propose to
-extend each PoP with a number of servers dedicated to VMs hosting. Because it is natural
+extend each PoP with a number of servers dedicated to hosting virtual machines~(VMs). Because it is natural
 to assume that the network traffic and UC demands are proportional, larger network centers
 will be completed by more UC resources than the smaller ones. Moreover, by deploying UC
 services on relevant PoPs, a LUC infrastructure will be able to natively confine network
@@ -172,7 +172,7 @@ system in charge of turning a complex and diverse network of resources into a co
 of abstracted computing facilities that is both reliable and easy to operate.
 
 \begin{svgraybox}
-  The design of the \emph{LUC  Operating System},  an advanced system being able to unify many UC
+  The design of the \emph{LUC  Operating System}~(OS),  an advanced system being able to unify many UC
   resources distributed on distinct sites,  would enable Internet service providers~(ISPs)
   and other institutions in charge of operating a network backbone to build an
   extreme-scale LUC infrastructure with a limited additional cost. Instead of redeploying
