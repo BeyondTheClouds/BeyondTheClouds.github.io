@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/MacPorts 2012_9)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: splncs03.bst
+Database file #1: main.bib
+Warning--to sort, need author or key in cloudstack
+Warning--to sort, need author or key in nimbus
+Warning--to sort, need author or key in opennebula
+Warning--to sort, need author or key in openstack
+Warning--to sort, need author or key in dvms:wiki
+You've used 45 entries,
+            2785 wiz_defined-function locations,
+            842 strings with 13866 characters,
+and the built_in function-call counts, 26205 in all, are:
+= -- 2149
+> -- 912
+< -- 37
++ -- 375
+- -- 330
+* -- 1672
+:= -- 3314
+add.period$ -- 72
+call.type$ -- 45
+change.case$ -- 342
+chr.to.int$ -- 0
+cite$ -- 50
+duplicate$ -- 2285
+empty$ -- 2342
+format.name$ -- 365
+if$ -- 5730
+int.to.chr$ -- 0
+int.to.str$ -- 45
+missing$ -- 477
+newline$ -- 140
+num.names$ -- 82
+pop$ -- 942
+preamble$ -- 1
+purify$ -- 254
+quote$ -- 0
+skip$ -- 702
+stack$ -- 0
+substring$ -- 1390
+swap$ -- 1246
+text.length$ -- 37
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 174
+warning$ -- 5
+while$ -- 198
+width$ -- 47
+write$ -- 445
+(There were 5 warnings)

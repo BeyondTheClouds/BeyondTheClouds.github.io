@@ -1,0 +1,193 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23900\viewh19400\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs22 \cf0 20 janvier 2014\
+\
+Pr\'e9sents: \
+	\'95 Inria\
+		\'95 Adrien L\
+		\'95 Flavien Q.\
+		\'95 Jonathan R-C\
+		\'95 Thomas L. \
+		\'95 Gilles F. \
+		\'95 C\'e9dric T. \
+		\'95 Marin B. \
+		\'95 Jonathan P.\
+	\'95 Orange Labs\
+		\'95 Xavier E.\
+		\'95 Frederic D. \
+		\'95 Ruby K.\
+		\'95 Marc L. \
+		\'95 Arnaud D. \'a0\
+\
+\
+OdJ: \
+\'a0\'a0\'a0=> \'a0D\'e9finir une architecture logicielle pour piloter de mani\'e8re unifi\'e9e une infra IaaS de type Discovery (\'e0 gros grain)\'eatre\
+\'a0\'a0\'a0=> Justification centralis\'e9, hi\'e9rarchique, distribu\'e9 et unifi\'e9\
+\'a0\'a0\'a0=> \'a0En s'appuyant sur la liste \'e9tablie en 1, quels sont ceux qui doivent \'eatre revisit\'e9s obligatoirement vs ceux qui ne sont pas vraiment d\'e9pendants d'une architecture totalement distribu\'e9e)\
+\'a0\'a0\'a0=> \'a0Quels sont les m\'e9canismes bas niveaux qui peuvent \'eatre mis en place pour faciliter la mise en oeuvre des m\'e9canismes de plus haut niveaux: \
+\
+Les \'e9changes se sont principalement concentr\'e9s sur l'identification des diff\'e9rents m\'e9canismes que doit fournir une syst\'e8me de type IaaS. \
+Les points 3 et 4 n'ont pas \'e9t\'e9 abord\'e9s. \
+ \
+L'\'e9tape suivante va consister \'e0 identifier un sous groupe qui vont permettent d'instancier \'e0 court terme un LUC OS (reformuler, l'objectif est de d\'e9finir un ordre parmi les m\'e9canismes pour d\'e9buter par un syst\'e8me simple vers un syst\'e8me de plus en plus riche)\
+\
+CR des \'e9changes: \
+___________________________________________________________________________________________\
+1./ 	\'a0Quels sont les services qui doivent \'eatre rendus/pr\'e9sents dans un IaaS (a minima): \
+	La discussion a \'e9t\'e9 men\'e9e en partant du end user qui souhaite instancier un VE (groupe de VMs) dans le LUC OS, puis nous avons d\'e9roul\'e9 les m\'e9canismes n\'e9cessaires \'e0 chacune des \'e9tapes\
+	 \
+	\'95 Connexion au syst\'e8me pour les utilisateurs (portail web centralis\'e9 vs distribu\'e9 [\'e0 la cloudfront ?] / Pb d'authentification/s\'e9curit\'e9)\
+		Une porte d'entr\'e9e vs plusieurs portes d'entr\'e9es ?\
+		Un syst\'e8me \'e0 la bittorent \'a0: quelques machines officielles qui servent d'entr\'e9es (super nodes, qui sont \'e9galement s\'e9curis\'e9es) ? \
+\
+	\'95 Notion de profil/session d'un user: \
+		Faut il rattacher un user a une porte fixe  ? \
+		Comment assurer l'accouting/les informations propre \'e0 un user ? \
+		Un syst\'e8me de hash sur l'id d'un user ? \
+\
+	\'95 Gestion des VM images  \
+		Lister les images d\'e9j\'e0 disponibles (Template repository)\
+		Upload d'images de VMs (o\'f9 les stocker: dans un IaaS centralis\'e9, g\'e9n\'e9ralement un repo centralis\'e9)\
+		Notion de Backing file (syst\'e8me de layering, cf.  Efficient Storage of Virtual Machine Images) http://dl.acm.org/citation.cfm?id=2287036.2287046&coll=DL&dl=GUIDE&CFID=284576484&CFTOKEN=83899263 ) \
+		D\'e9ploiement de VMs lors du d\'e9ploiement d'un VE au travers l'infrastructure (contrainte: format/taille de l'image)\
+		Systeme P2P pour la gestion des images de VM: http://dl.acm.org/citation.cfm?id=2413210 et http://metro.cs.ucla.edu/papers/infocom12-vdn-peng.pdf\
+		Nouveau m\'e9canisme  \'e0 prendre en compte : \
+			Accouting sur les donn\'e9es (taille,  / I/O seconds)\
+			Bcp d'images publiques \'a0et fuite d'informations entre ces images publiques qui sont contextualis\'e9es potentiellement par des utilisateurs (mot de passe, etc..)\
+			Comment garantir que les images publiques restent ''clean'' (syst\'e8me de layer) \'a0\
+			L\'e0 encore un syst\'e8me de layering pourrait avoir du sens (cf. Efficient Storage of Virtual Machine Images)\
+	\
+	\'95 Gestion des donn\'e9es Utilisateurs (/ vs /home)\
+		Notion de Volumes (donn\'e9es persistantes vs donn\'e9es \'e9ph\'e9m\'e8res - aka EBS vs EC2)\
+	 \
+		Faut il mettre en oeuvre un syst\'e8me comme S3/Swift/...) dans l'imm\'e9diat ?\
+			Un DFS ou un syst\'e8me key/value \'e0 l'\'e9chelle du WAN est n\'e9cessaire ? \
+			Une installation de swift global (i.e. un sur plusieurs sites) vs une f\'e9d\'e9ration de DFS \
+	 		Un syst\'e8me de fichiers grille (XtreemFS par exemple avec interface POSIX, pas vraiment de succ\'e8s (GFarm, XtreemFS, GlusterFS ? Comment passer \'e0 travers les firewalls, protocole HTTP g\'e9n\'e9ralement pour ces syst\'e8mes)\
+			Un syst\'e8me Key/Value P2P  (Dynamo, Amazon) ? \'a0\
+			\
+			Deux possibilit\'e9s,\
+				Faire un syst\'e8me glue qui va f\'e9d\'e9rer des syst\'e8mes de stockages plus ou moins complexe sur chacun des sites (CEPH, NFS, Lustre) \
+				Un mod\'e8le P2P complet, il n'y a qu'un syst\'e8me de fichiers local POSIX sur chacune des machines et on fait un syst\'e8me complet qui agr\'e8ge chacune des unit\'e9s de stockage locales. \
+\
+			Voir \'e9tat de l'art des travaux au niveau grille (syst\'e8me de stockage unifi\'e9 vs f\'e9d\'e9r\'e9)\
+\
+		=> Il faut d\'e9finir les besoins pour les syst\'e8mes de gestion de stockages afin de bien identifier les m\'e9canismes et voir le recouvrement qu'il peut y avoir). \
+		(localit\'e9 / espace de nommage global / arriv\'e9e \'e0 donner des directives / Prendre en compte de la dynamit\'e9 de l'architecture) \
+\
+	\'95  D\'e9ploiement d'un VE\
+	\
+		Strat\'e9gie d'arbitrage/m\'e9diation entre les users qui \'e9mettent des requ\'eates de deux endroits diff\'e9rents (m\'e9diation entre les demandes, comment faire pour satisfaire un maximum de requ\'eates). \
+	\
+		Affectation des VMs sur les ressources physiques / d\'e9couverte des ressources / d\'e9pendance avec la position de l'image de la VM (si pr\'e9c\'e9demment d\'e9ploy\'e9) : http://www.cnsm-conf.org/2013/documents/papers/CNSM/p9-breitgand.pdf\
+\
+		D\'e9ploiement d'images de VMs\
+	\
+		Configuration r\'e9seau d'un VE (IP, VPN, ...)\
+			Configuration les IPs, VPN, \'85.\
+			Assurer la connectivit\'e9 r\'e9seau d'un VE tout au long de son ex\'e9cution et en fonction de l'apparition/suppression de VMs dans le VE ou encore lors du repositionnement de certaines VMs\
+			(chaque VM doit \'eatre joignable, quelle que soit sa localisation (un VE peut \'eatre r\'e9parti sur plusieurs sites))\
+\
+		Contextuatlisation d'images de VMs (syst\'e8me de layering cf ci dessus)\
+	\
+		Provisionning de VMs dans le temps (rattacher de nouvelles VMs \'e0 ce VE)\
+			Possibilit\'e9 de travailler sur un mode de r\'e9servation avanc\'e9e (je veux X ressources dans n jours, semaines). Pertinent pour des use cases impliquant des op\'e9rations p\'e9riodiques/reccurentes \
+			Note : Concept de Reserved Instances sur Amazon pour avoir des VMs moins cher (le mod\'e8le est assez limit\'e9)\
+			Faut il adresser ce point ? Si oui comment et \'e0 quel niveau ? \
+	 \
+		M\'e9canismes tiers (s\'e9curit\'e9: exemple : activ\'e9 la s\'e9curit\'e9 (overlay SSL par exemple) sur l'ensemble des liens r\'e9seaux entre les VM de la VE \
+		Il faudrait pouvoir contextualiser les environnements avec des \'e9l\'e9ments tiers assurant un niveau de s\'e9curit\'e9 plus ou moins \'e9lev\'e9s et ce \'e0 la demande des utilisateurs (\'e0 noter que de tels m\'e9canismes n'existent pas encore dans les 		solutions centralis\'e9es, la question est de savoir si le cot\'e9 distribu\'e9 augmente la difficult\'e9 de mise en oeuvre) (essayer de les mutualiser avec ceux pour d'autres raisons ? assurance ? accounting ?). Nec\
+		Que demandent ces dispositifs? Quel API ? \'a0(voir projet europ\'e9en Seed 4C) (Marc L. et Jonathan R. C) Vespa (adaptators), parefeu/antivirus/... \
+ \
+	\'95 Monitoring d'un VE\
+		En terme d'utilisation de ressources (CPU, M\'e9moire, Net) \
+		En terme de disponibilit\'e9 (heartbeat solution na\'efve)\
+		En terme de s\'e9curit\'e9 (comportement byzantin, DOS, ...): \
+			Monitoring d'intrusions (et r\'e9action \'e0 ces intrusions)\
+			Syst\'e8me de protection \'e0 la fois dans la dimension horizontale du syst\'e8me (pour une VM, un groupe de VMs, d'un VE vers un autre VE), et dans sa dimension verticale (monitoring multi-couches, par exemple en corr\'e9lant les \'e9v\'e9nements de s\'e9curit\'e9 de niveau hyperviseur et VM).\
+\
+	\'95  Accounting vs pricing \
+		SPOT instances, .... \
+		Int\'e9r\'eat de \'a0nouveaux mod\'e8les du \'e0 la localit\'e9 par exemple, peut \'eatre plus une r\'e9flexion \'e0 plus long terme, mod\'e8le \'e9conomique (int\'e9grer la notion cout \'e9nerg\'e9tique/\'e9lectrique)\
+		Faut il int\'e9grer l'accouting dans tout les m\'e9canismes des le d\'e9part afin de pouvoir \'e9tendre par la suite \'e0 souhait. En gros chaque m\'e9canisme doit \'eatre capable de remplir les fonctions A/B et C afin d'anticiper les besoins par la suite. 			(Besoin d'expertise sur cette partie accounting (une personne cot\'e9 Inria (Jonathan R-C) Quid Cot\'e9 Orange / Renater ? )\
+\
+	\'95 \'a0Gestion dynamique/Placement dynamique des VMs \
+		Relocalisation \'e0 chaud en fonction de l'\'e9tat du syst\'e8me (Entropy / DVMS / bonne expertise cot\'e9 Inria sur ces aspects) Une solution actuellement op\'e9rationnelle\
+. 				Diff\'e9rencier le cas de la migration intra-site de celui de la migration inter-site (qui n\'e9cessite un m\'e9canisme pour transf\'e9rer efficacement l'image disque des VMs)\
+				Contrainte de placement en plus des contraintes utilisation des ressources (i.e. forcer le fait qu'un replias ne doit pas \'eatre localis\'e9 sur la m\'eame machine que la VM master)\
+		Suspend/Resume de VEs/VMs - Attention probl\'e8me de synchronisation (ordre) cf. http://dl.acm.org/citation.cfm?id=1838840\
+		Verifier que l'application d'un plan de reconfiguration assure l'ordre m\'eame lorsque qu'il est compos\'e9 uniquement de migration \'e0 chaud (solution simple, serialiser les migrations au sein d'un m\'eame VE)  		\
+\
+		 Mise en maintenance des n\'9cuds -> \'e9vacuation des VMs sur d'autres n\'9cuds\
+\
+		Notion de QoS, (d\'e9finir des SLAs, comment les garantir ? Les algos \'e0 la Entropy permettre de d\'e9tecter des violations et de les corriger de mani\'e8re plus ou moins r\'e9active mais c'est tout)\
+		 \
+	\'95  API AWS like (expressivit\'e9, extensions pour les apports tels que placement, s\'e9curit\'e9 \'a0... et la LOCALITE)\
+		Un mod\'e8le de programmation ? \
+			 \
+	\'95 Autres aspects: \
+		Composante s\'e9curit\'e9 \'e0 tout les niveaux: \
+			s\'e9curisation des couches base de l'architecture logiciel: \
+			authentification des diff\'e9rents composants\
+			s\'e9curisation de l'hyperviseur (virtualisation imbriqu\'e9e pour r\'e9aliser une couche d'abstraction s\'e9curit\'e9 r\'e9partie multi-hyperviseurs?) \
+				un exemple d'attaque: utiliser une faille dans les m\'e9canismes de discovery pour acc\'e9der aux couches basses et donc faire des attaques dans les VMs colocalis\'e9es. \
+			Comment garantir l'isolation entre les VMs, comment garantir les comportements \'a0(i.e. pas de comportements byzantins pour voler par exemple des cycles CPU, m\'e9moires, .... a d'autres VMs). \
+			Int\'e9grit\'e9 de l'hyperviseur puis du LUC OS\
+			Attaque de type DDOS / famine de ressources\
+			Escape to Host / to other collocated VMs / attaques par m\'e9moire (cache) / attaques par informations temporelles. \
+			m\'e9canisme de confiance: gestion de cha\'eenes de confiance \'e0 la fois horizontalement (entre deux composants en r\'e9parti) et verticalement (entre les diff\'e9rentes couches de l'infrastructure).\
+			contr\'f4le d'acc\'e8s entre les composants de l'infrastructure \
+	\
+		Tol\'e9rance aux pannes du gestionnaire d'infrastructure Discovery\
+		Tol\'e9rance aux pannes de VMs \
+		Red\'e9marrage automatique des VMs\
+			Snapshotting de VMs, \
+			M\'e9canisme de r\'e9plication active en s'ins\'e9rant directement au niveau des hyperviseurs (\'e0 plus long terme)\
+		Disaster recovery : r\'e9pliquer un site sur un ou plusieurs autres sites (cf travaux avec le JAPON AIST)\
+	\
+		Des m\'e9canismes IaaS ++ (load balanceur pour requ\'eates IPs, boucle autonomique pour g\'e9rer le vie d'une application, m\'e9canismes pour b\'e9n\'e9ficier de la localit\'e9, auto scaling...)\
+\
+		D\'e9veloppement durable / sites passifs (consommation \'e9nerg\'e9tique tr\'e8s faible) / utilisation de sources d'\'e9nergie renouvelable \
+\
+___________________________________________________________________________________________\
+2./ Justification centralis\'e9e, hi\'e9rarchique, distribu\'e9e et unifi\'e9e\
+(pourquoi une topologie d\'e9centralis\'e9e \'e0 plat et pourquoi un syst\'e8me unifi\'e9)\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0Solution hi\'e9rarchique\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0Il faut maintenir cette structure (consensus etc..., notion de super peers, DDOS )\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0Pour rappel; superpeer =>  vision agr\'e9g\'e9e, criticit\'e9 du noeud: SPOF, attaque mais \'e9galement surcharge de traitement \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0Autre difficult\'e9 : comment mapper une solution hi\'e9rarchique sur un backbone qui est tout sauf hi\'e9rarchique ?\
+\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0Solution Anneau d'anneau: solution envisag\'e9e dans un premier temps cot\'e9 Inria toutefois pas de solutions satisfaisantes, (on retombe sur une solution hi\'e9rarchique) \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0D'une mani\'e8re g\'e9n\'e9rale m\'eame un chord a un cout de maintenance qui n'est pas forcement utile pour une archi largement distribu\'e9e comme celle vis\'e9e. \
+\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0Solution coop\'e9rative (vivaldi + m\'e9canisme de parcours de proche en proche ) => les noeuds sont sym\'e9triques (pas besoin d'un noeud sp\'e9cifique pour assurer un r\'f4le particulier). \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0"Faciliter de d\'e9ployer un m\'e9canisme de r\'e9plication pour les services \'e0 \'e9tats "? \'a0(n\'e9cessaire pour stocker les \'e9tats propres aux m\'e9canismes du LUC OS permettant par exemple de reconstruire un VET sur un autre noeud en cas de d\'e9faillance) ? Quid d'une DHT ? \
+\
+Pour le cot\'e9 unifi\'e9: \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0pour assurer la connectivit\'e9 \'a0+ \'e9lasticit\'e9 (sinon on va retomber sur des tr\'e8s gros centres si \'e0 chaque fois que nous avons besoin de ressources nous \'e9tendons localement) \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0Par ailleurs, la notion de meta (cloud broker pour le moment centralis\'e9) sont d\'e9j\'e0 \'e9tudi\'e9s. \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0Un interm\'e9diaire serait d'aborder un cloud broker totalement distribu\'e9 (le probl\'e8me est que nous nous limitons au API fournit pour interagir avec les cloud kits). \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0En attaquant au plus bas niveaux, on a plus de contr\'f4le, plus de flexibilit\'e9 et on peut proposer des m\'e9canismes plus avanc\'e9es (checkpoint, s\'e9curit\'e9, ....) \'a0\'a0\'a0\'a0\'a0\'a0\'a0\
+\
+___________________________________________________________________________________________ \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\
+\
+=> En s'appuyant sur la liste \'e9tablie en 1, quels sont ceux qui doivent \'eatre revisit\'e9s obligatoirement vs ceux qui ne sont pas vraiment d\'e9pendants d'une architecture totalement distribu\'e9e)\
+Reformuler: est il possible de reexploiter des outils qui sont utilis\'e9s/d\'e9j\'e0 pr\'e9sents dans les solutions actuelles (monitoring par exemple) ? \
+\
+TODO\
+\
+\
+=> Quels sont les m\'e9canismes bas niveaux qui peuvent \'eatre mis en place pour faciliter la mise en oeuvre des m\'e9canismes de plus haut niveaux: \
+	\'95 Vivaldi (localit\'e9 des noeuds, ''localit\'e9'' dynamique puisque en fonction de la latence, d\'e9bit \'e0 l'instant t, \'e9tat des ressources) \
+	\'95 DHT prenant en compte la localit\'e9 (locality aware DHT)\
+	\'95 D\'e9tecteur de d\'e9faillance (m\'e9canismes d'heartbeat sur un noeud \'a0/ un ensemble de noeuds) , l'objectif \'e9tant de ne pas multiplier les heartbeats circulant dans le syst\'e8me. \
+	\'95 M\'e9canismes self-healing du syst\'e8me lui m\'eame (un VET, DNT, .... crash, il faut qu'un autre noeud puisse reprendre/assurer le service)\
+\
+=> Plan d'actions\
+	\'95 \'a0\'a0\'a0 Etat de l'art (bien suivre ce qui se passe cot\'e9 OpenStack)\
+	\'95 \'a0\'a0\'a0 D\'e9finir dans quel ordre appr\'e9hender les m\'e9canismes retenus. \'a0\'a0\'a0\'a0\'a0\'a0	}

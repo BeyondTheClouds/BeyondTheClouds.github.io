@@ -1,0 +1,139 @@
+\section{Introduction}
+\label{sec:intro}
+%% Motivation 
+The success of Cloud Computing has driven the advent of Utility Computing.
+However Cloud Computing is a victim of its own success:~In order to answer
+the ever increasing demand for computing resources, Cloud Computing providers must build data centers (DCs) of ever-increasing size.  
+Besides facing the well-known issues of large scale platforms management, these new DCs have to deal with energy
+considerations that limit the number of physical resources that can host one location.
+As a consequence, several proposals suggest to build next
+generation DCs in strategical locations close to the polar circle.
+However, this approach is far from solving all issues. In addition to requiring the construction and the deployment of
+a complete network infrastructure to reach each DC, it exacerbates the inherent limitations  
+of the Cloud Computing model: 
+\begin{itemize}
+\item The externalization of private applications/data often faces legal issues
+that restrain companies from outsourcing them on external infrastructures, especially when located in other countries.
+\item The connectivity to the application/data cannot be insured by centralized
+dedicated centers, especially if they are located in a similar geographical
+zone. The only way to ensure disaster recovery is to leverage distinct
+sites.\footnote{“Amazon outages – lessons learned”,
+\href{http://gigaom.com/cloud/amazon-outages-lessons-learned/}{http://gigaom.com/cloud/amazon-outages-lessons-learned/}
+(valid on May. 2013, the 25th)}
+\item The overhead implied by the unavoidable use of the Internet to reach
+distant platforms is wasteful and costly in several situations.
+\end{itemize}
+
+Although hybrid or cloud federated solutions \cite{armbrust:2010} that aim at
+extending the available resource delivered by one cloud (either public or
+private) with another one can partially tackle the two former points, the
+latter one requires a disruptive change in the way of managing UC resources.
+Deploying a broadcasting service of local events  or an online service to order
+pizza at the edge of the polar  circle leads to important overheads in terms of
+energy footprint, network exchanges as well as latency since it can be assumed that a
+vast majority of the users are located in the neighborhood of the event/the
+pizzeria.  According to some projections of a recent IEEE report
+\cite{ieeenetreport:2012}, the network traffic continues to double roughly
+each year.  Bringing the IT services closer to the end-users will become soon
+crucial to limit the energy impact of these exchanges. Similarly, this notion
+of locality is also critical for the adoption of the UC model by applications
+that should deal with a large amount of data as getting them in and out from
+actual UC infrastructures may significantly impact the global performance. 
+
+At the same time, people are (and will be more and more) surrounded by
+computing resources, especially the ones in charge of interconnecting all IT
+equipments.  Even though these small and medium-size facilities include
+resources that are sometimes barely used, they can hardly be removed. As
+a consequence, several initiatives started investigating how they could be
+better leveraged to support the requirements and constraints of current IT
+usages.  The concept of \emph{data furnaces} \cite{liu:hotcloud11} is one of
+the promising idea that seeks to mitigate the cost of operating
+network/computing resources by using them as sources of heat inside public
+buildings such as hospitals or universities. 
+
+\medskip
+Instead of building and deploying dedicated facilities, we claim that next UC
+infrastructures should be tightly coupled with any facilities available through
+the Internet, starting from the cores routers of the backbone, the different
+network access points and any small and medium-size computing infrastructures
+that may be provisioned by Internet Service Providers (ISPs), governments and
+academic institutions.  Although it involves radical changes in the way
+physical and virtual resources are managed, locating computing and data on
+facilities close to the end-users is the only way to deliver highly efficient
+and sustainable UC services. We do not promote the use of dedicated micro data
+centers spread world wide that may be seen as a
+complementary solutions of the hybrid cloud computing model \cite{greenberg:sigcomm09}. 
+ Our vision is that network as well as UC resources should be operated in a federated fashion.
+This is from our point of view, the only way to deliver a sustainable as well as an efficient UC model.
+
+\begin{figure}[htbp]
+\includegraphics[width=12cm]{./FIGS/renater.png}
+\label{fig:renater}
+\end{figure}
+
+As an example, Figure \ref{fig:renater} is a snapshot of the network weather
+map of RENATER, the network backbone dedicated to universities and research
+institutions in France. This snapshot that has been taken around 4 PM on May, the
+27th\footnote{The RENATER weather map is available in real-time
+at:\\\href{http://pasillo.renater.fr/weathermap/weathermap\_metropole.html}{http://pasillo.renater.fr/weathermap/weathermap\_metropole.html}}.
+reveals several important points: 
+\begin{itemize} 
+\item It clearly shows that most of the resources are barely used (only two links are used between 45\% and 55\%, a few between 25\% and 40\% and the majority below the threshold of 25\%). 
+\item The backbone has been deployed and is renewed according to the demand: the density of
+points of presence (PoP) of the network as well as the bandwidth of each link are more important on the edge of large cities such as Paris, Lyon or
+Marseilles. 
+\item The backbone has been deployed in order to face disconnections (i.e., 95\% of the PoPs can be reached by at least two distinct routes).
+\end{itemize}
+
+From the physical point of view, network backbones such as the RENATER one
+provide appropriate infrastructures, that is, reliable and efficient enough to
+operate UC resources spread across the different PoPs. In a perfect model, UC
+resources may directly take advantage of computation cycles available on network servers (i.e. the one in
+charge of routing packets). However, leveraging network resources to make
+external computations may lead to important security concerns. Hence, we
+propose to extend each network hub with a number of servers dedicated to host
+VMs. As we can expect that the distribution between network traffics and UC demands would be proportional, 
+larger network hubs will be completed by more UC resources
+than the smaller ones.
+Moreover by deploying UC services on relevant PoPs, A LUC infrastructure will be able to natively confine network exchanges to a minimal scope, 
+minimizing both, the energy footprint of the network as well as the latency
+impact. 
+%
+From the software point of view, the main challenge is to design a complete
+distributed system in charge of turning a complex and diverse network of
+resources into a collection of abstracted computing facilities that is both
+easy to operate and reliable.  
+%
+By offering the possibility to tightly couple UC servers and network backbones
+throughout distinct sites, ISPs as well as academic and private institutions in
+charge of operating a network backbone will be able to build an extreme-scale
+LUC infrastructure with a limited additional cost: Instead of redeploying a
+complete installation, they will be able to leverage IT resources and
+specific devices such as computer room air conditioning unit, inverters or
+redundant power supplies that are already present on each hub of their
+backbone. 
+
+\medskip
+The main objective of this paper is to describe  how a new
+generation of highly efficient and sustainable UC can emerge through advanced
+system mechanisms.  To this aim, we outline the premises of what could be a
+\emph{LUC Operating System}, allowing end-users to launch virtualized
+environments (VEs), \textit{i.e.} a set of interconnected VMs, throughout a
+distributed infrastructure as simply as they are used to launch processes on a
+local machine, \textit{i.e.}  without the burden of dealing with resources
+availability or location. 
+%%
+We expect this paper will open a new direction in the area
+of operating systems and resource management research. This first proposal of a complete LUS OS  will lay the 
+foundation for the design of fully distributed operating systems based
+on virtualization and P2P algorithms. 
+
+\paragraph{Paper outline}. 
+Section \ref{sec:challenges} describes the key objectives of a LUC OS and the associated challenges. 
+Section \ref{sec:background} explains why our vision differs from actual and previous UC solutions. In
+Section \ref{sec:archi}, we present how such an unified system may be design
+by delivering the premises of the \discovery system, an agent based system
+enabling distributed an cooperative management of virtual environments through a
+large-scale distributed infrastructure.
+Future work as well as expected benefits are addressed in Section \ref{sec:future}. Finally Section
+\ref{sec:conclusion} concludes this paper. 

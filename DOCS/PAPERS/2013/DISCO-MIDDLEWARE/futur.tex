@@ -1,0 +1,96 @@
+%%%
+\section{Future Work/Opportunities\label{sec:future}}
+
+%\subsection{How Evaluating LUC proposals}
+%
+%We first need to evaluate the quality of our LUC design in terms of performance and fault
+%tolerance. For such a large system over a wide infrastructure, getting an analytical model
+%is indeed a tough task. To make sure that the overall systems is efficient and reliable,
+%simulation and experimentation over an actual platform are the best way to evaluate it. We
+%will first rely on simulation to validate independent parts of the overall
+%system. Simgrid~\cite{Casanova:2008:SGF:1397760.1398183} will be our platform
+%of choice for this evaluation. We are currently adding virtualization
+%simulation capabilities to the simulator. Our second evaluation platform will
+%be Grid'5000. It provides a testbed supporting experiments on various types of
+%distributed systems (high-performance computing, grids, peer-to-peer systems,
+%cloud computing, and others), on all layers of the software stack. The core
+%testbed currently comprises 10 sites. 
+%%Grid'5000 is composed of almost 8000 CPU cores, with various generations of technology, CPUs from one to 12 cores,
+%%Myrinet, Infiniband, and 2 GPU clusters). 
+%A dedicated 10 Gbps backbone network
+%is provided by RENATER. 
+%%In order to prevent Grid'5000 machines from being the
+%%source of a distributed denial of service, connections from Grid'5000 to the
+%%Internet are strictly limited to a list of whitelisted data and software
+%%sources, updated on demand. Users are allowed to install their own software
+%%stack and run their experiment on a dedicated hardware. Grid'5000 is indeed a
+%%Hardware as a Service (HaaS) platform. The communications between clusters can
+%%also use virtual networks.
+%While the use of RENATER in the Grid'5000
+%project was ``only'' to provide users with a dedicated network with several
+%functionalities such as XXX, in the DISCOVERY project and in collaboration with RENATER
+%engineers, we will deploy a specific testbed on top of their network servers.
+
+\subsection{Geo-Diversification as a Key Element}
+The Cloud Computing paradigm is changing the way applications are designed.  In
+order to benefit from the elasticity capability of Cloud systems, applications
+integrate or leverage mechanisms to provision resources, \textit{i.e.} starting or
+stopping VMs, according to their fluctuating needs.
+The ConPaaS system \cite{pierre:2012} is one of the promising systems for elastic Cloud
+applications. At the same time, a few projects have started investigating
+distributed/collaborative way of hosting famous applications such as Wikipedia
+or Facebook-like  systems by leveraging volunteer computing techniques. 
+However, considering that resources provided by end-users were not reliable enough, only few contributions 
+have been done yet. 
+%
+By providing a system that will enable to operate widely spread but more
+reliable resources closer to the end-users, the LUC proposal may strongly
+benefit to this research area.
+Investigating the benefit of locality provisioning (i.e. combining elasticity and distributed/collaborative
+hosting) is a promising direction for all web services that are embarrassingly distributed
+\cite{church:2008}.  Image sharing system such as Google Picasa  or Flickr  are
+examples of applications where leveraging locality will enable to limit network exchanges:
+Users could upload their images on a peer close to them and images would be
+transferred to other locations only when required (pulling vs. pushing
+model).
+
+LUC infrastructures will allow envisioning a wider range of services that may
+answer specific SMEs requests such as data archiving or backup solutions while
+significantly reducing the network overhead as well as legal concerns. Moreover, 
+it will make the deployment of UC services easier by relieving developers of the burden of dealing with
+multi-cloud vendors.
+Of course, this will require software engineering and
+middleware advances to easily take advantage of locality but proposing LUC OS
+solutions such as the  \discovery project is the mandatory step before
+investigating new APIs enabling applications to directly interact with the LUC OS internals. 
+%
+%A particular issue is to design adequate abstractions that LUC OS has to provide with
+%respect to application description.  Indeed, specific interactions have to be set up so
+%that applications can leverage LUC OS capabilities, for interactive and batch
+%applications. It will require to understand what can/has to be handle at the LUC OS and
+%what is the responsibility of the application (or its runtime). The risk is to have
+%independent adaption loops at several levels of the software stack. Although a platform such
+%as DISCOVERY is designed to provide IaaS offers, we should start to investigate how PaaS
+%and SaaS solutions can benefit from the LUC properties directly in their internals by
+%delivering the right API enabling applications to directly interact with the DISCOVERY OS.
+%
+\subsection{Energy, a Primary Concern for Modern Societies}
+
+The energy footprint of current UC infrastructures and more generally of the
+whole Internet is a major concern for the society.  By its design and the way
+to operate it, a LUC infrastructure will have a smaller impact.
+ Moreover, the LUC proposal is an interesting way to
+deploy the data furnaces proposal \cite{liu:hotcloud11}.  Concretely, following
+the smart city recommendations (i.e. delivering efficient as well as
+sustainable ICT services), the construction of new districts in metropolises
+may take the advantage of each LUC/Network PoP in order to heat buildings while
+operating UC resources remotely thanks to a LUC OS. Finally, this idea might
+be extended by taking into account recent results about passive data centers,
+such as solar-powered
+micro-datacenters\footnote{\href{http://parasol.cs.rutgers.edu}{\url{http://parasol.cs.rutgers.edu}}}.
+The idea behind passive computing facilities is to limit has much as possible
+the energy footprint of major hubs and DSLAMS by taking advantage of renewable
+energies to power them and by using the heat they product as a source of
+energy. Combining such ideas with the LUC approach would allow reaching an
+unprecedented level of energy efficiency for UC platforms.
+

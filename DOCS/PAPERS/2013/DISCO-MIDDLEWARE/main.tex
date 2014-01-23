@@ -1,0 +1,103 @@
+%Final header
+\documentclass[runninheads]{llncs}
+%submission header
+%\documentclass[english,8pt]{llncs}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+
+\usepackage{times}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+%\def\baselinestrech{2}
+%\renewcommand{\baselinestretch}{1.5}
+\usepackage{ae}
+
+\newcommand{\todo}[1]{ {\Huge #1} }
+
+% To manage floating object
+\renewcommand{\floatpagefraction}{.9}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\textfraction}{.1}
+
+% To skip orphan sentences/word
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+
+\usepackage{bold-extra,graphicx,latexsym,mathrsfs,subfigure,xspace}
+
+\usepackage{color}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{ifthen}
+
+\usepackage{hyperref}
+
+\newcolumntype{M}[1]{>{\raggedleft}m{#1}}
+
+\newcommand{\discovery}{DISCOVERY\xspace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  \TODO[editor]{text}
+
+\newcommand{\SBHOOK}{\makebox[0pt][l]{\rule{-2.5pt}{0pt}%
+  \rule[-2pt]{2pt}{12pt}\hspace*{-2pt}\rule[8pt]{11pt}{2pt}}}
+\newcommand{\SEHOOK}{\makebox[0pt][l]{\rule{-10.5pt}{0pt}%
+  \rule[-4pt]{11pt}{2pt}\rule[-4pt]{2pt}{12pt}}}
+\newcommand{\1}{\protect\SBHOOK{}}\newcommand{\2}{\protect\SEHOOK{}}
+% \newcommand{\1}{}\newcommand{\2}{}
+
+\newcommand{\ftodo}[2][\relax]  % \TODO[editor]{text} 
+  {\ensuremath{{}^{\mbox{\tiny\bf #1}}}~\1\textbf{#2}\2}
+
+%%
+\sloppy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title{Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed?}
+%\subtitle{Distributed and Cooperative Management of Virtual Environments}
+%\titlerunning{Beyond The Cloud, Distributed and Cooperative Management of Virtual Environments}
+
+\author{Adrien Lèbre\inst{1,3} \and Jonathan Pastor\inst{1,3} \and Marin Bertier \inst{2,3} \and Frédéric Desprez\inst{3} \and Jonathan Rouzaud-Cornabas\inst{3} \and Cédric Tedeschi \inst{3,4}\and Paolo Anedda\inst{5} \and Gianluigi Zanetti\inst{5} 
+\and Ramon Nou\inst{6} \and Toni Cortes\inst{6} \and Etienne Riviere\inst{7} \and Thomas Ropars\inst{8}}
+\institute{LINA / Mines Nantes, France 
+\and IRISA / INSA de Rennes, France
+\and INRIA, France
+\and IRISA / Université de Rennes 1, France
+\and Center for Advanced Studies, Research and Development in Sardinia (CRS4), Italy
+\and Barcelona Supercomputing Center (BSC), Spain
+\and Université de Neuchâtel (UniNe), Switzerland
+\and Ecole Polytechnique Fédérale de Lausanne (EPFL), Switzerland} 
+
+\authorrunning{A. Lèbre, F. Desprez, P. Anedda, G. Zanetti, R. Nou, T. Cortes, E. Riviere, and T. Ropars}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{abstract}
+\input{keywords}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{introduction}
+\input{challenges}
+\input{background}
+\input{architecture}
+\input{futur}
+\input{conclusion}
+
+
+\bibliographystyle{splncs03}
+\bibliography{main}
+
+% that's all folks
+\end{document}
+
+
