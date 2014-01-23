@@ -1,0 +1,85 @@
+\section{The LUC Operating System}
+
+To be adopted, the LUC OS should allow end-users to
+launch virtual environments (VEs), \textit{i.e.} a set of interconnected VMs,
+throughout a  distributed infrastructure as simply as they are used to launch
+processes on a local machine, \textit{i.e.}  without the burden of dealing with
+resources availability or location. 
+
+Similarly to traditional operating systems (OSes), a LUC OS will be composed of
+a significant number of mechanisms.  Investigating all of them in details is
+definitely not the purpose of our paper.  In this work, we focus on a rather
+large overview of how a new new generation of highly efficient and sustainable
+UC  can emerge through advanced system mechanisms.  We describe the main
+challenges that should be addressed as well as the main benefits that
+may provide such a unified system. 
+
+
+In particular, we discuss the core of such a LUC
+OS, addressing the following objectives:
+\begin{description} 
+\item Scalability: \discovery must be able to manage hundreds of
+  thousands of virtual machines (VMs) running on thousands of
+  geographically distributed computing resources, including small and
+  medium-sized computing facilities as well as any idle resources that
+  their owners would make available. Many of these resources might be
+  highly volatile, especially idle resources and resources hosted by
+  end-users.
+\item Reactivity: To deal with the infrastructure dynamism, \discovery
+  should swiftly handle events that require performing particular
+  operations, either on virtual or on physical resources, with the
+  objective of maximizing the system utilization while meeting QoS expectations of VEs. 
+  Reconfiguring  VEs over distributed resources, sometimes spread across wide area networks, or moving VMs, 
+  while preserving their active connections, are examples of operations to perform as fast as possible.
+\item Resiliency: In addition to the inherent dynamism of the
+  infrastructure, failures should be considered as the norm rather
+  than the exception at such a scale. The goal is therefore to
+  transparently leverage the underlying infrastructure redundancy to
+  provide highly available VEs without impacting performance.
+\item Sustainability: Although the LUC approach natively reduces the energy
+footprint of UC services by minimizing the network impact, it is important to go one
+step further by considering energy aspects at each level of the \discovery
+system and propose advanced mechanisms in charge of making an optimal usage of each source of energy. 
+%Minimizing the energy footprint is a
+%  transversal concern that has to be considered at each level of the
+%  design of \discovery.
+ To achieve such an objective, data related to the energy
+  consumption of the VEs  and the computing resources
+  as well as the environmental conditions (computer room air conditioning unit, localization of the
+  site, etc.) will be taken into account by the system.
+\end{description}
+
+Amongst the numerous scientific and technical challenges that should be addressed, 
+the lack of a global view of the system will introduce a lot
+of complexity. In order to tackle it while addressing the above-mentioned
+challenges, we claim that internal mechanisms of the LUC OS should leverage 
+the latest contributions in distributed and
+cooperative algorithms such as gossip-based approaches and self-* techniques.
+These techniques allow fully decentralized, autonomous and self-adapting
+control and monitoring mechanisms for complex large-scale systems: Simple
+locality-based actions by each of the entities composing the system can lead to
+the global emergence of complex and sophisticated behaviors, such as the
+self-optimization of resource allocation, or the creation of decentralized
+directories. These techniques are starting to be used in well-known large
+systems. As an example, the Amazon website leverages gossip techniques in its
+Dynamo service \cite{decandia:2007} to create massive scale distributed
+indexes and recover from data inconsistencies. . Facebook’s Cassandra massive
+scale structured store \cite{lakshman:2010} also leverages gossip-based
+techniques for its core operation. \discovery will leverage decentralized and
+self-organizing overlays that will reflect the current state of the
+infrastructure resources, their characteristics and availabilities, and that
+are constructed and operated using gossip-based techniques in order to provide
+scalability and flexibility
+
+
+In addition to the aforementioned objectives, targeting a distributed system
+where VM is the elementary granularity requires to deal with important issues
+regarding the management of the VM images. Managing VM images in a distributed
+way across a WAN is a real challenge that will require to adapt
+state-of-the-art techniques such as replication and deduplication. Also,
+several mechanisms of \discovery will have to take into account VM images
+location, for instance to allocate the right resources to a VE  or to request
+VM images prefetching to improve deployment performance or VM migrations.
+
+
+

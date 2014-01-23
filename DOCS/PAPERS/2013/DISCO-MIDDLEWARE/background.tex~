@@ -1,0 +1,73 @@
+\section{Background}
+\label{sec:background}
+
+Several generations of UC have been proposed and still 
+co-exist \cite{foster:2011}. However, neither Desktop, nor Grid, nor Cloud Computing platforms provide a satisfying UC model. 
+Contrary to the current trend that promotes large offshore centralized
+DCs as the UC platform of choice, we claim that the only way to
+achieve sustainable and highly efficient UC services is to target a
+new infrastructure that better matches the Internet structure. 
+Because it aims at gathering an
+unprecedented amount of widely distributed computing resources into a
+single platform providing UC services close to the end-users, a LUC infrastructure is  
+fundamentally different from existing ones. 
+Keeping in mind the aforementioned objectives, recycling
+UC resource management solutions developed in the past is doomed to failure.
+
+To avoid confusion, our vision differs from hybrid cloud computing solutions. 
+Although these research activities address important concerns related to the
+use of federated cloud platforms such as the standardization of the interfaces 
+for supporting cooperation and resource sharing over Cloud federations, their propositions are incremental
+improvements of the existing UC models. From our point of view, hybrid and
+cloud federation investigations are comparable in some ways to previous works
+that have been done for Grids and where, the purpose of the Grid middleware is
+to interact with each resource management system composing the Grid \cite{rochwerger:2009}, \cite{buyya:2010}. By taking
+into account network issues in addition to traditional computing and storage
+issues in Cloud Computing systems, the European SAIL project\footnote{\href{http://www.sail-project.eu}{http://www.sail-project.eu}} is probably the one
+which targets the biggest advances in comparison with previous works on Grid
+systems. Concretely, this project investigates new network technologies in
+order to provide end-users of hybrid/federated clouds with the possibility to
+configure and virtually operate the network backbone that interconnects the
+different sites they use\cite{sail:2012} . However, contrary to our vision, they do not
+consider the UC infrastructure as a unique entity. As far as we know, the only
+system that investigated whether a widely distributed infrastructure can be
+operated by a single system, is the XtreemOS Project \cite{morin:2007}. Although this
+project was sharing some of the goals of the LUC OS, it did not
+investigate how the geographical distribution of resources can be leveraged to
+tackle the current limitations of cloud computing solutions.
+
+The novelty of the LUC OS proposal is a new way of designing systems to
+operate UC resources. As previously mentioned, it can be
+viewed as a distributed operating system. However, unlike existing
+research on distributed operating systems that consider processes as
+the basic object they manipulate, a LUC OS  will manipulate virtual
+machines. Virtualization technologies abstract hardware
+heterogeneity, and allow transparent deployment, preemption and
+migration of VEs.
+% That is why we think that leveraging virtualization can have a deep impact on the way
+%distributed resources can be operated. 
+By dramatically increasing the flexibility of resource management,  virtualization will
+allow to leverage state-of-the-art results from other distributed
+systems areas such as autonomous and P2P/Gossip-based techniques. 
+While largely unexplored for building operating systems,
+P2P/Gossip-based techniques have the potential to achieve the scalability required
+for LUC systems.
+Using all these technologies for establishing the foundation mechanisms of
+massive-scale distributed operating system will be a major breakthrough from
+current static, centralized or hierarchical management solutions.
+Considerable research needs to be conducted to provide core operating systems services in a
+fully decentralized way and without centrally maintained comprehensive knowledge of system's resources.
+
+Finally, looking one step ahead and considering that large part of the Internet may be
+seen as computing services hosted by UC platforms, the question might
+be extended to : Will \discovery make possible to host/operate a large  part of
+the Internet by its internal structure itself?
+Similarly to the interconnection of academics and private networks and the use of the TCP/IP standard
+that resulted in the Internet, the deployment and the use of the \discovery system through the
+different networks might lead to a global UC platform, \textit{i.e.} \emph{the
+\discovery infrastructure}: A scalable and nearly infinite set of resources
+delivered by any computing facilities forming the Internet, starting from the
+larger hubs operated by ISPs, government and academic institutions to any idle
+resources that may be provided by end-users.
+\ftodo{AL}{Copy/Paste from the abstract}
+

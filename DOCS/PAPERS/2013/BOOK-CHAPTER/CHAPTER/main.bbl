@@ -1,0 +1,320 @@
+\begin{thebibliography}{10}
+
+\bibitem{akka:www}
+{Build powerful concurrent \& distributed applications more easily}.
+\newblock \url{http://www.akka.io}.
+
+\bibitem{cloudstack}
+{CloudStack, Open Source Cloud Computing}.
+\newblock \url{http://cloudstack.apache.org}.
+
+\bibitem{dvms:wiki}
+{Distributed VM Scheduler}.
+\newblock \url{http://beyondtheclouds.github.io/DVMS/}.
+
+\bibitem{nimbus}
+{Nimbus is Cloud Computing for Science}.
+\newblock \url{http://www.nimbusproject.org}.
+
+\bibitem{opennebula}
+{Open Source Data Center Virtualization}.
+\newblock \url{http://www.opennebula.org}.
+
+\bibitem{openstack}
+{The Open Source, Open Standards Cloud}.
+\newblock \url{http://www.openstack.org}.
+
+\bibitem{agha:1986}
+G.~Agha.
+\newblock {\em {Actors: A Model of Concurrent Computation in Distributed
+  Systems}}.
+\newblock MIT Press, Cambridge, MA, USA, 1986.
+
+\bibitem{Andrew:2003}
+O.~Andrew.
+\newblock Data networks are lightly utilized, and will stay that way.
+\newblock {\em Review of Network Economics. 2(3)}, 2003.
+
+\bibitem{armbrust:2010}
+M.~Armbrust, A.~Fox, R.~Griffith, A.~D. Joseph, R.~Katz, A.~Konwinski, G.~Lee,
+  D.~Patterson, A.~Rabkin, I.~Stoica, and M.~Zaharia.
+\newblock {A View of Cloud Computing}.
+\newblock {\em Commun. ACM}, 53(4):50--58, Apr. 2010.
+
+\bibitem{Bacon:2010:EEA:2023718.2023739}
+J.~Bacon, D.~Evans, D.~M. Eyers, M.~Migliavacca, P.~Pietzuch, and B.~Shand.
+\newblock {Enforcing End-to-End Application Security in the Cloud (Big Ideas
+  Paper)}.
+\newblock In {\em Proceedings of the ACM/IFIP/USENIX 11th International
+  Conference on Middleware}, Middleware '10, pages 293--312, Berlin,
+  Heidelberg, 2010. Springer-Verlag.
+
+\bibitem{flauncher}
+D.~Balouek, A.~L\`{e}bre, and F.~Quesnel.
+\newblock {Flauncher and DVMS -- Deploying and Scheduling Thousands of Virtual
+  Machines on Hundreds of Nodes Distributed Geographically}.
+\newblock In the Sixth IEEE International Scalable Computing Challenge
+  (collocated with CCGRID), Delft, The Netherlands., May 2013.
+
+\bibitem{Benson:2010}
+T.~Benson, A.~Akella, and D.~A. Maltz.
+\newblock Network traffic characteristics of data centers in the wild.
+\newblock In {\em Proceedings of the 10th ACM SIGCOMM Conference on Internet
+  Measurement}, IMC'10, pages 267--280, New York, NY, USA, 2010. ACM.
+
+\bibitem{rouzaud_book13b}
+M.~Blanc, J.~Briffaut, L.~Clevy, D.~Gros, J.~Rouzaud-Cornabas, C.~Toinard, and
+  B.~Venelle.
+\newblock {Mandatory Protection within Clouds}.
+\newblock In S.~Nepal and M.~Pathan, editors, {\em Security, Privacy and Trust
+  in Cloud Systems}. Springer, 2013.
+
+\bibitem{bonomi:2012}
+F.~Bonomi, R.~Milito, J.~Zhu, and S.~Addepalli.
+\newblock {Fog Computing and its Role in the Internet of Things}.
+\newblock In {\em Proceedings of the first edition of the MCC workshop on
+  Mobile cloud computing}, MCC '12, pages 13--16, New York, NY, USA, 2012. ACM.
+
+\bibitem{buyya:2010}
+R.~Buyya, R.~Ranjan, and R.~N. Calheiros.
+\newblock {InterCloud: Utility-Oriented Federation of Cloud Computing
+  Environments for Scaling of Application Services}.
+\newblock In {\em Proceedings of the 10th international conference on
+  Algorithms and Architectures for Parallel Processing}, ICA3PP'10, pages
+  13--31, Berlin, Heidelberg, 2010. Springer-Verlag.
+
+\bibitem{Castro:2002:SRS:844128.844156}
+M.~Castro, P.~Druschel, A.~Ganesh, A.~Rowstron, and D.~S. Wallach.
+\newblock {Secure Routing for Structured Peer-to-Peer Overlay Networks}.
+\newblock {\em SIGOPS Oper. Syst. Rev.}, 36(SI):299--314, Dec. 2002.
+
+\bibitem{church:2008}
+K.~Church, A.~Greenberg, and J.~Hamilton.
+\newblock {On Delivering Embarrassingly Distributed Cloud Services}.
+\newblock In {\em HotNets}, 2008.
+
+\bibitem{dabek:2001:sigcomm04}
+F.~Dabek, R.~Cox, M.~F. Kaashoek, and R.~Morris.
+\newblock Vivaldi: a decentralized network coordinate system.
+\newblock In {\em Proceedings of the 2004 conference on Applications,
+  technologies, architectures, and protocols for computer communications},
+  SIGCOMM '04, pages 15--26, 2004.
+
+\bibitem{decandia:2007}
+G.~DeCandia, D.~Hastorun, M.~Jampani, G.~Kakulapati, A.~Lakshman, A.~Pilchin,
+  S.~Sivasubramanian, P.~Vosshall, and W.~Vogels.
+\newblock {Dynamo: Amazon's Highly Available Key-Value Store}.
+\newblock In {\em Proceedings of twenty-first ACM SIGOPS symposium on Operating
+  systems principles}, SOSP '07, pages 205--220. ACM, 2007.
+
+\bibitem{Fos11}
+I.~Foster.
+\newblock {Globus Online: Accelerating and Democratizing Science Through
+  Cloud-Based Services}.
+\newblock {\em Internet Computing}, 2011.
+
+\bibitem{foster:2011}
+I.~Foster and C.~Kesselman.
+\newblock {\em Advances in Parallel Computing - Volume 20: High Performance
+  Computing: From Grids and Clouds to Exascale}, chapter {The History of the
+  Grid}.
+\newblock IOS Press, 2011.
+
+\bibitem{ganguly:2006}
+A.~Ganguly, A.~Agrawal, P.~O. Boykin, and R.~Figueiredo.
+\newblock {IP over P2P: Enabling Self-Configuring Virtual IP Networks for Grid
+  Computing}.
+\newblock In {\em Proceedings of the 20th international conference on Parallel
+  and distributed processing}, IPDPS'06, pages 49--49, Washington, DC, USA,
+  2006. IEEE Computer Society.
+
+\bibitem{greenpeace:2013}
+J.~V.~H. Gary~Cook.
+\newblock How dirty is your data ?
+\newblock Greenpeace International Report, 2013.
+
+\bibitem{gerofi:2012}
+B.~Gerofi and Y.~Ishikawa.
+\newblock {Enhancing TCP Throughput of Highly Available Virtual Machines via
+  Speculative Communication}.
+\newblock In {\em Proceedings of the 8th ACM SIGPLAN/SIGOPS conference on
+  Virtual Execution Environments}, VEE '12, pages 87--96, New York, NY, USA,
+  2012. ACM.
+
+\bibitem{greenberg:sigcomm09}
+A.~Greenberg, J.~Hamilton, D.~A. Maltz, and P.~Patel.
+\newblock {The Cost of a Cloud: Research Problems in Data Center Networks}.
+\newblock {\em SIGCOMM Comput. Commun. Rev.}, 39(1):68--73, Dec. 2008.
+
+\bibitem{ieeenetreport:2012}
+I.~. E.~W. Group.
+\newblock {IEEE 802.3TM Industry Connections Ethernet Bandwidth Assessment},
+  July 2012.
+
+\bibitem{hermenier:2013}
+F.~Hermenier, J.~Lawall, and G.~Muller.
+\newblock {BtrPlace: A Flexible Consolidation Manager for Highly Available
+  Applications}.
+\newblock {\em IEEE Transactions on Dependable and Secure Computing},
+  99(PrePrints), 2013.
+
+\bibitem{janiesch:2011}
+C.~Janiesch, M.~Matzner, and O.~M\"{u}ller.
+\newblock {A Blueprint for Event-Driven Business Activity Management}.
+\newblock In {\em Proceedings of the 9th international conference on Business
+  process management}, BPM'11, pages 17--28. Springer-Verlag, 2011.
+
+\bibitem{jin:systor2009}
+K.~Jin and E.~L. Miller.
+\newblock The effectiveness of deduplication on virtual machine disk images.
+\newblock In {\em Proceedings of SYSTOR 2009: The Israeli Experimental Systems
+  Conference}, SYSTOR '09, pages 7:1--7:12, New York, NY, USA, 2009. ACM.
+
+\bibitem{lakshman:2010}
+A.~Lakshman and P.~Malik.
+\newblock {Cassandra: A Decentralized Structured Storage System}.
+\newblock {\em SIGOPS Oper. Syst. Rev.}, 44(2):35--40, Apr. 2010.
+
+\bibitem{alefray:hpdc:2013}
+A.~Lefray, E.~Caron, J.~Rouzaud-Cornabas, H.~Y. Zhang, A.~Bousquet,
+  J.~Briffaut, and C.~Toinard.
+\newblock {Security-Aware Models for Clouds}.
+\newblock In {\em Poster Session of IEEE Symposium on High Performance
+  Distributed Computing (HPDC)}, June 2013.
+
+\bibitem{liu:hotcloud11}
+J.~Liu, M.~Goraczko, S.~James, C.~Belady, J.~Lu, and K.~Whitehouse.
+\newblock {The Data Furnace: Heating up with Cloud Computing}.
+\newblock In {\em Proceedings of the 3rd USENIX conference on Hot topics in
+  cloud computing}, HotCloud'11, pages 15--15, 2011.
+
+\bibitem{lowe:wiley11}
+S.~Lowe.
+\newblock {\em {Mastering VMware vSphere 5}}.
+\newblock Wiley Publishing Inc., Oct. 2011.
+
+\bibitem{mao:2012}
+M.~Mao and M.~Humphrey.
+\newblock {A Performance Study on the VM Startup Time in the Cloud}.
+\newblock In {\em Proceedings of the 2012 IEEE Fifth International Conference
+  on Cloud Computing}, CLOUD'12, pages 423--430. IEEE Computer Society, 2012.
+
+\bibitem{Miller:2010:TWT:1907636.1907726}
+K.~W. Miller, J.~Voas, and P.~Laplante.
+\newblock In trust we trust.
+\newblock {\em Computer}, 43:85--87, October 2010.
+
+\bibitem{moreno:2012}
+R.~Moreno-Vozmediano, R.~Montero, and I.~Llorente.
+\newblock {IaaS Cloud Architecture: From Virtualized Datacenters to Federated
+  Cloud Infrastructures}.
+\newblock {\em Computer}, 45(12):65--72, 2012.
+
+\bibitem{morin:2007}
+C.~Morin.
+\newblock {XtreemOS: A Grid Operating System Making your Computer Ready for
+  Participating in Virtual Organizations}.
+\newblock In {\em Proceedings of the 10th IEEE International Symposium on
+  Object and Component-Oriented Real-Time Distributed Computing}, ISORC '07,
+  pages 393--402. IEEE Computer Society, 2007.
+
+\bibitem{sail:2012}
+P.~Murray, A.~Sefidcon, R.~Steinert, V.~Fusenig, and J.~Carapinha.
+\newblock {Cloud Networking: An Infrastructure Service Architecture for the
+  Wide Area}.
+\newblock HP Labs Tech Report - HPL-2012-111R1, July 2012.
+
+\bibitem{nicolae:2011}
+B.~Nicolae, J.~Bresnahan, K.~Keahey, and G.~Antoniu.
+\newblock {Going Back and Forth: Efficient Multideployment and
+  Multisnapshotting on Clouds}.
+\newblock In {\em Proceedings of the 20th international symposium on High
+  performance distributed computing}, HPDC '11, pages 147--158, New York, USA,
+  2011. ACM.
+
+\bibitem{peng:2012}
+C.~Peng, M.~Kim, Z.~Zhang, and H.~Lei.
+\newblock {VDN: Virtual Machine Image Distribution Network for Cloud Data
+  Centers}.
+\newblock In {\em INFOCOM, 2012}, pages 181--189, March 2012.
+
+\bibitem{Petrovic2012}
+D.~Petrovic and A.~Schiper.
+\newblock Implementing virtual machine replication: A case study using xen and
+  kvm.
+\newblock In {\em Proceedings of the 2012 IEEE 26th International Conference on
+  Advanced Information Networking and Applications}, pages 73--80, 2012.
+
+\bibitem{pfaff:2009}
+B.~Pfaff, J.~Pettit, T.~Koponen, K.~Amidon, M.~Casado, and S.~Shenker.
+\newblock {Extending Networking into the Virtualization Layer}.
+\newblock In {\em ACM HotNets}, Oct. 2009.
+
+\bibitem{pierre:2012}
+G.~Pierre and C.~Stratan.
+\newblock {ConPaaS: A Platform for Hosting Elastic Cloud Applications}.
+\newblock {\em IEEE Internet Computing}, 16(5):88--92, Sept. 2012.
+
+\bibitem{quesnel:2012}
+F.~Quesnel, A.~L\`{e}bre, and M.~S\"{u}dholt.
+\newblock {Cooperative and Reactive Scheduling in Large-Scale Virtualized
+  Platforms with DVMS}.
+\newblock {\em Concurrency and Computation: Practice and Experience}, June
+  2012.
+
+\bibitem{rajagopalan:2012}
+S.~Rajagopalan, B.~Cully, R.~O'Connor, and A.~Warfield.
+\newblock {SecondSite: Disaster Tolerance as a Service}.
+\newblock In {\em Proceedings of the 8th ACM SIGPLAN/SIGOPS conference on
+  Virtual Execution Environments}, VEE '12, pages 97--108. ACM, 2012.
+
+\bibitem{ratnasamy:sigcomm01}
+S.~Ratnasamy, P.~Francis, M.~Handley, R.~Karp, and S.~Shenker.
+\newblock {A scalable content-addressable network}.
+\newblock In {\em \mbox{SIGCOMM} '01: Proceedings of the 2001 conference on
+  Applications, technologies, architectures, and protocols for computer
+  communications}, SIGCOMM '01, pages 161--172, New York, NY, USA, Aug. 2001.
+  ACM.
+
+\bibitem{rochwerger:2009}
+B.~Rochwerger, D.~Breitgand, E.~Levy, A.~Galis, K.~Nagin, I.~M. Llorente,
+  R.~Montero, Y.~Wolfsthal, E.~Elmroth, J.~C\'{a}ceres, M.~Ben-Yehuda,
+  W.~Emmerich, and F.~Gal\'{a}n.
+\newblock {The Reservoir Model and Architecture for Open Federated Cloud
+  Computing}.
+\newblock {\em IBM J. Res. Dev.}, 53(4):535--545, July 2009.
+
+\bibitem{sandhu_towards_2010}
+R.~Sandhu, R.~Boppana, R.~Krishnan, J.~Reich, T.~Wolff, and J.~Zachry.
+\newblock {Towards a Discipline of Mission-Aware Cloud Computing}.
+\newblock In {\em Proceedings of the 2010 {ACM} workshop on Cloud computing
+  security workshop}, pages 13--18, 2010.
+
+\bibitem{stoica:2001:sigcomm01}
+I.~Stoica, R.~Morris, D.~Karger, M.~F. Kaashoek, and H.~Balakrishnan.
+\newblock {Chord: A Scalable Peer-to-Peer Lookup Service for Internet
+  Applications}.
+\newblock In {\em Proceedings of the 2001 conference on Applications,
+  technologies, architectures, and protocols for computer communications},
+  SIGCOMM '01, pages 149--160, New York, NY, USA, 2001. ACM.
+
+\bibitem{tan:2008}
+T.~Tan, R.~Simmonds, B.~Arlt, M.~Arlitt, and B.~Walker.
+\newblock {Image Management in a Virtualized Data Center}.
+\newblock {\em SIGMETRICS Perform. Eval. Rev.}, 36(2):4--9, 2008.
+
+\bibitem{tang:2011}
+C.~Tang.
+\newblock {FVD: A High-Performance Virtual Machine Image Format for Cloud}.
+\newblock In {\em Proceedings of the 2011 USENIX conference on USENIX annual
+  technical conference}, USENIXATC'11, pages 18--18. USENIX Association, 2011.
+
+\bibitem{zhao:2012}
+H.~Zhao, Z.~Yu, S.~Tiwari, X.~Mao, K.~Lee, D.~Wolinsky, X.~Li, and
+  R.~Figueiredo.
+\newblock {CloudBay: Enabling an Online Resource Market Place for Open Clouds}.
+\newblock In {\em Proceedings of the 2012 IEEE/ACM Fifth International
+  Conference on Utility and Cloud Computing}, UCC '12, pages 135--142. IEEE
+  Computer Society, 2012.
+
+\end{thebibliography}

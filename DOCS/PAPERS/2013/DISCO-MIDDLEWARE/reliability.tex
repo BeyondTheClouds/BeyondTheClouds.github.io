@@ -1,0 +1,124 @@
+\subsection{Reliability Mechanisms}
+%These mechanisms should ensure  reliability and high availability of the
+%\discovery system despite the scale and dynamicity of the underlying physical
+%infrastructure.   
+In a LUC, failures will be much more frequent than in actual UC
+platforms. Furthermore, since resources could be highly distributed,
+the expected mean time to repair failed equipments might be much
+larger than in other UC platforms. For all these reasons, a set of
+dedicated mechanisms should be designed in order to provide fully
+transparent failure management with minimum downtime. 
+
+%% It includes
+%% mechanisms to ensure the high availability of the \discovery system
+%% itself and mechanisms to allow executing VEs reliably.
+
+Ensuring the high availability of the \discovery system requires being able to
+autonomously restart any service by relocating it on a healthy agent each time
+it is mandatory. To avoid losing or corrupting important information regarding
+the state of the system, a Cassandra-like system~\cite{lakshman:2010} is
+required to provide a reliable and highly available back-end for stateful
+services.
+
+Regarding VEs reliability, a first level of fault tolerance can be
+provided by leveraging VMs snapshotting capabilities. Periodical
+snapshots will allow restarting the VE from its last snapshot in the
+event of a failure. Performing VM snapshotting in a large-scale,
+heterogeneous, and widely spread environment is a challenging
+task. However, we believe that adapting recently proposed
+ideas~\cite{nicolae:2011} in this field would allow us to provide such
+a feature.
+
+Snapshotting is not enough for services that should be made highly
+available, but a promising solution is to use VM
+replication~\cite{Petrovic2012}. To implement VM replication in a WAN,
+solutions to optimize synchronizations between
+replicas~\cite{gerofi:2012,rajagopalan:2012} should be
+investigated. Also, we think that a LUC has the major advantage over
+other UC platforms, that it is tightly coupled with the network
+infrastructure. As such, we can expect \emph{low} latencies between
+nodes and so, to be able to provide strong consistency between
+replicas while achieving acceptable response time for the replicated
+services. 
+%Note that the overlays presented in Section~\ref{ssec:p2p}
+%for replicas localization and monitoring. Locating replicas based on a
+%navigating scheme where at least one bridge is encountered, would be
+%enough to ensure that they have a low probability to fail
+%simultaneously.
+
+
+Reliability techniques will of course make uses of the overlays
+for resource localization and monitoring. 
+Replicated VMs should be hosted on nodes that have a low
+probability to fail simultaneously. Following the previously defined
+overlay structure, this can be done through a navigating scheme where
+at least one bridge is encountered. Monitoring a replica can then be
+done by having a \emph{watcher} in the same local group as the
+replica.
+
+%% Another key use of this low-level overlay is proactive replication of VMs,
+%% keeping in mind that two identical VMs should be placed in relatively distant
+%% nodes, for fault-tolerance reasons (close nodes have a high probability to fail
+%% together). Following the defined overlay structure, this can be done through a
+%% navigating scheme where at least one bridge is encountered. Monitoring this
+%% replica can be done easily by having a \emph{watcher} in the same local group as
+%% the replica.
+
+
+
+
+%
+%% To this aim, the \discovery system should include, first,  mechanisms in charge of its own reliability. 
+%% Such mechanisms are required to avoid losing or corrupting important information
+%% regarding the state of the system.  Of course, handling all kinds of failures
+%% and implementing a fully resilient operating system is a complex task. Hence,
+%% we propose to consider in a first time a crash-stop failure model. In other words, the
+%% \discovery system should be able to autonomously restart any service by
+%% relocating it on an healthy agent each time it is mandatory.  This implies to
+%% define a common design pattern, \textit{i.e.} a set of recommendations, that each
+%% service should follow to ensure such characteristics. Besides, in order to
+%% ensure that such a pattern may be applied to stateful services, the system can
+%% require a Cassandra like system \cite{lakshman:2010} that provides reliable and highly available
+%% storage for critical system states. Retrieving the information related to one
+%% service need to rely on the kind of mechanisms described in Section~\ref{ssec:p2p}.
+
+%% %
+%% In addition to be robust enough, the \discovery system should ensure the
+%% reliable execution of virtual environments. The first mechanisms consists in
+%% using snapshotting capabilities delivering by virtualization technologies.
+%% Concretely, each internal states of a VM should be periodically saved on a
+%% persistent storage.  When a crash occurs on a VM, its associated VE can be
+%% restarted from the latest consistent states, \textit{i.e.} all VMs of the VE will be
+%% resume for their latest snapshot.  As for the other mechanisms, performing VM
+%% snapshotting in a large-scale, heterogeneous and widely spread environment is a
+%% challenging task. However, we believe that aforementioned mechanisms in charge
+%% of the VM images as well as recent proposals \cite{nicolae:2011} might enable
+%% to provide such a feature. 
+%% Although VM snapshotting provides a first level of reliability, it is not
+%% sufficient to ensure high availability of the VE. More advanced mechanisms must
+%% be proposed.  Our idea is to include mechanisms based on primary-backup
+%% replication techniques. 
+%% The basic principle is to have one active replica of the VM (the primary)
+%% sending state updates to the other replicas (the backups) periodically. If the
+%% primary fails, one of the backup can resume the execution transparently for the
+%% outside world. Furthermore since the entire VM is replicated, applications can
+%% be run unmodified.  Solutions to replicate VMs inside a cluster have been
+%% proposed. However efficiently replicating VMs over a WAN is a huge challenge.
+%% Limiting the size of the backup updates\cite{rajagopalan:2012}, and
+%% reducing the impact of the required synchronizations on the execution of the
+%% primary \cite{gerofi:2012}  are research directions to be further
+%% studied. A better understanding of the parts of a VM that really need to be
+%% updated is required. It might require to trade transparency for performance by
+%% allowing latency-sensitive applications to define which part of their state has
+%% to be updated.
+
+%% \ftodo[AL]{Integrate the P2P aspect into the reliability section}
+%% \subsubsection*{Monitoring Example}
+
+%% Another key use of this low-level overlay is proactive replication of VMs,
+%% keeping in mind that two identical VMs should be placed in relatively distant
+%% nodes, for fault-tolerance reasons (close nodes have a high probability to fail
+%% together). Following the defined overlay structure, this can be done through a
+%% navigating scheme where at least one bridge is encountered. Monitoring this
+%% replica can be done easily by having a \emph{watcher} in the same local group as
+%% the replica.
