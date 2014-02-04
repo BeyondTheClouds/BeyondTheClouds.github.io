@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[runningheads,a4paper]{llncs2e/llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{Using locality properties to improve distributed algorithm}
+
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+\author{Jonathan Pastor, Adrien Lebre}
+%
+%\authorrunning{Lecture Notes in Computer Science: Authors' Instructions}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address
+% unless you accept that it will be published
+\institute{Departement of Computer Science, Ecole des Mines de Nantes\\
+\url{http://http://www.mines-nantes.fr/}}
+
+\maketitle
+
+\begin{abstract}
+The use of computing resources provided by cloud companies has become very common. Cloud providers leverage on big datacenters containing tens of thousands of servers. Designing efficient software that can work at this scale is very complex: fault tolerance, network overhead and synchronization can have a significant cost.
+\\
+A possible solution to minimize these costs is to consider locality properties: servers collaborate first with close servers from the same geographical site. As a result, collaboration between servers can take into account infrastructure parameters such as bandwidth and response time and can be organized in a totally decentralized manner.
+\\
+This paper shows the case of a large scale virtual machine scheduling algorithm, DVMS, that have been adapted to take advantage of locality properties by using a vivaldi based network overlay. Results of experiments conducted on the grid5000 tesbed, comparing the chord based versus the vivaldi based algorithm, will be presented in the last section.
+
+\keywords{Cloud computing, locality, peer to peer, network overlay, vivaldi, chord, DVMS, virtual machine scheduling}
+\end{abstract}
+
+%\input{intro}
+%\input{related}
+%\input{approach}
+%\input{architecture}
+%\input{implementation}
+%\input{evaluation}
+%\input{conclusion}
+
+%\bibliographystyle{abbrv}
+%\bibliography{refs}
+
+%\appendices
+%\input{appendix}
+
+\end{document}
