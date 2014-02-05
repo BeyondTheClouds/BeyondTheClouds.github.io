@@ -38,7 +38,7 @@
 % their surnames. This ensures that the names appear correctly in
 % the running heads and the author index.
 %
-\author{Jonathan Pastor, Adrien Lebre}
+\author{Jonathan Pastor, Marin Bertier, Flavien Quesnel, Adrien Lebre, Cedric Tedeschi}
 %
 %\authorrunning{Lecture Notes in Computer Science: Authors' Instructions}
 % (feature abused for this document to repeat the title also on left hand pages)
@@ -50,15 +50,19 @@
 
 \maketitle
 
-\begin{abstract}
-The use of computing resources provided by cloud companies has become very common. Cloud providers leverage on big datacenters containing tens of thousands of servers. Designing efficient software that can work at this scale is very complex: fault tolerance, network overhead and synchronization can have a significant cost.
-\\
-A possible solution to minimize these costs is to consider locality properties: servers collaborate first with close servers from the same geographical site. As a result, collaboration between servers can take into account infrastructure parameters such as bandwidth and response time and can be organized in a totally decentralized manner.
-\\
-This paper shows the case of a large scale virtual machine scheduling algorithm, DVMS, that have been adapted to take advantage of locality properties by using a vivaldi based network overlay. Results of experiments conducted on the grid5000 tesbed, comparing the chord based versus the vivaldi based algorithm, will be presented in the last section.
+\input{abstract}
 
-\keywords{Cloud computing, locality, peer to peer, network overlay, vivaldi, chord, DVMS, virtual machine scheduling}
-\end{abstract}
+\input{introduction}
+
+\input{background}
+
+\input{contributions}
+
+\input{experiments}
+
+\input{related_work}
+
+\input{conclusion}
 
 %\input{intro}
 %\input{related}
