@@ -1,0 +1,30 @@
+The discovery initiative aims at exploring a new way of operating Utility
+Computing (UC) resources. To overcome the lack of sustainable solutions that
+can accommodate the ever increasing demand for computing resources, a
+disruptive change in UC platforms is required: Locality  has to be considered
+as a primary concern.  Instead of the current trend consisting of  building
+larger and larger data centers in few strategical locations, the discovery
+consortium proposes to leverage any facilities available through the Internet
+in order to deliver widely distributed UC platforms that can better match the
+geographical dispersal of users.
+
+Although it involves radical changes in the way resources are managed,
+leveraging computing resources close to the end-users is the only solution to
+deliver a new generation of UC platforms, highly efficient and sustainable.
+Critical to the emergence of such locality-based UC (LUC) platforms is the
+availability of appropriate operating mechanisms.  The discovery initiative
+aims at designing and implementing the premises of a unified system driving the
+use of resources at an unprecedented scale by turning a complex and diverse
+infrastructure into a collection of abstracted computing facilities that is
+both easy to operate and reliable. 
+
+Internet Service Providers (ISPs) as well as academic and private institutions in charge of operating a
+part of the internet network will be able to build an extreme-scale LUC
+platform with a limited additional cost by simply deploying the discovery
+system through their infrastructure.
+
+To reach such a goal, we propose a groundbreaking way of operating UC platforms
+that leverages  autonomous, decentralized and self-organizing techniques. This
+advance  will foster the emergence of LUC infrastructures and could greatly
+benefit to European companies in taking over a market that will be enabled by
+opening this new research area. 

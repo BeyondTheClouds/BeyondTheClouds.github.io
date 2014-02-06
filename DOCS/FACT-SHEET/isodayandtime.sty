@@ -1,0 +1,8 @@
+\begingroup
+\count0=\time \divide\count0by60 % Hour
+\count2=\count0 \multiply\count2by-60 \advance\count2by\time
+\def\2#1{\ifnum#1<10 0\fi\the#1}
+\xdef\isodayandtime{\the\year-\2\month-\2\day\space\2{\count0}:%
+\2{\count2}}
+\endgroup
+
