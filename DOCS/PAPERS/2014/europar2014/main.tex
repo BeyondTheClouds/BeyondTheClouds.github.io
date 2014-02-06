@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[runningheads,a4paper]{llncs2e/llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{Using locality properties to improve distributed algorithm}
+
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+\author{Jonathan Pastor, Marin Bertier, Flavien Quesnel, Adrien Lebre, Cedric Tedeschi}
+%
+%\authorrunning{Lecture Notes in Computer Science: Authors' Instructions}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address
+% unless you accept that it will be published
+\institute{Departement of Computer Science, Ecole des Mines de Nantes\\
+\url{http://http://www.mines-nantes.fr/}}
+
+\maketitle
+
+\input{abstract}
+
+\input{introduction}
+
+\input{background}
+
+\input{contributions}
+
+\input{experiments}
+
+\input{related_work}
+
+\input{conclusion}
+
+%\input{intro}
+%\input{related}
+%\input{approach}
+%\input{architecture}
+%\input{implementation}
+%\input{evaluation}
+%\input{conclusion}
+
+%\bibliographystyle{abbrv}
+%\bibliography{refs}
+
+%\appendices
+%\input{appendix}
+
+\end{document}
