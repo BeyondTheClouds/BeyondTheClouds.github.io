@@ -47,10 +47,31 @@ particular, we can see the growth of partition~1 between two steps.
 
 \subsection{P2P - locality}
 
-\begin{itemize}
-	
-	\item Vivaldi
 
-	\item active/lazy clustering
+La prise en compte de la localité dans la construction de réseaux logiques
+(\emph{overlays}) a été initialement proposé dans le réseau logique structuré
+Pastry~\cite{pastry} afin d'optimiser la latence du routage. La recherche de ces
+n\oe uds proches est fondée sur un échange pédiodique de références de n\oe uds.
 
-\end{itemize}
+Le même concept a été proposé dans les réseaux logiques non structurés afin de
+permettre à chaque n\oe ud de découvrir des n\oe uds du systèmes les plus
+\emph{proches}. La notion de proximité peut recouvrir toute métrique transitive
+entre deux n\oe uds, en particulier le temps de latence entre les n\oe
+uds~\cite{refquivabienmarindoittrouver}.
+
+Le protocole Vivaldi~\cite{dabek:2001:sigcomm04}, sur lequel notre réseau logique est fondé,
+a une approche particulière. En effet, il fournit à chaque n\oe ud des
+coordonnées dans un espace multi-dimensionnel reflétant sa position dans le
+réseau physique. Initialement, chaque n\oe ud prend une position aléatoire de
+l'espace, et choisit un petit sous-ensemble de n\oe uds. Puis, il se rapproche
+dans l'espace, des n\oe uds avec lesquels il a une faible latence et s'éloigne
+dans le cas inverse. Vivaldi ne permet donc pas de connaître les n\oe uds qui
+lui sont proches dans le réseau, mais de les reconnaître via leurs coordonnées.
+
+Les approches précédentes maintiennent constamment la connaissance des n\oe udes
+proches afin de fournir le meilleur n\oe ud possible, au coût de communications
+périodiques (indépendamment de la quantité de requêtes effectives.) Notre
+approche se distingue par une approche paresseuse consistant à rechercher des
+n\oe uds proches (en s'appuyant sur les coordonnées Vivaldi) lors des requêtes,
+adaptant ainsi la qualité de la réponse à la fréquence des requêtes.
+
