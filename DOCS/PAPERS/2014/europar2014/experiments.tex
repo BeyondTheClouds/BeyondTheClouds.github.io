@@ -1,1 +1,73 @@
 \section{Experimentations}
+
+\subsection{Implementation}
+
+A prototype of DVMS leveraging locality based overlay has been developed. The 
+current version of DVMS are been developed over the PeerActor abstraction. 
+PeerActor provides network abstraction that enables the design of distributed
+algorithm that are network overlay agnostic. We have developed two different
+overlay for the Peer Actor abstraction: Chord and a locality based overlay over
+Vivaldi.
+
+The strength of this software architecture is that to enable an algorithm (like
+DVMS) to comply with a given network overlay, it only have to follow the Peer 
+Actor API. This way, we were able to run DVMS over Chord or Vivaldi without any
+modification in its source code.
+
+\subsection{Grid5000' experiments}
+
+\subsubsection{Objectives}
+The prototype has been tested with a various number of experiments conducted on
+the Grid5000' testbed. The main objective of the experiments was to estimate
+impact of locality on the performance of a distributed scheduling algorithm. 
+A significant portion of the reconfiguration time is spent in live migration of
+virtual machines, which depends of network parameters such as latency and
+bandwidth. One way to improve performance of distributed scheduling algorithm is
+is to promote collaboration between close ressources, which can be reach by 
+maximising this ratio:
+
+\[
+	\frac{number\ of\ intrasite\ migrations}{number\ of\ migrations}
+\]
+
+\subsubsection{Experimental protocol}
+For each experiment, we booked 40 compute servers spread on 4 geographical sites
+and 1 service server. The compute servers were used to run virtual machines and
+DVMS while the service node is used to stress several parameters of 
+virtual machines.
+
+Each compute node will host a number of virtual machines proportional to the 
+number of CPU cores it has. In our case:
+
+\[
+	number\ of\ virtual\ machines\ =\ 1.3\ \times\ number\ of\ cores
+\]
+
+\subsubsection{Results}
+
+The impact of locality on DVMS is significant: using a Vivaldi based network
+overlay leads to an average number of 83\% of intrasite migrations while using 
+a Chord based DVMS leads a ratio of 50\% of intrasite migrations, as depicted
+in the following table:
+
+\begin{tabular}{|c|c|c|}
+  
+  % <HEADER>
+  \hline
+  network overlay & \multicolumn{1}{|p{3cm}|}{\centering average number of intrasite migrations}  & \multicolumn{1}{|p{3cm}|}{ \centering average number of migrations}  \\
+  % </HEADER>
+
+  % <ROW 1> => Vivaldi data
+  \hline
+  Vivaldi & 83 & 100 \\
+  % </ROW 1>
+
+  % <ROW 2> => Chord data
+  \hline
+  Chord & 40 & 80 \\
+  % </ROW 2>
+
+  \hline
+\end{tabular}
+\\
+\todo{Complete this section with more experimentation results.}
