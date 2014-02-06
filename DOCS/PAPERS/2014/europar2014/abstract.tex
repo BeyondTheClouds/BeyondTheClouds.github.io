@@ -1,5 +1,22 @@
 \begin{abstract}
-The use of computing resources provided by cloud companies has become very common. Cloud providers leverage on big datacenters containing tens of thousands of servers. Designing efficient software that can work at this scale is very complex: fault tolerance, network overhead and synchronization can have a significant cost.
+%1./ centre de donnees de plus en plus gros et fédérer pour répondre à la demande
+%2./ algo de placement centralisé clairement non adapté et approache hierarchique trop compliquée
+% 3./ algo P2P ont montré leur pertinence toutefois il ne permettent pas de prendre en compte la localité
+% 4./ Dans ce papier nous revisitons un algorithme de placement P2P afin de corriger les problemes de localités et favoriser la cooperation intra-sites
+% 5% Toutefois, toutes ces solutions réalisent les operations de relocalisations (i.e.  migrations) sans prende en compte si les noeuds source ou destination sont proches au niveau de la topologie physique.  Cet aspect est particulierement important puisque les opérations de migration à chaud sont particulierment impactés par des latences elevés.   
+
+
+%   L'adoption galopante (;)) du modèle d'informatique en nuage a considerablement impacté la taille avec des infrastructures de plus en plus grande et mutlisites.
+%The use of several large-scale data centers (DCs) become very common to cope with the increasing demand of cloud computing resources. 
+%While centralized placement algorithms were previously suitable, new proposals leveraging P2P approaches have been proposed to schedule  virtual machines dynamically throughout new distributed cloud computing infrastructures.  
+With the adoption of distributed cloud computing infrastructures as the new
+platform to deliver utility computing paradigm, new proposals leveraging P2P
+approaches have been proposed to schedule virtual machines (VMs) dynamically.
+If, at the first sight, these algorithms enable to tackle the scalability issue
+enabling to manage hundred thousands of VM upon thousands of physical machines
+(PMs), none of them consider the effective \emph{distance} between each PM.  
+  
+%The use of computing resources provided by cloud companies has become very common. Cloud providers leverage on big datacenters containing tens of thousands of servers. Designing efficient software that can work at this scale is very complex: fault tolerance, network overhead and synchronization can have a significant cost.
 \\
 A possible solution to minimize these costs is to consider locality properties: servers collaborate first with close servers from the same geographical site. As a result, collaboration between servers can take into account infrastructure parameters such as bandwidth and response time and can be organized in a totally decentralized manner.
 \\
