@@ -1,11 +1,15 @@
-all:
+all: main.tex main.bib
 	pdflatex main.tex
 	bibtex main
 	pdflatex main.tex
 	pdflatex main.tex
 
 clean:
-	rm *.aux
-	rm *.idx
-	rm *.log
-	rm *.toc
+	@rm -f *.aux
+	@rm -f *.idx
+	@rm -f *.log
+	@rm -f *.toc
+	@rm -f *.bbl
+
+cleanall: clean
+	@rm -f main.pdf
