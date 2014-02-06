@@ -1,36 +1,31 @@
 \begin{abstract}
-%1./ centre de donnees de plus en plus gros et fédérer pour répondre à la demande
-%2./ algo de placement centralisé clairement non adapté et approache hierarchique trop compliquée
-% 3./ algo P2P ont montré leur pertinence toutefois il ne permettent pas de prendre en compte la localité
-% 4./ Dans ce papier nous revisitons un algorithme de placement P2P afin de corriger les problemes de localités et favoriser la cooperation intra-sites
-% 5% Toutefois, toutes ces solutions réalisent les operations de relocalisations (i.e.  migrations) sans prende en compte si les noeuds source ou destination sont proches au niveau de la topologie physique.  Cet aspect est particulierement important puisque les opérations de migration à chaud sont particulierment impactés par des latences elevés.   
+With the adoption of distributed cloud computing infrastructures as the new
+platform to deliver utility computing paradigm, new algorithms  leveraging peer
+to peer approaches  have been proposed for scheduling virtual machine (VM).
+Although these proposals considerably improve the scalability enabling the
+management of hundreds of thousands of VM upon thousands of physical machines
+(PMs), multisite infrastructures introduce network overhead, which can have a
+dramatic impact on performances when there is no mechanism in charge of
+favoring intra-site vs. inter site manipulations.
+
+To reduce such an impact,  locality properties should be considered as a key
+element, e.g. PMs should collaborate first with their neighbourghood from the
+same geographical site before contacing remote ones.  As network
+bandwidth/latency fluctuate over time, using a static partitionning of the
+resources is not enough. 
 
 
-%   L'adoption galopante (;)) du modèle d'informatique en nuage a considerablement impacté la taille avec des infrastructures de plus en plus grande et mutlisites.
-%The use of several large-scale data centers (DCs) become very common to cope with the increasing demand of cloud computing resources. 
-%While centralized placement algorithms were previously suitable, new proposals leveraging P2P approaches have been proposed to schedule  virtual machines dynamically throughout new distributed cloud computing infrastructures.  
-With the adoption of distributed cloud computing infrastructures, as the new
-platform to deliver utility computing paradigm, new algorithms for dynamical 
-virtual machine scheduling leveraging on peer to peer approaches have been
-proposed.
+This paper introduces a new building block built on a vivaldi overlay that
+maximizes efficient collaborations between PMs. We combined this mechanism with
+DVMS , a large scale virtual machine scheduler and show its benefit by
+discussing several experiments performed on four distinct sites of the
+Grid'5000 tesbed. Thanks to our proposal and without changing the scheduling
+decision algorithm, the number of inter-site operations has been reduced by
+66%.  This result provides a glimpse of the promising future of locality
+properties to improve performance of massive distributed cloud platforms.
+ 
+%Future works will focus on the use of such a locality aware mechanisms to revisit other 
+%mechanisms in the context of distributed cloud computing management. 
 
-Although it seems that these proposals tackle scalability issues by enabling the management of tens of thousands of VM upon hundreds of thousands of physical 
-machines (PMs), none of them consider the effective costs of working on 
-multi-site configuration.
-\\
-%The use of computing resources provided by cloud companies has become very common. Cloud providers leverage on big datacenters containing tens of thousands of servers. Designing efficient software that can work at this scale is very complex: fault tolerance, network overhead and synchronization can have a significant cost.
-%\\
-To reduce these costs, one approach is to consider locality properties: servers collaborate first with close servers from the same geographical site. As a
-result, collaboration between servers can take into account infrastructure
-parameters such as bandwidth and response time and can be organized in a totally decentralized manner.
-\\
-This paper illustrates the case of DVMS, a large scale virtual machine
-scheduler, that have been combined with a vivaldi based network overlay to 
-leverage locality properties. Experimentations on the grid5000 tesbed provided promising results: this combination reach 83\% of intrasite migration without
-source code modification, which provide a glimpse of the promising future of
-leveraging on locality properties to increase performance of massive distributed
-cloud platforms.
-
-\keywords{Cloud computing, locality, peer to peer, network overlay, vivaldi, 
-chord, DVMS, virtual machine scheduling}
+\keywords{Cloud computing, locality, peer to peer, network overlay, vivaldi, DVMS, virtual machine scheduling}
 \end{abstract}
