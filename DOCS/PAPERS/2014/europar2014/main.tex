@@ -35,10 +35,7 @@
 \usepackage[textwidth=17mm]{todonotes}
 \newcommand{\AL}[2]{\todo[color=green!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
 \newcommand{\FQ}[2]{\todo[color=blue!20,inline,size=\small]{\IfNoValueTF{#2}{\textbf{FQ}}{\textbf{FQ$\Rightarrow$#1}} #2}}
-
-\usepackage{xifthen}% provides \isempty test
-
-\newcommand{\JP}[2]{\todo[color=red!50,inline,size=\small]{\ifthenelse{\isempty{#1}}{\textbf{JP}}{\textbf{JP$\Rightarrow$#1}} #2}}
+\newcommand{\JP}[2]{\todo[color=blue!20,inline,size=\small]{\IfNoValueTF{#2}{\textbf{JP}}{\textbf{JP$\Rightarrow$#1}} #2}}
 \newcommand{\CT}[2]{\todo[color=brown!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{CT}}{\textbf{CT$\Rightarrow$#1}} #2}}
 \newcommand{\MB}[2]{\todo[color=yellow!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{MB}}{\textbf{MB$\Rightarrow$#1}} #2}}
 \newcommand{\FD}[2]{\todo[color=orange!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{FD}}{\textbf{FD$\Rightarrow$#1}} #2}}
