@@ -28,7 +28,7 @@ significantly improves the reactivity of the system.
 Communications are handled efficiently, as each node involved in a partition
 can forward a request directly to the first node outside its partition, by
 means of a ``first out'' relation.
-
+\AL{FQ}{Ici il faut dire egalement que l'approche DVMS Ã  la difference d'une approche gossip garantie de trouver une solution si il y en a une (absorbtion de tout le noeuds dans un microcosme). C'est important car le fait de basculer sur vivaldi ne remet pas en cause cette propriete (bien sure en evident la tolerance aux pannes mais vu qu'on en parle pas dans ce papier ca va)}
 An example involving three partitions is shown on Figure~\ref{fig:isp}; in
 particular, we can see the growth of partition~1 between two steps.
 \begin{figure}[h!]
@@ -48,30 +48,30 @@ particular, we can see the growth of partition~1 between two steps.
 \subsection{P2P - locality}
 
 
-La prise en compte de la localité dans la construction de réseaux logiques
-(\emph{overlays}) a été initialement proposé dans le réseau logique structuré
+La prise en compte de la localit? dans la construction de r?seaux logiques
+(\emph{overlays}) a ?t? initialement propos? dans le r?seau logique structur?
 Pastry~\cite{pastry} afin d'optimiser la latence du routage. La recherche de ces
-n\oe uds proches est fondée sur un échange pédiodique de références de n\oe uds.
+n\oe uds proches est fond?e sur un ?change p?diodique de r?f?rences de n\oe uds.
 
-Le même concept a été proposé dans les réseaux logiques non structurés afin de
-permettre à chaque n\oe ud de découvrir des n\oe uds du systèmes les plus
-\emph{proches}. La notion de proximité peut recouvrir toute métrique transitive
+Le m?me concept a ?t? propos? dans les r?seaux logiques non structur?s afin de
+permettre ? chaque n\oe ud de d?couvrir des n\oe uds du syst?mes les plus
+\emph{proches}. La notion de proximit? peut recouvrir toute m?trique transitive
 entre deux n\oe uds, en particulier le temps de latence entre les n\oe
 uds~\cite{refquivabienmarindoittrouver}.
 
-Le protocole Vivaldi~\cite{dabek:2001:sigcomm04}, sur lequel notre réseau logique est fondé,
-a une approche particulière. En effet, il fournit à chaque n\oe ud des
-coordonnées dans un espace multi-dimensionnel reflétant sa position dans le
-réseau physique. Initialement, chaque n\oe ud prend une position aléatoire de
+Le protocole Vivaldi~\cite{dabek:2001:sigcomm04}, sur lequel notre r?seau logique est fond?,
+a une approche particuli?re. En effet, il fournit ? chaque n\oe ud des
+coordonn?es dans un espace multi-dimensionnel refl?tant sa position dans le
+r?seau physique. Initialement, chaque n\oe ud prend une position al?atoire de
 l'espace, et choisit un petit sous-ensemble de n\oe uds. Puis, il se rapproche
-dans l'espace, des n\oe uds avec lesquels il a une faible latence et s'éloigne
-dans le cas inverse. Vivaldi ne permet donc pas de connaître les n\oe uds qui
-lui sont proches dans le réseau, mais de les reconnaître via leurs coordonnées.
+dans l'espace, des n\oe uds avec lesquels il a une faible latence et s'?loigne
+dans le cas inverse. Vivaldi ne permet donc pas de conna?tre les n\oe uds qui
+lui sont proches dans le r?seau, mais de les reconna?tre via leurs coordonn?es.
 
-Les approches précédentes maintiennent constamment la connaissance des n\oe udes
-proches afin de fournir le meilleur n\oe ud possible, au coût de communications
-périodiques (indépendamment de la quantité de requêtes effectives.) Notre
-approche se distingue par une approche paresseuse consistant à rechercher des
-n\oe uds proches (en s'appuyant sur les coordonnées Vivaldi) lors des requêtes,
-adaptant ainsi la qualité de la réponse à la fréquence des requêtes.
+Les approches pr?c?dentes maintiennent constamment la connaissance des n\oe udes
+proches afin de fournir le meilleur n\oe ud possible, au co?t de communications
+p?riodiques (ind?pendamment de la quantit? de requ?tes effectives.) Notre
+approche se distingue par une approche paresseuse consistant ? rechercher des
+n\oe uds proches (en s'appuyant sur les coordonn?es Vivaldi) lors des requ?tes,
+adaptant ainsi la qualit? de la r?ponse ? la fr?quence des requ?tes.
 

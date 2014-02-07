@@ -21,11 +21,24 @@
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{todonotes}
 
 \usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
+
+\usepackage{xspace}
+\newcommand{\ie}{\textit{i.e.,}\xspace}
+\newcommand{\eg}{\textit{e.g.,}\xspace}
+\newcommand{\vs}{\textit{v.s.}\xspace}
+
+\usepackage{xparse}
+\usepackage[textwidth=17mm]{todonotes}
+\newcommand{\AL}[2]{\todo[color=green!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
+\newcommand{\FQ}[2]{\todo[color=blue!20,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
+\newcommand{\JP}[2]{\todo[color=red!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
+\newcommand{\CT}[2]{\todo[color=brown!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
+\newcommand{\MB}[2]{\todo[color=yellow!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
+\newcommand{\FD}[2]{\todo[color=orange!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
 
 \begin{document}
 
@@ -51,17 +64,19 @@ Adrien Lebre\inst{1} \and Cedric Tedeschi\inst{3}}
 % accept that it will be published
 \institute{ASCOLA Research Group,
 Mines Nantes / Inria / LINA, Nantes, France\\ 
-\email{firstname.lastname@mines-nantes.fr} 
 \and ASAP Research Group, INSA / Inria / IRISA, Rennes, France\\
-\email{marin.bertier@irisa.fr} 
 \and Myriads Research Group, Universit\'{e} de Rennes 1 / Inria / IRISA, Rennes,
 France\\
-\email{cedric.tedeschi@inria.fr} }
+\email{firstname.lastname@inria.fr} 
+ }
 
 \maketitle
 
 \input{abstract}
 
+%% Comment this line for submission
+\listoftodos
+ 
 \input{introduction}
 
 \input{background}
