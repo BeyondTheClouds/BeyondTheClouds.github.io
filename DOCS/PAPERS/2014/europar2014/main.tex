@@ -31,19 +31,32 @@
 \newcommand{\eg}{\textit{e.g.,}\xspace}
 \newcommand{\vs}{\textit{v.s.}\xspace}
 
-\usepackage{xparse}
 \usepackage[textwidth=17mm]{todonotes}
-\newcommand{\AL}[2]{\todo[color=green!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
-\newcommand{\FQ}[2]{\todo[color=blue!20,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
-\newcommand{\JP}[2]{\todo[color=red!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
-\newcommand{\CT}[2]{\todo[color=brown!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
-\newcommand{\MB}[2]{\todo[color=yellow!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
-\newcommand{\FD}[2]{\todo[color=orange!50,inline,size=\small]{\IfNoValueTF{#2}{\textbf{AL}}{\textbf{AL$\Rightarrow$#1}} #2}}
+
+%\usepackage{ifthen} % provides \ifthenelse test  
+%\usepackage{xifthen} % provides \ifthenelse test  
+%\usepackage{xstring}
+%	\ifthenelse{\isempty{#3}}{\textbf{#1} #4}{\textbf{#1$\Rightarrow$#3} #4}
+\newcommand{\customtodo}[4]{
+	\todo[color=#2,inline,size=\small]{
+		\ifx&#3& 
+			\textbf{#1} #4
+		\else
+			\textbf{#1$\Rightarrow$#3} #4
+		\fi
+	}
+}
+\newcommand{\AL}[2][]{\customtodo{AL}{green!50}{#1}{#2}}
+\newcommand{\JP}[2][]{\customtodo{JP}{red!20}{#1}{#2}}
+\newcommand{\FQ}[2][]{\customtodo{JP}{blue!20}{#1}{#2}}
+\newcommand{\FD}[2][]{\customtodo{JP}{brown!20}{#1}{#2}}
+\newcommand{\CT}[2][]{\customtodo{JP}{yellow!20}{#1}{#2}}
+\newcommand{\MB}[2][]{\customtodo{JP}{orange!20}{#1}{#2}}
+%
+
+%\mainmatter  % start of an individual contribution
 
 \begin{document}
-
-\mainmatter  % start of an individual contribution
-
 % first the title is needed
 %\title{Using locality properties to improve distributed algorithm}
 \title{Locality-aware Cooperation in Distributed IaaS Infrastructures}
@@ -54,10 +67,10 @@
 % their surnames. This ensures that the names appear correctly in
 % the running heads and the author index.
 %
-\author{Jonathan Pastor\inst{1}, Marin Bertier\inst{2}, Flavien Quesnel\inst{1},
-Adrien Lebre\inst{1} \and Cedric Tedeschi\inst{3}}
+\author{Jonathan Pastor\inst{1}, Marin Bertier\inst{2}, Adrien Lebre\inst{1}, 
+Flavien Quesnel\inst{1} \and Cedric Tedeschi\inst{3}}
 %
-%\authorrunning{Lecture Notes in Computer Science: Authors' Instructions}
+\authorrunning{J. Pastor, M. Bertier, A. Lebre, F. Quesnel \and C. Tedeschi}
 % (feature abused for this document to repeat the title also on left hand pages)
 
 % the affiliations are given next; don't give your e-mail address unless you
