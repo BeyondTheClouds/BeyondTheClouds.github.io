@@ -2,17 +2,20 @@
 
 \subsection{Implementation of DVMS}
 
-A prototype of DVMS leveraging locality based overlay has been developed. The 
-current version of DVMS are been developed over the \emph{peer actor} 
-abstraction which provides network abstraction that enables the design network 
-overlay agnostic algorithm that are . We have developed two different
-overlay for the Peer Actor abstraction: Chord and a locality based overlay over
-Vivaldi.
+A prototype of DVMS leveraging the \emph{peer actor} abstraction has been 
+developed. This mean that DVMS is agnostic to the network overlay, and thus can
+be use with a vivaldi based overlay without requiring any modification in it's 
+code.
 
-The strength of this software architecture is that to enable an algorithm (like
-DVMS) to comply with a given network overlay, it only have to follow the Peer 
-Actor API. This way, we were able to run DVMS over Chord or Vivaldi without any
-modification in its source code.
+This implementation is based on modern programming language and framework as 
+\emph{Scala} and \emph{Akka framework}. Scala is a language that mixes object
+oriented programming with functional programming. Scala compiler produces 
+\emph{Java bytecode}, which can be run in any JVM environment. Combining Scala 
+with Akka enabled us to take advantage of advanced techniques for concurrent 
+programming such as \emph{future/promise} and \emph{actor model}, and to benefit
+from Java ease of deployment.
+
+
 
 \subsection{Grid5000' experiments}
 
