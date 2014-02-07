@@ -10,6 +10,7 @@ clean:
 	@rm -f *.log
 	@rm -f *.toc
 	@rm -f *.bbl
+	@rm -f *.tdo
 
 cleanall: clean
 	@rm -f main.pdf
