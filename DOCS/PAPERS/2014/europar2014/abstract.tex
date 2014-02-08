@@ -1,12 +1,12 @@
 \begin{abstract}
 With the adoption of distributed cloud computing infrastructures as the new
 platform to deliver utility computing paradigm, new algorithms  leveraging peer
-to peer approaches  have been proposed for scheduling virtual machine (VM).
-Although these proposals considerably improve the scalability enabling the
+to peer approaches  have been proposed for scheduling virtual machines (VMs).
+Although these proposals considerably improve the scalability, enabling the
 management of hundreds of thousands of VM upon thousands of physical machines
 (PMs), multi-site infrastructures introduce network overhead, which can have a
 dramatic impact on performances when there is no mechanism in charge of
-favoring intra-site vs. inter site manipulations.  
+favoring intra-site vs. inter-site manipulations.  
 % %%%
 %To reduce such an impact,  locality properties should be considered as a key
 %element, e.g. PMs should collaborate first with their neighbourghood from the
@@ -25,7 +25,7 @@ favoring intra-site vs. inter site manipulations.
 %properties to improve performance of massive distributed cloud platforms.
 %
 % %%%
-As network bandwidth/latency/interconnection fluctuate over time, using a static partitioning of the
+As network bandwidth~/ latency~/ interconnection fluctuates over time, using a static partitioning of the
 resources is not enough. 
 
 This paper introduces a new building block built on a vivaldi overlay that
@@ -33,9 +33,9 @@ maximizes efficient collaborations between PMs.
 %\eg PMs should collaborate first with their neighbourghood from the
 %same geographical site before contacing remote ones. 
  We combined this mechanism with
-DVMS , a large scale virtual machine scheduler and show its benefit by
+DVMS, a large scale virtual machine scheduler and showed its benefit by
 discussing several experiments performed on four distinct sites of the
-Grid'5000 tesbed. Thanks to our proposal and without changing the scheduling
+Grid'5000 testbed. Thanks to our proposal and without changing the scheduling
 decision algorithm, the number of inter-site operations has been reduced by
 66\%.  This result provides a glimpse of the promising future of locality
 properties to improve performance of massive distributed cloud platforms.
