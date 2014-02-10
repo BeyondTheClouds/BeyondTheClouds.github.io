@@ -3,14 +3,15 @@
 \subsection{Implementation of DVMS}
 
 A prototype of DVMS leveraging the \emph{peer actor} abstraction has been 
-developed. This mean that DVMS is agnostic to the network overlay, and thus can
-be use with a vivaldi based overlay without requiring any modification in it's 
-code.
+developed. In addition we built two versions of the network overlay actor: one 
+working with Chord, and one working with the Vivaldi based overlay. This mean 
+that now DVMS is network overlay agnostic to, and thus can be used with either
+of the network overlay without requiring any modification in it's source code.
 
-This implementation is based on modern programming language and framework as 
+The implementation is based on modern programming language and framework such as 
 \emph{Scala} and \emph{Akka framework}. Scala is a language that mixes object
-oriented programming with functional programming. Scala compiler produces 
-\emph{Java bytecode}, which can be run in any JVM environment. Combining Scala 
+oriented programming with functional programming, it's compiler produces 
+\emph{Java bytecode} which can be run in any JVM environment. Combining Scala 
 with Akka enabled us to take advantage of advanced techniques for concurrent 
 programming such as \emph{future/promise} and \emph{actor model}, and to benefit
 from Java ease of deployment.
