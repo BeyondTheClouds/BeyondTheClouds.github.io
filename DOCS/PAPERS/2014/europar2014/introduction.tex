@@ -1,18 +1,31 @@
 \section{Introduction}
 Introduced few years ago \cite{greenberg:sigcomm09}, the new trend to deliver
 cloud computing resources, in particular Infrastructure as a Service solutions,
-consists in leveraging several infrastructures  distributed world-wide. If
-such distributed cloud computing platforms deliver undeniable advantages to address important
-challenges such as reliability, latency or even in somehow jurisdiction
-concerns, most mechanisms that were previously used to operate centralized IaaS
-platforms must be revisited to offer the same level of transparency for the end-users. 
-Keeping such an objective in mind, the use of P2P
-paradigm is strongly investigated. 
-This is particularly true for instance for scheduling algorithms in charge of assigning
-VMs on top of PMs according to their effective needs (and reciprocally usages). 
-Indeed and although major improvements have
-been done, centralized approaches \cite{hermenier:2013} are not scalable enough
-and hierarchical solutions \cite{feller:ccgrid12} face important limitations
-regarding the reactivity to take into account physical topology changes, an
-important criteria in such widely distributed infrastructures. 
+consists in leveraging several infrastructures  distributed world-wide. If such
+distributed cloud computing platforms deliver undeniable advantages to address
+important challenges such as reliability, latency or even in somehow
+jurisdiction concerns, most mechanisms that were previously used to operate
+centralized IaaS platforms must be revisited to offer the same level of
+transparency for the end-users.  Keeping such an objective in mind, the use of
+P2P paradigm is strongly investigated. This is particularly true for instance
+for scheduling algorithms in charge of assigning VMs on top of PMs according to
+their effective needs (and reciprocally usages).  Indeed and although major
+improvements have been done, centralized approaches \cite{hermenier:2013} are
+neither scalable nor robust enough.  Hierarchical solutions
+\cite{feller:ccgrid12} that can be seen as good candidates face important
+limitations: First, finding an efficient partitioning of resources is a tedious task as
+matching a hierarchical overlay on top of a distributed infrastructure is often not logical. 
+Second, in addition to requiring complex failover mechanisms to
+ensure leader/super peer crashed and network disconnections, hierarchical
+structures have not been designed to react swiftly to physical topology
+changes such as node apparition/removal and network performance degradations. 
+Considering scalability as well as resiliency criteria of distributed cloud computing infrastructures, 
+it is not surprising that P2P approaches have shown promising results to address the scheduling problem of VMs \cite{xxx,quesnel:2012,feller:cloudcom12}.
+% TODO Europar paper Flavien ?
+However, it is noteworthy that manipulating VMs at WAN level is definitely worse in terms of performance and network impacts than doing LANWide. 
+Hence,  it is fundamental to consider intra-site operations \vs inter-site ones.
+
+ In other words, dyn
+
+ 
  
