@@ -1,11 +1,67 @@
 \section{Related work}
 
-\subsection{DVMS}
-Centralized approach~\cite{hermenier:cp11}
+\subsection{Efficient Virtual Machine Management}
 
-Hierarchical approach~\cite{feller:ccgrid12}
+Many virtual infrastructure managers have been proposed to deal with specific
+concerns.
+%
+In this section, we will focus on some of their limitations, especially
+regarding locality, scalability and fault-tolerance.
 
-Distributed approaches~\cite{barbagallo:lncs10,feller:cloudcom12,marzolla:wowmom11,mastroianni:europar11,rouzaudcornabas:vhpc10,yazir:cloud10}
+The most common managers are the centralized ones, like
+Entropy~\cite{hermenier:cp11,hermenier:2013}, since they are easy to deploy.
+%
+They are generally designed to work on a cluster.
+%
+In this context, they do not take account of the network topology, and they
+cannot manage VMs efficiently in a multi-site deployment.
+%
+Moreover, they are prone to fault-tolerance, scalability and reactivity
+issues; to avoid these limitations, one possibility is to rely on more
+decentralized approaches, like hierarchical or distributed ones.
+
+Hierarchical managers, like Snooze~\cite{feller:ccgrid12}, may be more suited to
+handle locality.
+%
+For instance, it is possible to setup (i)~one manager per cluster, and (ii)~one
+(fault-tolerant) super manager that monitors cluster managers and chooses on
+which cluster a new VM should start.
+%
+%A VM will generally stay on the cluster where it was deployed during its whole
+%life cycle.
+%
+The main problem with this approach is that, in the absence of cooperation
+between cluster managers, VMs cannot be migrated from one cluster to another,
+which is especially annoying if one cluster is overloaded.
+%
+Moreover, the super manager is not necessarily aware of the network topology and
+therefore may not be able to interact efficiently with cluster managers if the
+latter are distributed among several sites.
+%
+Furthermore, the super manager limits the scalability of this approach; to deal
+with this issue, researchers have designed distributed approaches.
+
+Many distributed approaches have been proposed to manage
+VMs~\cite{barbagallo:lncs10,feller:cloudcom12,marzolla:wowmom11,mastroianni:europar11,rouzaudcornabas:vhpc10,yazir:cloud10}.
+%
+Some of them are limited in terms of scalability since they (i)~require a global
+view of the infrastructure to take a
+decision~\cite{rouzaudcornabas:vhpc10,yazir:cloud10} and/or (ii)~rely on a
+centralized service node that is not
+fault-tolerant~\cite{mastroianni:europar11,yazir:cloud10}.
+%
+Some approaches lead to a huge number of
+migrations~\cite{barbagallo:lncs10,mastroianni:europar11} without necessarily
+optimizing the chosen scheduling criterion~\cite{barbagallo:lncs10}.
+%
+Moreover, none of these approaches have been designed to take account of the
+network topology and therefore manage VMs efficiently in a multi-site
+deployment.
+
+To summarize, a locality-aware distributed approach is required to (i)~avoid
+issues related to scalability and single points of failures, and to (ii)~manage
+VMs efficiently in heterogeneous network environments like those found in
+multi-site deployments.
 
 \subsection{P2P}
 

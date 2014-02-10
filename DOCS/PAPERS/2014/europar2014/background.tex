@@ -3,10 +3,10 @@
 
 \subsection{DVMS}
 
-\subsubsection{Overview}
-DVMS~\cite{quesnel:cpe12}
-(\emph{Distributed Virtual Machine Scheduler}) is a framework that enables VMs
-to be scheduled cooperatively and dynamically in large scale distributed
+\subsubsection{Overview.}
+DVMS~\cite{quesnel:ispa13,quesnel:cpe12}
+(Distributed Virtual Machine Scheduler) is a framework that can schedule VMs
+cooperatively and dynamically in large scale distributed
 systems.
 
 DVMS is deployed as a set of agents that are organized following a ring
@@ -18,17 +18,25 @@ under-utilized, it starts an iterative scheduling procedure~(ISP) by querying
 its neighbor to find a better placement; it thus becomes the initiator of the ISP.
 If the request cannot be satisfied by the neighbor, it is forwarded to the
 following free one until the ISP succeeds.
+
+\subsubsection{Strengths.}
 This approach allows each ISP to send requests only to a minimal
 number of nodes, thus decreasing the scheduling time without requiring a
 central point.
+%
+It is worth noting that an ISP can reserve all nodes of the
+infrastructure if needed, i.e. if the corresponding problem is particularly hard to solve, thus
+guaranteeing that a solution will always be found if it exists.
+
 In addition, this approach allows several ISPs to occur independently at the
 same moment throughout the infrastructure; in other words, scheduling is
 performed on partitions of the system that are created dynamically, which
 significantly improves the reactivity of the system.
+
 Communications are handled efficiently, as each node involved in a partition
 can forward a request directly to the first node outside its partition, by
 means of a ``first out'' relation.
-\AL[FQ]{Ici il faut dire egalement que l'approche DVMS à la difference d'une approche gossip garantie de trouver une solution si il y en a une (absorbtion de tout le noeuds dans un microcosme). C'est important car le fait de basculer sur vivaldi ne remet pas en cause cette propriete (bien sure en evident la tolerance aux pannes mais vu qu'on en parle pas dans ce papier ca va)}
+
 An example involving three partitions is shown on Figure~\ref{fig:isp}; in
 particular, we can see the growth of partition~1 between two steps.
 \begin{figure}[h!]
@@ -38,10 +46,39 @@ particular, we can see the growth of partition~1 between two steps.
   \label{fig:isp}%
 \end{figure}
 
-\subsubsection{Limitations}
+It is worth noting that (i)~the correctness of DVMS was proven
+formally~\cite{quesnel:ispa13} and that (ii)~the first version of the prototype
+was validated at large scale (up to 4.7k VMs and 470 nodes) by means of experiments on the Grid'5000
+testbed~\cite{quesnel:ispa13},
+and at very large scale (up to 80k VMs and 8k nodes) by means of simulations
+with the SimGrid toolkit~\cite{Casanova:2008:SGF:1397760.1398183}.
 
+\subsubsection{Limitations of the First Implementation.}
 
+This first implementation of DVMS has several limitations; in this section, we
+will focus on locality management.
 
+Even if DVMS can be deployed across several sites, it performs better on a
+cluster.
+%
+The reasons are simple.
+%
+First, the ring is built without taking account of the network topology;
+therefore, a VM migration can occur between two nodes that are far from each
+other, which lasts longer than a migration between two close nodes.
+%
+Second, even if the ring was built so that nodes with a fast interconnection
+were close from one another, it would not prevent a node to communicate with 
+a remote neighbor instead of a close one.
+
+To sum up, the ring topology is far from ideal when considering locality
+management, for instance in a multi-site deployment where we want to avoid
+inefficient and costly inter-site VM migrations.
+
+% Autres limitations :
+% -absence de tolérance aux pannes
+% -peu d'événements gérés (surcharge d'un noeud)
+% -ne prend pas en compte les liens entre VMS
 
 
 
