@@ -36,6 +36,7 @@ can forward a request directly to the first node outside its partition~\cite{que
   \centering
   \includegraphics[width=0.9\linewidth]{Figures/resourceAcquisition-standard.pdf}
   \caption{Solving three problems simultaneously and independently with DVMS}%
+\small{The ring has been matched on top of three sites}
   \label{fig:isp}%
 \end{figure}
 
@@ -43,7 +44,7 @@ In addition to formally prove the correctness of DVMS, the first version of the 
 has been validated at large scale (up to 80k VMs and 8k nodes by means of simulations and up to 4.7k VMs and 470 nodes by means of experiments on the Grid'5000
 testbed~\cite{quesnel:ispa2013}).
 
-As discussed earlier, one limitation of this approach is related to its ring topology that prevents to take into account the network topology; 
+As discussed earlier, one limitation of this approach is related to its ring topology that prevents to take into account the network topology. 
 %\subsubsection{Limitations of The Ring}
 %
 %Even though  DVMS can be deployed across several sites, it performs better on a
@@ -52,15 +53,14 @@ As discussed earlier, one limitation of this approach is related to its ring top
 %The reason is simple.
 %
 %The ring is built without taking account of the network  topology; 
-therefore, a VM migration can occur between two nodes that are far from each other, which
-lasts longer than a migration between two close nodes. Obviously the ring can
+In other words, if the ISP strategy enables to limit the size of one partition to a minimal number of nodes, these nodes are selected without considering 
+the network conditions at the time the ISP starts; leading to inefficient situations where VM migrations occur between two nodes that are far from each other, 
+which lasts longer than a migration between two close nodes. Obviously the ring can
 be built in order to limit the distance between peers globally (\ie peers of
-the same region/area would be grouped together). However, there would be still
-some nodes that would be interconnected with far ones (\ie. the last node of
-one group in the ring would be interconnected with the first peer of the new
-group).  
+the same region/area would be grouped together as illustrated on Figure \ref{fig:isp}). However, in such a case at least two nodes of each group are directly connected to 
+two far nodes. 
 %
-To sum up, the DVMS proposal lacks of a topology that can consider locality properties of a mutli-site infrastructure. 
+To sum up, the DVMS proposal lacks of a topology that can consider locality properties of a multi-sites infrastructure. 
 
 \AL[CD/MB]{Can we add one sentence to make the transition to the next section: something for instance that explains that a hierarchy of rings will not tackle the aforementioned concern.}
 % Autres limitations :
