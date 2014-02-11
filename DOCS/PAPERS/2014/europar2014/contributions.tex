@@ -1,14 +1,103 @@
 
 
-\subsection{Locality based overlay}
+\subsection{Locality-aware  overlay network}
 
-\begin{itemize}
-	
-	\item clustering
-	
-	\item Vivaldi + spirale
+\CT{Vivaldi + spirale}
 
-\end{itemize}
+We here present our lazy locality-aware overlay network which underlies the VM
+scheduling platform we developed. It is made of two layers. The lower layer
+strongly rely on the Vivaldi protocol to make nodes aware of their position in
+the platform. The higher layer takes its roots in the classic Dijkstra's
+shortest parth algorithm to collect a set of close nodes starting from a given
+position.
+
+\CT{The remaining of the section is based on the book chapter.}
+
+\subsubsection*{Giving a position to nodes}
+
+The initial configuration of the physical network can take an arbitrary
+shape. As already mentioned, Vivaldi~\cite{dabek:2001:sigcomm04} is a
+distributed protocol assigning coordinates in the plane to nodes of a
+distributed set of nodes. Each node is equipped with a \emph{view} of the
+network, \emph{i.e.}, a set of nodes it knows. Coordinates obtained by a node
+reflects its \emph{position} in the network, \emph{i.e.}, close nodes in the
+network are given close coordinates in the plane. To achieve this, each node
+checks the round trip time between itself and another node (randomly chosen
+among nodes in its view) and adapts its distance (by changing its coordinates)
+with this node in the plane accordingly. % See Figure~\ref{fig:vivaldi_before} and
+% Figure~\ref{fig:vivaldi_after} for an illustration of 4 nodes~(A, B, C and D)
+% moving according to the Vivaldi protocol.
+A globally accurate positioning of nodes can be
+obtained if nodes have a few long-distance nodes in their
+view~\cite{dabek:2001:sigcomm04}. These long distance links can be easily
+maintained by means of a simple gossip protocol.
+
+% \begin{figure}[!b]
+% 	\vspace*{-.3cm}
+%   \begin{minipage}[c]{.45\linewidth}
+%    \hspace*{-0.5cm}
+%       	\centering \includegraphics[width=3.4cm]{./FIGS/vivaldi_before.pdf}
+
+%    \hspace*{0.5cm}
+% 		\caption{Vivaldi plot before updating positions. Each node pings other nodes. Each node maintains a map of distance.}
+% \label{fig:vivaldi_before}
+%    \end{minipage}
+% \hspace*{0.6cm}
+%    \begin{minipage}[c]{.45\linewidth}
+%    	\centering \includegraphics[width=3.4cm]{./FIGS/vivaldi_after.pdf}
+% 		\caption{Vivaldi plot after updating positions. The computed
+%                   positions of other nodes have been updated.}
+% 		\label{fig:vivaldi_after} 
+%   \end{minipage} \hfill
+% \end{figure}
+
+\subsubsection*{Searching for Close Nodes}
+
+Once the map is achieved (each node knows its coordinates), we are able to
+decide whether two nodes are \emph{close} by calculating their
+distance. However, the view of each node does not \emph{a priori} contain its
+closest nodes. Therefore, we need additional mechanisms to locate a set of nodes
+that are close to a given initial node -- Vivaldi gives a \emph{location} to
+each node, not a neighborhood. We use a modified distributed version of the
+classic Dijkstra's shortest path algorithm. The goal is to build a
+\emph{spiral}\footnote{The term \emph{spiral} is here a misuse of language,
+since the graph actually drawn in the plane might contain crossing edges.}
+interconnecting the nodes in the plane that are the closest ones to a given
+initial node.
+
+Let us consider that our initial point is a node called $I$. The first step is
+to find a node to build a two-node spiral with $I$. Such a node is sought in the
+view of $I$ by selecting the node, say $S$, having the smallest distance with
+$I$. $I$ then sends its view to $S$, $I$ stores $S$ as its successor in the
+spiral, and $S$ adds $I$ as its predecessor in the spiral. Then $I$ forwards its
+view to $S$. $S$ creates a new view by keeping the $n$ nodes which are the
+closest to $I$ in the views of $I$ and $S$. This last view is then referred to
+as the \emph{spiral view} and is intended to contain a set of nodes among which
+to find the next step of the spiral. Then $S$ restarts the same process: among
+the spiral view, it chooses the node with the smallest distance to $I$, say
+$S'$, and adds it in the spiral -- $S$ becomes the predecessor of $S'$ and $S'$
+becomes the successor of $S$. Then, the spiral view is sent to $S'$ which
+updates it with the nodes it has in its own view. The process is repeated until
+enough nodes have been gathered (which is a parameter sent by the application).
+
+Note that one risk is to be blocked by having a spiral view containing only
+nodes that are already in the spiral, leading to the impossibility to build the
+spiral further. However, this problem can be easily addressed by forcing the
+presence of a few long distance nodes whenever it is updated.
+
+\subsubsection*{Learning}
+
+Applying the protocol described above, the quality of the spiral is
+questionable in the sense that the nodes that are actually close to the initial
+node $I$ may not be included.%  The only property ensured is that one step
+% forward on the built path always takes us further from the initial node.
+%
+To improve the \emph{quality} of the spiral, \emph{i.e.}, reduce the average
+distance between the nodes it comprises and the initial node, we rely on a
+learning mechanism coming with no extra communication cost: when a node is
+contacted for becoming the next node in one spiral, and receives the associated
+spiral view, it can also keep the nodes that are the closest to itself, thus
+potentially increasing the quality of a future spiral construction.
 
 \subsection{Library for locality based algorithm}
 
