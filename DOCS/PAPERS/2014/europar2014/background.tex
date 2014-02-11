@@ -60,9 +60,20 @@ be built in order to limit the distance between peers globally (\ie peers of
 the same region/area would be grouped together as illustrated on Figure \ref{fig:isp}). However, in such a case at least two nodes of each group are directly connected to 
 two far nodes. 
 %
-To sum up, the DVMS proposal lacks of a topology that can consider locality properties of a multi-sites infrastructure. 
+To sum up, the DVMS proposal lacks of a topology that can consider locality
+properties of a multi-sites infrastructure. 
 
-\AL[CD/MB]{Can we add one sentence to make the transition to the next section: something for instance that explains that a hierarchy of rings will not tackle the aforementioned concern.}
+\AL[CT/MB]{Can we add one sentence to make the transition to the next section: something for instance that explains that a hierarchy of rings will not tackle the aforementioned concern.}
+
+Note that an approach that would consist in deploying one ring per site and
+interconnect these rings through a \emph{super-ring} interconnecting few
+representatives of each local rings, would not solve many problems. Besides
+problems inherent to hierarchical and structured overlay networks, this solution
+would not provide a good answer to locality: when going out of the local ring,
+it would still not be possible to find the next closest ring.
+
+\CT[AL/MB]{Qqch comme \c{c}a ?}
+
 % Autres limitations :
 % -absence de tolérance aux pannes
 % -peu d'événements gérés (surcharge d'un noeud)
