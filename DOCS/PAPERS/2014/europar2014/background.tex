@@ -70,32 +70,43 @@ To sum up, the DVMS proposal lacks of a topology that can consider locality prop
 
 \subsection{Overlay networks and locality}
 
+One of the primary downsides of overlay networks lies in that they break the
+physical topology by connecting nodes that have no physical proximity.
+
 Taking the locality into account in the construction of overlay networks was
-initially proposed in the Pastry overlay network~\cite{pastry}. In order to
-reduce the latency of the routing process, each node is given the opportunity to
-choose the closest nodes to fill its routing table. Learning the existence of
-new nodes relies on periodic exchange of the references of nodes known by nodes.
+initially proposed in the Pastry structured overlay network~\cite{pastry}. In
+order to reduce the latency of the routing process, each node is given the
+opportunity to choose the closest nodes to fill its routing table. Learning the
+existence of new nodes relies on periodic exchange of the references of nodes
+known by nodes.
+
+Similar mechanisms have been adopted within unstructured overlay networks to
+make their logical connections reflect the physical proximity of nodes, each
+node discovering its closest nodes through gossiping. Note that the proximity
+between two nodes can be estimated through any transitive metric, in particular
+the latency between the nodes~\cite{refquivabienmarindoittrouver}.
+
+These approaches need to constantly maintain the knowledge of close nodes in
+order to provide the \emph{best} node possible at the cost of periodic
+communications (uncorrelated to the actual amount of requests to be processed by
+the overlay). Our overlay differs in that it adopts a lazy approach consisting
+in searching close nodes upon receipt of requests. This way, the quality of the
+response is proportional to the frequency of requests. 
+
+Our protocol relies on the Vivaldi protocol~\cite{dabek:2001:sigcomm04} to
+detect close nodes. Vivaldi places nodes in a multi-dimensional space. Each node
+is given coordinates inside this space reflecting its physical location. The
+protocols is based on periodic message exchange. Initially, each node is given a
+random position in the space and chooses a small subset of nodes, that can be
+arbitrarily chosen. Then, it estimates its latency with these nodes, one at a
+time, and comes closer to or moves away from the nodes according to this
+estimation. Vivaldi does not allow to directly know the nodes which are close in
+the network, but to recognize them through their coordinates. Our overlay relies
+on the examination of Vivaldi coordinates of nodes discovered during the
+processing of requests sent to it.
 
 
-Le m?me concept a ?t? propos? dans les r?seaux logiques non structur?s afin de
-permettre ? chaque n\oe ud de d?couvrir des n\oe uds du syst?mes les plus
-\emph{proches}. La notion de proximit? peut recouvrir toute m?trique transitive
-entre deux n\oe uds, en particulier le temps de latence entre les n\oe
-uds~\cite{refquivabienmarindoittrouver}.
 
-Le protocole Vivaldi~\cite{dabek:2001:sigcomm04}, sur lequel notre r?seau logique est fond?,
-a une approche particuli?re. En effet, il fournit ? chaque n\oe ud des
-coordonn?es dans un espace multi-dimensionnel refl?tant sa position dans le
-r?seau physique. Initialement, chaque n\oe ud prend une position al?atoire de
-l'espace, et choisit un petit sous-ensemble de n\oe uds. Puis, il se rapproche
-dans l'espace, des n\oe uds avec lesquels il a une faible latence et s'?loigne
-dans le cas inverse. Vivaldi ne permet donc pas de conna?tre les n\oe uds qui
-lui sont proches dans le r?seau, mais de les reconna?tre via leurs coordonn?es.
 
-Les approches pr?c?dentes maintiennent constamment la connaissance des n\oe udes
-proches afin de fournir le meilleur n\oe ud possible, au co?t de communications
-p?riodiques (ind?pendamment de la quantit? de requ?tes effectives.) Notre
-approche se distingue par une approche paresseuse consistant ? rechercher des
-n\oe uds proches (en s'appuyant sur les coordonn?es Vivaldi) lors des requ?tes,
-adaptant ainsi la qualit? de la r?ponse ? la fr?quence des requ?tes.
+
 
