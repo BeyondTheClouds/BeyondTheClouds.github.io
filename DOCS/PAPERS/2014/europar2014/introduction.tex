@@ -1,31 +1,45 @@
-\section{Introduction}
-Introduced few years ago \cite{greenberg:sigcomm09}, the new trend to deliver
-cloud computing resources, in particular Infrastructure as a Service solutions,
-consists in leveraging several infrastructures  distributed world-wide. If such
-distributed cloud computing platforms deliver undeniable advantages to address
-important challenges such as reliability, latency or even in somehow
-jurisdiction concerns, most mechanisms that were previously used to operate
-centralized IaaS platforms must be revisited to offer the same level of
-transparency for the end-users.  Keeping such an objective in mind, the use of
-P2P paradigm is strongly investigated. This is particularly true for instance
-for scheduling algorithms in charge of assigning VMs on top of PMs according to
-their effective needs (and reciprocally usages).  Indeed and although major
-improvements have been done, centralized approaches \cite{hermenier:2013} are
-neither scalable nor robust enough.  Hierarchical solutions
-\cite{feller:ccgrid12} that can be seen as good candidates face important
-limitations: First, finding an efficient partitioning of resources is a tedious task as
-matching a hierarchical overlay on top of a distributed infrastructure is often not logical. 
-Second, in addition to requiring complex failover mechanisms to
-ensure leader/super peer crashed and network disconnections, hierarchical
-structures have not been designed to react swiftly to physical topology
-changes such as node apparition/removal and network performance degradations. 
-Considering scalability as well as resiliency criteria of distributed cloud computing infrastructures, 
-it is not surprising that P2P approaches have shown promising results to address the scheduling problem of VMs \cite{xxx,quesnel:2012,feller:cloudcom12}.
-% TODO Europar paper Flavien ?
-However, it is noteworthy that manipulating VMs at WAN level is definitely worse in terms of performance and network impacts than doing LANWide. 
-Hence,  it is fundamental to consider intra-site operations \vs inter-site ones.
+\section{Introduction} Introduced few years ago \cite{greenberg:sigcomm09}, the
+new trend to deliver cloud computing resources, in particular Infrastructure as
+a Service solutions, consists in leveraging several infrastructures
+distributed world-wide. If such distributed cloud computing platforms deliver
+undeniable advantages to address important challenges such as reliability,
+latency or even in somehow jurisdiction concerns, most mechanisms that were
+previously used to operate centralized IaaS platforms must be revisited to
+offer the same level of transparency for the end-users.  Keeping such an
+objective in mind, the use of P2P paradigm is strongly investigated. This is
+particularly true for instance for scheduling algorithms in charge of assigning
+VMs on top of PMs according to their effective needs (and reciprocally usages).
+Indeed and although major improvements have been done, centralized approaches
+\cite{hermenier:2013} are neither scalable nor robust enough.  Hierarchical
+solutions \cite{feller:ccgrid12} that can be seen as good candidates face
+important limitations: First, finding an efficient partitioning of resources is
+a tedious task as matching a hierarchical overlay on top of a distributed
+infrastructure is often not logical.  Second, in addition to requiring complex
+failover mechanisms to ensure leader/super peer crashed and network
+disconnections, hierarchical structures have not been designed to react swiftly
+to physical topology changes such as node apparitions/removals and network
+performance degradations.  P2P algorithms enable to address both concerns, \ie
+scalability as well as resiliency of infrastructures. However and although,
+promising approaches have been proposed to address the scheduling problem of
+VMs in a P2P fashion \cite{xxx,quesnel:2012,feller:cloudcom12}, current
+proposals do not make differences between close nodes and far ones.
+Considering that both the network latency and the bandwidth between peers are fundamentals since
+they can have a strong impact on the reactivity criteria of the scheduling
+algorithm (\ie the time to switch from one schedule to another one), \emph{locality} properties should be considered to favor 
+efficient VM operations:~\eg  peers should collaborate first with their closest
+neighborhoods in most cases from the same geographical site before contacting
+the remote ones.  Moreover this notion of locality can fluctuate over time
+according to the network bandwidth/latency that's why similarly to hierarchical
+approaches, static partitions of resources is not appropriated. 
+  
+\AL[CT/MB]{Can we add few words here regarding Gossip and P2P mechanisms that can deal with locality aspects}. 
 
- In other words, dyn
+The contribution of this paper is a new building block that enables each peer
+to collaborate with the closest ones in terms of \emph{locality}. Locality is
+defined as a cost function of the latency/bandwidth tuple. 
 
+
+Leveraging a vivaldi overlay, a shortest path algorithm  a
+In this paper, we present a new building block built on a vivaldi overlay 
  
  
