@@ -21,9 +21,9 @@ topology changes such as node apparitions/removals and network performance
 degradations.  P2P algorithms enable to address both concerns, \ie scalability
 as well as resiliency of infrastructures. However and although, promising
 approaches have been proposed to address the scheduling problem of VMs in a P2P
-fashion \cite{quesnel:2012,feller:cloudcom12}, they are still facing
+fashion \cite{quesnel:cpe2012,feller:cloudcom12}, they are still facing
 limitations related to the overlay network they rely on. The approach propopsed
-in~\cite{quesnel:2012} matches a ring overlay  on a distributed infrastructures
+in~\cite{quesnel:cpe2012} matches a ring overlay  on a distributed infrastructures
 witch prevents making any distinction between close nodes and distant ones.
 Similarly, the approach in~\cite{feller:cloudcom12}, while adopting an
 orthogonal, gossip-based approach, still suffers from building a randomized
@@ -47,15 +47,15 @@ the \emph{locality} concern in distributed VM scheduling algorithms such as the 
 % mechanisms based on a cooperative approach. 
 We estimate the locality through a cost function of the latency/bandwidth tuple
 between peers in the network, thus enabling each peer to select its closest
-neighbors. We rely on Vivaldi~\cite{refquivabien}, a simple decentralized
+neighbors. We rely on Vivaldi~\cite{dabek:2001:sigcomm04}, a simple decentralized
 protocol allowing to map a topology in a logical space while preserving
 locality.  On top of Vivaldi, a shortest path construction similar to the
 well-known Dijkstra algorithm is performed, each time there is a need for
 cooperation between two nodes taking part in the schedule. 
 We illustrate the advantage of this new building block by  changing the overlay in the
-DVMS proposal~\cite{quesnel:2012}.  We selected DVMS  as we have a good
+DVMS proposal~\cite{quesnel:cpe2012}.  We selected DVMS  as we have a good
 expertise of it and because it is, as far as we know, the only one that
-guarantees to find a solution if there is an existing one \cite{quesnel:ispa2103}.
+guarantees to find a solution if there is an existing one \cite{quesnel:ispa2013}.
                                                    
 The remainder of this article is structured as follows. In Section \ref{sec:back}, we
 discuss some background regarding the DVMS proposal and the P2P technics to
