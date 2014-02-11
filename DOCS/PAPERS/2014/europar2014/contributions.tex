@@ -45,32 +45,46 @@ collaboration between concurrent actors that have to work concurrently:
 
 \end{description}
 
-%   * les verrous sont des nids a deadlocks, c'est pourquoi on utilise le modele
-%     d'acteurs dans la nouvelle version de DVMS.
+%   * les verrous sont des nids a deadlocks.
+% 	* DVMS utilise le modele d'acteurs:
+%		- chaque instance ne communique qu'avec des messages.
+%		- on favorise les collaborations proches.
 Locking ressources often leads to deadlock \cite{agha:1986}, which can have
 a significant impact on performance and scalability. That is why we decided to
 leverage the actor model to reoarganize DVMS: each instance will collaborate
 by exclusively exchanging messages and priority will be given to collabarotion
 between close instances.
 
+%   * ainsi on a créé une librarie qui:
+%		- favorise le dvlpt d'appli distribuée.
+%		- se base sur des langages/frameworks modernes.
+%	* la librairie se base sur la prog fonctionnelle et le peerActor.
 With that in mind, we created a new library whose role is to ease the
-development of distributed application: it is based on modern piece of software (Scala and akka) based on the actor model. This library makes intensive use of
+development of distributed application: it is based on modern piece of software
+(Scala and akka) based on the actor model. This library makes intensive use of
 functionnal programming and the concept of \emph{peer actor}.
 
 \subsubsection{Peer actor abstraction}
 
+%   * Peer actor:
+%		- apporte la tolerance aux pannes, abstraction du réseau, communication
+%		  interservices.
+%		- propose une API pour développer vite.
 \emph{Peer actor} is an actor that provides several features: fault tolerance,
 network abstraction, communication between services. It provides an API that 
 enables the fast developement of distributed application : connection between
 instances of the application is automatically maintained, meaning that all 
 efforts can be concentrated on designing algorithms.
 
+%   * Peer actor deux sous acteurs:
+%		- notification actor: systeme a evenement pour les services.
+%		- network overlay actor: réseau avec implémentation chord et vivaldi.
 Peer actor contains two sub actors: \emph{notification actor} and \emph{network
 overlay actor}. Notification actor enables services to subscribe to events that
 will be triggered by other services. Network overlay actor is in charge of 
 sending/receiving message through network. There exist two implementations of 
-this network overlay actor: one is based on a Chord ring \cite{stoica2001chord}, while the other is 
-based on vivaldi algorithm to leverage locality properties.
+this network overlay actor: one is based on a Chord ring \cite{stoica2001chord},
+while the other is based on vivaldi algorithm to leverage locality properties.
 
 \begin{figure}[h!]
   \centering
