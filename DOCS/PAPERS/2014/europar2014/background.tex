@@ -2,42 +2,36 @@
 
 \subsection{DVMS}
 
-\subsubsection{Overview.}
-DVMS~\cite{quesnel:cpe2012,quesnel:ispa2013}
-(Distributed Virtual Machine Scheduler) is a framework that can schedule VMs
+%\subsubsection{Overview.}
+DVMS~\cite{quesnel:ispa2013,quesnel:cpe2012}
+(Distributed Virtual Machine Scheduler) is a framework that schedule VMs
 cooperatively and dynamically in large scale distributed
-systems.
-
-DVMS is deployed as a set of agents that are organized following a ring
-topology and that cooperate with one another to guarantee the quality of
-service~(QoS) for the VMs.
-
-When a node cannot guarantee the QoS for its hosted VMs or when it is
+systems. It is deployed as a set of agents that are organized following a ring
+topology and that cooperate with one another to guarantee that VM demands are satisfied during their executions. 
+Concretely, when a node cannot guarantee the QoS for its hosted VMs or when it is
 under-utilized, it starts an iterative scheduling procedure~(ISP) by querying
-its neighbor to find a better placement; it thus becomes the initiator of the ISP.
+its neighbor to find a better placement ; it thus becomes the initiator of the ISP.
 If the request cannot be satisfied by the neighbor, it is forwarded to the
-following free one until the ISP succeeds.
-
-\subsubsection{Strengths.}
-This approach allows each ISP to send requests only to a minimal
-number of nodes, thus decreasing the scheduling time without requiring a
-central point.
-%
-It is worth noting that an ISP can reserve all nodes of the
-infrastructure if needed, i.e. if the corresponding problem is particularly hard to solve, thus
-guaranteeing that a solution will always be found if it exists.
-
-In addition, this approach allows several ISPs to occur independently at the
-same moment throughout the infrastructure; in other words, scheduling is
-performed on partitions of the system that are created dynamically, which
-significantly improves the reactivity of the system.
-
-Communications are handled efficiently, as each node involved in a partition
-can forward a request directly to the first node outside its partition, by
-means of a ``first out'' relation.
+following free one until the ISP succeeds. When a viable mapping has been
+found, the leader (\ie the last peer that has taken part to the ISP) reconfigures 
+the system by performing adequate VM migrations.
+Such an approach allows each ISP to send requests only to a minimal number of
+nodes and even though an ISP can reserve all nodes if the corresponding problem
+is particularly hard to solve (guaranteeing thus that a solution will always be
+found it it exits), experiments have shown that in most cases ISPs involve only
+few nodes.  Moreover, the DVMS proposal allows several ISPs to occur
+independently at the same moment throughout the infrastructure; in other words,
+scheduling is performed on partitions of the system that are created
+dynamically, which significantly improves the reactivity of the system.  To
+prevent conflicts that could occur if several ISPs performed concurrent
+operations on the same PMs or VMs, it should be noted that PMs are reserved for
+exclusive use by a single ISP. 
 
 An example involving three partitions is shown on Figure~\ref{fig:isp}; in
-particular, we can see the growth of partition~1 between two steps.
+particular, we can see the growth of partition~1 between two steps. 
+Explaining in details the notion of ``first out'' is beyond the scope of this article but readers can consider that the ``first out'' relation enables
+to handle communications efficiently, as each node involved in a partition
+can forward a request directly to the first node outside its partition~\cite{quesnel:cpe2012}.
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\linewidth]{Figures/resourceAcquisition-standard.pdf}
@@ -45,41 +39,34 @@ particular, we can see the growth of partition~1 between two steps.
   \label{fig:isp}%
 \end{figure}
 
-It is worth noting that (i)~the correctness of DVMS was proven
-formally~\cite{quesnel:ispa13} and that (ii)~the first version of the prototype
-was validated at large scale (up to 4.7k VMs and 470 nodes) by means of experiments on the Grid'5000
-testbed~\cite{quesnel:ispa13},
-and at very large scale (up to 80k VMs and 8k nodes) by means of simulations
-with the SimGrid toolkit~\cite{Casanova:2008:SGF:1397760.1398183}.
+In addition to formally prove the correctness of DVMS, the first version of the prototype
+has been validated at large scale (up to 80k VMs and 8k nodes by means of simulations and up to 4.7k VMs and 470 nodes by means of experiments on the Grid'5000
+testbed~\cite{quesnel:ispa2013}).
 
-\subsubsection{Limitations of the First Implementation.}
-
-This first implementation of DVMS has several limitations; in this section, we
-will focus on locality management.
-
-Even if DVMS can be deployed across several sites, it performs better on a
-cluster.
+As discussed earlier, one limitation of this approach is related to its ring topology that prevents to take into account the network topology; 
+%\subsubsection{Limitations of The Ring}
 %
-The reasons are simple.
+%Even though  DVMS can be deployed across several sites, it performs better on a
+%cluster.
 %
-First, the ring is built without taking account of the network topology;
-therefore, a VM migration can occur between two nodes that are far from each
-other, which lasts longer than a migration between two close nodes.
+%The reason is simple.
 %
-Second, even if the ring was built so that nodes with a fast interconnection
-were close from one another, it would not prevent a node to communicate with 
-a remote neighbor instead of a close one.
+%The ring is built without taking account of the network  topology; 
+therefore, a VM migration can occur between two nodes that are far from each other, which
+lasts longer than a migration between two close nodes. Obviously the ring can
+be built in order to limit the distance between peers globally (\ie peers of
+the same region/area would be grouped together). However, there would be still
+some nodes that would be interconnected with far ones (\ie. the last node of
+one group in the ring would be interconnected with the first peer of the new
+group).  
+%
+To sum up, the DVMS proposal lacks of a topology that can consider locality properties of a mutli-site infrastructure. 
 
-To sum up, the ring topology is far from ideal when considering locality
-management, for instance in a multi-site deployment where we want to avoid
-inefficient and costly inter-site VM migrations.
-
+\AL[CD/MB]{Can we add one sentence to make the transition to the next section: something for instance that explains that a hierarchy of rings will not tackle the aforementioned concern.}
 % Autres limitations :
 % -absence de tolérance aux pannes
 % -peu d'événements gérés (surcharge d'un noeud)
 % -ne prend pas en compte les liens entre VMS
-
-
 
 \subsection{P2P - locality}
 
