@@ -68,13 +68,14 @@ To sum up, the DVMS proposal lacks of a topology that can consider locality prop
 % -peu d'événements gérés (surcharge d'un noeud)
 % -ne prend pas en compte les liens entre VMS
 
-\subsection{P2P - locality}
+\subsection{Overlay networks and locality}
 
+Taking the locality into account in the construction of overlay networks was
+initially proposed in the Pastry overlay network~\cite{pastry}. In order to
+reduce the latency of the routing process, each node is given the opportunity to
+choose the closest nodes to fill its routing table. Learning the existence of
+new nodes relies on periodic exchange of the references of nodes known by nodes.
 
-La prise en compte de la localit? dans la construction de r?seaux logiques
-(\emph{overlays}) a ?t? initialement propos? dans le r?seau logique structur?
-Pastry~\cite{pastry} afin d'optimiser la latence du routage. La recherche de ces
-n\oe uds proches est fond?e sur un ?change p?diodique de r?f?rences de n\oe uds.
 
 Le m?me concept a ?t? propos? dans les r?seaux logiques non structur?s afin de
 permettre ? chaque n\oe ud de d?couvrir des n\oe uds du syst?mes les plus
