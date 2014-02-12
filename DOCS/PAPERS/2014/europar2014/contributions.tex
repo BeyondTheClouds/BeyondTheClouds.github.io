@@ -17,7 +17,11 @@ position.
 
 The initial configuration of the physical network can take an arbitrary
 shape.
-\AL[CT/MB]{C'est pas de la redite d'avant tout ce paragraphe, je veux dire ca devrait pas etre plutot dans background non ?}
+\AL[CT/MB]{C'est pas de la redite d'avant tout ce paragraphe, je veux dire ca
+  devrait pas etre plutot dans background non ?}
+
+\MB[AL]{Non, dans le sens ou on est plus descriptifs. Dans le paragraphe
+  precedent, on voit plutot Vivaldi comme une boite noire (sa fonctionalite).}
 
 As already mentioned, Vivaldi~\cite{dabek:2001:sigcomm04} is a
 distributed protocol assigning coordinates in the plane to nodes of a
@@ -32,8 +36,8 @@ with this node in the plane accordingly. % See Figure~\ref{fig:vivaldi_before} a
 % moving according to the Vivaldi protocol.
 A globally accurate positioning of nodes can be
 obtained if nodes have a few long-distance nodes in their
-view~\cite{dabek:2001:sigcomm04}. These long distance links can be easily
-maintained by means of a simple gossip protocol.
+view. Note that these long distance links can be easily
+maintained.
 
 % \begin{figure}[!b]
 % 	\vspace*{-.3cm}
@@ -103,7 +107,14 @@ contacted for becoming the next node in one spiral, and receives the associated
 spiral view, it can also keep the nodes that are the closest to itself, thus
 potentially increasing the quality of a future spiral construction.
 
-\AL[CT/MB]{Est ce qu'un schema n'aurait pas du sens ici ? si possible en se reappuyant sur le schÃ©ma precedent avec les 3 clusters ? }
+\AL[CT/MB]{Est ce qu'un schema n'aurait pas du sens ici ? si possible en se
+  reappuyant sur le schema precedent avec les 3 clusters ? }
+
+\MB[AL]{ça risque de prendre pas mal de place. Mais pourquoi pas. figure +
+  explication de la figure... Notre idée est de mettre plusieurs figures ... Au
+  moins 3 pour illustrer un scenario d'amélioration d'une spirale sortant d'un
+  noeud donne. On essaye de faire ça ce soir. On précise que si ensuite tu
+  decides de l'enlever tu nous devras 1 million de dollars.}
 
 \subsection{Library for locality based algorithm}
 

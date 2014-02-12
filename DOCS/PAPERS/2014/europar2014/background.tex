@@ -71,8 +71,8 @@ it would still not be possible to find the next closest ring.
 %properties of a multi-sites infrastructure. 
 
 % Autres limitations :
-% -absence de tolérance aux pannes
-% -peu d'événements gérés (surcharge d'un noeud)
+% -absence de tolerance aux pannes
+% -peu d'evenements geres (surcharge d'un noeud)
 % -ne prend pas en compte les liens entre VMS
 
 \subsection{Overlay Networks and Locality}
@@ -85,9 +85,9 @@ Taking the locality into account in the construction of overlay networks was
 initially proposed in the Pastry structured overlay network~\cite{pastry}. In
 order to reduce the latency of the routing process, each node is given the
 opportunity to choose the closest nodes to fill its routing table. Learning the
-existence of new nodes relies on periodic exchange of the references of nodes
-known by nodes.
-\AL[CT/MB]{nodes known by nodes c'est un peu rude ca non ;) ?}
+existence of new nodes relies on a periodic exchange of part of routing tables.
+
+%%\AL[CT/MB]{nodes known by nodes c'est un peu rude ca non ;) ?}
 
 Similar mechanisms have been adopted within unstructured overlay networks to
 make their logical connections reflect the physical proximity of nodes, each
@@ -106,6 +106,11 @@ the overlay).
  Our overlay differs in that it adopts a lazy approach consisting
 in searching close nodes upon receipt of requests. This way, the quality of the
 response is proportional to the frequency of requests. 
+
+\MB[AL]{On n'est pas vraiment d'accord. Dans la contrib, ce n'est plus le lieu de la
+  comparaison, ou on se doit d'etre principalement descriptif (description de
+  notre approche), je dirais que le background peut aussi contenir notre
+  positionnement par rapport a lui.}
 
 Our protocol relies on the Vivaldi protocol~\cite{dabek:2001:sigcomm04} to
 detect close nodes. Vivaldi places nodes in a multi-dimensional space. Each node
