@@ -16,7 +16,10 @@ position.
 \subsubsection*{Giving a position to nodes}
 
 The initial configuration of the physical network can take an arbitrary
-shape. As already mentioned, Vivaldi~\cite{dabek:2001:sigcomm04} is a
+shape.
+\AL[CT/MB]{C'est pas de la redite d'avant tout ce paragraphe, je veux dire ca devrait pas etre plutot dans background non ?}
+
+As already mentioned, Vivaldi~\cite{dabek:2001:sigcomm04} is a
 distributed protocol assigning coordinates in the plane to nodes of a
 distributed set of nodes. Each node is equipped with a \emph{view} of the
 network, \emph{i.e.}, a set of nodes it knows. Coordinates obtained by a node
@@ -85,6 +88,7 @@ nodes that are already in the spiral, leading to the impossibility to build the
 spiral further. However, this problem can be easily addressed by forcing the
 presence of a few long distance nodes whenever it is updated.
 
+
 \subsubsection*{Learning}
 
 Applying the protocol described above, the quality of the spiral is
@@ -98,6 +102,8 @@ learning mechanism coming with no extra communication cost: when a node is
 contacted for becoming the next node in one spiral, and receives the associated
 spiral view, it can also keep the nodes that are the closest to itself, thus
 potentially increasing the quality of a future spiral construction.
+
+\AL[CT/MB]{Est ce qu'un schema n'aurait pas du sens ici ? si possible en se reappuyant sur le schéma precedent avec les 3 clusters ? }
 
 \subsection{Library for locality based algorithm}
 
