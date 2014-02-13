@@ -93,8 +93,8 @@ Similar mechanisms have been adopted within unstructured overlay networks to
 make their logical connections reflect the physical proximity of nodes, each
 node discovering its closest nodes through gossiping. Note that the proximity
 between two nodes can be estimated through any transitive metric, in particular
-the latency between the nodes~\cite{refquivabienmarindoittrouver}.
-\AL[MB]{Marin tu dois trouver la ref d'apres CT ! }
+the latency between the nodes~\cite{tman}.
+
 
 These approaches need to constantly maintain the knowledge of close nodes in
 order to provide the \emph{best} node possible at the cost of periodic
@@ -104,11 +104,6 @@ the overlay).
 The overlay we propose in this paper differs in that it adopts a lazy approach
 consisting in searching close nodes upon receipt of requests. This way, the
 quality of the response is proportional to the frequency of requests. 
-%
-%\MB[AL]{On n'est pas vraiment d'accord. Dans la contrib, ce n'est plus le lieu de la
-%  comparaison, ou on se doit d'etre principalement descriptif (description de
-%  notre approche), je dirais que le background peut aussi contenir notre
-%  positionnement par rapport a lui.}
 
 Our protocol relies on the Vivaldi protocol~\cite{dabek:2001:sigcomm04} to
 detect close nodes. Vivaldi places nodes in a multi-dimensional space. Each node
