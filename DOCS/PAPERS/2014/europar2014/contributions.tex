@@ -1,6 +1,6 @@
 
 
-\subsection{Locality-aware  overlay network}
+\subsection{Locality-aware  overlay network \label{ssec:lao}}
 
 We here present our lazy locality-aware overlay network which underlies the VM
 scheduling platform we developed. It is made of two layers. The lower layer is
@@ -105,7 +105,41 @@ distance between the nodes it comprises and the initial node, we rely on a
 learning mechanism coming with no extra communication cost: when a node is
 contacted for becoming the next node in one spiral, and receives the associated
 spiral view, it can also keep the nodes that are the closest to itself, thus
-potentially increasing the quality of a future spiral construction.
+potentially increasing the quality of a future spiral construction. Such an
+improvement through learning is illustrated in Figure~\ref{fig:learning}.
+
+
+\begin{figure}[ht]
+  {
+    \begin{center}{
+	\begin{minipage}{.3\linewidth}
+	  \begin{center}
+	    \includegraphics[width=1.05\linewidth]{Figures/learning1.png}\\(a)
+	  \end{center}
+	\end{minipage}
+	~
+	\begin{minipage}{.3\linewidth}
+	  \begin{center}
+	    \includegraphics[width=1.05\linewidth]{Figures/learning2.png}\\(b)
+	  \end{center}
+	\end{minipage}
+        ~
+	\begin{minipage}{.3\linewidth}
+	  \begin{center}
+	    \includegraphics[width=1.05\linewidth]{Figures/learning3.png}\\(c)
+	  \end{center}
+	\end{minipage}
+	\caption{Learning mechanism: (a) the initial view of each node are
+          materialized by the dashed lines. Given these views, the spiral
+          obtained from node A is represented by the double thick lines. In
+          particular, this spiral allowed $A$ and $B$ to discover each
+          others. (b) If $B$ starts building a spiral, it will start by
+          contacting $A$. 
+
+\label{fig:learning}} }
+      \end{center}
+}
+\end{figure}
 
 \AL[CT/MB]{Est ce qu'un schema n'aurait pas du sens ici ? si possible en se
   reappuyant sur le schema precedent avec les 3 clusters ? }
