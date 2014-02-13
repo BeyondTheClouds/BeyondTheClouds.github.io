@@ -1,5 +1,5 @@
 
-\subsection{Efficient Virtual Machine Management}
+%\subsection{Efficient Virtual Machine Management}
 
 Many virtual infrastructure managers have been proposed to deal with specific concerns.
 In this section, we will focus on some of their limitations, especially regarding
@@ -11,7 +11,7 @@ Entropy~\cite{hermenier:cp11,hermenier:2013}, since they are easy to deploy.
 They are generally designed to work on a cluster.
 %
 In this context, they do not take account of the network topology, and they
-cannot manage VMs efficiently in a multi-site deployment.
+cannot manage VMs efficiently in a multi-site/multi-cluster deployment.
 %
 Moreover, they are prone to fault-tolerance, scalability, and reactivity issues; to avoid
 these limitations, one possibility is to rely on more decentralized approaches, like
@@ -55,4 +55,5 @@ topology and therefore manage VMs efficiently in a multi-site deployment.
 
 To summarize, a locality-aware distributed approach is required to (i)~avoid issues
 related to scalability and single points of failures, and to (ii)~manage VMs efficiently
-in heterogeneous network environments like those found in multi-site deployments.
+in heterogeneous network environments like those found in multi-site/multi-cluster deployments.
+The work presented in this paper targets such a challenge. 
