@@ -3,37 +3,41 @@
 \subsection{Locality-aware  overlay network}
 
 We here present our lazy locality-aware overlay network which underlies the VM
-scheduling platform we developed. It is made of two layers. The lower layer
-strongly rely on the Vivaldi protocol to make nodes aware of their position in
-the platform. The higher layer takes its roots in the classic Dijkstra's
-shortest parth algorithm to collect a set of close nodes starting from a given
-position.
+scheduling platform we developed. It is made of two layers. The lower layer is
+mainly an implementation of the Vivaldi protocol (whose core mechanisms were
+described earlier) making nodes (that are initially interconnected arbitrarily)
+aware of their position in the platform. 
 
-\subsubsection*{Giving a position to nodes}
+Based on these coordinates, the higher layer is responsible for building
+dynamically an locality-aware overlay. This layer takes its roots in the classic
+Dijkstra's shortest path algorithm to collect a set of close nodes starting from
+a given position.
 
-The initial configuration of the physical network can take an arbitrary
-shape.
-\AL[CT/MB]{C'est pas de la redite d'avant tout ce paragraphe, je veux dire ca
-  devrait pas etre plutot dans background non ?}
+%%\subsubsection*{Giving a position to nodes}
 
-\MB[AL]{Non, dans le sens ou on est plus descriptifs. Dans le paragraphe
-  precedent, on voit plutot Vivaldi comme une boite noire (sa fonctionalite).}
 
-As already mentioned, Vivaldi~\cite{dabek:2001:sigcomm04} is a
-distributed protocol assigning coordinates in the plane to nodes of a
-distributed set of nodes. Each node is equipped with a \emph{view} of the
-network, \emph{i.e.}, a set of nodes it knows. Coordinates obtained by a node
-reflects its \emph{position} in the network, \emph{i.e.}, close nodes in the
-network are given close coordinates in the plane. To achieve this, each node
-checks the round trip time between itself and another node (randomly chosen
-among nodes in its view) and adapts its distance (by changing its coordinates)
-with this node in the plane accordingly. % See Figure~\ref{fig:vivaldi_before} and
-% Figure~\ref{fig:vivaldi_after} for an illustration of 4 nodes~(A, B, C and D)
-% moving according to the Vivaldi protocol.
-A globally accurate positioning of nodes can be
-obtained if nodes have a few long-distance nodes in their
-view. Note that these long distance links can be easily
-maintained.
+
+% \AL[CT/MB]{C'est pas de la redite d'avant tout ce paragraphe, je veux dire ca
+%   devrait pas etre plutot dans background non ?}
+
+% \MB[AL]{Non, dans le sens ou on est plus descriptifs. Dans le paragraphe
+%   precedent, on voit plutot Vivaldi comme une boite noire (sa fonctionalite).}
+
+% As already mentioned, Vivaldi~\cite{dabek:2001:sigcomm04} is a
+% distributed protocol assigning coordinates in the plane to nodes of a
+% distributed set of nodes. Each node is equipped with a \emph{view} of the
+% network, \emph{i.e.}, a set of nodes it knows. Coordinates obtained by a node
+% reflects its \emph{position} in the network, \emph{i.e.}, close nodes in the
+% network are given close coordinates in the plane. To achieve this, each node
+% checks the round trip time between itself and another node (randomly chosen
+% among nodes in its view) and adapts its distance (by changing its coordinates)
+% with this node in the plane accordingly. % See Figure~\ref{fig:vivaldi_before} and
+% % Figure~\ref{fig:vivaldi_after} for an illustration of 4 nodes~(A, B, C and D)
+% % moving according to the Vivaldi protocol.
+% A globally accurate positioning of nodes can be
+% obtained if nodes have a few long-distance nodes in their
+% view. Note that these long distance links can be easily
+% maintained.
 
 % \begin{figure}[!b]
 % 	\vspace*{-.3cm}
@@ -56,8 +60,8 @@ maintained.
 
 \subsubsection*{Searching for Close Nodes}
 
-Once the map is achieved (each node knows its coordinates), we are able to
-decide whether two nodes are \emph{close} by calculating their
+Once the map of Vivaldi is achieved (each node knows its coordinates), we are
+able to decide whether two nodes are \emph{close} by calculating their
 distance. However, the view of each node does not \emph{a priori} contain its
 closest nodes. Therefore, we need additional mechanisms to locate a set of nodes
 that are close to a given initial node -- Vivaldi gives a \emph{location} to
