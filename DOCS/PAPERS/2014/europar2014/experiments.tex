@@ -55,8 +55,9 @@ min in steps of 10 (with a significant part between 40\% and 100\% of CPU
 usage).   Each experiment duration was set to 3600 seconds.
 
 For each experiment, we booked 40 compute servers spread on 4 geographical sites
-and 1 service server from the Grid'5000 testbed. The compute servers were used to run virtual machines and
-DVMS while the service node runs the aforementioned injector.
+and 1 service server from the Grid'5000 testbed. The compute servers were used 
+to run virtual machines and DVMS while the service node runs the aforementioned
+injector.
 %
 Each compute node will host a number of virtual machines proportional to the 
 number of CPU cores it has ($nb VM\ =\ 1.3\ \times\ nb\ cores)$
@@ -67,28 +68,37 @@ number of CPU cores it has ($nb VM\ =\ 1.3\ \times\ nb\ cores)$
 \subsubsection{Results}
 
 The impact of locality on DVMS is significant: using a Vivaldi based network
-overlay leads to an average number of 83\% of intrasite migrations while using 
-a Chord based DVMS leads a ratio of 50\% of intrasite migrations, as depicted
+overlay leads to an average number of 86.3\% of intrasite migrations while using 
+a Chord based DVMS leads a ratio of 49.6\% of intrasite migrations, as depicted
 in the following table:
 
+\begin{table}
 
-\begin{tabular}{|c|c|c|}
-  
-  % <HEADER>
-  \hline
-  network overlay & \multicolumn{1}{|p{3cm}|}{\centering average number of intrasite migrations}  & \multicolumn{1}{|p{3cm}|}{ \centering average number of migrations}  \\
-  % </HEADER>
+  \begin{center}
+    \begin{tabular}{|c|c|c|}   
 
-  % <ROW 1> => Vivaldi data
-  \hline
-  Vivaldi & 83 & 100 \\
-  % </ROW 1>
+      % <HEADER>
+      \hline \multicolumn{1}{|p{3cm}|}{ }
+       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering Vivaldi}  \\
+      % </HEADER>
 
-  % <ROW 2> => Chord data
-  \hline
-  Chord & 40 & 80 \\
-  % </ROW 2>
+      % <ROW 1> => Average
+      \hline
+      average & 0.496 & 0.863 \\
+      % </ROW 1>
 
-  \hline
-\end{tabular}
+      % <ROW 2> => Min
+      \hline
+      minimum & 0.378 & 0.798 \\
+      % </ROW 2>
 
+      % <ROW 2> => Max
+      \hline
+      maximum & 0.629 & 0.935 \\
+      % </ROW 2>
+
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Comparison of intra-site migrations ratio percentage.}
+\end{table}
