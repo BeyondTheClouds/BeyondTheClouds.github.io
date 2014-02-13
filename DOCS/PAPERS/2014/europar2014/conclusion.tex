@@ -37,12 +37,16 @@ However manipulating VMs WANwide degrades significantly the performance as well 
 %to process a request according to its scale: Local requests should be computed
 %locally, while large computations should benefit from a large number of nodes.
 
-Hence, the first step toward such a highly distributed Cloud infrastructure is to take
-into account this notion of locality between cloud computing resources.  In
-this paper, we shew how such locality criteria can be considered by delivering a new building block
-using  P2P algorithms and a vivaldi overlay connected to the DVMS proposal, an efficient and
-flexible VMs scheduler.  Our first experiments over Grid'5000 show that,
-connecting 4 differents sites and scheduling VMs over them, we can gain up to
-66\% of inter-sites operations. 
+Hence, the first step toward such a highly distributed Cloud infrastructure is
+to take into account this notion of locality between cloud computing resources.
+In this paper, we shew how such locality criteria can be considered by
+delivering a new building block using  P2P algorithms and a vivaldi overlay
+connected to the DVMS proposal, an efficient and flexible VMs scheduler.  Our
+first experiments over Grid'5000 show that, connecting 4 differents sites and
+scheduling VMs over them, we can gain up to 66\% of inter-sites operations. It
+is worth noting that one experimental observation we had during this work is
+that the proposed overlay is actually able to maintain an overlay networks that
+reflects the underlying topology, and in particular to build a hierarchical
+overlay dynamically if the underlying topology is hierarchical.
 
 Our future work will consist in ... 
