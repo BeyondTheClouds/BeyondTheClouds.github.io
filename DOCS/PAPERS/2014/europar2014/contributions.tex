@@ -1,17 +1,16 @@
 \AL[JP/FD]{Ca serait bien d'avoir un petit chapeau qui explique le decoupage dans cette section}
 
-\subsection{Locality-aware  overlay network \label{ssec:lao}}
+\subsection{Locality-aware Overlay Network \label{ssec:lao}}
 
-We here present our lazy locality-aware overlay network which underlies the VM
-scheduling platform we developed. It is made of two layers. The lower layer is
-mainly an implementation of the Vivaldi protocol (whose core mechanisms were
-described earlier) making nodes (that are initially interconnected arbitrarily)
-aware of their position in the platform. 
+We here present our lazy locality-aware overlay network which underlies the VM scheduling
+platform we developed. It is built upon two layers. The lower layer is mainly an
+implementation of the Vivaldi protocol (whose core mechanisms were described earlier)
+making nodes (that are initially interconnected arbitrarily) aware of their position in
+the platform.
 
-Based on these coordinates, the higher layer is responsible for building
-dynamically an locality-aware overlay. This layer takes its roots in the classic
-Dijkstra's shortest path algorithm to collect a set of close nodes starting from
-a given position.
+Based on these coordinates, the higher layer is responsible for building a locality-aware
+overlay dynamically. This layer takes its roots in the classic Dijkstra's shortest path
+algorithm to collect a set of close nodes starting from a given position.
 
 %%\subsubsection*{Giving a position to nodes}
 
@@ -60,54 +59,49 @@ a given position.
 
 \subsubsection*{Searching for Close Nodes}
 
-Once the map of Vivaldi is achieved (each node knows its coordinates), we are
-able to decide whether two nodes are \emph{close} by calculating their
-distance. However, the view of each node does not \emph{a priori} contain its
-closest nodes. Therefore, we need additional mechanisms to locate a set of nodes
-that are close to a given initial node -- Vivaldi gives a \emph{location} to
-each node, not a neighborhood. We use a modified distributed version of the
-classic Dijkstra's shortest path algorithm. The goal is to build a
-\emph{spiral}\footnote{The term \emph{spiral} is here a misuse of language,
-since the graph actually drawn in the plane might contain crossing edges.}
-interconnecting the nodes in the plane that are the closest ones to a given
-initial node.
+Once the map of Vivaldi is achieved (each node knows its coordinates), we are able to
+decide whether two nodes are \emph{close} by calculating their distance. However, the view
+of each node does not \emph{a priori} contain its closest nodes. Therefore, we need
+additional mechanisms to locate a set of nodes that are close to a given initial node --
+Vivaldi gives a \emph{location} to each node, not a neighborhood. We use a modified
+distributed version of the classic Dijkstra's shortest path algorithm. The goal is to
+build a \emph{spiral}\footnote{The term \emph{spiral} is here a misuse of language, since
+  the graph actually drawn in the plane might contain crossing edges.}  interconnecting
+the nodes in the plane that are the closest ones to a given initial node.
 
-Let us consider that our initial point is a node called $I$. The first step is
-to find a node to build a two-node spiral with $I$. Such a node is sought in the
-view of $I$ by selecting the node, say $S$, having the smallest distance with
-$I$. $I$ then sends its view to $S$, $I$ stores $S$ as its successor in the
-spiral, and $S$ adds $I$ as its predecessor in the spiral. Then $I$ forwards its
-view to $S$. $S$ creates a new view by keeping the $n$ nodes which are the
-closest to $I$ in the views of $I$ and $S$. This last view is then referred to
-as the \emph{spiral view} and is intended to contain a set of nodes among which
-to find the next step of the spiral. Then $S$ restarts the same process: among
-the spiral view, it chooses the node with the smallest distance to $I$, say
-$S'$, and adds it in the spiral -- $S$ becomes the predecessor of $S'$ and $S'$
-becomes the successor of $S$. Then, the spiral view is sent to $S'$ which
-updates it with the nodes it has in its own view. The process is repeated until
-enough nodes have been gathered (which is a parameter sent by the application).
+Let us consider that our initial point is a node called $I$. The first step is to find a
+node to build a two-node spiral with $I$. Such a node is sought in the view of $I$ by
+selecting the node, say $S$, having the smallest distance with $I$. $I$ then sends its
+view to $S$, $I$ stores $S$ as its successor in the spiral, and $S$ adds $I$ as its
+predecessor in the spiral. Then $I$ forwards its view to $S$. $S$ creates a new view by
+keeping the $n$ nodes which are the closest to $I$ in the views of $I$ and $S$. This last
+view is then referred to as the \emph{spiral view} and is intended to contain a set of
+nodes among which to find the next step of the spiral. Then $S$ restarts the same process:
+among the spiral view, it chooses the node with the smallest distance to $I$, say $S'$,
+and adds it in the spiral -- $S$ becomes the predecessor of $S'$ and $S'$ becomes the
+successor of $S$. Then, the spiral view is sent to $S'$ which updates it with the nodes it
+has in its own view. The process is repeated until enough nodes have been gathered (which
+is a parameter sent by the application).
 
-Note that one risk is to be blocked by having a spiral view containing only
-nodes that are already in the spiral, leading to the impossibility to build the
-spiral further. However, this problem can be easily addressed by forcing the
-presence of a few long distance nodes whenever it is updated.
-
+Note that there is one risk to be blocked by having a spiral view containing only nodes
+that are already in the spiral, leading to the impossibility to build the spiral
+further. However, this problem can be easily addressed by forcing the presence of a few
+long distance nodes whenever it is updated.
 
 \subsubsection*{Learning}
 
-Applying the protocol described above, the quality of the spiral is
-questionable in the sense that the nodes that are actually close to the initial
-node $I$ may not be included.%  The only property ensured is that one step
+Applying the protocol described above, the quality of the spiral is questionable in the
+sense that the nodes that are actually close to the initial node $I$ may not be
+included.% The only property ensured is that one step
 % forward on the built path always takes us further from the initial node.
 %
-To improve the \emph{quality} of the spiral, \emph{i.e.}, reduce the average
-distance between the nodes it comprises and the initial node, we rely on a
-learning mechanism coming with no extra communication cost: when a node is
-contacted for becoming the next node in one spiral, and receives the associated
-spiral view, it can also keep the nodes that are the closest to itself, thus
-potentially increasing the quality of a future spiral construction. Such an
-improvement through learning is illustrated in Figure~\ref{fig:learning}.
-
+To improve the \emph{quality} of the spiral, \emph{i.e.}, to reduce the average distance
+between the nodes it comprises and the initial node, we rely on a learning mechanism
+coming with no extra communication cost: when a node is contacted to become the next node
+in one spiral, and when it receives the associated spiral view, it can also keep the nodes
+that are the closest to itself, thus potentially increasing the quality of a future spiral
+construction. Such an improvement through learning is illustrated in
+Figure~\ref{fig:learning}.
 
 \begin{figure}[ht]
   {
@@ -129,13 +123,13 @@ improvement through learning is illustrated in Figure~\ref{fig:learning}.
 	    \includegraphics[width=1.05\linewidth]{Figures/learning3.png}\\(c)
 	  \end{center}
 	\end{minipage}
-	\caption{Learning mechanism: (a) the initial view of each node are
-          materialized by the dashed lines. Given these views, the spiral obtained from
-          node A is represented by the double thick lines. In particular, this spiral
-          allowed $A$ and $B$ to discover each others. (b) If $B$ starts building a
-          spiral, it will start by contacting $A$. This spiral construction allows also E
-          and B to discover each others. (c) If $A$ is requested to start another spiral,
-          it will exhibit an increased locality awareness.\label{fig:learning}}  }
+	\caption{Learning mechanism: (a) the initial view of each node are materialized by
+          the dashed lines. Given these views, the spiral obtained from node A is
+          represented by the double thick lines. In particular, this spiral allowed $A$
+          and $B$ to discover each others. (b) If $B$ starts building a spiral, it will
+          start by contacting $A$. This spiral construction allows also E and B to
+          discover each others. (c) If $A$ is requested to start another spiral, it will
+          exhibit an increased locality awareness.\label{fig:learning}} }
       \end{center}
 }
 \end{figure}
@@ -191,17 +185,16 @@ improvement through learning is illustrated in Figure~\ref{fig:learning}.
 %%	* la librairie se base sur la prog fonctionnelle et le peerActor.
 %With that in mind, we created a new library whose role is to ease the
 
-As described in Sec. \ref{ssec:dvms}, the DVMS proposal can be divided in two major
-components: on the one hand the ring overlay and on the other hand, the
-protocol in charge of detecting and resolving scheduling issues.  As our goal
-consists in taking into account locality criteria without changing the protocol
-of DVMS, we designed a building block, \ie \emph{the Peer actor}, that enabled
-us to revisit DVMS by abstracting the overlays it relies on.  At
-coarse-grained, the Peer actor can be seen as a generic layer for high level
-distributes services, providing network abstractions and robust communication
-between agents deployed on each node.  By leveraging the Peer actor API,
-developers can focus on the service itself without dealing with node
-apparitions/removals and network disconnections. 
+As described in Section \ref{ssec:dvms}, the DVMS proposal can be divided in two major
+components: on the one hand the ring overlay and on the other hand, the protocol in charge
+of detecting and resolving scheduling issues. As our goal consists in taking into account
+locality criteria without changing the DVMS protocol, we designed a building block, \ie
+\emph{the Peer actor}, that enable us to revisit DVMS by abstracting the overlays it
+relies on. At a coarse-grain level, the Peer actor can be seen as a generic layer for high
+level distributed services, providing network abstractions and robust communications
+between agents deployed on each node. By leveraging the Peer actor API, developers can
+focus on the service itself without dealing with node apparitions/removals and network
+disconnections.
 
 %\begin{figure}[h!]
 \begin{wrapfigure}{r}{0.3\linewidth}
@@ -212,13 +205,11 @@ apparitions/removals and network disconnections.
 %\end{figure}
 \end{wrapfigure}
 
-From the software point of view, the Peer actor relies on modern piece of
-software (Scala and akka)  following  the actor model rules.  In such a model,
-each instance will collaborate by exclusively exchanging messages and priority
-will be given to collaboration between close instances.  Such a coding approach
-enables to tackle several issues of distributed systems such as deadlocks and
-race conditions.
-
+From the software point of view, the Peer actor relies on modern piece of software (Scala
+and akka) following the actor model rules. In such a model, each instance will
+collaborate by exclusively exchanging messages and priority will be given to collaboration
+between close instances. Such a coding approach enables to tackle several issues of
+distributed systems such as deadlocks and race conditions.
 
 %%\subsubsection{Peer actor abstraction}
 %
@@ -232,11 +223,12 @@ race conditions.
 %%		- notification actor: systeme a evenement pour les services.
 %%		- network overlay actor: réseau avec implémentation chord et vivaldi.
 
-As illustrated on Figure \ref {fig:peeractor}, the Peer actor contains two sub
-actors: the \emph{Notification actor} and the \emph{Network overlay actor}. The
-Notification actor enables services to subscribe to events that will be
-triggered by other services. The Network overlay actor is in charge of
-sending/receiving message through network. In order to compare both approaches, ring-based \vs locality-aware, we developed two different
-network overlay actors: the first one provides a Chord-like overlay 
-\cite{stoica2001chord}, while the second one delivers the locality-aware overlay described in Sec. \ref{ssec:lao}.
+As illustrated in Figure~\ref {fig:peeractor}, the Peer actor contains two sub actors: the
+\emph{Notification actor} and the \emph{Network overlay actor}. The Notification actor
+enables services to subscribe to events that will be triggered by other services. The
+Network overlay actor is in charge of sending/receiving message through network. In order
+to compare both approaches, ring-based \vs locality-aware, we developed two different
+network overlay actors: the first one provides a Chord-like overlay
+\cite{stoica2001chord}, while the second one delivers the locality-aware overlay described
+in Sec. \ref{ssec:lao}.
 
