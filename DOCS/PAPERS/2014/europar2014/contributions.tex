@@ -1,4 +1,4 @@
-Our goal in this paper is to revisit distributed scheduling algorithms such as
+Our goal, in this paper, is to revisit distributed scheduling algorithms such as
 the DVMS proposal in order to take account of locality criteria.  To this aim,
 we propose, fisrt,  to focus in particular on the overlay network such services rely on and second, to design
 an abstraction that allows to combine such a locality-aware overlay network without being too
@@ -92,21 +92,6 @@ that are already in the spiral, leading to the impossibility to build the spiral
 further. However, this problem can be easily addressed by forcing the presence of a few
 long distance nodes whenever it is updated.
 
-\subsubsection*{Learning}
-
-Applying the protocol described above, the quality of the spiral is questionable in the
-sense that the nodes that are actually close to the initial node $I$ may not be
-included.% The only property ensured is that one step
-% forward on the built path always takes us further from the initial node.
-%
-To improve the \emph{quality} of the spiral, \emph{i.e.}, to reduce the average distance
-between the nodes it comprises and the initial node, we rely on a learning mechanism
-coming with no extra communication cost: when a node is contacted to become the next node
-in one spiral, and when it receives the associated spiral view, it can also keep the nodes
-that are the closest to itself, thus potentially increasing the quality of a future spiral
-construction. Such an improvement through learning is illustrated in
-Figure~\ref{fig:learning}.
-
 \begin{figure}[ht]
   {
     \begin{center}{
@@ -137,6 +122,21 @@ Figure~\ref{fig:learning}.
       \end{center}
 }
 \end{figure}
+
+\subsubsection*{Learning}
+
+Applying the protocol described above, the quality of the spiral is questionable in the
+sense that the nodes that are actually close to the initial node $I$ may not be
+included.% The only property ensured is that one step
+% forward on the built path always takes us further from the initial node.
+%
+To improve the \emph{quality} of the spiral, \emph{i.e.}, to reduce the average distance
+between the nodes it comprises and the initial node, we rely on a learning mechanism
+coming with no extra communication cost: when a node is contacted to become the next node
+in one spiral, and when it receives the associated spiral view, it can also keep the nodes
+that are the closest to itself, thus potentially increasing the quality of a future spiral
+construction. Such an improvement through learning is illustrated in
+Figure~\ref{fig:learning}.
 
 \subsection{PeerActor: A Building Block to Abstract Overlays}
 %
