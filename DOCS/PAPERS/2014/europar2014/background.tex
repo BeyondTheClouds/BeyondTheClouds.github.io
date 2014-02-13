@@ -100,9 +100,9 @@ order to provide the \emph{best} node possible at the cost of periodic
 communications (uncorrelated to the actual amount of requests to be processed by
 the overlay).
 
-The overlay we propose to rely on differs in that it adopts a lazy approach consisting
-in searching close nodes upon receipt of requests. This way, the quality of the
-response is proportional to the frequency of requests. 
+The overlay we propose in this paper differs in that it adopts a lazy approach
+consisting in searching close nodes upon receipt of requests. This way, the
+quality of the response is proportional to the frequency of requests. 
 
 \MB[AL]{On n'est pas vraiment d'accord. Dans la contrib, ce n'est plus le lieu de la
   comparaison, ou on se doit d'etre principalement descriptif (description de
@@ -112,11 +112,19 @@ response is proportional to the frequency of requests.
 Our protocol relies on the Vivaldi protocol~\cite{dabek:2001:sigcomm04} to
 detect close nodes. Vivaldi places nodes in a multi-dimensional space. Each node
 is given coordinates inside this space reflecting its physical location. The
-protocols is based on periodic message exchange. Initially, each node is given a
-random position in the space and chooses a small subset of nodes, that can be
-arbitrarily chosen. Then, it estimates its latency with these nodes, one at a
-time, and comes closer to or moves away from the nodes according to this
-estimation. Vivaldi does not allow to directly know the nodes which are close in
+protocols is based on simple message exchanges. Initially, each node is given a
+random position in the space and chooses (possibly arbitrarily) a small subset
+of nodes, composing its \emph{view}. Then, each node, starts estimating the
+round trip time between itself and another node chosen randomly in its view, and
+adapts its distance with this node in the space accordingly, coming closer to it
+or moving away from it. This step can be repeated by the nodes independently
+(with another node in their view), to improve the acuracy of the positioning. A
+globally accurate positioning of nodes can be obtained very quickly (in a small
+number of steps) if nodes have a few long-distance nodes in their view and if
+the network is not excessively dynamic. These long distance links can be easily
+maintained. 
+
+Recall that Vivaldi does not allow to directly know the nodes which are close in
 the network, but to recognize them through their coordinates. Our overlay relies
 on the examination of Vivaldi coordinates of nodes discovered during the
 processing of requests sent to it.
