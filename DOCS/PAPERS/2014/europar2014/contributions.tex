@@ -1,8 +1,8 @@
-Our goal, in this paper, is to revisit distributed scheduling algorithms such as
+The aim of this paper is to revisit a distributed scheduling algorithm,
 the DVMS proposal in order to take account of locality criteria.  To this aim,
-we propose, fisrt,  to focus in particular on the overlay network such services rely on and second, to design
-an abstraction that allows to combine such a locality-aware overlay network without being too
-instrusive from the code point of view. 
+we focus in a first time on the network overlay, and in a second time we propose
+an abstraction that allows to combine DVMS with a locality-aware network overlay
+without being instrusive in it's source code.
 
 \subsection{Locality-aware Overlay Network \label{ssec:lao}}
 
@@ -193,7 +193,7 @@ As described in Section \ref{ssec:dvms}, the DVMS proposal can be divided in two
 components: on the one hand the ring overlay and on the other hand, the protocol in charge
 of detecting and resolving scheduling issues. As our goal consists in taking into account
 locality criteria without changing the DVMS protocol, we designed a building block, \ie
-\emph{the Peer actor}, that enable us to revisit DVMS by abstracting the overlays it
+\emph{the Peer actor}, that enables us to revisit DVMS by abstracting the overlays it
 relies on. At a coarse-grain level, the Peer actor can be seen as a generic layer for high
 level distributed services, providing network abstractions and robust communications
 between agents deployed on each node. By leveraging the Peer actor API, developers can

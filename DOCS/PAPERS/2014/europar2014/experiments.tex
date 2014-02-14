@@ -48,7 +48,7 @@ $t$ is a random variable that follows an exponential distribution with rate
 parameter $\lambda$. The Gaussian distribution is defined by a mean ($\mu$) as
 well as a standard deviation ($\sigma$) that are given at the beginning of the
 experiment. 
-exponential and the Gaussian distributions previously described. 
+%exponential and the Gaussian distributions previously described. 
 The parameters are $\lambda=\mathit{Nb\_VMs}/300$ and $\mu=70$, $\sigma=30$.
 Concretely, the load of each VM starts from 0\% and varies on average every 5
 min in steps of 10 (with a significant part between 40\% and 100\% of CPU
@@ -77,6 +77,8 @@ total number of migrations, using Chord or Vivaldi. The results show that the im
 significant: using a Vivaldi based network overlay leads to an average number of
 86.3\% of intra-site migrations while using a Chord based DVMS decreases this
 ratio to 49.6\%.
+
+
 
 \begin{table}
 
@@ -118,6 +120,13 @@ involved in our experiments. It is noticeable that Luxembourg and Nancy have a
 low latency, which is quite normal considering that Nancy is separated by only
 100 kilometers.
 
+\vspace{-1.0cm}
+
+This means that Vivaldi enabled DVMS to learn which site is more interesting to
+perform VM migration : promoting low latency inter-site collaboration have made 
+many of inter-site migrations acceptable compared to those executed by the Chord
+version.
+\\
 
 \begin{table}
 
@@ -154,15 +163,13 @@ low latency, which is quite normal considering that Nancy is separated by only
   \caption{\label{latency_table} Latency measured between sites.}
 \end{table}
 
-This means that Vivaldi enabled DVMS to learn which site is more interesting to
-perform VM migration : promoting low latency inter-site collaboration have made 
-many of inter-site migrations acceptable compared to those executed by the Chord
-version.
 
+\vspace{-1.0cm}
+
+
+\vspace{-1.3cm}
 
 \subsubsection{Reactivity}
-
-
 \begin{table}
 
   \begin{center}
@@ -194,6 +201,7 @@ version.
   \caption{\label{microcosm_table} Comparison of microcosms metrics between Chord and Vivaldi overlay.}
 \end{table}
 
+\vspace{-1.0cm}
 
 Table~\ref{microcosm_table} depicts metrics that allow for an objective 
 comparison of the efficiency of both network overlay. Firstly, using the Vivaldi
