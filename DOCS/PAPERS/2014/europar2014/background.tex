@@ -83,11 +83,13 @@ As illustrated in the previous paragraph, one of the primary downsides of overla
 lies in that they break the physical topology by connecting nodes that have no physical
 proximity.
 %
-Taking the locality into account in the construction of overlay networks was initially
-proposed in the Pastry structured overlay network~\cite{pastry}. In order to reduce the
-latency of the routing process, each node is given the opportunity to choose the closest
-nodes to fill its routing table. Learning the existence of new nodes relies on a periodic
-exchange of parts of routing tables.
+Besides hierarchical attempts in building locality aware overlay
+networks~\cite{superchord,ECAN,XuMK03}, we can first mention the locality
+improvement mechanisms of the Pastry structured overlay
+network~\cite{pastry}. In order to reduce the latency of the routing process,
+each node is given the opportunity to choose the closest nodes to fill its
+routing table. Learning the existence of new nodes relies on a periodic exchange
+of parts of routing tables.
 
 Similar mechanisms have been adopted within unstructured overlay networks to make their
 logical connections reflect the physical proximity of nodes, each node discovering its
