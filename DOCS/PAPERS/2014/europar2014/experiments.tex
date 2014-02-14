@@ -20,7 +20,7 @@
 
 %\subsection{Grid'5000 experiments}
 
-\JP{Complete this section with more experimentation results.}
+%\JP{Complete this section with more experimentation results.}
 
 %\subsubsection{Objectives}
 %The prototype has been tested with a various number of experiments conducted on
@@ -54,23 +54,29 @@ Concretely, the load of each VM starts from 0\% and varies on average every 5
 min in steps of 10 (with a significant part between 40\% and 100\% of CPU
 usage).   Each experiment duration was set to 3600 seconds.
 
-For each experiment, we booked 40 compute servers spread on 4 geographical sites
+For each experiment, we booked 40 compute servers spread on 4 geographical sites (10 servers per site)
 and 1 service server from the Grid'5000 testbed. The compute servers were used 
 to run virtual machines and DVMS while the service node runs the aforementioned
 injector.
 %
-Each compute node will host a number of virtual machines proportional to the 
-number of CPU cores it has ($nb VM\ =\ 1.3\ \times\ nb\ cores)$
+Each compute node was equiped with 8 cores and was hosting a number of virtual
+machines proportional to its number of CPU cores
+ ($nb VM\ =\ 1.3\ \times\ nb\ cores)$, leading to an global number of 416 VMs. 
+Although such a number is rather small regarding the latest experiments that have been performed on DVMS \cite{quesnel:ispa2013}, our goal
+is not to validate once again the scalability criteria but to focus on the locality aspect of such an algorithm. 
 %\[
 %	number\ of\ virtual\ machines\ =\ 1.3\ \times\ number\ of\ cores
 %\]
 
-\subsubsection{Results}
+\subsection{Results}
 
-The impact of locality on DVMS is significant: using a Vivaldi based network
-overlay leads to an average number of 86.3\% of intrasite migrations while using 
-a Chord based DVMS leads a ratio of 49.6\% of intrasite migrations, as depicted
-in the following table:
+\subsubsection{Maximization of intra-site migrations}
+
+Table~\ref{migration_table} compares ratio between intra-site migrations and the
+total number of migrations, using Chord or Vivaldi. The results show that the impact of locality is
+significant: using a Vivaldi based network overlay leads to an average number of
+86.3\% of intra-site migrations while using a Chord based DVMS decreases this
+ratio to 49.6\%.
 
 \begin{table}
 
@@ -100,5 +106,104 @@ in the following table:
       \hline
     \end{tabular}
   \end{center}
-  \caption{Comparison of intra-site migrations ratio percentage.}
+  \caption{\label{migration_table} Comparison of intra-site migrations ratio between Chord and Vivaldi overlay.}
 \end{table}
+
+\subsubsection{Dynamic clustering}
+
+During our investigation of the Vivaldi based results, we noticed that many of
+the inter-site migrations were performed between Luxembourg and Nancy. In 
+Table~\ref{latency_table} we measure the latency that exists between every site
+involved in our experiments. It is noticeable that Luxembourg and Nancy have a
+low latency, which is quite normal considering that Nancy is separated by only
+100 kilometers.
+
+
+\begin{table}
+
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|}   
+
+      % <HEADER>
+      \hline \multicolumn{1}{|p{2cm}|}{ } & \multicolumn{1}{|p{2cm}|}{\centering Grenoble }  & \multicolumn{1}{|p{2cm}|}{\centering Luxembourg } & \multicolumn{1}{|p{2cm}|}{\centering Nancy }& \multicolumn{1}{|p{2cm}|}{\centering Rennes } \\
+      % </HEADER>
+
+      % <ROW 1> => Grenoble
+      \hline
+      Grenoble & 0.09 ms & 16.55 ms & 14.24 ms & 15.92 ms \\
+      % </ROW 1>
+
+      % <ROW 2> => Luxembourg
+      \hline
+      Luxembourg &  & 0.17 ms & 2.70 ms & 13.82 ms \\
+      % </ROW 2>
+
+      % <ROW 3> => Nancy
+      \hline
+      Nancy & &  & 0.27 ms & 11.42 ms \\
+      % </ROW 3>
+
+      % <ROW 4> => Rennes
+      \hline
+      Rennes &  &  &  & 0.23 ms \\
+      % </ROW 3>
+
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{\label{latency_table} Latency measured between sites.}
+\end{table}
+
+This means that Vivaldi enabled DVMS to learn which site is more interesting to
+perform VM migration : promoting low latency inter-site collaboration have made 
+many of inter-site migrations acceptable compared to those executed by the Chord
+version.
+
+
+\subsubsection{Reactivity}
+
+
+\begin{table}
+
+  \begin{center}
+    \begin{tabular}{|c|c|c|}   
+
+      % <HEADER>
+      \hline \multicolumn{1}{|p{3cm}|}{ }
+       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering Vivaldi}  \\
+      % </HEADER>
+
+      % <ROW 1> => Size
+      \hline
+      average size (servers) & 3.918 & 2.337 \\
+      % </ROW 1>
+
+      % <ROW 2> => Number of sites
+      \hline
+      average number of sites involved & 1.645 & 1.082 \\
+      % </ROW 2>
+
+      % <ROW 2> => Duration
+      \hline
+      average duration (msec) & 154.63 & 98.50 \\
+      % </ROW 2>
+
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{\label{microcosm_table} Comparison of microcosms metrics between Chord and Vivaldi overlay.}
+\end{table}
+
+
+Table~\ref{microcosm_table} depicts metrics that allow for an objective 
+comparison of the efficiency of both network overlay. Firstly, using the Vivaldi
+based overlay decrease the number of servers that are involved in microcosms by
+41\%, meaning that collaboration between close nodes has become more efficient.
+
+Secondly, it is interesting that using the Vivaldi overlay leads to a 46\% lower
+microcosm duration than encountered with Chord. This result is consistent with 
+the fact that with Vivaldi, the number of sites that are involved in microcosms
+becomes very close to one site : collaborating with closer servers enable
+scheduling algorithm to minimize latency between peers, thus considerably 
+increasing the reactivity of the system.
+% 
