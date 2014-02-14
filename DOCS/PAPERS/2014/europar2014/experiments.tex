@@ -70,7 +70,7 @@ number of CPU cores it has ($nb VM\ =\ 1.3\ \times\ nb\ cores)$
 The impact of locality on DVMS is significant: using a Vivaldi based network
 overlay leads to an average number of 86.3\% of intrasite migrations while using 
 a Chord based DVMS leads a ratio of 49.6\% of intrasite migrations, as depicted
-in the following table:
+in the table \ref{tab:nb_mig}.
 
 \begin{table}
 
@@ -101,7 +101,9 @@ in the following table:
     \end{tabular}
   \end{center}
   \caption{Comparison of intra-site migrations ratio between Chord and Vivaldi overlay.}
+	\label{tab:nb_mig}
 \end{table}
+
 
 
 \begin{table}
@@ -128,4 +130,5 @@ in the following table:
     \end{tabular}
   \end{center}
   \caption{Comparison of microcosms metrics between Chord and Vivaldi overlay.}
+  \ref{tab:ms_size}
 \end{table}
