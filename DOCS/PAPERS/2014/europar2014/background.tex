@@ -8,9 +8,9 @@ systems. It is deployed as a set of agents that are organized following a ring t
 and that cooperate with one another to guarantee that VM demands are satisfied during
 their executions. Concretely, when a node cannot guarantee the QoS for its hosted VMs or
 when it is under-utilized, it starts an iterative scheduling procedure~(ISP) by querying
-its neighbor to find a better placement; it thus becomes the initiator of the ISP. If the
-request cannot be satisfied by the neighbor, it is forwarded to the following free one
-until the ISP succeeds. When a viable mapping has been found, the leader (\ie the last
+its first neighbor to find a better placement; it thus becomes the initiator of the ISP.
+If the request cannot be satisfied by the neighbor, it is forwarded to the following free
+one until the ISP succeeds. When a viable mapping has been found, the leader (\ie the last
 peer that has taken part to the ISP) reconfigures the system by performing adequate VM
 migrations. Such an approach allows each ISP to send requests only to a minimal number of
 nodes and even though an ISP can reserve all nodes if the corresponding problem is

@@ -25,58 +25,56 @@
 %\subsubsection{Objectives}
 %The prototype has been tested with a various number of experiments conducted on
 %the Grid'5000 testbed. 
-The main objective of the experiments we conducted was to estimate
-impact of locality on the performance of a distributed scheduling algorithm. 
-A significant portion of the reconfiguration time is spent in live migration of
-virtual machines, which depends of network parameters such as latency and
-bandwidth. One way to improve performance of distributed scheduling algorithm is
-is to promote collaboration between close ressources, which can be reach by 
-maximising this ratio: $nb\ intrasite\ migrations/nb\ migrations$.
+The main objective of the experiments we conducted was to estimate impact of locality on
+the performance of a distributed scheduling algorithm. A significant portion of the
+reconfiguration time is spent in live migration of virtual machines, which depends of
+network parameters such as latency and bandwidth. One way to improve performance of
+distributed scheduling algorithms is is to promote collaboration between close ressources,
+which can be reached by maximising this ratio: $nb\ intrasite\ migrations/nb\ migrations$.
 %\[
 %	\frac{number\ of\ intrasite\ migrations}{number\ of\ migrations}
 %\]
 
 
-\subsection{Experimental protocol}
-To compare our experiments, we implemented a dedicated injector that makes load
-changes of VMs during a predefined time.  VMs are launched on PMs in a
-round-robin manner, \ie each PM has almost the same number of VMs at the
-beginning, The experiment consists in  repeatedly changes target CPU loads of
-VMs.  Every $t$ second, the injector that is deployed on a dedicated node,
-selects one VM and changes its CPU load according to a Gaussian distribution.
-$t$ is a random variable that follows an exponential distribution with rate
-parameter $\lambda$. The Gaussian distribution is defined by a mean ($\mu$) as
-well as a standard deviation ($\sigma$) that are given at the beginning of the
-experiment. 
-exponential and the Gaussian distributions previously described. 
+\subsection{Experimental Protocol}
+
+To compare our experiments, we implemented a dedicated injector that makes load changes of
+VMs during a predefined time. VMs are launched on PMs in a round-robin manner, \ie each
+PM has almost the same number of VMs at the beginning, The experiment consists in
+repeatedly changes target CPU loads of VMs. Every $t$ seconds, the injector that is
+deployed on a dedicated node selects one VM and changes its CPU load according to a
+Gaussian distribution. $t$ is a random variable that follows an exponential distribution
+with rate parameter $\lambda$. The Gaussian distribution is defined by a mean ($\mu$) as
+well as a standard deviation ($\sigma$) that are given at the beginning of the experiment.
+%exponential and the Gaussian distributions previously described. 
 The parameters are $\lambda=\mathit{Nb\_VMs}/300$ and $\mu=70$, $\sigma=30$.
 Concretely, the load of each VM starts from 0\% and varies on average every 5
 min in steps of 10 (with a significant part between 40\% and 100\% of CPU
-usage).   Each experiment duration was set to 3600 seconds.
+usage). Each experiment duration was set to 3600 seconds.
 
-For each experiment, we booked 40 compute servers spread on 4 geographical sites (10 servers per site)
-and 1 service server from the Grid'5000 testbed. The compute servers were used 
-to run virtual machines and DVMS while the service node runs the aforementioned
+For each experiment, we booked 40 compute servers spread over 4 geographical sites (10
+servers per site) and 1 service server from the Grid'5000 testbed. The compute servers
+were used to run virtual machines and DVMS while the service node runs the aforementioned
 injector.
 %
-Each compute node was equiped with 8 cores and was hosting a number of virtual
-machines proportional to its number of CPU cores
- ($nb VM\ =\ 1.3\ \times\ nb\ cores)$, leading to an global number of 416 VMs. 
-Although such a number is rather small regarding the latest experiments that have been performed on DVMS \cite{quesnel:ispa2013}, our goal
-is not to validate once again the scalability criteria but to focus on the locality aspect of such an algorithm. 
+Each compute node was equiped with 8 cores and was hosting a number of virtual machines
+proportional to its number of CPU cores ($nb VM\ =\ 1.3\ \times\ nb\ cores)$, leading to
+an global number of 416 VMs. Although such a number is rather small regarding the latest
+experiments that have been performed on DVMS~\cite{quesnel:ispa2013}, our goal is not to
+validate once again the scalability criteria but to focus on the locality aspect of such
+an algorithm.
 %\[
 %	number\ of\ virtual\ machines\ =\ 1.3\ \times\ number\ of\ cores
 %\]
 
 \subsection{Results}
 
-\subsubsection{Maximization of intra-site migrations}
+\subsubsection{Maximization of Intra-Site Migrations}
 
-Table~\ref{migration_table} compares ratio between intra-site migrations and the
-total number of migrations, using Chord or Vivaldi. The results show that the impact of locality is
-significant: using a Vivaldi based network overlay leads to an average number of
-86.3\% of intra-site migrations while using a Chord based DVMS decreases this
-ratio to 49.6\%.
+Table~\ref{migration_table} compares the ratio between intra-site migrations and the total
+number of migrations, using Chord or Vivaldi. The results show that the impact of locality
+is significant: using a Vivaldi based network overlay leads to an average number of 86.3\%
+of intra-site migrations while using a Chord based DVMS decreases this ratio to 49.6\%.
 
 \begin{table}
 
@@ -109,14 +107,17 @@ ratio to 49.6\%.
   \caption{\label{migration_table} Comparison of intra-site migrations ratio between Chord and Vivaldi overlay.}
 \end{table}
 
-\subsubsection{Dynamic clustering}
+\subsubsection{Dynamic Clustering}
 
-During our investigation of the Vivaldi based results, we noticed that many of
-the inter-site migrations were performed between Luxembourg and Nancy. In 
-Table~\ref{latency_table}, we present the latency that exists between every site
-involved in our experiments. It is noticeable that Luxembourg and Nancy have a
-low latency, which is quite normal considering that Nancy is separated by only
-100 kilometers.
+During our investigation of the Vivaldi based results, we noticed that many of the
+inter-site migrations were performed between Luxembourg and Nancy. In
+Table~\ref{latency_table}, we present the latency that exists between every site involved
+in our experiments. It is noticeable that Luxembourg and Nancy have a low latency, which
+is quite normal considering that Nancy is separated by only 100 kilometers.
+\\
+This means that Vivaldi enabled DVMS to learn which site is more interesting to perform VM
+migration. Promoting low latency inter-site collaboration have made many of inter-site
+migrations acceptable compared to those executed by the Chord version.
 
 
 \begin{table}
@@ -154,16 +155,14 @@ low latency, which is quite normal considering that Nancy is separated by only
   \caption{\label{latency_table} Latency measured between sites.}
 \end{table}
 
-This means that Vivaldi enabled DVMS to learn which site is more interesting to
-perform VM migration : promoting low latency inter-site collaboration have made 
-many of inter-site migrations acceptable compared to those executed by the Chord
-version.
 
+% \vspace{-1.0cm}
+
+
+% \vspace{-1.3cm}
 
 \subsubsection{Reactivity}
-
-
-\begin{table}[t!]
+\begin{table}
 
   \begin{center}
     \begin{tabular}{|c|c|c|}   
@@ -194,11 +193,12 @@ version.
   \caption{\label{microcosm_table} Comparison of microcosms metrics between Chord and Vivaldi overlay.}
 \end{table}
 
+% \vspace{-1.0cm}
 
-Table~\ref{microcosm_table} depicts metrics that allow for an objective 
-comparison of the efficiency of both network overlay. Firstly, using the Vivaldi
-based overlay decrease the number of servers that are involved in microcosms by
-41\%, meaning that collaboration between close nodes has become more efficient.
+Table~\ref{microcosm_table} depicts metrics that allow for an objective comparison of the
+efficiency of both network overlay. Firstly, using the Vivaldi based overlay decrease the
+number of servers that are involved in microcosms by 41\%, meaning that collaboration
+between close nodes has become more efficient.
 
 Secondly, it is interesting that using the Vivaldi overlay leads to a 46\% lower
 microcosm duration than encountered with Chord. This result is consistent with 
