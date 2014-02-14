@@ -113,7 +113,7 @@ ratio to 49.6\%.
 
 During our investigation of the Vivaldi based results, we noticed that many of
 the inter-site migrations were performed between Luxembourg and Nancy. In 
-table~\ref{latency_table} we measure the latency that exists between every site
+Table~\ref{latency_table}, we present the latency that exists between every site
 involved in our experiments. It is noticeable that Luxembourg and Nancy have a
 low latency, which is quite normal considering that Nancy is separated by only
 100 kilometers.
@@ -163,7 +163,7 @@ version.
 \subsubsection{Reactivity}
 
 
-\begin{table}
+\begin{table}[t!]
 
   \begin{center}
     \begin{tabular}{|c|c|c|}   
@@ -202,8 +202,9 @@ based overlay decrease the number of servers that are involved in microcosms by
 
 Secondly, it is interesting that using the Vivaldi overlay leads to a 46\% lower
 microcosm duration than encountered with Chord. This result is consistent with 
-the fact that with Vivaldi, the number of sites that are involved in microcosms
-becomes very close to one site : collaborating with closer servers enable
-scheduling algorithm to minimize latency between peers, thus considerably 
-increasing the reactivity of the system.
+the fact that with our locality-aware overlay, the number of sites that are involved in microcosms
+becomes very close to one~: collaborating with closer nodes enable
+to perform scheduling/reconfiguring phases much faster since migration operations are shorter in time, increasing, thus, considerably the reactivity of the system.
+%% TODO (ici ca aurait ete bien de donner un odre de grandeur sur la difference entre le temps de migration intra-site vs inter-sites pour deux VMS de meme classe (i.e. qui ont la meme memory intensity, celle défini dans le code de l'injector). 
+
 % 
