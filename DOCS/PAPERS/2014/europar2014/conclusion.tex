@@ -1,21 +1,20 @@
 
-Cloud Computing has entered our everyday life at a very high speed and huge
-scale. From classic high performance computing simulations to the management of
-huge amounts of data coming from mobile devices and sensors, its impact can no
-longer be minimized.
+Cloud Computing has entered our everyday life at a very high speed and huge scale. From
+classic high performance computing simulations to the management of huge amounts of data
+coming from mobile devices and sensors, its impact can no longer be minimized.
 % While a lot of progress has already been made in Cloud
 %technologies, there are several concerns that limit the complete adoption of
 %the Cloud Computing paradigm.
-While promoted during a long time, delivering cloud computing capabilities by
-leveraging only few large-scale data centers do not enable to cope with the
-demand of cloud resources anymore and a new model consisting in leveraging
-several micro/nano data centers distributed WANWide is more and more
-investigated.
-The main challenge is thus to revisit most of the mechanisms that are common
-to current IaaS management systems in order to leverage more decentralized
-algorithms. Amongst the different contributions that have been proposed, a large number has focused on the scheduling issue of the VMs 
-in order to achieve the scalability required but at the expense of the locality criteria. 
-However manipulating VMs WANwide degrades significantly the performance as well as the quality of the service of the whole system. 
+While promoted during a long time, delivering cloud computing capabilities by leveraging
+only few large-scale data centers do not enable to cope with the demand of cloud resources
+anymore and a new model consisting in leveraging several micro/nano data centers
+distributed WANWide is more and more investigated. The main challenge is thus to revisit
+most of the mechanisms that are common to current IaaS management systems in order to
+leverage more decentralized algorithms. Amongst the different contributions that have been
+proposed, a large number has focused on the scheduling issue of the VMs in order to
+achieve the scalability required but at the expense of the locality criteria. However
+manipulating VMs WANwide degrades significantly the performance as well as the quality of
+the service of the whole system.
 
 % 
 %In a previous report~\cite{lebre:hal-00854204}, we outlined that, in addition
@@ -37,17 +36,21 @@ However manipulating VMs WANwide degrades significantly the performance as well 
 %to process a request according to its scale: Local requests should be computed
 %locally, while large computations should benefit from a large number of nodes.
 
-Hence, the first step toward such a highly distributed Cloud infrastructure is
-to take into account this notion of locality between cloud computing resources.
-In this paper, we shew how such locality criteria can be considered by
-delivering a new building block using  P2P algorithms and a vivaldi overlay
-connected to the DVMS proposal, an efficient and flexible VMs scheduler.  Our
-first experiments over Grid'5000 show that, connecting 4 differents sites and
-scheduling VMs over them, we can gain up to 72\% of inter-sites operations. It
-is worth noting that one experimental observation we had during this work is
-that the proposed overlay is actually able to maintain an overlay networks that
-reflects the underlying topology, and in particular to build a hierarchical
-overlay dynamically if the underlying topology is hierarchical.
+Hence, the first step toward such a highly distributed Cloud infrastructure is to take
+into account this notion of locality between cloud computing resources. In this paper, we
+shew how such locality criteria can be considered by delivering a new building block using
+P2P algorithms and a vivaldi overlay connected to the DVMS proposal, an efficient and
+flexible VMs scheduler. Our first experiments over Grid'5000 show that, connecting 4
+differents sites and scheduling VMs over them, we can gain up to 72\% of inter-sites
+operations. It is worth noting that one experimental observation we had during this work
+is that the proposed overlay is actually able to maintain an overlay network that
+reflects the underlying topology, and in particular to build a hierarchical overlay
+dynamically if the underlying topology is hierarchical.
 
-Our future work will consist in refine the decision model used in scheduling mechanisms to enable them to consider the cost difference between intra-site and inter-sites migrations, thus promoting intra-site migrations in multi-site microcosms. More generally, the association between locality based overlay and Peer Actor will become a building block for revisiting every single service composing IaaS systems. It will enable to deliver a new generation of utility computing as depicted by the
-Disovery Initiative \footnote{\url{http://beyondtheclouds.github.io/}}.
+Our future work will consist in refining the decision model used in scheduling mechanisms to
+enable them to consider the cost difference between intra-site and inter-sites migrations,
+thus promoting intra-site migrations in multi-site microcosms. More generally, the
+association between locality based overlay and Peer Actor will become a building block for
+revisiting every single service composing IaaS systems. It will enable to deliver a new
+generation of utility computing as depicted by the Discovery Initiative
+\footnote{\url{http://beyondtheclouds.github.io/}}.
