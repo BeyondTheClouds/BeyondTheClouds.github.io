@@ -72,8 +72,8 @@ an algorithm.
 \subsubsection{Maximization of Intra-Site Migrations}
 
 Table~\ref{migration_table} compares the ratio between intra-site migrations and the total
-number of migrations, using Chord or Vivaldi. The results show that the impact of locality
-is significant: using a Vivaldi based network overlay leads to an average number of 86.3\%
+number of migrations, using Chord or our locality-based overlay (LBO). The results show that the impact of locality
+is significant: using LBO leads to an average number of 86.3\%
 of intra-site migrations while using a Chord based DVMS decreases this ratio to 49.6\%.
 
 \begin{table}
@@ -83,7 +83,7 @@ of intra-site migrations while using a Chord based DVMS decreases this ratio to 
 
       % <HEADER>
       \hline \multicolumn{1}{|p{3cm}|}{ }
-       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering Vivaldi}  \\
+       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering LBO}  \\
       % </HEADER>
 
       % <ROW 1> => Average
@@ -104,18 +104,19 @@ of intra-site migrations while using a Chord based DVMS decreases this ratio to 
       \hline
     \end{tabular}
   \end{center}
-  \caption{\label{migration_table} Comparison of intra-site migrations ratio between Chord and Vivaldi overlay.}
+  \caption{\label{migration_table} Comparison of intra-site migrations ratio
+    between Chord and our locality-based overlay.}
 \end{table}
 
 \subsubsection{Dynamic Clustering}
 
-During our investigation of the Vivaldi based results, we noticed that many of the
-inter-site migrations were performed between Luxembourg and Nancy. In
+During our investigation of the results brought about LBO, we noticed that many of the
+inter-site migrations were performed between Luxembourg and Nancy sites. In
 Table~\ref{latency_table}, we present the latency that exists between every site involved
 in our experiments. It is noticeable that Luxembourg and Nancy have a low latency, which
 is quite normal considering that Nancy is separated by only 100 kilometers.
 \\
-This means that Vivaldi enabled DVMS to learn which site is more interesting to perform VM
+This means that LBO enabled DVMS to learn which site is more interesting to perform VM
 migration. Promoting low latency inter-site collaboration have made many of inter-site
 migrations acceptable compared to those executed by the Chord version.
 
@@ -169,7 +170,7 @@ migrations acceptable compared to those executed by the Chord version.
 
       % <HEADER>
       \hline \multicolumn{1}{|p{3cm}|}{ }
-       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering Vivaldi}  \\
+       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering LBO}  \\
       % </HEADER>
 
       % <ROW 1> => Size
@@ -190,17 +191,18 @@ migrations acceptable compared to those executed by the Chord version.
       \hline
     \end{tabular}
   \end{center}
-  \caption{\label{microcosm_table} Comparison of microcosms metrics between Chord and Vivaldi overlay.}
+  \caption{\label{microcosm_table} Comparison of microcosms metrics between
+    Chord and our locality-based overlay.}
 \end{table}
 
 % \vspace{-1.0cm}
 
 Table~\ref{microcosm_table} depicts metrics that allow for an objective comparison of the
-efficiency of both network overlay. Firstly, using the Vivaldi based overlay decrease the
+efficiency of both network overlay. Firstly, using the LBO decreases the
 number of servers that are involved in microcosms by 41\%, meaning that collaboration
 between close nodes has become more efficient.
 
-Secondly, it is interesting that using the Vivaldi overlay leads to a 46\% lower
+Secondly, it is interesting that using the LBO leads to a 46\% lower
 microcosm duration than encountered with Chord. This result is consistent with 
 the fact that with our locality-aware overlay, the number of sites that are involved in microcosms
 becomes very close to one: collaborating with closer nodes enable
