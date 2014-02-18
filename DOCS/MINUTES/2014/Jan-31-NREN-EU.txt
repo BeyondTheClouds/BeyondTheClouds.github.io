@@ -1,0 +1,73 @@
+
+Telco: 31st January
+Attendees : 
+    PSNC - Roman Lapacz 
+    RENATER - Jean Francois Guezou
+    GRNET - Panos Louridas
+    
+    
+
+Agenda: 
+Presentation of the Discovery initiative : http://beyondtheclouds.github.io
+- No formal framework right now:
+-Inria Project Lab is on-going
+- ICT 
+
+- GN4
+
+
+Discussion about H2020 opportunities (ICT-7 - http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/topics/83-ict-07-2014.html )
+Current Consortium: 
+
+Orange Labs
+Inria
+CRS4 (Italia)
+Renater
+BSC (needs confirmation)
+
+Currently in discussion: 
+Deutsch Telekom
+GRNET
+PSNC
+
+ Type of action : Research and innovations
+Small (2 and 4Millions) or Large (5 and 8 Millions) ?  (66 millions are provisionned for ICT 7-a cf. page 84, for 2014)
+
+
+GRNET:
+one data-center operating by an open-stack fork cloudkit
+you can find more details on the software here: http://www.synnefo.org/
+users outside Greece can test the cloud here: https://okeanos-global.grnet.gr/home/
+the production service for Greece is here: https://okeanos.grnet.gr/home/
+and a technical overview here: https://www.usenix.org/publications/login/october-2013-volume-38-number-5/synnefo-complete-cloud-stack-over-ganeti
+ideally we would like to see how synnefo could be used with the DISCOVERY software; synnefo is OpenStack compatible with extra features; we would see to the bridges / adapters etc. if required
+
+there will be a wrapper to interact with cloud systems  but the LUC OS  will deal with much lower levels (such as hypervisor internals)
+For instance Orange Labs want to adress IaaS++ Services 
+
+another one planned next year
+Experience: 
+Software programming  (Scala)
+reliability / image /...
+Due to the production system, GRNET has a strong expertise on large centralized system so then can clearly list the mandatory mechanims that have to be revisited in a distributed fashion. 
+
+
+Several PoPs but Hardware costs have to be provisionned (can we provision investissment costs - Need to be clarify)
+The demonstrator should leverage at least few points in each partner (i.e. the Telcos/NRENs)   `
+backup solution : Few Slices from the DCs already available
+
+Opened questions: What can prevent the deployment of a discovery like approach in PSNC / GRNET
+Complexity/Costs to deploy a micro DCs in each/Few PoPs of PSNC/GRNET  
+
+PSNC: 
+smartenIT (uNaDa concept) -http://www.smartenit.eu (LUC on user site)
+NOVI project - interconnection of testbeds  http://www.fp7-novi.eu/
+NREN for Poland, operates the national academic network PIONIER (POPs in main cities)
+Extend POPs should be quite feasible by isolating few servers from few PoPs.
+Experience: 
+network technologies including SDNs (interested by network layer) 
+use of existing solutions and development of new ones
+
+We need to consider muti-domain issue
+
+

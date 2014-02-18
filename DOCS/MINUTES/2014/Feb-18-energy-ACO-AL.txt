@@ -1,0 +1,69 @@
+Il faut quantifier le cout de mise en oeuvre d'une micro infrastructure permettant d'heberger par exemple 100 VMs avec les demandes de ressources suivantes par VM : 1 core / 4 GB Ram / 1Gbps NIC / 50 GB 
+        Cela pourrait etre mappé sur une architecture suivante par exemple  
+        10  * 1 blade 12 cores (bi proc/6 cores) / 48 GB / 10 Gbps NIC / 500 GB*2  permettrait d'heberger les 100 VMs en gardant  des ressources (i.e. deux cores et 8 GB RAM) pour le systeme de supervision/administration Discovery
+
+L'idée serait de définir une brique elementaire pouvant etre etendue (i.e. une nouvelle brique est deployé et vient completer les resources disponibles) à la demande de chaque NR. 
+En plus du cout financier d'acquisition, il serait bon de faire une étude energetique pour prevoir l'impact sur le CRAC et les couts indirectes (elect, ....)
+
+- - - - - - - -
+Bilan energetique d'un NR actuel 
+fluide
+elec
+Listée par PoPs (tableau)
+
+Overhead d'une solution blade pour 50 VMs/ 100 VMs/...
+- - - - - - - - - - - - 
+ 
+Analyse reseau 
+- traffic restant au niveau d'un PoP (ie. restant par exemple sur la region bretagne)
+- traffic inter-PoP
+- traffic sortant vers Internet / Geant
+- traffic vers les plateformes clouds (Amazon ? Rackspace ? )
+
+- - - - - - - - - 
+Premier braimstorming pros/cons
+                                                
+(+) gain au niveau du réseau du fait de la plus grande proximité de l'usager
+contre argumentation : 
+meme consommation de l'equipement reseau quelque soit le traffic 
+A -> B -> C
+A,B,C ont une consommation constante et identique
+transfert A -> C  =  transfert A -> B car la consommation ne fluctue pas autant que ce qu'il est possible de mesurer sur les serveurs. 
+ATTENTION A LA MANIERE DE FORMULER CETTE IDEE, UN LEVIER POURRAIT ETRE SUR LE FAIT D'ALLUMER/ETEINDRE LES PORTS A LA VOLEE (cependant gain negligeable)
+A CONFIRMER AVEC RENATER/EQUIPEMENTIER 
+
+(+) gain à attendre en matière de climatisation : freecooling plus facile à mettre en oeuvre, climatisation qui pourra être totalement inutile pour les nano-datacenters
+A etudier en fonction de la taille (quelques blades OK mais plusieurs racks non ... )
+Il est important de considerer que là encore l'infrastructure est en place (les materiels actifs RENATER sont hebergés dans des salles machines deja equipées de CRAC)
+Plutot de formuler en disant qu'il n' y a pas d'impact additionel. 
+
+(-) tarifs au KWh potentiellement plus élevés en liaison plus faible consommation au niveau d'un datacenter, pas de tarif de gros 
+A  attentuer:  pour un operateur qui opere n NR, il est facturé en un coup
+pour RENATER qui heberge ses ressources dans plusieurs points de presence dont il n'a pas l'administration, l'energie est refacturé. 
+                              l'argument est valable pour RENATER uniquement pour les resources type UC qui seront deployés (n nano DC vs 1 gros DC) 
+
+(+) possibilité de migration des workloads vers des datacenters plus efficaces à un instant T
+Modulo la localité et le type de workload (workload deadline, cout de la migraton, etc...)
+
+(+) plus grande flexibilité en matière de source d'énergie et en particulier plus grande opportunité d'utiliser les énergies renouvelables
+Des DCs avec moins de demandes d'energie et donc potentiellement entierement alimentable par des energies vertes (meme si la notion d'intermittence reste valable)
+Les DCs peuvent etre positionnés au plus près des sources d'energies vertes mais les PoPs sont deja positionnés (dans un futur à  smart cities, positionner les PoPs là ou sont les energies et utiliser l'énergie quand elle est dispo via des techniques de relocalisation à chaud) 
+
+
+(+) possibilité de revendre la chaleur générée 
+Tres/trop prospectif, à garder comme idée de base (chaleur revendue à l'IN2P3)
+ Thierry Priol tres frileux sur cet idée
+https://www.aoterra.de
+http://www.20minutes.fr/planete/1116009-20130311-chauffage-gratuit-grace-ordinateurs
+             http://www.qarnot-computing.com                           
+                                
+- - - - - - -
+Etude approfondi
+The cost of a cloud: research problems in data center networks - 2009
+http://dl.acm.org/citation.cfm?id=1496103
+Challenges in cloud scale data centers - 2013
+http://dl.acm.org/citation.cfm?id=2465767&CFID=293753626&CFTOKEN=33885316
+
+
+http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=06716972
+http://gt-joint-workshop.fp7-trend.eu
