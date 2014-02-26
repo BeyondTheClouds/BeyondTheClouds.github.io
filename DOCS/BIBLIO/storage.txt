@@ -3,6 +3,7 @@ http://dl.acm.org/citation.cfm?doid=2503210.2503274
 
 Reducing VM Startup Time and Storage Costs by VM Image Content Consolidation. Kaveh Razavi, Liviu Mihai Razorea, and Thilo Kielmann. In Workshop on Dependability and Interoperability in Heterogeneous Clouds (DIHC13) , Workshop held in conjunction with Euro-Par 2013, Aachen, Germany, August 2013.
 http://www.cs.vu.nl/~kielmann/papers/dihc13.pdf
+The paper is rather empty. It presents a way to reduce Disk image/content in order to reduce the deployment phase when the image is stored in S3. They do not deal with the issue of simultaneous VM boot on a common server
 
 Efficient storage of virtual machine images. Roland Schwarzkopf, Matthias Schmidt, Mathias Rüdiger, Bernd Freisleben. In Proceedings of the 3rd workshop on Scientific Cloud Computing Data. Held in conjunction with HPDC 2012, Deflt, The Netherlands, June 2012. 
 http://dl.acm.org/citation.cfm?id=2287036.2287046&coll=DL&dl=GUIDE
