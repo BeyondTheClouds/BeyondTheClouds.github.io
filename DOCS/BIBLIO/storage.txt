@@ -1,0 +1,19 @@
+Scalable Virtual Machine Deployment Using VM Image Caches. Kaveh Razavi and Thilo Kielmann. In  SC13, Denver, CO, USA, November 2013.
+http://dl.acm.org/citation.cfm?doid=2503210.2503274
+
+Reducing VM Startup Time and Storage Costs by VM Image Content Consolidation. Kaveh Razavi, Liviu Mihai Razorea, and Thilo Kielmann. In Workshop on Dependability and Interoperability in Heterogeneous Clouds (DIHC13) , Workshop held in conjunction with Euro-Par 2013, Aachen, Germany, August 2013.
+http://www.cs.vu.nl/~kielmann/papers/dihc13.pdf
+
+Efficient storage of virtual machine images. Roland Schwarzkopf, Matthias Schmidt, Mathias Rüdiger, Bernd Freisleben. In Proceedings of the 3rd workshop on Scientific Cloud Computing Data. Held in conjunction with HPDC 2012, Deflt, The Netherlands, June 2012. 
+http://dl.acm.org/citation.cfm?id=2287036.2287046&coll=DL&dl=GUIDE
+
+VMTorrent: scalable P2P virtual machine streaming. Joshua Reich, Oren Laadan, Eli Brosh, Alex Sherman, Vishal Misra, Jason Nieh, and Dan Rubenstein. In Proceedings of the 8th international conference on Emerging networking experiments and technologies (CoNEXT '12). ACM, New York, NY, USA
+
+VDN: Virtual Machine Image Distribution Network for Cloud Data Centers
+C. Peng, M. Kim, Z. Zhang, and H. Lei. In Proceedings of the IEEE International Conference on Computer Communications (INFOCOM 2012), Orlando, FL, USA, March 2012.
+http://metro.cs.ucla.edu/papers/infocom12-vdn-peng.pdf
+
+
+VMAR: Optimizing I/O Performance and Resource Utilization in the Cloud
+Z. Shen, Z. Zhang, A. Kochut, A. Karve, H. Chen, M. Kim, H. Lei, N. Fuller
+ACM/IFIP/USENIX International Middleware Conference (Middleware 2013), Beijing, China, December 2013.
