@@ -1,0 +1,67 @@
+\documentclass{acm/acm_proc_article-sp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Accents français
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}  
+
+\begin{document}
+
+\title{Building a massively distributed IaaS toolkit over Openstack}
+
+\numberofauthors{3} 
+\author{
+%
+% 1st. author
+% \alignauthor
+Jonathan Pastor, Adrien Lèbre\\
+       \affaddr{ASCOLA Research Group}\\
+       \affaddr{Mines Nantes / Inria / LINA}\\
+       \affaddr{Nantes, France}\\
+       \email{firstname.lastname@mines-nantes.fr}
+% 2nd. author
+\alignauthor
+Frederic Desprez\\
+       \affaddr{Avalon Research Group}\\
+       \affaddr{LIP ENS Lyon UMR 5668}\\
+       \affaddr{Lyon, France}\\
+       \email{firstname.lastname@inria.fr}
+}
+
+\maketitle
+
+\input{abstract}
+
+%% Comment this line for submission
+%\listoftodos
+
+\section{Introduction}
+\label{sec:intro} 
+\input{introduction}
+
+\section{Background}
+\label{sec:back}
+\input{background}
+
+\section{Contributions}
+\label{sec:contribs}
+\input{contributions}
+
+\section{Experiments}
+\label{sec:exps}
+\input{experiments}
+
+\section{Related Work}
+\label{sec:related}
+\input{related_work}
+
+\section{Conclusion}
+\label{sec:con}
+\input{conclusion}
+
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+\end{document}
