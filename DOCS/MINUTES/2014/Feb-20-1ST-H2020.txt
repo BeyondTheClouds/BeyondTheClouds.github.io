@@ -30,9 +30,9 @@ e - Number of persons brought to the project (approximately in terms of Engineer
       1./ BSC - http://www.bsc.es/computer-sciences/storage-systems
 Contact : Ramon Nou 
 a - Spain
-b - Public research center, with several departments and teams. Our group is dedicated to storage systems, from lower level issues (i.e. kernel) to higher layers including Wan Filesystems (participated on XtreemFS)
+b - Public research center, with several departments and teams. Our group is dedicated to storage systems, from lower level issues (i.e. kernel) to 
 c - Storage and resource manager issues (Scheduling), caching, deduplication. Simulation.
-d - Research on Data scheduling (related with energy efficiency issues), how to distribute VM data in such environment. VM data distribution to enforce fast start.
+d - Research on Data scheduling (related with energy efficiency issues), how to distribute VM data in such environment. VM data distribution to enfo
 e - 1 engineer FT (granted by the call)/ 1 researcher (half time) is the target.
 
 2./ CRS4 - http://www.crs4.it/distributed-computing
@@ -49,10 +49,10 @@ a - Greece
 b - GRNET is the Greek NREN (National Research and Education Network).
 c - Apart from providing network connectivity, GRNET has been involved in many years in grid computing and more recently in Cloud Computing.
      GRNET has built and maintains the synnefo cloud stack, which is OpenStack compatible, and uses Google Ganeti. 
-     GRNET uses the synnefo cloud stack to power the okeanos cloud infrastructure, offering thousands of VMs to Greek researchers for the last two years.
+     GRNET uses the synnefo cloud stack to power the okeanos cloud infrastructure, offering thousands of VMs to Greek researchers for the last two y
      GRNET has extensive experience in virtualisation, running production cloud infrastructures, and interfacing between cloud infrastructures.
-d - Interested in making the Discovery initiative work with an OpenStack compatible API: start, stop, move VMs as required by the LUCos using the OpenStack API using our synnefo cloud stack and okeanos installations as test beds
-e - Two full time persons (initial estimation); that's our estimate for the engineering part of the project. We can add more people if required. Also, if we will be running some micro datacenters, we would need to add some effort for that 
+d - Interested in making the Discovery initiative work with an OpenStack compatible API: start, stop, move VMs as required by the LUCos using the Op
+e - Two full time persons (initial estimation); that's our estimate for the engineering part of the project. We can add more people if required. Als
     administration, but this would be amortised for all installations, so it would run up to no more than 0.5 FTE / year.
 
 4./ Inria (Coordinator)
@@ -68,8 +68,8 @@ e - Not yet clearly defined (for the moment - 6*4 PM/researchers/year)
             5./ PSNC -  http://www.man.poznan.pl/online/en/page/674/
             Contact : Roman Lapacz (Network department)
             a - Poland
-b - PSNC is the public research and development centre, operator of national education network PIONIER, metropolitan area network POZMAN and the owner of high performance computing centre;
-c - network management and monitoring in the intra- and inter-domain network environment; testbeds, analysis, software design and development, testing
+b - PSNC is the public research and development centre, operator of national education network PIONIER, metropolitan area network POZMAN and the own
+c - network management and monitoring in the intra- and inter-domain network environment; testbeds, analysis, software design and development, testi
 d - networking solutions (virtualisations, SLA, SDN, etc.) in the clouds
 e - Not yet defined (few engineers not fulltime but depends to the tasks/involvments in the project)
             
@@ -84,7 +84,7 @@ e - 6 persons (3 Fulltime)
         7./ RENATER
 Contact : J. F Guezou
 a - France
-b- The French NREN (National Reseach and Education Network) Provide high speed connectivity to Reseach and Education organizations in France. We also provide network and software services (VPN, Eduroam, Email, antispam, list server and so on...
+b- The French NREN (National Reseach and Education Network) Provide high speed connectivity to Reseach and Education organizations in France. We als
 c- Network management and monitoring - hosting compute and storage resources in our POPs
 d- Deploying new cloud services
 e- To be defined  (depending on the project progress - not fulltime persons)
@@ -94,7 +94,7 @@ e- To be defined  (depending on the project progress - not fulltime persons)
 List of SMEs candidates :
 Orange - peerialsm (CDN P2P approaches, already contacted, could join the telco)
 Inria - nonstop
-CRS4 - CIAM Servizi S.p.A. (they have a distributed infrastructure of renewable energies adn they sell energy. the idea is to put also computer at each point of energy, probably a bit too prospective but the Discovery OS can be a solution for helping them to do that)
+CRS4 - CIAM Servizi S.p.A. (they have a distributed infrastructure of renewable energies adn they sell energy. the idea is to put also computer at e
 Inria -  Aoterra (quite similar, data furnaces)
 CRS4 - Telecom Italia (no direct contact, check with G. Zanetti from CRS4) 
 CRS4 - Tiscali (An Italian ISP, that provides also services)
@@ -117,8 +117,8 @@ Deploy specific infrastructures on demand (GPU clusters / tesbeds /)
 4./ Flavien Q. =  Distributed data processing / hybrid cloud
         -1 sub use case could be the following one:
                 *Users / companies can run small tasks on their own machines (using resource managers like Condor ~ desktop computing)
-                *They can use more (powerful) machines hosted in PoPs to run the biggest tasks (in the same way companies buy network capacities to GIX to benefit from the best bandwidth / latency to have access to the Internet)
-5./ Ramon N. "big data" use case: it is related with telecom companies and smart cities, analyzing mobile phone data directly from the antennas placement. It can be used for disaster prevention or city planification.
+                *They can use more (powerful) machines hosted in PoPs to run the biggest tasks (in the same way companies buy network capacities to 
+5./ Ramon N. "big data" use case: it is related with telecom companies and smart cities, analyzing mobile phone data directly from the antennas plac
 
 It may make sense to launch VM's near the nodes where the data is generated
 
@@ -126,8 +126,8 @@ It may make sense to launch VM's near the nodes where the data is generated
         * Short presentation of ICT-7
         http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/topics/83-ict-07-2014.html#tab1
         Research and Innovation actions 
-Action primarily consisting of activities aiming to establish new knowledge and/or to explore the feasibility of a new or improved technology, product, process, service or solution. For this purpose they may include basic and applied research, technology development and integration, testing and validation on a small-scale prototype in a laboratory or simulated environment. 
-Projects may contain closely connected but limited demonstration or pilot activities aiming to show technical feasibility in a near to operational environment. 
+Action primarily consisting of activities aiming to establish new knowledge and/or to explore the feasibility of a new or improved technology, produ
+Projects may contain closely connected but limited demonstration or pilot activities aiming to show technical feasibility in a near to operational e
 Funding rate: 100% 
 Small Contribution : 2 - 4 EU Million
 Large Contribution: 5 - 8 EU Million 
@@ -179,11 +179,10 @@ WP - 9 Dissemination
 
 ACTIONS :  
 Adrien: 
-	Create a discovery-h2020 mailing list : discovery-h2020@inria.fr
-	Create a private repo for writing the proposal (in Tex)
-	Revisits the structure of the WPs and make a new proposal by Friday.
+       Create a discovery-h2020 mailing list : discovery-h2020@inria.fr
+       Create a private repo for writing the proposal (in Tex)
+       Revisits the structure of the WPs and make a new proposal by Friday.
 All: 
-	Brainstorm on use cases / expected results (please give a look to the current reference document, it is a bit longer than the fact sheet : http://people.rennes.inria.fr/Adrien.Lebre/DISCOVERY/reference-document.pdf)
+       Brainstorm on use cases / expected results (please give a look to the current reference document, it is a bit longer than the fact sheet : ht
 NRENS, Orange: 
-	Brainstorm on possible business model
-
+       Brainstorm on possible business model
