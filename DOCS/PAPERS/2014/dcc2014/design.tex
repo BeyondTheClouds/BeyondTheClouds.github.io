@@ -4,9 +4,16 @@
 
 	\item A massively distributed cloud targets management of thousand of hosts around a wide territory.	
 	
-	\item This scale order is currently reaches by file sharing systems like bittorrent.
+	\item This scale order is currently reached by file sharing systems like bittorrent.
 
-	\item We propose to leverage on peer to peer mechanisms to reach an high scalability IaaS.
+	\item At this scale, failure becomes the norm.
+
+	\item Recent works propose to leverage on peer to peer overlay.
+
+	\item Some peer to peer overlays can take advantage of locality. It enables to build systems that can take
+		  into account network bandwidth and latency.
+
+	\item We propose to leverage on locality based peer to peer mechanisms to reach an high scalability IaaS.
 
 \end{itemize}
 
@@ -14,9 +21,17 @@
 
 \begin{itemize}
 
-	\item A toolkit is a building block that is used for construction of systems.
+	\item A toolkit is a building block that can be used for the construction of systems.
 
-	\item In the massively distributed IaaS case, the toolkit will have to consider scalability and locality concerns.
+	\item The objective of a toolkit is to provide "state of the art" solutions to known problems. It enables the
+		  focus on "Top level" works.
+
+	\item It provides a set of components, which once assembled constitute an operational system.
+
+	\item Recent studies of "state of art IaaS systems" (Openstack, Cloudstack, OpenNebula, ...) showed that they
+		  were constructed over same concepts. It enables the design of IaaS toolkit.
+
+	\item The massively distributed IaaS toolkit will provides "state of the arts" mechanism to solve both scalability and locality points.
 
 	\item The toolkit will have to integrate well on existing systems: we propose to leverage Openstack project.
 
