@@ -14,7 +14,7 @@
 \end{itemize}
 
 
-\subsection{Integration of DVMS in Openstack}
+\subsection{Integration of DVMS in OpenStack}
 
 \begin{itemize}
 
@@ -23,18 +23,18 @@
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.50\linewidth]{Figures/dvms_openstack.pdf}
-	\caption{Integration of DVMS in Openstack.}%
+	\caption{Integration of DVMS in OpenStack.}%
 	\label{fig:integration}%
 	%\vspace*{-.8cm}
 \end{figure}
 
-\item Use of an "Adapter" object that will wrap DVMS and integrate well with Openstack, as described in figure \ref{fig:integration}
+\item Use of an "Adapter" object that will wrap DVMS and integrate well with OpenStack, as described in figure \ref{fig:integration}
 	\begin{itemize}
 		\item It will consume messages that are destinated to "nova-scheduler"
 
 		\item Each message will be converted to a "Dvms" message.
 
-		\item Each message produced by Dvms will be converted to an Openstack message and added to the Queue.
+		\item Each message produced by Dvms will be converted to an OpenStack message and added to the Queue.
 
 	\end{itemize}
 
