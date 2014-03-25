@@ -1,3 +1,26 @@
 \begin{abstract}
+  
+The use of computing ressources delivered by cloud providers has become
+very common. These providers leverage on big data-centers containing tens of 
+thousands of servers. Concentrating ressources in data-centers is often the root
+of single point of failure (SPOF) and data confidentiality issues. We propose 
+to adress these problems by taking into account locality properties and
+revisiting existing cloud mechanisms.
+\\
+Efforts to develop a common API for opensource IaaS managers seems 
+unsuccessful: while many of them provide specific features, only a few of them 
+schedules ressources dynamically. Although a reference architecture describing 
+typical services consituting a typical cloud has been proposed in 
+\cite{moreno2012iaas}, a detailed overview of the mechanisms that are needed to
+build a massively distributed clouds is still missing.
+\\
+In this paper we propose an architecture for a massively distributed cloud that
+takes into account locality properties. As it can be considered a standard, we 
+start from OpenStack and give a detailed view of mechanisms that needs to be
+added or revisited to work efficiently at a massive scale. Many of today's most
+advanced components have been developed separately from other components, making
+them working smoothly at a massive scale is the focus of our work.
 
+\keywords{Cloud computing, IaaS Architecture, locality, OpenStack,
+ peer to peer, network overlay, vivaldi}
 \end{abstract}
