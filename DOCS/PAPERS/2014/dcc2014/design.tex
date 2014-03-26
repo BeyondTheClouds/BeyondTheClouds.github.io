@@ -4,28 +4,53 @@
 
 \subsection{Toolkit for IaaS}
 
-\begin{itemize}
+% \begin{itemize}
 
-	\item A toolkit is a building block that can be used for the construction of
-	systems (generic definition of a software toolkit).
+% 	\item A toolkit is a building block that can be used for the construction of
+% 	systems (generic definition of a software toolkit).
 
-	\item The objective of a toolkit is to provide "state of the art" solutions
-	to known problems. It enables the focus on "Top level" works.
+% 	\item The objective of a toolkit is to provide "state of the art" solutions
+% 	to known problems. It enables the focus on "Top level" works.
 
-	\item It provides a set of components, which once assembled constitute an 
-	operational system.
+% 	\item It provides a set of components, which once assembled constitute an 
+% 	operational system.
 
-	\item Recent studies of "state of art IaaS systems" (OpenStack, Cloudstack,
-	OpenNebula, ...) showed that they were constructed over same concepts. It 
-	enables the design of IaaS toolkit.
+% 	\item Recent studies of "state of art IaaS systems" (OpenStack, Cloudstack,
+% 	OpenNebula, ...) showed that they were constructed over same concepts. It 
+% 	enables the design of IaaS toolkit.
 
-	\item The massively distributed IaaS toolkit will provides "state of the 
-	arts" mechanism to solve both scalability and locality points.
+% 	\item The massively distributed IaaS toolkit will provides "state of the 
+% 	arts" mechanism to solve both scalability and locality points.
 
-	\item The toolkit will have to integrate well on existing systems: we 
-	propose to leverage OpenStack project.
+% 	\item The toolkit will have to integrate well on existing systems: we 
+% 	propose to leverage OpenStack project.
 
-\end{itemize}
+% \end{itemize}
+
+A software toolkit is a set of software building blocks that includes state of 
+the art mechanisms for known problems. A toolkit comes with an API (Application
+Programming Interface) which is the specifications that ones must follow to
+correctly use provided mechanisms. The goal of a toolkit is to enable developer
+to focus on the creation of higher level mechanisms, thus speeding up the 
+development time.
+
+An IaaS toolkit should be delivered with a set of default high level mechanisms 
+whose assembly results in an basic operational IaaS system. If the case where 
+one of the default constituting mechanisms would not be sufficient, it should be
+redeveloped by leveraging the toolkit's low level mechanisms.
+
+Recent studies of state of the art IaaS manager \cite{peng:2009} show that they
+were constructed over the same concepts. Furthermore a reference architecture 
+for IaaS manager has been described in \cite{moreno2012iaas} enabling the design
+of an IaaS toolkit. Besides the reference architecture, an IaaS toolkit should
+provides some mechanisms that enables to solve the scalability problem.
+
+To maximize the chance of being reuse by a large community, an IaaS toolkit 
+should enable an easy integration with one or several existing IaaS cloud
+managers. In our case we have chosen to leverage the OpenStack project: as a 
+result the mechanisms developped with the toolkit will integrate well with 
+existing clouds that are based on OpenStack.
+
 
 
 \subsection{Massively distributed cloud}
