@@ -1,31 +1,33 @@
 \section{Introduction}
 \label{sec:intro} 
-\AL{1./ le cloud centralisé c'est pas bien }
-\AL{2./ il faut mettre en place le concept de microDCs}
-\AL{3./ pour le mettre en oeuvre on propose tout simplement de s'appuyer sur les
-points de presence}
-\AL{4./ faire une fédération de pleins de petits OpenStack n'est pas la bonne 
-approche car si on perd les noeuds de service sur un micro DC, on a perdu tout 
-le micro DC en plus d'ajouter un cout, puisque sur chaque microDCs, il faut des 
-noeuds dediées à ces noeuds de services}
-\AL{5./ il faut un systeme qui va etre capable d'operer de maniere unifié une 
-telle infrastructure}
+% \AL{1./ le cloud centralisé c'est pas bien }
+% \AL{2./ il faut mettre en place le concept de microDCs}
+% \AL{3./ pour le mettre en oeuvre on propose tout simplement de s'appuyer sur les
+% points de presence}
+% \AL{4./ faire une fédération de pleins de petits OpenStack n'est pas la bonne 
+% approche car si on perd les noeuds de service sur un micro DC, on a perdu tout 
+% le micro DC en plus d'ajouter un cout, puisque sur chaque microDCs, il faut des 
+% noeuds dediées à ces noeuds de services}
+% \AL{5./ il faut un systeme qui va etre capable d'operer de maniere unifié une 
+% telle infrastructure}
 
 
 
 The success of Cloud Computing has driven the advent of Utility Computing (UC). 
 However to answer the escalating demand for computing resources, 
 Cloud Computing providers must build data centers (DCs) of ever-increasing size.
-This centralization of computing ressources leads to issues like connectivity to
+This concentration of computing ressources leads to issues like connectivity to
 the application/data located in a similar geographical zone during disasters or
 outages. Besides facing the well-known issues large-scale DCs have now to deal 
 with energy considerations that limit the number of physical resources that one 
-location can host. This can be tackled by hybrid or federated Cloud solutions 
+location can host.
+
+All these problems can be tackled by hybrid or federated Cloud solutions 
 \cite{armbrust:2010}, that aim at extending the resources available on one Cloud
 with those of another one. However a recent IEEE report 
 \cite{ieeenetreport:2012} shows that network traffic continues to double 
 roughly every year. Consequently, bringing computing resources closer to the 
-end-users, thus minimizing the energy impact and saving bandwidth of some links.
+end-users, thus minimizing the energy impact and saving bandwidth.
 
 The concept of micro/nano DCs at the edge of the backbone \cite{greenberg:2008} 
 may be seen as a solution to reduce the network overhead. Hence, we propose to 
@@ -37,12 +39,13 @@ resources would be able to directly take advantage of computation cycles
 available on network active devices, i.e. those in charge of routing packets.
 
 Proponents of Cloud federations would argue that is it possible to perform
-a federation a micro-Clouds hosted on each micro DC, thuis having a service node
-in each micro-Cloud. However this solution is not without its flaw: when a 
-service node fails, all the node generating the computing power become unusable.
+a federation a micro-Clouds hosted on each micro DC, thus having a service node
+in each micro-Cloud. However this solution is not without its flaw: aside from
+wasting one node in each PoP, when a service node fails all the node generating
+the computing power become unusable.
 
 We propose the LUC Operating System (OS), an advanced system being able to unify
-many UC resources distributed on distinct sites, would enable Internet service 
+many UC resources distributed on distinct sites, that would enable Internet service 
 providers (ISPs) and other institutions in charge of operating a network 
 backbone to build an extreme-scale LUC infrastructure with a limited additional 
 cost. Instead of redeploying a complete installation, they will be able to 
@@ -50,5 +53,11 @@ leverage IT resources and specific devices such as computer room air
 conditioning units, inverters or redundant power supplies already present in 
 each center of their backbone.
 
-
-
+The remainder of this article is structured as follows. In Section 2, we discuss
+the definition and properties of a massively distributed cloud. 
+Section 3 gives an overview of the LUC OS design 
+proposal. In Section 4, we describe existing mechanisms that we will 
+revisit to build our massively distributed IaaS manager. In section 5 we 
+introduce the method that will be used to integrate our dynamic scheduler in 
+OpenStack, thus building the first version of the LUC OS. Finally, we discuss 
+perspectives and conclude this article in Section 6.
