@@ -55,22 +55,60 @@ existing clouds that are based on OpenStack.
 
 \subsection{Massively distributed cloud}
 
-\begin{itemize}
+% \begin{itemize}
 
-	\item A massively distributed cloud targets management of thousand of hosts 
-	around a wide territory.
+% 	\item A massively distributed cloud targets management of thousand of hosts 
+% 	around a wide territory.
 
-	\item This scale order is currently reached by file sharing systems like 
-	bittorrent.
+% 	\item This scale order is currently reached by file sharing systems like 
+% 	bittorrent.
 
-	\item At this scale, failure becomes the norm.
+% 	\item At this scale, failure becomes the norm.
 
-	\item Recent works propose to leverage on peer to peer overlay.
+% 	\item Recent works propose to leverage on peer to peer overlay.
 
-	\item Some peer to peer overlays can take advantage of locality. It enables
-	to build systems that can take into account network bandwidth and latency.
+% 	\item Some peer to peer overlays can take advantage of locality. It enables
+% 	to build systems that can take into account network bandwidth and latency.
 
-	\item We propose to leverage on locality based peer to peer mechanisms to 
-	reach an high scalability IaaS.
+% 	\item We propose to leverage on locality based peer to peer mechanisms to 
+% 	reach an high scalability IaaS.
 
-\end{itemize}
+% \end{itemize}
+
+Cloud providers concentrate the production of computing resources in 
+data-centers that contains tens of thousand of servers, enabling IaaS mechanisms
+to take advantage of fast network with extreme low latency. However this ever 
+increasing data-centers size becomes a problem as energy requirements become
+high enough to require dedicated electrical and cooling infrastructure. As 
+an alternative of this concentration of the computing resources production, we 
+propose to study a deconcentration of this production.
+
+Leveraging the concept of micro data-centers proposed by \cite{greenberg:2008},
+we suggest to build a cloud operating system that will run in a distributed
+manner over a set a small data-centers geographically spread. A noticeable set
+of softwares that works in massively distributed manner are the file sharing
+peer to peer application like bittorrent. If we disregard trackers, file sharing
+based on Bittorrent protocol consists in the exchange of data between thousands
+of users all over the world. We propose to learn from peer to peer file sharing
+experience, in order to build massively distributed clouds.
+
+At this scale, failure becomes the norm rather the exception, thus taking into 
+account fault tolerance in the earlier designing step by leveraging a peer to 
+peer overlay network. As we think that working in a massively distributed 
+context require to deal with network parameters like latency and bandwidth 
+usage, collaboration between the constituting nodes of the system should be
+organized in a "network aware" manner. For instance, the Vivaldi algorithm 
+\cite{dabek:2004:vivaldi} provides a dynamic coordinate system that can be used
+to introduce locality properties inside a distributed system, thus building low
+latency collaborations.
+
+We assume that the architecture of massively distributed clouds should be 
+organized arround the same principles that rule communautary file sharing 
+systems. Keeping all these points in mind, we propose an architecture for 
+massive clouds that will be build on top of peer to peer principles and 
+articulated arround a locality based overlay network. To meet the high 
+scalability criteria, some of IaaS mechanisms shoudl be revisited to improve
+reactivity of inter-servers collaboration by leveraging locality properties.
+
+
+
