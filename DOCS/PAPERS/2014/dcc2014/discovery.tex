@@ -3,34 +3,85 @@
 
 \subsection{Related work}
 
-\begin{itemize}
+% \begin{itemize}
 
-	\item Moreno made a proposition of IaaS architecture \cite{moreno2012iaas}.	
+% 	\item Moreno made a proposition of IaaS architecture \cite{moreno2012iaas}.	
 	
-	\item He identified a list of services that are vital for building IaaS that will be usable in production condition for commercial company.
+% 	\item He identified a list of services that are vital for building IaaS that will be usable in production condition for commercial company.
 
-	\item We aim at making a research prototype: we want to keep concepts that are vital for a first prototype:
+% 	\item We aim at making a research prototype: we want to keep concepts that are vital for a first prototype:
 
-		\begin{description}
+% 		\begin{description}
 
-			\item [Virtual Machine] : Prototype will enable reasearchers to access a big compute power.
+% 			\item [Virtual Machine] : Prototype will enable reasearchers to access a big compute power.
 
-			\item [Virtual Network] : In addition to infrastructure network, we want to connect virtual machines on an isolated network.
+% 			\item [Virtual Network] : In addition to infrastructure network, we want to connect virtual machines on an isolated network.
 
-			\item [Image disk and persistent storage] : 
-				\begin{itemize}
+% 			\item [Image disk and persistent storage] : 
+% 				\begin{itemize}
 
-					\item Virtual machines will be based on images
+% 					\item Virtual machines will be based on images
 
-					\item Virtual machines' states are savable.
+% 					\item Virtual machines' states are savable.
 				
-				\end{itemize}
+% 				\end{itemize}
 
-			\item [Simple authentication] : User will have to authenticate to access prototype. Once they are authenticated they will be able to create virtual machines.
+% 			\item [Simple authentication] : User will have to authenticate to access prototype. Once they are authenticated they will be able to create virtual machines.
 
-		\end{description}
+% 		\end{description}
 
-\end{itemize}
+% \end{itemize}
+
+
+In \cite{moreno2012iaas}, authors have depicted a reference architecture for 
+Cloud OS: they aimed at providing an abstraction of underlying technologies that
+compose current IaaS managers. The strength of their work resides in the fact
+that they considered all the needs of an "industrial class" IaaS manager: every
+single function of a cloud is considered and well detailed. That is why we think
+that a new architectural proposition should leverage this work.
+
+However, as we aim at making a research prototype, we will volontarily neglect
+advanced services in order to focus on those which are vitals, in order to 
+propose ana architecure for a simple but working massively distributed IaaS
+manager. We also keep in mind that the architecture should be flexible enough to
+later include these advanced services in a painless way.
+
+As we target a first prototype that will be able to allow users to manage 
+interconnected virtual machines (virtual environment), we only keep services 
+that have utility for this purpose. To determine which services are needed, we
+have profiled concepts that are involved in the first prototype we target:
+
+\label{cloud_os_concepts}
+
+\begin{description}
+
+	\item [Virtual Machine] : It is the key concept of the system we aim
+	to build. In the same way a modern operating systems provides 
+	computing resources by provisioning thread, the Cloud OS will 
+	produce virtual machines.
+
+	\item [Virtual Network] : Virtual machines of a same virtual 
+	environment need to be interconnected. This interconnection will be
+	performed by virtual networks.
+
+	\item [Image disk and persistent] : Virtual machines are based on 
+	disk images which are specified at creation. It means that a the 
+	Cloud OS must propose a storage services for storing reference disk
+	images. However this is not enough: a virtual machine can be
+	snapshotted, which means that the Cloud OS must provides efficient
+	way to persist these states.
+
+	\item [Simple authentication] : As virtual machines provisioning is
+	invocked by users, an authentication process is needed to guarantee
+	the fairness of resource allocation. This authentication process
+	will also have to handle user's role such as customer and Cloud OS's
+	administrator.
+
+\end{description}
+
+
+
+
 
 \subsection{First iteration on the LUC-OS architecture}
 
@@ -76,3 +127,10 @@
 	\item + description of other entities.
 
 \end{itemize}
+
+
+Leveraging the concepts depicted in \ref{cloud_os_concepts}, we have decided to
+
+
+
+ 
