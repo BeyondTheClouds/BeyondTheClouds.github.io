@@ -85,52 +85,108 @@ have profiled concepts that are involved in the first prototype we target:
 
 \subsection{First iteration on the LUC-OS architecture}
 
+% \begin{itemize}
+
+% 	\item For our first iteration, we keep 4 main services:
+% 		\begin{description}
+
+% 			\item [Compute manager] : responsible for virtual machines lifecycle.
+
+% 			\item [Network manager] : responsible for virtual networks.
+
+% 			\item [Storage manager] : responsible for images and persistent block storage.
+
+% 			\item [Administrative manager] : responsible for infrastructure management and user permissions.  
+
+% 		\end{description}
+
+
+% 	\item In figure \ref{fig:mcd} we propose a conceptual data model to explain our proposal.
+
+
+
+
+% 	\item Virtual environment concept is the keystone of the Discovery proposal:
+		
+% 		\begin{itemize}
+
+% 			\item When a user request the creation of virtual machines for a specified date, an allocation is registered.
+
+% 			\item When the start date is reached, a virtual environment (isolated container for a VLAN and VMs) is created.
+
+% 			\item a virtual environment can be run on several hosts, possibly spread over several geographical sites.
+
+% 		\end{itemize}
+
+% 	\item + description of other entities.
+
+% \end{itemize}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.91\linewidth]{Figures/mcd_3.pdf}
+	\caption{Conceptual schema of the Discovery proposal.}%
+	\label{fig:mcd}%
+	%\vspace*{-.8cm}
+\end{figure*}
+
+Leveraging the concepts that have been depicted in \ref{cloud_os_concepts}, we 
+have decided that the first draft of the LUC-OS architecture will focus on 
+fundamental services. Each of these services is described in the following 
+listing:
+
+\begin{description}
+
+	\item [Compute service] : manage virtual machines' lifecycle.
+
+	\item [Network service] : manage virtual networks.
+
+	\item [Storage service] : manage images and block storage.
+
+	\item [Administrative service] : manage infrastructure and user permissions.  
+
+\end{description}
+
+In figure \ref{fig:mcd} we propose a conceptual schema that enables an easier 
+illustration of data concepts, and their relationships, that we plan to use in
+the LUC-OS. This is a high-level description which has to purpose to define and 
+explain semantics of our proposal. It is noticeable that this schema is 
+partitioned in four block corresponding to the previous services.
+
+As we know entities that will be manipulated by the different services of the
+Cloud OS, we can give an overview of how entities are involved during virtual
+machines provisioning:
+
 \begin{itemize}
 
-	\item For our first iteration, we keep 4 main services:
-		\begin{description}
+	\item A user asks the LUC-OS for some computing resources for a date: 
+	the \textbf{administrative service} considers the demand and determine 
+	wether it is possible to provide enough resources or not. Once the demand is
+	considered as acceptable, an allocation is created and stored in the 
+	LUC-OS's data structure (a Distributed Hash Table). To enable accounting 
+	operation such as billing, the allocation will be stored long enough.
 
-			\item [Compute manager] : responsible for virtual machines lifecycle.
+	\item Once the allocation date has been reached, the \textbf{compute
+	service} will ask the dynamic virtual machine scheduler (DVMS) to elect a 
+	set of servers that is suitable to spawn the virtual machines, leading to 
+	the creation of a new virtual environment which is distributed on the 
+	elected servers. \textbf{Network service} then create a new virtual	network
+	that is attached to the virtual	environment: during their creation, virtual
+	machines will be inter-connected through this virtual network.
 
-			\item [Network manager] : responsible for virtual networks.
-
-			\item [Storage manager] : responsible for images and persistent block storage.
-
-			\item [Administrative manager] : responsible for infrastructure management and user permissions.  
-
-		\end{description}
-
-
-	\item In figure \ref{fig:mcd} we propose a conceptual data model to explain our proposal.
-
-
-	\begin{figure*}
-		\centering
-		\includegraphics[width=0.91\linewidth]{Figures/mcd_3.pdf}
-		\caption{Conceptual Data Model for Discovery proposal.}%
-		\label{fig:mcd}%
-		%\vspace*{-.8cm}
-	\end{figure*}
-
-	\item Virtual environment concept is the keystone of the Discovery proposal:
-		
-		\begin{itemize}
-
-			\item When a user request the creation of virtual machines for a specified date, an allocation is registered.
-
-			\item When the start date is reached, a virtual environment (isolated container for a VLAN and VMs) is created.
-
-			\item a virtual environment can be run on several hosts, possibly spread over several geographical sites.
-
-		\end{itemize}
-
-	\item + description of other entities.
+	\item The \textbf{storage service} is involved in processes for creating and 
+	snapshotting virtual machines. As virtual machine are created from a virtual
+	disk image, users will have to specify a virtual appliance which represents
+	a disk image base which have been flavoured with some pre-installed 
+	software. Once a virtual machine is started, it is possible for users to
+	perform snapshot of virtual machines: the state of the virtual machine is
+	saved in distributed data structure.
 
 \end{itemize}
 
 
-Leveraging the concepts depicted in \ref{cloud_os_concepts}, we have decided to
 
 
 
- 
+
+
