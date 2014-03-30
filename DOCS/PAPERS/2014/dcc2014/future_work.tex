@@ -33,17 +33,9 @@ scheduling is performed on partitions of the system that are created dynamically
 
 \label{sub:sec:integration_dvms}
 
-\begin{itemize}
+% \begin{itemize}
 
-\item We propose to replace "nova-scheduler" (static scheduler) by DVMS.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.50\linewidth]{Figures/dvms_openstack.pdf}
-	\caption{Integration of DVMS in OpenStack.}%
-	\label{fig:integration}%
-	%\vspace*{-.8cm}
-\end{figure}
+% \item We propose to replace "nova-scheduler" (static scheduler) by DVMS.
 
 % \item Use of an "Adapter" object that will wrap DVMS and integrate well with OpenStack, as described in figure \ref{fig:integration}
 % 	\begin{itemize}
@@ -54,6 +46,8 @@ scheduling is performed on partitions of the system that are created dynamically
 % 		\item Each message produced by Dvms will be converted to an OpenStack message and added to the Queue.
 
 % 	\end{itemize}
+% \end{itemize}
+
 
 Considering the fact that nova-scheduler currently performs static scheduling, 
 as introduced in section \ref{sub:sec:revisiting_openstack}, we decided to 
@@ -63,10 +57,16 @@ memory" principle and communicate through an AMQP bus. This means that each
 service follows a "protocol" : when it consumes all received message, in return
 it execute an action and produces a specific messsage. 
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.50\linewidth]{Figures/dvms_openstack.pdf}
+	\caption{Integration of DVMS in OpenStack.}%
+	\label{fig:integration}%
+	%\vspace*{-.8cm}
+\end{figure}
+
 With this in mind, we depicted in figure \ref{fig:integration} the way we want 
 to integrate DVMS with OpenStack: we use an adapter object that consumes 
 messages that are destinated to nova-scheduler, forward it to DVMS and translate
 messages produced by DMVS in message from the nova-scheduler protocol. We think
 that this method will minimize modification on Nova service.
-
-\end{itemize}
