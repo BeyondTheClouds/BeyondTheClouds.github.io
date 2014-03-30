@@ -44,71 +44,127 @@ is why we discuss the integration of DVMS as an OpenStack's service in section
 
 \subsection{Revisiting components that are suitable for a LUC-OS (Related work)}
 
-\begin{itemize}
+% \begin{itemize}
 
-	\item As we do not want to redevelop every services "from scratch", we will
-	maximize the reuse of existing	mechanisms.
+% 	\item As we do not want to redevelop every services "from scratch", we will
+% 	maximize the reuse of existing	mechanisms.
 
-	\item In section \ref{sec:architecture} we defined a list of services provided 
-	by the LUC-OS. Most of them will partially/completly leverage existing 
-	mechanisms:
+% 	\item In section \ref{sec:architecture} we defined a list of services provided 
+% 	by the LUC-OS. Most of them will partially/completly leverage existing 
+% 	mechanisms:
 
-		\begin{description}
+% 		\begin{description}
 
-			\item [Compute manager] : 
-			\begin{itemize}
-				\item Nova is the service that is responsible for controlling 
-				every services of the infrastucture. 
+% 			\item [Compute manager] : 
+% 			\begin{itemize}
+% 				\item Nova is the service that is responsible for controlling 
+% 				every services of the infrastucture. 
 
-				\item It leverages nova-scheduler, which performs static 
-				scheduling: nova-scheduler.
+% 				\item It leverages nova-scheduler, which performs static 
+% 				scheduling: nova-scheduler.
 
-				\item We plan to use a dynamic scheduler (DVMS) instead.
-			\end{itemize}
+% 				\item We plan to use a dynamic scheduler (DVMS) instead.
+% 			\end{itemize}
 
-			\item [Administrative manager] : 
-			\begin{itemize}
-				\item KeyStone is the service used for managing identity and
-				authentication.
+% 			\item [Administrative manager] : 
+% 			\begin{itemize}
+% 				\item KeyStone is the service used for managing identity and
+% 				authentication.
 
-				\item Horizon is the service that serves a web interface, 
-				allowing users to interact with OpenStack.
+% 				\item Horizon is the service that serves a web interface, 
+% 				allowing users to interact with OpenStack.
 
-				\item As we will use a distributed hash table (DHT) to save
-				persistent states, we plan reuse Keystone and Horizon, with
-				minor modification to leverage our DHT. 
-			\end{itemize}
+% 				\item As we will use a distributed hash table (DHT) to save
+% 				persistent states, we plan reuse Keystone and Horizon, with
+% 				minor modification to leverage our DHT. 
+% 			\end{itemize}
 
-			\item [Storage manager] : 
-			\begin{itemize}
-				\item Swift is a distributed key/value service with no SPOF.
+% 			\item [Storage manager] : 
+% 			\begin{itemize}
+% 				\item Swift is a distributed key/value service with no SPOF.
 				
-				\item Glance is a service for storing image that leverages 
-				Swift. It is possible to directly store images in Swift.
+% 				\item Glance is a service for storing image that leverages 
+% 				Swift. It is possible to directly store images in Swift.
 
-				\item To limit network impact ("Boot problem"), solution based 
-				on bittorrent have been developped (VMTorrent, 
-				glance-bittorrent, ...).
+% 				\item To limit network impact ("Boot problem"), solution based 
+% 				on bittorrent have been developped (VMTorrent, 
+% 				glance-bittorrent, ...).
 
-				\item For a first prototype we propose to leverage Glance and
-				Swift. If this solution become no more suitable for a massive
-				infrastucture, we propose to integrate VMTorrent in Glance.
+% 				\item For a first prototype we propose to leverage Glance and
+% 				Swift. If this solution become no more suitable for a massive
+% 				infrastucture, we propose to integrate VMTorrent in Glance.
 
-			\end{itemize}
+% 			\end{itemize}
 
-			\item [Network manager] :
-			\begin{itemize}
+% 			\item [Network manager] :
+% 			\begin{itemize}
 				
-				\item Neutron is the service used to create VLAN.
+% 				\item Neutron is the service used to create VLAN.
 
-				\item It supports plugins: it is possible to use Open vSwitch.
-				This is what we propose for a first version of the system.
+% 				\item It supports plugins: it is possible to use Open vSwitch.
+% 				This is what we propose for a first version of the system.
 
-				\item For next versions, Mininet \cite{lantz:2010} or Vin can be
-				considered as good candidates.
-			\end{itemize}
+% 				\item For next versions, Mininet \cite{lantz:2010} or Vin can be
+% 				considered as good candidates.
+% 			\end{itemize}
 
-		\end{description}
+% 		\end{description}
 
-\end{itemize}
+
+The objective behind the LUC-OS in to provide an IaaS manager that can work at 
+massive scale by leveraging a locality aware overlay network (LBO). As 
+developing a complete IaaS manager is an Herculean work, we think that is the
+good way to reach our goal is to revisit existing mechanims, even if it means 
+that some of these mechanisms may be completely replaced.
+
+For the sake of clarity, the mechanisms we plan to revisit will be studied 
+following the list of services depicted in section \ref{sub:sec:list_services} :
+for each service we indicate what are the suitable mechanisms that will be 
+revisited, and what we propose to change.
+
+\begin{description}
+
+	\item [Compute manager] : Nova is an OpenStack service that is 
+	responsible for coordinating and controlling the work of other services.
+	As it is the angular stone of OpenStack, we plan to directly plug the 
+	LUC-OS on this service. Nova service contains a sub-service that is
+	responsible for scheduling virtual machines: nova-scheduler. It performs
+	static scheduling : it means that the scheduler will decide on which
+	service the VM will run once and for all. In section 
+	\ref{sub:sec:integration_dvms} we discuss the replacement of 
+	nova-scheduler by DVMS.
+
+
+	\item [Administrative manager] : KeyStone and Horizon are two services
+	that are respectively responsible for managing identity/authentication
+	and providing a web user interface to users that want to interact with
+	OpenStack. The LUC-OS will store every piece of information in a DHT: we
+	propose to leverage KeyStone and Horizon on the DHT. Furthermore the 
+	LUC-OS and OpenStack does not exactly share the same semantics : for
+	example the LUC-OS manipulates virtual environments which does not
+	exactly exist in OpenStack. Revisiting Horizon service through minor
+	modifications would enable the integration of this concept in OpenStack.
+
+	\item [Storage manager] : Storage in OpenStack can be divided in two
+	service: Swift manages objects (files) while Glance manages VM disk
+	images. Glance's images can be stored in Swift or in any other storage
+	service. Recent solutions like VMTorrent \cite{reich:2012} have been
+	developed to limit network overhead, for example during simultaneous 
+	loading of images at VMs startup. For a first prototype we propose to 
+	leverage Glance and Swift, and if it becomes no more suitable for a
+	massive infrastucture, we propose to integrate VMTorrent in Glance and 
+	to use it.
+
+	\item [Network manager] : Neutron is the service that manages networking
+	in OpenStack: it is used to create virtual networks (VLANs) that
+	interconnect virtual machines. Neutron supports plugins : it is possible
+	to use a virtual multilayer switch like Open vSwitch \cite{pfaff:2009}.
+	In the case this plugin does not meet our needs, we propose to 
+	leverage software defined network (SDN) solution like Mininet 
+	\cite{lantz:2010} or Vin.
+
+\end{description}
+
+
+
 
