@@ -117,43 +117,45 @@ an OpenStack's service in section \ref{sec:future_work}.
 % 		\end{description}
 
 
-The objective behind the LUC-OS in to provide an IaaS manager that can work at 
-massive scale by leveraging a locality aware overlay network (LBO). As 
-developing a complete IaaS manager is an Herculean work, we think that is the
-good way to reach our goal is to revisit existing mechanims, even if it means 
+The objective targetted by the LUC-OS in to provide an IaaS manager for 
+massively distributed clouds. To work at this massive scale, it will leverage
+a locality aware overlay network (LBO), thus improving reactivity of service
+by taking into account networking parameters such as latency or bandwidth usage.
+As developing a complete IaaS manager is an Herculean work, we think that 
+revisiting existing mechanims is a good way to reach our goal, even if it means 
 that some of these mechanisms may be completely replaced.
 
-For the sake of clarity, the mechanisms we plan to revisit will be studied 
+For the sake of clarity, mechanisms that we plan to revisit will be studied 
 following the list of services depicted in section \ref{sub:sec:list_services} :
-for each service we indicate what are the suitable mechanisms that will be 
-revisited, and what we propose to change.
+for each service, the suitable mechanisms that will be revisited are indicated 
+and proposed modification are detailled:
 
 \begin{description}
 
-	\item [Compute manager] : Nova is an OpenStack service that is 
+	\item [Compute manager] : Nova is the OpenStack service that is 
 	responsible for coordinating and controlling the work of other services.
 	As it is the angular stone of OpenStack, we plan to directly plug the 
 	LUC-OS on this service. Nova service contains a sub-service that is
-	responsible for scheduling virtual machines: nova-scheduler. It performs
-	static scheduling : it means that the scheduler will decide on which
-	service the VM will run once and for all. In section 
+	responsible for scheduling virtual machines: nova-scheduler, which performs
+	static scheduling. This means that the scheduler will decide on which
+	server the virtual machine will run once and for all. In section 
 	\ref{sub:sec:integration_dvms} we discuss the replacement of 
 	nova-scheduler by DVMS.
 
 
 	\item [Administrative manager] : KeyStone and Horizon are two services
-	that are respectively responsible for managing identity/authentication
+	that are respectively responsibles for managing identity/authentication
 	and providing a web user interface to users that want to interact with
-	OpenStack. The LUC-OS will store every piece of information in a DHT: we
-	propose to leverage KeyStone and Horizon on the DHT. Furthermore the 
-	LUC-OS and OpenStack does not exactly share the same semantics : for
+	OpenStack. As the LUC-OS will store every piece of information in a DHT: we
+	propose to make KeyStone and Horizon pick data from this DHT. Furthermore 
+	the LUC-OS and OpenStack does not exactly share the same semantics : for
 	example the LUC-OS manipulates virtual environments which does not
 	exactly exist in OpenStack. Revisiting Horizon service through minor
 	modifications would enable the integration of this concept in OpenStack.
 
 	\item [Storage manager] : Storage in OpenStack can be divided in two
-	service: Swift manages objects (files) while Glance manages VM disk
-	images. Glance's images can be stored in Swift or in any other storage
+	service: Swift manages objects (files) while Glance manages virtual machines
+	disk images. Glance's images can be stored in Swift or in any other storage
 	service. Recent solutions like VMTorrent \cite{reich:2012} have been
 	developed to limit network overhead, for example during simultaneous 
 	loading of images at VMs startup. For a first prototype we propose to 
