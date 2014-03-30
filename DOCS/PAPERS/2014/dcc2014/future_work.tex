@@ -13,20 +13,28 @@
 
 % \end{itemize}
 
-DVMS \cite{quesnel:ispa2013} (Distributed Virtual Machine 
-Scheduler) is a framework that schedules VMs cooperatively and dynamically in
-large scale distributed systems, following a ring topology. When one of the DVMS
-agents cannot guarantee needs of its hosted VMs it starts an iterative 
-scheduling procedure~(ISP), becoming thus the initiator of the ISP.
+DVMS \cite{quesnel:ispa2013} (Distributed Virtual Machine Scheduler) is a
+ressource scheduler that cooperatively and dynamically ensures virtual machines
+hosted in large scale infrastructure meet their computing ressources needs. DVMS
+treats ressources overloading as a bin packing problem: when a DVMS agent cannot
+guarantee its virtual machines needs, it tries to find suitable collaborators 
+that will help to make a viable virtual machines placement.
 
-The ISP is forwarded to the next free agent, which will attempt to find a viable
-mapping. The last step is repeated until the ISP succeeds. When a viable mapping
-has been found, the last peer (leader) reconfigures the system by performing 
-adequate VM migrations. Proof has been made that if a solution exits, it will
-always be found, and experiments have shown that in most cases ISPs involve 
-only few nodes. Moreover, several ISPs can occur independently:
-scheduling is performed on partitions of the system that are created dynamically
-, which significantly improves reactivity of the system.
+To resolve a ressource overload, a DVMS agent create and join a partition and
+forward it to a remote DVMS agent that is not already belonging to a partition.
+This remote free agent will first join the partition and then begin to compute 
+for a viable mapping. In the case where the computation is unsuccesful, the new 
+version of the partition is forwarded to another free DVMS agent until a viable
+mapping is found. When a viable mapping has been found, the last member of the
+partition applies the mapping by performing live virtual machines migrations.
+
+Formal proof \cite{quesnel:ispa2013} has been made that if a solution exits, 
+DVMS will converge to this solution. Furthermore, as a DVMS agent cannot be
+shared between different partitions, partitions can work in parallel without
+lock mechanisms, thus improving DVMS reactivity. Finally experiments conducted 
+on grid5000' testbed have shown that independantly from the infrastructure 
+size, partitions only involve few nodes thus limiting the network overhead 
+caused by communications.
 
 
 \subsection{Integration of DVMS in OpenStack}
