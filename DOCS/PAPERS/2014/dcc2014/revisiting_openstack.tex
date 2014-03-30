@@ -19,28 +19,33 @@
 % \end{itemize}
 
 OpenStack is a very popular project that aim at building an opensource IaaS
-manager. A lot of Cloud computing actors (Rackspace, VMware, Cisco, ...) are
-contributing to this project, thus providing new features at a rapide pace.
+manager. Many of the biggest actors of Cloud computing (Red hat, IBM, Rackspace,
+VMware, Cisco, ...) are contributing to this project, thus providing new 
+features at a rapide pace. OpenStack enables the construction of public or 
+private clouds.
 
-A cloud deployed with OpenStack is composed of several services (nova, swift,
-Quantum, Glance, ...) following the share "shared nothing architecure", meaning 
-that each service is independent and thus share no state.
+A typical cloud deployed with OpenStack is composed of several services (nova, 
+swift, Quantum, Glance, ...) following the "shared nothing architecure" 
+principle, meaning that each service is independent and thus shares no state 
+with other services.
 
-Inter-services collaboration is performed by exchanging message through an AMQP 
-(Advanced Messsage Queuing Protocol) based bus : each service has its own queue,
-and they collaborate by sending message to remote service's queue. This offers
-the advantage of enabling easy plugging of additional components : if one wants
-to replace one default service by a custom service, naively consuming messages
-destinated to the replaced service and , in turn producing expected message is
-enough.
+In this way, inter-services collaboration is performed by exchanging message 
+through an AMQP (Advanced Messsage Queuing Protocol) based bus: each service 
+has its own queue, and it collaborates with others by sending messages to their 
+queues. This offers the advantage of easily plugging additional components : 
+when a default service becomes no more suitable with system's needs, it can be 
+naively replaced by another custom service, as long as the newer service 
+consummes messages destinated to the older one, and in turn produces messages 
+expected by collaborators.
 
-As OpenStack is becoming a standard and since it provides working mechansims, it
-can be considerated as a cloudkit of choice for the LUC-OS. However OpenStack is
-not totally in sync with its requirement: OpenStack performs static resource
-scheduling: when a VM is created, nova-scheduler decides the server where it
-should be started, without rescheduling it in case of resource overloading. That
-is why we discuss the integration of DVMS as an OpenStack's service in section 
-\ref{sec:future_work}.
+As OpenStack is becoming a standard and since it provides mechansims that are
+suitable to build clouds in data-centers context, it can be considerated as a
+cloudkit of choice for the LUC-OS. However OpenStack is not totally in sync with
+its requirement: for example OpenStack performs static resource scheduling: in 
+fact when a virtual machine is created, the nova-scheduler component decides 
+which server should host it and in case of resource overloading, the virtual
+machine cannot be rescheduled. That is why we discuss the integration of DVMS as
+an OpenStack's service in section \ref{sec:future_work}.
 
 \subsection{Revisiting components that are suitable for a LUC-OS (Related work)}
 \label{sub:sec:revisiting_openstack}
