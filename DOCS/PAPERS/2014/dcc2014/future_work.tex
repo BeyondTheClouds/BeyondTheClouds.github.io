@@ -28,6 +28,8 @@ version of the partition is forwarded to another free DVMS agent until a viable
 mapping is found. When a viable mapping has been found, the last member of the
 partition applies the mapping by performing live virtual machines migrations.
 
+
+
 Formal proof \cite{quesnel:ispa2013} has been made that if a solution exits, 
 DVMS will converge to this solution. Furthermore, as a DVMS agent cannot be
 shared between different partitions, partitions can work in parallel without
@@ -56,14 +58,21 @@ caused by communications.
 % 	\end{itemize}
 % \end{itemize}
 
+Section \ref{sub:sec:revisiting_openstack} introduced OpenStack's mechanisms 
+that will be revisited. As nova-scheduler currently performs static
+ressource scheduling, we decided to replace it by DVMS. Before going more into 
+technical details of the integration, OpenStack's service architecture is 
+flexible: services follow the "shared nothing memory" principle and communicate
+through an AMQP bus. This means that each service follows a "protocol": 
+it consummes specific messages received on its queue, performs actions and as a
+result produces messages that are sended to collaborators.
 
-Considering the fact that nova-scheduler currently performs static scheduling, 
-as introduced in section \ref{sub:sec:revisiting_openstack}, we decided to 
-replace it by DVMS. Before going more into technical details of the integration,
-OpenStack's service architecture is flexible: service follow the "shared nothing
-memory" principle and communicate through an AMQP bus. This means that each 
-service follows a "protocol" : when it consumes all received message, in return
-it execute an action and produces a specific messsage. 
+
+This means that if one wants to use a custom service in place of a default 
+service, it only have to adapt the custom service to the protocol of the later
+one. As all services follow the "shared nothing memory" introduced earlier, if 
+the protocol is respected then the system will make no difference between using
+the default service or the custom one.
 
 \begin{figure}[h]
 	\centering
@@ -73,8 +82,15 @@ it execute an action and produces a specific messsage.
 	%\vspace*{-.8cm}
 \end{figure}
 
-With this in mind, we depicted in figure \ref{fig:integration} the way we want 
+With this in mind, we depicted in figure \ref{fig:integration} the way we plan 
 to integrate DVMS with OpenStack: we use an adapter object that consumes 
 messages that are destinated to nova-scheduler, forward it to DVMS and translate
-messages produced by DMVS in message from the nova-scheduler protocol. We think
-that this method will minimize modification on Nova service.
+messages produced by DMVS in message belonging to the nova-scheduler protocol.
+The advantage of this method is that modifications made to the Nova service are
+minimized, enabling us to develop a starting prototype of the LUC-OS leveraging
+default OpenStack services.
+
+This first prototype will be benchmarked in order to determine what are the
+services that are unsuitable with a massively distributed cloud. Depending on 
+the results of the benchmark, unsuitable components will be revisited as exposed
+in section \ref{sub:sec:revisiting_openstack}.
