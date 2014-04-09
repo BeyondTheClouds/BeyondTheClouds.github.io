@@ -1,0 +1,85 @@
+\documentclass{acm/acm_proc_article-sp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Accents français
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Todo notes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[textwidth=17mm]{todonotes}
+\newcommand{\customtodo}[4]{
+	\todo[color=#2,inline,size=\small]{
+		\ifx&#3& 
+			\textbf{#1} #4
+		\else
+			\textbf{#1$\Rightarrow$#3} #4
+		\fi
+	}
+}
+\newcommand{\AL}[2][]{\customtodo{AL}{green!50}{#1}{#2}}
+\newcommand{\JP}[2][]{\customtodo{JP}{red!20}{#1}{#2}}
+\newcommand{\FQ}[2][]{\customtodo{JP}{blue!20}{#1}{#2}}
+\newcommand{\FD}[2][]{\customtodo{JP}{brown!20}{#1}{#2}}
+\newcommand{\CT}[2][]{\customtodo{CT}{yellow!20}{#1}{#2}}
+\newcommand{\MB}[2][]{\customtodo{MB}{orange!20}{#1}{#2}}
+
+
+
+
+
+\begin{document}
+
+\title{Designing a massively distributed IaaS toolkit by revisiting OpenStack internals}
+
+\numberofauthors{3} 
+\author{
+%
+% 1st. author
+% \alignauthor
+Jonathan Pastor, Adrien Lèbre\\
+       \affaddr{ASCOLA Research Group}\\
+       \affaddr{Mines Nantes / Inria / LINA}\\
+       \affaddr{Nantes, France}\\
+       \email{firstname.lastname@mines-nantes.fr}
+% 2nd. author
+\alignauthor
+Frédéric Desprez\\
+       \affaddr{Avalon Research Group}\\
+       \affaddr{LIP ENS Lyon UMR 5668}\\
+       \affaddr{Lyon, France}\\
+       \email{firstname.lastname@inria.fr}
+}
+
+\maketitle
+
+\input{sections/abstract}
+
+%% Comment this line for submission
+%\listoftodos
+
+\input{sections/introduction}
+
+% \input{sections/design}
+
+% \input{sections/discovery}
+
+% \input{sections/revisiting_openstack}
+
+% \input{sections/future_work}
+
+\input{sections/moreno}
+
+\input{sections/lucos}
+
+\input{sections/openstack}
+
+\input{sections/conclusion}
+
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+\end{document}
