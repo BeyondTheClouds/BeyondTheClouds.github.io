@@ -3,21 +3,6 @@
 
 \subsection{OpenStack: a toolkit for building clouds}
 
-% \begin{itemize}
-	
-% 	\item Opensource project considered as a standard in cloud infrastrcutre.
-
-% 	\item Composed of several "shared nothing architecture" services (nova, 
-% 	swift, Quantum, Glance, ...).
-
-% 	\item Uses an AMQP (Advanced Message Queuing Protocol) for inter-components 
-% 	communication. => additional components can easily plug on an existing
-% 	infrastructure.
-
-% 	\item Drawack: OpenStack does not perform dynamic scheduling of VMs.
-
-% \end{itemize}
-
 OpenStack is a very popular project that aim at building an opensource IaaS
 manager. Many of the biggest actors of Cloud computing (Red hat, IBM, Rackspace,
 VMware, Cisco, ...) are contributing to this project, thus providing new 
@@ -40,87 +25,23 @@ expected by collaborators.
 
 As OpenStack is becoming a standard and since it provides mechansims that are
 suitable to build clouds in data-centers context, it can be considerated as a
-cloudkit of choice for the LUC-OS. However OpenStack is not totally in sync with
-its requirement: for example OpenStack performs static resource scheduling: in 
-fact when a virtual machine is created, the nova-scheduler component decides 
-which server should host it and in case of resource overloading, the virtual
-machine cannot be rescheduled. That is why we discuss the integration of DVMS as
-an OpenStack's service in section \ref{sec:future_work}.
+cloudkit of choice for the LUC-OS. 
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Revisiting components that are suitable for a LUC-OS (Related work)}
 \label{sub:sec:revisiting_openstack}
 
-% \begin{itemize}
 
-% 	\item As we do not want to redevelop every services "from scratch", we will
-% 	maximize the reuse of existing	mechanisms.
-
-% 	\item In section \ref{sec:architecture} we defined a list of services provided 
-% 	by the LUC-OS. Most of them will partially/completly leverage existing 
-% 	mechanisms:
-
-% 		\begin{description}
-
-% 			\item [Compute manager] : 
-% 			\begin{itemize}
-% 				\item Nova is the service that is responsible for controlling 
-% 				every services of the infrastucture. 
-
-% 				\item It leverages nova-scheduler, which performs static 
-% 				scheduling: nova-scheduler.
-
-% 				\item We plan to use a dynamic scheduler (DVMS) instead.
-% 			\end{itemize}
-
-% 			\item [Administrative manager] : 
-% 			\begin{itemize}
-% 				\item KeyStone is the service used for managing identity and
-% 				authentication.
-
-% 				\item Horizon is the service that serves a web interface, 
-% 				allowing users to interact with OpenStack.
-
-% 				\item As we will use a distributed hash table (DHT) to save
-% 				persistent states, we plan reuse Keystone and Horizon, with
-% 				minor modification to leverage our DHT. 
-% 			\end{itemize}
-
-% 			\item [Storage manager] : 
-% 			\begin{itemize}
-% 				\item Swift is a distributed key/value service with no SPOF.
-				
-% 				\item Glance is a service for storing image that leverages 
-% 				Swift. It is possible to directly store images in Swift.
-
-% 				\item To limit network impact ("Boot problem"), solution based 
-% 				on bittorrent have been developped (VMTorrent, 
-% 				glance-bittorrent, ...).
-
-% 				\item For a first prototype we propose to leverage Glance and
-% 				Swift. If this solution become no more suitable for a massive
-% 				infrastucture, we propose to integrate VMTorrent in Glance.
-
-% 			\end{itemize}
-
-% 			\item [Network manager] :
-% 			\begin{itemize}
-				
-% 				\item Neutron is the service used to create VLAN.
-
-% 				\item It supports plugins: it is possible to use Open vSwitch.
-% 				This is what we propose for a first version of the system.
-
-% 				\item For next versions, Mininet \cite{lantz:2010} or Vin can be
-% 				considered as good candidates.
-% 			\end{itemize}
-
-% 		\end{description}
-
-
-The objective targetted by the LUC-OS in to provide an IaaS manager for 
-massively distributed clouds. To work at this massive scale, it will leverage
-a locality aware overlay network (LBO), thus improving reactivity of service
-by taking into account networking parameters such as latency or bandwidth usage.
 As developing a complete IaaS manager is an Herculean work, we think that 
 revisiting existing mechanims is a good way to reach our goal, even if it means 
 that some of these mechanisms may be completely replaced.
@@ -168,7 +89,7 @@ and proposed modification are detailled:
 	interconnect virtual machines. Neutron supports plugins : it is possible
 	to use a virtual multilayer switch like Open vSwitch \cite{pfaff:2009}.
 	In the case this plugin does not meet our needs, we propose to 
-	leverage software defined network (SDN) solution like Mininet 
+	leverage a software defined network (SDN) solution like Mininet.
 	\cite{lantz:2010} or Vin.
 
 \end{description}

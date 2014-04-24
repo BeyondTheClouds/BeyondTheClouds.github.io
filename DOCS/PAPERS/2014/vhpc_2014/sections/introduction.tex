@@ -18,7 +18,7 @@ However to answer the escalating demand for computing resources,
 Cloud Computing providers must build data centers (DCs) of ever-increasing size.
 This concentration of computing ressources leads to issues like connectivity to
 the application/data located in a similar geographical zone during disasters or
-outages. Besides facing the well-known issues large-scale DCs have now to deal 
+outages. Besides facing the well-known issues, large-scale DCs have now to deal 
 with energy considerations that limit the number of physical resources that one 
 location can host.
 
@@ -30,32 +30,69 @@ dedicated electrical and cooling infrastructure. As an alternative to
 concentrating the production of computing resources, we propose to study a model
 where this production is deconcentrated.
 
-Leveraging the concept of micro data-centers proposed by \cite{greenberg:2008},
-we suggest to build a cloud operating system that will run in a distributed
-manner over a set a small data-centers geographically spread. This cloud 
-operating system will have to reach high scalability criteria: managing 
-thousands of servers used by hundreds of users. Popular peer to peer file
-sharing systems already work at this scale order: bittorrent clients enable 
-hundreds of thousands of users to share millions of file spread over the 
-internet. If we disregard trackers, this protocol is totally decentralized with 
-no single point of failure (SPOF). That is why we propose to learn from peer to 
-peer file sharing experience, in order to build massively distributed clouds.
 
-All these problems can be tackled by hybrid or federated Cloud solutions 
-\cite{armbrust:2010}, that aim at extending the resources available on one Cloud
-with those of another one. However a recent IEEE report 
-\cite{ieeenetreport:2012} shows that network traffic continues to double 
-roughly every year. Consequently, bringing computing resources closer to the 
-end-users, thus minimizing the energy impact and saving bandwidth.
+
+
+With this model, the cloud operating system will have to reach high scalability 
+criteria: managing thousands of servers used by hundreds of users. Popular peer 
+to peer file sharing systems already work at this scale order: bittorrent 
+clients enable hundreds of thousands of users to share millions of file spread 
+over the internet, and if we disregard trackers, this protocol is totally 
+decentralized with no single point of failure (SPOF). That is why we propose to 
+learn from peer to peer file sharing experience, in order to build massively 
+distributed clouds. However a recent IEEE report \cite{ieeenetreport:2012} shows
+that network traffic continues to double roughly every year. Consequently, 
+bringing computing resources closer to the end-users would minimize the energy
+impact and save bandwidth. Leveraging the concept of micro data-centers 
+proposed by \cite{greenberg:2008}, we suggest to build a cloud operating system 
+that will be distributed over a set of geographically spread small data-centers. 
+
+
+
+% All these problems can be tackled by hybrid or federated Cloud solutions 
+% \cite{armbrust:2010}, that aim at extending the resources available on one Cloud
+% with those of another one. 
 
 The concept of micro/nano DCs at the edge of the backbone \cite{greenberg:2008} 
 may be seen as a solution to reduce the network overhead. Hence, we propose to 
 extend each points of presence (PoP) with a number of servers dedicated to 
-hosting virtual machines (VMs). From the physical point of view, network 
+virtual machines (VMs) hosting. From the physical point of view, network 
 backbones provide appropriate infrastructures, i.e., reliable and efficient 
 enough to operate UC resources spread across the different PoPs. Ideally, UC 
 resources would be able to directly take advantage of computation cycles 
 available on network active devices, i.e. those in charge of routing packets.
+
+
+% Leveraging the concept of micro data-centers proposed by \cite{greenberg:2008},
+% we suggest to build a cloud operating system that will run in a distributed
+% manner over a set a small data-centers geographically spread. This cloud 
+% operating system will have to reach high scalability criteria: managing 
+% thousands of servers used by hundreds of users. Popular peer to peer file
+% sharing systems already work at this scale order: bittorrent clients enable 
+% hundreds of thousands of users to share millions of file spread over the 
+% internet. If we disregard trackers, this protocol is totally decentralized with 
+% no single point of failure (SPOF). That is why we propose to learn from peer to 
+% peer file sharing experience, in order to build massively distributed clouds.
+
+% All these problems can be tackled by hybrid or federated Cloud solutions 
+% \cite{armbrust:2010}, that aim at extending the resources available on one Cloud
+% with those of another one. However a recent IEEE report 
+% \cite{ieeenetreport:2012} shows that network traffic continues to double 
+% roughly every year. Consequently, bringing computing resources closer to the 
+% end-users, thus minimizing the energy impact and saving bandwidth.
+
+% The concept of micro/nano DCs at the edge of the backbone \cite{greenberg:2008} 
+% may be seen as a solution to reduce the network overhead. Hence, we propose to 
+% extend each points of presence (PoP) with a number of servers dedicated to 
+% hosting virtual machines (VMs). From the physical point of view, network 
+% backbones provide appropriate infrastructures, i.e., reliable and efficient 
+% enough to operate UC resources spread across the different PoPs. Ideally, UC 
+% resources would be able to directly take advantage of computation cycles 
+% available on network active devices, i.e. those in charge of routing packets.
+
+
+
+
 
 Proponents of Cloud federations would argue that is it possible to perform
 a federation a micro-Clouds hosted on each micro DC, thus having a service node
@@ -72,11 +109,10 @@ leverage IT resources and specific devices such as computer room air
 conditioning units, inverters or redundant power supplies already present in 
 each center of their backbone.
 
-The remainder of this article is structured as follows. In Section 2, we discuss
-the definition and properties of a massively distributed cloud. 
-Section 3 gives an overview of the LUC OS design 
-proposal. In Section 4, we describe existing mechanisms that we will 
-revisit to build our massively distributed IaaS manager. In section 5 we 
-introduce the method that will be used to integrate our dynamic scheduler in 
-OpenStack, thus building the first version of the LUC OS. Finally, we discuss 
-perspectives and conclude this article in Section 6.
+The remainder of this article is structured as follows. In Section 2, we start 
+from the reference architecture proposition \cite{moreno2012iaas} and we discuss
+challenges to need to be solved for building massively distributed clouds. 
+Section 3 gives an overview of the LUC OS design proposal that meet requirements
+from Section 2. In Section 4, we describe existing mechanisms that we will 
+revisit to build the LUC OS. Finally, we discuss perspectives and conclude this 
+article in Section 5.
