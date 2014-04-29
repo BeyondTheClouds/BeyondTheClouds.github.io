@@ -1,0 +1,95 @@
+\section{Revisiting OpenStack: towards a massively distributed IaaS manager}
+
+
+\subsection{OpenStack: a toolkit for building clouds}
+
+OpenStack is a very popular project that aim at building an opensource IaaS
+manager. Many of the biggest actors of Cloud computing (Red hat, IBM, Rackspace,
+VMware, Cisco, ...) are contributing to this project, thus providing new 
+features at a rapide pace. OpenStack enables the construction of public or 
+private clouds.
+
+A typical cloud deployed with OpenStack is composed of several services (nova, 
+swift, Quantum, Glance, ...) following the "shared nothing architecure" 
+principle, meaning that each service is independent and thus shares no state 
+with other services.
+
+In this way, inter-services collaboration is performed by exchanging message 
+through an AMQP (Advanced Messsage Queuing Protocol) based bus: each service 
+has its own queue, and it collaborates with others by sending messages to their 
+queues. This offers the advantage of easily plugging additional components : 
+when a default service becomes no more suitable with system's needs, it can be 
+naively replaced by another custom service, as long as the newer service 
+consummes messages destinated to the older one, and in turn produces messages 
+expected by collaborators.
+
+As OpenStack is becoming a standard and since it provides mechansims that are
+suitable to build clouds in data-centers context, it can be considerated as a
+cloudkit of choice for the LUC-OS. 
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Revisiting components that are suitable for a LUC-OS (Related work)}
+\label{sub:sec:revisiting_openstack}
+
+
+As developing a complete IaaS manager is an Herculean work, we think that 
+revisiting existing mechanims is a good way to reach our goal, even if it means 
+that some of these mechanisms may be completely replaced.
+
+For the sake of clarity, mechanisms that we plan to revisit will be studied 
+following the list of services depicted in section \ref{sub:sec:list_services} :
+for each service, the suitable mechanisms that will be revisited are indicated 
+and proposed modification are detailled:
+
+\begin{description}
+
+	\item [Compute manager] : Nova is the OpenStack service that is 
+	responsible for coordinating and controlling the work of other services.
+	As it is the angular stone of OpenStack, we plan to directly plug the 
+	LUC-OS on this service. Nova service contains a sub-service that is
+	responsible for scheduling virtual machines: nova-scheduler, which performs
+	static scheduling. This means that the scheduler will decide on which
+	server the virtual machine will run once and for all. In section 
+	\ref{sub:sec:integration_dvms} we discuss the replacement of 
+	nova-scheduler by DVMS.
+
+
+	\item [Administrative manager] : KeyStone and Horizon are two services
+	that are respectively responsibles for managing identity/authentication
+	and providing a web user interface to users that want to interact with
+	OpenStack. As the LUC-OS will store every piece of information in a DHT: we
+	propose to make KeyStone and Horizon pick data from this DHT. Furthermore 
+	the LUC-OS and OpenStack does not exactly share the same semantics : for
+	example the LUC-OS manipulates virtual environments which does not
+	exactly exist in OpenStack. Revisiting Horizon service through minor
+	modifications would enable the integration of this concept in OpenStack.
+
+	\item [Storage manager] : Storage in OpenStack can be divided in two
+	service: Swift manages objects (files) while Glance manages virtual machines
+	disk images. Glance's images can be stored in Swift or in any other storage
+	service. Recent solutions like VMTorrent \cite{reich:2012} have been
+	developed to limit network overhead, for example during simultaneous 
+	loading of images at VMs startup. For a first prototype we propose to 
+	leverage Glance and Swift, and if it becomes no more suitable for a
+	massive infrastucture, we propose to integrate VMTorrent in Glance and 
+	to use it.
+
+	\item [Network manager] : Neutron is the service that manages networking
+	in OpenStack: it is used to create virtual networks (VLANs) that
+	interconnect virtual machines. Neutron supports plugins : it is possible
+	to use a virtual multilayer switch like Open vSwitch \cite{pfaff:2009}.
+	In the case this plugin does not meet our needs, we propose to 
+	leverage a software defined network (SDN) solution like Mininet.
+	\cite{lantz:2010} or Vin.
+
+\end{description}
