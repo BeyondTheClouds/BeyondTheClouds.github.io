@@ -1,126 +1,128 @@
 \section{Reference architecture for IaaS clouds}
 \label{sec:moreno}
 
-
-% if this architecture is based on abstracted concepts and is not tied coupled
-% to specific technology, it is inspired by existing IaaS managers. Thus the
-% question of how it scales with massively distributed clouds is relevant.
-
-% \item Current IaaS managers almost same entities: virtual machines, storage,
-% image, network, security. That explains why they have implemented similar 
-% services \cite{peng:2009}.
-
-% \item Moreno et al. have proposed a reference architecture that covers 
-% services that manipulate such entities \cite{moreno2012iaas}.
-
-% \item Figure \ref{fig:moreno} depicts this reference architecture. Even
-% if this architecture is based on abstracted concepts and is not tied coupled
-% to specific technology, it is inspired by existing IaaS managers. Thus the
-% question of how it scales with massively distributed clouds is relevant.
-
-% \item In the following paragraphs we detail for services concerned 
-% challenges that need to be solved to scale with massively distributed 
-% clouds. For the construction	
-
-Infrastructure as a service (IaaS) is a model where companies consume computing
-resources produced by external cloud providers. This model has lead to a 
-structure similar to the electricity market: in the same way electrical 
-providers have build huge infrastructures for generating and transporting 
-energy, cloud providers now leverage data-centers that can host more than tens 
-of thousands of servers.
-
-As this market is dominated by few actors (Amazon, Rackspace, ...), de facto
-standards have emerged. Recent studies like \cite{peng:2009} have compared state
-of the art open-source IaaS manager: it appears that they almost manipulate same
-entities like virtual machines, disk images and storage services. Despite 
-efforts made on cloud interoperability, standardization efforts seem still
-unsuccessful as there does not exist a widely accepted standard.
-
-Moreno et al. have proposed a reference architecture \cite{moreno2012iaas} 
-for IaaS clouds, that covers services that are needed for building a Cloud OS. 
-Figure \ref{fig:moreno} depicts this proposition: with this model, each aspect 
-of the cloud is supervised by a specific manager. Furthermore this model enables
-the abstraction of how is implemented the underlying infrastructure. Authors 
-argues that following a reference architecture is a key to the widespread 
-adoption of IaaS clouds.
-
-However, the proposed architecture does not give any specific hints for
-building a massively distributed Cloud OS: indeed the question whether such 
-system is scalable or not is relevant. Focusing on managers that are suitable 
-for virtual machines provisioning, we detail in following paragraphs the 
-challenges that need to be solved to scale with massively distributed clouds:
+% - Designing LUC-OS -> complex (Cloud : a lot of aspects).
+% - study existing Cloud architecture -> anticipation of these problems.
+%    -> enable LUC-OS to leverage existing experience.
+% - This will minimize conception effort -> maximize time spend on prototype.
+% - This section -> highlight existing architectural principles (in order to use
+%    them)
+Designing an architecture for the LUC-OS is a complex task: it has to manage all
+the very diverse aspects of a Cloud infrastructure. A good way to anticipate 
+them is to study how the architecture of existing cloud solutions have been 
+organized: this will enable the LUC-OS to leverage experience acquired by others
+in the conception of IaaS managers, thus minimizing the conception effort, and
+maximizing time allowed to build a first prototype. This section targets to 
+highlight existing architectural principles used by current Cloud manager, in 
+order to make the LUC-OS leverage them.
 
 
+% - Cloud Computing -> like electricity market.
+% - Big fishes have emerged -> their APIs have become defacto standard.
+% - emerging market -> yet no ISO norm, but standardization is coming.
+% - Despite recent efforts, "data lock-in" still exists.
+% - This lack of standardization is a drag on Cloud computing adoption.
+Cloud computing is a model where companies consume computing resources produced 
+by external cloud providers. This model has lead to a structure similar to the 
+electricity market: in the same way electrical providers have build huge 
+infrastructures for generating and transporting energy, Cloud providers now 
+leverage data-centers that can host more than tens of thousands of servers. As 
+this is an emerging industry, normalization is still at an early stage: several 
+ISO norms will been soon released and many consortiums have been created to 
+promote the use of standards by Cloud Computing actors. However, this market is 
+dominated by few actors (Amazon, Google, Microsoft, Rackspace, ...) that exploit
+proprietary technologies, thus standardization has been delayed and de facto 
+standards have emerged. Furthermore, despite recent efforts made to avoid "data
+lock-in", migration from one Cloud provider to another one is still difficult to 
+achieve. All these factors are a drag on the adoption of Cloud computing.
+
+% - To enable companies to manage their data in the way they want 
+%   -> private clouds.
+% - OpenSource IaaS manager have been developed (OpenStack, Open Nebula
+%   ,...) to host private clouds.
+% - Some studies compared them:
+%    * They manipulate the same concepts (VMs, Networks, Storages, ...).
+%    * They have architectural differences (CloudStack -> monolithic, OpenStack 
+%      -> components, Eucalyptus -> AWS).
+To keep the control on their data, organizations can leverage internally hosted 
+Cloud infrastructure : private Clouds enable the utilization of the Cloud 
+computing paradigm without depending to a Cloud provider. For this purpose, 
+open-source IaaS managers have emerged: several of them have become popular with
+large communities of developers and are used by large actors. Recent studies 
+\cite{peng:2009} have compared these projects and it appears that while they 
+almost manipulate same concepts (VMs, Networks, Storages, ...), there is a lack 
+of consensus on what they target: Eucalyptus focuses on building an 
+infrastructure that shares the same API as Amazon AWS, while projects like 
+OpenStack and CloudStack have targeted the delivery of a complete IaaS that can
+operate large cloud infrastructures by using its own tools. This leads to an 
+architectural heterogeneity : CloudStack’s development has been oriented towards
+a monolithic architecture, while OpenStack is composed of loosely-coupled 
+message passing managers and Eucalyptus follows the Amazon AWS services’
+architecture.
+
+% - Architectural differences -> Moreno's reference architecture.
+% - several managers.
+To cope with these architectural differences, Moreno et al. have proposed a 
+reference architecture \cite{moreno2012iaas} for IaaS clouds. This architecture 
+covers services that are needed for building a Cloud OS : each aspect of the 
+cloud is supervised by a specific manager. The following listing gives a 
+description of principal services that authors expect in a Cloud OS:
 \begin{description}
+	
+	\item [Virtual machines manager] is the most important part of the Cloud OS:
+	it manages VMs' cycle of life (configuration, deployment, 
+	migration, suspension, resume, shut down and sometimes migrations). It is 
+	also responsible for preserving service-level agreements (SLAs).
 
-	\item [Distributed VM scheduling] \textit{(Virtual machine manager and 
-	Scheduler)} : In a massively distributed cloud computing resources are 
-	spread all over the network. Thus the processus of finding adequate 
-	servers for hosting/relocating VMs can become complex. The Virtual
-	machine manager and the resource scheduler should leverage collaboration 
-	that scales with the growth of the infrastructure, whether it contains 
-	hundreds or millions of servers.
+	\item [Scheduler] decides which server will run a newly created virtual 
+	machine by taking into account several parameters (static scheduling). To 
+	preserve a good quality of service, overloaded servers may migrate virtual
+	machines on underloaded servers (dynamic scheduling).
 
-	\item [Image and Storage managers] : Virtual machines are based on disk
-	image which can be given by cloud provider (standard images) or uploaded
-	by users (customized images). It is possible to persist VM states for
-	suspending/resuming VM execution or for fault tolerance purpose. We see two 
-	challenges here:
+	\item [Image manager] manages virtual machines' images. As users have their
+	own images with specific systems or configurations, this manager must be 
+	able to handle a large number of images in a distributed manner.
 
-	\begin{itemize}
+	\item [Network manager] provides connectivity to the infrastructure: virtual
+	networks for VMs, external access for users. The current trend is to the
+	virtualisation of networking devices through the use of Software
+	Defined Networks (SDN). This manager must enable flexible networking 
+	deployment without losing performance (bandwidth and latency).
 
-		\item As every virtual machine will be based on disk image, users
-		will be provided a set of default image that can be used. They will
-		be free to customize a given image with additional softwares and
-		configurations. A user must be able to access its images on every
-		nodes composing the Cloud OS, which involves distributed file 
-		storage and replication of these customized images.
+	\item [Storage manager] provides persistent storage facilities to virtual 
+	machines. As physical single storage device might be a source of failure,
+	factors like distribution and redundancy must be anticipated.
 
-		\item Being able to store a large amount of virtual machines 
-		snapshots: as each replica weights several gigabytes, a massively 
-		distributed cloud have to provides storage mechanisms for storing 
-		thousands of VM replicas.
+	\item [Administrative tools] provides tools and user interfaces to perform
+	administration tasks. This is the components that enables users access to
+	the Cloud OS internals.
 
-	\end{itemize}
-
-	\item [Managing virtual network (Network manager)] : A virtual 
-	environment is the aggregation of virtual machines interconnected over
-	a virtual network. While interconnection is not a problem in a mono-site
-	infrastructure, managing virtual networks that link geographically spread
-	virtual machines is tedious task due to IP overlapping and VM 
-	relocalization. A Cloud OS that manages massively distributed clouds must 
-	provide scalable network mechanisms for interconnecting virtual machines of 
-	a same virtual environment spread over several sites.
-
-	\item [Accounting and Auditing] : A Cloud OS must provide mechanisms for
-	analyzing users activity and infrastructure usage to improve security and 
-	quality of service. As more data processed leads to more accurate analysis, 
-	a massively distributed Cloud OS must provide mechanisms that enables the
-	collect, the storage and the processing of large operating data. Furthermore
-	these mechanisms must be able to work in geographically spread context.
+	\item [Information manager, Accounting/auditing ] collects raw monitoring 
+	data of the infrastructure and produce value-added from the raw data 
+	respectively. As authors mentioned it, both are very important for billing
+	process.
 
 \end{description}
 
+The other managers, not included in the preceding listing, are either taking 
+place at different level in the Cloud Computing hierarchy (\emph{Service 
+manager} is likely to be at PaaS level) or either too advanced for a first Cloud
+OS prototype (\emph{Cloud Interfaces} exposes a cloud API to external users; 
+\emph{Federation manager} enables the access to remote Clouds.) or is of little 
+scientific interest for the Cloud OS (\emph{Information manager} gather VMs 
+state information, as many tools meet this need, the Cloud OS will simply 
+reuse them).
 
-% Recent studies have showed that state of the art IaaS manager \cite{peng:2009}
-% were constructed over the same concepts, and some authors have proposed a 
-% reference architecture for builing IaaS infrastructure. In \cite{moreno2012iaas}
-% authors proposed the concept of Cloud OS: they aimed at providing abstractions 
-% for services that compose current IaaS managers. Every single functions of 
-% current IaaS manager is detailled. Figure \ref{fig:moreno} depicts this 
-% reference architecture.
-
-\begin{figure*}
-	\centering
-	\vspace*{-1cm}
-	\includegraphics[width=1.1\linewidth]{Figures/moreno.pdf}
-	\caption{Architecture proposed by Moreno et al.\cite{moreno2012iaas}.}%
-	\label{fig:moreno}%
-	% \vspace*{-1cm}
-\end{figure*}
-
-As main challenges that need to be solved have been introduced, we propose in 
-section \ref{sec:lucos} specifications for a Cloud OS that effectively operate
-massively distributed clouds over a geographically spread infrastructure: the 
-LUC-OS.
-
+% - We want to develop a Cloud OS.
+% - Develop from scratch: impossible (herculean work) -> maximize the reuse of
+%   existing components.
+% - We propose to leverage the reference architecture proposed by Moreno.
+% - In order to develop a prototype, we focus of vital components.
+We target the development of the LUC-OS : a fully distributed Cloud OS that can 
+provides essential features proposed by current opens source IaaS managers. As
+developing a complete Cloud OS is an herculean work, trying to maximize the 
+reuse of existing works is a way to minimize both design and implementation 
+efforts. Indeed, our first objective is to leverage the best practices 
+established by the analysis of today's IaaS managers. We think that leveraging
+this reference architecture is the most obvious way to cope with this first
+objective.

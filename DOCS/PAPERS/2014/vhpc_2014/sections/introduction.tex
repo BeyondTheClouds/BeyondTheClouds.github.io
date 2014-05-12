@@ -1,118 +1,139 @@
 \section{Introduction}
 \label{sec:intro} 
-% \AL{1./ le cloud centralisé c'est pas bien }
-% \AL{2./ il faut mettre en place le concept de microDCs}
-% \AL{3./ pour le mettre en oeuvre on propose tout simplement de s'appuyer sur les
-% points de presence}
-% \AL{4./ faire une fédération de pleins de petits OpenStack n'est pas la bonne 
-% approche car si on perd les noeuds de service sur un micro DC, on a perdu tout 
-% le micro DC en plus d'ajouter un cout, puisque sur chaque microDCs, il faut des 
-% noeuds dediées à ces noeuds de services}
-% \AL{5./ il faut un systeme qui va etre capable d'operer de maniere unifié une 
-% telle infrastructure}
 
+% - success of cloud computing.
+% - ever-growing demand of computing resources (CR) -> production of CR.
+% - economy of scale -> CR production is concentrated in mega datacenters.
+% - mega DCs -> critical needs in electricity and cooling.
+% - mega DCs in region with abundant and cheap electricity supply
+% - mega DCs in region with free cooling. 
+The success of Cloud Computing has driven the advent of Utility Computing (UC): 
+cloud providers have build large infrastructures that statisfy the ever-growing 
+demand for computing resources. To realize economy of scale, the production
+of computing resources is concentrated in mega data centers (DCs) of 
+ever-increasing size with dedicated electrical and cooling systems to meet their
+critical needs. The number of physical resources that one DC can host is limited
+by the capacity of its energy supply and cooling system. Hence, the current 
+trend is toward building DCs in regions with abundant and affordable electricity
+supply or in regions close to the polar circle to leverage free cooling 
+techniques. 
 
+% - ever-increasing DCs size 
+%   -> more concentration of production (general) 
+%     -> problems:
+%        * fault-tolerance (disasters).
+% - alternative: deconcentration of computing resources.
+% - federation of several clouds is a first is a solution for:
+%      - fault tolerance.
+%      - energy requirements.
+However this ever-increasing DCs size is a problem as it accentuates the 
+concentration of the production of computing resources in a same geographical
+area, thus leading to fault tolerance issues: when a disaster occurs 
+connectivity to computing ressources cannot be guaranted. As an alternative to 
+this concentration of computing resources, federations of clouds propose to 
+extend resources available on one Cloud with those of another one. One positive 
+effect of federation of clouds is that it enables the decentralization of 
+computings resources, thus solving the problems of connectivity in case of 
+disasters, and dividing the electrical and cooling effort on several 
+geographical sites.
 
-The success of Cloud Computing has driven the advent of Utility Computing (UC). 
-However to answer the escalating demand for computing resources, 
-Cloud Computing providers must build data centers (DCs) of ever-increasing size.
-This concentration of computing ressources leads to issues like connectivity to
-the application/data located in a similar geographical zone during disasters or
-outages. Besides facing the well-known issues, large-scale DCs have now to deal 
-with energy considerations that limit the number of physical resources that one 
-location can host.
+% - mega DCs or federation of clouds -> data/apps far from users.
+%   -> network overhead
+% - IEEE report: network traffic has been doubling every years
+% - example: CDNs decentralize the hosting of static resources.
+However all these DCs are still located in specific place present, in addition 
+to jurisdiction concerns, the drawback of hosting computing resources far from 
+end users, which leads to some useless network overheads that prevent the 
+adoption of cloud computing by several kind of applications such as mobile 
+computing or big data challenges. A recent IEEE report \cite{ieeenetreport:2012}
+shows that network traffic continues to double roughly every year. Consequently,
+a model bringing computing resources closer to the end-users would minimize the 
+energy impact and save bandwidth. An example of such model is Content Delivery 
+Networks (CDNs) in web hosting : static resources like images and web scripts 
+are duplicated on servers located all over the world, enabling their 
+distribution to end users with low latency and high bandwidth by delivering from
+the closest server.
+%This enables large websites to 
+%dedicate DCs to high value computing like dynamic content generation.
 
-Cloud providers concentrate the production of computing resources in 
-data-centers that contains tens of thousand of servers, enabling IaaS mechanisms
-to take advantage of fast network with extremely low latency. However this ever 
-increasing data-centers size has become a problem, as many data-centers require 
-dedicated electrical and cooling infrastructure. As an alternative to 
-concentrating the production of computing resources, we propose to study a model
-where this production is deconcentrated.
+% - apply the CDN model to the cloud.
+% - We propose: instead of concentrating production of computing resources:
+%    * leverage the concept of Micro/nano DC geographically spread.
+% - Operate these micro DCs with a cloud OS: instead of several Clouds OS that
+%   only use remote clouds, we propose a single Cloud OS that operate all of 
+%   them in a distributed manner.
+% - Classical models (centralized, federations) -> not good (SPOF, does not 
+%  operate efficiently).
+% - Hierarchical structure -> maintenance cost and high complexity.
+% - We want a flat structure and a single image system that will be distributed.
+In keeping with the decentralization of resource delivering as allowed by models
+like CDNs, we propose to study a model where the production of computing 
+resources is decentralized: leveraging the concept of geographically spread 
+micro/nano DCs \cite{greenberg:2008} directly located in Internet service 
+providers (ISPs) points of presence, thereby benefiting from high connectivity 
+(low latency and high bandwidth) with end users, we propose to study what are 
+the possible models that can be used to operate such an infrastucture. The first
+way to operate these geographically spread micro DCs is to use classical models 
+like federations of clouds (each micro DC will host one cloud.) or the use of a
+centralized broker (a central server will arrange resource allocation by picking
+on each cloud.). The second way is to design and build a Cloud Operating System 
+(Cloud OS) that will operate all the geographically spread micro DCs in a fully 
+distributed manner. Classical models cannot be considered as meeting our 
+requirements: a central broker would expose the infrastructure to problems like 
+scalability and single point of failure (SPOF), and federation of clouds does 
+not go far enough to operate a network of micro DCs as they would use rather than 
+operate other clouds. Furthermore, there is two main ways to organize a 
+distributed architecture: using a flat structure or a hierarchical structure. As
+hierarchical structures lead to additional maintenance costs and an increase of 
+the architectural complexity, it could not be a satisfactory solution. To 
+operate massively distributed clouds build on top of close to end users micro 
+DCs, we think that a single image system composed of several agents that will be 
+distributed following a flat architecture is a good candidate. 
 
+% - Geographicaly spread DCs -> need to take into account locality properties.
+% - locality properties -> high overall reactivity.
+Furthermore, we deeply think that to efficiently operate such infrastructure, a 
+Cloud OS needs to takes into account several measurements (latency, bandwidth, 
+...) aggregated as locality properties: it would efficiently organize 
+collaborations between its computing resources, thus improving its overall 
+reactivity. 
 
+% - We propose: a Cloud OS that takes into account locality properties.
+% - This system will be build on top of distributed mechanisms such as DHT and
+%   advanced distributed models (p2p).
+% - LUC-OS: many micro DCs operated by a single system.
+% - The LUC-OS will be very interesting for ISPs: 
+%     backbone -> complete UC resources
+Hence we propose the Locality based Utility Computing Operating System (LUC-OS),
+an advanced Cloud OS that will operate massively distributed clouds by 
+leveraging locality properties and a peer to peer architecture to efficiently 
+work in a fully distributed manner. To adress scalability and fault tolerance 
+concerns, the LUC-OS will be build on top of advanced distributed mechanisms 
+like overlay networks, distributed hashtables and actor model. The LUC-OS will 
+enable the unification of many UC resources distributed on distinct sites, to be
+operated through a single system. It would enable ISPs and other institutions in charge of operating a network backbone to build
+an extreme-scale LUC infrastructure with a limited additional cost. Instead of 
+redeploying a complete installation, they will be able to leverage IT resources 
+and specific devices such as computer room air conditioning units, inverters or 
+redundant power supply.
 
+% - Developing from scratch: herculean work.
+% - We should maximize the reuse of existing tools/concepts.
+% - To do so: 1) draw architectural summary; 2) identify challenges for the
+%   LUC-OS 3) instanciate it over OpenStack.
+As developing from scratch a Cloud OS is an herculean work, we think that the 
+LUC-OS should leverage tools and concepts that existing systems use, even if 
+it means modifications to some mechanisms to work in a fully distributed manner.
+That is why as a first step, we decide to start from an architectural summary of 
+existing Cloud managers and then identify which challenges need to be addressed
+to have LUC-OS model for operating massively distributed clouds. The last step 
+is the instanciation of this model over the OpenStack project to build a first
+working prototype.
 
-With this model, the cloud operating system will have to reach high scalability 
-criteria: managing thousands of servers used by hundreds of users. Popular peer 
-to peer file sharing systems already work at this scale order: bittorrent 
-clients enable hundreds of thousands of users to share millions of file spread 
-over the internet, and if we disregard trackers, this protocol is totally 
-decentralized with no single point of failure (SPOF). That is why we propose to 
-learn from peer to peer file sharing experience, in order to build massively 
-distributed clouds. However a recent IEEE report \cite{ieeenetreport:2012} shows
-that network traffic continues to double roughly every year. Consequently, 
-bringing computing resources closer to the end-users would minimize the energy
-impact and save bandwidth. Leveraging the concept of micro data-centers 
-proposed by \cite{greenberg:2008}, we suggest to build a cloud operating system 
-that will be distributed over a set of geographically spread small data-centers. 
-
-
-
-% All these problems can be tackled by hybrid or federated Cloud solutions 
-% \cite{armbrust:2010}, that aim at extending the resources available on one Cloud
-% with those of another one. 
-
-The concept of micro/nano DCs at the edge of the backbone \cite{greenberg:2008} 
-may be seen as a solution to reduce the network overhead. Hence, we propose to 
-extend each points of presence (PoP) with a number of servers dedicated to 
-virtual machines (VMs) hosting. From the physical point of view, network 
-backbones provide appropriate infrastructures, i.e., reliable and efficient 
-enough to operate UC resources spread across the different PoPs. Ideally, UC 
-resources would be able to directly take advantage of computation cycles 
-available on network active devices, i.e. those in charge of routing packets.
-
-
-% Leveraging the concept of micro data-centers proposed by \cite{greenberg:2008},
-% we suggest to build a cloud operating system that will run in a distributed
-% manner over a set a small data-centers geographically spread. This cloud 
-% operating system will have to reach high scalability criteria: managing 
-% thousands of servers used by hundreds of users. Popular peer to peer file
-% sharing systems already work at this scale order: bittorrent clients enable 
-% hundreds of thousands of users to share millions of file spread over the 
-% internet. If we disregard trackers, this protocol is totally decentralized with 
-% no single point of failure (SPOF). That is why we propose to learn from peer to 
-% peer file sharing experience, in order to build massively distributed clouds.
-
-% All these problems can be tackled by hybrid or federated Cloud solutions 
-% \cite{armbrust:2010}, that aim at extending the resources available on one Cloud
-% with those of another one. However a recent IEEE report 
-% \cite{ieeenetreport:2012} shows that network traffic continues to double 
-% roughly every year. Consequently, bringing computing resources closer to the 
-% end-users, thus minimizing the energy impact and saving bandwidth.
-
-% The concept of micro/nano DCs at the edge of the backbone \cite{greenberg:2008} 
-% may be seen as a solution to reduce the network overhead. Hence, we propose to 
-% extend each points of presence (PoP) with a number of servers dedicated to 
-% hosting virtual machines (VMs). From the physical point of view, network 
-% backbones provide appropriate infrastructures, i.e., reliable and efficient 
-% enough to operate UC resources spread across the different PoPs. Ideally, UC 
-% resources would be able to directly take advantage of computation cycles 
-% available on network active devices, i.e. those in charge of routing packets.
-
-
-
-
-
-Proponents of Cloud federations would argue that is it possible to perform
-a federation a micro-Clouds hosted on each micro DC, thus having a service node
-in each micro-Cloud. However this solution is not without its flaw: aside from
-wasting one node in each PoP, when a service node fails all the node generating
-the computing power become unusable.
-
-We propose the LUC Operating System (OS), an advanced system being able to unify
-many UC resources distributed on distinct sites, that would enable Internet service 
-providers (ISPs) and other institutions in charge of operating a network 
-backbone to build an extreme-scale LUC infrastructure with a limited additional 
-cost. Instead of redeploying a complete installation, they will be able to 
-leverage IT resources and specific devices such as computer room air 
-conditioning units, inverters or redundant power supplies already present in 
-each center of their backbone.
-
-The remainder of this article is structured as follows. In Section 2, we start 
-from the reference architecture proposition \cite{moreno2012iaas} and we discuss
-challenges to need to be solved for building massively distributed clouds. 
-Section 3 gives an overview of the LUC OS design proposal that meet requirements
-from Section 2. In Section 4, we describe existing mechanisms that we will 
-revisit to build the LUC OS. Finally, we discuss perspectives and conclude this 
-article in Section 5.
+The remainder of this article is structured as follows. Section 2 discusses a 
+reference architecture for clouds proposed by \cite{moreno2012iaas} by 
+identifying challenges that need to be solved for building massively distributed 
+clouds over geographically spread micro DCs. Section 3 gives an overview of the 
+LUC OS design proposal that meet requirements from Section 2. In Section 4, 
+mechanisms that we will revisited to build the LUC OS are detailed. Finally, we 
+discuss perspectives and conclude this article in Section 5.
