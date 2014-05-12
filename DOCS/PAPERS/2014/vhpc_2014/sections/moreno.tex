@@ -1,6 +1,22 @@
 \section{Reference architecture for IaaS clouds}
 \label{sec:moreno}
 
+% - Designing LUC-OS -> complex (Cloud : a lot of aspects).
+% - study existing Cloud architecture -> anticipation of these problems.
+%    -> enable LUC-OS to leverage existing experience.
+% - This will minimize conception effort -> maximize time spend on prototype.
+% - This section -> highlight existing architectural principles (in order to use
+%    them)
+Designing an architecture for the LUC-OS is a complex task: it has to manage all
+the very diverse aspects of a Cloud infrastructure. A good way to anticipate 
+them is to study how the architecture of existing cloud solutions have been 
+organized: this will enable the LUC-OS to leverage experience acquired by others
+in the conception of IaaS managers, thus minimizing the conception effort, and
+maximizing time allowed to build a first prototype. This section targets to 
+highlight existing architectural principles used by current Cloud manager, in 
+order to make the LUC-OS leverage them.
+
+
 % - Cloud Computing -> like electricity market.
 % - Big fishes have emerged -> their APIs have become defacto standard.
 % - emerging market -> yet no ISO norm, but standardization is coming.
@@ -11,14 +27,14 @@ by external cloud providers. This model has lead to a structure similar to the
 electricity market: in the same way electrical providers have build huge 
 infrastructures for generating and transporting energy, Cloud providers now 
 leverage data-centers that can host more than tens of thousands of servers. As 
-this market is dominated by few actors (Amazon, Google, Microsoft, Rackspace, 
-...), de facto standards have emerged. As this an emerging industry, 
-normalization is still at an early stage: several ISO norms will been soon 
-released and many consortiums have been created to promote the use of standards 
-by Cloud Computing actors. Furthermore, despite recent efforts made to avoid 
-"data lock-in" migration from one Cloud provider to another one is still 
-difficult to achieve. All these factors are a drag on the adoption of Cloud 
-computing.
+this is an emerging industry, normalization is still at an early stage: several 
+ISO norms will been soon released and many consortiums have been created to 
+promote the use of standards by Cloud Computing actors. However, this market is 
+dominated by few actors (Amazon, Google, Microsoft, Rackspace, ...) that exploit
+proprietary technologies, thus standardization has been delayed and de facto 
+standards have emerged. Furthermore, despite recent efforts made to avoid "data
+lock-in", migration from one Cloud provider to another one is still difficult to 
+achieve. All these factors are a drag on the adoption of Cloud computing.
 
 % - To enable companies to manage their data in the way they want 
 %   -> private clouds.
@@ -28,57 +44,35 @@ computing.
 %    * They manipulate the same concepts (VMs, Networks, Storages, ...).
 %    * They have architectural differences (CloudStack -> monolithic, OpenStack 
 %      -> components, Eucalyptus -> AWS).
-As an alternative to keep the control on their data, organizations can leverage
-their own internally hosted Cloud infrastructure : private clouds enable the 
-utilization of Cloud computing without depending to a Cloud provider. For this
-purpose, many open source project for building an IaaS manager have emerged, 
-thus enabling every organization to host its own private cloud. Several of these 
-projects have become very popular: their communities have reached a critical 
-size and many of the are used by large actors (Rackspace and IBM use OpenStack, 
-CloudStack is used by cloud.com). Recent studies like \cite{peng:2009} have 
-compared state of the art open-source IaaS manager and it appears that while 
-they almost manipulate same concepts:
-\begin{itemize} 
-  \item Virtual machines are the smallest unit for delivering computing 
-  resource.
-  \item Networking and advanced networking (virtual networks, software defined 
-  network, ...).
-  \item Distribution and virtualisation of storage devices.
-  \item Security tools.
-\end{itemize} 
-, there also exists many architectural differences such as:
-\begin{itemize} 
-  \item CloudStack's development has been oriented towards a monolithic 
-  architecture.
-  \item OpenStack's architecture is composed of specialized managers.
-  \item Eucalyptus follows the Amazon AWS services' architecture linked via a
-  message bus.
-\end{itemize}, thus leading to an heterogeneity that is a drag to the adoption 
-of Cloud Computing.
+To keep the control on their data, organizations can leverage internally hosted 
+Cloud infrastructure : private Clouds enable the utilization of the Cloud 
+computing paradigm without depending to a Cloud provider. For this purpose, 
+open-source IaaS managers have emerged: several of them have become popular with
+large communities of developers and are used by large actors. Recent studies 
+\cite{peng:2009} have compared these projects and it appears that while they 
+almost manipulate same concepts (VMs, Networks, Storages, ...), there is a lack 
+of consensus on what they target: Eucalyptus focuses on building an 
+infrastructure that shares the same API as Amazon AWS, while projects like 
+OpenStack and CloudStack have targeted the delivery of a complete IaaS that can
+operate large cloud infrastructures by using its own tools. This leads to an 
+architectural heterogeneity : CloudStack’s development has been oriented towards
+a monolithic architecture, while OpenStack is composed of loosely-coupled 
+message passing managers and Eucalyptus follows the Amazon AWS services’
+architecture.
 
-% - Cloud heterogeneity -> No consensus on what a cloud do (OpenStack -> private
-%   clouds, Eucalyptus -> AWS like platform, ...) and what interfaces it should
-%   follow.
-% - A recent study depicts a reference architecture for IaaS manager: the IaaS
-%   manager is subdivided on several specific managers.
-% - Description of each main managers. Short description of secondary managers.
-%    for each components -> challenge of the components.
-This architectural heterogeneity can be partially explained by the lack of 
-consensus of what is the goald of an IaaS manager is: while Eucalyptus focuses
-on building an infrastructure that shares the same API as Amazon AWS, projects 
-like OpenStack have targeted the delivering of a complete IaaS that can operate
-large cloud infrastructure by using its own tools. To cope with these 
-significant differences, Moreno et al. have proposed a reference architecture 
-\cite{moreno2012iaas} for IaaS clouds. This architecture covers services that 
-are needed for building a Cloud OS : each aspect of the cloud is supervised by a 
-specific manager. The following listing gives a description of principal
-services that authors expect in a Cloud OS:
+% - Architectural differences -> Moreno's reference architecture.
+% - several managers.
+To cope with these architectural differences, Moreno et al. have proposed a 
+reference architecture \cite{moreno2012iaas} for IaaS clouds. This architecture 
+covers services that are needed for building a Cloud OS : each aspect of the 
+cloud is supervised by a specific manager. The following listing gives a 
+description of principal services that authors expect in a Cloud OS:
 \begin{description}
 	
 	\item [Virtual machines manager] is the most important part of the Cloud OS:
-	it manages virtual machines' cycle of life (deployment, migration, 
-	suspension, resume and shut down). It is also responsible for maintaining
-	a good quality of service, especially for large scale infrastructure.
+	it manages VMs' cycle of life (configuration, deployment, 
+	migration, suspension, resume, shut down and sometimes migrations). It is 
+	also responsible for preserving service-level agreements (SLAs).
 
 	\item [Scheduler] decides which server will run a newly created virtual 
 	machine by taking into account several parameters (static scheduling). To 
@@ -90,8 +84,8 @@ services that authors expect in a Cloud OS:
 	able to handle a large number of images in a distributed manner.
 
 	\item [Network manager] provides connectivity to the infrastructure: virtual
-	networks for virtual machines, external access for users. The current trends
-	is to the virtualisation of networking devices through the use of Software
+	networks for VMs, external access for users. The current trend is to the
+	virtualisation of networking devices through the use of Software
 	Defined Networks (SDN). This manager must enable flexible networking 
 	deployment without losing performance (bandwidth and latency).
 
@@ -100,12 +94,12 @@ services that authors expect in a Cloud OS:
 	factors like distribution and redundancy must be anticipated.
 
 	\item [Administrative tools] provides tools and user interfaces to perform
-	administration tasks. This is the components that enables users acces to
+	administration tasks. This is the components that enables users access to
 	the Cloud OS internals.
 
 	\item [Information manager, Accounting/auditing ] collects raw monitoring 
 	data of the infrastructure and produce value-added from the raw data 
-	respectively. As authors mentionned it, both are very important for billing
+	respectively. As authors mentioned it, both are very important for billing
 	process.
 
 \end{description}
