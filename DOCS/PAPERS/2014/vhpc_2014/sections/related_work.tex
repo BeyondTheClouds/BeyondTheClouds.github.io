@@ -1,0 +1,31 @@
+\section{Related Work}
+% - Current IaaS are completely/partially designed to work in a centralized way.
+% - P2P1: -> Snooze, a hierarchical solution (complex).
+% - P2P2: -> P2PCS (single type of node).
+% - Cloud@Home: -> Volunteer computing + Cloud computing.
+During the last five years, open-source IaaS managers like OpenStack have 
+emerged. These managers are often used with centralized architectures, where 
+each Cloud is operated by some service nodes. As these systems do not provide 
+self-healing mechanisms, a failure of the service nodes located on a same site 
+are SPOFs. As an alternative, authors of \cite{Babaoglu} have proposed to 
+leverage the peer to peer paradigm by organizing large systems on top of 
+self-organizing middleware.  
+
+Thus several attempts have been made to explore the use of peer to peer 
+architectures to build Cloud managers: \emph{Snooze} \cite{feller:snooze2012} is 
+a system that works in a fully distributed manner over a hierarchical 
+structure. Despite validation with large-scale experiments, this hierarchical 
+structure presents the drawback of increasing the complexity of the 
+architecture: three kinds of nodes (local controller, group manager, group 
+leader) constitutes the system. In \cite{babaoglu:design2012} authors proposed 
+\emph{P2PCS}, a fully decentralized cloud system build on top of a flat 
+unstructured network overlay, where each constituting node is identical to 
+others. However, nodes are dedicated to only one user (slicing), \emph{P2PCS} 
+doesn't reuse existing IaaS mechanisms and it has not been validated on large 
+scale infrastructure.
+
+Finally, we mention that in \cite{cunsolo:cloud2009} authors proposed 
+\emph{Cloud@Home}, an hybrid system that bridges \emph{Cloud computing} and 
+\emph{Volunteer computing}. This solution is partially centralized: while 
+production of computing resources is distributed on member's computers, 
+system's controllers constitutes SPOFs.
