@@ -20,20 +20,21 @@ managers, in order to make the LUC-OS leverage them.
 % - emerging market -> yet no ISO norm, but standardization is coming.
 % - Despite recent efforts, "data lock-in" still exists.
 % - This lack of standardization is a drag on Cloud computing adoption.
-Cloud computing is a model where companies consume computing resources produced 
-by external cloud providers. This model has lead to a structure similar to the 
-electricity market: in the same way electrical providers have build huge 
-infrastructures for generating and transporting energy, Cloud providers now 
-leverage data-centers that can host more than tens of thousands of servers. As 
-this is an emerging industry, normalization is still at an early stage: several 
-ISO norms have been released \cite{ISO:2009:DAPS} and many consortiums have been
-created to promote the use of standards by Cloud Computing actors 
-\cite{marston:cloud2011}. However, this market is dominated by few actors 
-(Amazon, Google, Microsoft, Rackspace, ...) that exploit proprietary 
-technologies, thus standardization has been delayed and de facto standards have 
-emerged. Furthermore, despite recent efforts made to avoid "data lock-in", 
-migration from one Cloud provider to another one is still difficult to achieve. 
-All these factors are a drag on the adoption of Cloud computing.
+
+% Cloud computing is a model where companies consume computing resources produced 
+% by external cloud providers. This model has lead to a structure similar to the 
+% electricity market: in the same way electrical providers have build huge 
+% infrastructures for generating and transporting energy, Cloud providers now 
+% leverage data-centers that can host more than tens of thousands of servers. As 
+% this is an emerging industry, normalization is still at an early stage: several 
+% ISO norms have been released \cite{ISO:2009:DAPS} and many consortiums have been
+% created to promote the use of standards by Cloud Computing actors 
+% \cite{marston:cloud2011}. However, this market is dominated by few actors 
+% (Amazon, Google, Microsoft, Rackspace, ...) that exploit proprietary 
+% technologies, thus standardization has been delayed and de facto standards have 
+% emerged. Furthermore, despite recent efforts made to avoid "data lock-in", 
+% migration from one Cloud provider to another one is still difficult to achieve. 
+% All these factors are a drag on the adoption of Cloud computing.
 
 % - To enable companies to manage their data in the way they want 
 %   -> private clouds.
@@ -76,7 +77,7 @@ description of principal services that authors expect in a Cloud OS:
 	Kernel component.
 
 	\item [Scheduler] decides which server will host a newly created virtual 
-	machine (static scheduling). To preserve a good quality of service, 
+	machine (static scheduling). To preserve a good quality of service (QoS), 
 	overloaded servers may migrate virtual machines on underloaded servers 
 	(dynamic scheduling).
 
