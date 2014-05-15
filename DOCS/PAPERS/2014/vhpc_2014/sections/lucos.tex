@@ -1,24 +1,6 @@
 \section{Designing the LUC-OS}
 \label{sec:lucos}
 
-
-% - Section 2: presentation of a reference architecture with challenges 
-%   overview.
-% - generic architecture -> can be applied to centralized, partially
-%   distributed (federation of clouds) and fully distributed (LUC-OS) Cloud OS.
-% - LUC-OS design is different of a classical IaaS manager (Controller ->
-%   distributed share no state algorithm, DataBase -> DHT, Distributed FS -> p2p
-%   FS), this section will expose the development methodology.
-Section \ref{sec:moreno} exposed a reference architecture for building a Cloud 
-OS, which have been proposed by \cite{moreno2012iaas}: this architecture is 
-generic in the sense that it provides a model where each aspect of the Cloud OS 
-is managed by a dedicated service. As a consequence, this model can be used as 
-well for centralized clouds, partially distributed clouds (federations of 
-clouds) and fully distributed clouds. The LUC-OS targets a fully distributed 
-functioning, which is not the principal aim of current open-source Cloud 
-managers, and thus requires a significantly different architecture oriented 
-towards the management of massively distributed clouds.
-
 % - Distributed clouds : hundreds micro DCs, which are themselves composed of up
 %   to tens of servers 
 % - Managing a distributed cloud -> managing thousands of geographically spread 
