@@ -1,24 +1,6 @@
 \section{Designing the LUC-OS}
 \label{sec:lucos}
 
-
-% - Section 2: presentation of a reference architecture with challenges 
-%   overview.
-% - generic architecture -> can be applied to centralized, partially
-%   distributed (federation of clouds) and fully distributed (LUC-OS) Cloud OS.
-% - LUC-OS design is different of a classical IaaS manager (Controller ->
-%   distributed share no state algorithm, DataBase -> DHT, Distributed FS -> p2p
-%   FS), this section will expose the development methodology.
-Section \ref{sec:moreno} exposed a reference architecture for building a Cloud 
-OS, which have been proposed by \cite{moreno2012iaas}: this architecture is 
-generic in the sense that it provides a model where each aspect of the Cloud OS 
-is managed by a dedicated service. As a consequence, this model can be used as 
-well for centralized clouds, partially distributed clouds (federations of 
-clouds) and fully distributed clouds. The LUC-OS targets a fully distributed 
-functioning, which is not the principal aim of current open-source Cloud 
-managers, and thus requires a significantly different architecture oriented 
-towards the management of massively distributed clouds.
-
 % - Distributed clouds : hundreds micro DCs, which are themselves composed of up
 %   to tens of servers 
 % - Managing a distributed cloud -> managing thousands of geographically spread 
@@ -73,21 +55,68 @@ them during the design stage:
   \item [Bottlenecks] : are caused by an excessive workload allocated to one 
   service, which slows its interactions with collaborators, thus impacting
   negatively the performance of the infrastructure by reducing both reactivity 
-  and quality of service. Indeed, when a service is overloaded, it is better to 
-  enable him to distribute the workload on several remote instances that are
-  underloaded.
+  and quality of service (QoS). Indeed, when a service is overloaded, it is 
+  better to enable him to distribute the workload on several remote instances 
+  that are underloaded.
 
   \item [Single points of failure] (SPOF) represents an element of a system, 
   that in case of failure, stops the entire system. As at large scale, failure 
   becomes the norm rather than the exception, SPOFs are a major concern in
   distributed software: that is why services must implement self healing 
   mechanisms such as redundancy. In addition each persistent state have to be 
-  stored in fault tolerant data structure like a distributed hash-table (DHT).
+  stored in fault tolerant data structure.
 
 \end{description}
 
-\subsection{Anatomy of a LUC-OS agent}
 
+\subsection{Virtual environments}
+
+% - Ressource allocation -> group of VMs.
+% - Interconnection though virtual environment (VE).
+% - specific requirement (hardware, placement) -> VE's constraint
+% - Challenge: managing VEs in a fully distributed manner (p2p): 
+%    -> ex of vm placement
+The LUC-OS enables its users to request the creation of groups of VMs. These
+VMs are interconnected in a virtual environment (VE) though the use of a virtual
+network. Users may have specific requirements in terms of hardware and 
+placement: this will result in constraints that will be integrated to the VE. 
+Designing the LUC-OS raises the problem of managing VEs in a fully distributed 
+manner: as the effort of hosting VEs will be spread over several LUC-OS nodes, 
+thus some mechanims that constitute IaaS needs to be revisited. For instance, 
+VMs placement is typically decided by centralized service nodes, while there are
+peer to peer alternatives such as DMVS \cite{quesnel:ispa2013}. Related to the 
+former point, when a VM is relocated on another LUC-OS node, the node should now
+take part its VE by sharing the hosting effort in terms of computing ressources,
+networking and storage.
+
+
+\subsection{Overlay Networks and Locality}
+
+% - Overlay network -> logical network build on top of another networks.
+% - abstraction for networking things (routing, lookup, fault tolerance).
+% - LUC-OS will leverage this LBO and thus take full advantage of reactive 
+%   inter-agent collaborations.
+An overlay network is a logical network build on top of another physical or 
+logical network, which enables to abstract networking things such as routing, 
+lookup retrieval, and fault tolerance. One of the downsides of using overlay 
+networks is that they break the physical topology by connecting nodes that have 
+no physical proximity, thus leading to a network overhead. In 
+\cite{pastor:hal-00991530} authors proposed a Locality Based Overlay Network 
+(LBO) that leverages the Vivaldi algorithm \cite{dabek:2004:vivaldi}: leveraging
+an algorithm according to their respective latencies, the LBO computes for each 
+node a dynamic coordinate. Each node maintains a list of close contacts that are
+periodically and randomly exchanged. This enables to build a distributed map of 
+the infrastructure. The LBO enables high level applications to be aware of 
+locality properties and thus to organize inter-agent collaborations in a way 
+that minimize the network overhead and that improve the overall reactivity. The 
+LUC-OS will also leverage the LBO to take a full advantage of these reactive and
+minimized overhead inter-agent collaborations.
+
+
+
+
+
+\subsection{Anatomy of a LUC-OS agent}
 
 \begin{figure*}
 	\centerline{
@@ -111,7 +140,7 @@ them during the design stage:
 % - Persistence service: store states manipulated by the services of the LUC-OS:
 %    * Objects (serializable entities); VMs images (VMs template) belonging to a 
 %      specific user (+ metadata); VMs snapshots: like VM images with versions.
-% - These sub-services leverage a DHT, and some of theme leverage a resilient 
+% - These sub-services leverage a DHT, and some of them leverage a resilient 
 %   distributed FS.
 % - Administrative: managing the infrastructure and producing statistical and 
 %   usage data.
@@ -126,34 +155,39 @@ based network overlay.
 
 \subsubsection{Compute service}
 is in charge of the delivery of computing power: it is built on top of two 
-sub-services : \emph{VMs broker} which process requests for VMs creation (static
-scheduling: it elects a server that will instantiate the VM and ensures that the
-VM is successfully created) and \emph{VMs scheduler} that guarantees a good 
-quality of service for VMS by balancing workload of overloaded compute node on
-underloaded ones (dynamic scheduling). 
+sub-services : \emph{VMs Spawner} is responsible for VMs creations with static 
+scheduling and \emph{VMs Scheduler} guarantees a good QoS by performing dynamic 
+scheduling. While these tasks are typically performed by centralized service 
+nodes, the LUC-OS take up the challenge of doing them in a fully distributed
+manner.
 
 \subsubsection{Network service} 
-leverages a \emph{virtual network Broker} that create virtual networks 
+leverages a \emph{Virtual Network Broker} that create virtual networks 
 interconnecting VMs. Creation of these virtual networks is abstracted by the use
 of \emph{Networking drivers}: it enables the use of a wide range of network 
 technology such as OpenFlow and Mininet. As all services composing Compute 
 service and network drivers manipulate hardware, they will have direct access to
-hardware via Hardware Drivers. 
+hardware via Hardware Drivers. To maintain a good QoS, VMs may be relocated on 
+far away LUC-OS agents: this block must be able to maintain the connectivity 
+inside the VE of migrated VMs.
 
 \subsubsection{Persistence service}
 is dedicated to keeping states of the LUC-OS by leveraging one service for each
 kind of state: \emph{Objects} are used to persist serializable entities 
-manipulated by the LUC-OS, \emph{VMs images} are used for VMs template files 
-(which belong to a specific user), \emph{VMs snapshots} are pretty much the same
+manipulated by the LUC-OS, \emph{VMs Images} are used for VMs template files 
+(which belong to a specific user), \emph{VMs Snapshots} are pretty much the same
 as VM images except that they support versionning. All the sub-services that 
-compose the Persistence service leverage a distributed hash-table, and those 
-which are in charge of persisting images and snapshots will leverage a resilient 
-distributed file system. 
+compose the Persistence service leverage a \emph{Distributed Data Store}.As at 
+large scale, failure becomes the norm rather than the exception, this service 
+will rely on fault tolerant mechanims that ensure the availability of stored 
+ressources in case of nodes failures.
 
 \subsubsection{Administrative service} 
 will perform tasks such as managing the infrastructure and producing statistical
-and usage data. To perform those tasks it will leverage a distributed hash table
-and a service that stores execution logs of the infrastructure.
+and usage data. To perform those tasks it will leverage the \emph{Distributed 
+Data Store} and a service that stores execution logs of the infrastructure. The 
+main challenge is to give the ability to users to manage their VEs from any 
+LUC-OS agent, whether it is sharing its VEs hosting effort or not. 
 
 
 
