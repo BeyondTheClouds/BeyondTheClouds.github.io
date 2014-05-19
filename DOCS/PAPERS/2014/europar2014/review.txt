@@ -1,0 +1,168 @@
+EVIEW 1 ---------------------
+PAPER: 270
+TITLE: Locality-aware Cooperation in Distributed IaaS Infrastructures
+AUTHORS: Jonathan Pastor, Marin Bertier, Frederic Desprez, Flavien Quesnel, Adrien Lebre and Cedric Tedeschi
+
+OVERALL EVALUATION: -1 (weak reject)
+REVIEWER'S CONFIDENCE: 4 (high)
+Relevance to the topic: 4 (good)
+Reviewer's confidence: 3 (high)
+Technical merit: 3 (fair)
+Potential impact: 3 (fair)
+Originality and novelty: 3 (fair)
+Quality of presentation: 3 (fair)
+
+----------- REVIEW -----------
+The paper proposes a decentralized/P2P approach to assign VMs to the servers of a multi-site Cloud infrastructure. The approach is based on locality properties.
+
+The approach is interesting and well explained. The main issue is that I consider it much more suited for a Grid than for a Cloud. Clouds mainly rely upon large-scale data centers, where many servers are clustered and managed by a single manager node. This is the way virtualization platforms (e.g., VMWare) generally work. In this context a fully decentralized approach is not appropriate. 
+
+TODO: 
+	AL: Check whether disttributed clouds objectives have been emphasized in the article
+
+Also the testbed (4 remote clusters each with 10 servers) is much more similar to a Grid than to a typical Cloud infrastructure. A single Cloud site generally contains tens or hundreds of servers.
+
+The authors' proposal would be suited in an environment composed by micro/nano data centers, as only stated in the conclusion. This may be possible in the future, but the point should be much better justified, and references should be given, but they are not in this paper.
+
+Performances are compared to those of Chord but, again, Chord is not a typical Cloud algorithm, and in any case it is not appropriate to a hierarchical scenario as that considered in the testbed. Performances should be compared to those of other Cloud algorithms, for example one of those mentioned in the related work section.
+
+TODO: 
+	AL: Related work should mention hierarchical proposals such as Snooze. 
+	    We should also better explained that hierarchical structures cannot be easily mapped upon the network backbones. 
+
+
+Another concern is about Fig. 1. It is nearly impossible to understand this figure without reading reference [13], by the same authors.
+
+TODO: 
+	AL: I don't know.
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 270
+TITLE: Locality-aware Cooperation in Distributed IaaS Infrastructures
+AUTHORS: Jonathan Pastor, Marin Bertier, Frederic Desprez, Flavien Quesnel, Adrien Lebre and Cedric Tedeschi
+
+OVERALL EVALUATION: 1 (weak accept)
+REVIEWER'S CONFIDENCE: 5 (expert)
+Relevance to the topic: 5 (excellent)
+Reviewer's confidence: 3 (high)
+Technical merit: 3 (fair)
+Potential impact: 4 (good)
+Originality and novelty: 3 (fair)
+Quality of presentation: 3 (fair)
+
+----------- REVIEW -----------
+This paper introduces a technique designed over a Vivaldi overlay to maximize efficient collaborations between PMs in large scale Clouds. Authors revisit the Distributed Virtual Machine Scheduler (DVMS) in order to take account of locality criteria. To this aim, authors propose a new overlay strategy and present an abstraction that allows to combine DVMS with a locality-aware network overlay.
+The paper, discusses how locality criteria can be considered by using P2P algorithms and a Vivaldi overlay to support the DVMS scheduler in using local VMs in distributed Clouds. Experiments on the Grid'5000 show that, connecting 4 different sites a gain up to 72% of inter-sites operations is achieved with respect to Chord strategy.
+
+The paper content is interesting and relevant. However, it should be mentioned that the experiments presented in the paper are limited and comparison is given only with a Chord strategy, so no comparison with related approaches or commercial solutions are presented and discussed. This is a limit of this work, despite its novelty.
+
+
+TODO: 
+	AL -> JP: Make wider experiments (including migration time, ...) as discussed
+
+Minor:
+
+- a few typos must be fixed in the paper (e.g., differents)
+
+TODO: 
+	FOR ALL: make a complete pass
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 270
+TITLE: Locality-aware Cooperation in Distributed IaaS Infrastructures
+AUTHORS: Jonathan Pastor, Marin Bertier, Frederic Desprez, Flavien Quesnel, Adrien Lebre and Cedric Tedeschi
+
+OVERALL EVALUATION: 1 (weak accept)
+REVIEWER'S CONFIDENCE: 4 (high)
+Relevance to the topic: 5 (excellent)
+Reviewer's confidence: 3 (high)
+Technical merit: 3 (fair)
+Potential impact: 4 (good)
+Originality and novelty: 3 (fair)
+Quality of presentation: 3 (fair)
+
+----------- REVIEW -----------
+This paper improves previous work on distributed VM scheduling that is based on forwarding scheduling requests between nodes arranged in a chain-shaped virtual topology until a suitable candidate to migrate the VM to is found. The contribution of this work is to introduce a Vivaldi-based network overlay that configures the chains in such way that they are locality-aware and thus a reduction of migration overhead is possible without the need to change the chain-based scheduling algorithm itself.
+
+Overall, the paper is reasonably interesting but could use some improvement in terms of writing, contribution and experiments.
+
+With respect to motivation, the authors could do a better job at formulating their objectives and goals in a more concrete fashion. For example, what is the "scheduling problem" more concretely? Assigning VMs on top of PMs according to "effective needs" and "reciprocally [sic] usage" is very vague. What is the expected outcome? Consolidate on as few nodes as possible?
+
+TODO: 
+	AL: Check in the introduction whether the objectives of satisfying the needs of each VM is correctly stated. 
+
+
+With respect to the contribution, I understand that you are improving previous work, but this is not a convincing by itself. You need to discuss why you didn't consider other alternatives, e.g. the simplest that comes into mind is to piggy-back on top of Vivaldi additional system information (CPU load, memory load, etc). Then, based on a more "general" distance that takes load into account you could try to forward a migration request to the "closest" node directly, which in turn may refuse and forward it to its own closest node, etc. You can avoid cycles by stamping the request with the nodes already visited. Why wouldn't this simple solution work? Why the need to maintain "spirals" (I assume you mean chains) and rely on the upper layer of the previous work?
+
+TODO: 
+	AL: I'm not sure I'm correctly understanding the point here. Maybe we can emphasize that (i) going through each node ensures that the solution will be found (if there is one obviously) and (ii) loads of each VM fluctuates and that's why it makes sense to revisit some nodes... but I'm not convinced it will answer the remark. Other proposals are welcome.  
+
+The experimental section seems a bit weak. What exactly is a microcosm? This is not defined anywhere and the "Reactivity" part is basically not understandable. When does a migration happen and what VM needs to migrate away if the node is overloaded? Why compare to Chord and not to other overlays that are locality-aware (there is a large literature base on locality-aware DHTs)?
+
+TODO: 
+	AL: it seems that the scheduling problem is not correctly explained. We can maybe leverage the paragraph we used in the journal paper of DVMS.
+
+----------------------- REVIEW 4 ---------------------
+PAPER: 270
+TITLE: Locality-aware Cooperation in Distributed IaaS Infrastructures
+AUTHORS: Jonathan Pastor, Marin Bertier, Frederic Desprez, Flavien Quesnel, Adrien Lebre and Cedric Tedeschi
+
+OVERALL EVALUATION: -1 (weak reject)
+REVIEWER'S CONFIDENCE: 4 (high)
+Relevance to the topic: 4 (good)
+Reviewer's confidence: 3 (high)
+Technical merit: 3 (fair)
+Potential impact: 4 (good)
+Originality and novelty: 3 (fair)
+Quality of presentation: 2 (poor)
+
+----------- REVIEW -----------
+The paper addresses the issue of locality in the dynamic scheduling of VMs in large scale distributed systems.
+The contributions of the paper are twofold: the locality aware overlay network construction and the "peer actor".
+
+TODO: 
+	AL: I agree, if need be we can remove the PeerActor part
+
+The first contribution is, in my opinion, the interesting part of the work and should had been better explained.
+In particular, the I and S based explanation is confusing and requires more than one reading, and the "learning phase" is somehow neglected when it is crucial for establishing the locality-aware overlay.
+Some questions arise, why proceed why the overlap spawned from node A when node B is found?
+Shouldn't, from then on, the process take into consideration the fact that B is closer to A than D?
+This does not invalidate the use of this learning phase (for instance of include E in the spiral) but in some cases could converge faster to the final solution.
+
+TODO: 	
+	AL -> MB / CT: Your opinion ? 
+
+
+The evaluation is not very rich.
+You restrict your self to the essencial: your locality-aware overlay is better than chord.
+What rules the inter-sites migration of VMs in your experiment? 
+Isn't the load of the sites? If so, it is not clear why are there more inter-site migrations between the Luxembourg and Nancy sites than any other two sites?
+It is understandable that, if possible, migrations from Luxembourg and Nancy target each other, but you should provide more information in order for the reader to understand the "big picture"
+
+TODO: 
+	AL: We should better explained that we do not compare Chord vs locality aware overlay but we are proposing a new algorithm that (i) keep the guarantee of DVMS (i.e. found a solution if there is one) (ii) while minimizing the number of inter-site migrations.  Approaches such as the one proposed by Eugen (gossip) do not enable to guarantee that you wil find a solution at the end. 
+
+The reactivity numbers you present are not, at least for me, enough to back your arguments. In fact, it is not even clear what is the impact of the average duration in the system's reactivity.
+
+TODO: 
+	AL -> JP, please perform wider experiments so we can add migration times.  
+
+Minor comments:
+
+page 3 - it it exists --> it exists
+
+page 5 - Recall that Vivaldi -- You should rephrase as the text doe not mention this fact prior to this sentence
+
+page 5 - in a first time ... in a second time -- Odd construction. Consider rephrasing. 
+
+page 6 - modern piece of software --  rephrase
+
+page 8 - is is --> is
+
+page 8 - has almost the same number --> has roughly ...
+
+page 9 -  both network overlay -->  both network overlays
+
+TODO: 
+	AL: Fixed typos
+
