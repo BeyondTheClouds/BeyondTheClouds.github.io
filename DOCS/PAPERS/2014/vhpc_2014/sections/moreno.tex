@@ -3,18 +3,16 @@
 
 % - Designing LUC-OS -> complex (Cloud : a lot of aspects).
 % - study existing Cloud architecture -> anticipation of these problems.
-%    -> enable LUC-OS to leverage existing experience.
+%    -> prevent from missing important points.
 % - This will minimize conception effort -> maximize time spend on prototype.
 % - This section -> highlight existing architectural principles (in order to use
 %    them)
 Designing an architecture for the LUC-OS is a complex task: it has to manage all
 the very diverse aspects of a Cloud infrastructure. A good way to anticipate 
-them is to study how the architecture of existing cloud solutions have been 
-organized: this will enable the LUC-OS to leverage experience acquired by others
-in the conception of IaaS managers, thus minimizing the conception effort, and
-maximizing time allowed to build a first prototype. This section targets to 
-highlight existing architectural principles used by current Cloud manager, in 
-order to make the LUC-OS leverage them.
+them and to prevent from missing any vital mechanisms is to study how the 
+architecture of existing cloud solutions have been organized. This section 
+targets to highlight existing architectural principles used by current Cloud 
+managers, in order to make the LUC-OS leverage them.
 
 
 % - Cloud Computing -> like electricity market.
@@ -22,19 +20,21 @@ order to make the LUC-OS leverage them.
 % - emerging market -> yet no ISO norm, but standardization is coming.
 % - Despite recent efforts, "data lock-in" still exists.
 % - This lack of standardization is a drag on Cloud computing adoption.
-Cloud computing is a model where companies consume computing resources produced 
-by external cloud providers. This model has lead to a structure similar to the 
-electricity market: in the same way electrical providers have build huge 
-infrastructures for generating and transporting energy, Cloud providers now 
-leverage data-centers that can host more than tens of thousands of servers. As 
-this is an emerging industry, normalization is still at an early stage: several 
-ISO norms will been soon released and many consortiums have been created to 
-promote the use of standards by Cloud Computing actors. However, this market is 
-dominated by few actors (Amazon, Google, Microsoft, Rackspace, ...) that exploit
-proprietary technologies, thus standardization has been delayed and de facto 
-standards have emerged. Furthermore, despite recent efforts made to avoid "data
-lock-in", migration from one Cloud provider to another one is still difficult to 
-achieve. All these factors are a drag on the adoption of Cloud computing.
+
+% Cloud computing is a model where companies consume computing resources produced 
+% by external cloud providers. This model has lead to a structure similar to the 
+% electricity market: in the same way electrical providers have build huge 
+% infrastructures for generating and transporting energy, Cloud providers now 
+% leverage data-centers that can host more than tens of thousands of servers. As 
+% this is an emerging industry, normalization is still at an early stage: several 
+% ISO norms have been released \cite{ISO:2009:DAPS} and many consortiums have been
+% created to promote the use of standards by Cloud Computing actors 
+% \cite{marston:cloud2011}. However, this market is dominated by few actors 
+% (Amazon, Google, Microsoft, Rackspace, ...) that exploit proprietary 
+% technologies, thus standardization has been delayed and de facto standards have 
+% emerged. Furthermore, despite recent efforts made to avoid "data lock-in", 
+% migration from one Cloud provider to another one is still difficult to achieve. 
+% All these factors are a drag on the adoption of Cloud computing.
 
 % - To enable companies to manage their data in the way they want 
 %   -> private clouds.
@@ -50,8 +50,8 @@ computing paradigm without depending to a Cloud provider. For this purpose,
 open-source IaaS managers have emerged: several of them have become popular with
 large communities of developers and are used by large actors. Recent studies 
 \cite{peng:2009} have compared these projects and it appears that while they 
-almost manipulate same concepts (VMs, Networks, Storages, ...), there is a lack 
-of consensus on what they target: Eucalyptus focuses on building an 
+almost manipulate same concepts (VMs, Networks, Storages, ...), they have taken
+different orientations in their development: Eucalyptus focuses on building an 
 infrastructure that shares the same API as Amazon AWS, while projects like 
 OpenStack and CloudStack have targeted the delivery of a complete IaaS that can
 operate large cloud infrastructures by using its own tools. This leads to an 
@@ -72,20 +72,23 @@ description of principal services that authors expect in a Cloud OS:
 	\item [Virtual machines manager] is the most important part of the Cloud OS:
 	it manages VMs' cycle of life (configuration, deployment, 
 	migration, suspension, resume, shut down and sometimes migrations). It is 
-	also responsible for preserving service-level agreements (SLAs).
+	also responsible for preserving service-level agreements (SLAs). Examples of
+	such manager can be found in OpenStack's Nova service and CloudStack's 
+	Kernel component.
 
-	\item [Scheduler] decides which server will run a newly created virtual 
-	machine by taking into account several parameters (static scheduling). To 
-	preserve a good quality of service, overloaded servers may migrate virtual
-	machines on underloaded servers (dynamic scheduling).
+	\item [Scheduler] decides which server will host a newly created virtual 
+	machine (static scheduling). To preserve a good quality of service (QoS), 
+	overloaded servers may migrate virtual machines on underloaded servers 
+	(dynamic scheduling).
 
-	\item [Image manager] manages virtual machines' images. As users have their
-	own images with specific systems or configurations, this manager must be 
-	able to handle a large number of images in a distributed manner.
+	\item [Image manager] is in charge of virtual machines' template files (VM 
+	image). As users have their own images with specific systems or 
+	configurations, this manager must be able to handle a large number of VM
+	images in a distributed manner.
 
 	\item [Network manager] provides connectivity to the infrastructure: virtual
-	networks for VMs, external access for users. The current trend is to the
-	virtualisation of networking devices through the use of Software
+	networks for VMs, external access for users. The current trend is towards 
+	the	virtualisation of networking devices through the use of Software
 	Defined Networks (SDN). This manager must enable flexible networking 
 	deployment without losing performance (bandwidth and latency).
 
@@ -126,3 +129,20 @@ efforts. Indeed, our first objective is to leverage the best practices
 established by the analysis of today's IaaS managers. We think that leveraging
 this reference architecture is the most obvious way to cope with this first
 objective.
+
+% - Section 2: presentation of a reference architecture with challenges 
+%   overview.
+% - generic architecture -> can be applied to centralized, partially
+%   distributed (federation of clouds) and fully distributed (LUC-OS) Cloud OS.
+% - LUC-OS design is different of a classical IaaS manager (Controller ->
+%   distributed share no state algorithm, DataBase -> DHT, Distributed FS -> p2p
+%   FS), this section will expose the development methodology.
+This Section exposed a reference architecture for building a Cloud OS, which 
+have been proposed by \cite{moreno2012iaas}: this architecture is generic in the
+sense that it provides a model where each aspect of the Cloud OS is managed by a
+dedicated service. As a consequence, this model can be used as well for 
+centralized clouds, partially distributed clouds (federations of clouds) and 
+fully distributed clouds. The LUC-OS targets a fully distributed functioning, 
+which is not the principal aim of current open-source Cloud managers, and thus
+requires a significantly different architecture oriented towards the management 
+of massively distributed clouds.
