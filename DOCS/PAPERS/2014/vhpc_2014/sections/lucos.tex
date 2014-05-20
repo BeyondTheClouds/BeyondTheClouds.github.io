@@ -118,15 +118,6 @@ minimized overhead inter-agent collaborations.
 
 \subsection{Anatomy of a LUC-OS agent}
 
-\begin{figure*}
-	\centerline{
-	 \includegraphics[width=1.25\linewidth]{Figures/luc_os_anatomy.pdf}
-  }
-	\caption{Anatomy of services composing the LUC-OS.}%
-	\label{fig:anatomy}%
-	%\vspace*{-.8cm}
-\end{figure*}
-
 % - Figure \ref{fig:anatomy} -> our choices
 % - 4 services: one service per aspect (compute, network, persistance, admin). 
 % - Compute service: delivery of computing resources: built on top of:
@@ -160,6 +151,15 @@ scheduling and \emph{VMs Scheduler} guarantees a good QoS by performing dynamic
 scheduling. While these tasks are typically performed by centralized service 
 nodes, the LUC-OS take up the challenge of doing them in a fully distributed
 manner.
+
+\begin{figure*}
+  \centerline{
+   \includegraphics[width=1.55\linewidth]{Figures/lucos_agents.pdf}
+  }
+  \caption{Anatomy of services composing the LUC-OS.}%
+  \label{fig:anatomy}%
+  %\vspace*{-.8cm}
+\end{figure*}
 
 \subsubsection{Network service} 
 leverages a \emph{Virtual Network Broker} that create virtual networks 
