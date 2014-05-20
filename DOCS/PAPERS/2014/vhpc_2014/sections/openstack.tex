@@ -3,6 +3,15 @@
 % - OpenStack is an open-source IaaS managers project.
 % - It provides all mechanisms that allow organization to host private infra.
 
+\begin{figure*}
+	\centerline{
+	 \includegraphics[width=0.75\linewidth]{Figures/openstack_architecture.pdf}
+  }
+	\caption{Architecture of OpenStack.}%
+	\label{fig:openstack_architecture}%
+	%\vspace*{-.8cm}
+\end{figure*}
+
 In Section \ref{sec:anatomy_lucos} we proposed a design for the LUC-OS 
 that leverages a reference architecture, this section now considers the 
 possibility of building the LUC-OS over existing mechanisms. OpenStack is an 
@@ -29,14 +38,7 @@ to the older one, and in turn produces messages expected by collaborators.
 
 % - Figure representing OpenStack's architecture (Nova, Glance, Swift, Neutron, 
 %   KeyStone, ...).
-\begin{figure*}
-	\centerline{
-	 \includegraphics[width=0.75\linewidth]{Figures/openstack_architecture.pdf}
-  }
-	\caption{Architecture of OpenStack.}%
-	\label{fig:openstack_architecture}%
-	%\vspace*{-.8cm}
-\end{figure*}
+
 
 % - This architecture can be mapped to Moreno's architecture:
 %    * Nova -> Compute manager
@@ -102,12 +104,12 @@ manner and thus meets our requirements for the \emph{Distributed Data Store}. As
 we plan to make the \emph{Storage service} directly use it, the first 
 integration strategy is the best suited for this example.
 
-Inversely, \emph{Nova} is typically deployed on service nodes and has been 
-designed in a way which does not fit with the peer to peer (p2p) paradigm: 
-reusing features given by \emph{Nova} in the LUC-OS will require to replace some
-of its parts (nova-scheduler will be replaced by a p2p scheduler like DVMS 
-\cite{quesnel:ispa2013}), which corresponds to the second strategy. The same 
-will happen with \emph{Neutron}, \emph{Glance}, \emph{KeyStone} and
+Inversely, \emph{Nova} is typically deployed on centralized service nodes and 
+has been designed in a way which does not fit with the peer to peer (p2p) 
+paradigm: reusing features given by \emph{Nova} in the LUC-OS will require to 
+replace some of its parts (nova-scheduler will be replaced by a p2p scheduler 
+like DVMS \cite{quesnel:ispa2013}), which corresponds to the second strategy. 
+The same will happen with \emph{Neutron}, \emph{Glance}, \emph{KeyStone} and
 \emph{Horizon}: all the parts of these services that does not fit with a peer to
 peer functioning will be replaced by more suitable mechanisms.
 
@@ -160,11 +162,11 @@ This configuration doesn't change until the VMs hosted on a compute node are
 consuming more resource than can be produced: the compute node becomes 
 overloaded. Figure \ref{fig:lucos_reconfiguration} illustrates this situation: 
 \emph{Server 1} becomes overloaded while \emph{Server 2} and \emph{Server 3} are
-underloaded. \emph{Server 1} requests the \emph{Scheduler} to balance the VM hosting effort 
-with other nodes of the infrastructure. To do so, the \emph{Scheduler} starts 
-the search of some underloaded servers, finds \emph{Server 2} and 
-\emph{Server 3} and, by means of VM migrations, produces a new 
-\emph{VMs/Compute nodes} mapping that satisfy ressources requested VMs of
+underloaded. \emph{Server 1} requests the \emph{Scheduler} to balance the VM 
+hosting effort with other nodes of the infrastructure. To do so, the 
+\emph{Scheduler} starts the search of some underloaded servers, finds 
+\emph{Server 2} and \emph{Server 3} and, by means of VM migrations, produces a 
+new \emph{VMs/Compute nodes} mapping that satisfy ressources requested VMs of
 \emph{Server 1}: VM \emph{c} and \emph{e} are migrated on \emph{Server 3}. This
 instance also points another challenge that must be resolved: a server selected 
 by the \emph{Scheduler} may not be already part of the VE. Indeed, before the 

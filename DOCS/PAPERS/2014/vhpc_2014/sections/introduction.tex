@@ -103,14 +103,15 @@ Working in a fully distributed context implies that collaborations between
 instances of the system have to be structured whether in flat way or in a 
 hierarchical one. As hierarchical structures lead to additional maintenance 
 costs and an increase of the architectural complexity, it could not be a 
-satisfactory solution. To operate massively distributed clouds build on top of 
-close to end users micro DCs, we think that a single image system composed of 
-several agents that will be distributed following a flat architecture is a good
-candidate. Furthermore, we deeply think that to efficiently operate such 
-infrastructure, a Cloud OS needs to takes into account several measurements 
-(latency, bandwidth, ...) aggregated as locality properties: it would 
-efficiently organize collaborations between its computing resources, thus 
-improving its overall reactivity. 
+satisfactory solution. Moreover, mapping a tree architecture on top of a network
+backbone is still not meaningfull.To operate massively distributed clouds build 
+on top of close to end users micro DCs, we think that a single image system 
+composed of several agents that will be distributed following a flat 
+architecture is a good candidate. Furthermore, we deeply think that to 
+efficiently operate such infrastructure, a Cloud OS needs to takes into account 
+several measurements (latency, bandwidth, ...) aggregated as locality 
+properties: it would efficiently organize collaborations between its computing 
+resources, thus improving its overall reactivity. 
 
 % - We propose: a Cloud OS that takes into account locality properties.
 % - This system will be build on top of distributed mechanisms such as DHT and
@@ -119,7 +120,7 @@ improving its overall reactivity.
 % - The LUC-OS will be very interesting for ISPs: 
 %     backbone -> complete UC resources
 Hence we propose the Locality based Utility Computing Operating System (LUC-OS),
-an advanced Cloud OS that will operate massively distributed clouds by 
+an advanced Cloud OS that will operate a massively distributed cloud by 
 leveraging locality properties and a peer to peer architecture to efficiently 
 work in a fully distributed manner. To address scalability and fault tolerance 
 concerns, the LUC-OS will be build on top of advanced distributed mechanisms 
@@ -139,11 +140,14 @@ supply.
 As developing from scratch a Cloud OS is an herculean work, we think that the 
 LUC-OS should leverage tools and concepts that existing systems use, even if 
 it means modifications to some mechanisms to work in a fully distributed manner.
-That is why as a first step, we decide to start from an architectural summary of 
-existing Cloud managers and then identify which challenges need to be addressed
-to have LUC-OS model for operating massively distributed clouds. The last step 
-is the instantiation of this model over the OpenStack project to build a first
-working prototype.
+The design and the development of such a cloud OS is definitely a challenge: to 
+address it, we propose to build on existing solutions. First, we propose 
+to revisit the reference architecture of IaaS management systems (aka. cloudkit 
+such as OpenStack, Nimbus, Eucalyptus, ...), in order to deliver a software 
+architecture that can fit the requirements imposed by such a LUC system. The 
+second step will consist in instantiating the established architecture on one of
+the available system. We chose to perform such an instantiation on top of 
+OpenStack. 
 
 The remainder of this article is structured as follows. Section 2 discusses a 
 reference architecture for clouds proposed by \cite{moreno2012iaas} by 
