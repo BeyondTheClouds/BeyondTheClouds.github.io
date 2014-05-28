@@ -25,12 +25,12 @@
 %\subsubsection{Objectives}
 %The prototype has been tested with a various number of experiments conducted on
 %the Grid'5000 testbed. 
-The main objective of the experiments we conducted was to estimate impact of locality on
+The main objective of the experiments we conducted was to estimate the impact of locality on
 the performance of a distributed scheduling algorithm. A significant portion of the
 reconfiguration time is spent in live migration of virtual machines, which depends of
 network parameters such as latency and bandwidth. One way to improve performance of
 distributed scheduling algorithms is to promote collaboration between close ressources,
-which can be reached by maximising this ratio: $nb\ intrasite\ migrations/nb\ migrations$.
+which can be reached by maximising the ratio $nb\ intrasite\ migrations/nb\ migrations$.
 %\[
 %	\frac{number\ of\ intrasite\ migrations}{number\ of\ migrations}
 %\]
@@ -40,7 +40,7 @@ which can be reached by maximising this ratio: $nb\ intrasite\ migrations/nb\ mi
 
 To compare our experiments, we implemented a dedicated injector that makes load changes of
 VMs during a predefined time. VMs are launched on PMs in a round-robin manner, \ie each
-PM has roughly the same number of VMs at the beginning, The experiment consists in
+PM hosts roughly the same number of VMs at the beginning. The experiment consists in
 repeatedly changes target CPU loads of VMs. Every $t$ seconds, the injector that is
 deployed on a dedicated node selects one VM and changes its CPU load according to a
 Gaussian distribution. $t$ is a random variable that follows an exponential distribution
@@ -57,9 +57,9 @@ servers per site) and 1 service server from the Grid'5000 testbed. The compute s
 were used to run virtual machines and DVMS while the service node runs the aforementioned
 injector.
 %
-Each compute node was equiped with 8 cores and was hosting a number of virtual machines
+Each compute node was equipped with 8 cores and hosted a number of virtual machines
 proportional to its number of CPU cores ($nb VM\ =\ 1.3\ \times\ nb\ cores)$, leading to
-an global number of 416 VMs. Although such a number is rather small regarding the latest
+a global number of 416 VMs. Although such a number is rather small regarding the latest
 experiments that have been performed on DVMS~\cite{quesnel:ispa2013}, our goal is not to
 validate once again the scalability criteria but to focus on the locality aspect of such
 an algorithm.
@@ -114,10 +114,10 @@ During our investigation of the results brought about LBO, we noticed that many 
 inter-site migrations were performed between Luxembourg and Nancy sites. In
 Table~\ref{latency_table}, we present the latency that exists between every site involved
 in our experiments. It is noticeable that Luxembourg and Nancy have a low latency, which
-is quite normal considering that Nancy is separated by only 100 kilometers.
+is quite normal considering that Nancy and Luxembourg are separated by only 100 kilometers.
 \\
 This means that LBO enabled DVMS to learn which site is more interesting to perform VM
-migration. Promoting low latency inter-site collaboration have made many of inter-site
+migration. Promoting low latency inter-site collaboration made many inter-site
 migrations acceptable compared to those executed by the Chord version.
 
 
@@ -198,14 +198,14 @@ migrations acceptable compared to those executed by the Chord version.
 % \vspace{-1.0cm}
 
 Table~\ref{microcosm_table} depicts metrics that allow for an objective comparison of the
-efficiency of both network overlays. Firstly, using the LBO decreases the
+efficiency of both overlay networks. Firstly, using the LBO decreases the
 number of servers that are involved in microcosms by 41\%, meaning that collaboration
 between close nodes has become more efficient.
 
-Secondly, it is interesting that using the LBO leads to a 46\% lower
-microcosm duration than encountered with Chord. This result is consistent with 
+Secondly, it is interesting that using the LBO leads to a 
+microcosm duration 46\% lower than that encountered with Chord. This result is consistent with 
 the fact that with our locality-aware overlay, the number of sites that are involved in microcosms
-becomes very close to one: collaborating with closer nodes enable
+becomes very close to one: collaborating with closer nodes allows
 to perform scheduling/reconfiguring phases much faster since migration operations are
 shorter in time, thus increasing considerably the reactivity of the system.
 %% TODO (ici ca aurait ete bien de donner un odre de grandeur sur la difference entre le temps de migration intra-site vs inter-sites pour deux VMS de meme classe (i.e. qui ont la meme memory intensity, celle défini dans le code de l'injector). 
