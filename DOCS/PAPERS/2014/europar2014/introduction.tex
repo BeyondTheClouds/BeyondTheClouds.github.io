@@ -14,8 +14,8 @@ approaches~\cite{hermenier:2013} are neither scalable nor robust enough. Hierarc
 solutions~\cite{feller:ccgrid12} that can be seen as good candidates face important
 limitations: First, finding an efficient partitioning of resources is a tedious task as
 matching a hierarchical overlay on top of a distributed infrastructure is often not
-natural. Secondly, in addition to requiring complex failover mechanisms to ensure
-leader/super peer crashed and network disconnections, hierarchical structures have not
+natural. Secondly, in addition to requiring complex failover mechanisms to face
+crashed leader/super peer and network disconnections, hierarchical structures have not
 been designed to react swiftly to physical topology changes such as node
 apparitions/removals and network performance degradations. P2P algorithms allow to
 address both concerns, \ie scalability as well as resiliency of infrastructures. However,
@@ -34,7 +34,7 @@ much as possible the time to switch from one schedule (\ie a mapping between VMs
 running in the infrastructure) to another one, it is crucial to make cooperation first
 between peers in the closest neighborhoods before contacting peers belonging to other sites.
 Moreover, it is noteworthy that this notion of locality is dynamic, and varies over time according
-to the network bandwidth/latency and disconnection.
+to the network bandwidth/latency and disconnections.
 
 The contribution of this paper is a new building block that enables to tackle the
 \emph{locality} concern in distributed VM scheduling algorithms such as the two
@@ -46,7 +46,7 @@ aforementioned ones.
 We estimate the locality through a cost function of the latency/bandwidth tuple between
 peers in the network, thus enabling each peer to select its closest neighbors. We rely on
 Vivaldi~\cite{dabek:2001:sigcomm04}, a simple decentralized protocol allowing to map a
-topology in a logical space while preserving locality. On top of Vivaldi, a shortest path
+network topology onto a logical space while preserving locality. On top of Vivaldi, a shortest path
 construction similar to the well-known Dijkstra algorithm is performed, each time there is
 a need for cooperation between two nodes taking part in the schedule. We illustrate the
 advantage of this new building block by changing the overlay in the DVMS
