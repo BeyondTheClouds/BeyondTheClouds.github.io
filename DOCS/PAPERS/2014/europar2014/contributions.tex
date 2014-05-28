@@ -63,34 +63,42 @@ algorithm to collect a set of close nodes starting from a given position.
 
 \subsubsection*{Searching for Close Nodes}
 
-Once the map of Vivaldi is achieved (each node knows its coordinates), we are able to
-decide whether two nodes are \emph{close} by calculating their distance. However, the view
-of each node does not \emph{a priori} contain its closest nodes. Therefore, we need
-additional mechanisms to locate a set of nodes that are close to a given initial node --
-Vivaldi gives a \emph{location} to each node, not a neighborhood. We use a modified
-distributed version of the classic Dijkstra's shortest path algorithm. The goal is to
-build a \emph{spiral}\footnote{The term \emph{spiral} is here a misuse of language, since
-  the graph actually drawn in the plane might contain crossing edges.}  interconnecting
-the nodes in the plane that are the closest ones to a given initial node.
+Once the map of Vivaldi is achieved, and each node knows its coordinates, we are
+able to estimate how \emph{close} two given nodes are by calculating their
+distance in the map. However, recall that the view of each node does not \emph{a
+priori} contain its closest nodes. (In the following, we call this view the {\bf
+network view}, to distinguish it from the {\bf spiral view} to be introduced
+later.) Therefore, we need additional mechanisms to locate a set of nodes that
+are close to a given initial node. Vivaldi gives a \emph{location} to each node,
+not a neighborhood. 
 
-Let us consider that our initial point is a node called $I$. The first step is to find a
-node to build a two-node spiral with $I$. Such a node is sought in the view of $I$ by
-selecting the node, say $S$, having the smallest distance with $I$. $I$ then sends its
-view to $S$, $I$ stores $S$ as its successor in the spiral, and $S$ adds $I$ as its
-predecessor in the spiral. Then $I$ forwards its view to $S$. $S$ creates a new view by
-keeping the $n$ nodes which are the closest to $I$ in the views of $I$ and $S$. This last
-view is then referred to as the \emph{spiral view} and is intended to contain a set of
-nodes among which to find the next step of the spiral. Then $S$ restarts the same process:
-among the spiral view, it chooses the node with the smallest distance to $I$, say $S'$,
-and adds it in the spiral -- $S$ becomes the predecessor of $S'$ and $S'$ becomes the
-successor of $S$. Then, the spiral view is sent to $S'$ which updates it with the nodes it
-has in its own view. The process is repeated until enough nodes have been gathered (which
-is a parameter sent by the application).
+We use a modified, distributed version of the classic Dijkstra's shortest path
+algorithm that leverages the Vivaldi map to build such a neighborhood. More
+specifically, its goal is to build a {\bf spiral}\footnote{Our use of the term
+\emph{spiral} is actually a misuse of language, since the graph drawn in the
+plane might contain crossing edges.} interconnecting the nodes in the plane that
+are the closest ones from a given initial node.
 
-Note that there is one risk to be blocked by having a spiral view containing only nodes
-that are already in the spiral, leading to the impossibility to build the spiral
-further. However, this problem can be easily addressed by forcing the presence of a few
-long distance nodes whenever it is updated.
+Let us consider that our initial (or root) point is the node $n_R$. The first
+step is to find a node to build a two-node spiral starting with $n_R$. This is
+done by selecting the node from $n_R$'s network view, say $n_i$, which exhibits
+the smallest distance with $n_R$. $n_i$ becomes the second node in the
+spiral. From this point on, $n_R$ remembers $n_i$ as its successor and $n_i$
+remembers $n_R$ as its predecessor. $n_R$ also sends its network view to $n_i$,
+which, on receipt, creates its {\bf spiral view} which contains the $N$ nodes
+closest to $n_R$ taken from both $n_R$ and $n_i$ network views. It will allow
+$n_i$ to find the next node to build the spiral. Assuming this closest node from
+$n_R$ in $n_i$'s spiral view is $n_j$, $n_j$ will be added in the spiral by
+becoming the successor of $n_i$. $n_j$ receives $n_i$'s spiral view and creates
+and fills its own spiral view with nodes closest to $n_R$ contained in both
+$n_i$'s spiral view and $n_j$'s network view. This algorithm is repeated until
+the amount of nodes requested by the application have been interconnected in the
+spiral.
+
+Note that there is a risk to be blocked by at some point having a spiral view
+containing only nodes that are already in the spiral, hindering from extending
+it further. However, this problem can be easily addressed by introducing few
+long-distance nodes when the spiral view is created/updated.
 
 \begin{figure}[ht]
   {
@@ -126,17 +134,21 @@ long distance nodes whenever it is updated.
 \subsubsection*{Learning}
 
 Applying the protocol described above, the quality of the spiral is questionable in the
-sense that the nodes that are actually close to the initial node $I$ may not be
+sense that the nodes that are actually close to the root node $n_R$ may not be
 included.% The only property ensured is that one step
 % forward on the built path always takes us further from the initial node.
 %
-To improve the \emph{quality} of the spiral, \emph{i.e.}, to reduce the average distance
-between the nodes it comprises and the initial node, we rely on a learning mechanism
-coming with no extra communication cost: when a node is contacted to become the next node
-in one spiral, and when it receives the associated spiral view, it can also keep the nodes
-that are the closest to itself, thus potentially increasing the quality of a future spiral
-construction. Such an improvement through learning is illustrated in
-Figure~\ref{fig:learning}.
+To improve the \emph{quality} of the spiral, \emph{i.e.}, to reduce the average
+distance from each of its node to the initial node, we rely on a learning
+mechanism coming with no extra communication cost: when a node is contacted to
+become the next node in one spiral, and when it receives the associated spiral
+view, it can also keep in its network view the nodes that are closer to itself,
+thus potentially increasing the quality of a future spiral construction. Such an
+improvement through learning is illustrated in Figure~\ref{fig:learning}. Note
+that learning may also be used to constantly improve already built
+spirals. While providing obvious advantages, allowing it comes at the cost of
+changing links in the spirals dynamically, which may not match all applications'
+constraints.
 
 \subsection{PeerActor: A Building Block to Abstract Overlays}
 %
