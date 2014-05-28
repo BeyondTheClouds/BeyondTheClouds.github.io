@@ -130,7 +130,11 @@ Shouldn't, from then on, the process take into consideration the fact that B is 
 This does not invalidate the use of this learning phase (for instance of include E in the spiral) but in some cases could converge faster to the final solution.
 
 TODO: 	
-	AL -> MB / CT: Your opinion ? 
+	AL -> MB / CT: Your opinion ?
+	CT: I tried to be cristal clear (distinguishing spiral view from network
+	view, renaming nodes, avoiding repetitions). I also mentioned the
+	possibility suggested by the reviewer: apply the updates in the network
+	views in already built spirals. 
 
 
 The evaluation is not very rich.
