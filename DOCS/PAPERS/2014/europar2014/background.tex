@@ -3,7 +3,7 @@
 
 %\subsubsection{Overview.}
 DVMS~\cite{quesnel:ispa2013,quesnel:cpe2012} (Distributed Virtual Machine Scheduler) is a
-framework that schedules VMs cooperatively and dynamically in large scale distributed
+framework that schedules VMs cooperatively and dynamically in large-scale distributed
 systems. It is deployed as a set of agents that are organized following a ring topology
 and that cooperate with one another to guarantee that VM demands are satisfied during
 their executions. Concretely, when a node cannot guarantee the QoS for its hosted VMs or
@@ -24,7 +24,7 @@ concurrent operations on the same PMs or VMs, it should be noted that PMs are re
 exclusive use by a single ISP.
 
 An example involving three partitions is shown in Figure~\ref{fig:isp}; in particular, we
-can see the growth of partition~1 between two steps. Explaining in details the notion of
+can see the growth of partition~1 between two steps. Explaining in detail the notion of
 ``first out'' is beyond the scope of this article but readers can consider that the
 ``first out'' relation enables to handle communications efficiently, as each node involved
 in a partition can forward a request directly to the first node outside its
@@ -45,7 +45,7 @@ up to 4.7k VMs and 470 nodes by means of experiments over the Grid'5000
 testbed~\cite{quesnel:ispa2013}).
 
 As discussed earlier, one limitation of this approach is related to its ring topology that
-prevents to take into account the actual network topology.
+prevents from taking into account the actual network topology.
 %\subsubsection{Limitations of The Ring}
 %
 %Even though  DVMS can be deployed across several sites, it performs better on a
@@ -57,7 +57,7 @@ prevents to take into account the actual network topology.
 In other words, if the ISP strategy enables to limit the size of one partition to a
 minimal number of nodes, these nodes are selected without considering the network
 conditions at the time the ISP starts; leading to inefficient situations where VM
-migrations occur between two nodes that are far from each other, which lasts longer than a
+migrations occur between two nodes that are far from each others, which lasts longer than a
 migration between two close nodes. Obviously the ring can be built in order to limit the
 distance between peers globally (\ie peers of the same region/area would be grouped
 together as illustrated in Figure \ref{fig:isp}). However, in such a case, at least two
@@ -84,7 +84,7 @@ As illustrated in the previous paragraph, one of the primary downsides of overla
 lies in that they break the physical topology by connecting nodes that have no physical
 proximity.
 %
-Besides hierarchical attempts in building locality aware overlay
+Besides hierarchical attempts in building locality-aware overlay
 networks~\cite{superchord,ECAN,XuMK03}, we can first mention the locality
 improvement mechanisms of the Pastry structured overlay
 network~\cite{pastry}. In order to reduce the latency of the routing process,
@@ -103,26 +103,26 @@ provide the \emph{best} node possible at the cost of periodic communications (un
 to the actual amount of requests to be processed by the overlay).
 
 The overlay we propose in this paper differs in that it adopts a lazy approach consisting
-in searching close nodes upon receipt of requests. This way, the quality of the response
+in searching close nodes only upon receipt of requests. This way, the quality of the response
 is proportional to the frequency of requests.
 
 Our protocol relies on the Vivaldi protocol~\cite{dabek:2001:sigcomm04} to detect close
 nodes. Vivaldi places nodes in a multi-dimensional space. Each node is given coordinates
-inside this space reflecting its physical location. The protocols is based on simple
+inside this space reflecting its physical location. The protocol is based on simple
 message exchanges. Initially, each node is given a random position in the space and
 chooses (possibly arbitrarily) a small subset of nodes, composing its \emph{view}. Then,
 each node, starts estimating the round trip time between itself and another node chosen
 randomly in its view, and adapts its distance with this node in the space accordingly,
 coming closer to it or moving away from it. This step can be repeated by the nodes
-independently (with another node in their view), to improve the accuracy of the
+independently (each with another node from its view), to improve the accuracy of the
 positioning. A globally accurate positioning of nodes can be obtained very quickly (in a
-small number of steps) if nodes have a few long-distance nodes in their view and if the
+small number of such steps) if nodes have a few long-distance nodes in their view and if the
 network is not excessively dynamic. These long distance links can be easily maintained.
 
-Recall that Vivaldi does not allow to directly know the nodes which are close in the
-network, but to recognize them through their coordinates. Our overlay relies on the
-examination of Vivaldi coordinates of nodes discovered during the processing of requests
-sent to it.
+Recall that Vivaldi does not allow to directly know the nodes which are close in
+the network, but to be able to recognize them through their coordinates. Our
+overlay relies on the examination of Vivaldi coordinates of nodes discovered
+during the processing of requests sent to it.
 
 
 
