@@ -1,20 +1,21 @@
-The aim of this paper is to revisit a distributed scheduling algorithm,
-the DVMS proposal in order to take account of locality criteria.  To this aim,
-we focus first on the network overlay, and ,second, we propose
-an abstraction that allows to combine DVMS with a locality-aware network overlay
-without being intrusive in it's source code.
+The aim of this paper is to revisit a distributed scheduling algorithm, the DVMS
+proposal, in order to take account of locality criteria.  To this aim, we focus
+first on the network overlay, and second, we propose an abstraction that allows
+to combine DVMS with a locality-aware overlay network without being intrusive in
+its source code.
 
 \subsection{Locality-aware Overlay Network \label{ssec:lao}}
 
-We here present our lazy locality-aware overlay network which underlies the VM scheduling
-platform we developed. It is built upon two layers. The lower layer is mainly an
-implementation of the Vivaldi protocol (whose core mechanisms were described earlier)
-making nodes (that are initially interconnected arbitrarily) aware of their position in
-the platform.
+We here present our lazy locality-aware overlay network which underlies the VM
+scheduling platform we developed. It is made of two layers. The low layer is
+mainly an implementation of the Vivaldi protocol (whose core mechanisms were
+described earlier) making nodes (that are initially interconnected arbitrarily)
+aware of their position in the platform.
 
-Based on these coordinates, the higher layer is responsible for building a locality-aware
-overlay dynamically. This layer takes its roots in the classic Dijkstra's shortest path
-algorithm to collect a set of close nodes starting from a given position.
+Based on these coordinates, the upper layer is responsible for building a
+locality-aware overlay dynamically. This layer takes its roots in the classic
+Dijkstra's shortest path algorithm to collect a set of close nodes starting from
+a given position.
 
 %%\subsubsection*{Giving a position to nodes}
 
@@ -201,7 +202,16 @@ constraints.
 %%	* la librairie se base sur la prog fonctionnelle et le peerActor.
 %With that in mind, we created a new library whose role is to ease the
 
-As described in Section \ref{ssec:dvms}, the DVMS proposal can be divided in two major
+%\begin{figure}[h!]
+\begin{wrapfigure}{r}{0.3\linewidth}
+\vspace{-.7cm}\hspace*{.2cm}
+  \includegraphics[width=\linewidth]{Figures/DVMS.pdf}
+  \caption{DVMS on top of the Peer actor.}%
+  \label{fig:peeractor}%
+%\end{figure}
+\end{wrapfigure}
+
+As described in Section~\ref{ssec:dvms}, the DVMS proposal can be divided in two major
 components: on the one hand the ring overlay and on the other hand, the protocol in charge
 of detecting and resolving scheduling issues. As our goal consists in taking into account
 locality criteria without changing the DVMS protocol, we designed a building block, \ie
@@ -211,15 +221,6 @@ level distributed services, providing network abstractions and robust communicat
 between agents deployed on each node. By leveraging the Peer actor API, developers can
 focus on the service itself without dealing with node apparitions/removals and network
 disconnections.
-
-%\begin{figure}[h!]
-\begin{wrapfigure}{r}{0.3\linewidth}
-\vspace{-.7cm}\hspace*{.2cm}
-  \includegraphics[width=\linewidth]{Figures/DVMS.pdf}
-  \caption{DVMS on top of the Peer actor.}%
-  \label{fig:peeractor}%
-%\end{figure}
-\end{wrapfigure}
 
 From the software point of view, the Peer actor relies on modern software frameworks (Scala
 and Akka) following the actor model rules. In such a model, each instance will
@@ -239,12 +240,12 @@ distributed systems such as deadlocks and race conditions.
 %%		- notification actor: systeme a evenement pour les services.
 %%		- network overlay actor: réseau avec implémentation chord et vivaldi.
 
-As illustrated in Figure~\ref {fig:peeractor}, the Peer actor contains two sub actors: the
+As illustrated in Figure~\ref{fig:peeractor}, the Peer actor contains two sub actors: the
 \emph{Notification actor} and the \emph{Network overlay actor}. The Notification actor
 enables services to subscribe to events that will be triggered by other services. The
-Network overlay actor is in charge of sending/receiving message through network. In order
+Network overlay actor is in charge of sending/receiving messages through network. In order
 to compare both approaches, ring-based \vs locality-aware, we developed two different
 network overlay actors: the first one provides a Chord-like overlay
 \cite{stoica2001chord}, while the second one delivers the locality-aware overlay described
-in Sec. \ref{ssec:lao}.
+in Section~\ref{ssec:lao}.
 
