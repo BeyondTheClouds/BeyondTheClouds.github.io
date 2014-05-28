@@ -1,8 +1,8 @@
 The aim of this paper is to revisit a distributed scheduling algorithm,
 the DVMS proposal in order to take account of locality criteria.  To this aim,
-we focus in a first time on the network overlay, and in a second time we propose
+we focus first on the network overlay, and ,second, we propose
 an abstraction that allows to combine DVMS with a locality-aware network overlay
-without being instrusive in it's source code.
+without being intrusive in it's source code.
 
 \subsection{Locality-aware Overlay Network \label{ssec:lao}}
 
@@ -209,8 +209,8 @@ disconnections.
 %\end{figure}
 \end{wrapfigure}
 
-From the software point of view, the Peer actor relies on modern piece of software (Scala
-and akka) following the actor model rules. In such a model, each instance will
+From the software point of view, the Peer actor relies on modern software frameworks (Scala
+and Akka) following the actor model rules. In such a model, each instance will
 collaborate by exclusively exchanging messages and priority will be given to collaboration
 between close instances. Such a coding approach enables to tackle several issues of
 distributed systems such as deadlocks and race conditions.

@@ -29,7 +29,7 @@ The main objective of the experiments we conducted was to estimate impact of loc
 the performance of a distributed scheduling algorithm. A significant portion of the
 reconfiguration time is spent in live migration of virtual machines, which depends of
 network parameters such as latency and bandwidth. One way to improve performance of
-distributed scheduling algorithms is is to promote collaboration between close ressources,
+distributed scheduling algorithms is to promote collaboration between close ressources,
 which can be reached by maximising this ratio: $nb\ intrasite\ migrations/nb\ migrations$.
 %\[
 %	\frac{number\ of\ intrasite\ migrations}{number\ of\ migrations}
@@ -40,7 +40,7 @@ which can be reached by maximising this ratio: $nb\ intrasite\ migrations/nb\ mi
 
 To compare our experiments, we implemented a dedicated injector that makes load changes of
 VMs during a predefined time. VMs are launched on PMs in a round-robin manner, \ie each
-PM has almost the same number of VMs at the beginning, The experiment consists in
+PM has roughly the same number of VMs at the beginning, The experiment consists in
 repeatedly changes target CPU loads of VMs. Every $t$ seconds, the injector that is
 deployed on a dedicated node selects one VM and changes its CPU load according to a
 Gaussian distribution. $t$ is a random variable that follows an exponential distribution
@@ -198,7 +198,7 @@ migrations acceptable compared to those executed by the Chord version.
 % \vspace{-1.0cm}
 
 Table~\ref{microcosm_table} depicts metrics that allow for an objective comparison of the
-efficiency of both network overlay. Firstly, using the LBO decreases the
+efficiency of both network overlays. Firstly, using the LBO decreases the
 number of servers that are involved in microcosms by 41\%, meaning that collaboration
 between close nodes has become more efficient.
 

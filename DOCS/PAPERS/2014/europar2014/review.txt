@@ -149,19 +149,25 @@ TODO:
 
 Minor comments:
 
-page 3 - it it exists --> it exists
+page 3 - it it exists --> it exists 
+  JP: Done
 
 page 5 - Recall that Vivaldi -- You should rephrase as the text doe not mention this fact prior to this sentence
 
 page 5 - in a first time ... in a second time -- Odd construction. Consider rephrasing. 
-
+  JP: Done
+  
 page 6 - modern piece of software --  rephrase
+  JP: Done
 
 page 8 - is is --> is
+  JP: Done
 
 page 8 - has almost the same number --> has roughly ...
+  JP: Done
 
 page 9 -  both network overlay -->  both network overlays
+  JP: Done
 
 TODO: 
 	AL: Fixed typos
