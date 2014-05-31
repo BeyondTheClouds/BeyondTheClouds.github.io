@@ -106,16 +106,20 @@ of intra-site migrations while using a Chord based DVMS decreases this ratio to 
   \end{center}
   \caption{\label{migration_table} Comparison of intra-site migrations ratio
     between Chord and our locality-based overlay.}
+  \vspace{-0.3cm}
 \end{table}
+
 
 \subsubsection{Dynamic Clustering}
 
 During our investigation of the results brought about LBO, we noticed that many of the
-inter-site migrations were performed between Luxembourg and Nancy sites. In
-Table~\ref{latency_table}, we present the latency that exists between every site involved
-in our experiments. It is noticeable that Luxembourg and Nancy have a low latency, which
-is quite normal considering that Nancy and Luxembourg are separated by only 100 kilometers.
-\\
+inter-site migrations were performed between Luxembourg and Nancy sites.
+In Table~\ref{latency_table}, it is noticeable that Luxembourg and Nancy have a latency that is significantly
+below usal inter-site latencies (Nancy and Luxembourg are separated by only 100 kilometers),
+while Rennes and Grenoble have almost the same latency with all their respective remote sites.
+Indeed, servers located in Luxembourg and Nancy are more likely to collaborate with each other, while those located
+on Rennes and Grenoble will find colloborators regardless their location. This explains
+why many of the inter-site migrations were performed between Luxembourg and Nancy.
 This means that LBO enabled DVMS to learn which site is more interesting to perform VM
 migration. Promoting low latency inter-site collaboration made many inter-site
 migrations acceptable compared to those executed by the Chord version.
@@ -193,6 +197,7 @@ migrations acceptable compared to those executed by the Chord version.
   \end{center}
   \caption{\label{partitions_table} Comparison of partitions metrics between
     Chord and our locality-based overlay.}
+  \vspace{-0.3cm}
 \end{table}
 
 % \vspace{-1.0cm}

@@ -151,7 +151,9 @@ TODO:
 The reactivity numbers you present are not, at least for me, enough to back your arguments. In fact, it is not even clear what is the impact of the average duration in the system's reactivity.
 
 TODO: 
-	AL -> JP, please perform wider experiments so we can add migration times.  
+	AL -> JP, please perform wider experiments so we can add migration times.
+	JP: add some explainations (in experiments) on why majority of inter-site 
+	migrations are performed between Luxembourg and Nancy.
 
 Minor comments:
 
