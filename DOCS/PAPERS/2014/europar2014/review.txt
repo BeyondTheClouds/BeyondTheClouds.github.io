@@ -101,6 +101,8 @@ The experimental section seems a bit weak. What exactly is a microcosm? This is 
 
 TODO: 
 	AL: it seems that the scheduling problem is not correctly explained. We can maybe leverage the paragraph we used in the journal paper of DVMS.
+	JP: I replaced all occurence of "microcosms" in the experimental section: this sections is now consistent with terms used in the DVMS
+	paragraph.
 
 ----------------------- REVIEW 4 ---------------------
 PAPER: 270

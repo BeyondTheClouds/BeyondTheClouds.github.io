@@ -191,20 +191,20 @@ migrations acceptable compared to those executed by the Chord version.
       \hline
     \end{tabular}
   \end{center}
-  \caption{\label{microcosm_table} Comparison of microcosms metrics between
+  \caption{\label{partitions_table} Comparison of partitions metrics between
     Chord and our locality-based overlay.}
 \end{table}
 
 % \vspace{-1.0cm}
 
-Table~\ref{microcosm_table} depicts metrics that allow for an objective comparison of the
+Table~\ref{partitions_table} depicts metrics that allow for an objective comparison of the
 efficiency of both overlay networks. Firstly, using the LBO decreases the
-number of servers that are involved in microcosms by 41\%, meaning that collaboration
+number of servers that are involved in partitions by 41\%, meaning that collaboration
 between close nodes has become more efficient.
 
 Secondly, it is interesting that using the LBO leads to a 
-microcosm duration 46\% lower than that encountered with Chord. This result is consistent with 
-the fact that with our locality-aware overlay, the number of sites that are involved in microcosms
+partitions duration 46\% lower than that encountered with Chord. This result is consistent with 
+the fact that with our locality-aware overlay, the number of sites that are involved in partitions
 becomes very close to one: collaborating with closer nodes allows
 to perform scheduling/reconfiguring phases much faster since migration operations are
 shorter in time, thus increasing considerably the reactivity of the system.
