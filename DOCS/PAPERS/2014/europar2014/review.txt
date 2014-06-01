@@ -89,7 +89,9 @@ Overall, the paper is reasonably interesting but could use some improvement in t
 With respect to motivation, the authors could do a better job at formulating their objectives and goals in a more concrete fashion. For example, what is the "scheduling problem" more concretely? Assigning VMs on top of PMs according to "effective needs" and "reciprocally [sic] usage" is very vague. What is the expected outcome? Consolidate on as few nodes as possible?
 
 TODO: 
-	AL: Check in the introduction whether the objectives of satisfying the needs of each VM is correctly stated. 
+	AL: Check in the introduction whether the objectives of satisfying the needs of each VM is correctly stated.
+	JP: add few words introduction: the objective of scheduling is to preserve a
+	good QoS. We are not interested on consolidate on few nodes.
 
 
 With respect to the contribution, I understand that you are improving previous work, but this is not a convincing by itself. You need to discuss why you didn't consider other alternatives, e.g. the simplest that comes into mind is to piggy-back on top of Vivaldi additional system information (CPU load, memory load, etc). Then, based on a more "general" distance that takes load into account you could try to forward a migration request to the "closest" node directly, which in turn may refuse and forward it to its own closest node, etc. You can avoid cycles by stamping the request with the nodes already visited. Why wouldn't this simple solution work? Why the need to maintain "spirals" (I assume you mean chains) and rely on the upper layer of the previous work?
