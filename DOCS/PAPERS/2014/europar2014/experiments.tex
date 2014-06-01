@@ -28,9 +28,9 @@
 The main objective of the experiments we conducted was to estimate the impact of locality on
 the performance of a distributed scheduling algorithm. A significant portion of the
 reconfiguration time is spent in live migration of virtual machines, which depends of
-network parameters such as latency and bandwidth. One way to improve performance of
-distributed scheduling algorithms is to promote collaboration between close ressources,
-which can be reached by maximising the ratio $nb\ intrasite\ migrations/nb\ migrations$.
+network parameters such as latency and bandwidth. One way to improve the performance of
+distributed scheduling algorithms is to promote collaborations between close resources,
+which can be reached by maximizing the ratio $nb\ intrasite\ migrations/nb\ migrations$.
 %\[
 %	\frac{number\ of\ intrasite\ migrations}{number\ of\ migrations}
 %\]
@@ -41,7 +41,7 @@ which can be reached by maximising the ratio $nb\ intrasite\ migrations/nb\ migr
 To compare our experiments, we implemented a dedicated injector that makes load changes of
 VMs during a predefined time. VMs are launched on PMs in a round-robin manner, \ie each
 PM hosts roughly the same number of VMs at the beginning. The experiment consists in
-repeatedly changes target CPU loads of VMs. Every $t$ seconds, the injector that is
+repeatedly changing target CPU loads of VMs. Every $t$ seconds, the injector that is
 deployed on a dedicated node selects one VM and changes its CPU load according to a
 Gaussian distribution. $t$ is a random variable that follows an exponential distribution
 with rate parameter $\lambda$. The Gaussian distribution is defined by a mean ($\mu$) as
@@ -49,8 +49,8 @@ well as a standard deviation ($\sigma$) that are given at the beginning of the e
 %exponential and the Gaussian distributions previously described. 
 The parameters are $\lambda=\mathit{Nb\_VMs}/300$ and $\mu=70$, $\sigma=30$.
 Concretely, the load of each VM starts from 0\% and varies on average every 5
-min in steps of 10 (with a significant part between 40\% and 100\% of CPU
-usage). Each experiment duration was set to 3600 seconds.
+minutes in steps of 10 (with a significant part between 40\% and 100\% of CPU
+usage). The duration of each experiment was set to 3600 seconds.
 
 For each experiment, we booked 40 compute servers spread over 4 geographical sites (10
 servers per site) and 1 service server from the Grid'5000 testbed. The compute servers
@@ -69,12 +69,12 @@ an algorithm.
 
 \subsection{Results}
 
-\subsubsection{Maximization of Intra-Site Migrations}
+\subsubsection{Maximization of Intra-Site Migrations.}
 
 Table~\ref{migration_table} compares the ratio between intra-site migrations and the total
-number of migrations, using Chord or our locality-based overlay (LBO). The results show that the impact of locality
-is significant: using LBO leads to an average number of 86.3\%
-of intra-site migrations while using a Chord based DVMS decreases this ratio to 49.6\%.
+number of migrations, using Chord or our locality-based overlay~(LBO) network. The results show that the impact of locality
+is significant: Using LBO leads to an average number of 86.3\%
+of intra-site migrations while using a Chord-based DVMS decreases this ratio to 49.6\%.
 
 \begin{table}
 
@@ -105,20 +105,20 @@ of intra-site migrations while using a Chord based DVMS decreases this ratio to 
     \end{tabular}
   \end{center}
   \caption{\label{migration_table} Comparison of intra-site migrations ratio
-    between using DVMS/Chord and DVMS/LBO.}
+    using DVMS/Chord and DVMS/LBO.}
   \vspace{-0.3cm}
 \end{table}
 
 
-\subsubsection{Dynamic Clustering}
+\subsubsection{Dynamic Clustering.}
 
 During our investigation of the results brought about LBO, we noticed that many of the
 inter-site migrations were performed between Luxembourg and Nancy sites.
 In Table~\ref{latency_table}, it is noticeable that Luxembourg and Nancy have a latency that is significantly
-below usal inter-site latencies (Nancy and Luxembourg are separated by only 100 kilometers),
+below usual inter-site latencies (Nancy and Luxembourg are separated by only 100 kilometers),
 while Rennes and Grenoble have almost the same latency with all their respective remote sites.
 Indeed, servers located in Luxembourg and Nancy are more likely to collaborate with each other, while those located
-on Rennes and Grenoble will find colloborators regardless their location. This explains
+on Rennes and Grenoble will find collaborators regardless of their location. This explains
 why many of the inter-site migrations were performed between Luxembourg and Nancy.
 This means that LBO enabled DVMS to learn which site is more interesting to perform VM
 migration. Promoting low latency inter-site collaboration made many inter-site
@@ -166,7 +166,7 @@ migrations acceptable compared to those executed by the Chord version.
 
 % \vspace{-1.3cm}
 
-\subsubsection{Reactivity}
+\subsubsection{Reactivity.}
 \begin{table}[t!]
 
   \begin{center}
@@ -195,7 +195,7 @@ migrations acceptable compared to those executed by the Chord version.
       \hline
     \end{tabular}
   \end{center}
-  \caption{\label{partitions_table} Comparison of partitions metrics between
+  \caption{\label{partitions_table} Comparison of partitions metrics
     using DVMS/Chord and DVMS/LBO.}
   \vspace{-0.3cm}
 \end{table}
@@ -203,15 +203,17 @@ migrations acceptable compared to those executed by the Chord version.
 % \vspace{-1.0cm}
 
 Table~\ref{partitions_table} depicts metrics that allow for an objective comparison of the
-efficiency of both overlay networks. Firstly, using the LBO decreases the
+efficiency of both overlay networks.
+
+Firstly, using the LBO decreases the
 number of servers that are involved in partitions by 41\%, meaning that collaboration
 between close nodes has become more efficient.
 
 Secondly, it is interesting that using the LBO leads to a 
-partitions duration 46\% lower than that encountered with Chord. This result is consistent with 
+partition duration 46\% lower than that encountered with Chord. This result is consistent with 
 the fact that with our locality-aware overlay, the number of sites that are involved in partitions
-becomes very close to one: collaborating with closer nodes allows
-to perform scheduling/reconfiguring phases much faster since migration operations are
+becomes very close to one: Collaborating with closer nodes allows
+performing scheduling/reconfiguring phases much faster, since migration operations are
 shorter in time, thus increasing considerably the reactivity of the system.
 %% TODO (ici ca aurait ete bien de donner un odre de grandeur sur la difference entre le temps de migration intra-site vs inter-sites pour deux VMS de meme classe (i.e. qui ont la meme memory intensity, celle défini dans le code de l'injector). 
 

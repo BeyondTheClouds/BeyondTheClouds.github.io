@@ -1,16 +1,18 @@
 The aim of this paper is to revisit a distributed scheduling algorithm, the DVMS
 proposal, in order to take account of locality criteria.  To this aim, we focus
-first on the network overlay, and second, we propose an abstraction that allows
-to combine DVMS with a locality-aware overlay network without being intrusive in
+first on the overlay network, and second, we propose an abstraction that allows
+combining DVMS with a locality-aware overlay network without being intrusive in
 its source code.
 
 \subsection{Locality-aware Overlay Network \label{ssec:lao}}
 
-We here present our lazy locality-aware overlay network which underlies the VM
-scheduling platform we developed. It is made of two layers. The low layer is
-mainly an implementation of the Vivaldi protocol (whose core mechanisms were
+We here present our lazy locality-aware overlay network that underlies the VM
+scheduling platform we developed. It is made of two layers.
+
+The lower layer is
+mainly an implementation of the Vivaldi protocol (which core mechanisms were
 described earlier) making nodes (that are initially interconnected arbitrarily)
-aware of their position in the platform.
+aware of their position in the infrastructure.
 
 Based on these coordinates, the upper layer is responsible for building a
 locality-aware overlay dynamically. This layer takes its roots in the classic
@@ -62,9 +64,9 @@ a given position.
 %   \end{minipage} \hfill
 % \end{figure}
 
-\subsubsection*{Searching for Close Nodes}
+\subsubsection*{Searching for Close Nodes.}
 
-Once the map of Vivaldi is achieved, and each node knows its coordinates, we are
+Once the Vivaldi map is achieved, and each node knows its coordinates, we are
 able to estimate how \emph{close} two given nodes are by calculating their
 distance in the map. However, recall that the view of each node does not \emph{a
 priori} contain its closest nodes. (In the following, we call this view the {\bf
@@ -86,7 +88,7 @@ done by selecting the node from $n_R$'s network view, say $n_i$, which exhibits
 the smallest distance with $n_R$. $n_i$ becomes the second node in the
 spiral. From this point on, $n_R$ remembers $n_i$ as its successor and $n_i$
 remembers $n_R$ as its predecessor. $n_R$ also sends its network view to $n_i$,
-which, on receipt, creates its {\bf spiral view} which contains the $N$ nodes
+which, on receipt, creates its {\bf spiral view} that contains the $N$ nodes
 closest to $n_R$ taken from both $n_R$ and $n_i$ network views. It will allow
 $n_i$ to find the next node to build the spiral. Assuming this closest node from
 $n_R$ in $n_i$'s spiral view is $n_j$, $n_j$ will be added in the spiral by
@@ -96,7 +98,7 @@ $n_i$'s spiral view and $n_j$'s network view. This algorithm is repeated until
 the amount of nodes requested by the application have been interconnected in the
 spiral.
 
-Note that there is a risk to be blocked by at some point having a spiral view
+Note that there is a risk to be blocked at some point, having a spiral view
 containing only nodes that are already in the spiral, hindering from extending
 it further. However, this problem can be easily addressed by introducing few
 long-distance nodes when the spiral view is created/updated.
@@ -121,27 +123,27 @@ long-distance nodes when the spiral view is created/updated.
 	    \includegraphics[width=1.05\linewidth]{Figures/learning3.png}\\(c)
 	  \end{center}
 	\end{minipage}
-	\caption{Learning mechanism: (a) the initial view of each node are materialized by
-          the dashed lines. Given these views, the spiral obtained from node A is
+	\caption{Learning mechanism: (a)~The initial view of each node is materialized by
+          the dashed lines. Given these views, the spiral obtained from node~A is
           represented by the double thick lines. In particular, this spiral allowed $A$
-          and $B$ to discover each others. (b) If $B$ starts building a spiral, it will
+          and $B$ to discover each other. (b)~If $B$ starts building a spiral, it will
           start by contacting $A$. This spiral construction allows also E and B to
-          discover each others. (c) If $A$ is requested to start another spiral, it will
+          discover each other. (c)~If $A$ is requested to start another spiral, it will
           exhibit an increased locality awareness.\label{fig:learning}} }
       \end{center}
 }
 \end{figure}
 
-\subsubsection*{Learning}
+\subsubsection*{Learning.}
 
 Applying the protocol described above, the quality of the spiral is questionable in the
 sense that the nodes that are actually close to the root node $n_R$ may not be
 included.% The only property ensured is that one step
 % forward on the built path always takes us further from the initial node.
 %
-To improve the \emph{quality} of the spiral, \emph{i.e.}, to reduce the average
-distance from each of its node to the initial node, we rely on a learning
-mechanism coming with no extra communication cost: when a node is contacted to
+To improve the \emph{quality} of the spiral, \ie to reduce the average
+distance from each of its nodes to the initial node, we rely on a learning
+mechanism coming with no extra communication cost: When a node is contacted to
 become the next node in one spiral, and when it receives the associated spiral
 view, it can also keep in its network view the nodes that are closer to itself,
 thus potentially increasing the quality of a future spiral construction. Such an
@@ -151,7 +153,7 @@ spirals. While providing obvious advantages, allowing it comes at the cost of
 changing links in the spirals dynamically, which may not match all applications'
 constraints.
 
-\subsection{PeerActor: A Building Block to Abstract Overlays}
+\subsection{PeerActor: A Building Block to Abstract Overlay Networks}
 %
 %%   * Construire des algos distribues fonctionnant en reseau est dur: couts 
 %% 	  impliques par la tolerance aux pannes et synchro.
@@ -212,10 +214,10 @@ constraints.
 \end{wrapfigure}
 
 As described in Section~\ref{ssec:dvms}, the DVMS proposal can be divided in two major
-components: on the one hand the ring overlay and on the other hand, the protocol in charge
+components: (i)~The ring overlay network and (ii)~the protocol in charge
 of detecting and resolving scheduling issues. As our goal consists in taking into account
 locality criteria without changing the DVMS protocol, we designed a building block, \ie
-\emph{the Peer actor}, that enables us to revisit DVMS by abstracting the overlays it
+\emph{the Peer actor}, which enables us to revisit DVMS by abstracting the overlay network it
 relies on. At a coarse-grain level, the Peer actor can be seen as a generic layer for high
 level distributed services, providing network abstractions and robust communications
 between agents deployed on each node. By leveraging the Peer actor API, developers can
@@ -224,7 +226,7 @@ disconnections.
 
 From the software point of view, the Peer actor relies on modern software frameworks (Scala
 and Akka) following the actor model rules. In such a model, each instance will
-collaborate by exclusively exchanging messages and priority will be given to collaboration
+collaborate by exclusively exchanging messages, and priority will be given to collaboration
 between close instances. Such a coding approach enables to tackle several issues of
 distributed systems such as deadlocks and race conditions.
 
@@ -240,12 +242,12 @@ distributed systems such as deadlocks and race conditions.
 %%		- notification actor: systeme a evenement pour les services.
 %%		- network overlay actor: réseau avec implémentation chord et vivaldi.
 
-As illustrated in Figure~\ref{fig:peeractor}, the Peer actor contains two sub actors: the
-\emph{Notification actor} and the \emph{Network overlay actor}. The Notification actor
+As illustrated in Figure~\ref{fig:peeractor}, the Peer actor contains two sub actors: The
+\emph{Notification actor} and the \emph{Overlay network actor}. The Notification actor
 enables services to subscribe to events that will be triggered by other services. The
-Network overlay actor is in charge of sending/receiving messages through network. In order
+Overlay network actor is in charge of sending/receiving messages through the network. In order
 to compare both approaches, ring-based \vs locality-aware, we developed two different
-network overlay actors: the first one provides a Chord-like overlay
+Overlay network actors: The first one provides a Chord-like overlay
 \cite{stoica2001chord}, while the second one delivers the locality-aware overlay described
 in Section~\ref{ssec:lao}.
 

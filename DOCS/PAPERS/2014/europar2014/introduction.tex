@@ -1,19 +1,19 @@
-Introduced a few years ago~\cite{greenberg:sigcomm09}, the new trend to deliver cloud
-computing resources, in particular Infrastructure as a Service solutions (IaaS), consists
-in leveraging several infrastructures distributed world-wide. If such distributed cloud
-computing platforms deliver undeniable advantages to address important challenges such as
+Introduced a few years ago~\cite{greenberg:sigcomm09}, the new trend to deliver Cloud
+Computing resources, in particular Infrastructure as a Service~(IaaS) solutions, consists
+in leveraging several infrastructures distributed world-wide. If such distributed Cloud
+Computing platforms deliver undeniable advantages to address important challenges such as
 reliability, latency or even in somehow jurisdiction concerns, most mechanisms that were
 previously used to operate centralized IaaS platforms must be revisited to offer the same
 level of transparency for the end-users.
 
 Keeping such an objective in mind, the use of the P2P paradigm has to be strongly
 investigated. This is particularly true for scheduling algorithms in charge
-of assigning VMs on top of PMs according to their effective needs (and reciprocally
+of assigning virtual machines~(VMs) on top of physical machines~(PMs) according to their effective needs (and reciprocally
 usages). Indeed and although major improvements have been done, centralized
 approaches~\cite{hermenier:2013} are neither scalable nor robust enough. Hierarchical
 solutions~\cite{feller:ccgrid12} that can be seen as good candidates face important
 limitations: First, finding an efficient partitioning of resources is a tedious task as
-matching a hierarchical overlay on top of a distributed infrastructure is often not
+matching a hierarchical overlay network on top of a distributed infrastructure is often not
 natural. Secondly, in addition to requiring complex failover mechanisms to face
 crashed leader/super peer and network disconnections, hierarchical structures have not
 been designed to react swiftly to physical topology changes such as node
@@ -22,10 +22,10 @@ address both concerns, \ie scalability as well as resiliency of infrastructures.
 and despite promising approaches have been proposed to address the scheduling problem of
 VMs in a P2P fashion~\cite{quesnel:cpe2012,feller:cloudcom12}, they are still facing
 limitations coming from the overlay network they rely on. The approach proposed
-in~\cite{quesnel:cpe2012} matches a ring overlay on a distributed infrastructures which
+in~\cite{quesnel:cpe2012} maps a ring overlay network on a distributed infrastructure which
 prevents making any distinction between close nodes and distant ones. Similarly, the
 approach described in~\cite{feller:cloudcom12}, while adopting an orthogonal, gossip-based approach,
-still suffers from building a randomized overlay, thus breaking the physical topology.
+still suffers from building a randomized overlay network, thus breaking the physical topology.
 
 Considering that both the network latency and the bandwidth between peers have a strong
 impact on the reactivity criteria of the scheduling problem, \emph{locality} properties of
@@ -47,19 +47,18 @@ We estimate the locality through a cost function of the latency/bandwidth tuple 
 peers in the network, thus enabling each peer to select its closest neighbors. We rely on
 Vivaldi~\cite{dabek:2001:sigcomm04}, a simple decentralized protocol allowing to map a
 network topology onto a logical space while preserving locality. On top of Vivaldi, a shortest path
-construction similar to the well-known Dijkstra algorithm is performed, each time there is
+construction, similar to the well-known Dijkstra algorithm, is performed each time there is
 a need for cooperation between two nodes taking part in the schedule. We illustrate the
-advantage of this new building block by changing the overlay in the DVMS
+advantage of this new building block by changing the overlay network in the DVMS
 proposal~\cite{quesnel:cpe2012} for it. We selected DVMS as we have a good expertise of it and
-because it is, as far as we know, the only one that guarantees to find a solution if there
-is an existing one~\cite{quesnel:ispa2013}.
+because it is, as far as we know, the only one that guarantees to find a solution if one exists~\cite{quesnel:ispa2013}.
                                                    
-The remainder of this article is structured as follows. In Section \ref{sec:back}, we
+The remainder of this article is structured as follows. In Section~\ref{sec:back}, we
 discuss some background regarding the DVMS proposal and the P2P technics to handle
-the locality aspects. Section \ref{sec:contribs} gives an overview of our proposal by
+the locality aspects. Section~\ref{sec:contribs} gives an overview of our proposal by
 introducing the short path algorithm on top of Vivaldi and the way we integrate it into
-DVMS. In Section \ref{sec:exps}, we validate the proposal by analyzing its benefits with
+DVMS. In Section~\ref{sec:exps}, we validate the proposal by analyzing its benefits with
 respect to the previous version of DVMS by discussing experiments conducted on
-Grid'5000. Related works are discussed in Section \ref{sec:related}. Finally, we discuss
-perspectives and conclude this article in Section \ref{sec:con}.
+Grid'5000. Related works are discussed in Section~\ref{sec:related}. Finally, we discuss
+perspectives and conclude this article in Section~\ref{sec:con}.
 
