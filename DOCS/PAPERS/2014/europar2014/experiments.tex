@@ -184,7 +184,7 @@ migrations acceptable compared to those executed by the Chord version.
 
       % <ROW 2> => Duration
       \hline
-      average scheduling solving duration (msec) & 154.63 & 98.50 \\
+      average scheduling duration (msec) & 154.63 & 98.50 \\
       % </ROW 2>
 
       \hline
@@ -203,7 +203,7 @@ the number of inter-site migrations, the side effect of using the LBO is to
 reduce the solving time: partition duration is 46\% lower than that encountered 
 with Chord. This result is consistent with the fact that with our locality-aware
 overlay, the number of sites that are involved in partitions becomes very close 
-to one: Collaborating with closer nodes allows exchanging information between
+to one. Indeed collaborating with closer nodes allows exchanging information between
 nodes of the partition much faster, thus increasing once again the reactivity
 of the system.
 %% TODO (ici ca aurait ete bien de donner un odre de grandeur sur la difference entre le temps de migration intra-site vs inter-sites pour deux VMS de meme classe (i.e. qui ont la meme memory intensity, celle défini dans le code de l'injector). 
