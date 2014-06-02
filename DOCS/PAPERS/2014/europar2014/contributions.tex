@@ -69,9 +69,9 @@ a given position.
 Once the Vivaldi map is achieved, and each node knows its coordinates, we are
 able to estimate how \emph{close} two given nodes are by calculating their
 distance in the map. However, recall that the view of each node does not \emph{a
-priori} contain its closest nodes. (In the following, we call this view the {\bf
+priori} contain its closest nodes \footnote{In the following, we call this view the {\bf
 network view}, to distinguish it from the {\bf spiral view} to be introduced
-later.) Therefore, we need additional mechanisms to locate a set of nodes that
+later.}. Therefore, we need additional mechanisms to locate a set of nodes that
 are close to a given initial node. Vivaldi gives a \emph{location} to each node,
 not a neighborhood. 
 
@@ -213,7 +213,7 @@ constraints.
 %\end{figure}
 \end{wrapfigure}
 
-As described in Section~\ref{ssec:dvms}, the DVMS proposal can be divided in two major
+As a P2P scheduling algorithm, the DVMS proposal can be divided in two major
 components: (i)~The ring overlay network and (ii)~the protocol in charge
 of detecting and resolving scheduling issues. As our goal consists in taking into account
 locality criteria without changing the DVMS protocol, we designed a building block, \ie
@@ -227,8 +227,7 @@ disconnections.
 From the software point of view, the Peer actor relies on modern software frameworks (Scala
 and Akka) following the actor model rules. In such a model, each instance will
 collaborate by exclusively exchanging messages, and priority will be given to collaboration
-between close instances. Such a coding approach enables to tackle several issues of
-distributed systems such as deadlocks and race conditions.
+between close instances when using the LBO.
 
 %%\subsubsection{Peer actor abstraction}
 %
@@ -244,7 +243,8 @@ distributed systems such as deadlocks and race conditions.
 
 As illustrated in Figure~\ref{fig:peeractor}, the Peer actor contains two sub actors: The
 \emph{Notification actor} and the \emph{Overlay network actor}. The Notification actor
-enables services to subscribe to events that will be triggered by other services. The
+enables services to subscribe to events that will be triggered by other services, as for detecting
+overloading of nodes or for handling crash of neighbours. The
 Overlay network actor is in charge of sending/receiving messages through the network. In order
 to compare both approaches, ring-based \vs locality-aware, we developed two different
 Overlay network actors: The first one provides a Chord-like overlay
