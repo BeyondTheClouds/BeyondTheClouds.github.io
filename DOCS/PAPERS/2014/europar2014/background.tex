@@ -7,7 +7,7 @@ framework that schedules VMs cooperatively and dynamically in large-scale distri
 systems. It is deployed as a set of agents that are organized following a ring topology
 and that cooperate with one another to guarantee that VM demands are satisfied during
 their executions. Concretely, when a node \footnote{In the following, 
-\emph{node} and \emph{PM} will refer to the same entity (\ie physical 
+\emph{node} and \emph{PM} will refer to the same entity (\ie a physical 
 server of the infrastructure).} cannot guarantee the QoS for its hosted VMs or
 when it is under-utilized, it starts an iterative scheduling procedure~(ISP) by querying
 its first neighbor to find a better placement; it thus becomes the initiator of the ISP.
