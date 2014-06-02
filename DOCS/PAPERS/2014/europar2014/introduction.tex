@@ -1,4 +1,4 @@
-Introduced a few years ago~\cite{greenberg:sigcomm09}, the new trend to deliver Cloud
+Introduced few years ago~\cite{greenberg:sigcomm09}, the new trend to deliver Cloud
 Computing resources, in particular Infrastructure as a Service~(IaaS) solutions, consists
 in leveraging several infrastructures distributed world-wide. If such distributed Cloud
 Computing platforms deliver undeniable advantages to address important challenges such as
@@ -19,8 +19,8 @@ natural. Secondly, in addition to requiring complex failover mechanisms to face
 crashed leader/super peer and network disconnections, hierarchical structures have not
 been designed to react swiftly to physical topology changes such as node
 apparitions/removals and network performance degradations. P2P algorithms allow to
-address both concerns, \ie scalability as well as resiliency of infrastructures. However,
-and despite promising approaches have been proposed to address the scheduling problem of
+address both concerns, \ie scalability as well as resiliency of infrastructures. Although
+promising approaches have been proposed to address the scheduling problem of
 VMs in a P2P fashion~\cite{quesnel:cpe2012,feller:cloudcom12}, they are still facing
 limitations coming from the overlay network they rely on. The approach proposed
 in~\cite{quesnel:cpe2012} maps a ring overlay network on a distributed infrastructure which
@@ -29,7 +29,7 @@ approach described in~\cite{feller:cloudcom12}, while adopting an orthogonal, go
 still suffers from building a randomized overlay network, thus breaking the physical topology.
 
 Considering that both the network latency and the bandwidth between peers have a strong
-impact on the reactivity criteria of the scheduling problem, \emph{locality} properties of
+impact on the reactivity criterion of the scheduling problem, \emph{locality} properties of
 peers should be considered to favor efficient VM operations. In other words, to reduce as
 much as possible the time to switch from one schedule (\ie a mapping between VMs and PMs
 running in the infrastructure) to another one, it is crucial to make cooperation first
@@ -51,7 +51,7 @@ network topology onto a logical space while preserving locality. On top of Vival
 construction, similar to the well-known Dijkstra algorithm, is performed each time there is
 a need for cooperation between two nodes taking part in the schedule. We illustrate the
 advantage of this new building block by changing the overlay network in the DVMS
-proposal~\cite{quesnel:cpe2012} for it. We selected DVMS as we have a good expertise of it and
+proposal~\cite{quesnel:cpe2012}. We selected DVMS as we have a good expertise of it and
 because it is, as far as we know, the only one that guarantees to find a solution if one exists~\cite{quesnel:ispa2013}.
                                                    
 The remainder of this article is structured as follows. In Section~\ref{sec:back}, we
