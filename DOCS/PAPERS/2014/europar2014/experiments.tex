@@ -52,14 +52,78 @@ Concretely, the load of each VM starts from 0\% and varies on average every 5
 minutes in steps of 10 (with a significant part between 40\% and 100\% of CPU
 usage). The duration of each experiment was set to 3600 seconds.
 
-\begin{wrapfigure}{r}{0.38\textwidth}
- \begin{center}
-\includegraphics[width=0.38\textwidth]{./Figures/testbed.png}
-\caption{Deployed testbed}
-\label{fig:testbed}
+\begin{wrapfigure}[13]{r}{0.35\textwidth}
+% \begin{center}
+%\includegraphics[width=0.38\textwidth]{./Figures/testbed.png}
+%\caption{Deployed testbed}
+%\label{fig:testbed}
+%\end{center}
+%\vspace*{-1.2cm}
+     \begin{center}
+\vspace*{-1.3cm}
+\newcommand{\sitesize}{4pt}
+\begin{tikzpicture}[scale=0.48,netlink/.style={blue, thick},
+                kv/.style={red, very thick},
+        site/.style={black},
+        sitecircle/.style={fill=orange}]
+\draw (0,0) node[above right,opacity=0.5] {\includegraphics[width=0.38\textwidth]{./Figures/france-osm.png}};
+\coordinate (lyon-renater) at (7.6,3.8);
+\coordinate (paris-renater) at (5.8,6.9);
+\coordinate (bordeaux) at (3.7,2.7);
+\coordinate (grenoble) at (8.23,3.05);
+\coordinate (lille) at (6.3,8.8);
+\coordinate (luxembourg) at (8.5,7.65);
+\coordinate (lyon) at (7.6,3.57);
+\coordinate (nancy) at (8.5,6.7);
+\coordinate (reims) at (7.0,7.35);
+\coordinate (rennes) at (2.9,6.1);
+\coordinate (sophia) at (9.2,1.5);
+\coordinate (toulouse) at (5.15,1.55);
+\draw[purple,<->,thick] (2.9,0.2) -- (9.2,0.2) node [midway,above] { 800 km };
+\draw[netlink] (rennes)--(paris-renater);
+%\draw[netlink] (lille)--(paris-renater);
+\draw[netlink] (nancy)--(paris-renater);
+\draw[netlink] (nancy)--(luxembourg);
+%\draw[netlink,dashed] (lille)--(reims);
+\draw[netlink] (lyon-renater)--(paris-renater);
+%\draw[netlink] (lyon-renater)--(bordeaux);
+%\draw[netlink] (lyon-renater)--(lyon);
+\draw[netlink,bend left=10] (lyon-renater) to (grenoble);
+%\draw[netlink,bend right=10] (lyon-renater) to (sophia);
+%\draw[netlink] (lyon-renater)--(toulouse);
+
+%\draw[sitecircle] (bordeaux) circle (\sitesize);
+\draw[sitecircle] (grenoble) circle (\sitesize);
+%\draw[sitecircle] (lille) circle (\sitesize);
+\draw[sitecircle] (luxembourg) circle (\sitesize);
+%\draw[sitecircle] (lyon) circle (\sitesize);
+\draw[sitecircle] (nancy) circle (\sitesize);
+%\draw[sitecircle] (reims) circle (\sitesize);
+\draw[sitecircle] (rennes) circle (\sitesize);
+%\draw[sitecircle] (sophia) circle (\sitesize);
+%\draw[sitecircle] (toulouse) circle (\sitesize);
+
+%\draw (bordeaux) node[site,below] {Bordeaux (154)};
+%\draw (grenoble) node[site,below right] {Grenoble (116)};
+\draw (grenoble) node[site,below, text centered] {Grenoble (10)};
+%\draw (lille) node[site,above,text centered] {Lille (100)};
+%\draw (luxembourg) node[site,above] {Luxembourg (22)};
+\draw (luxembourg) node[site,above] {Luxembourg (10)};
+%\draw (lyon) node[site,above right] {Lyon (79)};
+%\draw (nancy) node[site,below,text centered] {Nancy (236)};
+\draw (nancy) node[site,below,text centered] {Nancy (10)};
+%\draw (reims) node[site,below] {Reims (44)};
+%\draw (rennes) node[site,below,text centered] {Rennes (162)};
+\draw (rennes) node[site,below,text centered] {Rennes (10 + 1)};
+%\draw (sophia) node[site,below,text centered] {Sophia (151)};
+%\draw (toulouse) node[site,below] {Toulouse (140)};
+\end{tikzpicture}
+%}
+\vspace*{-.6cm}
+\caption{Testbed.\label{fig:g5kmap}}
 \end{center}
 \end{wrapfigure}
-
+Figure~\ref{fig:g5kmap} depicts our testbed. 
 For each experiment, we booked 40 compute servers spread over 4 geographical sites (10
 PMs per site) and 1 service server from the Grid'5000 testbed. The compute servers
 were used to run VMs and DVMS while the service node runs the aforementioned
@@ -67,7 +131,8 @@ injector.
 %
 Each compute node was equipped with 8 cores and hosted a number of VMs
 proportional to its number of CPU cores ($nb VM\ =\ 1.3\ \times\ nb\ cores)$, leading to
-a global number of 416 VMs. Although such a number is rather small regarding the latest
+a global number of 416 VMs. 
+Although such a number is rather small regarding the latest
 experiments that have been performed on DVMS~\cite{quesnel:ispa2013}, our goal is not to
 validate once again the scalability criteria but to focus on the locality aspect of such
 an algorithm.
@@ -81,43 +146,37 @@ an algorithm.
 \subsubsection{Maximization of Intra-Site Migrations.}
 
 Table~\ref{migration_table} compares the ratio between intra-site migrations and the total
-number of migrations, using Chord or our locality-based overlay~(LBO) network. The results show that the impact of locality
+number of migrations, using Chord or our LBO network. The results show that the impact of locality
 is significant: Using LBO leads to an average number of 86.3\%
 of intra-site migrations while using a Chord-based DVMS decreases this ratio to 49.6\%.
 
-\begin{table}
 
+\begin{table}
+\vspace*{-.5cm}
   \begin{center}
     \begin{tabular}{|c|c|c|}   
-
       % <HEADER>
       \hline \multicolumn{1}{|p{3cm}|}{ }
        & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering LBO}  \\
       % </HEADER>
-
       % <ROW 1> => Average
       \hline
-      average & 0.496 & 0.863 \\
+      Average & 0.496 & 0.863 \\
       % </ROW 1>
-
       % <ROW 2> => Min
       \hline
-      minimum & 0.378 & 0.798 \\
+      Minimum & 0.378 & 0.798 \\
       % </ROW 2>
-
       % <ROW 2> => Max
       \hline
-      maximum & 0.629 & 0.935 \\
+      Maximum & 0.629 & 0.935 \\
       % </ROW 2>
-
       \hline
     \end{tabular}
   \end{center}
-  \caption{\label{migration_table} Comparison of intra-site migrations ratio
-    using DVMS/Chord and DVMS/LBO.}
-  \vspace{-0.3cm}
+  \caption{\label{migration_table} Comparison of intra-site migrations ratio (DVMS/Chord vs. DVMS/LBO)}
+\vspace*{-1.3cm}
 \end{table}
-
 
 \subsubsection{Dynamic Clustering.}
 
@@ -133,9 +192,8 @@ This means that LBO enabled DVMS to learn which site is more interesting to perf
 migration. Promoting low latency inter-site collaboration made many inter-site
 migrations acceptable compared to those executed by the Chord version.
 
-
-\begin{table}[t!]
-
+\begin{table}[htbp]
+\vspace*{-.3cm}
   \begin{center}
     \begin{tabular}{|c|c|c|c|c|}   
 
@@ -167,33 +225,28 @@ migrations acceptable compared to those executed by the Chord version.
     \end{tabular}
   \end{center}
   \caption{\label{latency_table} Latency measured between sites.}
+\vspace*{-1.3cm}
 \end{table}
 
-
-% \vspace{-1.0cm}
-
-
-% \vspace{-1.3cm}
-
 \subsubsection{Reactivity.}
-\begin{table}[t!]
-
+\begin{table}[htbp]
+\vspace*{-.6cm}
   \begin{center}
     \begin{tabular}{|c|c|c|}   
 
       % <HEADER>
       \hline \multicolumn{1}{|p{3cm}|}{ }
-       & \multicolumn{1}{|p{3cm}|}{\centering Chord }  & \multicolumn{1}{|p{3cm}|}{ \centering LBO}  \\
+       & \multicolumn{1}{|p{1.8cm}|}{\centering Chord }  & \multicolumn{1}{|p{1.8cm}|}{ \centering LBO}  \\
       % </HEADER>
 
       % <ROW 1> => Number of sites
       \hline
-      average number of sites involved & 1.645 & 1.082 \\
+      Average number of sites involved & 1.645 & 1.082 \\
       % </ROW 1>
 
       % <ROW 2> => Duration
       \hline
-      average scheduling duration (msec) & 154.63 & 98.50 \\
+      Average duration to detect a valid configuration (msec) & 154.63 & 98.50 \\
       % </ROW 2>
 
       \hline
@@ -201,14 +254,14 @@ migrations acceptable compared to those executed by the Chord version.
   \end{center}
   \caption{\label{partitions_table} Comparison of partitions metrics
     using DVMS/Chord and DVMS/LBO.}
-  \vspace{-0.3cm}
+  \vspace{-.6cm}
 \end{table}
 
 % \vspace{-1.0cm}
 
 Table~\ref{partitions_table} depicts metrics that allow for an objective 
-comparison of the efficiency of both overlay networks. In addition of reducing 
-the number of inter-site migrations, the side effect of using the LBO is to 
+comparison of the efficiency of both overlay networks. In addition to reducing 
+the number of inter-site migrations, a side effect of using the LBO is to 
 reduce the solving time: partition duration is 46\% lower than that encountered 
 with Chord. This result is consistent with the fact that with our locality-aware
 overlay, the number of sites that are involved in partitions becomes very close 
