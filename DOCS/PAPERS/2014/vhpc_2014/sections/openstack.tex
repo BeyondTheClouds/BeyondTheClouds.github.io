@@ -176,7 +176,32 @@ taking part at any VE hosting effort. After the reconfiguration, \emph{Server 3}
 is now taking part at the hosting effort of VE \emph{1} and \emph{2} and two 
 \emph{Virtual Network Agents} are started on it.
 
+\subsection{How a service like Nova can be revisited to become part of the 
+LUC-OS?}
+\label{sub:sec:nova_lucos}
 
+Nova is the component that manages compute nodes in a centralized manner by
+processing messages received through an AMQP bus. As it has been designed to 
+work in a centralized manner, we want to revisit it in a way that enables its
+integration in the LUC-OS: mechanisms that needs to be distributed will be 
+delagated to the LUCOS.
+
+A good instance is the scheduling of VMs: with "vanilla Openstack", Nova decides
+on which host VMS will runs (static scheduling). As this functionning doesn't
+fit with the requirements of the LUC-OS (i.e scalability and fault tolerance),
+\emph{nova-scheduler} will be replaced by a custom python class that will 
+implements a scheduler that delegates the all static scheduling decision to the
+\emph{VM Spawner}: messages that are sent by others OpenStack's service (
+typically \emph{Horizon} transforms user's interactions into messages that are
+sent to \emph{Nova} through the AMQP bus) sent to \emph{nova-scheduler} will be
+accepted by this custom scheduler, delegated to the LUC-OS and in return 
+responses from the LUC-OS will be in turn transmitted to other OpenStack 
+components.
+
+As this custom scheduler block, that extends the interface given by Openstack, 
+is tightly coupled with the LUC-OS, it can then be considered as part of the
+LUC-OS. The same method will be applied to all other services composing the 
+LUC-OS.
 
 
 
