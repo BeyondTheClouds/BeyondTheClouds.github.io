@@ -8,7 +8,7 @@
 % - This section -> highlight existing architectural principles (in order to use
 %    them)
 Designing an architecture for the LUC-OS is a complex task: it has to manage all
-the very diverse aspects of a Cloud infrastructure. A good way to anticipate 
+the very diverse aspects of a IaaS stack. A good way to anticipate 
 them and to prevent from missing any vital mechanisms is to study how the 
 architecture of existing cloud solutions have been organized. This section 
 targets to highlight existing architectural principles used by current Cloud 
@@ -73,24 +73,24 @@ description of principal services that authors expect in a Cloud OS:
 	it manages VMs' cycle of life (configuration, deployment, 
 	migration, suspension, resume, shut down and sometimes migrations). It is 
 	also responsible for preserving service-level agreements (SLAs). Examples of
-	such manager can be found in OpenStack's Nova service and CloudStack's 
-	Kernel component.
+	such manager can be found in OpenStack's Nova \cite{OPENSTACK:2014:nova} 
+	service and CloudStack management server \cite{CLOUDSTACK:2014:management}.
 
 	\item [Scheduler] decides which server will host a newly created virtual 
 	machine (static scheduling). To preserve a good quality of service (QoS), 
 	overloaded servers may migrate virtual machines on underloaded servers 
 	(dynamic scheduling).
 
-	\item [Image manager] is in charge of virtual machines' template files (VM 
-	image). As users have their own images with specific systems or 
+	\item [Image manager] is in charge of virtual machines' template files (aka 
+	VM image). As users have their own images with specific systems or 
 	configurations, this manager must be able to handle a large number of VM
 	images in a distributed manner.
 
 	\item [Network manager] provides connectivity to the infrastructure: virtual
-	networks for VMs, external access for users. The current trend is towards 
-	the	virtualisation of networking devices through the use of Software
-	Defined Networks (SDN). This manager must enable flexible networking 
-	deployment without losing performance (bandwidth and latency).
+	networks for VMs and external access for users. The current trend is towards 
+	the	virtualisation of networking devices through the use of Software Defined
+	Networks (SDN) \cite{onf2012software}. This manager must enable flexible 
+	networking deployment without losing performance (bandwidth and latency).
 
 	\item [Storage manager] provides persistent storage facilities to virtual 
 	machines. As physical single storage device might be a source of failure,

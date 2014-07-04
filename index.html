@@ -1,8 +1,8 @@
 <html lang="en"><head>
     <meta charset="utf-8">
-    <title>Beyond the Clouds</title>
+    <title>Beyond the Clouds - Toward fully decentralized/distributed Clouds</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Beyond the Clouds, Boarding on the Discovery shuttle">
+    <meta name="description" content="Beyond the Clouds, Towards a fully decentralized/distributed Cloud directly integrated into the Internet backbone">
 	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Distributed Cloud Computing, Beyond the Clouds, Discovery">
 	 <meta name="robots" content="index, follow, all">
     <meta name="author" content="The Beyond the Clouds Consortium">
@@ -18,6 +18,7 @@
       .container-narrow {
         margin: 0 auto;
         max-width: 700px;
+        padding-left:160px;
       }
       .container-narrow > hr {
         margin: 30px 0;
@@ -53,6 +54,13 @@
       .rocket {
         width: 200px;
       }
+    
+      .news {
+        position: fixed; 
+        top: 320px; 
+        left:30px;
+	width: 160px;
+      }
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -71,6 +79,16 @@
 
   <body>
 
+  <div class="news">
+	<h4>News</h4>
+	<ul>
+	<li> Joint First Prize for Jonathan Pastor at the <a href="www.grid5000.fr">Grid'5000</a> Scale challenge 2014: Validation of the Locality Based Overlay </li>
+	</li>
+	<li>Invited talk: Adrien Lebre at "<a href="http://www.isc-events.com/cloud14/">ISC Cloud'14</a>", Heidelberg, Germany</li>
+	</ul>
+  </div>
+
+
     <div class="container-narrow">
 
       <div class="masthead">
@@ -79,8 +97,9 @@
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="https://github.com/BeyondTheClouds/">View on GitHub</a></li>
+	  <li> </li>
+          <li><a href="dcc.html">They talk about Distributed/Decentralized Clouds</a></li>
         </ul>
-        <h3 class="muted">Beyond the Clouds</h3>
       </div>
 
       <hr>
@@ -88,8 +107,8 @@
       <div class="jumbotron">
         <img class="rocket" src="images/rocket.png">
         <h1>Beyond the Clouds!</h1>
-        <p class="lead">This initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions.</p>
-        <p class="lead coming-soon">A Research Initiative for a Fully Decentralized IaaS manager</p>
+        <p class="lead coming-soon">A Research Initiative for a Fully Decentralized IaaS Manager</p>
+        <p class="lead">This initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions by tightly coupling Cloud Computing resources with the Internet backbones.</p>
       </div>
 
       <hr>
@@ -99,7 +118,7 @@
         <div class="span6">
 
           <h4>Beyond the Clouds</h4>
-          <p>Research initiative that targets to design a fully distributed, autonomic and cooperative IaaS manager.
+          <p>A research initiative, which targets the design and the implementation of a fully distributed, autonomic and cooperative IaaS manager.
           <br>
 			 <br>
 			 <a href="http://hal.inria.fr/hal-00854204">How Should Next Generation Utility Computing Infrastructures Be Designed? <span class="label label-info">Get the report</span></a>
@@ -128,12 +147,11 @@
           
 
           <h4>DVMS</h4>
-          <p>Distributed Virtual Machine Scheduler.
+          <p>DVMS (Distributed Virtual Machine Scheduler) is the first building block that have been implemented by the initiative. Validated by simulations (100K VMs on top of 10K PMs)  and in vivo experiments (5K VMs on top of 500 PMs) , it enables to dynamically relocate VMs throughout the infrastructure in order to satistfy VM evolving needs during their executions. DVMS is fully distributed, relying on a P2P and cooperative approach.           <br>
+          </p>
+          <a href="http://beyondtheclouds.github.io/DVMS/">Visit the project page</a>
           <br>
           <a href="https://github.com/BeyondTheClouds/DVMS">Get the source</a>
-          <br>
-          <a href="http://beyondtheclouds.github.io/DVMS/">Visit the project page</a>
-          </p>
 
           <h4>Virtualization driver</h4>
           <p>Driver implemented in Java that enables to manage virtual machines through Libvirt.

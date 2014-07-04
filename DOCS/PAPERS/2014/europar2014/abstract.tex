@@ -1,11 +1,12 @@
+\vspace*{-0.3cm}
 \begin{abstract}
-  The promotion of distributed cloud computing infrastructures as the next platform to
-  deliver the Utility Computing paradigm, leads to new virtual machines (VMs) scheduling
-  algorithms leveraging peer to peer approaches. Although these proposals considerably
-  improve the scalability, leading to the management of hundreds of thousands of VM over
-  thousands of physical machines (PMs), they do not consider the network overhead
+  The promotion of distributed Cloud Computing infrastructures as the next platform to
+  deliver the Utility Computing paradigm, leads to new virtual machines~(VMs) scheduling
+  algorithms leveraging peer-to-peer approaches. Although these proposals considerably
+  improve the scalability, leading to the management of hundreds of thousands of VMs over
+  thousands of physical machines~(PMs), they do not consider the network overhead
   introduced by multi-site infrastructures. This overhead can have a dramatic impact on
-  performance if there is no mechanism for favoring intra-site vs. inter-site
+  the performance if there is no mechanism favoring intra-site \vs inter-site
   manipulations.
 % %%%
 %To reduce such an impact,  locality properties should be considered as a key
@@ -29,19 +30,19 @@
 %fluctuate over time, working with a static partitioning of the resources cannot
 %be considered.
 
-  This paper introduces a new building block designed over a Vivaldi overlay which
-  maximizes efficient collaborations between PMs.
+  This paper introduces a new building block designed on top of a network with Vivaldi
+ coordinates maximizing the locality criterion (\ie efficient collaborations between PMs).
 %\eg PMs should collaborate first with their neighbourghood from the
 %same geographical site before contacing remote ones. 
-  We combined this mechanism with DVMS, a large scale virtual machine scheduler and showed
+  We combined such a mechanism with DVMS, a large-scale virtual machine scheduler and showed
   its benefit by discussing several experiments performed on four distinct sites of the
-  Grid'5000 testbed. Thanks to our proposal and without changing the scheduling decision
+  Grid'5000 testbed. With our proposal and without changing the scheduling decision
   algorithm, the number of inter-site operations has been reduced by 72\%. This result
-  provides a glimpse of the promising future of locality properties to improve performance
-  of massive distributed cloud platforms.
+  provides a glimpse of the promising future of using locality properties to improve the performance
+  of massive distributed Cloud platforms.
  
 %Future works will focus on the use of such a locality aware mechanisms to revisit other 
 %mechanisms in the context of distributed cloud computing management. 
 
-\keywords{Cloud computing, locality, peer to peer, network overlay, vivaldi, DVMS, virtual machine scheduling}
+\keywords{Cloud Computing, locality, peer-to-peer, overlay network, Vivaldi, DVMS, virtual machine scheduling}
 \end{abstract}
