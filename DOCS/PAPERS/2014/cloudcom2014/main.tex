@@ -127,9 +127,9 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
+  \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
+  \graphicspath{{./figures/}}
   % and their extensions so you won't have to specify these with
   % every instance of \includegraphics
   % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
@@ -170,7 +170,7 @@
 
 % *** MATH PACKAGES ***
 %
-%\usepackage[cmex10]{amsmath}
+\usepackage[cmex10]{amsmath}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics. If using
 % it, be sure to load this package with the cmex10 option to ensure that
@@ -252,7 +252,7 @@
 
 
 % *** SUBFIGURE PACKAGES ***
-%\usepackage[tight,footnotesize]{subfigure}
+\usepackage[tight,footnotesize]{subfigure}
 % subfigure.sty was written by Steven Douglas Cochran. This package makes it
 % easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
 % work, it is a good idea to load it with the tight package option to reduce
@@ -428,8 +428,6 @@ component; formatting; style; styling;
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
-
-
 \section{Introduction}
 % no \IEEEPARstart
 This demo file is intended to serve as a ``starter file''
@@ -565,20 +563,21 @@ more thanks here
 % The IEEEtran BibTeX style support page is at:
 % http://www.michaelshell.org/tex/ieeetran/bibtex/
 \bibliographystyle{IEEEtran}
+\bibliography{main}
 % argument is your BibTeX string definitions and bibliography database(s)
 %\bibliography{IEEEabrv,../bib/paper}
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
-
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-\end{thebibliography}
-
+%\begin{thebibliography}{1}
+%
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+%
+%\end{thebibliography}
+%
 
 
 
