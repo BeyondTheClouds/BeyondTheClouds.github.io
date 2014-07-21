@@ -24,10 +24,10 @@
       }
 
       .twitter_container {
-        position: fixed;
-        top: 200px;
-        width: 200px;
-        right: 100px;
+/*        position: fixed;
+        top: 300px;*/
+/*        width: 200px;
+        right: 100px;*/
       }
 
       /* Main marketing message and sign up button */
@@ -72,6 +72,34 @@
         font-size: 11px;
         font-style: italic;
       }
+
+
+      /* Fixes for responsive design */
+      @media (min-width: 780px) {
+
+        .they_talk_container {
+          float: left;
+          width: 70%; 
+        }
+
+        .twitter_container {
+          float: right;
+          width: 25%;
+        }
+      }
+
+      @media (max-width: 780px) {
+
+        .they_talk_container {
+          width: 100%; 
+        }
+
+        .twitter_container {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -118,8 +146,8 @@
       </div>
 -->
       
-	<div class="row">
-    <div class="col-md-6">
+	<div class="row" style="padding-left: 40px;">
+    <div class="they_talk_container">
     	<h4>Conferences/Workshops</h4>
   			<ul>
   				<li><a href="http://conferences.sigcomm.org/sigcomm/2014/dcc.php">ACM SIGCOMM Workshop on Distributed Cloud Computing (DCC 2014)</a></li>
@@ -151,15 +179,18 @@
       				<li> <a href="http://www.slideshare.net/seattledawson/the-distributed-decentralized-cloud"> Distributed/Decentralized Cloud - Praerit Garg, Symform - CloudExpo, June 2012</a></li>
       			</ul>
       </div>
-	</div>
 
-<!--   <div class="twitter_container">
+
+      <div class="twitter_container">
         <div class="" style="text-align: center;">
         <a class="twitter-timeline" href="https://twitter.com/BeyondClouds_io" data-widget-id="490173690726719488">Tweets by @BeyondClouds_io</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </a>
       </div>
-  </div> -->
+  </div>
+	</div>
+
+
 
 
 
