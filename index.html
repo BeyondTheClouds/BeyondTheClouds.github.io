@@ -1,24 +1,26 @@
 <html lang="en"><head>
     <meta charset="utf-8">
-    <title>Beyond the Clouds - Toward fully decentralized/distributed Clouds</title>
+    <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Beyond the Clouds, Towards a fully decentralized/distributed Cloud directly integrated into the Internet backbone">
-	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Distributed Cloud Computing, Beyond the Clouds, Discovery">
+    <meta name="description" content="Beyond the Clouds, Boarding on the Discovery shuttle">
+	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Discovery">
 	 <meta name="robots" content="index, follow, all">
     <meta name="author" content="The Beyond the Clouds Consortium">
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;
         padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
       /* Custom container */
       .container-narrow {
         margin: 0 auto;
-        max-width: 700px;
-        padding-left:160px;
+        max-width: 940px;
       }
       .container-narrow > hr {
         margin: 30px 0;
@@ -46,23 +48,56 @@
         margin-top: 28px;
       }
 
+      /* project description */
+      .project_description {
+        height: 200px;
+        margin-bottom: 30px;
+      }
+
+      .initiative_description {
+        height: 110px;
+        margin-bottom: 30px;
+      }
+      @media (min-width: 890px) and (max-width: 955px) {
+        .initiative_description {
+          width: 245px;
+        }
+
+        .initiative_documents {
+          width: 245px;
+        }
+
+        .project_description {
+          width: 245px;
+        }
+      }
+
+      .initiative_description .caption h3 {
+        text-align: center;
+      }
+
+      .initiative_documents {
+        text-align: center;
+      }
+
+      .project_description .thumbnail {
+        height: 100%;
+      }
+
+      .twitter-container {
+        width: 100%;
+        text-align: center;
+      }
+
+
       .coming-soon {
         font-style: italic;
         font-weight: bold;
       }  
 
-      .rocket {
-        width: 200px;
-      }
-    
-      .news {
-        position: fixed; 
-        top: 280px; 
-        left:30px;
-	width: 160px;
-      }
     </style>
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <link href="stylesheets/animation.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -79,17 +114,6 @@
 
   <body>
 
-  <div class="news">
-	<h4>News</h4>
-	<ul>
-	<li> Latest publication: <a href="http://europar2014.dcc.fc.up.pt/index.php?page=conf-prog#a1">Locality-aware Cooperation in Distributed IaaS Infrastructures</a> (Europar 2014)</li>
-	<li> Joint First Prize for Jonathan Pastor at the <a href="www.grid5000.fr">Grid'5000</a> Scale challenge 2014: Validation of the Locality Based Overlay </li>
-	</li>
-	<li>Invited talk: Adrien Lebre at "<a href="http://www.isc-events.com/cloud14/">ISC Cloud'14</a>", Heidelberg, Germany</li>
-	</ul>
-  </div>
-
-
     <div class="container-narrow">
 
       <div class="masthead">
@@ -98,72 +122,156 @@
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="https://github.com/BeyondTheClouds/">View on GitHub</a></li>
-	  <li> </li>
-          <li><a href="dcc.html">They talk about Distributed/Decentralized Clouds</a></li>
+          <li><a href="news.html">News</a></li>
         </ul>
+        <h3 class="muted">Beyond the Clouds</h3>
       </div>
 
       <hr>
+
+
+        <ul id="scene" class="scene">
+          <li class="layer cloud" data-depth="0.1">
+            <img id="cloud1" src="images/cloud.svg">
+          </li>
+          <li class="layer cloud" data-depth="0.1">
+            <img id="cloud11" src="images/cloud.svg">
+          </li>
+          <li class="layer cloud" data-depth="0.3">
+            <img id="cloud3" src="images/cloud.svg">
+          </li>
+          <li class="layer rocket" data-depth="0.0">
+            <img src="images/rocket.png"></li>
+          <li class="layer cloud" data-depth="0.3">
+            <img id="cloud2" src="images/cloud.svg">
+          </li>
+        </ul>
 
       <div class="jumbotron">
-        <img class="rocket" src="images/rocket.png">
         <h1>Beyond the Clouds!</h1>
-        <p class="lead coming-soon">A Research Initiative for a Fully Decentralized IaaS Manager</p>
-        <p class="lead">This initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions by tightly coupling Cloud Computing resources with the Internet backbones.</p>
+        <p class="lead">This initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions.</p>
+        <p class="lead coming-soon">A Research Initiative for a Fully Decentralized IaaS manager</p>
       </div>
 
       <hr>
 
-      <h2>sub projects</h2>
-      <div class="row-fluid marketing">
-        <div class="span6">
+      <div class="row marketing">
 
-          <h4>Beyond the Clouds</h4>
-          <p>A research initiative, which targets the design and the implementation of a fully distributed, autonomic and cooperative IaaS manager.
-          <br>
-			 <br>
-			 <a href="http://hal.inria.fr/hal-00854204">How Should Next Generation Utility Computing Infrastructures Be Designed? <span class="label label-info">Get the report</span></a>
-			 <br>
-			 <br>
-			 <a href="./DOCS/SLIDES/discovery-short-factsheet-jan2014.pdf" alt="Version January 2014">The initiative <span class="label label-info">Get the slides</span></a>
-			 <br>
-			 (warning: this is a rather long factsheet - 5~MB)!
-	  <br><br>
-			 <a href="./DOCS/Discovery_short.pdf">A short
-          presentation is available here! <span class="label label-info">Get the slides</span></a>
-			 <br>
-			 <br>
-			 <a href="http://dropbox.jonathanpastor.fr/presentation/">The PeerActor Model, the building block for our system <span class="label label-info">Get the slides</span></a>
-          </p>
-
-          <h4>AkkaArc</h4>
-          <p>Chord algorithm implemented with Scala and Akka.
-          <br>
-          <a href="https://github.com/BeyondTheClouds/AkkaArc">Get the source</a></p>
-
-          
+        <div class="span3 initiative_description">
+          <div class="caption">
+            <h3>Fully Distributed</h3>
+            <p>We aim at designing a cooperative Cloud OS that will work in a fully distributed way, following a peer to peer architecture.</p>
+          </div>
         </div>
 
-        <div class="span6">
-          
+        <div class="span3 initiative_description">
+          <div class="caption">
+            <h3>Fault Tolerant</h3>
+            <p>At large scale, failures become the norm rather than the exception. Fault tolerance mechanisms will be included in our distributed Cloud OS.</p>
+          </div>
+        </div>
 
-          <h4>DVMS</h4>
-          <p>DVMS (Distributed Virtual Machine Scheduler) is the first building block that have been implemented by the initiative. Validated by simulations (100K VMs on top of 10K PMs)  and in vivo experiments (5K VMs on top of 500 PMs) , it enables to dynamically relocate VMs throughout the infrastructure in order to satistfy VM evolving needs during their executions. DVMS is fully distributed, relying on a P2P and cooperative approach.           <br>
-          </p>
-          <a href="http://beyondtheclouds.github.io/DVMS/">Visit the project page</a>
-          <br>
-          <a href="https://github.com/BeyondTheClouds/DVMS">Get the source</a>
+        <div class="span3 initiative_description">
+          <div class="caption">
+            <h3>Who we are?</h3>
+            <p>Members of this research initiative are researcher from various fields such a System programming, Overlay Network and Cloud Computing.</p>
+          </div>
+        </div>
 
-          <h4>Virtualization driver</h4>
-          <p>Driver implemented in Java that enables to manage virtual machines through Libvirt.
-          <br>
-           <a href="https://github.com/BeyondTheClouds/VirtualizationDriver">Get the source</a></p>
+      </div>
+
+      <div class="row marketing">
+
+        <div class="span3 initiative_documents">
+          <a href="http://hal.inria.fr/hal-00854204">How Should Next Generation Utility Computing Infrastructures Be Designed?<br/><span class="label label-info">Get the report</span></a>
+        </div>
+
+        <div class="span3 initiative_documents">
+          <a href="./DOCS/SLIDES/discovery-short-factsheet-jan2014.pdf" alt="Version January 2014">The initiative<br/><span class="label label-info">Get the slides</span></a>
+        </div>
+
+        <div class="span3 initiative_documents">
+          <a href="./DOCS/Discovery_short.pdf">A short presentation is available here!<br/><span class="label label-info">Get the slides</span></a>
+        </div>
+
+      </div>
+
+
+    <hr>
+
+
+    
+<h2>Projects</h2>
+    <div class="row marketing">
+
+      <div class="span3 project_description">
+        <div class="thumbnail">
+          <div class="caption">
+            <a href="https://github.com/BeyondTheClouds/PeerActor"><h3>PeerActor</h3></a>
+            <p>Collection of tools build on top of Scala and Akka to develop large scale application running on grid'5000.</p>
+            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          </div>
         </div>
       </div>
 
-      <hr>
+      <div class="span3 project_description">
+        <div class="thumbnail">
+          <div class="caption">
+            <a href="https://github.com/BeyondTheClouds/DVMS"><h3>DVMS</h3></a>
+            <p>Scheduler for Virtual Machines Scheduler which is fully distributed, and rely on the PeerActor project.</p>
+            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="span3 project_description">
+        <div class="thumbnail">
+          <div class="caption">
+            <a href="https://github.com/BeyondTheClouds/PeerActor"><h3>LBO</h3></a>
+            <p>Locality based network overlay. Based on the Vivaldi algorithm.</p>
+            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="span3 project_description">
+        <div class="thumbnail">
+          <div class="caption">
+            <a href="https://github.com/BeyondTheClouds/SimgridInjector"><h3>SimgridInjector</h3></a>
+            <p>Framework to perform simulation of our scheduling algorithms.</p>
+            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <h2>Latest Activity</h2>
+
+
+
+
+    <div class="row">
+
+      <div class="span5">
+        <a class="twitter-timeline" href="https://twitter.com/BeyondClouds_io" data-widget-id="490173690726719488">Tweets by @BeyondClouds_io</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </a>
+      </div>
+
+      <div class="span4">
+        <iframe src="http://ghactivity.com/BeyondTheClouds" style="border: 0; height: 400px; width: 400px;"></iframe>
+        <br/>
+        <br/>
+        <div id="clustrmaps-widget" style="position:relative; margin-left:auto; margin-right:auto"></div>
+      </div>
+
+    </div>
 
       <div class="footer">
+        <hr>
         <p>The Beyonds the Clouds Consortium, © 2014</p>
       </div>
 
@@ -196,7 +304,6 @@
   ga('send', 'pageview');
 
 </script>
-
-<div id="clustrmaps-widget" style="position:relative; margin-left:auto; margin-right:auto"></div><script type="text/javascript">var _clustrmaps = {'url' : 'http://beyondtheclouds.github.io', 'user' : 1142288, 'server' : '2', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2014-05-06', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www2.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www2.clustrmaps.com/user/819116e10"><img src="http://www2.clustrmaps.com/stats/maps-no_clusters/beyondtheclouds.github.io-thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
+<script type="text/javascript">var _clustrmaps = {'url' : 'http://beyondtheclouds.github.io', 'user' : 1142288, 'server' : '2', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2014-05-06', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www2.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www2.clustrmaps.com/user/819116e10"><img src="http://www2.clustrmaps.com/stats/maps-no_clusters/beyondtheclouds.github.io-thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
 
 </body></html>
