@@ -108,7 +108,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 890px) {
   .row {
     margin-left: -30px;
     *zoom: 1;
@@ -458,7 +458,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
+/*@media (min-width: 768px) and (max-width: 979px) {
   .row {
     margin-left: -20px;
     *zoom: 1;
@@ -797,7 +797,7 @@
   .uneditable-input.span1 {
     width: 28px;
   }
-}
+}*/
 
 @media (max-width: 767px) {
   body {
