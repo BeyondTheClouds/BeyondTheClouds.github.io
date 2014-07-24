@@ -1,6 +1,6 @@
 <html lang="en"><head>
     <meta charset="utf-8">
-	 <title>Beyond the Clouds - They talk about Distributed Cloud Computing</title>
+	 <title>Beyond the Clouds - News</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Beyond the Clouds, Distributed/Decentralized Cloud Computing">
 	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Distributed Cloud Computing, Beyond the Clouds, Discovery">
@@ -17,10 +17,17 @@
       /* Custom container */
       .container-narrow {
         margin: 0 auto;
-        max-width: 700px;
+        max-width: 940px;
       }
       .container-narrow > hr {
         margin: 30px 0;
+      }
+
+      .twitter_container {
+/*        position: fixed;
+        top: 300px;*/
+/*        width: 200px;
+        right: 100px;*/
       }
 
       /* Main marketing message and sign up button */
@@ -65,6 +72,34 @@
         font-size: 11px;
         font-style: italic;
       }
+
+
+      /* Fixes for responsive design */
+      @media (min-width: 780px) {
+
+        .they_talk_container {
+          float: left;
+          width: 70%; 
+        }
+
+        .twitter_container {
+          float: right;
+          width: 25%;
+        }
+      }
+
+      @media (max-width: 780px) {
+
+        .they_talk_container {
+          width: 100%; 
+        }
+
+        .twitter_container {
+          margin-top: 20px;
+          width: 100%;
+        }
+      }
+
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -92,18 +127,15 @@
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="https://github.com/BeyondTheClouds/">View on GitHub</a></li>
-          <li> </li>
-	  <li class="active"><a href="dcc.html">they talk about Distributed/Decentralized Cloud</a></li>
+          <li class="active"><a href="news.html">Distributed Clouds</a></li>
         </ul>
+        <h3 class="muted">Beyond the Clouds</h3>
       </div>
 
       <hr>
 
       <div class="jumbotron">
-        <img class="rocket" src="images/rocket.png">
-        <h1>Beyond the Clouds!</h1>
-        <p class="lead">This initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions.</p>
-        <p class="lead coming-soon">A Research Initiative for a Fully Decentralized IaaS manager</p>
+        <h1>They talk about Distributed Cloud Computing!</h1>
       </div>
 
       <hr>
@@ -114,39 +146,63 @@
       </div>
 -->
       
-	<div class="row-fluid marketing">
-  	<h4>Conferences/Workshops</h4>
-			<ul>
-				<li><a href="http://conferences.sigcomm.org/sigcomm/2014/dcc.php">ACM SIGCOMM Workshop on Distributed Cloud Computing (DCC 2014)</a></li>
-        <li><a href="https://sites.google.com/site/dcc2013workshop/">ACM SIGCOMM Workshop on Distributed Cloud Computing (DCC 2013)</a></li>
-        <li><a href="http://fog.frisso.net">From the cOre to the edGe of the network (FOG 2013)</a></li>
-			</ul>
-    <h4>Major Publications</h4>
-			<ul>
-				<li>Mahadev Satyanarayanan, Paramvir Bahl, Ramón Caceres, and Nigel Davies. 2009. The Case for VM-Based Cloudlets in Mobile Computing. IEEE Pervasive Computing 8, 4 (October 2009)</li>
-				<li>Albert Greenberg, James Hamilton, David A. Maltz, and Parveen Patel. 2008. The cost of a cloud: research problems in data center networks. SIGCOMM Comput. Commun. Rev. 39, 1 (January 2009)</li>
-				<li>Church, Kenneth, Greenberg, Albert and Hamilton, James. "On Delivering Embarrassingly Distributed Cloud Services." Paper presented at the meeting of the HotNets, 2008.</li>
-			</ul>
-    <h4>Few Blogs</h4>
-			<ul>
-				<li><a href="http://www.allthingsdistributed.com">All Things Distributed</a></li>
-				<li><a href="http://highscalability.com">High Scalability, Building bigger, faster, more reliable websites</a></li>
-				<li><a href="http://perspectives.mvdirona.com">Perspectives</a></li>
-		</ul> 
-     <h4>Miscellaneous</h4>
-			<ul>
-			
-				<li><a href="https://www.openstack.org/summit/openstack-summit-atlanta-2014/session-videos/presentation/the-ultimate-hybrid-cloud">The Ultimate Hybrid Cloud (May 2014)</a><p>``World wide Cloud (Cloud of Everyting) with a single (OpenStack) mamangement grid...'' The first talk we saw that really investigates the idea of a unique and global cloud system - Nicolas Chase, Mirantis </p></li> 
-				<li><a href="http://recode.net/2014/01/22/the-cloud-is-not-green/">The Cloud is not Green ! (Jan 2014) </a><p>"As an industry, we should minimize data center energy costs any way we can, continuing to find innovative ways to increase efficiency inside datac enters. But many of today’s solutions address symptoms as opposed to root causes, and it is becoming increasingly obvious that the highly centralized nature of data centers is the dominant contributor to energy inefficiency. Fundamentally, there is no reason that the cloud needs to be architected this way, no law of nature preventing us from building less-centralized systems, where devices and computing resources live at or near the edge of the network instead of in a handful of centralized locations — a solution which sheds much of the cooling problem entirely, and can drastically reduce power overhead associated with data centers.
+	<div class="row" style="padding-left: 40px;">
+    <div class="they_talk_container">
+    	<h4>Conferences/Workshops</h4>
+  			<ul>
+  				<li><a href="http://conferences.sigcomm.org/sigcomm/2014/dcc.php">ACM SIGCOMM Workshop on Distributed Cloud Computing (DCC 2014)</a></li>
+          <li><a href="https://sites.google.com/site/dcc2013workshop/">ACM SIGCOMM Workshop on Distributed Cloud Computing (DCC 2013)</a></li>
+          <li><a href="http://fog.frisso.net">From the cOre to the edGe of the network (FOG 2013)</a></li>
+  			</ul>
+      <h4>Major Publications</h4>
+  			<ul>
+  				<li>Mahadev Satyanarayanan, Paramvir Bahl, Ramón Caceres, and Nigel Davies. 2009. The Case for VM-Based Cloudlets in Mobile Computing. IEEE Pervasive Computing 8, 4 (October 2009)</li>
+  				<li>Albert Greenberg, James Hamilton, David A. Maltz, and Parveen Patel. 2008. The cost of a cloud: research problems in data center networks. SIGCOMM Comput. Commun. Rev. 39, 1 (January 2009)</li>
+  				<li>Church, Kenneth, Greenberg, Albert and Hamilton, James. "On Delivering Embarrassingly Distributed Cloud Services." Paper presented at the meeting of the HotNets, 2008.</li>
+  			</ul>
+      <h4>Few Blogs</h4>
+  			<ul>
+  				<li><a href="http://www.allthingsdistributed.com">All Things Distributed</a></li>
+  				<li><a href="http://highscalability.com">High Scalability, Building bigger, faster, more reliable websites</a></li>
+  				<li><a href="http://perspectives.mvdirona.com">Perspectives</a></li>
+  		</ul> 
+       <h4>Miscellaneous</h4>
+  			<ul>
+  			
+  				<li><a href="https://www.openstack.org/summit/openstack-summit-atlanta-2014/session-videos/presentation/the-ultimate-hybrid-cloud">The Ultimate Hybrid Cloud (May 2014)</a><p>``World wide Cloud (Cloud of Everyting) with a single (OpenStack) mamangement grid...'' The first talk we saw that really investigates the idea of a unique and global cloud system - Nicolas Chase, Mirantis </p></li> 
+  				<li><a href="http://recode.net/2014/01/22/the-cloud-is-not-green/">The Cloud is not Green ! (Jan 2014) </a><p>"As an industry, we should minimize data center energy costs any way we can, continuing to find innovative ways to increase efficiency inside datac enters. But many of today’s solutions address symptoms as opposed to root causes, and it is becoming increasingly obvious that the highly centralized nature of data centers is the dominant contributor to energy inefficiency. Fundamentally, there is no reason that the cloud needs to be architected this way, no law of nature preventing us from building less-centralized systems, where devices and computing resources live at or near the edge of the network instead of in a handful of centralized locations — a solution which sheds much of the cooling problem entirely, and can drastically reduce power overhead associated with data centers.
 
-I’m not the first to suggest this. The early Internet itself heralded decentralization, its pioneers eschewing centralized solutions as a core design principle. Others have suggested making datacenters smaller, or even moving racks of datacenter equipment into homes or businesses. "</p></li>
-		<li><a href="https://www.youtube.com/watch?v=ZCR8GWsKQ7E">Distributed Clouds with OpenStack ! (Dec 2013)</a><p>An analysis from Martin Loschwitz regarding how OpenStack can be used in order to operate geographically spread OpenStack Clouds (slides are available on his <a href="https://github.com/madkiss/openstackinaction4">github repo</a>).</p></li> 
-		<li><a href="http://www.interxion.com/Documents/Whitepapers%20and%20PDFs/The%20Evolution%20of%20the%20European%20Hosting%20Market%20whitepaper%20-%20online%20version.pdf">The Evolution of the European Cloud Market - Interxion (2013)</a> <p>"Joe Weinman, author of Cloudonomics, points out that the economies-of-scale argument for cloud computing is terribly overblown. The value of the cloud has to do with pay-per-use dynamics, not with economies of scale. Indeed, a dispersed architecture has huge advantages such as proximity and latency reduction, not to mention the ability to address data sovereignty issues and local service delivery. The national hosting providers we talk to recognise that they can make their local knowledge, presence, cultural fit and existing customer base count in the successful development and delivery of cloud services."</li>
-		<li><a href="http://www.envision-project.org/workshops/oncad12/03_Fabrice_workshopICN.pdf">Measurement of Youtube traffic from Orange networks (Sep 2012)</a><p>"The fraction of files which are popular only in one ADSL area is rather small but far not negligible...A centralized cache can be used to cache files which are popular in all ADSL areas and medium cache servers to cache those files which are popular in a given ADSL area."</p></li>
-				<li> <a href="http://www.slideshare.net/seattledawson/the-distributed-decentralized-cloud"> Distributed/Decentralized Cloud - Praerit Garg, Symform - CloudExpo, June 2012</a></li>
-			</ul>
+          I’m not the first to suggest this. The early Internet itself heralded decentralization, its pioneers eschewing centralized solutions as a core design principle. Others have suggested making datacenters smaller, or even moving racks of datacenter equipment into homes or businesses. "</p></li>
+      		<li><a href="https://www.youtube.com/watch?v=ZCR8GWsKQ7E">Distributed Clouds with OpenStack ! (Dec 2013)</a><p>An analysis from Martin Loschwitz regarding how OpenStack can be used in order to operate geographically spread OpenStack Clouds (slides are available on his <a href="https://github.com/madkiss/openstackinaction4">github repo</a>).</p></li> 
+      		<li><a href="http://www.interxion.com/Documents/Whitepapers%20and%20PDFs/The%20Evolution%20of%20the%20European%20Hosting%20Market%20whitepaper%20-%20online%20version.pdf">The Evolution of the European Cloud Market - Interxion (2013)</a> <p>"Joe Weinman, author of Cloudonomics, points out that the economies-of-scale argument for cloud computing is terribly overblown. The value of the cloud has to do with pay-per-use dynamics, not with economies of scale. Indeed, a dispersed architecture has huge advantages such as proximity and latency reduction, not to mention the ability to address data sovereignty issues and local service delivery. The national hosting providers we talk to recognise that they can make their local knowledge, presence, cultural fit and existing customer base count in the successful development and delivery of cloud services."</li>
+      		<li><a href="http://www.envision-project.org/workshops/oncad12/03_Fabrice_workshopICN.pdf">Measurement of Youtube traffic from Orange networks (Sep 2012)</a><p>"The fraction of files which are popular only in one ADSL area is rather small but far not negligible...A centralized cache can be used to cache files which are popular in all ADSL areas and medium cache servers to cache those files which are popular in a given ADSL area."</p></li>
+      				<li> <a href="http://www.slideshare.net/seattledawson/the-distributed-decentralized-cloud"> Distributed/Decentralized Cloud - Praerit Garg, Symform - CloudExpo, June 2012</a></li>
+      			</ul>
+      </div>
+
+
+      <div class="twitter_container">
+        <div class="" style="text-align: center;">
+        <a class="twitter-timeline" href="https://twitter.com/BeyondClouds_io" data-widget-id="490173690726719488">Tweets by @BeyondClouds_io</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </a>
+      </div>
+  </div>
 	</div>
-<hr>
+
+
+
+
+
+  
+
+
+    <hr>
+
+
+
+
+
 
       <div class="footer">
         <p>The Beyonds the Clouds Consortium, © 2014</p>
