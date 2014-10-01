@@ -1,8 +1,10 @@
 \documentclass[a4paper,11pt]{article}
 
 % paquets perso
-\usepackage{clavierFonte}
+%\usepackage{clavierFonte}
 %\usepackage{guillemets}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \newcommand{\fge}{\fg\ }
 
@@ -20,6 +22,7 @@
 \newcommand{\emn}{EMN}
 \newcommand{\eclipse}{\texttt{Eclipse}}
 \newcommand{\gsi}{GSI}
+\newcommand{\discovery}{DisCoVery}
 \newcommand{\http}{\texttt{HTTP}}
 \newcommand{\java}{\texttt{Java}}
 \newcommand{\jaxb}{\texttt{JAXB}}
@@ -38,9 +41,9 @@
 
 
 
-\initTitre{UV \og Projet \fge -- Sujet \ccxf{} \\ Distribution de
+\initTitre{UV \og Projet \fge -- Sujet DisOStack  \\ Distribution de
   l'architecture OpenStack}
-\initAbrevTitre{Projet \ccxf{DIsOStack}}
+\initAbrevTitre{Projet DIsOStack}
 
 %\initSousTitre{}
 
@@ -76,36 +79,26 @@
 
 
 \afficherProjet{%
- \ccxf{}
+ DisOStack
 
  \begin{quote}
   OpenStack est une suite logiciel permettant d'opérer des plateformes
   de Cloud Computing de type IaaS.
-%Elle est aujourd'hui la solution
-%  OpenSource retenue et supportée par le plus grand nombre d'acteurs
-%  aussi bien académique et qu'industriels (A titre d'exemple HP et
-%  RedHat sont les deux companies qui se disputent la premiere place du
-%  plus gros contributeur).
   Bien qu'une des règles fondamentales pour le développement du
   système a pour objectif d'adresser la problématique du passage à
   l'échelle de chaque composant (le terme scalabilité sera utilisé par
   la suite), le système comprend plusieurs briques
   logicielles qui ne repondent pas à
-  cette règle. A titre d'exemple, Jonathan Pastor, actuellement en
-  thèse de doctorat à l'école, a identifié la base de données MySQL au
-  sein du composant Nova et a débuté des travaux visant à basculer sur
-  une modèle NoSQL passant à l'échelle de manière native.
+  cette règle.
 
-  L'objectif du travail proposer dans ce projet d'option s'insère dans
-  la continuité de ces travaux. Il comporte deux
-  volets:
+  L'objectif du travail proposé comporte deux   volets:
 \begin{itemize}
 \item L'identification de l'ensemble des briques élémentaires ne
   validant la propriété de scalabilité
 \item la proposition d'une solution et sa mise en \oe uvre au travers
-  de prototype experimental (selon l'avancée des travaux réalisées,
+  d'un prototype experimental (selon l'avancée des travaux réalisées,
   les étudiants pourront mener des campagnes d'experiences sur la
-  plateform \href{Grid'5000}{Grid'5000}.
+  plateforme \href{Grid'5000}{Grid'5000}.
 \end{itemize}
 
 A plus gros grain, ce projet s'insère dans l'initiative
@@ -156,7 +149,7 @@ A plus gros grain, ce projet s'insère dans l'initiative
  \item Contribution à un projet \og~open source~\fg
 \end{itemize}
 
-\paragraph*{Contexte}
+\paragraph*{Contexte\\}
 
  Afin de supporter la demande croissante d'informatique utilitaire (UC) tout en prenant en compte les aspects énergétique et financier, la tendance actuelle consiste à construire des centres de données (ou centrales numériques) de plus en plus grands dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun doute de satisfaire la demande tout en conservant une approche centralisée de la gestion de ces ressources mais elle reste loin de pouvoir fournir des infrastructures de calcul utilitaire efficaces et durables.
    L'initiative de recherche \discovery propose une approche radicalement différente permettant de prendre en compte la localité des demandes dès le départ.
@@ -175,7 +168,7 @@ Afin de passer du mode recherche à une mode plus industriel, nous
 avons commencé à regarder comment intégrer nos propositions au système
 OpenStack.
 
-\paragraph*{Problème: Les faiblesses dans la conception d'OpenStack}
+\paragraph*{Problème: Les faiblesses dans la conception d'OpenStack\\}
 
   OpenStack est une suite logiciel permettant d'opérer des plateformes
   de Cloud Computing de type IaaS. Elle est aujourd'hui la solution
@@ -192,6 +185,40 @@ OpenStack.
   thèse de doctorat à l'école, a identifié la base de données MySQL au
   sein du composant Nova et a débuté des travaux visant à basculer sur
   une modèle NoSQL passant à l'échelle de manière native.
+
+
+\paragraph*{Objectif\\}
+
+  L'objectif du travail proposé dans ce projet d'option s'insère dans
+  la continuité de ces travaux. Il comporte deux
+  volets:
+\begin{itemize}
+\item L'identification de l'ensemble des briques élémentaires ne
+  validant la propriété de scalabilité
+\item la proposition d'une solution et sa mise en \oe uvre au travers
+  d'un prototype experimental (selon l'avancée des travaux réalisées,
+  les étudiants pourront mener des campagnes d'experiences sur la
+  plateforme \href{Grid'5000}{Grid'5000}.
+\end{itemize}
+
+\paragraph*{Livrables\\}
+
+\begin{itemize}
+\item L0 : rapport sur l'architecture d'OpenStack (ces principaux
+  composants et leur rôle)
+\item L1 : identification des briques logicielles ne respectant par la
+  règle du passage à l'échelle.
+\item L2 : Proposition d'une solution pour un des composants choisis
+  avec le tuteur.
+\item L3 : implémentation de la solution et évualuation sur la
+  plateforme Grid'5000.
+\item L4 : synthèse des travaux réalisés.
+\end{itemize}
+
+\paragraph*{Méthodologie du projet\\}
+Ce projet sera réalisé suivant une méthode agile. Il devra impliquer une
+contribution au projet \og~open source~\fg\ Discovery.
+
 
 \paragraph*{Bibliographie:\\}
 %
