@@ -1,0 +1,204 @@
+\documentclass[a4paper,11pt]{article}
+
+% paquets perso
+\usepackage{clavierFonte}
+%\usepackage{guillemets}
+\usepackage[french]{babel}
+\newcommand{\fge}{\fg\ }
+
+
+% paquet / note EMN
+\usepackage{sujetProjet}
+
+\usepackage{pdfpages}
+
+\newcommand{\aegis}{\texttt{Aegis}}
+\newcommand{\api}{\texttt{API}}
+\newcommand{\cxf}{\texttt{Apache CXF}}
+\newcommand{\ccxf}{\texttt{CXF}}
+\newcommand{\corba}{\texttt{CORBA}}
+\newcommand{\emn}{EMN}
+\newcommand{\eclipse}{\texttt{Eclipse}}
+\newcommand{\gsi}{GSI}
+\newcommand{\http}{\texttt{HTTP}}
+\newcommand{\java}{\texttt{Java}}
+\newcommand{\jaxb}{\texttt{JAXB}}
+\newcommand{\jaxws}{\texttt{JAX-WS}}
+\newcommand{\jaxrs}{\texttt{JAX-RS}}
+\newcommand{\jbi}{\texttt{JBI}}
+\newcommand{\jee}{\texttt{JEE}}
+\newcommand{\javaJEE}{\java{}/\jee{}}
+\newcommand{\jms}{\texttt{JMS}}
+\newcommand{\json}{\texttt{JSON}}
+\newcommand{\restful}{\texttt{RESTful}}
+\newcommand{\soap}{\texttt{SOAP}}
+\newcommand{\uv}{UV}
+\newcommand{\xml}{\texttt{XML}}
+
+
+
+
+\initTitre{UV \og Projet \fge -- Sujet \ccxf{} \\ Distribution de
+  l'architecture OpenStack}
+\initAbrevTitre{Projet \ccxf{DIsOStack}}
+
+%\initSousTitre{}
+
+\initAuteurs{}
+
+%\initDate{22}{8}{2006}
+
+\initSousEntite{Option GSI}
+\initCodeSousEntite{GSI}
+
+%\initDestinataires{}
+
+%\initDiffusion{}
+
+%\initCodeNote{UV/}
+
+%\initVersionNote{1.0}
+
+%\initHistorique{}
+
+\pasIndentation
+
+\begin{document}
+
+\begin{couverture}
+  \afficherDate
+  \afficherTitre
+\begin{sujet}
+
+\afficherTuteur{%
+\href{mailto:adrien.lebre@inria.fr}{Adrien Lebre}
+}
+
+
+\afficherProjet{%
+ \ccxf{}
+
+ \begin{quote}
+  OpenStack est une suite logiciel permettant d'opérer des plateformes
+  de Cloud Computing de type IaaS.
+%Elle est aujourd'hui la solution
+%  OpenSource retenue et supportée par le plus grand nombre d'acteurs
+%  aussi bien académique et qu'industriels (A titre d'exemple HP et
+%  RedHat sont les deux companies qui se disputent la premiere place du
+%  plus gros contributeur).
+  Bien qu'une des règles fondamentales pour le développement du
+  système a pour objectif d'adresser la problématique du passage à
+  l'échelle de chaque composant (le terme scalabilité sera utilisé par
+  la suite), le système comprend plusieurs briques
+  logicielles qui ne repondent pas à
+  cette règle. A titre d'exemple, Jonathan Pastor, actuellement en
+  thèse de doctorat à l'école, a identifié la base de données MySQL au
+  sein du composant Nova et a débuté des travaux visant à basculer sur
+  une modèle NoSQL passant à l'échelle de manière native.
+
+  L'objectif du travail proposer dans ce projet d'option s'insère dans
+  la continuité de ces travaux. Il comporte deux
+  volets:
+\begin{itemize}
+\item L'identification de l'ensemble des briques élémentaires ne
+  validant la propriété de scalabilité
+\item la proposition d'une solution et sa mise en \oe uvre au travers
+  de prototype experimental (selon l'avancée des travaux réalisées,
+  les étudiants pourront mener des campagnes d'experiences sur la
+  plateform \href{Grid'5000}{Grid'5000}.
+\end{itemize}
+
+A plus gros grain, ce projet s'insère dans l'initiative
+\href{http://beyondtheclouds.github.io}{Discovery} piloté par l'école.
+ \end{quote}
+}
+
+\afficherSiteWeb{http://beyondtheclouds.github.io}
+
+\afficherIntitule{%
+ Analyse du système OpenStack en vue de sa distribution à large
+ échelle.
+}
+
+\end{sujet}
+
+\end{couverture}
+
+
+%\includepdf[pages=-, offset=2cm 0cm]{KeyCopyKey-projet.pdf}
+
+\begin{note}
+
+
+\paragraph*{Domaines}
+
+\begin{itemize}
+ \item Intégration logicielle
+ \item Cloud Computing
+ \item Modele de données (SQL, NoSQL, Clé/Valeur)
+\end{itemize}
+
+\paragraph*{Compétences requises}
+
+\begin{itemize}
+ \item Fondamentaux Cloud Computing
+ \item Maîtrise des modèles de données relationnels.
+ \item Programmation objets/composants
+\end{itemize}
+
+\paragraph*{Compétences à acquérir}
+
+\begin{itemize}
+ \item Expertise sur l'architecture OpenStack
+ \item Langage python
+ \item Prise en main de l'EDI \texttt{IntelliJ}
+ \item Développement de schémas de données NoSQL
+ \item Contribution à un projet \og~open source~\fg
+\end{itemize}
+
+\paragraph*{Contexte}
+
+ Afin de supporter la demande croissante d'informatique utilitaire (UC) tout en prenant en compte les aspects énergétique et financier, la tendance actuelle consiste à construire des centres de données (ou centrales numériques) de plus en plus grands dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun doute de satisfaire la demande tout en conservant une approche centralisée de la gestion de ces ressources mais elle reste loin de pouvoir fournir des infrastructures de calcul utilitaire efficaces et durables.
+   L'initiative de recherche \discovery propose une approche radicalement différente permettant de prendre en compte la localité des demandes dès le départ.
+Pour ce faire, elle propose de tirer parti de tous les équipements
+disponibles sur l'Internet afin de fournir des infrastructures de calcul
+utilitaire  qui permettront de part leur distribution de prendre en compte plus
+efficacement la dispersion géographique des utilisateurs et leur demande
+toujours croissante [1]. Un des aspects critique pour l'émergence de telles
+plates-formes de calcul utilitaire ''local'' (LUC) est la disponibilité de
+mécanismes de gestion appropriés exploitant les dernières
+contributions en terme d'algorithmiques distribués.
+Des premiers travaux menés à l'école des Mines ont permis de valider
+plusieurs mécanismes via la mise en \oe uvre de prototypes
+experimentaux.
+Afin de passer du mode recherche à une mode plus industriel, nous
+avons commencé à regarder comment intégrer nos propositions au système
+OpenStack.
+
+\paragraph*{Problème: Les faiblesses dans la conception d'OpenStack}
+
+  OpenStack est une suite logiciel permettant d'opérer des plateformes
+  de Cloud Computing de type IaaS. Elle est aujourd'hui la solution
+  OpenSource retenue et supportée par le plus grand nombre d'acteurs
+  aussi bien académique et qu'industriels (850 institutions sont
+  impliqués dans son développement avec des acteurs de premier rangs
+  tels que HP ou encore RedHat).
+  Bien qu'une des règles fondamentales pour le développement du
+  système a pour objectif d'adresser la problématique du passage à
+  l'échelle de chaque composant (le terme scalabilité sera utilisé par
+  la suite), le système comprend plusieurs briques
+  logicielles qui ne repondent pas à
+  cette règle. A titre d'exemple, Jonathan Pastor, actuellement en
+  thèse de doctorat à l'école, a identifié la base de données MySQL au
+  sein du composant Nova et a débuté des travaux visant à basculer sur
+  une modèle NoSQL passant à l'échelle de manière native.
+
+\paragraph*{Bibliographie:\\}
+%
+\texttt{[1]} Adrien Lebre, Jonathan Pastor, Marin Bertier, Frédéric Desprez, Jonathan Rouzaud-Cornabas, Cédric Tedeschi, Paolo Anedda, Gianluigi Zanetti, Ramon Nou, Toni Cortes, Etienne Rivière, and Thomas Ropars. Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed? Research Report RR-8348, Inria, July 2013.\\
+
+\end{note}
+
+
+
+\end{document}
