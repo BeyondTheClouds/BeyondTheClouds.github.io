@@ -1,0 +1,46 @@
+\usepackage[colorlinks]{hyperref}
+%\usepackage[inner=2cm,outer=2cm,bottom=2cm,top=3cm]{geometry}
+\usepackage{wrapfig}
+\usepackage{subfigure}
+\usepackage{xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acronym of the proposal
+\newcommand{\proposal}{DISCUTE\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TODO macros
+\usepackage[textwidth=17mm]{todonotes}
+  \newcommand{\customtodo}[4]{
+        \todo[color=#2,inline,size=\small]{
+                \ifx&#3&
+                        \textbf{#1} #4
+                \else
+                        \textbf{#1$\Rightarrow$#3} #4
+                \fi
+        }
+  }
+\usepackage{ifthen}
+\newboolean{WIP}
+\gdef\ifwip{\ifthenelse{\boolean{WIP}}}
+%\setboolean{WIP}{false}%
+\setboolean{WIP}{true}%
+\ifwip{
+  \newcommand{\AL}[2][]{\customtodo{AL}{green!50}{#1}{#2}}
+  \newcommand{\MS}[2][]{\customtodo{MS}{red!20}{#1}{#2}}
+  \newcommand{\JP}[2][]{\customtodo{JP}{blue!20}{#1}{#2}}
+  \newcommand{\FQ}[2][]{\customtodo{FQ}{brown!20}{#1}{#2}}
+}{ % else if WIP = false
+  \newcommand{\AL}[2][]{}
+  \newcommand{\MS}[2][]{}
+  \newcommand{\JP}[2][]{}
+  \newcommand{\FQ}[2][]{}
+}
+%% End of todo macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Italic abreviations, ...
+\newcommand{\ie}[0]{{\em i.e.},\xspace}
+\newcommand{\vs}[0]{{\em vs.}\xspace}
+\newcommand{\eg}[0]{{\em e.g.},\xspace}
+\newcommand{\etal}[0]{{\em et al.}\xspace}
+\newcommand{\wrt}[0]{{\em w.r.t.}\xspace}
+\newcommand{\aka}[0]{{\em a.k.a.}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
