@@ -22,7 +22,7 @@
 \newcommand{\emn}{EMN}
 \newcommand{\eclipse}{\texttt{Eclipse}}
 \newcommand{\gsi}{GSI}
-\newcommand{\discovery}{DisCoVery}
+\newcommand{\discovery}{DisCoVery }
 \newcommand{\http}{\texttt{HTTP}}
 \newcommand{\java}{\texttt{Java}}
 \newcommand{\jaxb}{\texttt{JAXB}}
@@ -84,21 +84,21 @@
  \begin{quote}
   OpenStack est une suite logiciel permettant d'opérer des plateformes
   de Cloud Computing de type IaaS.
-  Bien qu'une des règles fondamentales pour le développement du
-  système a pour objectif d'adresser la problématique du passage à
-  l'échelle de chaque composant (le terme scalabilité sera utilisé par
-  la suite), le système comprend plusieurs briques
-  logicielles qui ne repondent pas à
-  cette règle.
+  Bien le passage à l'échelle (i.e. scalabilité) soit un critère décisif lors du 
+  choix d'un système pour opérer ce genre de plateforme, et bien
+  que l'accent soit mis sur la scalabilité au cours du développment, 
+  de nombreuses briques fondamentales constituants les IaaS contemporains ne 
+  satisfont pas ce critère, impactant negativement la 
+  scalabilité globale.
 
-  L'objectif du travail proposé comporte deux   volets:
+  Le travail proposé comporte deux objectifs:
 \begin{itemize}
 \item L'identification de l'ensemble des briques élémentaires ne
   validant la propriété de scalabilité
 \item la proposition d'une solution et sa mise en \oe uvre au travers
   d'un prototype experimental (selon l'avancée des travaux réalisées,
   les étudiants pourront mener des campagnes d'experiences sur la
-  plateforme \href{Grid'5000}{Grid'5000}.
+  plateforme \href{Grid'5000}{Grid'5000}).
 \end{itemize}
 
 A plus gros grain, ce projet s'insère dans l'initiative
@@ -151,20 +151,20 @@ A plus gros grain, ce projet s'insère dans l'initiative
 
 \paragraph*{Contexte\\}
 
- Afin de supporter la demande croissante d'informatique utilitaire (UC) tout en prenant en compte les aspects énergétique et financier, la tendance actuelle consiste à construire des centres de données (ou centrales numériques) de plus en plus grands dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun doute de satisfaire la demande tout en conservant une approche centralisée de la gestion de ces ressources mais elle reste loin de pouvoir fournir des infrastructures de calcul utilitaire efficaces et durables.
+ Afin de supporter la demande croissante d'informatique utilitaire (UC: Utility Computing) tout en prenant en compte les aspects énergétique et financier, la tendance actuelle consiste à construire des centres de données (ou centrales numériques) de plus en plus grands dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun doute de satisfaire la demande tout en conservant une approche centralisée de la gestion de ces ressources mais elle reste loin de pouvoir fournir des infrastructures de calcul utilitaire efficaces et durables.
    L'initiative de recherche \discovery propose une approche radicalement différente permettant de prendre en compte la localité des demandes dès le départ.
 Pour ce faire, elle propose de tirer parti de tous les équipements
 disponibles sur l'Internet afin de fournir des infrastructures de calcul
 utilitaire  qui permettront de part leur distribution de prendre en compte plus
 efficacement la dispersion géographique des utilisateurs et leur demande
 toujours croissante [1]. Un des aspects critique pour l'émergence de telles
-plates-formes de calcul utilitaire ''local'' (LUC) est la disponibilité de
+plates-formes de calcul utilitaire ''local'' (LUC: Locality aware Utility Computing) est la disponibilité de
 mécanismes de gestion appropriés exploitant les dernières
 contributions en terme d'algorithmiques distribués.
 Des premiers travaux menés à l'école des Mines ont permis de valider
 plusieurs mécanismes via la mise en \oe uvre de prototypes
 experimentaux.
-Afin de passer du mode recherche à une mode plus industriel, nous
+Afin de passer du mode recherche à un mode plus industriel, nous
 avons commencé à regarder comment intégrer nos propositions au système
 OpenStack.
 
@@ -172,9 +172,9 @@ OpenStack.
 
   OpenStack est une suite logiciel permettant d'opérer des plateformes
   de Cloud Computing de type IaaS. Elle est aujourd'hui la solution
-  OpenSource retenue et supportée par le plus grand nombre d'acteurs
-  aussi bien académique et qu'industriels (850 institutions sont
-  impliqués dans son développement avec des acteurs de premier rangs
+  OpenSource retenue et supportée par un grand nombre d'acteurs
+  aussi bien académiques et qu'industriels (850 institutions sont
+  impliquées dans son développement, avec des acteurs de premier rangs
   tels que HP ou encore RedHat).
   Bien qu'une des règles fondamentales pour le développement du
   système a pour objectif d'adresser la problématique du passage à
@@ -184,7 +184,7 @@ OpenStack.
   cette règle. A titre d'exemple, Jonathan Pastor, actuellement en
   thèse de doctorat à l'école, a identifié la base de données MySQL au
   sein du composant Nova et a débuté des travaux visant à basculer sur
-  une modèle NoSQL passant à l'échelle de manière native.
+  un modèle NoSQL passant à l'échelle de manière native.
 
 
 \paragraph*{Objectif\\}
@@ -194,18 +194,18 @@ OpenStack.
   volets:
 \begin{itemize}
 \item L'identification de l'ensemble des briques élémentaires ne
-  validant la propriété de scalabilité
+  validant le critère de scalabilité.
 \item la proposition d'une solution et sa mise en \oe uvre au travers
   d'un prototype experimental (selon l'avancée des travaux réalisées,
   les étudiants pourront mener des campagnes d'experiences sur la
-  plateforme \href{Grid'5000}{Grid'5000}.
+  plateforme \href{Grid'5000}{Grid'5000}).
 \end{itemize}
 
 \paragraph*{Livrables\\}
 
 \begin{itemize}
 \item L0 : rapport sur l'architecture d'OpenStack (ces principaux
-  composants et leur rôle)
+  composants et leur rôle).
 \item L1 : identification des briques logicielles ne respectant par la
   règle du passage à l'échelle.
 \item L2 : Proposition d'une solution pour un des composants choisis
