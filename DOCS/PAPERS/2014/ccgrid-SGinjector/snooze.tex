@@ -1,0 +1,61 @@
+\subsection{Snooze}
+\label{subsec:snooze}
+
+\AL[MS]{1.5 pages}
+
+We now present the Snooze framework for VM
+management~\cite{feller:ccgrid12} as a third case study of how
+to implement and simulate advanced distributed algorithms.
+
+\subsubsection{Snooze architecture and  algorithm}
+
+We first briefly present the Snooze architecture summarizing its
+original presentation~\cite{feller:ccgrid12} and providing some
+aditional info~\cite{snoozedev14}.
+
+\begin{itemize}
+  \item GLs, GMs, LCs
+  \item Correct execution
+  \item Fault behavior
+\end{itemize}
+
+\subsubsection{Simulation with Simgrid}
+
+Snooze can be simulated using our model and tool support in a direct
+and natural manner.
+
+\begin{itemize}
+  \item Representation of GLs, GMs, LCs
+  \item Multicast node
+  \item Multi-threading
+  \item Reaction to faults
+\end{itemize}
+
+\subsubsection{Variants}
+
+It is also possible to quite simply implement and simulate variants of
+the Snooze model that we have simulated. These variants represent
+interesting non-trivial evolutions of the original Snooze model that
+have not been explored as part of Snooze. Concretely, we present the
+following evolutions:
+
+\begin{itemize}
+  \item \textbf{Periodic vs.\ reactive scheduling:} 
+  \item \textbf{Load balancing:} Snooze's implementation assigns LCs
+    in a round-robin fashion. We can simply implement simulate other
+    asignment schemes, e.g., load balancing schemes.
+  \item \textbf{GMs rejoin on GM entry:} The Snooze paper~\cite{frm12a}
+    states that all GMs should rejoin if a new GMs enters the system
+    (perhaps for load balancing). This is implemented in the Snooze
+    simulation. However, this strategy makes the system instable,
+    because of frequent joins of GMs that are not available during a
+    relatively long time. Furthermore, this entails joins of many
+    LCs. Overall this strategy seems unreasonable.
+\end{itemize}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
