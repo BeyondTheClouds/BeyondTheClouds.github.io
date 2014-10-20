@@ -343,6 +343,7 @@
 
 \input{include.tex}
 
+\newcommand{\sg}{SimGrid}
 \begin{document}
 %
 % paper title
@@ -356,35 +357,6 @@
 \author{\IEEEauthorblockN{Adrien Lebre, Jonathan Pastor, Mario S\"{u}dholt}
 \IEEEauthorblockA{ASCOLA Research Group (Mines Nantes, Inria, Lina), France\\ firstname.lastname@inria.fr
 }}
-
-% conference papers do not typically use \thanks and this command
-% is locked out in conference mode. If really needed, such as for
-% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-% after \documentclass
-
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-%
-%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-%Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3},
-%Montgomery Scott\IEEEauthorrefmark{3} and
-%Eldon Tyrell\IEEEauthorrefmark{4}}
-%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-%Georgia Institute of Technology,
-%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
-
-
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
 
 
 
@@ -433,8 +405,8 @@ toolkits~\cite{moreno:2012}, most of them
 are still leveraging
 elementary Virtual Machine (VM) placement policies that prevent them
 to guarantee performance Service Level Agreements (SLAs) while
-finely controlling the usage of CC resources in order to maximize the
-CC providers revenues~\cite{openstack, opennebula, cloudstack}.
+finely maximizing the usage of CC resources.
+%to maximize the CC providers revenues.
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
 Generally, a batch scheduler
@@ -448,62 +420,78 @@ resource requirements of each operated VM may significantly vary
 during its execution.
 %%%%%%%
 
-Keep using aforementioned approaches looks surprising as the Virtual
-Machine Placement Problem (VMPP) has been addressed a lot by the
-research community, investigating technics such as consolidation,
-load-balancing and other SLAs guarantee algorithms \cite{xxx} under
-different software-architecture models (centralized
+Keep using  greedy allocation approaches in most of available IaaS
+toolkits~\cite{openstack, opennebula, cloudstack} looks surprising
+as the Virtual Machine Placement Problem (VMPP) has been addressed a
+lot by the research community. Dynamic strategies such as
+consolidation,  load-balancing and other SLAs guarantee algorithms
+have been deeply investigated \cite{Hermenier:2009:ECM:1508293.1508300},\cite{feller:ccgrid12},
+\cite{quesnel:cpe2012},
+\cite{5935254}, \cite{5715067}, \cite{5328077}.
+% under different software-architecture models (centralized
+%\cite{Hermenier:2009:ECM:1508293.1508300}, hierarchical
+%\cite{feller:ccgrid12} or distributed \cite{quesnel:cpe2012}).
+From our point of view, a brake on the adoption of such advanced strategies is
+related to the experimental process that has been used to validate the
+pros and cons of each of them: Most of VMPP proposals have been
+evaluated either by leveraging ad-hoc simulators or on testbeds that
+in both cases are not accurate and not representative enough to (i)
+ensure their correctness on real platforms and (ii) perform fair
+comparisons between each of them.
+%
+Implementing each proposal and evaluating them on representative
+testbeds in terms of scalability, reliability and workload changes
+would definitely be the most rigorous way to validate and compare all
+of them. However, delivering a prototype and conducting
+\textit{in-vivo} (\ie real-world) experiments imply, when it is
+possible, expensive and tedious tasks that might be counterproductive
+if conclusions are far from the expected ones.
+%
+
+In this article, we propose a dedicated simulation tool to perform
+in-depth investigations and compare VM placement algorithms with each
+other in a fairly way. We believe that such a tool will contribute to
+our community as it will enable researchers to quickly identify and
+compare the trends of a new proposal with existing ones. By such a
+mean, it will be possible to limit \textit{in vivo} experiments only
+to the algorithms that have the potential to handle Cloud Computing
+production infrastructures. To cope with real conditions such as their
+increasingly scale of modern data centers and the dynamicity of the
+workloads that are specific to the Cloud Computing paradigm (\ie
+elasticity capability), it is a key element to be able to study of
+large-scale scenarios taking into account server crashes and involving
+tens of thousands of VMs, each one executing a representative
+workload.
+
+%
+We chose to build our tool on the \sg
+framework~\cite{casanova:hal-01017319} since (i) its relevance in
+terms of performance and validity has already been
+demonstrated~\cite{simgridpub} and (ii) the framework has been
+recently extended to integrate virtual machine and live migration
+models \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+To illustrate the relevance of our tool, we implemented three VMPP
+mechanisms \cite{Hermenier:2009:ECM:1508293.1508300}
+\cite{feller:ccgrid12} \cite{quesnel:cpe2012} and analysis the pros
+and cons of each them by discussing several metrics such as
+scalability, reliability and reactivity (\ie the time to solve a SLA
+violation). Besides being cited several times in the literature, we
+chose these three systems as they are built on three different
+software architecture models: centralized
 \cite{Hermenier:2009:ECM:1508293.1508300}, hierarchical
-\cite{feller:ccgrid12} or distributed \cite{quesnel:cpe2012}).
-We argue that a brake on the adoption of such advanced strategies is related to
-the experimental process that has been used to validate the pros and
-cons of each of them. Most VMPP solutions have been evaluated
-either by leveraging ad-hoc simulators or on testbeds that in both
-cases are not accurate and not representative enough to (i) ensure their
-correctness on real platforms and (ii) perform fair comparisons
-between each of them.
+\cite{feller:ccgrid12} and fully distributed \cite{quesnel:cpe2012}.
 
 
- Implementing each proposal and evaluating them
-on representative testbeds in terms of scalability, reliability and workload
-changes would definitely be the most rigorous way to validate and
-compare all those proposals. However, delivering a prototype and
-conducting \textit{in-vivo} (\ie real-world) experiments imply
-expensive and tedious tasks that might be counterproductive if the
-conclusion is far from the expected ones .
-...
-We claim that a dedicated tool to investigate and compare in-depth VM
-placement algorithms in a more rigorous but user-friendly way will
-enable researchers to quickly identify the trends of the algorithms thus limiting \textit{in
-  vivo} experiments only to the most relevant ones.
-To be valuable, such a tool should enable the study of large-scale
-scenarios involving tens of  thousands of VMs, each one executing a
-specific workload and facing crashes in order to cope with real cloud
-conditions.
-....
+The rest of the article is organized as follow. Section \ref{sec:sg}
+gives an overview of the \sg framework.
+\ref{sec:injector} introduces our tool and discusses its internals
+The three algorithms implemented as first use-cases are presented in
+Section \ref{sec:vm-schedulers} and evaluated in Section \ref{sec:experiments}
+Section \ref{sec:related} deals with related work and
+finally, Section \ref{sec:conclusion} concludes and gives some perspective of this
+work.
 
-Such a tool will enable IaaS researchers to
-quickly
-By such a mean, it will be possible to validate VM placement
-is mandatory to make concrete progress and be able to propose suited
-solutions for modern CC infrastruces composed of ten of thousands
-physical servers.
-.....
-recent contributions to
-evaluate concerns related to the dynamic management of VMs through
-simulations should be extended \ in order to deliver a dedicated tool to
-investigate in-depth VM placement algorithms.
-
-.....
-
-
-By leveraging a common simulation framework, researchers/industrials
-will
- the goal is to  should let to industrials for the most
-promising technics.
-
-\AL{Parler des metriques à comparer, ca permet d'introduire un peu ce
-  qu'on va dire dans la partie experimental}
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
@@ -516,9 +504,9 @@ promising technics.
 \subsection{Entropy}
 \label{subsec:entropy}
 \AL[AL]{1 page}
-
+\subsection{Snooze}
+\label{subsec:snooze}
 \input{snooze.tex}
-
 \subsection{DVMS}
 \label{subsec:dvms}
 \AL[AL]{Check who write that part, If Flavien did it, then add him as
@@ -531,8 +519,10 @@ promising technics.
   métrique pertinente. Plusieurs algorithms tentent de reduire cette
   metrique }
 \section{Related Work}
+\label{sec:related}
 \AL[AL]{.25 page}
 \section{Conclusion}
+\label{sec:conclusion}
 \AL[AL]{.25 page}
 
 
