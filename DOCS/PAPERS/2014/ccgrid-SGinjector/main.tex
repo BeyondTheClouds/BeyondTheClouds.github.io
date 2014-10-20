@@ -354,8 +354,7 @@
 % use a multiple column layout for up to three different
 % affiliations
 \author{\IEEEauthorblockN{Adrien Lebre, Jonathan Pastor, Mario S\"{u}dholt}
-\IEEEauthorblockA{ASCOLA Research Group -- Inria Rennes Bretagne
-  Atlantique, Mines Nantes, LINA UMR 6241 - France\\ firstname.lastname@inria.fr
+\IEEEauthorblockA{ASCOLA Research Group (Mines Nantes, Inria, Lina), France\\ firstname.lastname@inria.fr
 }}
 
 % conference papers do not typically use \thanks and this command
@@ -391,6 +390,9 @@
 
 % make the title area
 \maketitle
+
+\thispagestyle{plain}
+\pagestyle{plain}
 
 
 \begin{abstract}
@@ -514,9 +516,9 @@ promising technics.
 \subsection{Entropy}
 \label{subsec:entropy}
 \AL[AL]{1 page}
-\subsection{Snooze}
-\label{subsec:snooze}
-\AL[MS]{1.5 pages}
+
+\input{snooze.tex}
+
 \subsection{DVMS}
 \label{subsec:dvms}
 \AL[AL]{Check who write that part, If Flavien did it, then add him as
