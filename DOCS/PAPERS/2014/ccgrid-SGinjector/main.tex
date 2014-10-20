@@ -427,15 +427,15 @@ The abstract goes here.
 
 Although a lot of progress has been performed on Cloud Computing (CC)
 system managements, \aka Infrastructure-as-a-service
-toolkits~\cite{moreno:2012}, major CC management systems
-\cite{openstack, opennebula, cloudstack} are still leveraging
+toolkits~\cite{moreno:2012}, most of them
+are still leveraging
 elementary Virtual Machine (VM) placement policies that prevent them
 to guarantee performance Service Level Agreements (SLAs) while
 finely controlling the usage of CC resources in order to maximize the
-CC providers revenues.
+CC providers revenues~\cite{openstack, opennebula, cloudstack}.
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
-In most cases, a batch scheduler
+Generally, a batch scheduler
 approach is used: VMs are
 (i)~allocated according to user requests for resource reservations,
 and (ii)~tied to the nodes where they were deployed until their
@@ -459,7 +459,10 @@ cons of each of them. Most VMPP solutions have been evaluated
 either by leveraging ad-hoc simulators or on testbeds that in both
 cases are not accurate and not representative enough to (i) ensure their
 correctness on real platforms and (ii) perform fair comparisons
-between each of them. Implementing each proposal and evaluating them
+between each of them.
+
+
+ Implementing each proposal and evaluating them
 on representative testbeds in terms of scalability, reliability and workload
 changes would definitely be the most rigorous way to validate and
 compare all those proposals. However, delivering a prototype and
@@ -496,6 +499,9 @@ By leveraging a common simulation framework, researchers/industrials
 will
  the goal is to  should let to industrials for the most
 promising technics.
+
+\AL{Parler des metriques à comparer, ca permet d'introduire un peu ce
+  qu'on va dire dans la partie experimental}
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
