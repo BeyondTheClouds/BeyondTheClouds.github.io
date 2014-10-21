@@ -44,13 +44,17 @@ following evolutions:
   \item \textbf{Load balancing:} Snooze's implementation assigns LCs
     in a round-robin fashion. We can simply implement simulate other
     asignment schemes, e.g., load balancing schemes.
-  \item \textbf{GMs rejoin on GM entry:} The Snooze paper~\cite{frm12a}
-    states that all GMs should rejoin if a new GMs enters the system
-    (perhaps for load balancing). This is implemented in the Snooze
-    simulation. However, this strategy makes the system instable,
-    because of frequent joins of GMs that are not available during a
-    relatively long time. Furthermore, this entails joins of many
-    LCs. Overall this strategy seems unreasonable.
+  \item \textbf{Variants of join algorithms:}
+    \begin{itemize}
+      \item \textbf{GMs rejoin on GM entry:} The Snooze
+        paper~\cite{feller:ccgrid12} states that all GMs should rejoin if a new
+        GMs enters the system (perhaps for load balancing). This is
+        implemented in the Snooze simulation. However, this strategy
+        makes the system instable, because of frequent joins of GMs
+        that are not available during a relatively long
+        time. Furthermore, this entails joins of many LCs. Overall
+        this strategy seems unreasonable.
+    \end{itemize}
 \end{itemize}
 
 
