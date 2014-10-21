@@ -5,19 +5,22 @@
 
 We now present the Snooze framework for VM
 management~\cite{feller:ccgrid12} as a third case study of how
-to implement and simulate advanced distributed algorithms.
+to implement and simulate advanced algorithms.
 
 \subsubsection{Snooze architecture and  algorithm}
 
-We first briefly present the Snooze architecture summarizing its
-original presentation~\cite{feller:ccgrid12} and providing some
-aditional info~\cite{snoozedev14,snoozeweb}.
+We first briefly present the Snooze architecture summarizing its main
+characteristics from its presentation~\cite{feller:ccgrid12} and
+additional info stemming from personal communications of the Snooze
+developers and its implementation~\cite{snoozedev14,snoozeweb}.
 
-\begin{itemize}
-  \item GLs, GMs, LCs
-  \item Correct execution
-  \item Fault behavior
-\end{itemize}
+Snooze harnesses a hierarchical architecture in order to support load
+balancing and fault tolerance. At the top of the hierarchy, a
+\emph{group leader (GL)} centralizes information about the whole
+cluster by keeping summary information about all \emph{group managers
+  (GMs)}. GMs manage a number of \emph{local controllers (LCs)} that,
+in turn, represent nodes in a cluster and manage VMs.
+
 
 \subsubsection{Simulation with Simgrid}
 
