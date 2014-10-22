@@ -562,7 +562,7 @@ compare them each other. Concretely, it consists of  a piece of code in charge o
 creations, workload fluctuation changes as well as node apparitions/removals so
 that researchers can focus on the implementation of the new placement
 algorithm and evaluate how it behaves according to the different
-changes that occurs during the simulation.
+changes that occur during the simulation.
 
 The framework has been implemented in JAVA by leveraging the
 corresponding MSG API of \sg.
@@ -600,7 +600,7 @@ Currently, our framework is released with three algorithms:
 
 At the beginning, the simulation create n VMs, each of which is based on one of predefined VM classes. A VM class is a
 template of the specification of a VM and its workload. It is described as
-nb_cpu:ramsize:net_bw:mig_speed:mem_speed. VMs are launched on PMs in
+\texttt{nb\_cpu:ramsize:net\_bw:mig\_speed:mem\_speed}. VMs are launched on PMs in
 a round-robin manner for the initial placement, \ie each PM has almost the same number of VMs.
 According to the investigated algorithm, VMs are relocated through the
 different PMs during the whole execution of the simulation in order to
