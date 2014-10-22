@@ -90,11 +90,6 @@
 % When switching from latex to pdflatex and vice-versa, the compiler may
 % have to be run twice to clear warning/error messages.
 
-
-
-
-
-
 % *** CITATION PACKAGES ***
 %
 %\usepackage{cite}
@@ -448,20 +443,22 @@ possible, expensive and tedious tasks that might be counterproductive
 if conclusions are far from the expected ones.
 %
 
-In this article, we propose a dedicated simulation tool to perform
-in-depth investigations and compare VM placement algorithms with each
-other in a fairly way. We believe that such a tool will contribute to
+In this article, we propose the first version of a dedicated
+simulation framework to perform in-depth investigations and compare VM
+placement algorithms with each other in a fairly way. To cope with
+real conditions such as their increasingly scale of modern data
+centers and the dynamicity of the workloads that are specific to the
+Cloud Computing paradigm (\ie elasticity capability), our framework
+allows users to study large-scale scenarios taking into account server
+crashes and involving tens of thousands of VMs, each one executing a
+specific workload that evolves during the simulation lifetime.
+
+We believe that such a tool will contribute to
 our community as it will enable researchers to quickly identify and
 compare the trends of a new proposal with existing ones. By such a
 mean, it will be possible to limit \textit{in vivo} experiments only
 to the algorithms that have the potential to handle Cloud Computing
-production infrastructures. To cope with real conditions such as their
-increasingly scale of modern data centers and the dynamicity of the
-workloads that are specific to the Cloud Computing paradigm (\ie
-elasticity capability), it is a key element to be able to study of
-large-scale scenarios taking into account server crashes and involving
-tens of thousands of VMs, each one executing a representative
-workload.
+production infrastructures.
 
 %
 We chose to build our tool on the \sg
@@ -496,9 +493,76 @@ work.
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
 \AL[AL]{0.5page}
+
+\sg, is a  generic simulation toolkit to study the behavior of
+large-scale distributed systems through a user-friendly programming
+API.  Its specificities with respect to other simulation frameworks are
+related to its scalability and its extensibility to address new
+concerns. As an example, after Grids, HPC and P2P systems, \sg has
+been recently extended with virtualization technologies abstractions
+(\ie Virtual Machines and Live Migration model) to simulate Cloud
+Computing infrastructures .
+
+accuracy of the models implemented
+internally to simulate
+
+ It has been used in more than 100 publications
+and
+
+
+
 \section{Injector Overview}
 \label{sec:injector}
 \AL[AL]{1.5 page}
+
+\subsubsection{Description of the Simulator}
+The simulator has been implemented in Java by leveraging the SimGrid toolkit~\cite{simgrid:uksim08}.
+It is composed of three modules:
+
+\begin{itemize}
+\item The first module is in charge of changing the VMs' load during the
+simulation.  Concretely it selects every $t$ seconds one VM hosted on
+the simulated infrastructure and changes its load according to a
+Gaussian distribution. $t$ is a random variable that follows an
+exponential distribution with rate parameter $\lambda$ while the
+Gaussian distribution is defined by a particular mean ($\mu$) as well
+as a particular standard deviation ($\sigma$) that are given at each
+simulation.  From the SimGrid point of view, a VM is just an
+abstraction.  Hence changing the load of a VM corresponds to assigning
+a new value to its CPU property.  Finally, we considered the size of
+the memory assigned to a VM as a rigid resource (i.e., it is defined at
+the beginning of each run and does not change).
+%%
+\item The second module of our simulator corresponds to the centralized
+version of the scheduling problem: This
+SimGrid Agent corresponds to an infinite loop that iteratively invokes
+Entropy by triggering a `repair process' that aims at satisfying the
+QoS properties of the VMs by leveraging all available PMs.
+By default the Entropy framework waits 30 seconds before triggering a new `repair
+process' but in order to be as reactive as possible, this time has been
+reduced to 1 second.
+%%
+\item Finally, the last module implements the DVMS proposal as previously described.
+%%
+\end{itemize}
+
+In each concerned module, the execution of each scheduling computation is really performed
+(i.e., Entropy instances are really invoked with the current configuration
+handled by the simulator). Hence, the computation time that is observed is not
+simulated but corresponds to the effective one. It is worth noting that in
+order to limit the computation time of the computation phase, we
+set a timeout equal to one fourth of the number of nodes
+considered (in seconds) for each Entropy invocation.
+This timeout was determined empirically by preliminary experiments with 512 and 1024 PMs.
+Last but not the least, the presented results do not address the cost of the
+third phase of the scheduling problem (i.e., the relocation actions). As SimGrid
+does not simulate VM migrations yet, the reconfiguration plan is only logically
+performed: When a VM needs to be migrated, we only change its location
+property.  The cost of VM migrations has been analyzed through real
+experiments conducted on Grid'5000 (cf.\ Section \ref{subsec:g5k-exp}).
+%%
+
+
 \section{Dynamic VM Placement Algorithms}
 \label{sec:vm-schedulers}
 \subsection{Entropy}
