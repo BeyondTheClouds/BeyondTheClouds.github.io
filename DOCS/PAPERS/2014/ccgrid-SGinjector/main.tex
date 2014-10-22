@@ -556,13 +556,74 @@ comparing VM placement algorithms.
 \label{sec:injector}
 \AL[AL]{1.5 page}
 
-TODO PREAMBLE
+The purpose of the VM placement simulator is to deliver a generic tool
+to evaluate new VM placement algorithms and offer the possible to
+compare them each other. Concretely, it consists of  a piece of code in charge of managing VM
+creations, workload fluctuation changes as well as node apparitions/removals so
+that researchers can focus on the implementation of the new placement
+algorithm and evaluate how it behaves according to the different
+changes that occurs during the simulation.
 
-\subsubsection{Description of the Simulator}
-Our framework has been implemented by leveraging the JAVA MSG API of
-\sg. It is composed of two major parts: the \emph{injector} and the schedulers.
+The framework has been implemented in JAVA by leveraging the
+corresponding MSG API of \sg.
+\AL[JP]{Here we should add something like: This offer the opportunity
+to researchers to develop new algorithms by using high level
+programming abstractions such as JAVA or SCALA}
 
+After giving an overview of the framework, we describe in details its
+functioning and how researchers can develop new algorithms
 
+\subsubsection{Overview}
+At coarse-grained,
+%an execution of our framework can be divided into
+%two steps. During the first one, our framework instanciates as many
+%VMs as indicated in the \texttt{Simulator.properties} file.
+the framework can be
+divided in two major parts: the \emph{injector} and the schedulers.
+
+The \emph{injector} is the generic part of the framework. As its name
+suggest, it is in charge of injecting the different events that occur
+during the execution of the simulations. Current events are node
+apparitions/removals  and VM CPU load changes.
+% As we describe in the next section, additional events can be easily added.
+
+The schedulers correspond to the  algorithms you want to study.
+Currently, our framework is released with three algorithms:
+\begin{itemize}
+\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
+ \item Snooze \cite{feller:ccgrid12}, a hierarchical approach where
+   each manager of a group invokes Entropy to solve the
+   placement/reconfiguration VM problem. It is noteworthy that in
+   \cite{feller:ccgrid12}, Snooze is using a specific heuristic to solve the placement/reconfiguration VM problem. As the sake of simplicity, we have simply reused the entropy scheduling code.
+\item  DVMS \cite{quesnel:cpe2012}, a distributed approach that dynamically partitions the system and invokes Entropy on each partition.
+\end{itemize}
+
+At the beginning, the simulation create n VMs, each of which is based on one of predefined VM classes. A VM class is a
+template of the specification of a VM and its workload. It is described as
+nb_cpu:ramsize:net_bw:mig_speed:mem_speed. VMs are launched on PMs in
+a round-robin manner for the initial placement, \ie each PM has almost the same number of VMs.
+According to the investigated algorithm, VMs are relocated through the
+different PMs during the whole execution of the simulation in order to
+ensure scheduling objectives and SLA guarantees.
+
+It is noteworthy that our framework really invokes the execution of
+each scheduling strategy. That is in the current algorithm,  Entropy instances are really invoked with the current configuration
+handled by the simulator. Hence, the computation time that is observed
+is not simulated but corresponds to the effective one, only the
+workload inside the VMs and the migration operations are simulated in \sg.
+%It is worth noting that in
+% order to limit the computation time of the computation phase, we
+% set a timeout equal to one fourth of the number of nodes
+% considered (in seconds) for each Entropy invocation.
+% This timeout was determined empirically by preliminary experiments with 512 and 1024 PMs.
+% Last but not the least, the presented results do not address the cost of the
+% third phase of the scheduling problem (i.e., the relocation actions). As SimGrid
+% does not simulate VM migrations yet, the reconfiguration plan is only logically
+% performed: When a VM needs to be migrated, we only change its location
+% property.  The cost of VM migrations has been analyzed through real
+% experiments conducted on Grid'5000 (cf.\ Section \ref{subsec:g5k-exp}).
+
+\subsection{Injector}
 The \emph{Injector} component is a dedicated \sg process s in charge of changing the VMs' load during the
 simulation.  Concretely it selects every $t$ seconds one VM hosted on
 the simulated infrastructure and changes its load according to a
@@ -575,6 +636,13 @@ abstraction.  Hence changing the load of a VM corresponds to assigning
 a new value to its CPU property.  Finally, we considered the size of
 the memory assigned to a VM as a rigid resource (i.e., it is defined at
 the beginning of each run and does not change).
+
+Adding new events can be easily done by simply defining new event
+classes and putting the associated law that model the periodicity of
+each event. By default an exponential law is used but additional ones
+can be added. For instance, we  are currently adding network events to
+dynamically changes the network in/out usage of each VM during the
+simulation).
 
 
 % %%
@@ -591,20 +659,6 @@ the beginning of each run and does not change).
 % %%
 % \end{itemize}
 
-% In each concerned module, the execution of each scheduling computation is really performed
-% (i.e., Entropy instances are really invoked with the current configuration
-% handled by the simulator). Hence, the computation time that is observed is not
-% simulated but corresponds to the effective one. It is worth noting that in
-% order to limit the computation time of the computation phase, we
-% set a timeout equal to one fourth of the number of nodes
-% considered (in seconds) for each Entropy invocation.
-% This timeout was determined empirically by preliminary experiments with 512 and 1024 PMs.
-% Last but not the least, the presented results do not address the cost of the
-% third phase of the scheduling problem (i.e., the relocation actions). As SimGrid
-% does not simulate VM migrations yet, the reconfiguration plan is only logically
-% performed: When a VM needs to be migrated, we only change its location
-% property.  The cost of VM migrations has been analyzed through real
-% experiments conducted on Grid'5000 (cf.\ Section \ref{subsec:g5k-exp}).
 %%
 
 
