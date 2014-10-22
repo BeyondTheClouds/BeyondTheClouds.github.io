@@ -512,14 +512,13 @@ Computing challenges \cite{lucas:cloud2014};
   and Java.
 \end{itemize}
 
-At coarse-grained, to perform simulations, users should develop  a \emph{program} and define a
+To perform simulations, users should develop  a \emph{program} and define a
 \emph{platform} file. The \emph{program} in most cases leverages the \sg MSG API
-that allow end-users to create and execute processes, tasks, VMs and
+that allow end-users to create and execute \sg abstractions such as processes, tasks, VMs and
 network-communications. The \emph{platform} file gives the physical
 description of each resource composing the environment and on which
 aforementioned computations/network exchanges will be performed in the
-\sg
-world.% (host, CPU capacity, network topology and link capacities, etc.)
+\sg world.% (host, CPU capacity, network topology and link capacities, etc.)
 The execution of the program is orchestrated by the \sg engine that
 internally relies on an constraint solver to correctly assign the
 amount of CPU/network resources to each action, step by step until the
@@ -549,18 +548,22 @@ competition as well as the memory refreshing rate of the VM, thus
 determining correctly the live migration time as well as the resulting
 network traffic \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
+In the following section, we present how we have leverage these latest
+extensions of \sg to develop a generic framework for evaluating and
+comparing VM placement algorithms.
+
 \section{VM Placement Simulator}
 \label{sec:injector}
 \AL[AL]{1.5 page}
 
-
+TODO PREAMBLE
 
 \subsubsection{Description of the Simulator}
-The simulator has been implemented in Java by leveraging the SimGrid toolkit~\cite{simgrid:uksim08}.
-It is composed of three modules:
+Our framework has been implemented by leveraging the JAVA MSG API of
+\sg. It is composed of two major parts: the \emph{injector} and the schedulers.
 
-\begin{itemize}
-\item The first module is in charge of changing the VMs' load during the
+
+The \emph{Injector} component is a dedicated \sg process s in charge of changing the VMs' load during the
 simulation.  Concretely it selects every $t$ seconds one VM hosted on
 the simulated infrastructure and changes its load according to a
 Gaussian distribution. $t$ is a random variable that follows an
@@ -572,34 +575,36 @@ abstraction.  Hence changing the load of a VM corresponds to assigning
 a new value to its CPU property.  Finally, we considered the size of
 the memory assigned to a VM as a rigid resource (i.e., it is defined at
 the beginning of each run and does not change).
-%%
-\item The second module of our simulator corresponds to the centralized
-version of the scheduling problem: This
-SimGrid Agent corresponds to an infinite loop that iteratively invokes
-Entropy by triggering a `repair process' that aims at satisfying the
-QoS properties of the VMs by leveraging all available PMs.
-By default the Entropy framework waits 30 seconds before triggering a new `repair
-process' but in order to be as reactive as possible, this time has been
-reduced to 1 second.
-%%
-\item Finally, the last module implements the DVMS proposal as previously described.
-%%
-\end{itemize}
 
-In each concerned module, the execution of each scheduling computation is really performed
-(i.e., Entropy instances are really invoked with the current configuration
-handled by the simulator). Hence, the computation time that is observed is not
-simulated but corresponds to the effective one. It is worth noting that in
-order to limit the computation time of the computation phase, we
-set a timeout equal to one fourth of the number of nodes
-considered (in seconds) for each Entropy invocation.
-This timeout was determined empirically by preliminary experiments with 512 and 1024 PMs.
-Last but not the least, the presented results do not address the cost of the
-third phase of the scheduling problem (i.e., the relocation actions). As SimGrid
-does not simulate VM migrations yet, the reconfiguration plan is only logically
-performed: When a VM needs to be migrated, we only change its location
-property.  The cost of VM migrations has been analyzed through real
-experiments conducted on Grid'5000 (cf.\ Section \ref{subsec:g5k-exp}).
+
+% %%
+% \item The second module of our simulator corresponds to the centralized
+% version of the scheduling problem: This
+% SimGrid Agent corresponds to an infinite loop that iteratively invokes
+% Entropy by triggering a `repair process' that aims at satisfying the
+% QoS properties of the VMs by leveraging all available PMs.
+% By default the Entropy framework waits 30 seconds before triggering a new `repair
+% process' but in order to be as reactive as possible, this time has been
+% reduced to 1 second.
+% %%
+% \item Finally, the last module implements the DVMS proposal as previously described.
+% %%
+% \end{itemize}
+
+% In each concerned module, the execution of each scheduling computation is really performed
+% (i.e., Entropy instances are really invoked with the current configuration
+% handled by the simulator). Hence, the computation time that is observed is not
+% simulated but corresponds to the effective one. It is worth noting that in
+% order to limit the computation time of the computation phase, we
+% set a timeout equal to one fourth of the number of nodes
+% considered (in seconds) for each Entropy invocation.
+% This timeout was determined empirically by preliminary experiments with 512 and 1024 PMs.
+% Last but not the least, the presented results do not address the cost of the
+% third phase of the scheduling problem (i.e., the relocation actions). As SimGrid
+% does not simulate VM migrations yet, the reconfiguration plan is only logically
+% performed: When a VM needs to be migrated, we only change its location
+% property.  The cost of VM migrations has been analyzed through real
+% experiments conducted on Grid'5000 (cf.\ Section \ref{subsec:g5k-exp}).
 %%
 
 
