@@ -7,19 +7,43 @@ We now present the Snooze framework for VM
 management~\cite{feller:ccgrid12} as a third case study of how
 to implement and simulate advanced algorithms.
 
-\subsubsection{Snooze architecture and  algorithm}
+\subsubsection{Overview}
 
 We first briefly present the Snooze architecture summarizing its main
 characteristics from its presentation~\cite{feller:ccgrid12} and
 additional info stemming from personal communications of the Snooze
 developers and its implementation~\cite{snoozedev14,snoozeweb}.
 
+\paragraph{Architecture}
+
 Snooze harnesses a hierarchical architecture in order to support load
 balancing and fault tolerance. At the top of the hierarchy, a
 \emph{group leader (GL)} centralizes information about the whole
 cluster by keeping summary information about all \emph{group managers
-  (GMs)}. GMs manage a number of \emph{local controllers (LCs)} that,
-in turn, represent nodes in a cluster and manage VMs.
+  (GMs)} that constitute the intermediate layer of the hierarchy. GMs
+manage a number of \emph{local controllers (LCs)}, each of which
+represent a node in a cluster and manage the VMs assigned to that
+node. During execution, higher level components periodically send
+heartbeats to lower-level components; monitoring information, \eg on
+the system load, is also sent periodically in the opposite
+direction. In order to propagate information down the hierarchy,
+Snooze relies on hardware support for multicast
+communication. Finally, a number of replicated entry points allows
+clients to contact the GL, \eg in order to submit new VMs for
+integration into the system.
+
+\paragraph{Algorithms}
+
+Apart from the handling of faults (described below), two types of
+algorithms are of major importance for the administration of the
+Snooze architecture: the algorithms that enable components to
+dynamically enter the system and the algorithms that propagate info
+between the components.
+
+\paragraph{Fault tolerance} 
+
+GLs, GMs and LCs may fail during the system execution. 
+
 
 
 \subsubsection{Simulation with Simgrid}
