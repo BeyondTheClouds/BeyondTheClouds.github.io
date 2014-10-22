@@ -338,7 +338,7 @@
 
 \input{include.tex}
 
-\newcommand{\sg}{SimGrid}
+\newcommand{\sg}{SimGrid\xspace}
 \begin{document}
 %
 % paper title
@@ -392,7 +392,7 @@ The abstract goes here.
 
 \section{Introduction}
 \label{sec:intro}
-\AL[AL]{1 page (including the abstract)}
+%\AL[AL]{1 page (including the abstract)}
 
 Although a lot of progress has been performed on Cloud Computing (CC)
 system managements, \aka Infrastructure-as-a-service
@@ -479,7 +479,6 @@ software architecture models: centralized
 \cite{Hermenier:2009:ECM:1508293.1508300}, hierarchical
 \cite{feller:ccgrid12} and fully distributed \cite{quesnel:cpe2012}.
 
-
 The rest of the article is organized as follow. Section \ref{sec:sg}
 gives an overview of the \sg framework.
 \ref{sec:injector} introduces our tool and discusses its internals
@@ -489,31 +488,72 @@ Section \ref{sec:related} deals with related work and
 finally, Section \ref{sec:conclusion} concludes and gives some perspective of this
 work.
 
-
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
-\AL[AL]{0.5page}
+%\AL[AL]{0.5page}
 
-\sg, is a  generic simulation toolkit to study the behavior of
-large-scale distributed systems through a user-friendly programming
-API.  Its specificities with respect to other simulation frameworks are
-related to its scalability and its extensibility to address new
-concerns. As an example, after Grids, HPC and P2P systems, \sg has
-been recently extended with virtualization technologies abstractions
-(\ie Virtual Machines and Live Migration model) to simulate Cloud
-Computing infrastructures .
+\sg is a simulation toolkit to study the behavior of
+large-scale distributed systems.  Developped for more than  a decade, It has been used in more than 100
+publications.  Its main characterisitics are related to its:
+\begin{itemize}
+\item Extensibility -- After Grids, HPC and P2P
+  systems, \sg has been recently extended with virtualization technologies abstractions
+(\ie Virtual Machines including a live migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to investigate Cloud
+Computing challenges \cite{lucas:cloud2014};
+\item Scalability -- It is possible to simulation large-scale scenarios,
+  as an example, users can simulate applications composed of 2
+  Millions of processors and to
+  simulate an infrastructure with 10 000~servers hostings more than
+  100 000 VMs on a computer with 16~GB of memory;
+\item  Flexibility -- It allows to run a simulation on arbitrary network
+  topology under dynamic computation and network resources
+  availabilities;
+\item API --  users can leverage \sg through eady-to-use APIs in C
+  and Java.
+\end{itemize}
 
-accuracy of the models implemented
-internally to simulate
+At coarse-grained, to perform simulations, users should develop  a \emph{program} and define a
+\emph{platform} file. The \emph{program} in most cases leverages the \sg MSG API
+that allow end-users to create and execute processes, tasks, VMs and
+network-communications. The \emph{platform} file gives the physical
+description of each resource composing the environment and on which
+aforementioned computations/network exchanges will be performed in the
+\sg
+world.% (host, CPU capacity, network topology and link capacities, etc.)
+The execution of the program is orchestrated by the \sg engine that
+internally relies on an constraint solver to correctly assign the
+amount of CPU/network resources to each action, step by step until the
+simulation ends.
 
- It has been used in more than 100 publications
-and
+Although SimGrid has many features such as model checking, the
+simulation of DAGs (Direct Acyclic Graphs) or MPI applications, we
+only give a brief description of the  virtualization  abstractions
+that have been recently implemented in \sg and on which our framework relies
+on.  Further information regarding \sg is available in \cite{casanova:hal-01017319}.
 
+The VM support has been designed so that all operations that can be performed
+o a host can be performed inside a VM: From the point of view of a \sg
+Host, a \sg VM is considered as an ordinary task while from the point
+of view of a task running inside a \sg VM, a VM is considered as an
+ordinary host below the task.  By such a mean, \sg users can easily
+switch between a virtualized and non virtualized infrastructure.
+Moreover, thanks to  MSG API extensions, users can control VMs in the
+same manner as in the real world (\eg create/destroy, start/shutdown,
+suspend/resume and migrate).
+% live migration
+For migration operations, a VM live migration model implementing the
+precopy migration algorithm of Qemu/KVM has been integrated into \sg.
+This model is the only one that successfully simulates the live
+migration behavior by taking into account the resource sharing
+competition as well as the memory refreshing rate of the VM, thus
+determining correctly the live migration time as well as the resulting
+network traffic \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-
-\section{Injector Overview}
+\section{VM Placement Simulator}
 \label{sec:injector}
 \AL[AL]{1.5 page}
+
+
 
 \subsubsection{Description of the Simulator}
 The simulator has been implemented in Java by leveraging the SimGrid toolkit~\cite{simgrid:uksim08}.
