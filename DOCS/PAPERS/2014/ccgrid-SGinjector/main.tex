@@ -575,29 +575,26 @@ functioning and how researchers can develop new algorithms
 
 \subsection{Overview}
 At coarse-grained, our framework proceeds a simulation  in three phrases: (i) Initialization  (ii)
-injection and (iii) visualization. The initialization phase corresponds to
+injection and (iii) traces analysis. The initialization phase corresponds to
 the creation of the environment, the VMs and the generation of the
 events queue. The injection phase corresponds to the step where the
 scheduling strategy is evaluated. Basically, it consists in at least
 two \sg processes, one for the \emph{injector} and one for the scheduling
-algorithm.  Regarding the \emph{injector}, as it name suggest
-suggest, it is in charge of injecting the different events that occur
-during the execution of the simulations. Current events are VM load
+algorithm.  Regarding the \emph{injector}, as it name suggest, it is in charge of injecting the different events that occur
+during the execution of the simulations. Current events are VM CPU load
 changes and  node apparitions/removals.
 % As we describe in the next section, additional events can be easily added.
 
-Regarding the scheduling algorithm, our framework is currently
+Regarding the scheduling algorithm,  our framework is currently
 released with three scheduling mechanisms described in Section
 \ref{sec:vm-schedulers} and can be obviously extended with additional
 ones as it is the goal of our framework.
+\AL{Not really convinced by this last sentence... if someone has a better
+  proposal, please feel free.}
 % ~Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 %Snooze~\cite{feller:ccgrid12} and DVMS~\cite{quesnel:cpe2012}
 %described in Section \ref{sec:vm-schedulers}.
-According to the selected algorithm, VMs are relocated through the
-different PMs during the execution of the simulation in order to
-ensure scheduling objectives and SLA guarantees.
-The last phase
-consists in analyzing the collected traces in order to generate the
+The last phase consists in analyzing the collected traces in order to generate the
 different figures.
 
 
@@ -612,13 +609,13 @@ different figures.
 
 \subsection{Initialization Phase}
 At the beginning, the framework creates $n$ VMs and assigns them in a
-round-robin manner on the $p$ first PMs defined in the platform file.
+round-robin manner on the $p$ first hosts defined in the platform file.
 The default platform file corresponds to a cluster of $p+s$ hosts,
 where $p$ corresponds to the number of hosting nodes and $s$ to the
-number of services nodes. The values $n$,$ p$ and $s$ are given as input
-parameters of each simulation (given in a general java properties file). Although the cluster topology is usually the
+number of services nodes. The values $n$, $p$ and $s$ are given as input
+parameters of each simulation (specified in a java properties file). Although the cluster topology is usually the
 most common, it is possible to define more complex platforms to simulate for
-instance multi data centers scenarios.
+instance, multi data centers scenarios.
 %Note that $s$ can be equals to 0 if the
 %scheduling strategy is directly executed on the hosting nodes .
 
@@ -633,10 +630,11 @@ migration and \texttt{mem\_speed} the maximum memory update speed when
 the VM is consuming 100\% of its CPU resources. This last parameter
 enables users to simulate different kinds of workload (\ie
 memory-intensive vs non-intensive), which is mandatory to be inline
-with real Cloud Computing conditions. Available classes are defined in
+with real Cloud Computing conditions. We remind that the memory update
+speed is a critical parameters that governs the migration time as well
+as the amount of transferred data. Available classes are defined in
 a specific text file that can be modified according to the user's needs.
-The class of a VM is determined by a random process that selects one
-line in the file.
+For each VM creation, a random process selects one class (\ie one line) in the file.
 Finally, all VMs start with a CPU consumption of 0 that will evolve during the simulation as
 explained below.
 
@@ -644,7 +642,7 @@ Once the creation and the assignment of VMs is completed, the
 framework spawns two SG processes, the \emph{injector} and the
 launcher of the selected scheduler.
 The first action of the \emph{injector} consists in creating the
-events queue that will be consumed during the second phase of the
+different events queues and merge them as a global one  that will be consumed during the second phase of the
 simulation.  For the moment two kinds of events are generated: ~\emph{
  CPU load}
 and \emph{node crash} events.
@@ -654,7 +652,7 @@ and \emph{node crash} events.
 %
 %Changing the load of a VM has a direct impact of its memory update speed and thus on the time
 %to migrate it between two hosts.
-Regarding \emph{CPU load} events, the queue is generated in order to change every $t$
+Regarding the \emph{CPU load} events queue, it is generated in order to change every $t$
 seconds in average the load of each VM. $t$ is a random variable that
 follows an exponential distribution with rate parameter $\lambda\_t$
 while the
@@ -674,21 +672,19 @@ Hence, it is important for users to specify appropriate values.
 %non appropriated to request it is easier for end-users to specify $\mu$ and
 %$\sigma$ parameters than
 
-Regarding \emph{node crash} events, the queue is generated in order to
+Regarding the \emph{node crash} events queue, it is generated in order to
 turn off a node every $f$ seconds in average and for a duration of $d$ seconds.
 Similarly to the previous $t$ value, $f$ follows an exponential
 distribution with rate $\lambda\_f$. $f$ and $d$ are given as input
 parameters of each simulation.
 
-
 Adding new events can be easily done by simply defining new event
-classes and putting the associated law that model the periodicity of
-each event. By default an exponential law is used but additional ones
-can be added.
+java classes implementing the \texttt{InjectorEvent} interface and by
+adding the code in charge of generating the associated queue.
 \AL[AL]{Future work: introduce network changes}
 
 \subsection{Injector Phase}
-Once the VMs and the event queue are ready, the evaluation of the
+Once the VMs and the global event queue are ready, the evaluation of the
 scheduling mechanism can start. On the first side, the injector will iteratively
 consumes the different events either by changing the load of a VM or
 by turning off/on a node.
@@ -703,6 +699,14 @@ temporarily discarded and will be considered by the scheduler only
 when the node will come back in the system.
 \AL[AL, MS, JP]{This is ugly but unfortunately the true, it will be
   better to reassign those VMs on other nodes, but which one? }
+
+\AL{J'en suis ici.}
+According to the scheduling algorithm, VMs will be suspended/resumed or
+relocated through the
+different hosts to ensure scheduling objectives and SLA guarantees.
+Researchers must implement the VMPP solver and the code in charge of
+applying the reconfiguration plan by leveraging \sg virtualization
+operations
 
 It is noteworthy that our framework really invokes the execution of
 each scheduling strategy.  That is, the computation time that is observed
