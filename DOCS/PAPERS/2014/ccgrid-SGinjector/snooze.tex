@@ -40,11 +40,34 @@ Snooze architecture: the algorithms that enable components to
 dynamically enter the system and the algorithms that propagate info
 between the components.
 
+A GL is created, if it does not exist, by promotion of a GM that is
+selected according to some leader election algorithm. When a GM joins
+a cluster, it starts listening on a predefined channel for the
+heartbeat of the GL and registers once it has received the
+heartbeat. New LCs first also wait for the GL heartbeat, request a GM
+assignment from the GL and register at the GM assigned to them.
+
+Information that is passed within the system consists in periodic
+heartbeat message from the GL, GMs and LCs as well as, also periodic,
+charge information from LCs sent to their respective GMs and summary
+charge info sent by GMs to the GL.
+
+
 \paragraph{Fault tolerance} 
 
-GLs, GMs and LCs may fail during the system execution. 
+GLs, GMs and LCs may fail during the system execution. System
+components identify that a node on the corresponding higher-level node
+has failed (the GL in case of a GM, a GM in the case of an LC) in an
+asynchronous fashion through the lack of heartbeat messages.
 
-
+In the case of a GL failure, one of the GMs becomes the new GL, stops
+its GM activities and prevents the LCs it manages so that they can
+start rejoining the system. If a GM fails, the GL and the LCs it has
+managed will become aware of it based on the lack of heartbeats,
+update its data structures and, for the LCs, rejoin the system. If an
+LC fails, its GM will finally learn of it due to the missing heartbeat
+and charge information of the LC. The GM will then remove the LC from
+its data structures.
 
 \subsubsection{Simulation with Simgrid}
 
