@@ -573,94 +573,144 @@ programming abstractions such as JAVA or SCALA}
 After giving an overview of the framework, we describe in details its
 functioning and how researchers can develop new algorithms
 
-\subsubsection{Overview}
-At coarse-grained,
-%an execution of our framework can be divided into
-%two steps. During the first one, our framework instanciates as many
-%VMs as indicated in the \texttt{Simulator.properties} file.
-the framework can be
-divided in two major parts: the \emph{injector} and the schedulers.
-
-The \emph{injector} is the generic part of the framework. As its name
+\subsection{Overview}
+At coarse-grained, our framework proceeds a simulation  in three phrases: (i) Initialization  (ii)
+injection and (iii) visualization. The initialization phase corresponds to
+the creation of the environment, the VMs and the generation of the
+events queue. The injection phase corresponds to the step where the
+scheduling strategy is evaluated. Basically, it consists in at least
+two \sg processes, one for the \emph{injector} and one for the scheduling
+algorithm.  Regarding the \emph{injector}, as it name suggest
 suggest, it is in charge of injecting the different events that occur
-during the execution of the simulations. Current events are node
-apparitions/removals  and VM CPU load changes.
+during the execution of the simulations. Current events are VM load
+changes and  node apparitions/removals.
 % As we describe in the next section, additional events can be easily added.
-
-The schedulers correspond to the  algorithms you want to study.
-Currently, our framework is released with three algorithms:
-\begin{itemize}
-\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
- \item Snooze \cite{feller:ccgrid12}, a hierarchical approach where
-   each manager of a group invokes Entropy to solve the
-   placement/reconfiguration VM problem. It is noteworthy that in
-   \cite{feller:ccgrid12}, Snooze is using a specific heuristic to solve the placement/reconfiguration VM problem. As the sake of simplicity, we have simply reused the entropy scheduling code.
-\item  DVMS \cite{quesnel:cpe2012}, a distributed approach that dynamically partitions the system and invokes Entropy on each partition.
-\end{itemize}
-
-At the beginning, the simulation create n VMs, each of which is based on one of predefined VM classes. A VM class is a
-template of the specification of a VM and its workload. It is described as
-\texttt{nb\_cpu:ramsize:net\_bw:mig\_speed:mem\_speed}. VMs are launched on PMs in
-a round-robin manner for the initial placement, \ie each PM has almost the same number of VMs.
-According to the investigated algorithm, VMs are relocated through the
-different PMs during the whole execution of the simulation in order to
+Regarding the scheduling algorithm, our framework is currently
+released with three scheduling mechanisms described in Section
+\ref{sec:vm-schedulers} and can be obviously extended with additional
+ones as it is the goal of our framework.
+% ~Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
+%Snooze~\cite{feller:ccgrid12} and DVMS~\cite{quesnel:cpe2012}
+%described in Section \ref{sec:vm-schedulers}.
+According to the selected algorithm, VMs are relocated through the
+different PMs during the execution of the simulation in order to
 ensure scheduling objectives and SLA guarantees.
+The last phase
+consists in analyzing the collected traces in order to generate the
+different figures.
 
-It is noteworthy that our framework really invokes the execution of
-each scheduling strategy. That is in the current algorithm,  Entropy instances are really invoked with the current configuration
-handled by the simulator. Hence, the computation time that is observed
-is not simulated but corresponds to the effective one, only the
-workload inside the VMs and the migration operations are simulated in \sg.
-%It is worth noting that in
-% order to limit the computation time of the computation phase, we
-% set a timeout equal to one fourth of the number of nodes
-% considered (in seconds) for each Entropy invocation.
-% This timeout was determined empirically by preliminary experiments with 512 and 1024 PMs.
-% Last but not the least, the presented results do not address the cost of the
-% third phase of the scheduling problem (i.e., the relocation actions). As SimGrid
-% does not simulate VM migrations yet, the reconfiguration plan is only logically
-% performed: When a VM needs to be migrated, we only change its location
-% property.  The cost of VM migrations has been analyzed through real
-% experiments conducted on Grid'5000 (cf.\ Section \ref{subsec:g5k-exp}).
 
-\subsection{Injector}
-The \emph{Injector} component is a dedicated \sg process s in charge of changing the VMs' load during the
-simulation.  Concretely it selects every $t$ seconds one VM hosted on
-the simulated infrastructure and changes its load according to a
-Gaussian distribution. $t$ is a random variable that follows an
-exponential distribution with rate parameter $\lambda$ while the
-Gaussian distribution is defined by a particular mean ($\mu$) as well
-as a particular standard deviation ($\sigma$) that are given at each
-simulation.  From the SimGrid point of view, a VM is just an
-abstraction.  Hence changing the load of a VM corresponds to assigning
-a new value to its CPU property.  Finally, we considered the size of
-the memory assigned to a VM as a rigid resource (i.e., it is defined at
-the beginning of each run and does not change).
+%\begin{itemize}
+%\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
+% \item Snooze \cite{feller:ccgrid12}, a hierarchical approach where
+%   each manager of a group invokes Entropy to solve the
+%  placement/reconfiguration VM problem. It is noteworthy that in
+%   \cite{feller:ccgrid12}, Snooze is using a specific heuristic to solve the placement/reconfiguration VM problem. As the sake of simplicity, we have simply reused the entropy scheduling code.
+%\item  DVMS \cite{quesnel:cpe2012}, a distributed approach that dynamically partitions the system and invokes Entropy on each partition.
+% \end{itemize}
+
+\subsection{Initialization Phase}
+At the beginning, the framework creates $n$ VMs and assigns them in a
+round-robin manner on the $p$ first PMs defined in the platform file.
+The default platform file corresponds to a cluster of $p+s$ hosts,
+where $p$ corresponds to the number of hosting nodes and $s$ to the
+number of services nodes. The values $n$,$ p$ and $s$ are given as input
+parameters of each simulation (given in a general java properties file). Although the cluster topology is usually the
+most common, it is possible to define more complex platforms to simulate for
+instance multi data centers scenarios.
+%Note that $s$ can be equals to 0 if the
+%scheduling strategy is directly executed on the hosting nodes .
+
+Each VM is created based on one of the predefined VM classes. A VM class
+corresponds to a template defining the VM attributes and its memory
+footprint. Concretely, it is described as
+\texttt{nb\_cpu:ramsize:net\_bw:mig\_speed:mem\_speed} where
+\texttt{nb\_cpus} defines the number of cores, \texttt{ramsize} the
+size of the memory, \texttt{net\_bw} the network bandwidth,
+\texttt{mig\_speed} the maximum bandwidth available to perform the
+migration and \texttt{mem\_speed} the maximum memory update speed when
+the VM is consuming 100\% of its CPU resources. This last parameter
+enables users to simulate different kinds of workload (\ie
+memory-intensive vs non-intensive), which is mandatory to be inline
+with real Cloud Computing conditions. Available classes are defined in
+a specific text file that can be modified according to the user's needs.
+The class of a VM is determined by a random process that selects one
+line in the file.
+Finally, all VMs start with a CPU consumption of 0 that will evolve during the simulation as
+explained below.
+
+Once the creation and the assignment of VMs is completed, the
+framework spawns two SG processes, the \emph{injector} and the
+launcher of the selected scheduler.
+The first action of the \emph{injector} consists in creating the
+events queue that will be consumed during the second phase of the
+simulation.  For the moment two kinds of events are generated: ~\emph{
+ CPU load}
+and \emph{node crash} events.
+%The former consists in changing the load of a VM by
+%creating  and assigning a new \sg task in the VM while the second aims
+%at simulating crashes.
+%
+%Changing the load of a VM has a direct impact of its memory update speed and thus on the time
+%to migrate it between two hosts.
+Regarding \emph{CPU load} events, the queue is generated in order to change every $t$
+seconds in average the load of each VM. $t$ is a random variable that
+follows an exponential distribution with rate parameter $\lambda\_t$
+while the
+CPU load of a VM evolves according to a Gaussian distribution defined by
+a particular mean ($\mu$) as well as a particular standard deviation
+($\sigma$). $t, \mu and \sigma$ are given as input parameters of each
+simulation.
+As a CPU can fluctuate between 0 and 100\%, the framework
+prevents to assign non-sense values  when the Gaussian distribution returns a
+number smaller than 0 or greater than 100. Although this has no impact
+of the execution of the simulation, we highlight that this can have reduce/increase the
+effective mean of the VM load, especially when $\sigma$ is high.
+Hence, it is important for users to specify appropriate values.
+\AL[AL]{A binomial law would have solved this issue: too late too bad :(}
+%Although this can have an impact on the
+%effective mean, especially when $\sigma$ is high, we believe it was
+%non appropriated to request it is easier for end-users to specify $\mu$ and
+%$\sigma$ parameters than
+
+Regarding \emph{node crash} events, the queue is generated in order to
+turn off a node every $f$ seconds in average and for a duration of $d$ seconds.
+Similarly to the previous $t$ value, $f$ follows an exponential
+distribution with rate $\lambda\_f$. $f$ and $d$ are given as input
+parameters of each simulation.
+
 
 Adding new events can be easily done by simply defining new event
 classes and putting the associated law that model the periodicity of
 each event. By default an exponential law is used but additional ones
-can be added. For instance, we  are currently adding network events to
-dynamically changes the network in/out usage of each VM during the
-simulation).
+can be added.
+\AL[AL]{Future work: introduce network changes}
 
+\subsection{Injector Phase}
+Once the VMs and the event queue are ready, the evaluation of the
+scheduling mechanism can start. On the first side, the injector will iteratively
+consumes the different events either by changing the load of a VM or
+by turning off/on a node.
+Changing the load of a VM corresponds to the
+creation and the assignment of a new \sg task in the VM. This new task has
+a direct impact since it increases or decreases the current memory
+update speed of the VM and thus the time that is mandatory to migrate it.
+% that is indicated by the \texttt{mem\_speed}
+%% parameter given in the class description.
+When a node is turning off, the VMs that were running on that node are
+temporarily discarded and will be considered by the scheduler only
+when the node will come back in the system.
+\AL[AL, MS, JP]{This is ugly but unfortunately the true, it will be
+  better to reassign those VMs on other nodes, but which one? }
 
-% %%
-% \item The second module of our simulator corresponds to the centralized
-% version of the scheduling problem: This
-% SimGrid Agent corresponds to an infinite loop that iteratively invokes
-% Entropy by triggering a `repair process' that aims at satisfying the
-% QoS properties of the VMs by leveraging all available PMs.
-% By default the Entropy framework waits 30 seconds before triggering a new `repair
-% process' but in order to be as reactive as possible, this time has been
-% reduced to 1 second.
-% %%
-% \item Finally, the last module implements the DVMS proposal as previously described.
-% %%
-% \end{itemize}
+It is noteworthy that our framework really invokes the execution of
+each scheduling strategy.  That is, the computation time that is observed
+is not simulated but corresponds to the effective one, only the
+workload inside the VMs and the migration operations are simulated in \sg.
 
-%%
-
+\subsection{Traces Analysis}
+\AL[JP]{Could you please write a paragraph explaining the traces
+  analysis process.}
 
 \section{Dynamic VM Placement Algorithms}
 \label{sec:vm-schedulers}
