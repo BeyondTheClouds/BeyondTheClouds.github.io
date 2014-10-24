@@ -444,9 +444,9 @@ if conclusions are far from the expected ones.
 %
 
 In this article, we propose the first version of a dedicated
-simulation framework to perform in-depth investigations and compare VM
-placement algorithms with each other in a fairly way. To cope with
-real conditions such as their increasingly scale of modern data
+simulation framework to perform in-depth investigations of placement
+algorithms and compare them with each other in a fairly way. To cope with
+real conditions such as the increasingly scale of modern data
 centers and the dynamicity of the workloads that are specific to the
 Cloud Computing paradigm (\ie elasticity capability), our framework
 allows users to study large-scale scenarios taking into account server
@@ -464,9 +464,9 @@ production infrastructures.
 We chose to build our tool on the \sg
 framework~\cite{casanova:hal-01017319} since (i) its relevance in
 terms of performance and validity has already been
-demonstrated~\cite{simgridpub} and (ii) the framework has been
-recently extended to integrate virtual machine and live migration
-models \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+demonstrated~\cite{simgridpub} and (ii) because the framework has been
+recently extended to integrate virtual machine abstractions and a live migration
+model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
 To illustrate the relevance of our tool, we implemented three VMPP
 mechanisms \cite{Hermenier:2009:ECM:1508293.1508300}
@@ -481,7 +481,8 @@ software architecture models: centralized
 
 The rest of the article is organized as follow. Section \ref{sec:sg}
 gives an overview of the \sg framework.
-\ref{sec:injector} introduces our tool and discusses its internals
+\ref{sec:injector} introduces our tool and discusses its general
+functioning.
 The three algorithms implemented as first use-cases are presented in
 Section \ref{sec:vm-schedulers} and evaluated in Section \ref{sec:experiments}
 Section \ref{sec:related} deals with related work and
@@ -500,15 +501,14 @@ publications.  Its main characterisitics are related to its:
   systems, \sg has been recently extended with virtualization technologies abstractions
 (\ie Virtual Machines including a live migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to investigate Cloud
 Computing challenges \cite{lucas:cloud2014};
-\item Scalability -- It is possible to simulation large-scale scenarios,
+\item Scalability -- It is possible to simulate large-scale scenarios,
   as an example, users can simulate applications composed of 2
-  Millions of processors and to
-  simulate an infrastructure with 10 000~servers hostings more than
-  100 000 VMs on a computer with 16~GB of memory;
+  Millions of processors and an infrastructure composed of 10,000~servers hosting more than
+  100,000~VMs on a computer with 16~GB of memory;
 \item  Flexibility -- It allows to run a simulation on arbitrary network
   topology under dynamic computation and network resources
   availabilities;
-\item API --  users can leverage \sg through eady-to-use APIs in C
+\item API --  users can leverage \sg through easy-to-use APIs in C
   and Java.
 \end{itemize}
 
@@ -521,7 +521,7 @@ aforementioned computations/network exchanges will be performed in the
 \sg world.% (host, CPU capacity, network topology and link capacities, etc.)
 The execution of the program is orchestrated by the \sg engine that
 internally relies on an constraint solver to correctly assign the
-amount of CPU/network resources to each action, step by step until the
+amount of CPU/network resources to each \sg abstraction, step by step until the
 simulation ends.
 
 Although SimGrid has many features such as model checking, the
@@ -548,9 +548,8 @@ competition as well as the memory refreshing rate of the VM, thus
 determining correctly the live migration time as well as the resulting
 network traffic \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-In the following section, we present how we have leverage these latest
-extensions of \sg to develop a generic framework for evaluating and
-comparing VM placement algorithms.
+Those two capabilities were mandatory to build our VM placement
+simulator toolkit introduced in the next section.
 
 \section{VM Placement Simulator}
 \label{sec:injector}
@@ -558,17 +557,18 @@ comparing VM placement algorithms.
 
 The purpose of the VM placement simulator is to deliver a generic tool
 to evaluate new VM placement algorithms and offer the possibility to
-compare them each other. Concretely, it consists of  a piece of code in charge of managing VM
-creations, workload fluctuation changes as well as node apparitions/removals so
-that researchers can focus on the implementation of the new placement
-algorithm and evaluate how it behaves according to the different
-changes that occur during the simulation.
-
-The framework has been implemented in JAVA by leveraging the
-corresponding MSG API of \sg.
-\AL[JP]{Here we should add something like: This offer the opportunity
-to researchers to develop new algorithms by using high level
-programming abstractions such as JAVA or SCALA}
+compare them each other. Concretely, it consists of a piece of code in
+charge of managing VM creations, workload fluctuation changes as well
+as node apparitions/removals so that researchers can focus on the
+implementation of the new placement algorithm and evaluate how it
+behaves according to the different changes that occur during the
+simulation.
+%
+The framework has been implemented in JAVA by
+leveraging the corresponding MSG API of \sg. \AL[JP]{Here we should
+  add something like: This offer the opportunity to researchers to
+  develop new algorithms by using high level programming abstractions
+  such as JAVA or SCALA}
 
 After giving an overview of the framework, we describe in details its
 functioning and how researchers can develop new algorithms
