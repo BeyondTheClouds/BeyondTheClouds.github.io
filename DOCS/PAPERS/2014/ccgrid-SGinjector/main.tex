@@ -484,7 +484,8 @@ gives an overview of the \sg framework.
 \ref{sec:injector} introduces our tool and discusses its general
 functioning.
 The three algorithms implemented as first use-cases are presented in
-Section \ref{sec:vm-schedulers} and evaluated in Section \ref{sec:experiments}
+Section \ref{sec:vm-schedulers} and evaluated in Section
+\ref{sec:experiments}.
 Section \ref{sec:related} deals with related work and
 finally, Section \ref{sec:conclusion} concludes and gives some perspective of this
 work.
@@ -565,38 +566,54 @@ behaves according to the different changes that occur during the
 simulation.
 %
 The framework has been implemented in JAVA by
-leveraging the corresponding MSG API of \sg. \AL[JP]{Here we should
-  add something like: This offer the opportunity to researchers to
-  develop new algorithms by using high level programming abstractions
-  such as JAVA or SCALA}
+leveraging the corresponding MSG API of \sg.  Although the JAVA layer
+has an impact of the efficiency of \sg, we believe it is rather
+acceptable in comparison to the benefit that brings JAVA  to researchers to
+implement advanced scheduling strategies.
+\AL[JP]{Should we talk about SCALA ?}
 
-After giving an overview of the framework, we describe in details its
-functioning and how researchers can develop new algorithms
+After giving an overview of the framework, we describe  its general
+functioning.% and how researchers can develop new algorithms
 
 \subsection{Overview}
-At coarse-grained, our framework proceeds a simulation  in three phrases: (i) Initialization  (ii)
-injection and (iii) traces analysis. The initialization phase corresponds to
-the creation of the environment, the VMs and the generation of the
-events queue. The injection phase corresponds to the step where the
-scheduling strategy is evaluated. Basically, it consists in at least
-two \sg processes, one for the \emph{injector} and one for the scheduling
-algorithm.  Regarding the \emph{injector}, as it name suggest, it is in charge of injecting the different events that occur
-during the execution of the simulations. Current events are VM CPU load
-changes and  node apparitions/removals.
+At coarse-grained, our framework proceeds a simulation in three
+phrases: (i) Initialization (ii) injection and (iii) traces analysis.
+The initialization phase corresponds to the creation of the
+environment, the VMs and the generation of the events queue. The
+injection phase corresponds to the step where the scheduling strategy
+is evaluated. Basically, it consists in at least two \sg processes,
+one for the \emph{injector} and one for the scheduling algorithm.
+Regarding the \emph{injector}, this is the generic part of the
+framework. As it name suggest, it is in charge of injecting the
+different events that occur during the execution of the simulations.
+Current events are VM CPU load changes and node apparitions/removals.
 % As we describe in the next section, additional events can be easily added.
+\AL[AL]{Make two figures: a architectural one (i.e. Injector vs
+  schedulers pool and one chronological.}
 
-Regarding the scheduling algorithm,  our framework is currently
-released with three scheduling mechanisms described in Section
-\ref{sec:vm-schedulers} and can be obviously extended with additional
-ones as it is the goal of our framework.
-\AL{Not really convinced by this last sentence... if someone has a better
-  proposal, please feel free.}
-% ~Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
-%Snooze~\cite{feller:ccgrid12} and DVMS~\cite{quesnel:cpe2012}
-%described in Section \ref{sec:vm-schedulers}.
-The last phase consists in analyzing the collected traces in order to generate the
-different figures.
+Regarding the scheduling algorithm, users should develop their own
+algorithm by leveraging the java MSG API and the \texttt{XHost},
+\texttt{XVM} and \texttt{SimulatorManager} classes. The two former
+classes extend respectively the \sg \texttt{Host} and \texttt{VM}
+abstractions while the latter aims at controlling the interactions
+between the different components of the VM placement simulator.
+Throughout these three classes, users can get at any time, the current
+state of the infrastructure (\ie. the load of a  host/VM,
+the number of VMs hosted on the whole infrastructure or on a particular
+host, check whether one host is overloaded, etc.) To illustrate the
+development of schedulers, our framework is currently released with
+three scheduling mechanisms described in Section
+\ref{sec:vm-schedulers}. We choose this three mechanisms as they
+investigate three different software architecture models: centralized,
+hierarchical and distributed. Although we do not discuss that point
+due to space constraints, we emphasize that delivering those three
+mechanisms enables us to give concrete examples of
+how the deployment of the different \sg processes is done through a
+generic script.
+\AL{We should highlight that point in the README.org}
 
+The last phase consists in analyzing the collected traces in order to
+generate the different figures.
 
 %\begin{itemize}
 %\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
@@ -639,7 +656,7 @@ Finally, all VMs start with a CPU consumption of 0 that will evolve during the s
 explained below.
 
 Once the creation and the assignment of VMs is completed, the
-framework spawns two SG processes, the \emph{injector} and the
+framework spawns at least two SG processes, the \emph{injector} and the
 launcher of the selected scheduler.
 The first action of the \emph{injector} consists in creating the
 different events queues and merge them as a global one  that will be consumed during the second phase of the
@@ -663,7 +680,7 @@ simulation.
 As a CPU can fluctuate between 0 and 100\%, the framework
 prevents to assign non-sense values  when the Gaussian distribution returns a
 number smaller than 0 or greater than 100. Although this has no impact
-of the execution of the simulation, we highlight that this can have reduce/increase the
+of the execution of the simulation, we highlight that this can  reduce/increase the
 effective mean of the VM load, especially when $\sigma$ is high.
 Hence, it is important for users to specify appropriate values.
 \AL[AL]{A binomial law would have solved this issue: too late too bad :(}
@@ -691,24 +708,32 @@ by turning off/on a node.
 Changing the load of a VM corresponds to the
 creation and the assignment of a new \sg task in the VM. This new task has
 a direct impact since it increases or decreases the current memory
-update speed of the VM and thus the time that is mandatory to migrate it.
+update speed of the VM and thus the time that is mandatory to migrate
+it. \AL{Is it clear enough? }
 % that is indicated by the \texttt{mem\_speed}
 %% parameter given in the class description.
 When a node is turning off, the VMs that were running on that node are
-temporarily discarded and will be considered by the scheduler only
-when the node will come back in the system.
+temporarily discarded, \ie they are hidden and cannot be access untill
+the node comes back. By such a mean, the scheduler cannot considered
+them.
 \AL[AL, MS, JP]{This is ugly but unfortunately the true, it will be
   better to reassign those VMs on other nodes, but which one? }
+\AL{Future work: add the possibility to have VMs
+  appearing/dissapearing on the fly like a dynamic provisioning
+  strategies}.
 
 \AL{J'en suis ici.}
 According to the scheduling algorithm, VMs will be suspended/resumed or
 relocated through the
 different hosts to ensure scheduling objectives and SLA guarantees.
-Researchers must implement the VMPP solver and the code in charge of
-applying the reconfiguration plan by leveraging \sg virtualization
-operations
-
-It is noteworthy that our framework really invokes the execution of
+We highlight that users must implement the algorithm in charge of
+solving the VMPP but also the code in charge of
+applying the reconfiguration plan by invoking the appropriate methods
+available through the \texttt{SimulatorManager} class.
+\AL{maybe it is better to prevent the access to Xhost and XVM methods
+  that can change the Simulator States. Hence, we should enforce the
+  access only through the SimulatorManager class ? What do you think ?}
+Last but not the least, It is noteworthy that our framework really invokes the execution of
 each scheduling strategy.  That is, the computation time that is observed
 is not simulated but corresponds to the effective one, only the
 workload inside the VMs and the migration operations are simulated in \sg.
