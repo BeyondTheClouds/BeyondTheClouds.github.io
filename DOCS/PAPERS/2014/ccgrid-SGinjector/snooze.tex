@@ -33,6 +33,7 @@ clients to contact the GL, \eg in order to submit new VMs for
 integration into the system.
 
 \paragraph{Algorithms}
+\label{sec:snoozeAlgs}
 
 Apart from the handling of faults (described below), two types of
 algorithms are of major importance for the administration of the
@@ -89,35 +90,96 @@ communication that is used, for example, in order to relay heartbeats
 is implemented as a dedicated actor that manages a state representing
 GL and GM heartbeat groups and relaying heartbeat events.
 
-The Snooze simulation closely mimics its real multi-threaded
-implementation in order to support maximal reactivity even for large
-groups of LCs (or GMs) that have to be managed by one GM (or GL).
+The Snooze simulation uses, as its original counterpart, a
+multi-threaded implementation in order to optimize reactivity even for
+large groups of LCs (or GMs) that have to be managed by one GM (or
+GL).
 
 \subsubsection{Variants}
 
-It is also possible to quite simply implement and simulate variants of
-the Snooze model that we have simulated. These variants represent
-interesting non-trivial evolutions of the original Snooze model that
-have not been explored as part of Snooze. Concretely, we present the
-following evolutions:
+Our simulation framework facilitates the simulation of variants of the
+basic Snooze model. In the following, we present three non-trivial
+evolutions that we have implemented and explored: periodic vs.\
+reactive scheduling, variants of the algorithms of how GMs and LCs
+join the system and load balancing on the GM level.
 
-\begin{itemize}
-  \item \textbf{Periodic vs.\ reactive scheduling:} 
-  \item \textbf{Load balancing:} Snooze's implementation assigns LCs
-    in a round-robin fashion. We can simply implement simulate other
-    asignment schemes, e.g., load balancing schemes.
-  \item \textbf{Variants of join algorithms:}
-    \begin{itemize}
-      \item \textbf{GMs rejoin on GM entry:} The Snooze
-        paper~\cite{feller:ccgrid12} states that all GMs should rejoin if a new
-        GMs enters the system (perhaps for load balancing). This is
-        implemented in the Snooze simulation. However, this strategy
-        makes the system instable, because of frequent joins of GMs
-        that are not available during a relatively long
-        time. Furthermore, this entails joins of many LCs. Overall
-        this strategy seems unreasonable.
-    \end{itemize}
-\end{itemize}
+\paragraph{Periodic vs.\ reactive scheduling}
+
+Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
+after a fixed time period a GM calls the scheduler in order to resolve
+resource conflicts among the LCs it manages. The information whether a
+resource conflict has to be handled is taken based on the summary
+information that is periodically sent by the LCs to the GM. 
+
+We have provided an alternative, reactive, strategy to scheduling: as
+soon as they occur, LCs avert their GMs of resource conflicts; the GMs
+then initiate scheduling. Implementing this reactive scheme can be
+done using our framework in two manners: either by implementing
+additional asynchronous transmissions as a real implementation of the
+necessary state updates would proceed or, in a much more lightweight
+manner, through direct accesses by the GMs to the states of their
+respective LCs. While the latter does not mimic a real implementation
+closely, it can be harnessed to yield a valid simulation: delays
+induced by communication in the ``real'' implementation, for instance,
+can be easily added as part of the lightweight simulation. We have
+implemented this lightweight variant of reactive scheduling.
+
+
+\paragraph{Variants of the join algorithms}
+
+The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to the
+correctness of Snooze for two main reasons: (i) they have to be
+efficient because they can easily form a bottleneck if large numbers
+of LCs (GMs) have to be registered at a GM (LC); (ii) they are
+multi-phase protocols whose correctness especially in the presence of
+faults is difficult to ensure.
+
+In order to investigate the corresponding trade-offs, we have used our
+framework to implement join algorithms that may be interrupted at any
+time, repeat the the on-going phase a number of times before
+reinitiating, if necessary, the entire protocol. Furthermore, the join
+protocol is parameterized, \eg, in the number of threads used to
+handle registration requests.
+
+Finally, our framework has enabled us to test another aspect of
+Snooze's join algorithm as presented by
+Feller~\etal.~\cite{feller:ccgrid12}, a strategy we call the GM rejoin
+strategy (GRJ): all GMs should rejoin if a new GM enters the
+system. While GRJ supports a form of load balancing (because all LCs
+are reassigned to the new set of GMs), our simulation has shown that
+this strategy significantly increases the time necessary for
+registering GMs and LCs compared to a simpler strategy that does not
+modify existing GMs in case a new GM enters the system. This handicap
+is particularly pronounced if joins of GMs may be interrupted due to
+faults. Concretely, experiments involving 20 GMs and 200 LCs have
+shown that this strategy often multiplies the time necessary to join
+all 220 components by 10 or more compared to the simple join
+strategy. While the qualitative result that the more complex strategy
+presented in the paper results in a more time-consuming join process
+is not very surprising, the extent of the resulting degradation was
+surprising.
+
+
+\paragraph{Load balancing at the GM level} 
+
+LCs are assigned to GMs by the GL as part of the LC join protocol. In
+Snooze's native implementation LCs are assigned in a round-robin
+fashion to the known GMs. If GMs join (and leave) the system at the
+same time as LCs, a round-robin strategy at join time, however, does
+not ensure an even distribution. In order to evaluate the imbalance
+resulting from a round-robin strategy (as well as others) we have
+implemented the LC assignment protocol in a modular fashion and
+applied it in diverse highly-dynamic settings in which GMs and LCs
+enter the system at the same time, fail and rejoin regularly (albeit
+with varying frequency). These experiments have been mostly performed
+with systems involving 20 GMs and 200 LCs. They have revealed
+occurrences of large imbalances that often range from 0-20 LCs per GM
+and sometimes result in individual GMs totaling more then 50 LCs.
+
+A global strategy (such as the GRJ introduced in the discussion of
+join algorithms above) may ensure a quite even distribution, but at a
+higher cost (possibly, a very high cost as we have shown for the GRJ).
+
 
 
 
