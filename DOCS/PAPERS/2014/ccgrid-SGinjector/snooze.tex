@@ -69,17 +69,29 @@ LC fails, its GM will finally learn of it due to the missing heartbeat
 and charge information of the LC. The GM will then remove the LC from
 its data structures.
 
-\subsubsection{Simulation with Simgrid}
+\subsubsection{Simulation using Simgrid}
 
 Snooze can be simulated using our model and tool support in a direct
-and natural manner.
+and natural manner. The extended abstractions \todo{Refer to
+  Sec.~\ref{sec:overview}} for hosts (\texttt{XHOST}) and VMs
+(\texttt{XVM}) provide low-level facilities for scheduling algorithms
+that facilitate the implementation of the Snooze simulation. We have
+harnessed these facilities in order to implement core characteristics
+of Snooze: the monitoring of all VMs that are part of an LC and the
+migration of all VMs of the set of LCs that are managed by a GM.
 
-\begin{itemize}
-  \item Representation of GLs, GMs, LCs
-  \item Multicast node
-  \item Multi-threading
-  \item Reaction to faults
-\end{itemize}
+The remaining concepts and algorithms of Snooze are implemented using
+means of our framework, the facilities provided by Simgrid and
+standard Java mechanisms. Communication between Snooze actors is
+implemented based on Simgrid's primitives for, mainly asynchronous,
+event handling; in particular, hardware-supported multicast
+communication that is used, for example, in order to relay heartbeats
+is implemented as a dedicated actor that manages a state representing
+GL and GM heartbeat groups and relaying heartbeat events.
+
+The Snooze simulation closely mimics its real multi-threaded
+implementation in order to support maximal reactivity even for large
+groups of LCs (or GMs) that have to be managed by one GM (or GL).
 
 \subsubsection{Variants}
 
