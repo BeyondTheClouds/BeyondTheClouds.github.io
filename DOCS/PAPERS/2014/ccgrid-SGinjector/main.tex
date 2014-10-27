@@ -339,11 +339,12 @@
 \input{include.tex}
 
 \newcommand{\sg}{SimGrid\xspace}
+\newcommand{\vmps}{VMps\xspace}
 \begin{document}
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{A Generic Tool to Investigate and Compare VM Placement Algorithms}
+\title{\vmps -- A Generic Tool to Investigate and Compare VM Placement Algorithms}
 
 
 % author names and affiliations
@@ -360,8 +361,6 @@
 
 \thispagestyle{plain}
 \pagestyle{plain}
-
-\MS[MS]{- Name for approach}
 
 \begin{abstract}
 %\boldmath
@@ -396,7 +395,7 @@ The abstract goes here.
 %\AL[AL]{1 page (including the abstract)}
 
 Although a lot of progress has been performed on Cloud Computing (CC)
-system managements, \aka Infrastructure-as-a-service
+system managements, \aka Infrastructure-as-a-Service
 toolkits~\cite{moreno:2012}, most of them
 are still leveraging
 elementary Virtual Machine (VM) placement policies that prevent them
@@ -444,12 +443,12 @@ possible, expensive and tedious tasks that might be counterproductive
 if conclusions are far from the expected ones.
 %
 
-In this article, we propose the first version of a dedicated
-simulation framework to perform in-depth investigations of placement
+In this article, we propose the first version of \vmps, a dedicated
+simulation framework to perform in-depth investigations of VM placement
 algorithms and compare them with each other in a fairly way. To cope with
 real conditions such as the increasingly scale of modern data
 centers and the dynamicity of the workloads that are specific to the
-Cloud Computing paradigm (\ie elasticity capability), our framework
+Cloud Computing paradigm (\ie elasticity capability), \vmps
 allows users to study large-scale scenarios taking into account server
 crashes and involving tens of thousands of VMs, each one executing a
 specific workload that evolves during the simulation lifetime.
@@ -462,14 +461,14 @@ to the algorithms that have the potential to handle Cloud Computing
 production infrastructures.
 
 %
-We chose to build our tool on the \sg
-framework~\cite{casanova:hal-01017319} since (i) its relevance in
+We chose to build our framewok on the \sg
+toolkit~\cite{casanova:hal-01017319} since (i) its relevance in
 terms of performance and validity has already been
-demonstrated~\cite{simgridpub} and (ii) because the framework has been
+demonstrated~\cite{simgridpub} and (ii) because it has been
 recently extended to integrate virtual machine abstractions and a live migration
 model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-To illustrate the relevance of our tool, we implemented three VMPP
+To illustrate the relevance of \vmps, we implemented three VMPP
 mechanisms \cite{Hermenier:2009:ECM:1508293.1508300}
 \cite{feller:ccgrid12} \cite{quesnel:cpe2012} and analysis the pros
 and cons of each them by discussing several metrics such as
@@ -482,7 +481,7 @@ software architecture models: centralized
 
 The rest of the article is organized as follow. Section \ref{sec:sg}
 gives an overview of the \sg framework.
-\ref{sec:injector} introduces our tool and discusses its general
+\ref{sec:injector} introduces \vmps and discusses its general
 functioning.
 The three algorithms implemented as first use-cases are presented in
 Section \ref{sec:vm-schedulers} and evaluated in Section
@@ -566,7 +565,7 @@ implementation of the new placement algorithm and evaluate how it
 behaves according to the different changes that occur during the
 simulation.
 %
-The framework has been implemented in JAVA by
+\vmps has been implemented in JAVA by
 leveraging the corresponding MSG API of \sg.  Although the JAVA layer
 has an impact of the efficiency of \sg, we believe it is rather
 acceptable in comparison to the benefit that brings JAVA  to researchers to
@@ -579,12 +578,12 @@ functioning.% and how researchers can develop new algorithms
 \subsection{Overview}
 \label{sec:overview}
 
-At coarse-grained, our framework proceeds a simulation in three
+At coarse-grained, \vmps proceeds a simulation in three
 phrases: (i) Initialization (ii) injection and (iii) traces analysis.
 The initialization phase corresponds to the creation of the
 environment, the VMs and the generation of the events queue. The
 injection phase corresponds to the step where the scheduling strategy
-is evaluated. Basically, it consists in at least two \sg processes,
+is evaluated. Basically, it consists of at least two \sg processes,
 one for the \emph{injector} and one for the scheduling algorithm.
 Regarding the \emph{injector}, this is the generic part of the
 framework. As it name suggest, it is in charge of injecting the
@@ -604,17 +603,17 @@ Throughout these three classes, users can get at any time, the current
 state of the infrastructure (\ie. the load of a  host/VM,
 the number of VMs hosted on the whole infrastructure or on a particular
 host, check whether one host is overloaded, etc.) To illustrate the
-development of schedulers, our framework is currently released with
+development of schedulers, \vmps is currently released with
 three scheduling mechanisms described in Section
 \ref{sec:vm-schedulers}. We choose this three mechanisms as they
 investigate three different software architecture models: centralized,
 hierarchical and distributed. Although we do not discuss that point
 due to space constraints, we emphasize that delivering those three
-mechanisms enables us to give concrete examples of
-how the deployment of the different \sg processes is done through a
-generic script.
+mechanisms enables us to deliver concrete examples of
+how the deployment file of \sg is automically generated by leveraging a
+generic python script.
 \AL{We should highlight that point in the README.org}
-
+\AL{We should explain the deployment file in the \sg section}
 The last phase consists in analyzing the collected traces in order to
 generate the different figures.
 
@@ -628,7 +627,7 @@ generate the different figures.
 % \end{itemize}
 
 \subsection{Initialization Phase}
-At the beginning, the framework creates $n$ VMs and assigns them in a
+At the beginning, \vmps creates $n$ VMs and assigns them in a
 round-robin manner on the $p$ first hosts defined in the platform file.
 The default platform file corresponds to a cluster of $p+s$ hosts,
 where $p$ corresponds to the number of hosting nodes and $s$ to the
@@ -658,8 +657,7 @@ For each VM creation, a random process selects one class (\ie one line) in the f
 Finally, all VMs start with a CPU consumption of 0 that will evolve during the simulation as
 explained below.
 
-Once the creation and the assignment of VMs is completed, the
-framework spawns at least two SG processes, the \emph{injector} and the
+Once the creation and the assignment of VMs is completed, \vmps spawns at least two SG processes, the \emph{injector} and the
 launcher of the selected scheduler.
 The first action of the \emph{injector} consists in creating the
 different events queues and merge them as a global one  that will be consumed during the second phase of the
@@ -680,7 +678,7 @@ CPU load of a VM evolves according to a Gaussian distribution defined by
 a particular mean ($\mu$) as well as a particular standard deviation
 ($\sigma$). $t, \mu and \sigma$ are given as input parameters of each
 simulation.
-As a CPU can fluctuate between 0 and 100\%, the framework
+As a CPU can fluctuate between 0 and 100\%, \vmps
 prevents to assign non-sense values  when the Gaussian distribution returns a
 number smaller than 0 or greater than 100. Although this has no impact
 of the execution of the simulation, we highlight that this can  reduce/increase the
@@ -700,13 +698,16 @@ parameters of each simulation.
 
 Adding new events can be easily done by simply defining new event
 java classes implementing the \texttt{InjectorEvent} interface and by
-adding the code in charge of generating the associated queue.
+adding the code in charge of generating the associated queue. Such a
+new queue will be merged to the global one and consume during the
+\emph{Injector Phase}.
 \AL[AL]{Future work: introduce network changes}
 
 \subsection{Injector Phase}
 Once the VMs and the global event queue are ready, the evaluation of the
-scheduling mechanism can start. On the first side, the injector will iteratively
-consumes the different events either by changing the load of a VM or
+scheduling mechanism can start. On the first side, the injector
+process will iteratively
+consumes the different events. That is for the moment, either by changing the load of a VM or
 by turning off/on a node.
 Changing the load of a VM corresponds to the
 creation and the assignment of a new \sg task in the VM. This new task has
@@ -735,7 +736,7 @@ available through the \texttt{SimulatorManager} class.
 \AL{maybe it is better to prevent the access to Xhost and XVM methods
   that can change the Simulator States. Hence, we should enforce the
   access only through the SimulatorManager class ? What do you think ?}
-Last but not the least, It is noteworthy that our framework really invokes the execution of
+Last but not the least, It is noteworthy that \vmps really invokes the execution of
 each scheduling strategy.  That is, the computation time that is observed
 is not simulated but corresponds to the effective one, only the
 workload inside the VMs and the migration operations are simulated in \sg.
