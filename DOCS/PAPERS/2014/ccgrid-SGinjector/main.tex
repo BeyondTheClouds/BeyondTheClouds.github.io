@@ -741,11 +741,35 @@ each scheduling strategy.  That is, the computation time that is observed
 is not simulated but corresponds to the effective one, only the
 workload inside the VMs and the migration operations are simulated in \sg.
 
-\AL{J'en suis ici.}
-
 \subsection{Traces Analysis}
-\AL[JP]{Could you please write a paragraph explaining the traces
-  analysis process.}
+\AL[JP]{Could you please complete this paragraph to deal with the JSON
+  extensions.}
+The last step of \vmps consists in analysing the
+information that has been collected during the simulation.
+% in order to understand and compare the behavior of the different
+% algorithms.
+This analysis is done in a two-step fashion. First, \vmps records
+several metrics related to the platform utilization throughout the
+simulation by leveraging an extended version of the TRACE
+module~\footnote{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}
+of \sg.
+While keeping the possibility of using visualization tool
+promoted by the \sg community such as PajeNG \cite{xxxx}, this extension enables the creation of a trace file in the
+JSON file format, which is  used, in a second time, to generate several figures
+using the R program.
+\AL[JP]{Add R citations}.
+
+By default,  \vmps records,  the load of the different VMs/hosts, the
+appearance and the duration of each SLA violation in the system, the number
+of migration, the number of times the scheduler mechanism has been
+invoked and the number of times it succeeds or fails to resolve the
+SLA violations.
+%
+Although such information are key elements to understand and
+compare the behavior of the different algorithms, we highlight that
+the TRACE API enables the creation of as many variable as necessary,
+allowing researchers to instrument their own algorithm with specific
+variables.
 
 \section{Dynamic VM Placement Algorithms}
 \label{sec:vm-schedulers}
