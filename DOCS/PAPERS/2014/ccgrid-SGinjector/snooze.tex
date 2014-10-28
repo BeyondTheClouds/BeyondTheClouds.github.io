@@ -1,10 +1,10 @@
-\subsection{Snooze}
+\subsection{Snooze-based Hierarchical Approach}
 \label{subsec:snooze}
 
 \AL[MS]{1.5 pages}
 
 We now present the Snooze framework for VM
-management~\cite{feller:ccgrid12} as a third case study of how
+management~\cite{feller:ccgrid12} as a second case study of how
 to implement and simulate advanced algorithms.
 
 \subsubsection{Overview}
@@ -54,7 +54,7 @@ charge information from LCs sent to their respective GMs and summary
 charge info sent by GMs to the GL.
 
 
-\paragraph{Fault tolerance} 
+\paragraph{Fault tolerance}
 
 GLs, GMs and LCs may fail during the system execution. System
 components identify that a node on the corresponding higher-level node
@@ -109,7 +109,7 @@ Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
 after a fixed time period a GM calls the scheduler in order to resolve
 resource conflicts among the LCs it manages. The information whether a
 resource conflict has to be handled is taken based on the summary
-information that is periodically sent by the LCs to the GM. 
+information that is periodically sent by the LCs to the GM.
 
 We have provided an alternative, reactive, strategy to scheduling: as
 soon as they occur, LCs avert their GMs of resource conflicts; the GMs
@@ -160,7 +160,7 @@ is not very surprising, the extent of the resulting degradation was
 surprising.
 
 
-\paragraph{Load balancing at the GM level} 
+\paragraph{Load balancing at the GM level}
 
 LCs are assigned to GMs by the GL as part of the LC join protocol. In
 Snooze's native implementation LCs are assigned in a round-robin
@@ -183,7 +183,7 @@ higher cost (possibly, a very high cost as we have shown for the GRJ).
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
-%%% End: 
+%%% End:
