@@ -770,6 +770,7 @@ workload inside the VMs and the migration operations are simulated in
 engine by invoking a \texttt{wait} MSG call.
 
 \subsection{Traces Analysis}
+\label{subsec:traces-analysis}
 The last step of \vmps consists in analysing the
 information that has been collected during the simulation.
 % in order to understand and compare the behavior of the different
@@ -799,48 +800,68 @@ variables.
 \section{Dynamic VM Placement Algorithms}
 \label{sec:vm-schedulers}
 To illustrate the interest of \vmps, we implemented three dynamic VM
-placement mechanisms: Entropy
+placement mechanisms respectively based on the Entropy
 \cite{Hermenier:2009:ECM:1508293.1508300}, Snooze
-\cite{feller:ccgrid12}, and DVMS \cite{quesnel:cpe2012}. For the three
+\cite{feller:ccgrid12}, and DVMS \cite{quesnel:cpe2012} proposals. For the three
 implementations, we chose to use the latest VMPP solver that has been
 developed as part of the Entropy
-framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}
-because we have a good expertise of it and because it is already the
-default one in the Entropy and DVMS proposals. Giving up consolidation
+framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}.
+
+%
+Giving up consolidation
 optimality in favor of scalability, this algorithm provides a ``repair
 mode'' that enables the correction of VM requirement violations (\aka
-SLA violations). Concretely, the algorithm considers that a host is
+SLA violations). The algorithm considers that a host is
 overloaded when the VMs try to consume more than 100\% of the CPU
-capacity of the host. At each invocation, the solver looks for the
-optimal viable configuration until it reaches a predefined timeout.
-The optimal solution is the one that implies the cheapest
-reconfiguration plan while satisfying resource during relocation
-operations. Once the timeout has been triggered, the algorithm returns
+capacity of the host. In such a case, the algorithm looks for
+an optimal viable configuration until it reaches a predefined timeout.
+The optimal solution is a new placement that satisfies
+the requirements of all VMs while minimizing the cost of the
+reconfiguration.
+Once the timeout has been triggered, the algorithm returns
 the best solution among the ones it finds and applies the associated
 reconfiguration plan by invoking live migrations in the simulation
 world.
+
 %
 Although using the Entropy VMPP solver
 implies a modification from the original Snooze proposal,  we
 highlight that our goal is to illustrate the capabilities of \vmps and
-thus we believe that such a modification is acceptable. Moreover by
-conducting such a study, we also investigate the pros and cons of
-three different architecture models (centralized, hierarchical and
+thus we believe that such a modification is acceptable as it does not
+change the global behavior of Snooze. Moreover by
+conducting such a comparison, we also investigate the pros and cons of
+the three  architecture models on which these proposals rely on (\ie centralized, hierarchical and
 distributed).
+
 %
 Before discussing the simulation results, we
 describe in this section an overview of the three implemented systems.
 
 \subsection{Entropy-based Centralized Approach}
 \label{subsec:entropy}
-Keeping in mind the VMPP description above, the centralized VM
-placement mechanism consists in one single \sg process
-deployed on a service node. It implements a simple loop
-that iteratively checks the viability of the current configuration by
-invoking every $p$ seconds the aforementioned VM placement solver.
-$p$ is defined as an input parameter of the simulation.
+The centralized VM placement mechanism consists in one single \sg
+process deployed on a service node. It implements a simple loop that
+iteratively checks the viability of the current configuration by
+invoking every $p$ seconds the aforementioned VMPP solver. $p$ is
+defined as an input parameter of the simulation. As mentioned in
+Section \ref{subsec:traces-analysis}, for each iteration, we monitor
+whether the VMPP solver suceeded or failed. In case of success, \vmps
+records the number of migration that has been performed and whether
+the application of the reconfiguration plan led to new violations.
+\AL{Should we explain the issue right now or not ? } Indeed, during
+the computation and the application of a schedule, the algorithm does
+not enforce QoS properties anymore, and thus cannot react quickly to
+violations. Second, since the manipulation of VMs is costly, the time
+needed to apply a new schedule is particularly important: The longer
+the reconfiguration process, the higher the risk that the schedule may
+be outdated, due to the workload fluctuations, when it is eventually
+applied.
+\vmps enables researchers to investigate such concerns in-depth.
+
 
 % Pas de titre de section : il se trouve dans le fichier
+\subsection{Snooze-based Hierarchical Approach}
+\label{subsec:snooze}
 \input{snooze.tex}
 
 \subsection{DVMS-based Distributed Approach}
