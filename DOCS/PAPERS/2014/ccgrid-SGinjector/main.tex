@@ -662,7 +662,7 @@ the VM is consuming 100\% of its CPU resources. This last parameter
 enables users to simulate different kinds of workload (\ie
 memory-intensive vs non-intensive), which is mandatory to be inline
 with real Cloud Computing conditions. We remind that the memory update
-speed is a critical parameters that governs the migration time as well
+speed is a critical parameter that governs the migration time as well
 as the amount of transferred data. Available classes are defined in a
 specific text file that can be modified according to the user's needs.
 For each VM creation, a process selects one class (\ie one line) in
@@ -670,6 +670,10 @@ the file randomly. Hence, if a user want to favor one class with
 respect to another one, it is as simple as repeating the line of the
 class more times. Finally, all VMs start with a CPU consumption of 0
 that will evolve during the simulation as explained below.
+We emphasize that each random process used in \vmps is initialized with a seed
+that is defined in a configuration file. By such a mean, we can ensure
+the reproducibility between the different simulations and thus fair
+comparisons.
 
 Once the creation and the assignment of VMs is completed, \vmps spawns at least two SG processes, the \emph{injector} and the
 launcher of the selected scheduler.
@@ -766,8 +770,6 @@ workload inside the VMs and the migration operations are simulated in
 engine by invoking a \texttt{wait} MSG call.
 
 \subsection{Traces Analysis}
-\AL[JP]{Could you please complete this paragraph to deal with the JSON
-  extensions.}
 The last step of \vmps consists in analysing the
 information that has been collected during the simulation.
 % in order to understand and compare the behavior of the different
@@ -777,16 +779,16 @@ several metrics related to the platform utilization throughout the
 simulation by leveraging an extended version of the \sg TRACE
 module~\footnote{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}.
 While keeping the possibility of using visualization tool
-promoted by the \sg community such as PajeNG \cite{xxxx}, this extension enables the creation of a trace file in the
+promoted by the \sg community such as PajeNG \cite{pageng:www},
+this extension enables the creation of a trace file in the
 JSON file format, which is  used, in a second time, to generate several figures
-using the R program.
-\AL[JP]{Add R citations.}
+using the R program \cite{R:Bloomfield:2014}.
 
-By default,  \vmps records,  the load of the different VMs/hosts, the
-appearance and the duration of each SLA violation in the system, the number
-of migration, the number of times the scheduler mechanism has been
-invoked and the number of times it succeeds or fails to resolve the
-SLA violations.
+By default, \vmps records, the load of the different VMs/hosts, the
+appearance and the duration of each VM requirements violation in the
+system, the number of migration, the number of times the scheduler
+mechanism has been invoked and the number of times it succeeds or
+fails to resolve the non viable configurations.
 %
 Although such information are key elements to understand and
 compare the behavior of the different algorithms, we highlight that
@@ -797,65 +799,46 @@ variables.
 \section{Dynamic VM Placement Algorithms}
 \label{sec:vm-schedulers}
 To illustrate the interest of \vmps, we implemented three dynamic VM
-placement mechanisms and compare them with each others. Each VM
-placement algorithm corresponds to a slightly modified version of the
-original one published respectively in
-\cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12} and
-\cite{quesnel:cpe2012}.
-
-The VMPP solver we used in the three implementations is the latest one
-that has been developed as part of the Entropy
-framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}.
-Giving up consolidation optimality in favor of scalability, this
-algorithm provides a `repair mode' that enables ``SLA violations'' to
-be corrected according to the requirements of VMs and placement
-constraints. At each invocation, the solver looks for the optimal
-viable configuration until it reaches a predefined timeout. The
-optimal solution is the one that implies the cheapest reconfiguration
-plan while satisfying resource and placement constraints during
-relocation operations. Once the timeout has been triggered, the
-algorithm returns the best solution among the ones it finds.
-Concretely, the algorithm considers that a host becomes overloaded
-when the VMs on the host try to consume more than 100\% of the CPU
-capacity of the host. When succeed, the algorithm returns the reconfiguration
-plan associated to the optimal configuration it founds.  The
-reconfiguration plan is then performed by the code that has invoked
-the solver, consisting in invoking  live migrations in the simulation world.
+placement mechanisms: Entropy
+\cite{Hermenier:2009:ECM:1508293.1508300}, Snooze
+\cite{feller:ccgrid12}, and DVMS \cite{quesnel:cpe2012}. For the three
+implementations, we chose to use the latest VMPP solver that has been
+developed as part of the Entropy
+framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}
+because we have a good expertise of it and because it is already the
+default one in the Entropy and DVMS proposals. Giving up consolidation
+optimality in favor of scalability, this algorithm provides a ``repair
+mode'' that enables the correction of VM requirement violations (\aka
+SLA violations). Concretely, the algorithm considers that a host is
+overloaded when the VMs try to consume more than 100\% of the CPU
+capacity of the host. At each invocation, the solver looks for the
+optimal viable configuration until it reaches a predefined timeout.
+The optimal solution is the one that implies the cheapest
+reconfiguration plan while satisfying resource during relocation
+operations. Once the timeout has been triggered, the algorithm returns
+the best solution among the ones it finds and applies the associated
+reconfiguration plan by invoking live migrations in the simulation
+world.
 %
-We chose this algorithm as we have a good expertise of it and because
-it is, as far as we know, one of the most advanced in terms of
-constraint placements and reconfiguration
-efficiency.
-\AL[MS]{maybe we can remove the part ``because it is ..'' and simply
-  make the transition with ``Moreover ..''}
+Although using the Entropy VMPP solver
+implies a modification from the original Snooze proposal,  we
+highlight that our goal is to illustrate the capabilities of \vmps and
+thus we believe that such a modification is acceptable. Moreover by
+conducting such a study, we also investigate the pros and cons of
+three different architecture models (centralized, hierarchical and
+distributed).
 %
-Moreover by using the same solver in the three implementations, we can
-discuss a typical use-case of \vmps aiming at studying the scalability
-and reactivity of three different architecture models (centralized,
-hierarchical and distributed). Before discussing the results, we
-describe in this section an overview of their design and how we
-implemented them into \vmps.
-
+Before discussing the simulation results, we
+describe in this section an overview of the three implemented systems.
 
 \subsection{Entropy-based Centralized Approach}
 \label{subsec:entropy}
-\AL[AL]{1 page}
-\AL{J'EN SUIS ICI}
-The centralized VM placement mechanism consists in one single \sg process
+Keeping in mind the VMPP description above, the centralized VM
+placement mechanism consists in one single \sg process
 deployed on a service node. It implements a simple loop
 that iteratively checks the viability of the current configuration by
-invoking the aforementioned VM placement resolver.
-
-The Entropy framework has been one of the first one to integrate
-% :~Minimizing the cost of reconfiguration between a non viable
-% configuration (i.e., a mapping between VMs and PMs) and a viable one
-
-In the following sections, we provide extensive sets of experimental data
-  that partially stem from simulations and partially from experiments
-  \emph{in vivo} on Grid'5000. We first provide
-  information on the hardware and software underlying each experiment
-  and then present the validation results.
-
+invoking every $p$ seconds the aforementioned VM placement solver.
+$p$ is defined as an input parameter of the simulation.
 
 % Pas de titre de section : il se trouve dans le fichier
 \input{snooze.tex}
