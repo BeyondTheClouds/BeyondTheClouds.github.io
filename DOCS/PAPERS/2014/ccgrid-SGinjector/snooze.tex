@@ -14,20 +14,26 @@ characteristics from its presentation~\cite{feller:ccgrid12} and
 additional info stemming from personal communications of the Snooze
 developers and its implementation~\cite{snoozedev14,snoozeweb}.
 
+\begin{figure}
+  {\centering \includegraphics[height=10mm]{figures/snoozearch.pdf}}
+  \caption{Overview of Snooze's architecture}
+  \label{fig:snoozearch}
+\end{figure}
+
 \paragraph{Architecture}
 
 Snooze harnesses a hierarchical architecture in order to support load
-balancing and fault tolerance. At the top of the hierarchy, a
-\emph{group leader (GL)} centralizes information about the whole
-cluster by keeping summary information about all \emph{group managers
-  (GMs)} that constitute the intermediate layer of the hierarchy. GMs
-manage a number of \emph{local controllers (LCs)}, each of which
-represent a node in a cluster and manage the VMs assigned to that
-node. During execution, higher level components periodically send
-heartbeats to lower-level components; monitoring information, \eg on
-the system load, is also sent periodically in the opposite
-direction. In order to propagate information down the hierarchy,
-Snooze relies on hardware support for multicast
+balancing and fault tolerance, see Fig.~\ref{fig:snoozearch}. At the
+top of the hierarchy, a \emph{group leader (GL)} centralizes
+information about the whole cluster by keeping summary information
+about all \emph{group managers (GMs)} that constitute the intermediate
+layer of the hierarchy. GMs manage a number of \emph{local controllers
+  (LCs)}, each of which represent a node in a cluster and manage the
+VMs assigned to that node. During execution, higher level components
+periodically send heartbeats to lower-level components; monitoring
+information, \eg on the system load, is also sent periodically in the
+opposite direction. In order to propagate information down the
+hierarchy, Snooze relies on hardware support for multicast
 communication. Finally, a number of replicated entry points allows
 clients to contact the GL, \eg in order to submit new VMs for
 integration into the system.
