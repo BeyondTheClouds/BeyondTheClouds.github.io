@@ -412,7 +412,9 @@ definitely not optimal for CC providers, since the effective resource
 requirements of each operated VM may significantly vary during its
 execution.
 %%%%%%%
-
+\AL[MS]{Ca va pas la transition, il manque un keeping using greedy ...
+parce que sinon le faire de dire que les static approaches sont
+utilisés dans les IaaS c'est deja dit au dessus :(}
 Greedy, static allocation approaches are employed in most available
 IaaS toolkits~\cite{openstack, opennebula, cloudstack}, a rather
 surprising fact as the Virtual Machine Placement Problem (VMPP) has
@@ -429,15 +431,55 @@ proposals have been evaluated either by leveraging ad-hoc simulators
 or small testbeds. These evaluation environments are not accurate and not
 representative enough to (i) ensure their correctness on real
 platforms and (ii) perform fair comparisons between them.
+
+%
+\begin{figure}[ht]
+\vspace*{-.2cm}
+\begin{center}
+        \subcapcentertrue
+        \subfigure[Scheduling steps]{
+        \includegraphics[width=.45\linewidth]{figures/scheduling_steps.pdf}
+        \label{fig:scheduling_steps}}
+        \subfigure[Workload fluctuations during scheduling]{
+        \includegraphics[width=.45\linewidth]{figures/workload_fluctuations2.pdf}
+        \label{fig:workload_fluctuations}}
+\vspace*{-.2cm}
+\caption{VM scheduling in a master/worker architecture}
+\end{center}
+\label{fig:scheduling}
+\vspace*{-.2cm}
+\end{figure}
+%
+Each VMPP mechanism is a complex system that can face
+important side-effects during each of its stages: Monitoring the
+resources usages, computing the schedule and applying the
+reconfiguration (see Figure \ref{fig:scheduling_steps}).
+%
+%
+As an example, a single master architecture can lead, \textit{a priori} to
+important drawbacks. First, during the computation and the application
+of a schedule, a single master cannot take into account new VM
+requirement violations. Second, the time needed to apply a new
+schedule can be particularly important: The longer the reconfiguration
+process, the higher the risk that the schedule may be outdated, due to
+the workload fluctuations, when it is eventually applied (see Figure
+\ref{fig:workload_fluctuations}). Finally, a single master node can
+lead to well-known fault-tolerance issues: A group of VMs may be
+temporarily isolated from the master node in case of a network
+disconnection or if the master node crashes.
 %
 Implementing each proposal and evaluating it on representative
 testbeds in terms of scalability, reliability and workload changes
-would definitely be the most rigorous way to validate and compare
-them. However,  conducting \textit{in-vivo}
+would definitely be the most rigorous way to observe and propose
+appropriate solutions to aforementioned
+side-effects.
+% and compare  with existing proposals.
+ However, conducting \textit{in-vivo}
 \AL[MS]{Je vois pas ce qui n'est pas bon. Je dis juste que faire des
   expes réels, quand c'est possible c'est d'une part galere et d'autre
 part ca peut etre complement inutile si les resultats sont clairement
-pas ceux attendus. Ca me parait correcte !?} (\ie real-world) experiments implies,
+pas ceux attendus. Ca me parait correcte !?} (\ie real-world)
+experiments implies,
 when it is possible, expensive and tedious tasks that might be
 counterproductive if conclusions are far from the expected ones.
 %
