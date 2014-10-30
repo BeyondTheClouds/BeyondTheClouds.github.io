@@ -394,105 +394,101 @@ The abstract goes here.
 \label{sec:intro}
 %\AL[AL]{1 page (including the abstract)}
 
-Although a lot of progress has been performed on Cloud Computing (CC)
+Although a lot of progress has been made on Cloud Computing (CC)
 system managements, \aka Infrastructure-as-a-Service
-toolkits~\cite{moreno:2012}, most of them
-are still leveraging
+toolkits~\cite{moreno:2012}, most of them are still leveraging
 elementary Virtual Machine (VM) placement policies that prevent them
-to guarantee performance Service Level Agreements (SLAs) while
+from guaranteeing high levels of Service Level Agreement (SLA) and
 finely maximizing the usage of CC resources.
 %to maximize the CC providers revenues.
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
-Generally, a batch scheduler
-approach is used: VMs are
-(i)~allocated according to user requests for resource reservations,
-and (ii)~tied to the nodes where they were deployed until their
-destruction. Besides the fact that user requests are often
-overestimated, such policies are definitely not optimal for
-CC providers, since the effective
-resource requirements of each operated VM may significantly vary
-during its execution.
+Typically, a batch scheduling approach is used: VMs are (i)~allocated
+according to user requests for resource reservations, and (ii)~tied to
+the nodes where they were deployed until their destruction. Besides
+the fact that user requests are often overestimated, such policies are
+definitely not optimal for CC providers, since the effective resource
+requirements of each operated VM may significantly vary during its
+execution.
 %%%%%%%
 
-Keep using  greedy allocation approaches in most of available IaaS
-toolkits~\cite{openstack, opennebula, cloudstack} looks surprising
-as the Virtual Machine Placement Problem (VMPP) has been addressed a
-lot by the research community. Dynamic strategies such as
-consolidation,  load-balancing and other SLAs guarantee algorithms
-have been deeply investigated
+Greedy, static allocation approaches are employed in most available
+IaaS toolkits~\cite{openstack, opennebula, cloudstack}, a rather
+surprising fact as the Virtual Machine Placement Problem (VMPP) has
+been addressed frequently by the research community. Dynamic
+strategies such as consolidation, load balancing and other
+SLA-ensuring algorithms have been deeply investigated
 \cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
-\cite{quesnel:cpe2012},
-\cite{5935254}, \cite{5715067}, \cite{5328077}.
+\cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
+\cite{5328077}.
 % under different software-architecture models (centralized
 %\cite{Hermenier:2009:ECM:1508293.1508300}, hierarchical
 %\cite{feller:ccgrid12} or distributed \cite{quesnel:cpe2012}).
-From our point of view, a brake on the adoption of such advanced strategies is
-related to the experimental process that has been used to validate the
-pros and cons of each of them: Most of VMPP proposals have been
-evaluated either by leveraging ad-hoc simulators or on testbeds that
-in both cases are not accurate and not representative enough to (i)
-ensure their correctness on real platforms and (ii) perform fair
-comparisons between each of them.
+From our point of view, an important impediment to the adoption of
+such advanced strategies is related to the experimental process that
+has been used to validate the pros and cons of each of them: most VMPP
+proposals have been evaluated either by leveraging ad-hoc simulators
+or testbeds. These evaluation environments are not accurate and not
+representative enough to (i) ensure their correctness on real
+platforms and (ii) perform fair comparisons between them.
 %
-Implementing each proposal and evaluating them on representative
+Implementing each proposal and evaluating it on representative
 testbeds in terms of scalability, reliability and workload changes
-would definitely be the most rigorous way to validate and compare all
-of them. However, delivering a prototype and conducting
-\textit{in-vivo} (\ie real-world) experiments imply, when it is
-possible, expensive and tedious tasks that might be counterproductive
-if conclusions are far from the expected ones.
+would definitely be the most rigorous way to validate and compare
+them. However, delivering a prototype and conducting \textit{in-vivo}
+\todo{Phrase incomprehensible} (\ie real-world) experiments imply,
+when it is possible, expensive and tedious tasks that might be
+counterproductive if conclusions are far from the expected ones.
 %
 
-In this article, we propose the first version of \vmps, a dedicated
-simulation framework to perform in-depth investigations of VM placement
-algorithms and compare them with each other in a fairly way. To cope with
-real conditions such as the increasingly scale of modern data
-centers and the dynamicity of the workloads that are specific to the
-Cloud Computing paradigm (\ie elasticity capability), \vmps
-allows users to study large-scale scenarios taking into account server
-crashes and involving tens of thousands of VMs, each one executing a
-specific workload that evolves during the simulation lifetime.
+In this article, we propose % the first version of
+\vmps, a dedicated simulation framework to perform in-depth
+investigations of VM placement algorithms and compare them with each
+other in a fair way. To cope with real conditions such as the
+increasing scale of modern data centers and the dynamicity of the
+workloads that are specific to the Cloud Computing paradigm, notably
+its elasticity capacity, \vmps allows users to study large-scale
+scenarios that taking into account server crashes and that involve
+tens of thousands of VMs, each one executing a specific workload that
+evolves during the simulation lifetime.
 
-We believe that such a tool will contribute to
-our community as it will enable researchers to quickly identify and
-compare the trends of a new proposal with existing ones. By such a
-mean, it will be possible to limit \textit{in vivo} experiments only
-to the algorithms that have the potential to handle CC
+We believe that such a tool will be beneficial to a large number of
+researchers in the field of CC as it enables them to quickly validate
+the characteristics of a new proposal and compare it with existing
+ones. This way, our approach allows \textit{in vivo} experiments to be
+restricted to algorithms that have the potential to handle CC
 production infrastructures.
 
 %
-We chose to build \vmps on the \sg
-toolkit~\cite{casanova:hal-01017319} since (i) its relevance in
-terms of performance and validity has already been
-demonstrated~\cite{simgridpub} and (ii) because it has been
-recently extended to integrate virtual machine abstractions and a live migration
-model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+We chose to build \vmps on top of the \sg
+toolkit~\cite{casanova:hal-01017319} since (i) its relevance in terms
+of performance and validity has already been
+demonstrated~\cite{simgridpub} and (ii) because it has been recently
+extended to integrate virtual machine abstractions and a live
+migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-To illustrate the relevance of \vmps, we implemented three VMPP
-mechanisms \cite{Hermenier:2009:ECM:1508293.1508300},
-\cite{feller:ccgrid12}, \cite{quesnel:cpe2012}, and analysis the pros
-and cons of each of them by discussing several metrics such as
-scalability, reliability and reactivity (\ie the time to solve a SLA
-violation). Besides being cited several times in the literature, we
-chose these three systems as they are built on three different
-software architecture models: centralized
-\cite{Hermenier:2009:ECM:1508293.1508300}, hierarchical
-\cite{feller:ccgrid12} and fully distributed \cite{quesnel:cpe2012}.
+To illustrate the relevance of \vmps, we implemented the essential
+mechanisms of three well-known VMPP approaches:
+Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
+Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}. We
+have investigated their characteristics by analyzing their
+scalability, reliability and reactivity (\ie the time to solve an SLA
+violation). Besides being well-known from the literature, we chose
+these three systems as they are built on three different software
+architecture models: Entropy uses a centralized model, Snooze a
+hierarchical one and DVMS a fully distributed one.
 
 The experiments reveal ...
 \AL[AL]{What the experiments reveal at the end ? }
 
-The rest of the article is organized as follow. Section \ref{sec:sg}
-gives an overview of the \sg framework.
-\ref{sec:injector} introduces \vmps and discusses its general
-functioning.
-The three algorithms implemented as first use-cases are presented in
-Section \ref{sec:vm-schedulers} and evaluated in Section
-\ref{sec:experiments}.
-Section \ref{sec:related} deals with related work and
-finally, Section \ref{sec:conclusion} concludes and gives some perspective of this
-work.
+The rest of the article is organized as follow. Section~\ref{sec:sg}
+gives an overview of the \sg framework.  \ref{sec:injector} introduces
+\vmps and discusses its general functioning.  The three algorithms
+implemented as use-cases are presented in
+Section~\ref{sec:vm-schedulers} and evaluated in
+Section~\ref{sec:experiments}.  Section~~\ref{sec:related} and
+Section~\ref{sec:conclusion} present, respectively, related work as
+well as a conclusion and future work.
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
