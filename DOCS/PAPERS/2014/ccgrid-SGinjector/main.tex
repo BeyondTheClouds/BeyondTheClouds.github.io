@@ -398,9 +398,10 @@ Although a lot of progress has been made on Cloud Computing (CC)
 system managements, \aka Infrastructure-as-a-Service
 toolkits~\cite{moreno:2012}, most of them are still leveraging
 elementary Virtual Machine (VM) placement policies that prevent them
-from guaranteeing high levels of Service Level Agreement (SLA) and
-finely maximizing the usage of CC resources.
-%to maximize the CC providers revenues.
+% AL -> MS, blabla and blibli -> blabla WHILE bliblibli, I want to
+% highlight that both objectives should be addressed simultaneously
+from maximizing the usage of CC resources while guaranteeing VM
+resources requirements, \aka Service Level Agreements (SLAs).
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
 Typically, a batch scheduling approach is used: VMs are (i)~allocated
@@ -421,9 +422,6 @@ SLA-ensuring algorithms have been deeply investigated
 \cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
 \cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
 \cite{5328077}.
-% under different software-architecture models (centralized
-%\cite{Hermenier:2009:ECM:1508293.1508300}, hierarchical
-%\cite{feller:ccgrid12} or distributed \cite{quesnel:cpe2012}).
 From our point of view, an important impediment to the adoption of
 such advanced strategies is related to the experimental process that
 has been used to validate the pros and cons of each of them: most VMPP
@@ -457,9 +455,11 @@ evolves during the simulation lifetime.
 
 We believe that such a tool will be beneficial to a large number of
 researchers in the field of CC as it enables them to quickly validate
-the characteristics of a new proposal and compare it with existing
+% AL->MS the characterisctics -> the trends,  simulations are
+% well-known scientific intrusments to validate trends (and only trends).
+the trends of a new proposal and compare it with existing
 ones. This way, our approach allows \textit{in vivo} experiments to be
-restricted to algorithms that have the potential to handle CC
+restricted to VMPP mechanisms that have the potential to handle CC
 production infrastructures.
 
 %
@@ -489,7 +489,7 @@ gives an overview of the \sg framework.  \ref{sec:injector} introduces
 \vmps and discusses its general functioning.  The three algorithms
 implemented as use-cases are presented in
 Section~\ref{sec:vm-schedulers} and evaluated in
-Section~\ref{sec:experiments}.  Section~~\ref{sec:related} and
+Section~\ref{sec:experiments}.  Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
 
