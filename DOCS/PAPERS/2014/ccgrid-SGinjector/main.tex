@@ -415,22 +415,24 @@ execution.
 \AL[MS]{Ca va pas la transition, il manque un keeping using greedy ...
 parce que sinon le faire de dire que les static approaches sont
 utilisés dans les IaaS c'est deja dit au dessus :(}
-Greedy, static allocation approaches are employed in most available
-IaaS toolkits~\cite{openstack, opennebula, cloudstack}, a rather
-surprising fact as the Virtual Machine Placement Problem (VMPP) has
-been addressed frequently by the research community. Dynamic
-strategies such as consolidation, load balancing and other
-SLA-ensuring algorithms have been deeply investigated
+
+It is rather surprising that most available IaaS
+toolkits~\cite{openstack, opennebula, cloudstack} continue to rely on
+greedy, static allocation approaches as more flexible and often more
+efficient approaches to the Virtual Machine Placement Problem (VMPP)
+have been developed by the research community. Dynamic strategies such
+as consolidation, load balancing and other SLA-ensuring algorithms
+have been deeply investigated
 \cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
 \cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
-\cite{5328077}.
-From our point of view, an important impediment to the adoption of
-such advanced strategies is related to the experimental process that
-has been used to validate the pros and cons of each of them: most VMPP
-proposals have been evaluated either by leveraging ad-hoc simulators
-or small testbeds. These evaluation environments are not accurate and not
-representative enough to (i) ensure their correctness on real
-platforms and (ii) perform fair comparisons between them.
+\cite{5328077}.  From our point of view, an important impediment to
+the adoption of such advanced strategies is related to the
+experimental process that has been used to validate the pros and cons
+of each of them: most VMPP proposals have been evaluated either by
+leveraging ad-hoc simulators or small testbeds. These evaluation
+environments are not accurate and not representative enough to (i)
+ensure their correctness on real platforms and (ii) perform fair
+comparisons between them.
 
 %
 \begin{figure}[ht]
