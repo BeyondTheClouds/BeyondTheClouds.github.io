@@ -607,23 +607,22 @@ simulator toolkit introduced in the next section.
 \label{sec:injector}
 \AL[AL]{1.5 page}
 
-The purpose of \vmps is to deliver a generic tool
-to evaluate new VM placement algorithms and offer the possibility to
-compare them each other. Concretely, it consists of a piece of code in
-charge of managing VM creations, workload fluctuation changes as well
-as node apparitions/removals so that researchers can focus on the
-implementation of the new placement algorithm and evaluate how it
-behaves according to the different changes that occur during the
-simulation.
+The purpose of \vmps is to deliver a generic tool to evaluate new VM
+placement algorithms and offer the possibility to compare
+them. Concretely, it supports the management of VM creations, workload
+fluctuations as well as node apparitions/removals.  Researchers can
+thus focus on the implementation of new placement algorithms and
+evaluate how it behaves according to the different changes that occur
+during the simulation.
 %
-\vmps has been implemented in JAVA by
-leveraging the corresponding MSG API of \sg.  Although the JAVA layer
-has an impact of the efficiency of \sg, we believe it is rather
-acceptable in comparison to the benefit that brings JAVA  to researchers to
-implement advanced scheduling strategies.
-\AL[JP]{Should we talk about SCALA ?}
+\vmps has been implemented in Java by leveraging the messaging API
+(MSG) of \sg.  Although the Java layer has an impact of the efficiency
+of \sg, we believe its use is acceptable because of the benefits that
+Java offers researchers for the implementation of advanced scheduling
+strategies, notably concerning the ease of implementation of new
+strategies. \AL[JP]{Should we talk about SCALA ?}
 
-After giving an overview of the framework, we describe  its general
+After giving an overview of the framework, we describe its general
 functioning.% and how researchers can develop new algorithms
 
 \subsection{Overview}
