@@ -10,9 +10,6 @@ We first briefly present the Snooze architecture summarizing its main
 characteristics from its presentation~\cite{feller:ccgrid12} and
 additional info stemming from personal communications of the Snooze
 developers and its implementation~\cite{snoozedev14,snoozeweb}.
-\AL[MS]{Could you please clarify the figure: where does the LC run ?
-  I thought that there is one LC on each host ? Here we get the
-  feeling that LCs run on distinct nodes ?}
 \begin{figure}
   {\centering ~\includegraphics[width=.95\linewidth]{figures/snoozearch.pdf}}
   \caption{Overview of Snooze's architecture}
@@ -23,18 +20,19 @@ developers and its implementation~\cite{snoozedev14,snoozeweb}.
 
 Snooze harnesses a hierarchical architecture in order to support load
 balancing and fault tolerance, see Fig.~\ref{fig:snoozearch}. At the
-top of the hierarchy, a \emph{group leader (GL)} centralizes
-information about the whole cluster by keeping summary information
-about all \emph{group managers (GMs)} that constitute the intermediate
-layer of the hierarchy. GMs manage a number of \emph{local controllers
-  (LCs)}, each of which represent a node in a cluster and manage the
-VMs assigned to that node. During execution, higher level components
-periodically send heartbeats to lower-level components; monitoring
-information, \eg on the system load, is also sent periodically in the
-opposite direction. In order to propagate information down the
-hierarchy, Snooze relies on hardware support for multicast
-communication. Finally, a number of replicated entry points allows
-clients to contact the GL, \eg in order to submit new VMs for
+top of the hierarchy, a \emph{group leader (GL)} (that is installed on
+a service node in our simulation) centralizes information about the
+whole cluster by keeping summary information about all \emph{group
+  managers (GMs)} (also installed on service nodes in our simulation)
+that constitute the intermediate layer of the hierarchy. GMs manage a
+number of \emph{local controllers (LCs)} (installed on an ordinary
+node) and manages the VMs assigned to that node. During execution,
+higher-level components periodically send heartbeats to lower-level
+components; monitoring information, \eg on the system load, is also
+sent periodically in the opposite direction. In order to propagate
+information down the hierarchy, Snooze relies on hardware support for
+multicast communication. Finally, a number of replicated entry points
+allows clients to contact the GL, \eg in order to submit new VMs for
 integration into the system.
 
 \paragraph{Algorithms}
