@@ -431,45 +431,45 @@ environments are not accurate and not representative enough to (i)
 ensure their correctness on real platforms and (ii) perform fair
 comparisons between them.
 
-%
-\begin{figure}[ht]
-\vspace*{-.2cm}
-\begin{center}
-        \subcapcentertrue
-        \subfigure[Scheduling steps]{
-        \includegraphics[width=.45\linewidth]{figures/scheduling_steps.pdf}
-        \label{fig:scheduling_steps}}
-        \subfigure[Workload fluctuations during scheduling]{
-        \includegraphics[width=.45\linewidth]{figures/workload_fluctuations2.pdf}
-        \label{fig:workload_fluctuations}}
-\vspace*{-.2cm}
-\caption{VM scheduling in a master/worker architecture}
-\end{center}
-\label{fig:scheduling}
-\vspace*{-.2cm}
-\end{figure}
-%
-\MS[AL]{Must we keep the fig.: the arguments of complexity and time
-  requirements are already made in the remainder of the intro. If we
-  keep it, the discussion should be simplified.}
-Each VMPP mechanism is a complex system that can face
-important side-effects during each of its stages: Monitoring the
-resources usages, computing the schedule and applying the
-reconfiguration (see Figure \ref{fig:scheduling_steps}).
-%
-%
-As an example, a single master architecture can lead, \textit{a priori} to
-important drawbacks. First, during the computation and the application
-of a schedule, a single master cannot take into account new VM
-requirement violations. Second, the time needed to apply a new
-schedule can be particularly important: The longer the reconfiguration
-process, the higher the risk that the schedule may be outdated, due to
-the workload fluctuations, when it is eventually applied (see Figure
-\ref{fig:workload_fluctuations}). Finally, a single master node can
-lead to well-known fault-tolerance issues: A group of VMs may be
-temporarily isolated from the master node in case of a network
-disconnection or if the master node crashes.
-%
+% %
+% \begin{figure}[ht]
+% \vspace*{-.2cm}
+% \begin{center}
+%         \subcapcentertrue
+%         \subfigure[Scheduling steps]{
+%         \includegraphics[width=.45\linewidth]{figures/scheduling_steps.pdf}
+%         \label{fig:scheduling_steps}}
+%         \subfigure[Workload fluctuations during scheduling]{
+%         \includegraphics[width=.45\linewidth]{figures/workload_fluctuations2.pdf}
+%         \label{fig:workload_fluctuations}}
+% \vspace*{-.2cm}
+% \caption{VM scheduling in a master/worker architecture}
+% \end{center}
+% \label{fig:scheduling}
+% \vspace*{-.2cm}
+% \end{figure}
+% %
+% \MS[AL]{Must we keep the fig.: the arguments of complexity and time
+%   requirements are already made in the remainder of the intro. If we
+%   keep it, the discussion should be simplified.}
+% Each VMPP mechanism is a complex system that can face
+% important side-effects during each of its stages: Monitoring the
+% resources usages, computing the schedule and applying the
+% reconfiguration (see Figure \ref{fig:scheduling_steps}).
+% %
+% %
+% As an example, a single master architecture can lead, \textit{a priori} to
+% important drawbacks. First, during the computation and the application
+% of a schedule, a single master cannot take into account new VM
+% requirement violations. Second, the time needed to apply a new
+% schedule can be particularly important: The longer the reconfiguration
+% process, the higher the risk that the schedule may be outdated, due to
+% the workload fluctuations, when it is eventually applied (see Figure
+% \ref{fig:workload_fluctuations}). Finally, a single master node can
+% lead to well-known fault-tolerance issues: A group of VMs may be
+% temporarily isolated from the master node in case of a network
+% disconnection or if the master node crashes.
+% %
 Implementing each proposal and evaluating it on representative
 testbeds in terms of scalability, reliability and workload changes
 would definitely be the most rigorous way to observe and propose
