@@ -629,7 +629,8 @@ general functioning.% and how researchers can develop new algorithms
 \label{sec:overview}
 
 From a high-level view, \vmps performs a simulation in three phases:
-(i) initialization (ii) injection and (iii) trace analysis.  The
+(i) initialization (ii) injection and (iii) trace analysis (see Figure
+\ref{fig:workflow}).  The
 initialization phase corresponds to the creation of the environment,
 the VMs and the generation of the event queue. During the injection
 phase the scheduling strategy is evaluated. Basically, it consists of
@@ -639,6 +640,16 @@ second one executing the to-be-simulated scheduling algorithm.  The
 injects scheduling-relevant events during the execution of
 simulations.  Currently, the supported events are VM CPU load changes
 and node apparitions/removals.
+
+\begin{figure}
+  {\centering ~\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.png}}
+  \caption{\vmps's Workflow}
+  \label{fig:workflow}
+{\small Gray parts correspond to the generic code while the white one
+  must be provided by end-users. The current version is released with
+  three different mechanisms (centralized/hierarchical and distributed).}
+\end{figure}
+
 % As we describe in the next section, additional events can be easily added.
 \AL[AL]{Make two figures: a architectural one (i.e. Injector vs
   schedulers pool and one chronological.}
