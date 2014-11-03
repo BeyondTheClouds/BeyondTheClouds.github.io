@@ -362,9 +362,32 @@
 \thispagestyle{plain}
 \pagestyle{plain}
 
-\begin{abstract}
-%\boldmath
-The abstract goes here.
+\begin{abstract} %\boldmath
+    Most current infrastructures for cloud computing leverage static
+    and greedy policies for the placement of virtual machines. Such
+    policies impede the optimal allocation of resources and the
+    satisfaction of operational guarantees like service-level
+    agreements. In recent years, more dynamic and often more efficient
+    policies based, \eg on consolidation and load balancing
+    techniques, have been developed and investigated. New policies are
+    typically evaluated either using testbeds or \emph{in-vivo}
+    experiments. However, due to the underlying complexity of cloud
+    infrastructures, testbeds typically have to be tailored to
+    specific restricted configurations and experiments on real
+    infrastructures are necessarily of limited scale.
+
+    In this article, we propose \vmps, a dedicated simulation
+    framework to perform in-depth investigations of VM placement
+    algorithms and compare them in a fair way. This framework, built
+    on top of the \sg simulation platform, notably provides
+    programming support to easy the implementation of placement
+    algorithms and runtime support dedicated to load injection and
+    execution trace analysis. \vmps supports the simulation of a large
+    set of real-world configurations, while allowing researchers to
+    conduct experiments at large scales. We also report on a
+    validation of our framework by implementing and investigating
+    representative algorithms for three classes of placement
+    algorithms: centralized, hierarchical and fully-distributed ones.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -394,39 +417,43 @@ The abstract goes here.
 \label{sec:intro}
 %\AL[AL]{1 page (including the abstract)}
 
-Although a lot of progress has been made on Cloud Computing (CC)
-system managements, \aka Infrastructure-as-a-Service
-toolkits~\cite{moreno:2012}, most of them are still leveraging
-elementary Virtual Machine (VM) placement policies that prevent them
+A lot of progress has been made on Cloud Computing (CC) system
+management, in particular through Infrastructure-as-a-Service
+toolkits~\cite{moreno:2012}. However, most of these infrastructures
+are still leveraging elementary Virtual Machine (VM) placement
+policies that prevent them
 % AL -> MS, blabla and blibli -> blabla WHILE bliblibli, I want to
 % highlight that both objectives should be addressed simultaneously
 from maximizing the usage of CC resources while guaranteeing VM
-resources requirements, \aka Service Level Agreements (SLAs).
+resource requirements as defined by Service Level Agreements (SLAs).
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
-Typically, a batch scheduling approach is used: VMs are (i)~allocated
-according to user requests for resource reservations, and (ii)~tied to
-the nodes where they were deployed until their destruction. Besides
-the fact that user requests are often overestimated, such policies are
-definitely not optimal for CC providers, since the effective resource
-requirements of each operated VM may significantly vary during its
-execution.
+Typically, a batch scheduling approach is used: VMs (i)~are allocated
+according to user requests for resource reservations, and (ii)~are
+tied to the nodes where they were deployed until their
+destruction. Besides the fact that users often overestimate their
+resource requirements, such policies are definitely not optimal for CC
+providers, since the effective resource requirements of each operated
+VM may significantly vary during its lifetime.
 %%%%%%%
 
-It is rather surprising that most available IaaS
-toolkits~\cite{openstack, opennebula, cloudstack} continue to rely on
-greedy, static allocation approaches as more flexible and often more
-efficient approaches to the Virtual Machine Placement Problem (VMPP)
-have been developed by the research community. Dynamic strategies such
-as consolidation, load balancing and other SLA-ensuring algorithms
-have been deeply investigated
+\MS{Rather underline the ``more efficient strategies'' instead of
+  ``surprise'' because new approaches may not be mature enough?}  It
+is rather surprising that most available IaaS toolkits, notably many
+of the most popular ones~\cite{openstack, opennebula, cloudstack},
+continue to rely on greedy, static allocation approaches as more
+flexible and often more efficient approaches to the Virtual Machine
+Placement Problem (VMPP) have been developed by the research
+community. Dynamic strategies such as consolidation, load balancing
+and other SLA-ensuring algorithms have been deeply investigated
 \cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
 \cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
-\cite{5328077}.  From our point of view, an important impediment to
-the adoption of such advanced strategies is related to the
-experimental process that has been used to validate the pros and cons
-of each of them: most VMPP proposals have been evaluated either by
-leveraging ad-hoc simulators or small testbeds. These evaluation
+\cite{5328077}.  \MS{Be more assertive on the motivation: previous
+  articles for justification?}  From our point of view, an important
+impediment to the adoption of such advanced strategies is related to
+the experimental process that has been used to validate the pros and
+cons of each of them: most VMPP proposals have been evaluated either
+by leveraging ad-hoc simulators or small testbeds. These evaluation
 environments are not accurate and not representative enough to (i)
 ensure their correctness on real platforms and (ii) perform fair
 comparisons between them.
