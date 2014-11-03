@@ -362,9 +362,32 @@
 \thispagestyle{plain}
 \pagestyle{plain}
 
-\begin{abstract}
-%\boldmath
-The abstract goes here.
+\begin{abstract} %\boldmath
+    Most current infrastructures for cloud computing leverage static
+    and greedy policies for the placement of virtual machines. Such
+    policies impede the optimal allocation of resources and the
+    satisfaction of operational guarantees like service-level
+    agreements. In recent years, more dynamic and often more efficient
+    policies based, \eg on consolidation and load balancing
+    techniques, have been developed and investigated. New policies are
+    typically evaluated either using testbeds or \emph{in-vivo}
+    experiments. However, due to the underlying complexity of cloud
+    infrastructures, testbeds typically have to be tailored to
+    specific restricted configurations and experiments on real
+    infrastructures are necessarily of limited scale.
+
+    In this article, we propose \vmps, a dedicated simulation
+    framework to perform in-depth investigations of VM placement
+    algorithms and compare them in a fair way. This framework, built
+    on top of the \sg simulation platform, notably provides
+    programming support to easy the implementation of placement
+    algorithms and runtime support dedicated to load injection and
+    execution trace analysis. \vmps supports the simulation of a large
+    set of real-world configurations, while allowing researchers to
+    conduct experiments at large scales. We also report on a
+    validation of our framework by implementing and investigating
+    representative algorithms for three classes of placement
+    algorithms: centralized, hierarchical and fully-distributed ones.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
