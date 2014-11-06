@@ -421,42 +421,37 @@ A lot of progress has been made on Cloud Computing (CC) system
 management, in particular through Infrastructure-as-a-Service
 toolkits~\cite{moreno:2012}. However, most of these infrastructures
 are still leveraging elementary Virtual Machine (VM) placement
-policies that prevent them
-% AL -> MS, blabla and blibli -> blabla WHILE bliblibli, I want to
-% highlight that both objectives should be addressed simultaneously
-from maximizing the usage of CC resources while guaranteeing VM
-resource requirements as defined by Service Level Agreements (SLAs).
+policies that prevent them from maximizing the usage of CC resources
+while guaranteeing VM resource requirements as defined by Service
+Level Agreements (SLAs).
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
 Typically, a batch scheduling approach is used: VMs (i)~are allocated
 according to user requests for resource reservations, and (ii)~are
 tied to the nodes where they were deployed until their
 destruction. Besides the fact that users often overestimate their
-resource requirements, such policies are definitely not optimal for CC
-providers, since the effective resource requirements of each operated
-VM may significantly vary during its lifetime.
+resource requirements, such static policies are definitely not optimal
+for CC providers, since the effective resource requirements of each
+operated VM may significantly vary during its lifetime.
 %%%%%%%
-
-\MS{Rather underline the ``more efficient strategies'' instead of
-  ``surprise'' because new approaches may not be mature enough?}  It
-is rather surprising that most available IaaS toolkits, notably many
-of the most popular ones~\cite{openstack, opennebula, cloudstack},
-continue to rely on greedy, static allocation approaches as more
-flexible and often more efficient approaches to the Virtual Machine
-Placement Problem (VMPP) have been developed by the research
-community. Dynamic strategies such as consolidation, load balancing
-and other SLA-ensuring algorithms have been deeply investigated
+Moreover, most available IaaS toolkits, notably many of the most
+popular ones~\cite{openstack, opennebula, cloudstack}, continue to
+rely on greedy allocation approaches, even if more flexible and often
+more efficient approaches to the Virtual Machine Placement Problem
+(VMPP) have been developed by the research community. Dynamic
+strategies such as consolidation, load balancing and other
+SLA-ensuring algorithms have been deeply investigated
 \cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
 \cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
-\cite{5328077}.  \MS{Be more assertive on the motivation: previous
-  articles for justification?}  From our point of view, an important
-impediment to the adoption of such advanced strategies is related to
-the experimental process that has been used to validate the pros and
-cons of each of them: most VMPP proposals have been evaluated either
-by leveraging ad-hoc simulators or small testbeds. These evaluation
-environments are not accurate and not representative enough to (i)
-ensure their correctness on real platforms and (ii) perform fair
-comparisons between them.
+\cite{5328077}.  \MS{Be more assertive on the motivation: Adrien,
+  which was the article for justification?}  From our point of view,
+an important impediment to the adoption of such advanced strategies is
+related to the experimental process that has been used to validate the
+pros and cons of each of them: most VMPP proposals have been evaluated
+either by leveraging ad-hoc simulators or small testbeds. These
+evaluation environments are not accurate and not representative enough
+to (i) ensure their correctness on real platforms and (ii) perform
+fair comparisons between them.
 
 % %
 % \begin{figure}[ht]
