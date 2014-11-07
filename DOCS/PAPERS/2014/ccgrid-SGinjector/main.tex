@@ -549,6 +549,7 @@ hierarchical one and DVMS a fully distributed one.
 The experiments reveal ...
 \AL[AL]{What the experiments reveal at the end ? }
 
+\AL{Fix the organization structure}
 The rest of the article is organized as follow. Section~\ref{sec:sg}
 gives an overview of the \sg framework.  \ref{sec:injector} introduces
 \vmps and discusses its general functioning.  The three algorithms
@@ -557,6 +558,10 @@ Section~\ref{sec:vm-schedulers} and evaluated in
 Section~\ref{sec:experiments}.  Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
+
+\section{VM Placement Problem Overview}
+\label{sec:vmpp}
+\AL{TODO: 0.5 pages}
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
@@ -614,6 +619,7 @@ switch between a virtualized and non virtualized infrastructure.
 Moreover, thanks to  MSG API extensions, users can control VMs in the
 same manner as in the real world (\eg create/destroy, start/shutdown,
 suspend/resume and migrate).
+\AL{Shoudl we talk about over-provisionning limitations}
 % live migration
 For migration operations, a VM live migration model implementing the
 precopy migration algorithm of Qemu/KVM has been integrated into \sg.
@@ -622,6 +628,9 @@ migration behavior by taking into account the resource sharing
 competition as well as the memory refreshing rate of the VM, thus
 determining correctly the live migration time as well as the resulting
 network traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+\AL[AL]{Add more details regarding live migration in order to reply to
+the Mario's remark (not clear enoug)}
 
 Those two capabilities were mandatory to build our VM placement
 simulator toolkit introduced in the next section.
@@ -932,7 +941,8 @@ Section \ref{subsec:traces-analysis}, for each iteration, we monitor
 whether the VMPP solver suceeded or failed. In case of success, \vmps
 records the number of migration that has been performed and whether
 the application of the reconfiguration plan led to new violations.
-\AL{Should we explain the issue right now or not ? } Indeed, during
+\AL{Should we explain the issue right now or not if we add VMPP section}
+Indeed, during
 the computation and the application of a schedule, the algorithm does
 not enforce QoS properties anymore, and thus cannot react quickly to
 violations. Second, since the manipulation of VMs is costly, the time
@@ -960,6 +970,17 @@ applied.
   métrique pertinente. Plusieurs algorithms tentent de reduire cette
   metrique }
 \AL[AL]{Il faudra mettre des snapshots de PajeNG}
+\subsection{Analysing and comparing different solutions}
+\subsection{Increasing fault injection to stree DVMS and Snooze based proposals}
+\AL[JP]{perform an experiment on Snooze and DVMS with fault
+  periodicity of 10 days for instance}
+\MS[JP]{perform an experiment on Snooze with additional fautls (i.e.
+  reducing the fault periodicity) in order to illustrate the pros/cons
+of the two different join mechanisms. To switch between one and the
+other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
+\MS[JP]{}
+\subsection{PajeNG view}
+\AL{if space and time add PajeGN view for both DVMS and Snooze}
 \section{Related Work}
 \label{sec:related}
 \AL[AL]{.25 page}
@@ -1013,6 +1034,7 @@ experimental testbed, being developed under the INRIA ALADDIN development
  action with support from CNRS, RENATER and several Universities as well as
  other funding bodies (see https://www.grid5000.fr).
 
+\AL{Biblio try to fix only relevant publications in top ranked conferences}
 \bibliographystyle{wileyj}
 \bibliography{main}
 
