@@ -437,7 +437,17 @@ providers, since the effective resource requirements of each operated
 VM may significantly vary during its lifetime.
 %%%%%%%
 
-\MS{Rather underline the ``more efficient strategies'' instead of
+More flexible and often more efficient approaches to the Virtual Machine
+Placement Problem (VMPP) have been developed by the research
+community. Dynamic strategies such as consolidation, load balancing
+and other SLA-ensuring algorithms have been deeply investigated
+\cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
+\cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067}.  Hence we
+may ask why most available  IaaS toolkits, ....
+
+
+\MS{Rather
+ underline the ``more efficient strategies'' instead of
   ``surprise'' because new approaches may not be mature enough?}  It
 is rather surprising that most available IaaS toolkits, notably many
 of the most popular ones~\cite{openstack, opennebula, cloudstack},
@@ -781,7 +791,7 @@ For now, we generate two kinds of event: ~~\emph{CPU load} and
 The \emph{CPU load} event queue is generated in order to change the
 load of each VM every $t$ seconds on average. $t$ is a random variable
 that follows an exponential distribution with rate parameter
-$\lambda\_t$ while the CPU load of a VM evolves according to a
+$\lambda_t$ while the CPU load of a VM evolves according to a
 Gaussian distribution defined by a particular mean ($\mu$) as well as
 a particular standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$
 are provided as input parameters of a simulation.  As the CPU load can
@@ -802,7 +812,7 @@ appropriate values.
 The \emph{node crash} event queue is generated in order to turn off a
 node every $f$ seconds on average for a duration of $d$ seconds.
 Similarly to the $t$ value above, $f$ follows an exponential
-distribution with rate $\lambda\_f$. $f$ and $d$ are also provided as
+distribution with rate $\lambda_f$. $f$ and $d$ are also provided as
 input parameters of a simulation.
 
 Adding new events can easily be done by simply defining new event Java
