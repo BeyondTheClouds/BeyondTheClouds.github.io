@@ -370,7 +370,7 @@
     agreements. In recent years, more dynamic and often more efficient
     policies based, \eg on consolidation and load balancing
     techniques, have been developed and investigated. New policies are
-    typically evaluated either using testbeds or \emph{in-vivo}
+    typically evaluated either using testbeds or \emph{in vivo}
     experiments. However, due to the underlying complexity of cloud
     infrastructures, testbeds typically have to be tailored to
     specific restricted configurations and experiments on real
@@ -420,10 +420,11 @@
 A lot of progress has been made on Cloud Computing (CC) system
 management, in particular through Infrastructure-as-a-Service
 toolkits~\cite{moreno:2012}. However, most of these infrastructures
-are still leveraging elementary Virtual Machine (VM) placement
-policies that prevent them from maximizing the usage of CC resources
-while guaranteeing VM resource requirements as defined by Service
-Level Agreements (SLAs).
+are still subject to two important restrictions. First, they leverage
+elementary Virtual Machine (VM) placement policies that prevent them
+from maximizing the usage of CC resources while guaranteeing VM
+resource requirements as defined, for instance, using Service Level
+Agreements (SLAs).
 %% THE TEXT BELOW COMES FROM ISPA'13
 %%%%%%%
 Typically, a batch scheduling approach is used: VMs (i)~are allocated
@@ -434,13 +435,13 @@ resource requirements, such static policies are definitely not optimal
 for CC providers, since the effective resource requirements of each
 operated VM may significantly vary during its lifetime.
 %%%%%%%
-Moreover, most available IaaS toolkits, notably many of the most
-popular ones~\cite{openstack, opennebula, cloudstack}, continue to
-rely on greedy allocation approaches, even if more flexible and often
-more efficient approaches to the Virtual Machine Placement Problem
-(VMPP) have been developed by the research community. Dynamic
-strategies such as consolidation, load balancing and other
-SLA-ensuring algorithms have been deeply investigated
+Second, most available IaaS toolkits, notably many of the most popular
+ones~\cite{openstack, opennebula, cloudstack}, continue to rely on
+greedy allocation approaches, even if more flexible and often more
+efficient approaches to the Virtual Machine Placement Problem (VMPP)
+have been developed by the research community. Dynamic strategies such
+as consolidation, load balancing and other SLA-ensuring algorithms
+have been deeply investigated
 \cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
 \cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
 \cite{5328077}.  \MS{Be more assertive on the motivation: Adrien,
@@ -498,51 +499,67 @@ would definitely be the most rigorous way to observe and propose
 appropriate solutions to aforementioned
 side-effects.
 % and compare  with existing proposals.
-However, \textit{in-vivo} (\ie real-world) experiments, if it is
+However, \textit{in vivo} (that is, real-world) experiments, if it is
 possible to execute them, are always expensive and tedious to perform;
 they may even be counterproductive if their results lead to false
-conclusions, \eg because of errors involving unanticipated
+conclusions, for instance, because of errors involving unanticipated
 interferences of different parts of the experiments that cannot be
 explored sufficiently in complex real-world environments.
 
-\MS{1.\ We should include/underline the new programming abstractions:
-  \texttt{XVM} etc. 2.\ The abbreviation \vmps is not very good: too
-  similar to VMs.} In this article, we propose % the first version of
-\vmps, a dedicated simulation framework to perform in-depth
-investigations of VM placement algorithms and compare them with each
-other in a fair way. To cope with real conditions such as the
-increasing scale of modern data centers and the dynamicity of the
-workloads that are specific to the Cloud Computing paradigm, notably
-its elasticity capacity, \vmps allows users to study large-scale
-scenarios that taking into account server crashes and that involve
-tens of thousands of VMs, each one executing a specific workload that
-evolves during the simulation lifetime.
+\MS{I would prefer to announce the contributions more explicitly as
+  follows: ``We provide three contributions: 1.~a motivation for a
+  generic toolkit for the evaluation of VM placement algs.,
+  2.~\vmps..that provide three new key  features, 3.~a detailed
+  demonstration of the benefits of \vmps through the impl.~and
+  evaluation of three well-known... What do you think?}
+
+In this article, we propose \vmps, a simulation framework to perform
+in-depth investigations of VM placement algorithms and compare them
+with each other in a fair way. It provides three new features that
+facilitate the definition of VM placement algorithms and support their
+evaluation:
+\begin{itemize}
+  \item An extension of the host and VM abstractions of the \sg
+    toolkit~\cite{casanova:hal-01017319}
+  \item A service for the injection of load during the execution of
+    a simulation
+  \item A service for the collection of traces during the execution of
+    simulations and their analysis
+\end{itemize}
+
+To cope with realistic conditions such as the increasing scale of
+modern data centers and the dynamicity of the workloads that are
+specific to the Cloud Computing paradigm, notably its elasticity
+capacity, \vmps allows users to study large-scale scenarios may
+include server crashes and involve tens of thousands of VMs, each one
+executing a specific workload that evolves during the simulation
+lifetime.
 
 We believe that such a tool will be beneficial to a large number of
 researchers in the field of CC as it enables them to quickly validate
 % AL->MS the characterisctics -> the trends,  simulations are
 % well-known scientific intrusments to validate trends (and only trends).
-the trends of a new proposal and compare it with existing
-ones. This way, our approach allows \textit{in vivo} experiments to be
-restricted to VMPP mechanisms that have the potential to handle CC
-production infrastructures.
+the trends of a new proposal and compare it with existing ones. This
+way, our approach allows \textit{in vivo} experiments to be applied to
+VMPP mechanisms that have the potential to handle CC production
+infrastructures.
 
 %
-We chose to build \vmps on top of the \sg
-toolkit~\cite{casanova:hal-01017319} since (i) its relevance in terms
+We have built \vmps on top of the \sg
+toolkit since (i) its relevance in terms
 of performance and validity has already been
 demonstrated~\cite{simgridpub} and (ii) because it has been recently
 extended to integrate virtual machine abstractions and a live
 migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-To illustrate the relevance of \vmps, we implemented the essential
-mechanisms of three well-known VMPP approaches:
+To illustrate the relevance of \vmps, we have implemented the
+essential mechanisms of three well-known VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}. We
 have investigated their characteristics by analyzing their
-scalability, reliability and reactivity (\ie the time to solve an SLA
-violation). Besides being well-known from the literature, we chose
-these three systems as they are built on three different software
+scalability, reliability and reactivity (that is, the time to solve an
+SLA violation). Besides being well-known from the literature, we have
+chosen these three systems because they use three different software
 architecture models: Entropy uses a centralized model, Snooze a
 hierarchical one and DVMS a fully distributed one.
 
