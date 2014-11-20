@@ -99,12 +99,37 @@ large groups of LCs (or GMs) that have to be managed by one GM (or
 GL).
 
 \subsubsection{Variants}
+\label{sec:snoozeVariants}
 
-Our simulation framework facilitates the simulation of variants of the
-basic Snooze model. In the following, we present three non-trivial
-evolutions that we have implemented and explored: periodic vs.\
-reactive scheduling, variants of the algorithms of how GMs and LCs
-join the system and load balancing on the GM level.
+Our simulation framework facilitates the simulation of variants of
+placement algorithms. In the following, we present three non-trivial
+variants that we have implemented and explored: a variant of the
+assignment algorithm of LCs to GMs, periodic vs.\ reactive scheduling,
+and a variant of the algorithms of how GMs and LCs join the system.
+
+
+\paragraph{Assignment of LCs to GMs}
+
+LCs are assigned to GMs by the GL as part of the LC join protocol. In
+Snooze's native implementation LCs are assigned in a round-robin
+fashion to the known GMs. If GMs join (and leave) the system at the
+same time as LCs, a round-robin strategy at join time, however, does
+not ensure an even distribution. This may happen, for instance at
+startup time of the system, when new GMs and LCs enter the system, or
+in case of failures, which trigger GM and LC joins. In order to
+evaluate the imbalance resulting from a round-robin strategy (as well
+as others) we have implemented the LC assignment protocol in a modular
+fashion and applied it in diverse highly-dynamic settings in which GMs
+and LCs enter the system at the same time. Furthermore, we have
+implemented a best-fit strategy that assigns LCs to GMs with minimal
+load or to GMs with the smallest number of assigned LCs (if several
+GMs with minimal load exist). The best-fit strategy can significantly
+improve the scheduling characteristics of hierarchical placement
+algorithms as shown by the experimental data presented in
+Sec.~\ref{sec:snoozeVariantsEval}. Furthermore, it should always be
+at least as good as the round-robin strategy (the corresponding proof
+is left to future work).
+
 
 \paragraph{Periodic vs.\ reactive scheduling}
 
@@ -164,28 +189,6 @@ strategy. While the qualitative result that the more complex strategy
 presented in the paper results in a more time-consuming join process
 is not very surprising, the extent of the resulting degradation was
 surprising.
-
-
-\paragraph{Load balancing at the GM level}
-
-LCs are assigned to GMs by the GL as part of the LC join protocol. In
-Snooze's native implementation LCs are assigned in a round-robin
-fashion to the known GMs. If GMs join (and leave) the system at the
-same time as LCs, a round-robin strategy at join time, however, does
-not ensure an even distribution. In order to evaluate the imbalance
-resulting from a round-robin strategy (as well as others) we have
-implemented the LC assignment protocol in a modular fashion and
-applied it in diverse highly-dynamic settings in which GMs and LCs
-enter the system at the same time, fail and rejoin regularly (albeit
-with varying frequency). These experiments have been mostly performed
-with systems involving 20 GMs and 200 LCs. They have revealed
-occurrences of large imbalances that often range from 0-20 LCs per GM
-and sometimes result in individual GMs totaling more then 50 LCs.
-
-A global strategy (such as the GRJ introduced in the discussion of
-join algorithms above) may ensure a quite even distribution, but at a
-higher cost (possibly, a very high cost as we have shown for the GRJ).
-
 
 
 
