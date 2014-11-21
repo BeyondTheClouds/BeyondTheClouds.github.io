@@ -558,6 +558,45 @@ applied.
   metrique }
 \AL[AL]{Il faudra mettre des snapshots de PajeNG}
 \subsection{Analysing and comparing different solutions}
+
+\subsubsection{LC assignment in Snooze-like placement alg.}
+\label{sec:snoozeVariantsEval}
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.95\linewidth]{figures/violationTime-snooze-RR-BF.pdf}
+    \caption{Cumulated violation time for BF (lower line) and RR
+      (upper line) variants}
+\end{center}
+\label{fig:snoozeBFRRViolation}
+\end{figure}
+
+We have evaluated the two LC assignment algorithms for Snooze-like
+placement algorithms, round-robin (henceforth, RR) and best-fit (BF)
+that have been introduced in Sec.~\ref{sec:snoozeVariants}, using
+\vmps on configurations of~128 and~256 nodes. In order to clearly
+expose the corresponding differences this evaluation has been
+performed by ``stressing'' the two LC to GM assignment algorithms by
+simultaneously starting all LCs (128/256) and all GMs (12/25) and then
+simulating the resulting configuration over a one hour period.  These
+experiments have yielded the following results:
+\begin{itemize}
+  \item BF yields significantly more homogenous assignments of LCs to
+    GMs. For 128 nodes, the no.\ of LCs per GMs varies from 0--30
+    (stdev: 10.53) BF and 0--49 (stdev: 15.79) for RR (the means being
+    equal since the total no.\ of LCs and GMs are equal). For 256
+    nodes, the corresponding values are a range of 0--18 (stdev: 6.62)
+    for BF and 0--35 (stdev: 12.22) for RR.\footnote{Here, GMs have
+      been assigned 0 LCs if they join the system later than all LCs.}
+  \item The cumulated time spent resolving violations is, for both
+    configurations, significantly smaller for BF than RR, see
+    Fig.~\ref{fig:snoozeBFRRViolation}.
+\end{itemize}
+From these results, we can clearly infer that BF is significantly
+better than RR for these kinds of configuration. We conjecture that BF
+should perform at least as good as RR for all configurations (the
+proof is left to future work).
+
 \subsection{Increasing fault injection to stree DVMS and Snooze based proposals}
 \AL[JP]{perform an experiment on Snooze and DVMS with fault
   periodicity of 10 days for instance}
