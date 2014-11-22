@@ -1,25 +1,27 @@
-    Most current infrastructures for cloud computing leverage static
-    and greedy policies for the placement of virtual machines. Such
-    policies impede the optimal allocation of resources and the
-    satisfaction of operational guarantees like service-level
-    agreements. In recent years, more dynamic and often more efficient
-    policies based, \eg on consolidation and load balancing
-    techniques, have been developed and investigated. New policies are
-    typically evaluated either using testbeds or \emph{in-vivo}
-    experiments. However, due to the underlying complexity of cloud
-    infrastructures, testbeds typically have to be tailored to
-    specific restricted configurations and experiments on real
-    infrastructures are necessarily of limited scale.
+Most current infrastructures for cloud computing leverage static and
+greedy policies for the placement of virtual machines. Such policies
+impede the optimal allocation of resources and the satisfaction of
+operational guarantees like service-level agreements. In recent years,
+more dynamic and often more efficient policies based, \eg on
+consolidation and load balancing techniques, have been developed. Due
+to the underlying complexity of cloud infrastructures, these policies
+are evaluated either using limited scale testbeds/\emph{in-vivo}
+experiments or ad-hoc simulator techniques. These validation
+methodologies are unsatisfactory for two important reasons: they (i)
+do not model precisely enough real productions platforms (size,
+workload representativeness, failure, etc.) and (ii) do not enable the
+fair comparison of different approaches.
 
-    In this article, we propose \vmps, a dedicated simulation
-    framework to perform in-depth investigations of VM placement
-    algorithms and compare them in a fair way. This framework, built
-    on top of the \sg simulation platform, notably provides
-    programming support to easy the implementation of placement
-    algorithms and runtime support dedicated to load injection and
-    execution trace analysis. \vmps supports the simulation of a large
-    set of real-world configurations, while allowing researchers to
-    conduct experiments at large scales. We also report on a
-    validation of our framework by implementing and investigating
-    representative algorithms for three classes of placement
-    algorithms: centralized, hierarchical and fully-distributed ones.
+In this article, we propose \vmps, a dedicated simulation framework to
+perform in-depth investigations of VM placement algorithms and compare
+them in a fair way. Built on top of the \sg simulation platform, our
+framework provides programming support to easy the implementation of
+placement algorithms and runtime support dedicated to load injection
+and execution trace analysis. \vmps supports a large set of parameters
+enabling researchers to design simulations representative of
+real-world scenarios. We also report on a validation of our framework
+by evaluating three classes of placement algorithms: centralized,
+hierarchical and fully-distributed ones. We show that \vmps enables
+researchers (i) to study and compare such strategies, (ii) to detect
+possible limitations at large scale and (iii) easily investigate
+different design choices.

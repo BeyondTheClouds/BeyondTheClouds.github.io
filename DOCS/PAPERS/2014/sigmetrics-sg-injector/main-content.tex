@@ -2,15 +2,42 @@
 \label{sec:intro}
 %\AL[AL]{1 page (including the abstract)}
 
-A lot of progress has been made on Cloud Computing (CC) system
-management, in particular through Infrastructure-as-a-Service
-toolkits~\cite{moreno:2012}. However, most of these infrastructures
-are still leveraging elementary Virtual Machine (VM) placement
-policies that prevent them from maximizing the usage of CC resources
-while guaranteeing VM resource requirements as defined by Service
-Level Agreements (SLAs).
-%% THE TEXT BELOW COMES FROM ISPA'13
-%%%%%%%
+% Although a lot of progress has been made on Cloud Computing (CC)
+% system management, \aka Infrastructure-as-a-Service
+% toolkits~\cite{moreno:2012}, most of the popular
+% solutions~\cite{cloudstack, opennebula, openstack} continue to rely on
+%  elementary Virtual Machine (VM) placement
+% policies that prevent them from maximizing the usage of CC resources
+% while guaranteeing VM resource requirements as defined by Service
+% Level Agreements (SLAs).
+% %% THE TEXT BELOW COMES FROM ISPA'13
+% %%%%%%%
+% Typically, a batch scheduling approach is used: VMs (i)~are allocated
+% according to user requests for resource reservations, and (ii)~are
+% tied to the nodes where they were deployed until their
+% destruction. Besides the fact that users often overestimate their
+% resource requirements, such static policies are definitely not optimal
+% for CC providers, since the effective resource requirements of each
+% operated VM may significantly vary during its lifetime.
+% %%%%%%%
+%  Dynamic strategies such as consolidation, load balancing
+% and other SLA-ensuring algorithms have been deeply investigated \cite
+% {feller:ccgrid12}, \cite{Hermenier:2009:ECM:1508293.1508300},
+% \cite{5715067}, \cite{quesnel:cpe2012}, \cite{5328077},
+% \cite{5935254}. \MS{Be more assertive on the motivation: Adrien, which
+%   was the article for justification?}
+
+Even if more flexible and often more efficient approaches to the
+Virtual Machine Placement Problem (VMPP) have been developped by the
+research community, most of the popular Cloud Computing (CC) system
+management \cite{cloudstack, opennebula, openstack}, \aka
+Infrastructure-as-a-Service toolkits~\cite{moreno:2012}, continue to
+rely on elementary Virtual Machine (VM) placement policies that
+prevent them from maximizing the usage of CC resources while
+guaranteeing VM resource requirements as defined by Service Level
+Agreements (SLAs).
+% %% THE TEXT BELOW COMES FROM ISPA'13
+% %%%%%%%
 Typically, a batch scheduling approach is used: VMs (i)~are allocated
 according to user requests for resource reservations, and (ii)~are
 tied to the nodes where they were deployed until their
@@ -18,21 +45,13 @@ destruction. Besides the fact that users often overestimate their
 resource requirements, such static policies are definitely not optimal
 for CC providers, since the effective resource requirements of each
 operated VM may significantly vary during its lifetime.
-%%%%%%%
-\AL[MS]{This formulation is still not valid. Moreover, most... we
-  already explained that above ?}
-Moreover, most available IaaS toolkits, notably many of the most
-popular ones~\cite{cloudstack, opennebula, openstack}, continue to
-rely on greedy allocation approaches, even if more flexible and often
-more efficient approaches to the Virtual Machine Placement Problem
-(VMPP) have been developed by the research community. Dynamic
-strategies such as consolidation, load balancing and other
-SLA-ensuring algorithms have been deeply investigated
-\cite {feller:ccgrid12}, \cite{Hermenier:2009:ECM:1508293.1508300},
-\cite{5715067}, \cite{quesnel:cpe2012}, \cite{5328077},
- \cite{5935254}.  \MS{Be more assertive on the motivation: Adrien,
-  which was the article for justification?}  From our point of view,
-an important impediment to the adoption of such advanced strategies is
+% %%%%%%%
+
+An important impediment to the adoption of more advanced strategies
+such as consolidation, load balancing and other SLA-ensuring
+algorithms that have been deeply investigated by our community \cite{feller:ccgrid12},
+\cite{Hermenier:2009:ECM:1508293.1508300}, \cite{5715067},
+\cite{quesnel:cpe2012}, \cite{5328077}, \cite{5935254} is
 related to the experimental process that has been used to validate the
 pros and cons of each of them: most VMPP proposals have been evaluated
 either by leveraging ad-hoc simulators or small testbeds. These
@@ -82,24 +101,25 @@ fair comparisons between them.
 Implementing each proposal and evaluating it on representative
 testbeds in terms of scalability, reliability and workload changes
 would definitely be the most rigorous way to observe and propose
-appropriate solutions to aforementioned
-side-effects.
+appropriate solutions for CC production infrastrutures.
 % and compare  with existing proposals.
-However, \textit{in-vivo} (\ie real-world) experiments, if it is
-possible to execute them, are always expensive and tedious to perform;
-they may even be counterproductive if their results lead to false
-conclusions, \eg because of errors involving unanticipated
-interferences of different parts of the experiments that cannot be
-explored sufficiently in complex real-world environments.
+However, \textit{in-vivo} (\ie real-world) experiments,
+%
+if it is possible to execute them,
+%
+are always expensive and tedious to perform as it has been once again
+highlighted~\cite{barker:pitfalls}. They may even be counterproductive
+if the observed behaviours are far from the expected ones due to
+unanticipated interferences of different parts of the solution in real
+conditions.
 
-\MS{1.\ We should include/underline the new programming abstractions:
-  \texttt{XVM} etc. 2.\ The abbreviation \vmps is not very good: too
-  similar to VMs.} In this article, we propose % the first version of
+\MS{We should include/underline the new programming abstractions:
+  \texttt{XVM} etc. } In this article, we propose % the first version of
 \vmps, a dedicated simulation framework to perform in-depth
 investigations of VM placement algorithms and compare them with each
 other in a fair way. To cope with real conditions such as the
 increasing scale of modern data centers and the dynamicity of the
-workloads that are specific to the Cloud Computing paradigm, notably
+workloads that are specific to the CC paradigm, notably
 its elasticity capacity, \vmps allows users to study large-scale
 scenarios that taking into account server crashes and that involve
 tens of thousands of VMs, each one executing a specific workload that
@@ -136,18 +156,57 @@ hierarchical one and DVMS a fully distributed one.
 The experiments reveal ...
 \AL[AL]{What the experiments reveal at the end ? }
 
-\AL{Fix the organization structure}
-The rest of the article is organized as follow. Section~\ref{sec:sg}
-gives an overview of the \sg framework.  \ref{sec:injector} introduces
-\vmps and discusses its general functioning.  The three algorithms
-implemented as use-cases are presented in
+\AL{Fix the organization structure} The rest of the article is
+organized as follow. Section~\ref{sec:vmpp} highlights the importance
+of the scalability, reliability and reactivity critierions for the VM
+placement problem. Section~\ref{sec:sg} gives an overview of the \sg
+framework on which our proposal is built. \ref{sec:injector}
+introduces \vmps and discusses its general functioning. The three
+algorithms implemented as use-cases are presented in
 Section~\ref{sec:vm-schedulers} and evaluated in
-Section~\ref{sec:experiments}.  Section~\ref{sec:related} and
+Section~\ref{sec:experiments}. Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
 
 \section{VM Placement Problem Overview}
 \label{sec:vmpp}
+
+\begin{figure}[ht]
+\vspace*{-.2cm}
+\begin{center}
+        \subcapcentertrue
+        \subfigure[Scheduling steps]{
+        \includegraphics[width=.45\linewidth]{figures/scheduling_steps.pdf}
+        \label{fig:scheduling_steps}}
+        \subfigure[Workload fluctuations during scheduling]{
+        \includegraphics[width=.45\linewidth]{figures/workload_fluctuations2.pdf}
+        \label{fig:workload_fluctuations}}
+\vspace*{-.2cm}
+\caption{VM scheduling in a master/worker architecture}
+\end{center}
+\label{fig:scheduling}
+\vspace*{-.2cm}
+\end{figure}
+%
+
+Each VMPP mechanism is a complex system that can face
+important side-effects during each of its stages: Monitoring the
+resources usages, computing the schedule and applying the
+reconfiguration (see Figure \ref{fig:scheduling_steps}).
+%
+%
+As an example, a single master architecture can lead, \textit{a priori} to
+important drawbacks. First, during the computation and the application
+of a schedule, a single master cannot take into account new VM
+requirement violations. Second, the time needed to apply a new
+schedule can be particularly important: The longer the reconfiguration
+process, the higher the risk that the schedule may be outdated, due to
+the workload fluctuations, when it is eventually applied (see Figure
+\ref{fig:workload_fluctuations}). Finally, a single master node can
+lead to well-known fault-tolerance issues: A group of VMs may be
+temporarily isolated from the master node in case of a network
+disconnection or if the master node crashes.
+
 \AL{TODO: 0.5 pages}
 
 \section{Simgrid, a generic toolkit}
@@ -570,6 +629,10 @@ applied.
 \end{center}
 \label{fig:snoozeBFRRViolation}
 \end{figure}
+
+\AL[MS]{Put a table instead of the figure, it is shorter and you can
+  add additional information such as gain, impact on the violation
+  time etc.}
 
 We have evaluated the two LC assignment algorithms for Snooze-like
 placement algorithms, round-robin (henceforth, RR) and best-fit (BF)
