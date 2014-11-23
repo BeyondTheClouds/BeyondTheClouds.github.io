@@ -28,8 +28,9 @@
 %   was the article for justification?}
 
 Even if more flexible and often more efficient approaches to the
-Virtual Machine Placement Problem (VMPP) have been developed by the
-research community, most of the popular Cloud Computing (CC) system
+Virtual Machine Placement Problem (VMPP) have been developed
+%by the research community
+, most of the popular Cloud Computing (CC) system
 management \cite{cloudstack, opennebula, openstack}, \aka
 Infrastructure-as-a-Service toolkits~\cite{moreno:2012}, continue to
 rely on elementary Virtual Machine (VM) placement policies that
@@ -48,10 +49,10 @@ significantly vary during its lifetime.
 
 An important impediment to the adoption of more advanced strategies
 such as consolidation, load balancing and other SLA-ensuring
-algorithms that have been deeply investigated by our community
+algorithms that have been deeply investigated by the research community
 \cite{feller:ccgrid12, Hermenier:2009:ECM:1508293.1508300, 5715067,
   quesnel:cpe2012, 5328077, 5935254} is related to the experimental
-processes that have been used to evaluate them: most VMPP proposals have
+processes that have been used to validate them: most VMPP proposals have
 been evaluated either by leveraging ad-hoc simulators or small
 testbeds. These evaluation environments are not accurate and not
 representative enough to (i) ensure their correctness on real
@@ -102,11 +103,11 @@ changes would definitely be the most rigorous way to observe and
 propose appropriate solutions for CC production infrastructures.
 % and compare  with existing proposals.
 However, \textit{in-vivo} (\ie real-world) experiments, if they can be
-executed at all, are always expensive and tedious to perform as has
+executed at all, are always expensive and tedious to perform as it has
 recently been highlighted once again~\cite{barker:pitfalls}. They may
 even be counterproductive if the observed behaviors are far from the
 expected ones due to parameters that influence experiments in complex
-real-world contexts in unknown ways.
+real-world contexts in unknown ways. \AL[MS]{This sentence is still unclear}
 
 In this article, we propose \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
@@ -115,7 +116,8 @@ increasing scale of modern data centers and the dynamicity of the
 workloads that are specific to the CC paradigm, notably its elasticity
 capacity, \vmps allows users to study large-scale scenarios that take
 into account server crashes and that involve tens of thousands of VMs,
-each of which executes a specific workload that evolves during the
+each of which executes
+\AL[MS]{excutes or executing a} a specific workload that evolves during the
 simulation lifetime.
 
 Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
@@ -144,8 +146,8 @@ essential mechanisms of three well-known VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}. We
 have also investigated their characteristics by analyzing their
-scalability, reliability and reactivity (\ie the time to solve an SLA
-violation). Besides being well-known from the literature, we chose
+scalability, reliability and reactivity (\ie the time to solve resource
+violations, \aka SLA violation). Besides being well-known from the literature, we chose
 these three systems as they are built on three different software
 architecture models: Entropy uses a centralized model, Snooze a
 hierarchical one and DVMS a fully distributed one.
@@ -153,10 +155,11 @@ hierarchical one and DVMS a fully distributed one.
 The experiments reveal ...
 \AL[AL]{What the experiments reveal at the end ? }
 
-\AL{Fix the organization structure} The rest of the article is
+The rest of the article is
 organized as follow. Section~\ref{sec:vmpp} highlights the importance
 of the scalability, reliability and reactivity criterions for the VM
-placement problem. Section~\ref{sec:sg} gives an overview of the \sg
+Placement Problem.
+Section~\ref{sec:sg} gives an overview of the \sg
 framework on which our proposal is built. \ref{sec:injector}
 introduces \vmps and discusses its general functioning. The three
 algorithms implemented as use-cases are presented in
@@ -167,6 +170,13 @@ well as a conclusion and future work.
 
 \section{VM Placement Problem Overview}
 \label{sec:vmpp}
+
+At coarse-frained, VMPP can be summarized in
+three-steps (see Figure \ref{fig:scheduling_steps}):  Monitoring the
+resources usages, computing a new schedule each time is it  needed and applying the
+reconfiguration plan (\ie performing VM migration and supend/resume
+operations to switch to the new placement solution).
+% that are mandatory to solve resource violations while optimizing resource usages).
 
 \begin{figure}[ht]
 \vspace*{-.2cm}
@@ -179,39 +189,42 @@ well as a conclusion and future work.
         \includegraphics[width=.45\linewidth]{figures/workload_fluctuations2.pdf}
         \label{fig:workload_fluctuations}}
 \vspace*{-.2cm}
-\caption{VM scheduling in a master/worker architecture}
+\caption{VM scheduling Phases}
 \end{center}
 \label{fig:scheduling}
 \vspace*{-.2cm}
 \end{figure}
 %
 
-Each VMPP mechanism is a complex system that can face
-important side-effects during each of its stages: Monitoring the
-resources usages, computing the schedule and applying the
-reconfiguration (see Figure \ref{fig:scheduling_steps}).
-%
-%
-As an example, a single master architecture can lead, \textit{a priori} to
-important drawbacks. First, during the computation and the application
-of a schedule, a single master cannot take into account new VM
-requirement violations. Second, the time needed to apply a new
-schedule can be particularly important: The longer the reconfiguration
-process, the higher the risk that the schedule may be outdated, due to
-the workload fluctuations, when it is eventually applied (see Figure
-\ref{fig:workload_fluctuations}). Finally, a single master node can
-lead to well-known fault-tolerance issues: A group of VMs may be
-temporarily isolated from the master node in case of a network
-disconnection or if the master node crashes.
+As the goal  of VMPP solutions is to maintain a placement that
+satisifies the requirements of each VM while optimizing CC resource usages, scalability,
+reliability and reactivity of the mechanisms implementing each of
+these three steps are decisive. For instance, a naive implementation
+of a master/workers approach as described in
+Figure~\ref{fig:scheduling_steps} would prevent to take into account
+workload fluctuations during the computation and the application of a
+schedule, leading potentially to artifical violations (\ie resource violations
+that are due to the VMPP mechanism). In other words, the longer each
+phase,
+% the longer the reconfiguration process,
+the higher the risk that the schedule may be outdated when it is
+computed or eventually applied (see Figure
+\ref{fig:workload_fluctuations}). Similarly, servers and network
+crashes can prevent to detect and solve resource violations if the
+master node crashes or if a group of VM is temporarily isolated from
+the master node.
 
-\AL{TODO: 0.5 pages}
+Analyzing how VMPP solutions behave when such aforementioned events
+occur is mandatory to validate them. Providing a framework to make
+such studies easier is the target of \vmps as described in the
+following.
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
 %\AL[AL]{0.5page}
 
 \sg is a simulation toolkit to study the behavior of
-large-scale distributed systems.  Developped for more than  a decade, It has been used in more than 100
+large-scale distributed systems.  Developped for more than  a decade, it has been used in more than 100
 publications.  Its main characterisitics are related to its:
 \begin{itemize}
 \item Extensibility -- After Grids, HPC and P2P
@@ -533,7 +546,7 @@ that the TRACE API enables the creation of as many variables as
 necessary, thus allowing researchers to instrument their own algorithm
 with specific variables that record other pieces of information.
 
-\section{Dynamic VM Placement Algorithms}
+\section{Dynamic VMPP Algorithms}
 \label{sec:vm-schedulers}
 To illustrate the interest of \vmps, we implemented three dynamic VM
 placement mechanisms respectively based on the Entropy
@@ -546,8 +559,7 @@ framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}.
 %
 Giving up consolidation
 optimality in favor of scalability, this algorithm provides a ``repair
-mode'' that enables the correction of VM requirement violations (\aka
-SLA violations). The algorithm considers that a host is
+mode'' that enables the correction of VM requirement violations. The algorithm considers that a host is
 overloaded when the VMs try to consume more than 100\% of the CPU
 capacity of the host. In such a case, the algorithm looks for
 an optimal viable configuration until it reaches a predefined timeout.
@@ -582,7 +594,8 @@ invoking every $p$ seconds the aforementioned VMPP solver. $p$ is
 defined as an input parameter of the simulation. As mentioned in
 Section \ref{subsec:traces-analysis}, for each iteration, we monitor
 whether the VMPP solver suceeded or failed. In case of success, \vmps
-records the number of migration that has been performed and whether
+records the number of migration that has been performed, the time it
+took to apply the reconfiguration and whether
 the application of the reconfiguration plan led to new violations.
 \AL{Should we explain the issue right now or not if we add VMPP section}
 Indeed, during
