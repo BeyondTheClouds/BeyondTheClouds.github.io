@@ -216,7 +216,7 @@ the master node.
 
 Analyzing how VMPP solutions behave when such aforementioned events
 occur is mandatory to validate them. Providing a framework to make
-such studies easier is the target of \vmps as described in the
+such studies easier and in a more reproducible manner is the target of \vmps as described in the
 following.
 
 \section{Simgrid, a generic toolkit}
@@ -275,8 +275,8 @@ switch between a virtualized and non virtualized infrastructure.
 Moreover, thanks to  MSG API extensions, users can control VMs in the
 same manner as in the real world (\eg create/destroy, start/shutdown,
 suspend/resume and migrate).
-\AL{Shoudl we talk about over-provisionning limitations}
-% live migration
+% TODO: Not addressed
+%\AL{Shoudl we talk about over-provisionning limitations}
 For migration operations, a VM live migration model implementing the
 precopy migration algorithm of Qemu/KVM has been integrated into \sg.
 This model is the only one that successfully simulates the live
@@ -285,8 +285,8 @@ competition as well as the memory refreshing rate of the VM, thus
 determining correctly the live migration time as well as the resulting
 network traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-\AL[AL]{Add more details regarding live migration in order to reply to
-the Mario's remark (not clear enoug)}
+%\AL[AL]{Add more details regarding live migration in order to reply to
+%the Mario's remark (not clear enoug)}
 
 Those two capabilities were mandatory to build our VM placement
 simulator toolkit introduced in the next section.
@@ -308,7 +308,9 @@ during the simulation.
 of \sg, we believe its use is acceptable because Java offers important
 benefits to researchers for the implementation of advanced scheduling
 strategies, notably concerning the ease of implementation of new
-strategies. \AL[JP]{Should we talk about SCALA?}
+strategies.
+% TODO: not adressed
+%\AL[JP]{Should we talk about SCALA?}
 
 In the following we give an overview of the framework and describe its
 general functioning.% and how researchers can develop new algorithms
@@ -470,33 +472,31 @@ classes implementing the \texttt{InjectorEvent} interface and by
 adding the code in charge of generating the associated queue. Such a
 new queue will be merged into the global one; its events will then be
 consumed similarly to other ones during the \emph{injector Phase}.
-\AL[AL]{Future work: introduce network changes}
 
 \subsection{Injector Phase}
 
 Once the VMs and the global event queue are ready, the evaluation of
 the scheduling mechanism can start. First, the injector process
 iteratively consumes the different events that represent, for now,
-load changes of a VM or turning a node off or on.  Changing the load
-of a VM corresponds to the creation and the assignment of a new \sg
-task in the VM. This new task has a direct impact on the VM since it
-increases or decreases the current memory update speed of the VM and
-thus the time that is needed to migrate it. \MS[AL]{Is it clear
-  enough? Not for me.}
+load changes of a VM or turning a node off or on. Changing the load of
+a VM corresponds to the creation and the assignment of a new \sg task
+in the VM. This new task has a direct impact on the time that will be
+needed to migrate the VM as it increases or decreases the current CPU
+load and thus the percentage of its memory update speed.
+\AL[MS]{Is the above paragraph clear enough?}
 % that is indicated by the \texttt{mem\_speed}
 %% parameter given in the class description.
 When a node is turning off, the VMs that were running on that node are
 temporarily discarded, \ie they are hidden and cannot be accessed
 until the node comes back to life. This way, the scheduler cannot
-handle them.  \AL[AL, MS, JP]{This is ugly but unfortunately the true,
-  it will be better to reassign those VMs on other nodes, but which
-  one?  } We leave for future work other approaches that can better
+handle them.
+ %\AL[AL, MS, JP]{This is ugly but unfortunately the true,
+ % it will be better to reassign those VMs on other nodes, but which
+ % one?  }
+ We leave for future work other approaches that can better
 match realistic scenarios such as turning off the VMs and
 reprovisioning them on other nodes.
 %
-\AL{Future work: add the possibility to have VMs
-  appearing/disappearing on the fly like a dynamic provisioning
-  strategy}
 
 As defined by the scheduling algorithm VMs will be suspended/resumed
 or relocated throughout the available hosts to meet scheduling
@@ -531,8 +531,7 @@ module~\footnote{\url{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.ht
 This way, visualization tools promoted by the \sg community, such as
 PajeNG \cite{pageng:www} may be used. Furthermore, our extension
 enables the creation of a trace file in the JSON file format, which is
-used to generate several figures using the R statistical environment
-\cite{R:Bloomfield:2014}.
+used to generate several figures using the R statistical environment~\cite{R:Bloomfield:2014}.
 
 By default \vmps records the load of the different VMs and hosts, the
 appearance and the duration of each violation of VM requirements in
@@ -597,17 +596,18 @@ whether the VMPP solver suceeded or failed. In case of success, \vmps
 records the number of migration that has been performed, the time it
 took to apply the reconfiguration and whether
 the application of the reconfiguration plan led to new violations.
-\AL{Should we explain the issue right now or not if we add VMPP section}
-Indeed, during
-the computation and the application of a schedule, the algorithm does
-not enforce QoS properties anymore, and thus cannot react quickly to
-violations. Second, since the manipulation of VMs is costly, the time
-needed to apply a new schedule is particularly important: The longer
-the reconfiguration process is, the higher is the risk that the schedule may
-be outdated, due to the workload fluctuations, when it is eventually
-applied.
-\vmps enables researchers to investigate such concerns in-depth.
+% \AL{Should we explain the issue right now or not if we add VMPP section}
+% Indeed, during
+% the computation and the application of a schedule, the algorithm does
+% not enforce QoS properties anymore, and thus cannot react quickly to
+% violations. Second, since the manipulation of VMs is costly, the time
+% needed to apply a new schedule is particularly important: The longer
+% the reconfiguration process is, the higher is the risk that the schedule may
+% be outdated, due to the workload fluctuations, when it is eventually
+% applied.
+% \vmps enables researchers to investigate such concerns in-depth.
 
+\AL{Add a section about the monitoring process}
 
 % Pas de titre de section : il se trouve dans le fichier
 \subsection{Snooze-based Hierarchical Approach}
@@ -719,7 +719,8 @@ its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:25684
 \section{Conclusion}
 \label{sec:conclusion}
 \AL[AL]{.25 page}
-
+Future work : (i) network changes and other dimensions (I/O), (ii) VM provisioning (i.e.
+Adding/removing VMs in the system,
 
 
 % conference papers do not normally have an appendix
