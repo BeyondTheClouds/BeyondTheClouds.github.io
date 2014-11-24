@@ -1,19 +1,22 @@
 As the third use-case, we implemented the DVMS
-proposal~\cite{quesnel:cpe2012}.
-DVMS (Distributed Virtual Machine
-Scheduler) is an algorithm that targets the dynamic scheduling of VMs hosted on
-large-scale distributed infrastructure. It aims at preserving VMs QoS by
-migrating VMs located on overloaded servers to underloaded ones. DVMS works in
-a cooperative and fully distributed manner.
+(Distributed Virtual Machine Scheduler) proposal~\cite{quesnel:cpe2012}.
+%DVMS is an algorithm that targets the dynamic scheduling of VMs hosted on
+%arge-scale distributed infrastructure. It  aims at preserving resource
+%requirements of VMs   by migrating VMs located on overloaded servers to underloaded ones.
+%DVMS works in a cooperative and fully distributed manner.
+Through a cooperative and fully distributed approach, DVMS aims at
+preserving resource requiements of VMs by migrating VMs located on
+overloaded servers to underloaded ones.
 
-\subsubsection{Overview and Definitions}
 
-Each node composing the infrastructure hosts a DVMS agent. Agents
-are organized on top of an overlay network, which can be structured (such as
+\subsubsection{Architecture}
+A DVMS agent is deployed on each node composing the infrastructure.
+Agents are organized on top of an overlay network, which can be structured (such as
 Chord ~\cite{stoica:2001:sigcomm01}) or unstructured.
+\AL[JP]{How it is structured in the current situation}
 
 When a server is overloaded (i.e. VMs hosted on the server consume resources
-that can be produced), a scheduling procedure is started and a partition
+that can be produced), an \emph{Iteraive Scheduling Procedure (ISP})  is started and a partition
 containing nodes considered for the reconfiguration will grow. Initially, the
 partition only contains the overloaded node.
 
@@ -29,7 +32,9 @@ In case of the scheduling computation is unsuccesful, a new node will be
 inserted in the partition, becoming the new leader of the partition.
 
 
-\subsubsection{Iterative Scheduling procedure}
+\subsubsection{Iterative Scheduling Procedure}
+\AL[MS,JP]{if we succeed to have only one or two subsections in
+  Snooze, we should do the same here.}
 
 When a node N\(_{\textit{i}}\) detects that it cannot provide enough resources
 to its hosted VMs, it generates a partition and reserves itself to solve the
@@ -133,27 +138,26 @@ the scheduling computations to solve the event as fast as possible.
 
 
 \subsubsection{Fault-tolerance}
-
-DVMS uses the inter-node collaboration: an overloaded node tries to find
-underloaded nodes that may rebalance its load. As in large scale computing
-nodes failures are frequent, DVMS includes fault tolerant mechanisms.
-
-
-
-\paragraph{Using overlay networks.}
+% DVMS uses the inter-node collaboration: an overloaded node tries to find
+% underloaded nodes that may rebalance its load. As in large scale computing
+% nodes failures are frequent, DVMS includes fault tolerant mechanisms.
+%
+% \paragraph{Using overlay networks.}
 
 The main advantage of using overlay networks is that they have built-in fault
 tolerance mechanisms. Thus, to manage the connectivity between its nodes, DVMS
 works on top of an overlay network such as Chord: when a node needs to rebalance
-its VMs workload, it asks the overlay network to find some collaborators. This
-functionning allows firstly a loosely coupling between DVMS and the overlay
+its VMs workload, it asks the overlay network to find some
+collaborators.
+\AL[JP]{here we do not describe DVMS in general but we should
+  emphasize what has been exactly implemented and how}
+This functionning allows firstly a loosely coupling between DVMS and the overlay
 network used, and, secondly, to delegate most of the fault tolerance mechanisms
 to the overlay network.
+%\paragraph{Destroying a Partition If One of Its Node Fails.}
 
-
-\paragraph{Destroying a Partition If One of Its Node Fails.}
-
-Leveraging a fault-tolerant overlay network was not enough; it was also necessary to make the
+Althoug leveraging an overlay network to address node crashes is
+helpfull, it is not enough to make the
 problem solving procedure fault-tolerant.
 
 Previously, if the leader of a partition crashed, the problem identified by the
@@ -170,3 +174,6 @@ procedure is stuck (maybe because the leader crashed).
 %
 In this case, each node decides to leave the partition and becomes free to take
 part to other problem solving procedures.
+
+\AL[JP, MS]{here we miss a paragraph that gives few details regarding
+  how the overlay and the communication process have been implemented.}
