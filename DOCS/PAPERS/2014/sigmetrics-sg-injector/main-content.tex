@@ -537,7 +537,7 @@ several metrics related to the platform utilization throughout the
 simulation by leveraging an extended version of \sg's TRACE
 module~\footnote{\url{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}}.
 This way, visualization tools promoted by the \sg community, such as
-PajeNG \cite{pageng:www} may be used. Furthermore, our extension
+PajeNG~\cite{pageng:www} may be used. Furthermore, our extension
 enables the creation of a trace file in the JSON file format, which is
 used to generate several figures using the R statistical environment~\cite{R:Bloomfield:2014}.
 
@@ -616,21 +616,23 @@ defined as an input parameter of the simulation.
 % \vmps enables researchers to investigate such concerns in-depth.
 
 As the Entropy proposal does not provide a specific mechanism for the
-collect of resource usage information but simply use an external tool
-(namely ganglia), we had different ways to implement the monitoring to
+collect of resource usage information but simply uses an external tool
+(namely ganglia), we had two different ways to implement the monitoring to
 process:  either by implementing additional asynchronous transmissions
 as a real implementation of the necessary state updates would proceed
 or, in a much more lightweight manner, through direct accesses by the
 aforementioned process to the states of the hosts and their respective
 VMs. While the latter does not mimic a real implementation closely, it
-can be harnessed to yield a valid simulation: delays induced by
+can be harnessed to yield a valid simulation: overheads induced by
 communication in the ``real'' implementation, for instance, can be
 easily added as part of the lightweight simulation. We have
-implemented this lightweight variant for the monitoring mechanism.
+implemented this lightweight variant for the monitoring
 
-Finally, as mentioned in
-Section \ref{subsec:traces-analysis}, we monitor, for each iteration,
-whether the VMPP solver suceeded or failed. In case of success, \vmps
+Regarding fault tolerance, similarly to the Entropy proposal, our
+implementation does not provide any failover mechanism.
+
+Finally, as mentioned in Section \ref{subsec:traces-analysis}, we monitor, for each iteration,
+whether the VMPP solver succeeds or fails. In case of success, \vmps
 records the number of migration that has been performed, the time it
 took to apply the reconfiguration and whether
 the application of the reconfiguration plan led to new violations.
@@ -641,8 +643,9 @@ the application of the reconfiguration plan led to new violations.
 
 \subsection{DVMS-based Distributed Approach}
 \label{subsec:dvms}
-\AL[AL]{Check who write that part, If Flavien did it, then add him as
-  an author}
+% TODO Not adressed
+%\AL[AL]{Check who write that part, If Flavien did it, then add him as
+%  an author}
 \input{dvms}
 \section{Experiments}
 \label{sec:experiments}
@@ -652,6 +655,114 @@ the application of the reconfiguration plan led to new violations.
   metrique }
 \AL[AL]{Il faudra mettre des snapshots de PajeNG}
 \subsection{Analysing and comparing different solutions}
+
+\subsubsection{Reactivity and Violation time}
+
+\subsubsection{Fault Tolerance}
+\AL[JP]{perform an experiment on Snooze and DVMS with fault
+  periodicity of 10 days for instance}
+\MS[JP]{perform an experiment on Snooze with additional fautls (i.e.
+  reducing the fault periodicity) in order to illustrate the pros/cons
+of the two different join mechanisms. To switch between one and the
+other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
+\MS[JP]{}
+
+
+\subsection{One step ahead thanks to \vmps}
+
+\subsubsection{Snooze analysis}
+\label{sec:snoozeVariants}
+
+Our simulation framework facilitates the simulation of variants of
+placement algorithms. In the following, we present three non-trivial
+variants that we have implemented and explored: a variant of the
+assignment algorithm of LCs to GMs, periodic vs.\ reactive scheduling,
+and a variant of the algorithms of how GMs and LCs join the system.
+
+
+\paragraph{Assignment of LCs to GMs}
+
+LCs are assigned to GMs by the GL as part of the LC join protocol. In
+Snooze's native implementation LCs are assigned in a round-robin
+fashion to the known GMs. If GMs join (and leave) the system at the
+same time as LCs, a round-robin strategy at join time, however, does
+not ensure an even distribution. This may happen, for instance at
+startup time of the system, when new GMs and LCs enter the system, or
+in case of failures, which trigger GM and LC joins. In order to
+evaluate the imbalance resulting from a round-robin strategy (as well
+as others) we have implemented the LC assignment protocol in a modular
+fashion and applied it in diverse highly-dynamic settings in which GMs
+and LCs enter the system at the same time. Furthermore, we have
+implemented a best-fit strategy that assigns LCs to GMs with minimal
+load or to GMs with the smallest number of assigned LCs (if several
+GMs with minimal load exist). The best-fit strategy can significantly
+improve the scheduling characteristics of hierarchical placement
+algorithms as shown by the experimental data presented in
+Sec.~\ref{sec:snoozeVariantsEval}. Furthermore, it should always be
+at least as good as the round-robin strategy (the corresponding proof
+is left to future work).
+
+
+\paragraph{Periodic vs.\ reactive scheduling}
+
+Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
+after a fixed time period a GM calls the scheduler in order to resolve
+resource conflicts among the LCs it manages. The information whether a
+resource conflict has to be handled is taken based on the summary
+information that is periodically sent by the LCs to the GM.
+
+We have provided an alternative, reactive, strategy to scheduling: as
+soon as they occur, LCs avert their GMs of resource conflicts; the GMs
+then initiate scheduling. Implementing this reactive scheme can be
+done using our framework in two manners: either by implementing
+additional asynchronous transmissions as a real implementation of the
+necessary state updates would proceed or, in a much more lightweight
+manner, through direct accesses by the GMs to the states of their
+respective LCs. While the latter does not mimic a real implementation
+closely, it can be harnessed to yield a valid simulation: delays
+induced by communication in the ``real'' implementation, for instance,
+can be easily added as part of the lightweight simulation. We have
+implemented this lightweight variant of reactive scheduling.
+
+
+\paragraph{Variants of the join algorithms}
+
+The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to the
+correctness of Snooze for two main reasons: (i) they have to be
+efficient because they can easily form a bottleneck if large numbers
+of LCs (GMs) have to be registered at a GM (LC); (ii) they are
+multi-phase protocols whose correctness especially in the presence of
+faults is difficult to ensure.
+
+In order to investigate the corresponding trade-offs, we have used our
+framework to implement join algorithms that may be interrupted at any
+time, repeat the the on-going phase a number of times before
+reinitiating, if necessary, the entire protocol. Furthermore, the join
+protocol is parameterized, \eg, in the number of threads used to
+handle registration requests.
+
+Finally, our framework has enabled us to test another aspect of
+Snooze's join algorithm as presented by
+Feller~\etal.~\cite{feller:ccgrid12},
+\MS[MS]{If we succeed to perform the experiment comparing both
+  approach, this paragraph should be highlighted.}
+a strategy we call the GM rejoin
+strategy (GRJ): all GMs should rejoin if a new GM enters the
+system. While GRJ supports a form of load balancing (because all LCs
+are reassigned to the new set of GMs), our simulation has shown that
+this strategy significantly increases the time necessary for
+registering GMs and LCs compared to a simpler strategy that does not
+modify existing GMs in case a new GM enters the system. This handicap
+is particularly pronounced if joins of GMs may be interrupted due to
+faults. Concretely, experiments involving 20 GMs and 200 LCs have
+shown that this strategy often multiplies the time necessary to join
+all 220 components by 10 or more compared to the simple join
+strategy. While the qualitative result that the more complex strategy
+presented in the paper results in a more time-consuming join process
+is not very surprising, the extent of the resulting degradation was
+surprising.
+
+
 
 \subsubsection{LC assignment in Snooze-like placement alg.}
 \label{sec:snoozeVariantsEval}
@@ -695,16 +806,9 @@ better than RR for these kinds of configuration. We conjecture that BF
 should perform at least as good as RR for all configurations (the
 proof is left to future work).
 
-\subsection{Increasing fault injection to stree DVMS and Snooze based proposals}
-\AL[JP]{perform an experiment on Snooze and DVMS with fault
-  periodicity of 10 days for instance}
-\MS[JP]{perform an experiment on Snooze with additional fautls (i.e.
-  reducing the fault periodicity) in order to illustrate the pros/cons
-of the two different join mechanisms. To switch between one and the
-other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
-\MS[JP]{}
-\subsection{PajeNG view}
-\AL{if space and time add PajeGN view for both DVMS and Snooze}
+\subsubsection{DVMS Analysis}
+\AL{if space and time add PajeGN view for DVMS}
+
 \section{Related Work}
 \label{sec:related}
 \AL[AL]{.25 page}

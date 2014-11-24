@@ -11,6 +11,7 @@ developers and its implementation~\cite{snoozeweb,snoozedev14}.
 \end{figure}
 
 \subsubsection{Architecture}
+\label{sec:snoozeArchi}
 
 As depicted in  Figure~\ref{fig:snoozearch}, Snooze harnesses a hierarchical architecture in order to support load
 balancing and fault tolerance. At the
@@ -20,6 +21,7 @@ whole cluster by keeping summary data about all \emph{group
 hierarchy. GMs manage a
 number of \emph{local controllers (LCs)} and manages the VMs assigned
 to that node.
+\AL[MS]{and manages: who manages GM or LC ?please clarify}
 The GL and the GMs are deployed on service nodes (one for each) while
 the LCs are executed on top on each hosting node.
 During execution, higher-level components periodically send heartbeats to lower-level
@@ -30,7 +32,7 @@ multicast communication. Finally, a number of replicated entry points
 allows clients to contact the GL, \eg in order to submit new VMs for
 integration into the system.
 
-\paragraph{Algorithms}
+\subsubsection{Algorithms}
 \label{sec:snoozeAlgs}
 
 Apart from the handling of faults (described below), two types of
@@ -51,8 +53,7 @@ heartbeat message from the GL, GMs and LCs as well as, also periodic,
 charge information from LCs sent to their respective GMs and summary
 charge info sent by GMs to the GL.
 
-
-\paragraph{Fault tolerance}
+\subsubsection{Fault tolerance}
 
 GLs, GMs and LCs may fail during the system execution. System
 components identify that a node on the corresponding higher-level node
@@ -68,20 +69,26 @@ LC fails, its GM will finally learn of it due to the missing heartbeat
 and charge information of the LC. The GM will then remove the LC from
 its data structures.
 
+\AL[MS, AL]{I propose to merge a bit more so we can remove
+  subsubsections for Snooze}
+
 \subsubsection{Simulation using Simgrid}
 
-Snooze can be simulated using our model and tool support in a direct
-and natural manner. The extended abstractions \MS[MS]{Refer to
-  Sec.~\ref{sec:overview}} for hosts (\texttt{XHOST}) and VMs
-(\texttt{XVM}) provide low-level facilities for scheduling algorithms
-that facilitate the implementation of the Snooze simulation. We have
-harnessed these facilities in order to implement core characteristics
-of Snooze: the monitoring of all VMs that are part of an LC and the
-migration of all VMs of the set of LCs that are managed by a GM.
+% Snooze can be simulated using our model and tool support in a direct
+% and natural manner. The extended abstractions \MS[MS]{Refer to
+%   Sec.~\ref{sec:overview}} for hosts (\texttt{XHOST}) and VMs
+% (\texttt{XVM}) provide low-level facilities for scheduling algorithms
+% that facilitate the implementation of the Snooze simulation. We have
+% harnessed these facilities in order to implement core characteristics
+% of Snooze: the monitoring of all VMs that are part of an LC and the
+% migration of all VMs of the set of LCs that are managed by a GM.
+While \texttt{XHOST} and \texttt{XVM} and the
+\texttt{SimulatorManager} classes have been harnessed to implement
+core characterisitics (\ie. VM monitoring and manipulations), the
+remaining concepts and algorithms of Snooze have been implemented
+using Simgrid's primites and standard Java mechanisms.
 
-The remaining concepts and algorithms of Snooze are implemented using
-means of our framework, the facilities provided by Simgrid and
-standard Java mechanisms. Communication between Snooze actors is
+Communication between Snooze actors is
 implemented based on Simgrid's primitives for, mainly asynchronous,
 event handling; in particular, hardware-supported multicast
 communication that is used, for example, in order to relay heartbeats
@@ -89,101 +96,101 @@ is implemented as a dedicated actor that manages a state representing
 GL and GM heartbeat groups and relaying heartbeat events.
 
 The Snooze simulation uses, as its original counterpart, a
-multi-threaded implementation in order to optimize reactivity even for
+multi-threaded (\ie multi-SG processes) implementation in order to optimize reactivity even for
 large groups of LCs (or GMs) that have to be managed by one GM (or
 GL).
 
-\subsubsection{Variants}
-\label{sec:snoozeVariants}
+% \subsubsection{Variants}
+% \label{sec:snoozeVariants}
 
-Our simulation framework facilitates the simulation of variants of
-placement algorithms. In the following, we present three non-trivial
-variants that we have implemented and explored: a variant of the
-assignment algorithm of LCs to GMs, periodic vs.\ reactive scheduling,
-and a variant of the algorithms of how GMs and LCs join the system.
-
-
-\paragraph{Assignment of LCs to GMs}
-
-LCs are assigned to GMs by the GL as part of the LC join protocol. In
-Snooze's native implementation LCs are assigned in a round-robin
-fashion to the known GMs. If GMs join (and leave) the system at the
-same time as LCs, a round-robin strategy at join time, however, does
-not ensure an even distribution. This may happen, for instance at
-startup time of the system, when new GMs and LCs enter the system, or
-in case of failures, which trigger GM and LC joins. In order to
-evaluate the imbalance resulting from a round-robin strategy (as well
-as others) we have implemented the LC assignment protocol in a modular
-fashion and applied it in diverse highly-dynamic settings in which GMs
-and LCs enter the system at the same time. Furthermore, we have
-implemented a best-fit strategy that assigns LCs to GMs with minimal
-load or to GMs with the smallest number of assigned LCs (if several
-GMs with minimal load exist). The best-fit strategy can significantly
-improve the scheduling characteristics of hierarchical placement
-algorithms as shown by the experimental data presented in
-Sec.~\ref{sec:snoozeVariantsEval}. Furthermore, it should always be
-at least as good as the round-robin strategy (the corresponding proof
-is left to future work).
+% Our simulation framework facilitates the simulation of variants of
+% placement algorithms. In the following, we present three non-trivial
+% variants that we have implemented and explored: a variant of the
+% assignment algorithm of LCs to GMs, periodic vs.\ reactive scheduling,
+% and a variant of the algorithms of how GMs and LCs join the system.
 
 
-\paragraph{Periodic vs.\ reactive scheduling}
+% \paragraph{Assignment of LCs to GMs}
 
-Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
-after a fixed time period a GM calls the scheduler in order to resolve
-resource conflicts among the LCs it manages. The information whether a
-resource conflict has to be handled is taken based on the summary
-information that is periodically sent by the LCs to the GM.
+% LCs are assigned to GMs by the GL as part of the LC join protocol. In
+% Snooze's native implementation LCs are assigned in a round-robin
+% fashion to the known GMs. If GMs join (and leave) the system at the
+% same time as LCs, a round-robin strategy at join time, however, does
+% not ensure an even distribution. This may happen, for instance at
+% startup time of the system, when new GMs and LCs enter the system, or
+% in case of failures, which trigger GM and LC joins. In order to
+% evaluate the imbalance resulting from a round-robin strategy (as well
+% as others) we have implemented the LC assignment protocol in a modular
+% fashion and applied it in diverse highly-dynamic settings in which GMs
+% and LCs enter the system at the same time. Furthermore, we have
+% implemented a best-fit strategy that assigns LCs to GMs with minimal
+% load or to GMs with the smallest number of assigned LCs (if several
+% GMs with minimal load exist). The best-fit strategy can significantly
+% improve the scheduling characteristics of hierarchical placement
+% algorithms as shown by the experimental data presented in
+% Sec.~\ref{sec:snoozeVariantsEval}. Furthermore, it should always be
+% at least as good as the round-robin strategy (the corresponding proof
+% is left to future work).
 
-We have provided an alternative, reactive, strategy to scheduling: as
-soon as they occur, LCs avert their GMs of resource conflicts; the GMs
-then initiate scheduling. Implementing this reactive scheme can be
-done using our framework in two manners: either by implementing
-additional asynchronous transmissions as a real implementation of the
-necessary state updates would proceed or, in a much more lightweight
-manner, through direct accesses by the GMs to the states of their
-respective LCs. While the latter does not mimic a real implementation
-closely, it can be harnessed to yield a valid simulation: delays
-induced by communication in the ``real'' implementation, for instance,
-can be easily added as part of the lightweight simulation. We have
-implemented this lightweight variant of reactive scheduling.
+
+% \paragraph{Periodic vs.\ reactive scheduling}
+
+% Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
+% after a fixed time period a GM calls the scheduler in order to resolve
+% resource conflicts among the LCs it manages. The information whether a
+% resource conflict has to be handled is taken based on the summary
+% information that is periodically sent by the LCs to the GM.
+
+% We have provided an alternative, reactive, strategy to scheduling: as
+% soon as they occur, LCs avert their GMs of resource conflicts; the GMs
+% then initiate scheduling. Implementing this reactive scheme can be
+% done using our framework in two manners: either by implementing
+% additional asynchronous transmissions as a real implementation of the
+% necessary state updates would proceed or, in a much more lightweight
+% manner, through direct accesses by the GMs to the states of their
+% respective LCs. While the latter does not mimic a real implementation
+% closely, it can be harnessed to yield a valid simulation: delays
+% induced by communication in the ``real'' implementation, for instance,
+% can be easily added as part of the lightweight simulation. We have
+% implemented this lightweight variant of reactive scheduling.
 
 
-\paragraph{Variants of the join algorithms}
+% \paragraph{Variants of the join algorithms}
 
-The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to the
-correctness of Snooze for two main reasons: (i) they have to be
-efficient because they can easily form a bottleneck if large numbers
-of LCs (GMs) have to be registered at a GM (LC); (ii) they are
-multi-phase protocols whose correctness especially in the presence of
-faults is difficult to ensure.
+% The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to the
+% correctness of Snooze for two main reasons: (i) they have to be
+% efficient because they can easily form a bottleneck if large numbers
+% of LCs (GMs) have to be registered at a GM (LC); (ii) they are
+% multi-phase protocols whose correctness especially in the presence of
+% faults is difficult to ensure.
 
-In order to investigate the corresponding trade-offs, we have used our
-framework to implement join algorithms that may be interrupted at any
-time, repeat the the on-going phase a number of times before
-reinitiating, if necessary, the entire protocol. Furthermore, the join
-protocol is parameterized, \eg, in the number of threads used to
-handle registration requests.
+% In order to investigate the corresponding trade-offs, we have used our
+% framework to implement join algorithms that may be interrupted at any
+% time, repeat the the on-going phase a number of times before
+% reinitiating, if necessary, the entire protocol. Furthermore, the join
+% protocol is parameterized, \eg, in the number of threads used to
+% handle registration requests.
 
-Finally, our framework has enabled us to test another aspect of
-Snooze's join algorithm as presented by
-Feller~\etal.~\cite{feller:ccgrid12},
-\MS[MS]{If we succeed to perform the experiment comparing both
-  approach, this paragraph should be highlighted.}
-a strategy we call the GM rejoin
-strategy (GRJ): all GMs should rejoin if a new GM enters the
-system. While GRJ supports a form of load balancing (because all LCs
-are reassigned to the new set of GMs), our simulation has shown that
-this strategy significantly increases the time necessary for
-registering GMs and LCs compared to a simpler strategy that does not
-modify existing GMs in case a new GM enters the system. This handicap
-is particularly pronounced if joins of GMs may be interrupted due to
-faults. Concretely, experiments involving 20 GMs and 200 LCs have
-shown that this strategy often multiplies the time necessary to join
-all 220 components by 10 or more compared to the simple join
-strategy. While the qualitative result that the more complex strategy
-presented in the paper results in a more time-consuming join process
-is not very surprising, the extent of the resulting degradation was
-surprising.
+% Finally, our framework has enabled us to test another aspect of
+% Snooze's join algorithm as presented by
+% Feller~\etal.~\cite{feller:ccgrid12},
+% \MS[MS]{If we succeed to perform the experiment comparing both
+%   approach, this paragraph should be highlighted.}
+% a strategy we call the GM rejoin
+% strategy (GRJ): all GMs should rejoin if a new GM enters the
+% system. While GRJ supports a form of load balancing (because all LCs
+% are reassigned to the new set of GMs), our simulation has shown that
+% this strategy significantly increases the time necessary for
+% registering GMs and LCs compared to a simpler strategy that does not
+% modify existing GMs in case a new GM enters the system. This handicap
+% is particularly pronounced if joins of GMs may be interrupted due to
+% faults. Concretely, experiments involving 20 GMs and 200 LCs have
+% shown that this strategy often multiplies the time necessary to join
+% all 220 components by 10 or more compared to the simple join
+% strategy. While the qualitative result that the more complex strategy
+% presented in the paper results in a more time-consuming join process
+% is not very surprising, the extent of the resulting degradation was
+% surprising.
 
 
 
