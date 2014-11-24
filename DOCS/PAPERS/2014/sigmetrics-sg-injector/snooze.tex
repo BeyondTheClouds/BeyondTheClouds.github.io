@@ -1,33 +1,28 @@
-\AL[MS]{1.5 pages}
-
-We now present the Snooze framework for VM
-management~\cite{feller:ccgrid12} as a second case study of how
+We now present Snooze~\cite{feller:ccgrid12} as a second case study of how
 to implement and simulate advanced algorithms.
-
-\subsubsection{Overview}
-
-We first briefly present the Snooze architecture summarizing its main
-characteristics from its presentation~\cite{feller:ccgrid12} and
-additional info stemming from personal communications of the Snooze
-developers and its implementation~\cite{snoozedev14,snoozeweb}.
+We present its architecture summarizing its main
+characteristics from its original presentation~\cite{feller:ccgrid12} and
+additional information  stemming from personal communications of the Snooze
+developers and its implementation~\cite{snoozeweb,snoozedev14}.
 \begin{figure}
   {\centering ~\includegraphics[width=.95\linewidth]{figures/snoozearch.pdf}}
   \caption{Overview of Snooze's architecture}
   \label{fig:snoozearch}
 \end{figure}
 
-\paragraph{Architecture}
+\subsubsection{Architecture}
 
-Snooze harnesses a hierarchical architecture in order to support load
-balancing and fault tolerance, see Fig.~\ref{fig:snoozearch}. At the
-top of the hierarchy, a \emph{group leader (GL)} (that is installed on
-a service node in our simulation) centralizes information about the
-whole cluster by keeping summary information about all \emph{group
-  managers (GMs)} (also installed on service nodes in our simulation)
-that constitute the intermediate layer of the hierarchy. GMs manage a
-number of \emph{local controllers (LCs)} (installed on an ordinary
-node) and manages the VMs assigned to that node. During execution,
-higher-level components periodically send heartbeats to lower-level
+As depicted in  Figure~\ref{fig:snoozearch}, Snooze harnesses a hierarchical architecture in order to support load
+balancing and fault tolerance. At the
+top of the hierarchy, a \emph{group leader (GL)} centralizes information about the
+whole cluster by keeping summary data about all \emph{group
+  managers (GMs)} that constitute the intermediate layer of the
+hierarchy. GMs manage a
+number of \emph{local controllers (LCs)} and manages the VMs assigned
+to that node.
+The GL and the GMs are deployed on service nodes (one for each) while
+the LCs are executed on top on each hosting node.
+During execution, higher-level components periodically send heartbeats to lower-level
 components; monitoring information, \eg on the system load, is also
 sent periodically in the opposite direction. In order to propagate
 information down the hierarchy, Snooze relies on hardware support for

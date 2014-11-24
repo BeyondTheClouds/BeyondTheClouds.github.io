@@ -400,31 +400,34 @@ for instance, scenarios involving federated data centers.
 %scheduling strategy is directly executed on the hosting nodes.
 
 Each VM is created based on one of the predefined VM classes. A VM
-class corresponds to a template defining the VM attributes and its
+class corresponds to a template specifying the VM attributes and its
 memory footprint. Concretely, it is
 % described as
 % \texttt{nb\_cpu:ramsize:net\_bw:mig\_speed:mem\_speed}
-defined in terms of five parameters: the number of cores
-\texttt{nb\_cpus}, the size of the memory \texttt{ramsize}, the
-network bandwidth \texttt{net\_bw}, \texttt{mig\_speed} the maximum
+defined in terms of five parameters:
+\texttt{nb\_cpus}  the number of cores, \texttt{ramsize }the size of
+the memory, \texttt{net\_bw} the
+network bandwidth, \texttt{mig\_speed} the maximum
 bandwidth available migrate it and \texttt{mem\_speed} the maximum
 memory update speed when the VM is consuming 100\% of its CPU
-resources. The memory update speed is a critical parameter that
+resources. As pointed out in Section \ref{sec:sg}, the memory update speed is a critical parameter that
 governs the migration time as well as the amount of transferred
-data. It enables users to simulate different kinds of workload (\ie
-memory-intensive vs non-intensive workloads), which is mandatory to
-simulate realistic Cloud Computing problems.  Available classes are
+data. By giving the possibility to define VM classes,
+\vmps allows researchers to simulate different kinds of workload (\ie
+memory-intensive vs non-intensive workloads), and thus analyze more
+realistic Cloud Computing problems.
+Available classes are
 defined in a specific text file that can be modified according to the
-user's needs.  \MS{Follows a low-level mechanism!}  At creation time
-of a VM, a process selects one class (\ie one line) in the file
-randomly. Hence, if a user wants to favor a specific class, he can
-simply repeat the line of the class several times. Finally, all VMs
-start with a CPU consumption of 0 that will evolve during the
-simulation after charge injection as explained below.  Note that each
-random process used in \vmps is initialized with a seed that is
-defined in a configuration file. This way, we can ensure that
-different simulations are reproducible and may be used to establish
-fair comparisons.
+user's needs.
+%\MS{Follows a low-level mechanism!}
+% TODO not addressed yet. This text should appear in the README
+%At creation time
+%of a VM, a process selects one class (\ie one line) in the file
+%randomly. Hence, if a user wants to favor a specific class, he can
+%simply repeat the line of the class several times.
+%
+Finally, all VMs start with a CPU consumption of 0 that will evolve during the
+simulation after charge injection as explained below.
 
 Once the creation and the assignment of VMs is completed, \vmps spawns
 at least two SG processes, the \emph{injector} and the launcher of the
@@ -460,6 +463,11 @@ appropriate values.
 %effective mean, especially when $\sigma$ is high, we believe it was
 %non appropriated to request it is easier for end-users to specify $\mu$ and
 %$\sigma$ parameters than
+We highlight that each
+random process used in \vmps is initialized with a seed that is
+defined in a configuration file. This way, we can ensure that
+different simulations are reproducible and may be used to establish
+fair comparisons.
 
 The \emph{node crash} event queue is generated in order to turn off a
 node every $f$ seconds on average for a duration of $d$ seconds.
@@ -470,8 +478,8 @@ input parameters of a simulation.
 Adding new events can easily be done by simply defining new event Java
 classes implementing the \texttt{InjectorEvent} interface and by
 adding the code in charge of generating the associated queue. Such a
-new queue will be merged into the global one; its events will then be
-consumed similarly to other ones during the \emph{injector Phase}.
+new queue will be merged into the global one and its events will then be
+consumed similarly to other ones during the \emph{injector Phase} as described in the following.
 
 \subsection{Injector Phase}
 
@@ -553,7 +561,7 @@ placement mechanisms respectively based on the Entropy
 \cite{feller:ccgrid12}, and DVMS \cite{quesnel:cpe2012} proposals. For the three
 implementations, we chose to use the latest VMPP solver that has been
 developed as part of the Entropy
-framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}.
+framework~\cite{hermenier:cp11}.
 
 %
 Giving up consolidation
@@ -583,19 +591,19 @@ distributed).
 %
 Before discussing the simulation results, we
 describe in this section an overview of the three implemented systems.
+We highlight that the extended abstractions for hosts (\texttt{XHost})
+and VMs (\texttt{XVM}) as well as the available functions of the \sg
+MSG API enabled us to develop them in a direct and natural manner.
+
 
 \subsection{Entropy-based Centralized Approach}
 \label{subsec:entropy}
 The centralized VM placement mechanism consists in one single \sg
-process deployed on a service node. It implements a simple loop that
+process deployed on a service node. This process implements a simple loop that
 iteratively checks the viability of the current configuration by
 invoking every $p$ seconds the aforementioned VMPP solver. $p$ is
-defined as an input parameter of the simulation. As mentioned in
-Section \ref{subsec:traces-analysis}, for each iteration, we monitor
-whether the VMPP solver suceeded or failed. In case of success, \vmps
-records the number of migration that has been performed, the time it
-took to apply the reconfiguration and whether
-the application of the reconfiguration plan led to new violations.
+defined as an input parameter of the simulation.
+
 % \AL{Should we explain the issue right now or not if we add VMPP section}
 % Indeed, during
 % the computation and the application of a schedule, the algorithm does
@@ -607,9 +615,26 @@ the application of the reconfiguration plan led to new violations.
 % applied.
 % \vmps enables researchers to investigate such concerns in-depth.
 
-\AL{Add a section about the monitoring process}
+As the Entropy proposal does not provide a specific mechanism for the
+collect of resource usage information but simply use an external tool
+(namely ganglia), we had different ways to implement the monitoring to
+process:  either by implementing additional asynchronous transmissions
+as a real implementation of the necessary state updates would proceed
+or, in a much more lightweight manner, through direct accesses by the
+aforementioned process to the states of the hosts and their respective
+VMs. While the latter does not mimic a real implementation closely, it
+can be harnessed to yield a valid simulation: delays induced by
+communication in the ``real'' implementation, for instance, can be
+easily added as part of the lightweight simulation. We have
+implemented this lightweight variant for the monitoring mechanism.
 
-% Pas de titre de section : il se trouve dans le fichier
+Finally, as mentioned in
+Section \ref{subsec:traces-analysis}, we monitor, for each iteration,
+whether the VMPP solver suceeded or failed. In case of success, \vmps
+records the number of migration that has been performed, the time it
+took to apply the reconfiguration and whether
+the application of the reconfiguration plan led to new violations.
+
 \subsection{Snooze-based Hierarchical Approach}
 \label{subsec:snooze}
 \input{snooze.tex}
