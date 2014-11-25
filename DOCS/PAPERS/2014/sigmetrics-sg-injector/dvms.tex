@@ -12,8 +12,11 @@ overloaded servers to underloaded ones.
 \subsubsection{Architecture}
 A DVMS agent is deployed on each node composing the infrastructure.
 Agents are organized on top of an overlay network, which can be structured (such as
-Chord ~\cite{stoica:2001:sigcomm01}) or unstructured.
-\AL[JP]{How it is structured in the current situation}
+Chord ~\cite{stoica:2001:sigcomm01}) or unstructured. For the sake of this study,
+we implemented a simple but effective unstructured overlay that enables the 
+simulated agents to collaborate without side effects: when it is requested, the
+overlay simply provide a link to a potential collaborator. \AL[JP]{How it is structured in the current situation}
+\JP[AL]{I added the preceding paragraph, is it enough?}
 
 When a server is overloaded (i.e. VMs hosted on the server consume resources
 that can be produced), an \emph{Iteraive Scheduling Procedure (ISP})  is started and a partition
@@ -148,17 +151,30 @@ The main advantage of using overlay networks is that they have built-in fault
 tolerance mechanisms. Thus, to manage the connectivity between its nodes, DVMS
 works on top of an overlay network such as Chord: when a node needs to rebalance
 its VMs workload, it asks the overlay network to find some
-collaborators.
+collaborators. In this study we implemented a simple overlay network as a flat 
+list of agents : a typical request for collaborators includes a filter (i.e. a 
+list of agents that is already collaborating with the requesting agent), thus 
+finding a suitable collaborator only consist in finding an agent that is not the 
+filter. A link to the collaborator is then given to the requesting agent, which 
+will only collaborate by the mean of message exchange containg immutable data: 
+our implementation of the DVMS follows the guidelines advocated by the actor 
+model, in order to ease the design of concurrent and distributed applications. 
+
+Even if the implementation of the overlay network is simple, it fulfills its 
+purpose, and in the case where one would want to use a different overlay network
+such as a ring topology, it only has to reuse the API provided by this simple 
+implementation, and adapts its functionning to the targeted overlay network. 
+
 \AL[JP]{here we do not describe DVMS in general but we should
   emphasize what has been exactly implemented and how}
+\JP[AL]{I added the preceding paragraph that gives more details about the overlay
+network used.}
+
 This functionning allows firstly a loosely coupling between DVMS and the overlay
 network used, and, secondly, to delegate most of the fault tolerance mechanisms
-to the overlay network.
-%\paragraph{Destroying a Partition If One of Its Node Fails.}
-
-Althoug leveraging an overlay network to address node crashes is
-helpfull, it is not enough to make the
-problem solving procedure fault-tolerant.
+to the overlay network. Although leveraging an overlay network to address node 
+crashes is helpfull, it is not enough to make the problem solving procedure 
+fault-tolerant.
 
 Previously, if the leader of a partition crashed, the problem identified by the
 initiator would never be solved; moreover, the nodes of this partition would
@@ -177,3 +193,4 @@ part to other problem solving procedures.
 
 \AL[JP, MS]{here we miss a paragraph that gives few details regarding
   how the overlay and the communication process have been implemented.}
+\JP[AL]{I modified the first paragraph of this section.}
