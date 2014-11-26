@@ -13,24 +13,39 @@ developers and its implementation~\cite{snoozeweb,snoozedev14}.
 \subsubsection{Architecture}
 \label{sec:snoozeArchi}
 
-As depicted in  Figure~\ref{fig:snoozearch}, Snooze harnesses a hierarchical architecture in order to support load
-balancing and fault tolerance. At the
-top of the hierarchy, a \emph{group leader (GL)} centralizes information about the
-whole cluster by keeping summary data about all \emph{group
-  managers (GMs)} that constitute the intermediate layer of the
-hierarchy. GMs manage a
-number of \emph{local controllers (LCs)} and manages the VMs assigned
-to that node.
-\AL[MS]{and manages: who manages GM or LC ?please clarify}
-The GL and the GMs are deployed on service nodes (one for each) while
-the LCs are executed on top on each hosting node.
-During execution, higher-level components periodically send heartbeats to lower-level
-components; monitoring information, \eg on the system load, is also
-sent periodically in the opposite direction. In order to propagate
-information down the hierarchy, Snooze relies on hardware support for
-multicast communication. Finally, a number of replicated entry points
-allows clients to contact the GL, \eg in order to submit new VMs for
-integration into the system.
+Snooze harnesses a hierarchical architecture in order to support load
+balancing and fault tolerance, cf.\ Fig.~\ref{fig:snoozearch}. At the
+top of the hierarchy, a \emph{group leader (GL)} centralizes
+information about the whole cluster using summary data about
+\emph{group managers (GMs)} that constitute the intermediate layer of
+the hierarchy. GMs manage a number of \emph{local controllers (LCs)}
+that, in turn, manage the VMs assigned to nodes. The GL and the GMs
+are deployed on service nodes while the LCs are executed on hosting
+node.  During execution, higher-level components periodically send
+heartbeats to lower-level ones; monitoring information, \eg about the
+system load, is also sent periodically in the opposite direction. In
+order to propagate information down the hierarchy, Snooze relies on
+hardware support for multicast communication. Finally, a number of
+replicated entry points allows clients to contact the GL, \eg in order
+to submit new VMs for integration into the system.
+
+\emph{Simulation using \vmps.~} The \texttt{XHOST}, \texttt{XVM} and
+\texttt{SimulatorManager} classes have been harnessed to implement the
+core architectural abstractions (\ie VM monitoring and manipulations),
+the remaining concepts and algorithms of Snooze have been implemented
+using Simgrid's primitives and standard Java mechanisms.
+%
+Communication between Snooze actors is implemented based on Simgrid's
+primitives for, mainly asynchronous, event handling.
+Hardware\-sup\-ported multicast communication that is used, \eg
+to relay heartbeats, is implemented as a dedicated actor that manages
+a state representing GL and GM heartbeat groups and relaying heartbeat
+events.
+%
+Finally, our Snooze simulation uses, as its original counterpart, a
+multi-threaded implementation (\ie based on multiple SG processes) in
+order to optimize reactivity even for large groups of LCs (or GMs)
+that have to be managed by one GM (or GL).
 
 \subsubsection{Algorithms}
 \label{sec:snoozeAlgs}
@@ -45,13 +60,14 @@ A GL is created, if it does not exist, by promotion of a GM that is
 selected according to some leader election algorithm. When a GM joins
 a cluster, it starts listening on a predefined channel for the
 heartbeat of the GL and registers once it has received the
-heartbeat. New LCs first also wait for the GL heartbeat, request a GM
-assignment from the GL and register at the GM assigned to them.
+heartbeat. New LCs first also wait for the GL heartbeat, contact the
+GL then in order to obtain a GM assignment, and finally register at
+the GM assigned to them.
 
-Information that is passed within the system consists in periodic
-heartbeat message from the GL, GMs and LCs as well as, also periodic,
-charge information from LCs sent to their respective GMs and summary
-charge info sent by GMs to the GL.
+Two kinds of (load) information are passed within the system: the
+periodic heartbeat message sent by the GL and the GMs; second,
+periodic load information sent from LCs to their respective GMs and
+summary load info sent by the GMs to the GL.
 
 \subsubsection{Fault tolerance}
 
@@ -69,36 +85,6 @@ LC fails, its GM will finally learn of it due to the missing heartbeat
 and charge information of the LC. The GM will then remove the LC from
 its data structures.
 
-\AL[MS, AL]{I propose to merge a bit more so we can remove
-  subsubsections for Snooze}
-
-\subsubsection{Simulation using Simgrid}
-
-% Snooze can be simulated using our model and tool support in a direct
-% and natural manner. The extended abstractions \MS[MS]{Refer to
-%   Sec.~\ref{sec:overview}} for hosts (\texttt{XHOST}) and VMs
-% (\texttt{XVM}) provide low-level facilities for scheduling algorithms
-% that facilitate the implementation of the Snooze simulation. We have
-% harnessed these facilities in order to implement core characteristics
-% of Snooze: the monitoring of all VMs that are part of an LC and the
-% migration of all VMs of the set of LCs that are managed by a GM.
-While \texttt{XHOST} and \texttt{XVM} and the
-\texttt{SimulatorManager} classes have been harnessed to implement
-core characterisitics (\ie. VM monitoring and manipulations), the
-remaining concepts and algorithms of Snooze have been implemented
-using Simgrid's primites and standard Java mechanisms.
-
-Communication between Snooze actors is
-implemented based on Simgrid's primitives for, mainly asynchronous,
-event handling; in particular, hardware-supported multicast
-communication that is used, for example, in order to relay heartbeats,
-is implemented as a dedicated actor that manages a state representing
-GL and GM heartbeat groups and relaying heartbeat events.
-
-The Snooze simulation uses, as its original counterpart, a
-multi-threaded (\ie multi-SG processes) implementation in order to optimize reactivity even for
-large groups of LCs (or GMs) that have to be managed by one GM (or
-GL).
 
 % \subsubsection{Variants}
 % \label{sec:snoozeVariants}
