@@ -654,7 +654,7 @@ the application of the reconfiguration plan led to new violations.
   métrique pertinente. Plusieurs algorithms tentent de reduire cette
   metrique }
 \AL[AL]{Il faudra mettre des snapshots de PajeNG}
-\subsection{Comparisons of Entropy, Snooze and DVMS}
+\subsection{Comparison of Entropy, Snooze and DVMS}
 
 \subsubsection{Reactivity and Violation time}
 
@@ -670,14 +670,21 @@ other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
 
 \subsection{One step ahead thanks to \vmps}
 
+Our simulation framework facilitates the simulation of variants of
+placement algorithms. In the following, we present several variants of
+the placement algorithms introduced in Sec.~\ref{sec:vm-schedulers}
+that have been discussed in the literature or come up during the
+implementation of their models using \vmps. This section provides
+strong evidence that the modification and evaluation of existing
+algorithms is much facilitated by our simulation framework.
+
 \subsubsection{Snooze analysis}
 \label{sec:snoozeVariants}
 
-Our simulation framework facilitates the simulation of variants of
-placement algorithms. In the following, we present three non-trivial
-variants that we have implemented and explored: a variant of the
-assignment algorithm of LCs to GMs, periodic vs.\ reactive scheduling,
-and a variant of the algorithms of how GMs and LCs join the system.
+We now present three non-trivial variants that we have implemented and
+explored: a variant of the assignment algorithm of LCs to GMs,
+periodic vs.\ reactive scheduling, and a variant of the algorithms of
+how GMs and LCs join the system.
 
 
 \paragraph{Assignment of LCs to GMs}
@@ -685,22 +692,74 @@ and a variant of the algorithms of how GMs and LCs join the system.
 LCs are assigned to GMs by the GL as part of the LC join protocol. In
 Snooze's native implementation LCs are assigned in a round-robin
 fashion to the known GMs. If GMs join (and leave) the system at the
-same time as LCs, a round-robin strategy at join time, however, does
-not ensure an even distribution. This may happen, for instance at
+same time as LCs, a round-robin (RR) strategy at join time, however,
+does not ensure an even distribution. This may happen, for instance at
 startup time of the system, when new GMs and LCs enter the system, or
 in case of failures, which trigger GM and LC joins. In order to
-evaluate the imbalance resulting from a round-robin strategy (as well
-as others) we have implemented the LC assignment protocol in a modular
-fashion and applied it in diverse highly-dynamic settings in which GMs
-and LCs enter the system at the same time. Furthermore, we have
-implemented a best-fit strategy that assigns LCs to GMs with minimal
-load or to GMs with the smallest number of assigned LCs (if several
-GMs with minimal load exist). The best-fit strategy can significantly
-improve the scheduling characteristics of hierarchical placement
-algorithms as shown by the experimental data presented in
-Sec.~\ref{sec:snoozeVariantsEval}. Furthermore, it should always be
-at least as good as the round-robin strategy (the corresponding proof
-is left to future work).
+evaluate the corresponding imbalance and its consequences we have
+implemented the LC assignment protocol in a modular fashion and
+applied it to different highly-dynamic settings in which GMs and LCs
+enter the system at the same time. Furthermore, we have implemented a
+best-fit (BF) strategy that assigns LCs to the GMs with minimal load
+or, if several GMs with minimal load exist, to the GMs with the
+smallest number of assigned LCs.
+
+
+% \subsubsection{LC assignment in Snooze-like placement alg.}
+% \label{sec:snoozeVariantsEval}
+
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.95\linewidth]{figures/violationTime-snooze-RR-BF.pdf}
+%     \caption{Cumulated violation time for BF (lower line) and RR
+%       (upper line) variants}
+% \end{center}
+% \label{fig:snoozeBFRRViolation}
+% \end{figure}
+
+\begin{table*}[ht]
+\begin{center}
+%    \begin{tabular}{|c!{\vrule width 3pt}c|c|c!{\vrule width 2pt}c|c|c!{\vrule width 3pt}c|c!{\vrule width 2pt}c|c|}
+    \begin{tabular}{|c||c|c||c|c|||c|c|}
+        \thickhline
+        Strategy 
+          & \multicolumn{4}{c}{\#LCs/\#GMs}
+          & \multicolumn{2}{c}{Violation time (s)} \\
+        \ & \multicolumn{2}{c}{128 nodes}  & \multicolumn{2}{c}{256 nodes} 
+          & 128 nodes & 256 nodes \\
+        \thickhline
+        RR & 0--49 & 15.7  & 0--35 & 12.22 & 630 & 1265 \\ \hline
+        BF & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \\
+        \thickhline
+    \end{tabular}
+    \caption{LCs to GM assignment and cumulated violation times for RR
+      and BF strategies}
+\end{center}
+\label{tbl:assignmenResults}
+\end{table*}
+
+
+We have evaluated the two LC assignment strategies using \vmps on
+configurations of~128 and~256 nodes. In order to clearly expose the
+corresponding differences this evaluation has been performed by
+``stressing'' the two strategies by simultaneously
+starting all LCs (128/256) and all GMs (12/25) and then simulating the
+resulting configuration over a one hour period.  These experiments
+have yielded the following results, cf.\ Table~\ref{tbl:assignmenResults}:
+\begin{itemize}
+  \item BF yields significantly more homogeneous assignments of LCs to
+    GMs: the ranges of the numbers of LCs assigned to a GM are smaller
+    as well as their standard deviation.\footnote{Here, some GMs may
+      be assigned 0 LCs if they join the system later than all LCs.}
+  \item The cumulated time spent resolving violations is, for both
+    configurations, significantly smaller for BF than RR.
+\end{itemize}
+From these results, we can clearly infer that BF is significantly
+better than RR for the two tested kinds of configuration. Furthermore,
+we conjecture that BF should perform at least as good as RR for all
+configurations (the proof is left to future work).
+\MS[JP]{I need the exact figures for the violation times
+  in Tbl.~\ref{tbl:assignmenResults}}.
 
 
 \paragraph{Periodic vs.\ reactive scheduling}
@@ -763,48 +822,6 @@ is not very surprising, the extent of the resulting degradation was
 surprising.
 
 
-
-\subsubsection{LC assignment in Snooze-like placement alg.}
-\label{sec:snoozeVariantsEval}
-
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.95\linewidth]{figures/violationTime-snooze-RR-BF.pdf}
-    \caption{Cumulated violation time for BF (lower line) and RR
-      (upper line) variants}
-\end{center}
-\label{fig:snoozeBFRRViolation}
-\end{figure}
-
-\AL[MS]{Put a table instead of the figure, it is shorter and you can
-  add additional information such as gain, impact on the violation
-  time etc.}
-
-We have evaluated the two LC assignment algorithms for Snooze-like
-placement algorithms, round-robin (henceforth, RR) and best-fit (BF)
-that have been introduced in Sec.~\ref{sec:snoozeVariants}, using
-\vmps on configurations of~128 and~256 nodes. In order to clearly
-expose the corresponding differences this evaluation has been
-performed by ``stressing'' the two LC to GM assignment algorithms by
-simultaneously starting all LCs (128/256) and all GMs (12/25) and then
-simulating the resulting configuration over a one hour period.  These
-experiments have yielded the following results:
-\begin{itemize}
-  \item BF yields significantly more homogenous assignments of LCs to
-    GMs. For 128 nodes, the no.\ of LCs per GMs varies from 0--30
-    (stdev: 10.53) BF and 0--49 (stdev: 15.79) for RR (the means being
-    equal since the total no.\ of LCs and GMs are equal). For 256
-    nodes, the corresponding values are a range of 0--18 (stdev: 6.62)
-    for BF and 0--35 (stdev: 12.22) for RR.\footnote{Here, GMs have
-      been assigned 0 LCs if they join the system later than all LCs.}
-  \item The cumulated time spent resolving violations is, for both
-    configurations, significantly smaller for BF than RR, see
-    Fig.~\ref{fig:snoozeBFRRViolation}.
-\end{itemize}
-From these results, we can clearly infer that BF is significantly
-better than RR for these kinds of configuration. We conjecture that BF
-should perform at least as good as RR for all configurations (the
-proof is left to future work).
 
 \subsubsection{DVMS Analysis}
 \AL{if space and time add PajeGN view for DVMS}
