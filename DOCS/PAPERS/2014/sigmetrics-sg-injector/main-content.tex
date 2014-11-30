@@ -166,14 +166,17 @@ Section~\ref{sec:experiments}. Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
 
-\section{VM Placement Problem Overview}
+\section{The VM Placement Problem}
 \label{sec:vmpp}
 
-At coarse-frained, VMPP can be summarized in
-three-steps (see Figure \ref{fig:scheduling_steps}):  Monitoring the
-resources usages, computing a new schedule each time is it  needed and applying the
-reconfiguration plan (\ie performing VM migration and supend/resume
-operations to switch to the new placement solution).
+A VMPP can be summarized in three-steps (see Figure
+\ref{fig:scheduling_steps}): monitoring the resources usages,
+computing a new schedule each time is it needed and applying the
+resulting reconfiguration plan (\ie performing VM migration and
+suspend/resume operations to realize to the new placement solution).
+\MS[AL]{The fig. is not perfect, among others because it contains
+  features, \eg the communication arrows, that are not obvious nor
+  explained.}
 % that are mandatory to solve resource violations while optimizing resource usages).
 
 \begin{figure}[ht]
@@ -194,100 +197,109 @@ operations to switch to the new placement solution).
 \end{figure}
 %
 
-As the goal  of VMPP solutions is to maintain a placement that
-satisifies the requirements of each VM while optimizing CC resource usages, scalability,
-reliability and reactivity of the mechanisms implementing each of
-these three steps are decisive. For instance, a naive implementation
-of a master/workers approach as described in
-Figure~\ref{fig:scheduling_steps} would prevent to take into account
-workload fluctuations during the computation and the application of a
-schedule, leading potentially to artifical violations (\ie resource violations
-that are due to the VMPP mechanism). In other words, the longer each
-phase,
+VMPP solutions stand and fall with their scalability, reliability and
+reactivity of properties, because they have to maintain a placement
+that satisfies the requirements of all VMs while optimizing the usage
+of CC resources. For instance, a naive implementation of a
+master/worker approach as described in
+Figure~\ref{fig:scheduling_steps} would prevent workload fluctuations
+to be taken into account during the computation and the application of
+a schedule, potentially leading to artificial violations (\ie resource
+violations that are caused by the VMPP mechanism). In other words, the
+longer each phase,
 % the longer the reconfiguration process,
 the higher the risk that the schedule may be outdated when it is
-computed or eventually applied (see Figure
-\ref{fig:workload_fluctuations}). Similarly, servers and network
-crashes can prevent to detect and solve resource violations if the
-master node crashes or if a group of VM is temporarily isolated from
-the master node.
+computed or eventually applied, cf.\ the different loads during the
+three phases in Figure \ref{fig:workload_fluctuations}. Similarly,
+servers and network crashes can impede the detection and resolution of
+resource violations if the master node crashes or if a group of VMs is
+temporarily isolated from the master node.
 
-Analyzing how VMPP solutions behave when such aforementioned events
-occur is mandatory to validate them. Providing a framework to make
-such studies easier and in a more reproducible manner is the target of \vmps as described in the
-following.
+VMPP solutions can only be reasonably evaluated if their behavior in
+the presence of such adverse events can be analyzed. Providing a
+framework that facilitates such studies and increases their
+reproducibility is the main objective of \vmps.
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
 %\AL[AL]{0.5page}
 
-\sg is a simulation toolkit to study the behavior of
-large-scale distributed systems.  Developped for more than  a decade, it has been used in more than 100
-publications.  Its main characterisitics are related to its:
+We now briefly introduce the toolkit on which \vmps is based.  \sg is
+a toolkit for the simulation of potentially complex algorithms
+executed on large-scale distributed systems.  Developed for more than
+a decade, it has been used in a large number of studies described in
+more than 100~publications.  Its main characteristics are the
+following:
 \begin{itemize}
-\item Extensibility -- After Grids, HPC and P2P
-  systems, \sg has been recently extended with virtualization technologies abstractions
-(\ie Virtual Machines including a live migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to investigate Cloud
-Computing challenges \cite{lucas:cloud2014};
-\item Scalability -- It is possible to simulate large-scale scenarios,
-  as an example, users can simulate applications composed of 2
-  Millions of processors and an infrastructure composed of 10,000~servers hosting more than
-  100,000~VMs on a computer with 16~GB of memory;
-\item  Flexibility -- It allows to run a simulation on arbitrary network
-  topology under dynamic computation and network resources
-  availabilities;
-\item API --  users can leverage \sg through easy-to-use APIs in C
-  and Java.
+  \item Extensibility: after Grids, HPC and P2P systems, \sg has been
+    recently extended with abstractions for virtualization
+    technologies (\ie Virtual Machines including a live migration
+    model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to
+    investigate Cloud Computing challenges \cite{lucas:cloud2014}.
+  \item Scalability: it is possible to simulate large-scale scenarios;
+    as an example, users can simulate applications composed of
+    2~million processors and an infrastructure composed of
+    10,000~servers hosting more than 100,000~VMs on a computer with
+    16~GB of memory. \MS[AL]{Add a ref.}
+  \item Flexibility: it enables simulations to be run on arbitrary
+    network topologies under dynamically changing computations and
+    available network resources.
+  \item Versatile APIs: users can leverage \sg through easy-to-use
+    APIs for~C and~Java.
 \end{itemize}
 
 To perform simulations, users should develop a \emph{program} and
 define a \emph{platform} file and a \emph{deployment} file. The
-\emph{program} in most cases leverages the \sg MSG API that allows
+\emph{program} leverages, in most cases, the \sg MSG API that allows
 end-users to create and execute \sg abstractions such as processes,
-tasks, VMs and network-communications. The \emph{platform} file gives
-the physical description of each resource composing the environment
-and on which aforementioned computations/network exchanges will be
-performed in the \sg
-world.
+tasks, VMs and network communications. The \emph{platform} file
+provides the physical description of each resource composing the
+environment and on which aforementioned computations and network
+interactions will be performed in the \sg world.
 % (host, CPU capacity, network topology and link capacities, etc.)
-Finally, the \emph{deployment} file is used to launch the different
-\sg processes defined in the \emph{program} on the different nodes (at
-least the mapping between one process and one host is mandatory to
-start the simulation). The execution of the program is orchestrated by
-the \sg engine that internally relies on an constraint solver to
-correctly assign the amount of CPU/network resources to each \sg
-abstraction, step by step until the simulation ends.
+The \emph{deployment} file is used to launch the different \sg
+processes defined in the \emph{program} on the different nodes.
+% (at least the mapping between one process and one host is mandatory
+% to start the simulation)
+Finally, the execution of the program is orchestrated by the \sg
+engine that internally relies on an constraint solver to correctly
+assign the amount of CPU/network resources to each \sg abstraction
+during the entire simulation.
 
-Although SimGrid has many features such as model checking, the
-simulation of DAGs (Direct Acyclic Graphs) or MPI applications, we
-only give a brief description of the  virtualization  abstractions
-that have been recently implemented in \sg and on which our framework relies
-on.  Further information regarding \sg is available in \cite{casanova:hal-01017319}.
+\sg provides many other features such as model checking, the
+simulation of DAGs (Direct Acyclic Graphs) or MPI-based
+applications. In the following, we only give a brief description of
+the virtualization abstractions that have been recently implemented
+and on which our framework relies on (for further information regarding
+\sg see~\cite{casanova:hal-01017319}).
 
-The VM support has been designed so that all operations that can be performed
-on a host can be performed inside a VM: From the point of view of a \sg
-Host, a \sg VM is considered as an ordinary task while from the point
-of view of a task running inside a \sg VM, a VM is considered as an
-ordinary host below the task.  By such a mean, \sg users can easily
-switch between a virtualized and non virtualized infrastructure.
-Moreover, thanks to  MSG API extensions, users can control VMs in the
-same manner as in the real world (\eg create/destroy, start/shutdown,
-suspend/resume and migrate).
+The VM support has been designed so that all operations that can be
+performed on a host can also be performed inside a VM. From the point
+of view of a \sg Host, a \sg VM is an ordinary task while from the
+point of view of a task running inside a \sg VM, a VM is considered as
+an ordinary host.
+% below the task.  
+\sg users can thus easily switch between a virtualized and
+non-virtualized infrastructure.  Moreover, thanks to MSG API
+extensions, users can control VMs in the same manner as in the real
+world (\eg create/destroy VMs; start/shutdown, suspend/resume and
+migrate them).
 % TODO: Not addressed
 %\AL{Shoudl we talk about over-provisionning limitations}
 For migration operations, a VM live migration model implementing the
 precopy migration algorithm of Qemu/KVM has been integrated into \sg.
 This model is the only one that successfully simulates the live
-migration behavior by taking into account the resource sharing
-competition as well as the memory refreshing rate of the VM, thus
-determining correctly the live migration time as well as the resulting
-network traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
-
+migration behavior by taking into account the competition arising in
+the presence of resource sharing as well as the memory refreshing rate
+of the VM, thus determining correctly the live migration time as well
+as the resulting network
+traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+%
 %\AL[AL]{Add more details regarding live migration in order to reply to
 %the Mario's remark (not clear enoug)}
-
-Those two capabilities were mandatory to build our VM placement
-simulator toolkit introduced in the next section.
+%
+These two capabilities are mandatory to build our VM placement
+simulator toolkit.
 
 \section{VM Placement Simulator}
 \label{sec:injector}
