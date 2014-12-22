@@ -769,19 +769,20 @@ starting all LCs (128/256) and all GMs (12/25) and then simulating the
 resulting configuration over a one hour period.  These experiments
 have yielded the following results, cf.\ Table~\ref{tbl:assignmenResults}:
 \begin{itemize}
-  \item BF yields significantly more homogeneous assignments of LCs to
-    GMs: the ranges of the numbers of LCs assigned to a GM are smaller
-    as well as their standard deviation.\footnote{Here, some GMs may
-      be assigned 0 LCs if they join the system later than all LCs.}
+  \item BF yields more homogeneous assignments of LCs to GMs: the
+    ranges of the numbers of LCs assigned to a GM and their standard
+    deviations are significantly smaller.\footnote{Here, some GMs may
+      be assigned 0 LCs if some GMs join the system after all LCs have
+      been assigned.}
   \item The cumulated time spent resolving violations is, for both
-    configurations, significantly smaller for BF than RR.
+    configurations, significantly smaller for BF than for RR.
 \end{itemize}
 From these results, we can clearly infer that BF is significantly
 better than RR for the two tested kinds of configuration. Furthermore,
 we conjecture that BF should perform at least as good as RR for all
 configurations (the proof is left to future work).
 \MS[JP]{I need the exact figures for the violation times
-  in Tbl.~\ref{tbl:assignmenResults}}.
+  in Tbl.~\ref{tbl:assignmenResults}}
 
 
 \paragraph{Periodic vs.\ reactive scheduling}
