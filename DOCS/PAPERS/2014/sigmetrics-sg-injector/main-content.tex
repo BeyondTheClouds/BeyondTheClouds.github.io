@@ -695,7 +695,7 @@ implementation of their models using \vmps. This section provides
 strong evidence that the modification and evaluation of existing
 algorithms is much facilitated by our simulation framework.
 
-\subsubsection{Snooze analysis}
+\subsubsection{Variants of hierarchical scheduling}
 \label{sec:snoozeVariants}
 
 We now present three non-trivial variants that we have implemented and
@@ -754,10 +754,10 @@ smallest number of assigned LCs.
         \Rstrut \\ \hline
         \thickhline
     \end{tabular}
+\end{center}
     \caption{LCs to GM assignment and cumulated violation times for RR
       and BF strategies}
-\end{center}
-\label{tbl:assignmenResults}
+    \label{tbl:assignmentResults}
 \end{table*}
 
 
@@ -767,7 +767,7 @@ corresponding differences this evaluation has been performed by
 ``stressing'' the two strategies by simultaneously
 starting all LCs (128/256) and all GMs (12/25) and then simulating the
 resulting configuration over a one hour period.  These experiments
-have yielded the following results, cf.\ Table~\ref{tbl:assignmenResults}:
+have yielded the following results, cf.\ Table~\ref{tbl:assignmentResults}:
 \begin{itemize}
   \item BF yields more homogeneous assignments of LCs to GMs: the
     ranges of the numbers of LCs assigned to a GM and their standard
@@ -781,8 +781,8 @@ From these results, we can clearly infer that BF is significantly
 better than RR for the two tested kinds of configuration. Furthermore,
 we conjecture that BF should perform at least as good as RR for all
 configurations (the proof is left to future work).
-\MS[JP]{I need the exact figures for the violation times
-  in Tbl.~\ref{tbl:assignmenResults}}
+% \MS[JP]{I need the exact figures for the violation times
+%   in Tbl.~\ref{tbl:assignmenResults}}
 
 
 \paragraph{Periodic vs.\ reactive scheduling}
@@ -827,9 +827,9 @@ by the LCs of a VM, reactive scheduling has been implemented by adding
     \Rstrut \\ \hline
     \thickhline
 \end{tabular}
+\end{center}
     \caption{Reconfiguration nos. and violation times for reactive and
     periodic scheduling}
-\end{center}
 \label{tbl:reactiveRes}
 \end{table*}
 
@@ -850,12 +850,12 @@ time.
 
 \paragraph{Variants of the join algorithms}
 
-The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to the
-correctness of Snooze for two main reasons: (i) they have to be
-efficient because they can easily form a bottleneck if large numbers
-of LCs (GMs) have to be registered at a GM (LC); (ii) they are
-multi-phase protocols whose correctness especially in the presence of
-faults is difficult to ensure.
+The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to
+Snooze for two main reasons: (i) they have to be efficient because
+they can easily form a bottleneck if large numbers of LCs (GMs) have
+to be registered at a GM (LC); (ii) they are multi-phase protocols
+whose correctness especially in the presence of faults is difficult to
+ensure.
 
 In order to investigate the corresponding trade-offs, we have used our
 framework to implement join algorithms that may be interrupted at any
@@ -866,24 +866,21 @@ handle registration requests.
 
 Finally, our framework has enabled us to test another aspect of
 Snooze's join algorithm as presented by
-Feller~\etal.~\cite{feller:ccgrid12},
-\MS[MS]{If we succeed to perform the experiment comparing both
-  approach, this paragraph should be highlighted.}
-a strategy we call the GM rejoin
-strategy (GRJ): all GMs should rejoin if a new GM enters the
-system. While GRJ supports a form of load balancing (because all LCs
-are reassigned to the new set of GMs), our simulation has shown that
-this strategy significantly increases the time necessary for
-registering GMs and LCs compared to a simpler strategy that does not
-modify existing GMs in case a new GM enters the system. This handicap
-is particularly pronounced if joins of GMs may be interrupted due to
-faults. Concretely, experiments involving 20 GMs and 200 LCs have
-shown that this strategy often multiplies the time necessary to join
-all 220 components by 10 or more compared to the simple join
-strategy. While the qualitative result that the more complex strategy
-presented in the paper results in a more time-consuming join process
-is not very surprising, the extent of the resulting degradation was
-surprising.
+Feller~\etal.~\cite{feller:ccgrid12}, a strategy we call the GM rejoin
+strategy (GRJ): all GMs and the LCs assigned to them should rejoin if
+a new GM enters the system. While GRJ supports a form of load
+balancing (because all LCs are reassigned to the new set of GMs), our
+simulation has shown that this strategy significantly increases the
+time necessary for registering GMs and LCs compared to a simpler
+strategy that does not modify existing GMs in case a new GM enters the
+system. This handicap is particularly pronounced if joins of GMs may
+be interrupted due to faults. Concretely, experiments involving 20 GMs
+and 200 LCs have shown that this strategy often multiplies the time
+necessary to join all 220 components by 10 or more compared to the
+simple join strategy. While the qualitative result that the more
+complex strategy presented in the paper results in a more
+time-consuming join process is not very surprising, the extent of the
+resulting degradation was surprising.
 
 
 
