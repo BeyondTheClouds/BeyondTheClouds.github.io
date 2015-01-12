@@ -1,0 +1,31 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{VM Placement Problem Overview}{}% 2
+\BOOKMARK [1][-]{section.3}{Simgrid, a generic toolkit}{}% 3
+\BOOKMARK [1][-]{section.4}{VM Placement Simulator}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Overview}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Initialization Phase}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.3}{Injector Phase}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.4}{Trace Analysis}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Dynamic VMPP Algorithms}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{Entropy-based Centralized Approach}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Snooze-based Hierarchical Approach}{section.5}% 11
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Architecture}{subsection.5.2}% 12
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Algorithms}{subsection.5.2}% 13
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Fault tolerance}{subsection.5.2}% 14
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Simulation using Simgrid}{subsection.5.2}% 15
+\BOOKMARK [2][-]{subsection.5.3}{DVMS-based Distributed Approach}{section.5}% 16
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Architecture}{subsection.5.3}% 17
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Iterative Scheduling Procedure}{subsection.5.3}% 18
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Fault-tolerance}{subsection.5.3}% 19
+\BOOKMARK [1][-]{section.6}{Experiments}{}% 20
+\BOOKMARK [2][-]{subsection.6.1}{Comparisons of Entropy, Snooze and DVMS}{section.6}% 21
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Reactivity and Violation time}{subsection.6.1}% 22
+\BOOKMARK [3][-]{subsubsection.6.1.2}{Fault Tolerance}{subsection.6.1}% 23
+\BOOKMARK [2][-]{subsection.6.2}{One step ahead thanks to VMPlaceS}{section.6}% 24
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Snooze analysis}{subsection.6.2}% 25
+\BOOKMARK [3][-]{subsubsection.6.2.2}{LC assignment in Snooze-like placement alg.}{subsection.6.2}% 26
+\BOOKMARK [3][-]{subsubsection.6.2.3}{DVMS Analysis}{subsection.6.2}% 27
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 28
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 29
+\BOOKMARK [1][-]{section.9}{Acknowledgment}{}% 30
+\BOOKMARK [1][-]{section.10}{References}{}% 31

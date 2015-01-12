@@ -1,0 +1,1046 @@
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE!
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[conference]{IEEEtran}
+% Add the compsoc option for Computer Society conferences.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\input{include.tex}
+
+\newcommand{\sg}{SimGrid\xspace}
+\newcommand{\vmps}{VMPlaceS\xspace}
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{\vmps~--~A Generic Tool to Investigate and Compare VM Placement Algorithms}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Adrien Lebre, Jonathan Pastor, Mario S\"{u}dholt}
+\IEEEauthorblockA{ASCOLA Research Group (Mines Nantes, Inria, Lina), France\\ firstname.lastname@inria.fr
+}}
+
+
+
+% make the title area
+\maketitle
+
+\thispagestyle{plain}
+\pagestyle{plain}
+
+\begin{abstract} %\boldmath
+    Most current infrastructures for cloud computing leverage static
+    and greedy policies for the placement of virtual machines. Such
+    policies impede the optimal allocation of resources and the
+    satisfaction of operational guarantees like service-level
+    agreements. In recent years, more dynamic and often more efficient
+    policies based, \eg on consolidation and load balancing
+    techniques, have been developed and investigated. New policies are
+    typically evaluated either using testbeds or \emph{in-vivo}
+    experiments. However, due to the underlying complexity of cloud
+    infrastructures, testbeds typically have to be tailored to
+    specific restricted configurations and experiments on real
+    infrastructures are necessarily of limited scale.
+
+    In this article, we propose \vmps, a dedicated simulation
+    framework to perform in-depth investigations of VM placement
+    algorithms and compare them in a fair way. This framework, built
+    on top of the \sg simulation platform, notably provides
+    programming support to easy the implementation of placement
+    algorithms and runtime support dedicated to load injection and
+    execution trace analysis. \vmps supports the simulation of a large
+    set of real-world configurations, while allowing researchers to
+    conduct experiments at large scales. We also report on a
+    validation of our framework by implementing and investigating
+    representative algorithms for three classes of placement
+    algorithms: centralized, hierarchical and fully-distributed ones.
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the conference you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals/conferences frown on
+% math in the abstract anyway.
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+\label{sec:intro}
+%\AL[AL]{1 page (including the abstract)}
+
+A lot of progress has been made on Cloud Computing (CC) system
+management, in particular through Infrastructure-as-a-Service
+toolkits~\cite{moreno:2012}. However, most of these infrastructures
+are still leveraging elementary Virtual Machine (VM) placement
+policies that prevent them from maximizing the usage of CC resources
+while guaranteeing VM resource requirements as defined by Service
+Level Agreements (SLAs).
+%% THE TEXT BELOW COMES FROM ISPA'13
+%%%%%%%
+Typically, a batch scheduling approach is used: VMs (i)~are allocated
+according to user requests for resource reservations, and (ii)~are
+tied to the nodes where they were deployed until their
+destruction. Besides the fact that users often overestimate their
+resource requirements, such static policies are definitely not optimal
+for CC providers, since the effective resource requirements of each
+operated VM may significantly vary during its lifetime.
+%%%%%%%
+Moreover, most available IaaS toolkits, notably many of the most
+popular ones~\cite{openstack, opennebula, cloudstack}, continue to
+rely on greedy allocation approaches, even if more flexible and often
+more efficient approaches to the Virtual Machine Placement Problem
+(VMPP) have been developed by the research community. Dynamic
+strategies such as consolidation, load balancing and other
+SLA-ensuring algorithms have been deeply investigated
+\cite{Hermenier:2009:ECM:1508293.1508300}, \cite{feller:ccgrid12},
+\cite{quesnel:cpe2012}, \cite{5935254}, \cite{5715067},
+\cite{5328077}.  \MS{Be more assertive on the motivation: Adrien,
+  which was the article for justification?}  From our point of view,
+an important impediment to the adoption of such advanced strategies is
+related to the experimental process that has been used to validate the
+pros and cons of each of them: most VMPP proposals have been evaluated
+either by leveraging ad-hoc simulators or small testbeds. These
+evaluation environments are not accurate and not representative enough
+to (i) ensure their correctness on real platforms and (ii) perform
+fair comparisons between them.
+
+% %
+% \begin{figure}[ht]
+% \vspace*{-.2cm}
+% \begin{center}
+%         \subcapcentertrue
+%         \subfigure[Scheduling steps]{
+%         \includegraphics[width=.45\linewidth]{figures/scheduling_steps.pdf}
+%         \label{fig:scheduling_steps}}
+%         \subfigure[Workload fluctuations during scheduling]{
+%         \includegraphics[width=.45\linewidth]{figures/workload_fluctuations2.pdf}
+%         \label{fig:workload_fluctuations}}
+% \vspace*{-.2cm}
+% \caption{VM scheduling in a master/worker architecture}
+% \end{center}
+% \label{fig:scheduling}
+% \vspace*{-.2cm}
+% \end{figure}
+% %
+% \MS[AL]{Must we keep the fig.: the arguments of complexity and time
+%   requirements are already made in the remainder of the intro. If we
+%   keep it, the discussion should be simplified.}
+% Each VMPP mechanism is a complex system that can face
+% important side-effects during each of its stages: Monitoring the
+% resources usages, computing the schedule and applying the
+% reconfiguration (see Figure \ref{fig:scheduling_steps}).
+% %
+% %
+% As an example, a single master architecture can lead, \textit{a priori} to
+% important drawbacks. First, during the computation and the application
+% of a schedule, a single master cannot take into account new VM
+% requirement violations. Second, the time needed to apply a new
+% schedule can be particularly important: The longer the reconfiguration
+% process, the higher the risk that the schedule may be outdated, due to
+% the workload fluctuations, when it is eventually applied (see Figure
+% \ref{fig:workload_fluctuations}). Finally, a single master node can
+% lead to well-known fault-tolerance issues: A group of VMs may be
+% temporarily isolated from the master node in case of a network
+% disconnection or if the master node crashes.
+% %
+Implementing each proposal and evaluating it on representative
+testbeds in terms of scalability, reliability and workload changes
+would definitely be the most rigorous way to observe and propose
+appropriate solutions to aforementioned
+side-effects.
+% and compare  with existing proposals.
+However, \textit{in-vivo} (\ie real-world) experiments, if it is
+possible to execute them, are always expensive and tedious to perform;
+they may even be counterproductive if their results lead to false
+conclusions, \eg because of errors involving unanticipated
+interferences of different parts of the experiments that cannot be
+explored sufficiently in complex real-world environments.
+
+\MS{1.\ We should include/underline the new programming abstractions:
+  \texttt{XVM} etc. 2.\ The abbreviation \vmps is not very good: too
+  similar to VMs.} In this article, we propose % the first version of
+\vmps, a dedicated simulation framework to perform in-depth
+investigations of VM placement algorithms and compare them with each
+other in a fair way. To cope with real conditions such as the
+increasing scale of modern data centers and the dynamicity of the
+workloads that are specific to the Cloud Computing paradigm, notably
+its elasticity capacity, \vmps allows users to study large-scale
+scenarios that taking into account server crashes and that involve
+tens of thousands of VMs, each one executing a specific workload that
+evolves during the simulation lifetime.
+
+We believe that such a tool will be beneficial to a large number of
+researchers in the field of CC as it enables them to quickly validate
+% AL->MS the characterisctics -> the trends,  simulations are
+% well-known scientific intrusments to validate trends (and only trends).
+the trends of a new proposal and compare it with existing
+ones. This way, our approach allows \textit{in vivo} experiments to be
+restricted to VMPP mechanisms that have the potential to handle CC
+production infrastructures.
+
+%
+We chose to build \vmps on top of the \sg
+toolkit~\cite{casanova:hal-01017319} since (i) its relevance in terms
+of performance and validity has already been
+demonstrated~\cite{simgridpub} and (ii) because it has been recently
+extended to integrate virtual machine abstractions and a live
+migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+To illustrate the relevance of \vmps, we implemented the essential
+mechanisms of three well-known VMPP approaches:
+Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
+Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}. We
+have investigated their characteristics by analyzing their
+scalability, reliability and reactivity (\ie the time to solve an SLA
+violation). Besides being well-known from the literature, we chose
+these three systems as they are built on three different software
+architecture models: Entropy uses a centralized model, Snooze a
+hierarchical one and DVMS a fully distributed one.
+
+The experiments reveal ...
+\AL[AL]{What the experiments reveal at the end ? }
+
+\AL{Fix the organization structure}
+The rest of the article is organized as follow. Section~\ref{sec:sg}
+gives an overview of the \sg framework.  \ref{sec:injector} introduces
+\vmps and discusses its general functioning.  The three algorithms
+implemented as use-cases are presented in
+Section~\ref{sec:vm-schedulers} and evaluated in
+Section~\ref{sec:experiments}.  Section~\ref{sec:related} and
+Section~\ref{sec:conclusion} present, respectively, related work as
+well as a conclusion and future work.
+
+\section{VM Placement Problem Overview}
+\label{sec:vmpp}
+\AL{TODO: 0.5 pages}
+
+\section{Simgrid, a generic toolkit}
+\label{sec:sg}
+%\AL[AL]{0.5page}
+
+\sg is a simulation toolkit to study the behavior of
+large-scale distributed systems.  Developped for more than  a decade, It has been used in more than 100
+publications.  Its main characterisitics are related to its:
+\begin{itemize}
+\item Extensibility -- After Grids, HPC and P2P
+  systems, \sg has been recently extended with virtualization technologies abstractions
+(\ie Virtual Machines including a live migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to investigate Cloud
+Computing challenges \cite{lucas:cloud2014};
+\item Scalability -- It is possible to simulate large-scale scenarios,
+  as an example, users can simulate applications composed of 2
+  Millions of processors and an infrastructure composed of 10,000~servers hosting more than
+  100,000~VMs on a computer with 16~GB of memory;
+\item  Flexibility -- It allows to run a simulation on arbitrary network
+  topology under dynamic computation and network resources
+  availabilities;
+\item API --  users can leverage \sg through easy-to-use APIs in C
+  and Java.
+\end{itemize}
+
+To perform simulations, users should develop a \emph{program} and
+define a \emph{platform} file and a \emph{deployment} file. The
+\emph{program} in most cases leverages the \sg MSG API that allows
+end-users to create and execute \sg abstractions such as processes,
+tasks, VMs and network-communications. The \emph{platform} file gives
+the physical description of each resource composing the environment
+and on which aforementioned computations/network exchanges will be
+performed in the \sg
+world.
+% (host, CPU capacity, network topology and link capacities, etc.)
+Finally, the \emph{deployment} file is used to launch the different
+\sg processes defined in the \emph{program} on the different nodes (at
+least the mapping between one process and one host is mandatory to
+start the simulation). The execution of the program is orchestrated by
+the \sg engine that internally relies on an constraint solver to
+correctly assign the amount of CPU/network resources to each \sg
+abstraction, step by step until the simulation ends.
+
+Although SimGrid has many features such as model checking, the
+simulation of DAGs (Direct Acyclic Graphs) or MPI applications, we
+only give a brief description of the  virtualization  abstractions
+that have been recently implemented in \sg and on which our framework relies
+on.  Further information regarding \sg is available in \cite{casanova:hal-01017319}.
+
+The VM support has been designed so that all operations that can be performed
+on a host can be performed inside a VM: From the point of view of a \sg
+Host, a \sg VM is considered as an ordinary task while from the point
+of view of a task running inside a \sg VM, a VM is considered as an
+ordinary host below the task.  By such a mean, \sg users can easily
+switch between a virtualized and non virtualized infrastructure.
+Moreover, thanks to  MSG API extensions, users can control VMs in the
+same manner as in the real world (\eg create/destroy, start/shutdown,
+suspend/resume and migrate).
+\AL{Shoudl we talk about over-provisionning limitations}
+% live migration
+For migration operations, a VM live migration model implementing the
+precopy migration algorithm of Qemu/KVM has been integrated into \sg.
+This model is the only one that successfully simulates the live
+migration behavior by taking into account the resource sharing
+competition as well as the memory refreshing rate of the VM, thus
+determining correctly the live migration time as well as the resulting
+network traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+\AL[AL]{Add more details regarding live migration in order to reply to
+the Mario's remark (not clear enoug)}
+
+Those two capabilities were mandatory to build our VM placement
+simulator toolkit introduced in the next section.
+
+\section{VM Placement Simulator}
+\label{sec:injector}
+%\AL[AL]{1.5 page}
+
+The purpose of \vmps is to deliver a generic tool to evaluate new VM
+placement algorithms and offer the possibility to compare
+them. Concretely, it supports the management of VM creations, workload
+fluctuations as well as node apparitions/removals.  Researchers can
+thus focus on the implementation of new placement algorithms and
+evaluate how it behaves according to the different changes that occur
+during the simulation.
+%
+\vmps has been implemented in Java by leveraging the messaging API
+(MSG) of \sg.  Although the Java layer has an impact of the efficiency
+of \sg, we believe its use is acceptable because Java offers important
+benefits to researchers for the implementation of advanced scheduling
+strategies, notably concerning the ease of implementation of new
+strategies. \AL[JP]{Should we talk about SCALA?}
+
+In the following we give an overview of the framework and describe its
+general functioning.% and how researchers can develop new algorithms
+
+\subsection{Overview}
+\label{sec:overview}
+
+From a high-level view, \vmps performs a simulation in three phases:
+(i) initialization (ii) injection and (iii) trace analysis (see Figure
+\ref{fig:workflow}).  The
+initialization phase corresponds to the creation of the environment,
+the VMs and the generation of the event queue. During the injection
+phase the scheduling strategy is evaluated. Basically, it consists of
+at least two \sg processes, one executing the \emph{injector} and a
+second one executing the to-be-simulated scheduling algorithm.  The
+\emph{injector} constitutes the generic part of the framework. It
+injects scheduling-relevant events during the execution of
+simulations.  Currently, the supported events are VM CPU load changes
+and node apparitions/removals that we use to simulate node crashes.
+
+\begin{figure}
+  {\centering ~\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.png}}
+  \caption{\vmps's Workflow}
+  \label{fig:workflow}
+{\small Gray parts correspond to the generic code while the white one
+  must be provided by end-users. The current version is released with
+  three different schedulers (centralized/hierarchical and distributed).}
+\end{figure}
+
+% As we describe in the next section, additional events can be easily added.
+%\AL[AL]{Make two figures: a architectural one (i.e. Injector vs
+ % schedulers pool and one chronological.}
+%\MS{Yes, the figures are important. They could also be useful to
+ % partially provide a more abstract explanation.}
+
+Regarding the scheduling algorithm, users should develop their own
+algorithm by leveraging the \sg messaging API and the \texttt{XHost},
+\texttt{XVM} and \texttt{SimulatorManager} classes. The two former
+classes respectively extend \sg's \texttt{Host} and \texttt{VM}
+abstractions while the latter controls the interactions between the
+different components of the VM placement simulator.  Throughout these
+three classes, users can inspect, at any time, the current state of
+the infrastructure (\ie the load of a host/VM, the number of VMs
+hosted on the whole infrastructure or on a particular host, check
+whether one host is overloaded, etc.) We have used the \vmps in order
+to analyze three scheduling mechanisms, cf.\
+Sec.~\ref{sec:vm-schedulers}. We choose these three mechanisms as they
+represent three different software architecture models: centralized,
+hierarchical and fully-distributed models for VM placement.
+%% TODO
+%\MS{The
+%  following point is too low-level and should not come here} Although
+%we do not discuss that point due to space constraints, we emphasize
+%that these three mechanisms enable us to deliver concrete examples of
+%how the deployment file of \sg is automatically generated by leveraging
+%a generic python script.  \AL{We should highlight that point in the
+%  README.org}
+The last phase consists in analyzing the collected traces in order to
+gather the results of the simulation, notably by means of the
+generation of figures representing, \eg resource usage statistics.
+
+%\begin{itemize}
+%\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
+% \item Snooze \cite{feller:ccgrid12}, a hierarchical approach where
+%   each manager of a group invokes Entropy to solve the
+%  placement/reconfiguration VM problem. It is noteworthy that in
+%   \cite{feller:ccgrid12}, Snooze is using a specific heuristic to solve the placement/reconfiguration VM problem. As the sake of simplicity, we have simply reused the entropy scheduling code.
+%\item  DVMS \cite{quesnel:cpe2012}, a distributed approach that dynamically partitions the system and invokes Entropy on each partition.
+% \end{itemize}
+
+\subsection{Initialization Phase}
+
+In the beginning, \vmps creates $n$ VMs and assigns them in a
+round-robin manner to the first $p$ hosts defined in the platform
+file.  The default platform file corresponds to a cluster of $p+s$
+hosts, where $p$ corresponds to the number of hosting nodes and $s$ to
+the number of services nodes. The values $n$, $p$ and $s$ constitute
+input parameters of the simulations (specified in a Java properties
+file).
+%% TODO
+% \AL[AL]{Update the size of the cluster autonomically by
+%  leveraging p + s}
+Although the cluster topology is the most
+common one, it is possible to define more complex platforms to simulate,
+for instance, scenarios involving federated data centers.
+%Note that $s$ can be equals to 0 if the
+%scheduling strategy is directly executed on the hosting nodes.
+
+Each VM is created based on one of the predefined VM classes. A VM
+class corresponds to a template defining the VM attributes and its
+memory footprint. Concretely, it is
+% described as
+% \texttt{nb\_cpu:ramsize:net\_bw:mig\_speed:mem\_speed}
+defined in terms of five parameters: the number of cores
+\texttt{nb\_cpus}, the size of the memory \texttt{ramsize}, the
+network bandwidth \texttt{net\_bw}, \texttt{mig\_speed} the maximum
+bandwidth available migrate it and \texttt{mem\_speed} the maximum
+memory update speed when the VM is consuming 100\% of its CPU
+resources. The memory update speed is a critical parameter that
+governs the migration time as well as the amount of transferred
+data. It enables users to simulate different kinds of workload (\ie
+memory-intensive vs non-intensive workloads), which is mandatory to
+simulate realistic Cloud Computing problems.  Available classes are
+defined in a specific text file that can be modified according to the
+user's needs.  \MS{Follows a low-level mechanism!}  At creation time
+of a VM, a process selects one class (\ie one line) in the file
+randomly. Hence, if a user wants to favor a specific class, he can
+simply repeat the line of the class several times. Finally, all VMs
+start with a CPU consumption of 0 that will evolve during the
+simulation after charge injection as explained below.  Note that each
+random process used in \vmps is initialized with a seed that is
+defined in a configuration file. This way, we can ensure that
+different simulations are reproducible and may be used to establish
+fair comparisons.
+
+Once the creation and the assignment of VMs is completed, \vmps spawns
+at least two SG processes, the \emph{injector} and the launcher of the
+selected scheduler.  The first action of the \emph{injector} consists
+in creating the different event queues and merge them into a global
+one that will be consumed during the second phase of the simulation.
+For now, we generate two kinds of event: ~~\emph{CPU load} and
+\emph{node crash} events.
+%\todo{Before apparitions/ removals}
+% The former consists in changing the load of a VM by creating and
+% assigning a new \sg task in the VM while the second aims at
+% simulating crashes.
+%
+% Changing the load of a VM has a direct impact of its memory update
+% speed and thus on the time to migrate it between two hosts.
+The \emph{CPU load} event queue is generated in order to change the
+load of each VM every $t$ seconds on average. $t$ is a random variable
+that follows an exponential distribution with rate parameter
+$\lambda_t$ while the CPU load of a VM evolves according to a
+Gaussian distribution defined by a particular mean ($\mu$) as well as
+a particular standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$
+are provided as input parameters of a simulation.  As the CPU load can
+fluctuate between 0 and 100\%, \vmps prevents the assignment of
+nonsensical values when the Gaussian distribution returns a number
+smaller than 0 or greater than 100. Although this has no impact on the
+execution of the simulation, we highlight that this can
+reduce/increase the effective mean of the VM load, especially when
+$\sigma$ is high.  Hence, it is important for users to specify
+appropriate values.
+%% TODO
+%\AL[AL]{A binomial law would have solved this issue: too late too bad :(}
+%Although this can have an impact on the
+%effective mean, especially when $\sigma$ is high, we believe it was
+%non appropriated to request it is easier for end-users to specify $\mu$ and
+%$\sigma$ parameters than
+
+The \emph{node crash} event queue is generated in order to turn off a
+node every $f$ seconds on average for a duration of $d$ seconds.
+Similarly to the $t$ value above, $f$ follows an exponential
+distribution with rate $\lambda_f$. $f$ and $d$ are also provided as
+input parameters of a simulation.
+
+Adding new events can easily be done by simply defining new event Java
+classes implementing the \texttt{InjectorEvent} interface and by
+adding the code in charge of generating the associated queue. Such a
+new queue will be merged into the global one; its events will then be
+consumed similarly to other ones during the \emph{injector Phase}.
+\AL[AL]{Future work: introduce network changes}
+
+\subsection{Injector Phase}
+
+Once the VMs and the global event queue are ready, the evaluation of
+the scheduling mechanism can start. First, the injector process
+iteratively consumes the different events that represent, for now,
+load changes of a VM or turning a node off or on.  Changing the load
+of a VM corresponds to the creation and the assignment of a new \sg
+task in the VM. This new task has a direct impact on the VM since it
+increases or decreases the current memory update speed of the VM and
+thus the time that is needed to migrate it. \MS[AL]{Is it clear
+  enough? Not for me.}
+% that is indicated by the \texttt{mem\_speed}
+%% parameter given in the class description.
+When a node is turning off, the VMs that were running on that node are
+temporarily discarded, \ie they are hidden and cannot be accessed
+until the node comes back to life. This way, the scheduler cannot
+handle them.  \AL[AL, MS, JP]{This is ugly but unfortunately the true,
+  it will be better to reassign those VMs on other nodes, but which
+  one?  } We leave for future work other approaches that can better
+match realistic scenarios such as turning off the VMs and
+reprovisioning them on other nodes.
+%
+\AL{Future work: add the possibility to have VMs
+  appearing/disappearing on the fly like a dynamic provisioning
+  strategy}
+
+As defined by the scheduling algorithm VMs will be suspended/resumed
+or relocated throughout the available hosts to meet scheduling
+objectives and SLA guarantees.  Note that users must implement the
+algorithm in charge of solving the VMPP but also the code in charge of
+applying reconfiguration plans by invoking the appropriate methods
+available from the \texttt{SimulatorManager} class. This step is
+essential as the reconfiguration cost is a key element of dynamic
+placement systems.  \AL{maybe it is better to prevent the access to
+  Xhost and XVM methods that can change the Simulator States. Hence,
+  we should enforce the access only through the SimulatorManager class
+  ? What do you think ?}  Last but not the least, it is noteworthy
+that \vmps really invokes the execution of each scheduling strategy in
+order to get the effective reconfiguration plan.  That is, the
+computation time that is observed is not simulated but corresponds to
+the effective one, only the workload inside the VMs and the migration
+operations are simulated in \sg. It is hence mandatory to propagate
+the reconfiguration time into the \sg engine by invoking a
+\texttt{wait} call of the MSG interface.
+
+\subsection{Trace Analysis}
+\label{subsec:traces-analysis}
+
+The last step of \vmps consists in analyzing the information that has
+been collected during the simulation.
+% in order to understand and compare the behavior of the different
+% algorithms.
+This analysis is done in a two-step fashion. First, \vmps records
+several metrics related to the platform utilization throughout the
+simulation by leveraging an extended version of \sg's TRACE
+module~\footnote{\url{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}}.
+This way, visualization tools promoted by the \sg community, such as
+PajeNG \cite{pageng:www} may be used. Furthermore, our extension
+enables the creation of a trace file in the JSON file format, which is
+used to generate several figures using the R statistical environment
+\cite{R:Bloomfield:2014}.
+
+By default \vmps records the load of the different VMs and hosts, the
+appearance and the duration of each violation of VM requirements in
+the system, the number of migrations, the number of times the
+scheduler mechanism has been invoked and the number of times it
+succeeds or fails to resolve non-viable configurations.
+%
+Although these pieces of information are key elements to understand
+and compare the behavior of the different algorithms, we highlight
+that the TRACE API enables the creation of as many variables as
+necessary, thus allowing researchers to instrument their own algorithm
+with specific variables that record other pieces of information.
+
+\section{Dynamic VM Placement Algorithms}
+\label{sec:vm-schedulers}
+To illustrate the interest of \vmps, we implemented three dynamic VM
+placement mechanisms respectively based on the Entropy
+\cite{Hermenier:2009:ECM:1508293.1508300}, Snooze
+\cite{feller:ccgrid12}, and DVMS \cite{quesnel:cpe2012} proposals. For the three
+implementations, we chose to use the latest VMPP solver that has been
+developed as part of the Entropy
+framework~\cite{Hermenier:2009:ECM:1508293.1508300, hermenier:cp11}.
+
+%
+Giving up consolidation
+optimality in favor of scalability, this algorithm provides a ``repair
+mode'' that enables the correction of VM requirement violations (\aka
+SLA violations). The algorithm considers that a host is
+overloaded when the VMs try to consume more than 100\% of the CPU
+capacity of the host. In such a case, the algorithm looks for
+an optimal viable configuration until it reaches a predefined timeout.
+The optimal solution is a new placement that satisfies
+the requirements of all VMs while minimizing the cost of the
+reconfiguration.
+Once the timeout has been triggered, the algorithm returns
+the best solution among the ones it finds and applies the associated
+reconfiguration plan by invoking live migrations in the simulation
+world.
+
+%
+Although using the Entropy VMPP solver
+implies a modification from the original Snooze proposal,  we
+highlight that our goal is to illustrate the capabilities of \vmps and
+thus we believe that such a modification is acceptable as it does not
+change the global behavior of Snooze. Moreover by
+conducting such a comparison, we also investigate the pros and cons of
+the three  architecture models on which these proposals rely on (\ie centralized, hierarchical and
+distributed).
+
+%
+Before discussing the simulation results, we
+describe in this section an overview of the three implemented systems.
+
+\subsection{Entropy-based Centralized Approach}
+\label{subsec:entropy}
+The centralized VM placement mechanism consists in one single \sg
+process deployed on a service node. It implements a simple loop that
+iteratively checks the viability of the current configuration by
+invoking every $p$ seconds the aforementioned VMPP solver. $p$ is
+defined as an input parameter of the simulation. As mentioned in
+Section \ref{subsec:traces-analysis}, for each iteration, we monitor
+whether the VMPP solver suceeded or failed. In case of success, \vmps
+records the number of migration that has been performed and whether
+the application of the reconfiguration plan led to new violations.
+\AL{Should we explain the issue right now or not if we add VMPP section}
+Indeed, during
+the computation and the application of a schedule, the algorithm does
+not enforce QoS properties anymore, and thus cannot react quickly to
+violations. Second, since the manipulation of VMs is costly, the time
+needed to apply a new schedule is particularly important: The longer
+the reconfiguration process is, the higher is the risk that the schedule may
+be outdated, due to the workload fluctuations, when it is eventually
+applied.
+\vmps enables researchers to investigate such concerns in-depth.
+
+
+% Pas de titre de section : il se trouve dans le fichier
+\subsection{Snooze-based Hierarchical Approach}
+\label{subsec:snooze}
+\input{snooze.tex}
+
+\subsection{DVMS-based Distributed Approach}
+\label{subsec:dvms}
+\AL[AL]{Check who write that part, If Flavien did it, then add him as
+  an author}
+\input{dvms}
+\section{Experiments}
+\label{sec:experiments}
+\AL[JP,AL,MS]{2 pages}
+\AL{Il faudra parler du nombre de migrations qui est egalement une
+  métrique pertinente. Plusieurs algorithms tentent de reduire cette
+  metrique }
+\AL[AL]{Il faudra mettre des snapshots de PajeNG}
+\subsection{Analysing and comparing different solutions}
+\subsection{Increasing fault injection to stree DVMS and Snooze based proposals}
+\AL[JP]{perform an experiment on Snooze and DVMS with fault
+  periodicity of 10 days for instance}
+\MS[JP]{perform an experiment on Snooze with additional fautls (i.e.
+  reducing the fault periodicity) in order to illustrate the pros/cons
+of the two different join mechanisms. To switch between one and the
+other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
+\MS[JP]{}
+\subsection{PajeNG view}
+\AL{if space and time add PajeGN view for both DVMS and Snooze}
+\section{Related Work}
+\label{sec:related}
+\AL[AL]{.25 page}
+
+Several simulator toolkits have been proposed since the last years in
+order to adress CC concerns~\cite{CC13, DGSIM, cloudsim,
+  icancloud, greencloud}.
+They can be classified into two categories: The first one corresponds to ad-hoc simulators
+that have been developped to address a particular concern. For
+instance, CReST~\cite{CC13} is a discrete event simulation toolkit
+built to evaluate Cloud provisioning algorithms. If ad-hoc simulators
+enable to provide some trends regarding the bevahiours of the system,
+they do consider the implication of the different layers, which can
+lead to non representative results at the end. Moreover, such ad-hoc
+solutions are developped for one shot and thus, they are not available
+for the scientific community. The second category
+\cite{icancloud, greencloud, cloudsim} corresponds to more generic cloud simulator
+toolkits (\ie they have been designed to adress a majority
+of CC challenges). However, they have focused mainly on
+the API and not on the model of the different mechanisms of CC
+systems.
+For instance, CloudSim~\cite{cloudsim}, which has been widely used to validate
+algorithms and applications in different scientific publications,
+is based on a relatively top-down viewpoint of cloud environments.
+That is,  there is no papers that properly validate the different models it
+relies on: a migration time is calculated by dividing a VM memory size by a
+network bandwidth.
+%Such a model cannot correctly simulate many real
+%environments where workloads perform substantial memory writes.
+ In addition to having inaccuracy weaknesses at the low level, available cloud
+simulator toolkits over simplified the model for the virtualization
+technologies, leading also to non representation results at the
+end. As highlighted several times throughout this document, we chose to
+build \vmps on top of \sg in order to benefit fromt its accuracy of
+its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+\section{Conclusion}
+\label{sec:conclusion}
+\AL[AL]{.25 page}
+
+
+
+% conference papers do not normally have an appendix
+
+
+% use section* for acknowledgement
+\section*{Acknowledgment}
+This work is supported by the French ANR project SONGS (11-INFRA-13).
+Experiments have been performed using the Grid'5000
+experimental testbed, being developed under the INRIA ALADDIN development
+ action with support from CNRS, RENATER and several Universities as well as
+ other funding bodies (see https://www.grid5000.fr).
+
+\AL{Biblio try to fix only relevant publications in top ranked conferences}
+\bibliographystyle{wileyj}
+\bibliography{main}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
