@@ -105,9 +105,8 @@ propose appropriate solutions for CC production infrastructures.
 However, \textit{in-vivo} (\ie real-world) experiments, if they can be
 executed at all, are always expensive and tedious to perform as it has
 recently been highlighted once again~\cite{barker:pitfalls}. They may
-even be counterproductive if the observed behaviors are far from the
-expected ones due to parameters that influence experiments in complex
-real-world contexts in unknown ways. \AL[MS]{This sentence is still unclear}
+even be counterproductive if the observed behaviors are clearly
+different from the expected ones.
 
 In this article, we propose \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
@@ -116,8 +115,7 @@ increasing scale of modern data centers and the dynamicity of the
 workloads that are specific to the CC paradigm, notably its elasticity
 capacity, \vmps allows users to study large-scale scenarios that take
 into account server crashes and that involve tens of thousands of VMs,
-each of which executes
-\AL[MS]{excutes or executing a} a specific workload that evolves during the
+each of which executes a specific workload that evolves during the
 simulation lifetime.
 
 Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
@@ -168,14 +166,17 @@ Section~\ref{sec:experiments}. Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
 
-\section{VM Placement Problem Overview}
+\section{The VM Placement Problem}
 \label{sec:vmpp}
 
-At coarse-frained, VMPP can be summarized in
-three-steps (see Figure \ref{fig:scheduling_steps}):  Monitoring the
-resources usages, computing a new schedule each time is it  needed and applying the
-reconfiguration plan (\ie performing VM migration and supend/resume
-operations to switch to the new placement solution).
+A VMPP can be summarized in three-steps (see Figure
+\ref{fig:scheduling_steps}): monitoring the resources usages,
+computing a new schedule each time is it needed and applying the
+resulting reconfiguration plan (\ie performing VM migration and
+suspend/resume operations to realize to the new placement solution).
+\MS[AL]{The fig. is not perfect, among others because it contains
+  features, \eg the communication arrows, that are not obvious nor
+  explained.}
 % that are mandatory to solve resource violations while optimizing resource usages).
 
 \begin{figure}[ht]
@@ -196,100 +197,109 @@ operations to switch to the new placement solution).
 \end{figure}
 %
 
-As the goal  of VMPP solutions is to maintain a placement that
-satisifies the requirements of each VM while optimizing CC resource usages, scalability,
-reliability and reactivity of the mechanisms implementing each of
-these three steps are decisive. For instance, a naive implementation
-of a master/workers approach as described in
-Figure~\ref{fig:scheduling_steps} would prevent to take into account
-workload fluctuations during the computation and the application of a
-schedule, leading potentially to artifical violations (\ie resource violations
-that are due to the VMPP mechanism). In other words, the longer each
-phase,
+VMPP solutions stand and fall with their scalability, reliability and
+reactivity of properties, because they have to maintain a placement
+that satisfies the requirements of all VMs while optimizing the usage
+of CC resources. For instance, a naive implementation of a
+master/worker approach as described in
+Figure~\ref{fig:scheduling_steps} would prevent workload fluctuations
+to be taken into account during the computation and the application of
+a schedule, potentially leading to artificial violations (\ie resource
+violations that are caused by the VMPP mechanism). In other words, the
+longer each phase,
 % the longer the reconfiguration process,
 the higher the risk that the schedule may be outdated when it is
-computed or eventually applied (see Figure
-\ref{fig:workload_fluctuations}). Similarly, servers and network
-crashes can prevent to detect and solve resource violations if the
-master node crashes or if a group of VM is temporarily isolated from
-the master node.
+computed or eventually applied, cf.\ the different loads during the
+three phases in Figure \ref{fig:workload_fluctuations}. Similarly,
+servers and network crashes can impede the detection and resolution of
+resource violations if the master node crashes or if a group of VMs is
+temporarily isolated from the master node.
 
-Analyzing how VMPP solutions behave when such aforementioned events
-occur is mandatory to validate them. Providing a framework to make
-such studies easier and in a more reproducible manner is the target of \vmps as described in the
-following.
+VMPP solutions can only be reasonably evaluated if their behavior in
+the presence of such adverse events can be analyzed. Providing a
+framework that facilitates such studies and increases their
+reproducibility is the main objective of \vmps.
 
 \section{Simgrid, a generic toolkit}
 \label{sec:sg}
 %\AL[AL]{0.5page}
 
-\sg is a simulation toolkit to study the behavior of
-large-scale distributed systems.  Developped for more than  a decade, it has been used in more than 100
-publications.  Its main characterisitics are related to its:
+We now briefly introduce the toolkit on which \vmps is based.  \sg is
+a toolkit for the simulation of potentially complex algorithms
+executed on large-scale distributed systems.  Developed for more than
+a decade, it has been used in a large number of studies described in
+more than 100~publications.  Its main characteristics are the
+following:
 \begin{itemize}
-\item Extensibility -- After Grids, HPC and P2P
-  systems, \sg has been recently extended with virtualization technologies abstractions
-(\ie Virtual Machines including a live migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to investigate Cloud
-Computing challenges \cite{lucas:cloud2014};
-\item Scalability -- It is possible to simulate large-scale scenarios,
-  as an example, users can simulate applications composed of 2
-  Millions of processors and an infrastructure composed of 10,000~servers hosting more than
-  100,000~VMs on a computer with 16~GB of memory;
-\item  Flexibility -- It allows to run a simulation on arbitrary network
-  topology under dynamic computation and network resources
-  availabilities;
-\item API --  users can leverage \sg through easy-to-use APIs in C
-  and Java.
+  \item Extensibility: after Grids, HPC and P2P systems, \sg has been
+    recently extended with abstractions for virtualization
+    technologies (\ie Virtual Machines including a live migration
+    model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to
+    investigate Cloud Computing challenges \cite{lucas:cloud2014}.
+  \item Scalability: it is possible to simulate large-scale scenarios;
+    as an example, users can simulate applications composed of
+    2~million processors and an infrastructure composed of
+    10,000~servers hosting more than 100,000~VMs on a computer with
+    16~GB of memory. \MS[AL]{Add a ref.}
+  \item Flexibility: it enables simulations to be run on arbitrary
+    network topologies under dynamically changing computations and
+    available network resources.
+  \item Versatile APIs: users can leverage \sg through easy-to-use
+    APIs for~C and~Java.
 \end{itemize}
 
 To perform simulations, users should develop a \emph{program} and
 define a \emph{platform} file and a \emph{deployment} file. The
-\emph{program} in most cases leverages the \sg MSG API that allows
+\emph{program} leverages, in most cases, the \sg MSG API that allows
 end-users to create and execute \sg abstractions such as processes,
-tasks, VMs and network-communications. The \emph{platform} file gives
-the physical description of each resource composing the environment
-and on which aforementioned computations/network exchanges will be
-performed in the \sg
-world.
+tasks, VMs and network communications. The \emph{platform} file
+provides the physical description of each resource composing the
+environment and on which aforementioned computations and network
+interactions will be performed in the \sg world.
 % (host, CPU capacity, network topology and link capacities, etc.)
-Finally, the \emph{deployment} file is used to launch the different
-\sg processes defined in the \emph{program} on the different nodes (at
-least the mapping between one process and one host is mandatory to
-start the simulation). The execution of the program is orchestrated by
-the \sg engine that internally relies on an constraint solver to
-correctly assign the amount of CPU/network resources to each \sg
-abstraction, step by step until the simulation ends.
+The \emph{deployment} file is used to launch the different \sg
+processes defined in the \emph{program} on the different nodes.
+% (at least the mapping between one process and one host is mandatory
+% to start the simulation)
+Finally, the execution of the program is orchestrated by the \sg
+engine that internally relies on an constraint solver to correctly
+assign the amount of CPU/network resources to each \sg abstraction
+during the entire simulation.
 
-Although SimGrid has many features such as model checking, the
-simulation of DAGs (Direct Acyclic Graphs) or MPI applications, we
-only give a brief description of the  virtualization  abstractions
-that have been recently implemented in \sg and on which our framework relies
-on.  Further information regarding \sg is available in \cite{casanova:hal-01017319}.
+\sg provides many other features such as model checking, the
+simulation of DAGs (Direct Acyclic Graphs) or MPI-based
+applications. In the following, we only give a brief description of
+the virtualization abstractions that have been recently implemented
+and on which our framework relies on (for further information regarding
+\sg see~\cite{casanova:hal-01017319}).
 
-The VM support has been designed so that all operations that can be performed
-on a host can be performed inside a VM: From the point of view of a \sg
-Host, a \sg VM is considered as an ordinary task while from the point
-of view of a task running inside a \sg VM, a VM is considered as an
-ordinary host below the task.  By such a mean, \sg users can easily
-switch between a virtualized and non virtualized infrastructure.
-Moreover, thanks to  MSG API extensions, users can control VMs in the
-same manner as in the real world (\eg create/destroy, start/shutdown,
-suspend/resume and migrate).
+The VM support has been designed so that all operations that can be
+performed on a host can also be performed inside a VM. From the point
+of view of a \sg Host, a \sg VM is an ordinary task while from the
+point of view of a task running inside a \sg VM, a VM is considered as
+an ordinary host.
+% below the task.  
+\sg users can thus easily switch between a virtualized and
+non-virtualized infrastructure.  Moreover, thanks to MSG API
+extensions, users can control VMs in the same manner as in the real
+world (\eg create/destroy VMs; start/shutdown, suspend/resume and
+migrate them).
 % TODO: Not addressed
 %\AL{Shoudl we talk about over-provisionning limitations}
 For migration operations, a VM live migration model implementing the
 precopy migration algorithm of Qemu/KVM has been integrated into \sg.
 This model is the only one that successfully simulates the live
-migration behavior by taking into account the resource sharing
-competition as well as the memory refreshing rate of the VM, thus
-determining correctly the live migration time as well as the resulting
-network traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
-
+migration behavior by taking into account the competition arising in
+the presence of resource sharing as well as the memory refreshing rate
+of the VM, thus determining correctly the live migration time as well
+as the resulting network
+traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+%
 %\AL[AL]{Add more details regarding live migration in order to reply to
 %the Mario's remark (not clear enoug)}
-
-Those two capabilities were mandatory to build our VM placement
-simulator toolkit introduced in the next section.
+%
+These two capabilities are mandatory to build our VM placement
+simulator toolkit.
 
 \section{VM Placement Simulator}
 \label{sec:injector}
@@ -300,15 +310,16 @@ placement algorithms and offer the possibility to compare
 them. Concretely, it supports the management of VM creations, workload
 fluctuations as well as node apparitions/removals.  Researchers can
 thus focus on the implementation of new placement algorithms and
-evaluate how it behaves according to the different changes that occur
-during the simulation.
+evaluate how they behave in the presence of changes that occur during
+the simulation.
 %
 \vmps has been implemented in Java by leveraging the messaging API
 (MSG) of \sg.  Although the Java layer has an impact of the efficiency
 of \sg, we believe its use is acceptable because Java offers important
 benefits to researchers for the implementation of advanced scheduling
 strategies, notably concerning the ease of implementation of new
-strategies.
+strategies. \MS{Could we be more assertive: this/that study has shown
+  that the use of Java is worthwhile \ldots?}
 % TODO: not adressed
 %\AL[JP]{Should we talk about SCALA?}
 
@@ -320,16 +331,16 @@ general functioning.% and how researchers can develop new algorithms
 
 From a high-level view, \vmps performs a simulation in three phases:
 (i) initialization (ii) injection and (iii) trace analysis (see Figure
-\ref{fig:workflow}).  The
-initialization phase corresponds to the creation of the environment,
-the VMs and the generation of the event queue. During the injection
-phase the scheduling strategy is evaluated. Basically, it consists of
-at least two \sg processes, one executing the \emph{injector} and a
-second one executing the to-be-simulated scheduling algorithm.  The
-\emph{injector} constitutes the generic part of the framework. It
-injects scheduling-relevant events during the execution of
-simulations.  Currently, the supported events are VM CPU load changes
-and node apparitions/removals that we use to simulate node crashes.
+\ref{fig:workflow}).  The initialization phase corresponds to the
+creation of the environment, the VMs and the generation of the queue
+of events that may represent, \eg load changes.  The
+simulation is performed by at least two \sg processes, one executing
+the \emph{injector}, which constitutes the generic part of the
+framework, and a second one executing the to-be-simulated
+\emph{scheduling algorithm}. During the simulation the scheduling
+strategy is evaluated by injecting scheduling-relevant events.
+Currently, the supported events are VM CPU load change and node
+apparitions/removals that we use to simulate node crashes.  It
 
 \begin{figure}
   {\centering ~\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.png}}
@@ -346,18 +357,18 @@ and node apparitions/removals that we use to simulate node crashes.
 %\MS{Yes, the figures are important. They could also be useful to
  % partially provide a more abstract explanation.}
 
-Regarding the scheduling algorithm, users should develop their own
-algorithm by leveraging the \sg messaging API and the \texttt{XHost},
-\texttt{XVM} and \texttt{SimulatorManager} classes. The two former
-classes respectively extend \sg's \texttt{Host} and \texttt{VM}
-abstractions while the latter controls the interactions between the
-different components of the VM placement simulator.  Throughout these
-three classes, users can inspect, at any time, the current state of
-the infrastructure (\ie the load of a host/VM, the number of VMs
-hosted on the whole infrastructure or on a particular host, check
-whether one host is overloaded, etc.) We have used the \vmps in order
-to analyze three scheduling mechanisms, cf.\
-Sec.~\ref{sec:vm-schedulers}. We choose these three mechanisms as they
+Users develop their scheduling algorithm by leveraging the \sg
+messaging API and a more abstract interface that is provided vy \vmps
+and consists of the classes \texttt{XHost}, \texttt{XVM} and
+\texttt{SimulatorManager} classes. The two former classes respectively
+extend \sg's \texttt{Host} and \texttt{VM} abstractions while the
+latter controls the interactions between the different components of
+the VM placement simulator.  Throughout these three classes, users can
+inspect, at any time, the current state of the infrastructure (\ie the
+load of a host/VM, the number of VMs hosted on the whole
+infrastructure or on a particular host, check whether a host is
+overloaded, etc.) We have used \vmps in order to analyze three
+scheduling mechanisms, cf.\ Sec.~\ref{sec:vm-schedulers}, that
 represent three different software architecture models: centralized,
 hierarchical and fully-distributed models for VM placement.
 %% TODO
@@ -368,8 +379,9 @@ hierarchical and fully-distributed models for VM placement.
 %how the deployment file of \sg is automatically generated by leveraging
 %a generic python script.  \AL{We should highlight that point in the
 %  README.org}
-The last phase consists in analyzing the collected traces in order to
-gather the results of the simulation, notably by means of the
+
+The last phase consists in the analysis of the collected traces in
+order to gather the results of the simulation, notably by means of the
 generation of figures representing, \eg resource usage statistics.
 
 %\begin{itemize}
@@ -385,17 +397,18 @@ generation of figures representing, \eg resource usage statistics.
 
 In the beginning, \vmps creates $n$ VMs and assigns them in a
 round-robin manner to the first $p$ hosts defined in the platform
-file.  The default platform file corresponds to a cluster of $p+s$
-hosts, where $p$ corresponds to the number of hosting nodes and $s$ to
-the number of services nodes. The values $n$, $p$ and $s$ constitute
-input parameters of the simulations (specified in a Java properties
+file.  The default platform file corresponds to a cluster of $h+s$
+hosts, where $h$ corresponds to the number of hosting nodes and $s$ to
+the number of services nodes. The values $n$, $h$ and $s$ constitute
+input parameters of the simulations (specified in a Java property
 file).
 %% TODO
 % \AL[AL]{Update the size of the cluster autonomically by
-%  leveraging p + s}
-Although the cluster topology is the most
-common one, it is possible to define more complex platforms to simulate,
-for instance, scenarios involving federated data centers.
+%  leveraging p + s} 
+These hosts are organized in form of topologies, a cluster topology
+being the most common ones. It is possible, however, to define more
+complex platforms to simulate, for instance, scenarios involving
+federated data centers.
 %Note that $s$ can be equals to 0 if the
 %scheduling strategy is directly executed on the hosting nodes.
 
@@ -404,21 +417,19 @@ class corresponds to a template specifying the VM attributes and its
 memory footprint. Concretely, it is
 % described as
 % \texttt{nb\_cpu:ramsize:net\_bw:mig\_speed:mem\_speed}
-defined in terms of five parameters:
-\texttt{nb\_cpus}  the number of cores, \texttt{ramsize }the size of
-the memory, \texttt{net\_bw} the
-network bandwidth, \texttt{mig\_speed} the maximum
-bandwidth available migrate it and \texttt{mem\_speed} the maximum
-memory update speed when the VM is consuming 100\% of its CPU
-resources. As pointed out in Section \ref{sec:sg}, the memory update speed is a critical parameter that
-governs the migration time as well as the amount of transferred
-data. By giving the possibility to define VM classes,
-\vmps allows researchers to simulate different kinds of workload (\ie
-memory-intensive vs non-intensive workloads), and thus analyze more
-realistic Cloud Computing problems.
-Available classes are
-defined in a specific text file that can be modified according to the
-user's needs.
+defined in terms of five parameters: the number of cores
+\texttt{nb\_cpus}, the size of the memory \texttt{ramsize}, the
+network bandwidth \texttt{net\_bw}, the maximum bandwidth available
+migrate it \texttt{mig\_speed} and the maximum memory update speed
+\texttt{mem\_speed} when the VM is consuming 100\% of its CPU
+resources. As pointed out in Section \ref{sec:sg}, the memory update
+speed is a critical parameter that governs the migration time as well
+as the amount of transferred data. By giving the possibility to define
+VM classes, \vmps allows researchers to simulate different kinds of
+workload (\ie memory-intensive vs non-intensive workloads), and thus
+analyze more realistic Cloud Computing problems.  Available classes
+are defined in a specific text file that can be modified according to
+the user's needs.
 %\MS{Follows a low-level mechanism!}
 % TODO not addressed yet. This text should appear in the README
 %At creation time
@@ -426,15 +437,16 @@ user's needs.
 %randomly. Hence, if a user wants to favor a specific class, he can
 %simply repeat the line of the class several times.
 %
-Finally, all VMs start with a CPU consumption of 0 that will evolve during the
-simulation after charge injection as explained below.
+Finally, all VMs start with a CPU consumption of 0 that will evolve
+during the simulation in terms of the injected load as explained
+below.
 
-Once the creation and the assignment of VMs is completed, \vmps spawns
-at least two SG processes, the \emph{injector} and the launcher of the
+Once the creation and the assignment of VMs completed, \vmps spawns at
+least two SG processes, the \emph{injector} and the launcher of the
 selected scheduler.  The first action of the \emph{injector} consists
 in creating the different event queues and merge them into a global
 one that will be consumed during the second phase of the simulation.
-For now, we generate two kinds of event: ~~\emph{CPU load} and
+For now, we generate two kinds of event: \emph{CPU load} and
 \emph{node crash} events.
 %\todo{Before apparitions/ removals}
 % The former consists in changing the load of a VM by creating and
@@ -446,14 +458,14 @@ For now, we generate two kinds of event: ~~\emph{CPU load} and
 The \emph{CPU load} event queue is generated in order to change the
 load of each VM every $t$ seconds on average. $t$ is a random variable
 that follows an exponential distribution with rate parameter
-$\lambda_t$ while the CPU load of a VM evolves according to a
-Gaussian distribution defined by a particular mean ($\mu$) as well as
-a particular standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$
-are provided as input parameters of a simulation.  As the CPU load can
+$\lambda_t$ while the CPU load of a VM evolves according to a Gaussian
+distribution defined by a particular mean ($\mu$) as well as a
+particular standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$ are
+provided as input parameters of a simulation.  As the CPU load can
 fluctuate between 0 and 100\%, \vmps prevents the assignment of
 nonsensical values when the Gaussian distribution returns a number
 smaller than 0 or greater than 100. Although this has no impact on the
-execution of the simulation, we highlight that this can
+execution of the simulation, we emphasize that this can
 reduce/increase the effective mean of the VM load, especially when
 $\sigma$ is high.  Hence, it is important for users to specify
 appropriate values.
@@ -463,11 +475,10 @@ appropriate values.
 %effective mean, especially when $\sigma$ is high, we believe it was
 %non appropriated to request it is easier for end-users to specify $\mu$ and
 %$\sigma$ parameters than
-We highlight that each
-random process used in \vmps is initialized with a seed that is
-defined in a configuration file. This way, we can ensure that
-different simulations are reproducible and may be used to establish
-fair comparisons.
+Furthermore, each random process used in \vmps is initialized with a
+seed that is defined in a configuration file. This way, we can ensure
+that different simulations are reproducible and may be used to
+establish fair comparisons.
 
 The \emph{node crash} event queue is generated in order to turn off a
 node every $f$ seconds on average for a duration of $d$ seconds.
@@ -479,7 +490,7 @@ Adding new events can easily be done by simply defining new event Java
 classes implementing the \texttt{InjectorEvent} interface and by
 adding the code in charge of generating the associated queue. Such a
 new queue will be merged into the global one and its events will then be
-consumed similarly to other ones during the \emph{injector Phase} as described in the following.
+consumed similarly to other ones during the \emph{injector phase}.
 
 \subsection{Injector Phase}
 
@@ -490,8 +501,9 @@ load changes of a VM or turning a node off or on. Changing the load of
 a VM corresponds to the creation and the assignment of a new \sg task
 in the VM. This new task has a direct impact on the time that will be
 needed to migrate the VM as it increases or decreases the current CPU
-load and thus the percentage of its memory update speed.
-\AL[MS]{Is the above paragraph clear enough?}
+load and thus% the percentage of
+its memory update speed.  
+% \MS[AL]{Is the above paragraph clear enough?}
 % that is indicated by the \texttt{mem\_speed}
 %% parameter given in the class description.
 When a node is turning off, the VMs that were running on that node are
@@ -501,29 +513,32 @@ handle them.
  %\AL[AL, MS, JP]{This is ugly but unfortunately the true,
  % it will be better to reassign those VMs on other nodes, but which
  % one?  }
- We leave for future work other approaches that can better
+We leave for future work other approaches that can better
 match realistic scenarios such as turning off the VMs and
 reprovisioning them on other nodes.
 %
 
-As defined by the scheduling algorithm VMs will be suspended/resumed
-or relocated throughout the available hosts to meet scheduling
-objectives and SLA guarantees.  Note that users must implement the
-algorithm in charge of solving the VMPP but also the code in charge of
-applying reconfiguration plans by invoking the appropriate methods
-available from the \texttt{SimulatorManager} class. This step is
-essential as the reconfiguration cost is a key element of dynamic
-placement systems.  \AL{maybe it is better to prevent the access to
-  Xhost and XVM methods that can change the Simulator States. Hence,
-  we should enforce the access only through the SimulatorManager class
-  ? What do you think ?}  Last but not the least, it is noteworthy
-that \vmps really invokes the execution of each scheduling strategy in
-order to get the effective reconfiguration plan.  That is, the
-computation time that is observed is not simulated but corresponds to
-the effective one, only the workload inside the VMs and the migration
-operations are simulated in \sg. It is hence mandatory to propagate
-the reconfiguration time into the \sg engine by invoking a
-\texttt{wait} call of the MSG interface.
+As defined by the scheduling algorithm, VMs will be suspended/resumed
+or relocated on the available hosts to meet scheduling objectives and
+SLA guarantees.  Note that users must implement the algorithm in
+charge of solving the VMPP but also the code in charge of applying
+reconfiguration plans by invoking the appropriate methods available
+from the \texttt{SimulatorManager} class. This step is essential as
+the reconfiguration cost is a key element of dynamic placement
+systems.  \MS[AL]{maybe it is better to prevent the access to Xhost
+  and XVM methods that can change the Simulator States. Hence, we
+  should enforce the access only through the SimulatorManager class?
+  What do you think? Yes, would be cleaner. Can we just present the
+  interface as such? Or not talk about the direct possibility?}  Last
+but not least, it is noteworthy that \vmps really invokes the
+execution of each scheduling strategy in order to get the effective
+reconfiguration plan.  That is, the computation time that is observed
+is not simulated but corresponds to the effective one, only the
+workload inside the VMs and the migration operations are simulated in
+\sg. It is hence mandatory to propagate the reconfiguration time into
+the \sg engine.%
+% The following is IMO a technical detail
+% by invoking a \texttt{wait} call of the MSG interface.
 
 \subsection{Trace Analysis}
 \label{subsec:traces-analysis}
@@ -532,23 +547,25 @@ The last step of \vmps consists in analyzing the information that has
 been collected during the simulation.
 % in order to understand and compare the behavior of the different
 % algorithms.
-This analysis is done in a two-step fashion. First, \vmps records
-several metrics related to the platform utilization throughout the
-simulation by leveraging an extended version of \sg's TRACE
-module~\footnote{\url{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}}.
-This way, visualization tools promoted by the \sg community, such as
-PajeNG~\cite{pageng:www} may be used. Furthermore, our extension
-enables the creation of a trace file in the JSON file format, which is
-used to generate several figures using the R statistical environment~\cite{R:Bloomfield:2014}.
+This analysis is done in two steps. First, \vmps records several
+metrics related to the platform utilization throughout the simulation
+by leveraging an extended version of \sg's TRACE
+module\footnote{\url{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}}.
+This way, visualization tools that have been developed by the \sg
+community, such as PajeNG~\cite{pageng:www}, may be used. Furthermore,
+our extension enables the creation of a trace file in the JSON file
+format, which is used to generate several figures using the R
+statistical environment~\cite{R:Bloomfield:2014} about the resource
+usage during the simulation.
 
-By default \vmps records the load of the different VMs and hosts, the
+By default, \vmps records the load of the different VMs and hosts, the
 appearance and the duration of each violation of VM requirements in
 the system, the number of migrations, the number of times the
 scheduler mechanism has been invoked and the number of times it
 succeeds or fails to resolve non-viable configurations.
 %
 Although these pieces of information are key elements to understand
-and compare the behavior of the different algorithms, we highlight
+and compare the behavior of the different algorithms, we emphasize
 that the TRACE API enables the creation of as many variables as
 necessary, thus allowing researchers to instrument their own algorithm
 with specific variables that record other pieces of information.
@@ -654,7 +671,7 @@ the application of the reconfiguration plan led to new violations.
   métrique pertinente. Plusieurs algorithms tentent de reduire cette
   metrique }
 \AL[AL]{Il faudra mettre des snapshots de PajeNG}
-\subsection{Comparisons of Entropy, Snooze and DVMS}
+\subsection{Comparison of Entropy, Snooze and DVMS}
 
 \subsubsection{Reactivity and Violation time}
 
@@ -670,14 +687,21 @@ other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
 
 \subsection{One step ahead thanks to \vmps}
 
-\subsubsection{Snooze analysis}
+Our simulation framework facilitates the simulation of variants of
+placement algorithms. In the following, we present several variants of
+the placement algorithms introduced in Sec.~\ref{sec:vm-schedulers}
+that have been discussed in the literature or come up during the
+implementation of their models using \vmps. This section provides
+strong evidence that the modification and evaluation of existing
+algorithms is much facilitated by our simulation framework.
+
+\subsubsection{Variants of hierarchical scheduling}
 \label{sec:snoozeVariants}
 
-Our simulation framework facilitates the simulation of variants of
-placement algorithms. In the following, we present three non-trivial
-variants that we have implemented and explored: a variant of the
-assignment algorithm of LCs to GMs, periodic vs.\ reactive scheduling,
-and a variant of the algorithms of how GMs and LCs join the system.
+We now present three non-trivial variants that we have implemented and
+explored: a variant of the assignment algorithm of LCs to GMs,
+periodic vs.\ reactive scheduling, and a variant of the algorithms of
+how GMs and LCs join the system.
 
 
 \paragraph{Assignment of LCs to GMs}
@@ -685,22 +709,80 @@ and a variant of the algorithms of how GMs and LCs join the system.
 LCs are assigned to GMs by the GL as part of the LC join protocol. In
 Snooze's native implementation LCs are assigned in a round-robin
 fashion to the known GMs. If GMs join (and leave) the system at the
-same time as LCs, a round-robin strategy at join time, however, does
-not ensure an even distribution. This may happen, for instance at
+same time as LCs, a round-robin (RR) strategy at join time, however,
+does not ensure an even distribution. This may happen, for instance at
 startup time of the system, when new GMs and LCs enter the system, or
 in case of failures, which trigger GM and LC joins. In order to
-evaluate the imbalance resulting from a round-robin strategy (as well
-as others) we have implemented the LC assignment protocol in a modular
-fashion and applied it in diverse highly-dynamic settings in which GMs
-and LCs enter the system at the same time. Furthermore, we have
-implemented a best-fit strategy that assigns LCs to GMs with minimal
-load or to GMs with the smallest number of assigned LCs (if several
-GMs with minimal load exist). The best-fit strategy can significantly
-improve the scheduling characteristics of hierarchical placement
-algorithms as shown by the experimental data presented in
-Sec.~\ref{sec:snoozeVariantsEval}. Furthermore, it should always be
-at least as good as the round-robin strategy (the corresponding proof
-is left to future work).
+evaluate the corresponding imbalance and its consequences we have
+implemented the LC assignment protocol in a modular fashion and
+applied it to different highly-dynamic settings in which GMs and LCs
+enter the system at the same time. Furthermore, we have implemented a
+best-fit (BF) strategy that assigns LCs to the GMs with minimal load
+or, if several GMs with minimal load exist, to the GMs with the
+smallest number of assigned LCs.
+
+
+% \subsubsection{LC assignment in Snooze-like placement alg.}
+% \label{sec:snoozeVariantsEval}
+
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.95\linewidth]{figures/violationTime-snooze-RR-BF.pdf}
+%     \caption{Cumulated violation time for BF (lower line) and RR
+%       (upper line) variants}
+% \end{center}
+% \label{fig:snoozeBFRRViolation}
+% \end{figure}
+
+\begin{table*}[ht]
+\begin{center}
+%    \begin{tabular}{|c!{\vrule width 3pt}c|c|c!{\vrule width 2pt}c|c|c!{\vrule width 3pt}c|c!{\vrule width 2pt}c|c|}
+    \begin{tabular}{|P{30mm}|||c|c||c|c|||M{30mm}|M{30mm}|}
+        \thickhline
+        \multirow{3}*{\textbf{Strategy}}
+          & \multicolumn{4}{c|||}{\textbf{\#LCs/\#GMs}}
+          & \multicolumn{2}{c|}{\textbf{Total violation time (s)}}
+          \Tstrut \\
+          & \multicolumn{2}{c||}{128 LCs, 12 GMs}
+            & \multicolumn{2}{c|||}{256 LCs, 25 GMs}
+          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs} 
+          \Bstrut \\ 
+          & range & stdev & range & stdev & &  \Bstrut \\
+        \thickhline
+        Best-Fit & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \Rstrut \\
+        Round-Robin & 0--49 & 15.7  & 0--35 & 12.22 & 630 & 1265
+        \Rstrut \\ \hline
+        \thickhline
+    \end{tabular}
+\end{center}
+    \caption{LCs to GM assignment and cumulated violation times for RR
+      and BF strategies}
+    \label{tbl:assignmentResults}
+\end{table*}
+
+
+We have evaluated the two LC assignment strategies using \vmps on
+configurations of~128 and~256 nodes. In order to clearly expose the
+corresponding differences this evaluation has been performed by
+``stressing'' the two strategies by simultaneously
+starting all LCs (128/256) and all GMs (12/25) and then simulating the
+resulting configuration over a one hour period.  These experiments
+have yielded the following results, cf.\ Table~\ref{tbl:assignmentResults}:
+\begin{itemize}
+  \item BF yields more homogeneous assignments of LCs to GMs: the
+    ranges of the numbers of LCs assigned to a GM and their standard
+    deviations are significantly smaller.\footnote{Here, some GMs may
+      be assigned 0 LCs if some GMs join the system after all LCs have
+      been assigned.}
+  \item The cumulated time spent resolving violations is, for both
+    configurations, significantly smaller for BF than for RR.
+\end{itemize}
+From these results, we can clearly infer that BF is significantly
+better than RR for the two tested kinds of configuration. Furthermore,
+we conjecture that BF should perform at least as good as RR for all
+configurations (the proof is left to future work).
+% \MS[JP]{I need the exact figures for the violation times
+%   in Tbl.~\ref{tbl:assignmenResults}}
 
 
 \paragraph{Periodic vs.\ reactive scheduling}
@@ -714,25 +796,66 @@ information that is periodically sent by the LCs to the GM.
 We have provided an alternative, reactive, strategy to scheduling: as
 soon as they occur, LCs avert their GMs of resource conflicts; the GMs
 then initiate scheduling. Implementing this reactive scheme can be
-done using our framework in two manners: either by implementing
+done using our framework in two manners. First, by implementing
 additional asynchronous transmissions as a real implementation of the
-necessary state updates would proceed or, in a much more lightweight
-manner, through direct accesses by the GMs to the states of their
-respective LCs. While the latter does not mimic a real implementation
-closely, it can be harnessed to yield a valid simulation: delays
-induced by communication in the ``real'' implementation, for instance,
-can be easily added as part of the lightweight simulation. We have
-implemented this lightweight variant of reactive scheduling.
+necessary state updates would proceed. Second, in a much more
+lightweight manner, through direct accesses by the GMs to the states
+of their respective LCs. While the latter does not mimic a real
+implementation closely, it can be harnessed to yield a valid
+simulation: delays induced by communication in the ``real''
+implementation, for instance, can be easily added as part of the
+lightweight simulation. We have implemented this lightweight variant
+of reactive scheduling including explicit modeling of communication
+delays. Using the abstractions provided by \vmps, in particular
+harnessing its extended notion of hosts that represent the VMs managed
+by the LCs of a VM, reactive scheduling has been implemented by adding
+4~lines of code.
+
+\begin{table*}[ht]
+\begin{center}
+\begin{tabular}{|P{30mm}||c|c||c|c|}
+    \thickhline
+    \textbf{Algorithm}
+      & \multicolumn{2}{c||}{\textbf{No.\ migrations}}
+      & \multicolumn{2}{c|}{\textbf{Total violation time (s)}}
+      \Tstrut \\
+      & 40 LCs, 4 GMs & 160 LCs, 16 GMs & 40 LCs, 4 GMs & 160 LCs, 16 GMs
+      \Bstrut \\ 
+    \thickhline
+      Reactive      & 1799 & 5343 & 18946 & 89775 \\
+      Periodic 120s & 194 & 1012 & 29915 & 111388
+    \Rstrut \\ \hline
+    \thickhline
+\end{tabular}
+\end{center}
+    \caption{Reconfiguration nos. and violation times for reactive and
+    periodic scheduling}
+\label{tbl:reactiveRes}
+\end{table*}
+
+We have shown the usefulness of our framework by exploring some
+properties of reactive scheduling compared to periodic scheduling. To
+this end we have simulated two specific instances of these algorithms:
+reactive scheduling that reconfigures the VMs managed by (the LCs of)
+a GM as soon as necessary that is as soon as an LC of the GM becomes
+overloaded; a periodic algorithm that reconfigures all LCs every 2
+min. A simulation involving respectively 40 and 160 hosts (LCs), 10 of
+which are managed by a GM, has yielded, among others, the results
+shown in Tbl.~\ref{tbl:reactiveRes}. These results clearly show that
+while a reactive strategy entails a much higher number of migrations
+(because the periodic one misses many overload situtations), the
+reactive strategy results in a significantly lower total migration
+time.
 
 
 \paragraph{Variants of the join algorithms}
 
-The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to the
-correctness of Snooze for two main reasons: (i) they have to be
-efficient because they can easily form a bottleneck if large numbers
-of LCs (GMs) have to be registered at a GM (LC); (ii) they are
-multi-phase protocols whose correctness especially in the presence of
-faults is difficult to ensure.
+The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to
+Snooze for two main reasons: (i) they have to be efficient because
+they can easily form a bottleneck if large numbers of LCs (GMs) have
+to be registered at a GM (LC); (ii) they are multi-phase protocols
+whose correctness especially in the presence of faults is difficult to
+ensure.
 
 In order to investigate the corresponding trade-offs, we have used our
 framework to implement join algorithms that may be interrupted at any
@@ -743,68 +866,23 @@ handle registration requests.
 
 Finally, our framework has enabled us to test another aspect of
 Snooze's join algorithm as presented by
-Feller~\etal.~\cite{feller:ccgrid12},
-\MS[MS]{If we succeed to perform the experiment comparing both
-  approach, this paragraph should be highlighted.}
-a strategy we call the GM rejoin
-strategy (GRJ): all GMs should rejoin if a new GM enters the
-system. While GRJ supports a form of load balancing (because all LCs
-are reassigned to the new set of GMs), our simulation has shown that
-this strategy significantly increases the time necessary for
-registering GMs and LCs compared to a simpler strategy that does not
-modify existing GMs in case a new GM enters the system. This handicap
-is particularly pronounced if joins of GMs may be interrupted due to
-faults. Concretely, experiments involving 20 GMs and 200 LCs have
-shown that this strategy often multiplies the time necessary to join
-all 220 components by 10 or more compared to the simple join
-strategy. While the qualitative result that the more complex strategy
-presented in the paper results in a more time-consuming join process
-is not very surprising, the extent of the resulting degradation was
-surprising.
+Feller~\etal.~\cite{feller:ccgrid12}, a strategy we call the GM rejoin
+strategy (GRJ): all GMs and the LCs assigned to them should rejoin if
+a new GM enters the system. While GRJ supports a form of load
+balancing (because all LCs are reassigned to the new set of GMs), our
+simulation has shown that this strategy significantly increases the
+time necessary for registering GMs and LCs compared to a simpler
+strategy that does not modify existing GMs in case a new GM enters the
+system. This handicap is particularly pronounced if joins of GMs may
+be interrupted due to faults. Concretely, experiments involving 20 GMs
+and 200 LCs have shown that this strategy often multiplies the time
+necessary to join all 220 components by 10 or more compared to the
+simple join strategy. While the qualitative result that the more
+complex strategy presented in the paper results in a more
+time-consuming join process is not very surprising, the extent of the
+resulting degradation was surprising.
 
 
-
-\subsubsection{LC assignment in Snooze-like placement alg.}
-\label{sec:snoozeVariantsEval}
-
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.95\linewidth]{figures/violationTime-snooze-RR-BF.pdf}
-    \caption{Cumulated violation time for BF (lower line) and RR
-      (upper line) variants}
-\end{center}
-\label{fig:snoozeBFRRViolation}
-\end{figure}
-
-\AL[MS]{Put a table instead of the figure, it is shorter and you can
-  add additional information such as gain, impact on the violation
-  time etc.}
-
-We have evaluated the two LC assignment algorithms for Snooze-like
-placement algorithms, round-robin (henceforth, RR) and best-fit (BF)
-that have been introduced in Sec.~\ref{sec:snoozeVariants}, using
-\vmps on configurations of~128 and~256 nodes. In order to clearly
-expose the corresponding differences this evaluation has been
-performed by ``stressing'' the two LC to GM assignment algorithms by
-simultaneously starting all LCs (128/256) and all GMs (12/25) and then
-simulating the resulting configuration over a one hour period.  These
-experiments have yielded the following results:
-\begin{itemize}
-  \item BF yields significantly more homogenous assignments of LCs to
-    GMs. For 128 nodes, the no.\ of LCs per GMs varies from 0--30
-    (stdev: 10.53) BF and 0--49 (stdev: 15.79) for RR (the means being
-    equal since the total no.\ of LCs and GMs are equal). For 256
-    nodes, the corresponding values are a range of 0--18 (stdev: 6.62)
-    for BF and 0--35 (stdev: 12.22) for RR.\footnote{Here, GMs have
-      been assigned 0 LCs if they join the system later than all LCs.}
-  \item The cumulated time spent resolving violations is, for both
-    configurations, significantly smaller for BF than RR, see
-    Fig.~\ref{fig:snoozeBFRRViolation}.
-\end{itemize}
-From these results, we can clearly infer that BF is significantly
-better than RR for these kinds of configuration. We conjecture that BF
-should perform at least as good as RR for all configurations (the
-proof is left to future work).
 
 \subsubsection{DVMS Analysis}
 \AL{if space and time add PajeGN view for DVMS}

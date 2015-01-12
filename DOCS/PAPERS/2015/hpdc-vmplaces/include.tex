@@ -1,8 +1,20 @@
 \usepackage[colorlinks]{hyperref}
 %\usepackage[inner=2cm,outer=2cm,bottom=2cm,top=3cm]{geometry}
-\usepackage{wrapfig}
-\usepackage{subfigure}
-\usepackage{xspace}
+
+\usepackage{subfigure,wrapfig,xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table add-ons
+
+\usepackage{array,multirow}
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\newcommand{\Tstrut}{\rule{0pt}{2.75ex}\rule[-1.5ex]{0pt}{0pt}} 
+\newcommand{\Bstrut}{\rule{0pt}{1.5ex}\rule[-1.5ex]{0pt}{0pt}} 
+\newcommand{\Rstrut}{\rule{0pt}{1.75ex}\rule[-1.25ex]{0pt}{0pt}} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Acronym of the proposal
 \newcommand{\proposal}{DISCUTE\xspace}
@@ -47,6 +59,8 @@
 
 \newcommand{\sg}{SimGrid\xspace}
 \newcommand{\vmps}{VMPlaceS\xspace}
+
+\newcommand{\thickhline}{\noalign{\hrule height 1.5pt}}
 
 
 %%% Local Variables:
