@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1420813372 "main.aux" "main.bbl" "main" 1420813374
+["bibtex main"] 1421072506 "main.aux" "main.bbl" "main" 1421137173
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "main.aux" 1420813373 15798 417141f968365c16dad5f133f69166ba ""
+  "main.aux" 1421072507 15305 fe37333d9b148c2058250f2594173b0a ""
   "main.bcf" 0 -1 0 ""
   "main.bib" 1416670288 48904 928d6783523e2c06e5f989d404b1954b ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1420813372 "main.tex" "main.pdf" "main" 1420813374
+["pdflatex"] 1421072506 "main.tex" "main.pdf" "main" 1421137173
   "/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm" 1136768653 4484 b828043cbd581d289d955903c1339981 ""
@@ -181,6 +181,7 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg" 1278958963 3563 d35e897cae3b8c6848f6677b73370b54 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/hyperref.cfg" 1254097189 235 6031e5765137be07eed51a510b2b8fb7 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/ms/everyshi.sty" 1177890616 3878 6aa7c08ff2621006e0603349e40a30a8 ""
+  "/usr/local/texlive/2013/texmf-dist/tex/latex/multirow/multirow.sty" 1137110401 7374 f7c1f13fc632dd5c9b220a247d233082 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/auxhook.sty" 1303254447 3834 707ef09f31d7d2ea47ba89974755dfe0 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty" 1303254447 12029 04d7fdf76e0464c23b5aa3a727952d7c ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/grfext.sty" 1335995445 7075 bd0c34fbf1ae8fd1debd2a554e41b2d5 ""
@@ -199,6 +200,7 @@
   "/usr/local/texlive/2013/texmf-dist/tex/latex/subfigure/subfigure.cfg" 1167176009 2062 a0e7d66e09e508f51289a656aec06ed2 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/subfigure/subfigure.sty" 1167176009 15188 91281c7ddbccfa54a8e0c3b56ab5aa72 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/todonotes/todonotes.sty" 1353885843 16560 5716e91e0bf33d1ef140551cf3a511bf ""
+  "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/array.sty" 1254151720 13146 3e38b06d6e7ca62ce1bdb63b0d6148a5 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/calc.sty" 1254151720 10075 18f0ccff816231e9905cd2b3a482a622 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/tools/xspace.sty" 1312409015 4405 b7f0681f78908bf1aa3cd73228e9fd38 ""
   "/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty" 1264379145 21932 e3a9cf32ee9b853b42be14c2f25b873c ""
@@ -211,7 +213,7 @@
   "/usr/local/texlive/2013/texmf.cnf" 1369923207 577 cbc827f6294276973a1952e86e8ad73a ""
   "abstract.tex" 1416233116 1694 e5bd9c3e406d00d59d7a934a28293569 ""
   "acm_proc_article-sp.cls" 1368840662 59629 49fc14f68a73f326183ff0d766bec0c2 ""
-  "dvms.tex" 1416833864 9351 2b846b6df472ec7687ec59922e956ab9 ""
+  "dvms.tex" 1421070808 10689 e88d10c1d474f53fe35f486099f97c8b ""
   "figures/VMPlaceS-workflow.png" 1414944567 54814 9e92edefdd2e5fd7c36a5c898070170f ""
   "figures/fig-24.pdf" 1413200227 22348 82981c6b34ee4b583f427b3775dba598 ""
   "figures/fig-25.pdf" 1413200227 22587 2fd7fde78dd677c2b73ca124d812f15e ""
@@ -219,15 +221,14 @@
   "figures/fig-27.pdf" 1413200227 21945 bd89753086d91ee11c40d0f10f242415 ""
   "figures/scheduling_steps.pdf" 1414662779 12990 4039792f53801382fcfe5c3185f537b5 ""
   "figures/snoozearch.pdf" 1415355506 86835 0dfbbac4ceab4ddc964d394ef38e4aa8 ""
-  "figures/violationTime-snooze-RR-BF.pdf" 1416581570 4934 1bc8a5f926faffa2b435a9f1ccb2a479 ""
   "figures/workload_fluctuations2.pdf" 1414662797 6044 ace742dd4708689853d9f194c4322215 ""
-  "include.tex" 1416752281 1646 f31ee13e2227a6d9f14f05ef3c998a0e ""
-  "main-content.tex" 1420792586 44710 1eb57b7f887213551a5e2fc5839c3467 ""
-  "main.aux" 1420813373 15798 417141f968365c16dad5f133f69166ba ""
-  "main.bbl" 1420813372 6650 406552045f283aa1ad73b58a73ccabce "bibtex main"
-  "main.out" 1420813373 2151 50e1f98e9402a6044989f42cb2ecbb56 ""
+  "include.tex" 1421070808 2060 8a2980e62e7559b8e424887b9211e1fa ""
+  "main-content.tex" 1421072503 47754 a200576101f04bb2840b34b004b1bad8 ""
+  "main.aux" 1421072507 15305 fe37333d9b148c2058250f2594173b0a ""
+  "main.bbl" 1421072506 6650 406552045f283aa1ad73b58a73ccabce "bibtex main"
+  "main.out" 1421072507 1993 6b57b915dca617c021e91a01e5b9bc3c ""
   "main.tex" 1416229653 5608 88adfed75262019edfc7372c2bfc0683 ""
-  "snooze.tex" 1416833034 10132 ca8ef7cd0bb6e361c0704529ad34f696 ""
+  "snooze.tex" 1421070808 9405 4feb6ebb33f5afc906054a97f809e135 ""
   (generated)
   "main-content.tex.aux"
   "main.aux"

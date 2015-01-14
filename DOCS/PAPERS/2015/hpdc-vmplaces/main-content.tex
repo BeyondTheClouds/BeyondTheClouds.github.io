@@ -103,8 +103,8 @@ changes would definitely be the most rigorous way to observe and
 propose appropriate solutions for CC production infrastructures.
 % and compare  with existing proposals.
 However, \textit{in-vivo} (\ie real-world) experiments, if they can be
-executed at all, are always expensive and tedious to perform as it has
-recently been highlighted once again~\cite{barker:pitfalls}. They may
+executed at all, are always expensive and tedious to perform (for
+recent reference see~\cite{barker:pitfalls}). They may
 even be counterproductive if the observed behaviors are clearly
 different from the expected ones.
 
@@ -151,7 +151,12 @@ architecture models: Entropy uses a centralized model, Snooze a
 hierarchical one and DVMS a fully distributed one.
 
 The experiments reveal ...
-\AL[AL]{What the experiments reveal at the end ? }
+\AL[AL]{Limitation of Entropy scalability, the pros/cons of having
+  small or large groups in Snooze, the reactivity in comparison with DVMS (violation
+  time in average), the small impact of failure (based on a 6 month
+  node/failure), The interest of leveraging our toolkit to investigate
+variants and possible improvements. the interest of leveraging
+analysis tool}
 
 The rest of the article is
 organized as follow. Section~\ref{sec:vmpp} highlights the importance
@@ -174,9 +179,6 @@ A VMPP can be summarized in three-steps (see Figure
 computing a new schedule each time is it needed and applying the
 resulting reconfiguration plan (\ie performing VM migration and
 suspend/resume operations to realize to the new placement solution).
-\MS[AL]{The fig. is not perfect, among others because it contains
-  features, \eg the communication arrows, that are not obvious nor
-  explained.}
 % that are mandatory to solve resource violations while optimizing resource usages).
 
 \begin{figure}[ht]
@@ -278,7 +280,7 @@ performed on a host can also be performed inside a VM. From the point
 of view of a \sg Host, a \sg VM is an ordinary task while from the
 point of view of a task running inside a \sg VM, a VM is considered as
 an ordinary host.
-% below the task.  
+% below the task.
 \sg users can thus easily switch between a virtualized and
 non-virtualized infrastructure.  Moreover, thanks to MSG API
 extensions, users can control VMs in the same manner as in the real
@@ -314,14 +316,12 @@ evaluate how they behave in the presence of changes that occur during
 the simulation.
 %
 \vmps has been implemented in Java by leveraging the messaging API
-(MSG) of \sg.  Although the Java layer has an impact of the efficiency
+(MSG) of \sg. Although the Java layer has an impact of the efficiency
 of \sg, we believe its use is acceptable because Java offers important
 benefits to researchers for the implementation of advanced scheduling
 strategies, notably concerning the ease of implementation of new
-strategies. \MS{Could we be more assertive: this/that study has shown
-  that the use of Java is worthwhile \ldots?}
-% TODO: not adressed
-%\AL[JP]{Should we talk about SCALA?}
+strategies. As examples, we reimplemented the Snooze proposal in Java
+and the DVMS proposal using Scala/Java.
 
 In the following we give an overview of the framework and describe its
 general functioning.% and how researchers can develop new algorithms
@@ -404,7 +404,7 @@ input parameters of the simulations (specified in a Java property
 file).
 %% TODO
 % \AL[AL]{Update the size of the cluster autonomically by
-%  leveraging p + s} 
+%  leveraging p + s}
 These hosts are organized in form of topologies, a cluster topology
 being the most common ones. It is possible, however, to define more
 complex platforms to simulate, for instance, scenarios involving
@@ -502,7 +502,7 @@ a VM corresponds to the creation and the assignment of a new \sg task
 in the VM. This new task has a direct impact on the time that will be
 needed to migrate the VM as it increases or decreases the current CPU
 load and thus% the percentage of
-its memory update speed.  
+its memory update speed.
 % \MS[AL]{Is the above paragraph clear enough?}
 % that is indicated by the \texttt{mem\_speed}
 %% parameter given in the class description.
@@ -685,7 +685,7 @@ other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
 \MS[JP]{}
 
 
-\subsection{One step ahead thanks to \vmps}
+\subsection{Investigating Variants and Possible Improvements}
 
 Our simulation framework facilitates the simulation of variants of
 placement algorithms. In the following, we present several variants of
@@ -745,8 +745,8 @@ smallest number of assigned LCs.
           \Tstrut \\
           & \multicolumn{2}{c||}{128 LCs, 12 GMs}
             & \multicolumn{2}{c|||}{256 LCs, 25 GMs}
-          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs} 
-          \Bstrut \\ 
+          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs}
+          \Bstrut \\
           & range & stdev & range & stdev & &  \Bstrut \\
         \thickhline
         Best-Fit & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \Rstrut \\
@@ -820,7 +820,7 @@ by the LCs of a VM, reactive scheduling has been implemented by adding
       & \multicolumn{2}{c|}{\textbf{Total violation time (s)}}
       \Tstrut \\
       & 40 LCs, 4 GMs & 160 LCs, 16 GMs & 40 LCs, 4 GMs & 160 LCs, 16 GMs
-      \Bstrut \\ 
+      \Bstrut \\
     \thickhline
       Reactive      & 1799 & 5343 & 18946 & 89775 \\
       Periodic 120s & 194 & 1012 & 29915 & 111388

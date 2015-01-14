@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.20)  9 JAN 2015 15:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.3.20)  12 JAN 2015 15:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -305,26 +305,18 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip44
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen127
-\WF@size=\dimen128
-\c@WF@wrappedlines=\count118
-\WF@box=\box30
-\WF@everypar=\toks36
-Package: wrapfig 2003/01/31  v 3.6
-)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip45
 \subfigcapskip=\skip46
-\subfigcaptopadj=\dimen129
+\subfigcaptopadj=\dimen127
 \subfigbottomskip=\skip47
-\subfigcapmargin=\dimen130
+\subfigcapmargin=\dimen128
 \subfiglabelskip=\skip48
-\c@subfigure=\count119
-\c@lofdepth=\count120
-\c@subtable=\count121
-\c@lotdepth=\count122
+\c@subfigure=\count118
+\c@lofdepth=\count119
+\c@subtable=\count120
+\c@lotdepth=\count121
 
 ****************************************
 * Local config file subfigure.cfg used *
@@ -333,8 +325,27 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfig@top=\skip49
 \subfig@bottom=\skip50
 )
+(/usr/local/texlive/2013/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen129
+\WF@size=\dimen130
+\c@WF@wrappedlines=\count122
+\WF@box=\box30
+\WF@everypar=\toks36
+Package: wrapfig 2003/01/31  v 3.6
+)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen131
+\extrarowheight=\dimen132
+\NC@list=\toks37
+\extratabsurround=\skip51
+\backup@length=\skip52
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen133
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/todonotes/todonotes.sty
 Package: todonotes 2012/07/25 .dtx Todonotes source and documentation.
@@ -347,8 +358,8 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-\XKV@toks=\toks37
-\XKV@tempa@toks=\toks38
+\XKV@toks=\toks38
+\XKV@tempa@toks=\toks39
 \XKV@depth=\count123
 File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
 ))
@@ -374,7 +385,7 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks39
+\pgfutil@everybye=\toks40
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box31
@@ -390,21 +401,21 @@ Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks40
-\pgfkeys@temptoks=\toks41
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
-\pgfkeys@tmptoks=\toks42
+\pgfkeys@tmptoks=\toks43
 ))
-\pgf@x=\dimen131
-\pgf@y=\dimen132
-\pgf@xa=\dimen133
-\pgf@ya=\dimen134
-\pgf@xb=\dimen135
-\pgf@yb=\dimen136
-\pgf@xc=\dimen137
-\pgf@yc=\dimen138
+\pgf@x=\dimen134
+\pgf@y=\dimen135
+\pgf@xa=\dimen136
+\pgf@ya=\dimen137
+\pgf@xb=\dimen138
+\pgf@yb=\dimen139
+\pgf@xc=\dimen140
+\pgf@yc=\dimen141
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
 \c@pgf@counta=\count124
@@ -441,12 +452,12 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen139
+\pgfmath@dimen=\dimen142
 \pgfmath@count=\count130
 \pgfmath@box=\box32
-\pgfmath@toks=\toks43
-\pgfmath@stack@operand=\toks44
-\pgfmath@stack@operation=\toks45
+\pgfmath@toks=\toks44
+\pgfmath@stack@operand=\toks45
+\pgfmath@stack@operation=\toks46
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
@@ -470,32 +481,32 @@ code.tex)))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
-\pgf@picminx=\dimen140
-\pgf@picmaxx=\dimen141
-\pgf@picminy=\dimen142
-\pgf@picmaxy=\dimen143
-\pgf@pathminx=\dimen144
-\pgf@pathmaxx=\dimen145
-\pgf@pathminy=\dimen146
-\pgf@pathmaxy=\dimen147
-\pgf@xx=\dimen148
-\pgf@xy=\dimen149
-\pgf@yx=\dimen150
-\pgf@yy=\dimen151
-\pgf@zx=\dimen152
-\pgf@zy=\dimen153
+\pgf@picminx=\dimen143
+\pgf@picmaxx=\dimen144
+\pgf@picminy=\dimen145
+\pgf@picmaxy=\dimen146
+\pgf@pathminx=\dimen147
+\pgf@pathmaxx=\dimen148
+\pgf@pathminy=\dimen149
+\pgf@pathmaxy=\dimen150
+\pgf@xx=\dimen151
+\pgf@xy=\dimen152
+\pgf@yx=\dimen153
+\pgf@yy=\dimen154
+\pgf@zx=\dimen155
+\pgf@zy=\dimen156
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
-\pgf@path@lastx=\dimen154
-\pgf@path@lasty=\dimen155
+\pgf@path@lastx=\dimen157
+\pgf@path@lasty=\dimen158
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
-\pgf@shorten@end@additional=\dimen156
-\pgf@shorten@start@additional=\dimen157
+\pgf@shorten@end@additional=\dimen159
+\pgf@shorten@start@additional=\dimen160
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
@@ -508,14 +519,14 @@ File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
-\pgflinewidth=\dimen158
+\pgflinewidth=\dimen161
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
-\pgf@pt@x=\dimen159
-\pgf@pt@y=\dimen160
-\pgf@pt@temp=\dimen161
+\pgf@pt@x=\dimen162
+\pgf@pt@y=\dimen163
+\pgf@pt@temp=\dimen164
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -536,7 +547,7 @@ File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
-\pgf@max=\dimen162
+\pgf@max=\dimen165
 \pgf@sys@shading@range@num=\count133
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
@@ -572,8 +583,8 @@ File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen163
-\pgf@nodesepend=\dimen164
+\pgf@nodesepstart=\dimen166
+\pgf@nodesepend=\dimen167
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -584,10 +595,10 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
-\pgffor@iter=\dimen165
-\pgffor@skip=\dimen166
-\pgffor@stack=\toks46
-\pgffor@toks=\toks47
+\pgffor@iter=\dimen168
+\pgffor@skip=\dimen169
+\pgffor@stack=\toks47
+\pgffor@toks=\toks48
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
@@ -597,14 +608,14 @@ Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \pgf@plot@mark@count=\count134
-\pgfplotmarksize=\dimen167
+\pgfplotmarksize=\dimen170
 )
-\tikz@lastx=\dimen168
-\tikz@lasty=\dimen169
-\tikz@lastxsaved=\dimen170
-\tikz@lastysaved=\dimen171
-\tikzleveldistance=\dimen172
-\tikzsiblingdistance=\dimen173
+\tikz@lastx=\dimen171
+\tikz@lasty=\dimen172
+\tikz@lastxsaved=\dimen173
+\tikz@lastysaved=\dimen174
+\tikzleveldistance=\dimen175
+\tikzsiblingdistance=\dimen176
 \tikz@figbox=\box38
 \tikz@tempbox=\box39
 \tikztreelevel=\count135
@@ -633,14 +644,14 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count143
 \calc@Bcount=\count144
-\calc@Adimen=\dimen174
-\calc@Bdimen=\dimen175
-\calc@Askip=\skip51
-\calc@Bskip=\skip52
+\calc@Adimen=\dimen177
+\calc@Bdimen=\dimen178
+\calc@Askip=\skip53
+\calc@Bskip=\skip54
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count145
-\calc@Cskip=\skip53
+\calc@Cskip=\skip55
 )
 \c@@todonotes@numberoftodonotes=\count146
 )) (./main.aux)
@@ -664,16 +675,16 @@ LaTeX Font Info:    ... okay on input line 33.
 (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count147
-\scratchdimen=\dimen176
+\scratchdimen=\dimen179
 \scratchbox=\box40
 \nofMPsegments=\count148
 \nofMParguments=\count149
-\everyMPshowfont=\toks48
+\everyMPshowfont=\toks49
 \MPscratchCnt=\count150
-\MPscratchDim=\dimen177
+\MPscratchDim=\dimen180
 \MPnumerator=\count151
 \makeMPintoPDFobject=\count152
-\everyMPtoPDFconversion=\toks49
+\everyMPtoPDFconversion=\toks50
 ) (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -733,70 +744,73 @@ Overfull \hbox (1.26794pt too wide) in paragraph at lines 112--113
 /n/9 ]: Mis-cel-la-neous;
  []
 
-(./main-content.tex
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 110.
- [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+(./main-content.tex [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updma
+p/pdftex.map}
 
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (10.89236pt too wide) in paragraph at lines 172--172
-[]\secfnt VM PLACE-MENT PROB-LEM OVERVIEW 
- []
-
-<figures/scheduling_steps.pdf, id=187, 738.76pt x 750.805pt>
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 159.
+ <figures/scheduling_steps.pdf, id=175, 738.76pt x 750.805pt>
 File: figures/scheduling_steps.pdf Graphic file (type pdf)
 
 <use figures/scheduling_steps.pdf>
-Package pdftex.def Info: figures/scheduling_steps.pdf used on input line 188.
+Package pdftex.def Info: figures/scheduling_steps.pdf used on input line 190.
 (pdftex.def)             Requested size: 107.99927pt x 109.7518pt.
 
-<figures/workload_fluctuations2.pdf, id=188, 557.08125pt x 482.80376pt>
+<figures/workload_fluctuations2.pdf, id=176, 557.08125pt x 482.80376pt>
 File: figures/workload_fluctuations2.pdf Graphic file (type pdf)
 
 <use figures/workload_fluctuations2.pdf>
 Package pdftex.def Info: figures/workload_fluctuations2.pdf used on input line 
-191.
+193.
 (pdftex.def)             Requested size: 107.99927pt x 93.5975pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.239 \item  F
-              lexibility -- It allows to run a simulation on arbitrary network
-[2 <./figures/scheduling_steps.pdf> <./figures/workload_fluctuations2.pdf>]
-<figures/VMPlaceS-workflow.png, id=220, 489.027pt x 289.08pt>
+l.251 \end{itemize}
+                    [2 <./figures/scheduling_steps.pdf> <./figures/workload_flu
+ctuations2.pdf>] <figures/VMPlaceS-workflow.png, id=210, 489.027pt x 289.08pt>
 File: figures/VMPlaceS-workflow.png Graphic file (type png)
 
 <use figures/VMPlaceS-workflow.png>
-Package pdftex.def Info: figures/VMPlaceS-workflow.png used on input line 336.
+Package pdftex.def Info: figures/VMPlaceS-workflow.png used on input line 346.
 (pdftex.def)             Requested size: 227.99927pt x 134.77809pt.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 351.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 362.
 
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.375 
-       [3 <./figures/VMPlaceS-workflow.png>]pdfTeX warning (ext4): destination 
-with the same identifier (name{page.}) has been already used, duplicate ignored
+)
+Underfull \vbox (badness 1472) has occurred while \output is active []
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.529 \subsection
-                 {Trace Analysis} [4]
-Underfull \hbox (badness 10000) in paragraph at lines 539--539
+l.396 \subsection{Initialization Phase}
+                                        [3 <./figures/VMPlaceS-workflow.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (2.4199pt too wide) in paragraph at lines 521--532
+\T1/aer/m/n/9 must im-ple-ment the al-go-rithm in charge of solv-ing the VMPP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--553
 [][][][][]$\T1/aett/m/n/9 http : / / simgrid . gforge . inria . fr / simgrid / 
 3 . 12 / doc /
  []
 
-(./snooze.tex <figures/snoozearch.pdf, id=250, 368.17549pt x 298.01337pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.560 
+       [4] (./snooze.tex
+<figures/snoozearch.pdf, id=241, 368.17549pt x 298.01337pt>
 File: figures/snoozearch.pdf Graphic file (type pdf)
 
 <use figures/snoozearch.pdf>
@@ -806,14 +820,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.34 
-      [5]
-Overfull \hbox (1.4296pt too wide) in paragraph at lines 91--97
-[]\T1/aer/m/n/9 Communication be-tween Snooze ac-tors is im-ple-mented based
- []
-
-) (./dvms.tex
-Overfull \hbox (4.97342pt too wide) in paragraph at lines 18--22
+l.31 
+      [5 <./figures/snoozearch.pdf>]) (./dvms.tex
+Overfull \hbox (4.97342pt too wide) in paragraph at lines 21--25
 \T1/aer/m/n/9 con-sume re-sources that can be pro-duced), an \T1/aer/m/it/9 It-
 eraive Schedul-
  []
@@ -822,128 +831,117 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.33 
-      [6 <./figures/snoozearch.pdf>]
-<./figures/fig-24.pdf, id=278, 845.1575pt x 597.23125pt>
+l.63 
+      [6] <./figures/fig-24.pdf, id=269, 845.1575pt x 597.23125pt>
 File: ./figures/fig-24.pdf Graphic file (type pdf)
 
 <use ./figures/fig-24.pdf>
-Package pdftex.def Info: ./figures/fig-24.pdf used on input line 122.
+Package pdftex.def Info: ./figures/fig-24.pdf used on input line 125.
 (pdftex.def)             Requested size: 108.12054pt x 76.40341pt.
 
-<./figures/fig-25.pdf, id=279, 845.1575pt x 597.23125pt>
+<./figures/fig-25.pdf, id=270, 845.1575pt x 597.23125pt>
 File: ./figures/fig-25.pdf Graphic file (type pdf)
 
 <use ./figures/fig-25.pdf>
-Package pdftex.def Info: ./figures/fig-25.pdf used on input line 126.
+Package pdftex.def Info: ./figures/fig-25.pdf used on input line 129.
 (pdftex.def)             Requested size: 108.12054pt x 76.40341pt.
 
-<./figures/fig-26.pdf, id=280, 845.1575pt x 597.23125pt>
+<./figures/fig-26.pdf, id=271, 845.1575pt x 597.23125pt>
 File: ./figures/fig-26.pdf Graphic file (type pdf)
 
 <use ./figures/fig-26.pdf>
-Package pdftex.def Info: ./figures/fig-26.pdf used on input line 130.
+Package pdftex.def Info: ./figures/fig-26.pdf used on input line 133.
 (pdftex.def)             Requested size: 108.12054pt x 76.40341pt.
 
-<./figures/fig-27.pdf, id=281, 845.1575pt x 597.23125pt>
+<./figures/fig-27.pdf, id=272, 845.1575pt x 597.23125pt>
 File: ./figures/fig-27.pdf Graphic file (type pdf)
 
 <use ./figures/fig-27.pdf>
-Package pdftex.def Info: ./figures/fig-27.pdf used on input line 134.
+Package pdftex.def Info: ./figures/fig-27.pdf used on input line 137.
 (pdftex.def)             Requested size: 108.12054pt x 76.40341pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--136
+Underfull \hbox (badness 10000) in paragraph at lines 125--139
 [][] [][]
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 2846) has occurred while \output is active []
-
-
-Overfull \hbox (6.19035pt too wide) in paragraph at lines 159--162
-[]\T1/aer/m/n/9 Althoug lever-ag-ing an over-lay net-work to ad-dress node cras
-hes
- []
-
 )
-Underfull \vbox (badness 3291) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.658 \subsection
-                 {Comparisons of Entropy, Snooze and DVMS} [7 <./figures/fig-24
-.pdf> <./figures/fig-25.pdf> <./figures/fig-26.pdf> <./figures/fig-27.pdf>]
-Overfull \hbox (11.53061pt too wide) in paragraph at lines 658--658
-[]\secfnt Comparisons of En-tropy, Snooze and DVMS 
+l.673 ...Il faudra mettre des snapshots de PajeNG}
+                                                   [7 <./figures/fig-24.pdf> <.
+/figures/fig-25.pdf> <./figures/fig-26.pdf> <./figures/fig-27.pdf>]
+Overfull \hbox (6.86273pt too wide) in paragraph at lines 674--674
+[]\secfnt Comparison of En-tropy, Snooze and DVMS 
  []
 
 
-Overfull \hbox (2.9139pt too wide) in paragraph at lines 709--714
+Overfull \hbox (13.72595pt too wide) in paragraph at lines 688--688
+[]\secfnt Investigating Vari-ants and Pos-si-ble Im-prove-
+ []
+
+
+Overfull \hbox (2.9139pt too wide) in paragraph at lines 790--795
 \T1/aer/m/n/9 calls the sched-uler in or-der to re-solve re-source con-flicts a
 mong
  []
 
 
-Overfull \hbox (5.72766pt too wide) in paragraph at lines 715--727
+Overfull \hbox (5.72766pt too wide) in paragraph at lines 796--813
 []\T1/aer/m/n/9 We have pro-vided an al-ter-na-tive, re-ac-tive, strat-egy to s
 chedul-
- []
-
-<figures/violationTime-snooze-RR-BF.pdf, id=339, 505.89pt x 505.89pt>
-File: figures/violationTime-snooze-RR-BF.pdf Graphic file (type pdf)
-
-<use figures/violationTime-snooze-RR-BF.pdf>
-Package pdftex.def Info: figures/violationTime-snooze-RR-BF.pdf used on input l
-ine 773.
-(pdftex.def)             Requested size: 227.99927pt x 228.00346pt.
-
-Overfull \hbox (3.056pt too wide) in paragraph at lines 784--793
-\T1/aer/m/n/9 RR) and best-fit (BF) that have been in-tro-duced in Sec. [][]6.2
-.1[][],
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.793 \begin{itemize}
-                      [8]) (./main.bblpdfTeX warning (ext4): destination with t
-he same identifier (name{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.33 
-      [9 <./figures/violationTime-snooze-RR-BF.pdf>]
+l.849 
+       [8]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-)
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.937 \section{Acknowledgment}
+                               [9]) (./main.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.157 
+       [10])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.136 \end{document}
-                     [10]
+                     [11
+
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
  (./main.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 136.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 136.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 50E1F98E9402A6044989F42CB2ECBB56;2151.
+(rerunfilecheck)             Checksum: 6B57B915DCA617C021E91A01E5B9BC3C;1993.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 136.
  ) 
 Here is how much of TeX's memory you used:
- 15667 strings out of 493315
- 275165 string characters out of 6137904
- 352161 words of memory out of 5000000
- 18645 multiletter control sequences out of 15000+600000
+ 15715 strings out of 493315
+ 275607 string characters out of 6137904
+ 355493 words of memory out of 5000000
+ 18693 multiletter control sequences out of 15000+600000
  64778 words of font info for 94 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 65i,11n,84p,473b,666s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,12n,84p,481b,805s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/tex
 live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texli
@@ -961,10 +959,10 @@ s/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1
 /urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ti
 mes/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/times/utmri8
 a.pfb>
-Output written on main.pdf (10 pages, 489508 bytes).
+Output written on main.pdf (11 pages, 489149 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 416 compressed objects within 5 object streams
- 103 named destinations out of 1000 (max. 500000)
- 306 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 456 PDF objects out of 1000 (max. 8388607)
+ 400 compressed objects within 4 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 285 words of extra memory for PDF output out of 10000 (max. 10000000)
 
