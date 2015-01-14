@@ -695,6 +695,8 @@ implementation of their models using \vmps. This section provides
 strong evidence that the modification and evaluation of existing
 algorithms is much facilitated by our simulation framework.
 
+
+
 \subsubsection{Variants of hierarchical scheduling}
 \label{sec:snoozeVariants}
 
@@ -738,8 +740,8 @@ by the LCs of a VM, reactive scheduling has been implemented by adding
     \textbf{Algorithm}
       & \multicolumn{4}{c||}{\textbf{No.\ migrations}}
       & \multicolumn{4}{c|}{\textbf{Total violation time (s)}}
-      \Tstrut \\
-    \textbf{\#LCs/\#GMs}  & 64/6 & 128/12 & 256/25 & 512/51 &  64/6 & 128/12 & 256/25 & 512/51 \Bstrut \\ 
+        \Tstrut \\
+    ~\hfill{\small \#LCs/\#GMs}  & 64/6 & 128/12 & 256/25 & 512/51 &  64/6 & 128/12 & 256/25 & 512/51 \Bstrut \\ 
     \thickhline
       Reactive      & 30 & 89 & 179 & 338 & 267 & 764 & 1638 & 3088 \\
       Periodic 120s & 9 & 24 & 69 & 142 & 814 & 2548 & 6238 & 16038
@@ -805,8 +807,8 @@ smallest number of assigned LCs.
           \Tstrut \\
           & \multicolumn{2}{c||}{128 LCs, 12 GMs}
             & \multicolumn{2}{c|||}{256 LCs, 25 GMs}
-          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs}
-          \Bstrut \\
+          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs} 
+          \Bstrut \\ 
           & range & stdev & range & stdev & &  \Bstrut \\
         \thickhline
         Best-Fit & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \Rstrut \\
@@ -844,73 +846,6 @@ configurations (the proof is left to future work).
 % \MS[JP]{I need the exact figures for the violation times
 %   in Tbl.~\ref{tbl:assignmenResults}}
 
-<<<<<<< HEAD
-
-\paragraph{Periodic vs.\ reactive scheduling}
-
-Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
-after a fixed time period a GM calls the scheduler in order to resolve
-resource conflicts among the LCs it manages. The information whether a
-resource conflict has to be handled is taken based on the summary
-information that is periodically sent by the LCs to the GM.
-
-We have provided an alternative, reactive, strategy to scheduling: as
-soon as they occur, LCs avert their GMs of resource conflicts; the GMs
-then initiate scheduling. Implementing this reactive scheme can be
-done using our framework in two manners. First, by implementing
-additional asynchronous transmissions as a real implementation of the
-necessary state updates would proceed. Second, in a much more
-lightweight manner, through direct accesses by the GMs to the states
-of their respective LCs. While the latter does not mimic a real
-implementation closely, it can be harnessed to yield a valid
-simulation: delays induced by communication in the ``real''
-implementation, for instance, can be easily added as part of the
-lightweight simulation. We have implemented this lightweight variant
-of reactive scheduling including explicit modeling of communication
-delays. Using the abstractions provided by \vmps, in particular
-harnessing its extended notion of hosts that represent the VMs managed
-by the LCs of a VM, reactive scheduling has been implemented by adding
-4~lines of code.
-
-\begin{table*}[ht]
-\begin{center}
-\begin{tabular}{|P{30mm}||c|c||c|c|}
-    \thickhline
-    \textbf{Algorithm}
-      & \multicolumn{2}{c||}{\textbf{No.\ migrations}}
-      & \multicolumn{2}{c|}{\textbf{Total violation time (s)}}
-      \Tstrut \\
-      & 40 LCs, 4 GMs & 160 LCs, 16 GMs & 40 LCs, 4 GMs & 160 LCs, 16 GMs
-      \Bstrut \\
-    \thickhline
-      Reactive      & 1799 & 5343 & 18946 & 89775 \\
-      Periodic 120s & 194 & 1012 & 29915 & 111388
-    \Rstrut \\ \hline
-    \thickhline
-\end{tabular}
-\end{center}
-    \caption{Reconfiguration nos. and violation times for reactive and
-    periodic scheduling}
-\label{tbl:reactiveRes}
-\end{table*}
-
-We have shown the usefulness of our framework by exploring some
-properties of reactive scheduling compared to periodic scheduling. To
-this end we have simulated two specific instances of these algorithms:
-reactive scheduling that reconfigures the VMs managed by (the LCs of)
-a GM as soon as necessary that is as soon as an LC of the GM becomes
-overloaded; a periodic algorithm that reconfigures all LCs every 2
-min. A simulation involving respectively 40 and 160 hosts (LCs), 10 of
-which are managed by a GM, has yielded, among others, the results
-shown in Tbl.~\ref{tbl:reactiveRes}. These results clearly show that
-while a reactive strategy entails a much higher number of migrations
-(because the periodic one misses many overload situtations), the
-reactive strategy results in a significantly lower total migration
-time.
-
-
-=======
->>>>>>> 4b68bf39a67e6c81bdac13aaaef0f5520148cf28
 \paragraph{Variants of the join algorithms}
 
 The join algorithms, see Sec.~\ref{sec:snoozeAlgs}, are crucial to
