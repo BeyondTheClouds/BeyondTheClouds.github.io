@@ -117,6 +117,7 @@ capacity, \vmps allows users to study large-scale scenarios that take
 into account server crashes and that involve tens of thousands of VMs,
 each of which executes a specific workload that evolves during the
 simulation lifetime.
+\AL[MS]{each of which executing?}
 
 Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
 provides three additional simulation facilities: a more abstract
@@ -142,21 +143,33 @@ migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 To illustrate the relevance of \vmps, we have implemented the
 essential mechanisms of three well-known VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
-Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}. We
-have also investigated their characteristics by analyzing their
-scalability, reliability and reactivity (\ie the time to solve resource
-violations, \aka SLA violation). Besides being well-known from the literature, we chose
+Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}.
+Besides being well-known from the literature, we chose
 these three systems as they are built on three different software
-architecture models: Entropy uses a centralized model, Snooze a
-hierarchical one and DVMS a fully distributed one.
+architecture approaches: Entropy relies on a centralized model, Snooze
+on a hierarchical one and DVMS on a fully distributed one.
 
-The experiments reveal ...
-\AL[AL]{Limitation of Entropy scalability, the pros/cons of having
-  small or large groups in Snooze, the reactivity in comparison with DVMS (violation
-  time in average), the small impact of failure (based on a 6 month
-  node/failure), The interest of leveraging our toolkit to investigate
-variants and possible improvements. the interest of leveraging
-analysis tool}
+Once the accuracy of \vmps validated, we have also investigated the
+characteristics of these three strategies by studying their
+scalability, reliability and reactivity (\ie the time to solve
+resource violations, \aka SLA violation) criterions through several
+simulations. This study reveal:
+\begin{itemize}
+\item The importance of the duration of the reconfiguration phase (\ie
+  the step where VMs are relocated throughout the infrastructure) in
+  comparison to the computation one (\ie the step where the scheduler
+  try to solve the VMPP, see Section \ref{sec:vmpp} for a complete
+  definition of both steps).
+\item The quasi-inexistant impact of failures on the reactivity for
+  all systems, especially if we are considering a 6 month failure
+  rate;
+\item The pros and cons of partitionning Snooze in small or large
+  groups;
+\item The pros and cons of a reactive vs a periodic scheduling
+  strategies.
+\item The interest of leveraging our toolkit to identify limitations
+  of proposals and study variants and possible improvements.
+\end{itemize}
 
 The rest of the article is
 organized as follow. Section~\ref{sec:vmpp} highlights the importance
@@ -741,7 +754,7 @@ by the LCs of a VM, reactive scheduling has been implemented by adding
       & \multicolumn{4}{c||}{\textbf{No.\ migrations}}
       & \multicolumn{4}{c|}{\textbf{Total violation time (s)}}
         \Tstrut \\
-    ~\hfill{\small \#LCs/\#GMs}  & 64/6 & 128/12 & 256/25 & 512/51 &  64/6 & 128/12 & 256/25 & 512/51 \Bstrut \\ 
+    ~\hfill{\small \#LCs/\#GMs}  & 64/6 & 128/12 & 256/25 & 512/51 &  64/6 & 128/12 & 256/25 & 512/51 \Bstrut \\
     \thickhline
       Reactive      & 30 & 89 & 179 & 338 & 267 & 764 & 1638 & 3088 \\
       Periodic 120s & 9 & 24 & 69 & 142 & 814 & 2548 & 6238 & 16038
@@ -807,8 +820,8 @@ smallest number of assigned LCs.
           \Tstrut \\
           & \multicolumn{2}{c||}{128 LCs, 12 GMs}
             & \multicolumn{2}{c|||}{256 LCs, 25 GMs}
-          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs} 
-          \Bstrut \\ 
+          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs}
+          \Bstrut \\
           & range & stdev & range & stdev & &  \Bstrut \\
         \thickhline
         Best-Fit & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \Rstrut \\

@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex main"] 1421072506 "main.aux" "main.bbl" "main" 1421137173
+["bibtex main"] 1421395734 "main.aux" "main.bbl" "main" 1421395736
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "main.aux" 1421072507 15305 fe37333d9b148c2058250f2594173b0a ""
+  "main.aux" 1421395736 15174 fd2335e19bc170df6cf3a4fab1a8e7e6 ""
   "main.bcf" 0 -1 0 ""
   "main.bib" 1416670288 48904 928d6783523e2c06e5f989d404b1954b ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1421072506 "main.tex" "main.pdf" "main" 1421137173
+["pdflatex"] 1421395735 "main.tex" "main.pdf" "main" 1421395736
   "/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm" 1136768653 4484 b828043cbd581d289d955903c1339981 ""
@@ -223,16 +223,16 @@
   "figures/snoozearch.pdf" 1415355506 86835 0dfbbac4ceab4ddc964d394ef38e4aa8 ""
   "figures/workload_fluctuations2.pdf" 1414662797 6044 ace742dd4708689853d9f194c4322215 ""
   "include.tex" 1421070808 2060 8a2980e62e7559b8e424887b9211e1fa ""
-  "main-content.tex" 1421072503 47754 a200576101f04bb2840b34b004b1bad8 ""
-  "main.aux" 1421072507 15305 fe37333d9b148c2058250f2594173b0a ""
-  "main.bbl" 1421072506 6650 406552045f283aa1ad73b58a73ccabce "bibtex main"
-  "main.out" 1421072507 1993 6b57b915dca617c021e91a01e5b9bc3c ""
+  "main-content.tex" 1421395731 47346 1ed7a32e0343a5e7e4bca10abdb55331 ""
+  "main.aux" 1421395736 15174 fd2335e19bc170df6cf3a4fab1a8e7e6 ""
+  "main.bbl" 1421395735 6650 406552045f283aa1ad73b58a73ccabce "bibtex main"
+  "main.out" 1421395736 1993 6b57b915dca617c021e91a01e5b9bc3c ""
   "main.tex" 1416229653 5608 88adfed75262019edfc7372c2bfc0683 ""
   "snooze.tex" 1421070808 9405 4feb6ebb33f5afc906054a97f809e135 ""
   (generated)
   "main-content.tex.aux"
-  "main.aux"
   "abstract.tex.aux"
+  "main.aux"
   "abstract.aux"
   "main.pdf"
   "main.log"
