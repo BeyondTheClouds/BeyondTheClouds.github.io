@@ -903,28 +903,28 @@ resulting degradation was surprising.
 \AL[AL]{.25 page}
 
 Several simulator toolkits have been proposed since the last years in
-order to adress CC concerns~\cite{CC13, DGSIM, cloudsim,
-  icancloud, greencloud}.
-They can be classified into two categories: The first one corresponds to ad-hoc simulators
-that have been developped to address a particular concern. For
-instance, CReST~\cite{CC13} is a discrete event simulation toolkit
-built to evaluate Cloud provisioning algorithms. If ad-hoc simulators
-enable to provide some trends regarding the bevahiours of the system,
-they do consider the implication of the different layers, which can
-lead to non representative results at the end. Moreover, such ad-hoc
-solutions are developped for one shot and thus, they are not available
-for the scientific community. The second category
-\cite{icancloud, greencloud, cloudsim} corresponds to more generic cloud simulator
-toolkits (\ie they have been designed to adress a majority
-of CC challenges). However, they have focused mainly on
-the API and not on the model of the different mechanisms of CC
-systems.
-For instance, CloudSim~\cite{cloudsim}, which has been widely used to validate
-algorithms and applications in different scientific publications,
-is based on a relatively top-down viewpoint of cloud environments.
-That is,  there is no papers that properly validate the different models it
-relies on: a migration time is calculated by dividing a VM memory size by a
-network bandwidth.
+order to adress CC concerns~\cite{CC13, DGSIM, cloudsim, icancloud,
+  greencloud}.  They can be classified into two categories: The first
+one corresponds to ad-hoc simulators that have been developped to
+address a particular concern. For instance, CReST~\cite{CC13} is a
+discrete event simulation toolkit built to evaluate Cloud provisioning
+algorithms. If ad-hoc simulators enable to provide some trends
+regarding the bevahiours of the system, they do consider the
+implication of the different layers, which can lead to non
+representative results at the end. Moreover, such ad-hoc solutions are
+developped for one shot and thus, they are not available for the
+scientific community. The second category \cite{icancloud, greencloud,
+  cloudsim} corresponds to more generic cloud simulator toolkits (\ie
+they have been designed to adress a majority of CC
+challenges). However, they have focused mainly on the API and not on
+the model of the different mechanisms of CC systems.
+
+For instance, CloudSim~\cite{cloudsim}, which has been widely used to
+validate algorithms and applications in different scientific
+publications, is based on a relatively top-down viewpoint of cloud
+environments.  That is, there is no papers that properly validate the
+different models it relies on: a migration time is calculated by
+dividing a VM memory size by a network bandwidth.
 %Such a model cannot correctly simulate many real
 %environments where workloads perform substantial memory writes.
  In addition to having inaccuracy weaknesses at the low level, available cloud
@@ -936,21 +936,35 @@ its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:25684
 
 \section{Conclusion}
 \label{sec:conclusion}
-\AL[AL]{.25 page}
-Future work : (i) network changes and other dimensions (I/O), (ii) VM provisioning (i.e.
-Adding/removing VMs in the system,
+
+In this paper we have presented \vmps, a framework providing
+programming support for the definition of VM placement algorithms,
+execution support for their simulation at large scales, as well as new
+means for their trace-based analysis. \vmps enables, in particular,
+the investigation of placement algorithms in the context of numerous
+and diverse real-world scenarios. We have validated it by evaluating
+and comparing algorithms representative for three different classes of
+virtualization environments: centralized, hierarchical and fully
+distributed placement algorithms. We have also shown how \vmps
+facilitates the implementation and evaluation of variants of placement
+algorithms. The corresponding results have provided the first
+systematic results comparing these algorithms in environments
+including thousands of nodes and tens of thousands virtual machines.
+
+Future work : (i) network changes and other dimensions (I/O), (ii) VM
+provisioning (i.e.  Adding/removing VMs in the system,
 
 
 % conference papers do not normally have an appendix
 
 
-% use section* for acknowledgement
 \section{Acknowledgment}
+
 This work is supported by the French ANR project SONGS (11-INFRA-13).
-Experiments have been performed using the Grid'5000
-experimental testbed, being developed under the INRIA ALADDIN development
- action with support from CNRS, RENATER and several Universities as well as
- other funding bodies (see https://www.grid5000.fr).
+Experiments have been performed using the Grid'5000 experimental
+testbed, being developed under the INRIA ALADDIN development action
+with support from CNRS, RENATER and several Universities as well as
+other funding bodies (see https://www.grid5000.fr).
 
 
 %%% Local Variables:
