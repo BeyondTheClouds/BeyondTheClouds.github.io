@@ -17,11 +17,11 @@
 \BOOKMARK [3][-]{subsubsection.5.3.2}{Iterative Scheduling Procedure}{subsection.5.3}% 17
 \BOOKMARK [3][-]{subsubsection.5.3.3}{Fault-tolerance}{subsection.5.3}% 18
 \BOOKMARK [1][-]{section.6}{Experiments}{}% 19
-\BOOKMARK [2][-]{subsection.6.1}{Accuracy Evaluation}{section.6}% 20
-\BOOKMARK [2][-]{subsection.6.2}{Comparison of Entropy, Snooze and DVMS}{section.6}% 21
-\BOOKMARK [3][-]{subsubsection.6.2.1}{Reactivity and Violation time}{subsection.6.2}% 22
-\BOOKMARK [3][-]{subsubsection.6.2.2}{Fault Tolerance}{subsection.6.2}% 23
-\BOOKMARK [2][-]{subsection.6.3}{Investigating Variants and Possible Improvements}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.1}{Accuracy Evaluation of VMPlaceS}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.2}{A First Use-Case: Comparison of Entropy, Snooze and DVMS}{section.6}% 21
+\BOOKMARK [3][-]{subsubsection.6.2.1}{General Comparison}{subsection.6.2}% 22
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Snooze Related Characteristics}{subsection.6.2}% 23
+\BOOKMARK [2][-]{subsection.6.3}{Investigating Variants and Possible Improvements Thanks to VMPlaceS}{section.6}% 24
 \BOOKMARK [3][-]{subsubsection.6.3.1}{Variants of hierarchical scheduling}{subsection.6.3}% 25
 \BOOKMARK [3][-]{subsubsection.6.3.2}{DVMS Analysis}{subsection.6.3}% 26
 \BOOKMARK [1][-]{section.7}{Related Work}{}% 27
