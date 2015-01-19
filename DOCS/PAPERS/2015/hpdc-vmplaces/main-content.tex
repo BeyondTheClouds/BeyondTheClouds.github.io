@@ -877,8 +877,10 @@ other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
 
 \subsubsection{Snooze Related Characteristics}
 
-\subsection{Investigating Variants and Possible Improvements Thanks to
-\vmps}
+\subsection{Exploring Variants and Possible Improvements}
+
+\MS{Adapt this intro or even the structure depending on other
+  variants.}
 
 Our simulation framework facilitates the simulation of variants of
 placement algorithms. In the following, we present several variants of
@@ -890,16 +892,16 @@ algorithms is much facilitated by our simulation framework.
 
 
 
-\subsubsection{Variants of hierarchical scheduling}
-\label{sec:snoozeVariants}
+% \subsubsection{Variants of hierarchical scheduling}
+% \label{sec:snoozeVariants}
 
-We now present three non-trivial variants that we have implemented and
-explored: periodic vs.\ reactive scheduling, a variant of the
-assignment algorithm of LCs to GMs, and a variant of the algorithms of
-how GMs and LCs join the system.  \MS{How and where do we provide the
-  scheduling parameters for the evals.?}
+% We now present three non-trivial variants that we have implemented and
+% explored: periodic vs.\ reactive scheduling, a variant of the
+% assignment algorithm of LCs to GMs, and a variant of the algorithms of
+% how GMs and LCs join the system.  \MS{How and where do we provide the
+%   scheduling parameters for the evals.?}
 
-\paragraph{Periodic vs.\ reactive scheduling}
+\subsubsection{Hierarchical scheduling: periodic vs.\  reactive}
 
 Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
 after a fixed time period a GM calls the scheduler in order to resolve
@@ -907,56 +909,52 @@ resource conflicts among the LCs it manages. The information whether a
 resource conflict has to be handled is taken based on the summary
 information that is periodically sent by the LCs to the GM.
 
-We have implemented using \vmps an alternative, reactive, strategy to
-scheduling: as soon as resource conflicts occur, LCs avert their GMs
-ofthem; the GMs then immediately initiate scheduling. Implementing
-this reactive scheme can be done using our framework in two
-manners. First, by implementing additional asynchronous transmissions
-of the necessary state updates as a real implementation would
-proceed. Second, in a much more lightweight manner through direct
-accesses by the GMs to the states of their respective LCs. In order to
-ensure that this leightweight implementation mimics a real
-implementation closely, delays induced by communication in the
-``real'' implementation are accounted for (congestion issues are not
-relevant in this case because a resource conflict blocks the GM and
-its LCs anyway). We have implemented this lightweight variant of
-reactive scheduling including explicit modeling of communication
-delays. Using the abstractions provided by \vmps, in particular
-harnessing its extended notion of hosts that represent the VMs managed
-by the LCs of a VM, reactive scheduling has been implemented by adding
-4~lines of code.
+Using \vmps, we have also implemented an alternative, reactive,
+strategy to scheduling: as soon as resource conflicts occur, LCs avert
+their GMs of them; the GMs then immediately initiate
+scheduling. Implementing this reactive scheme can be done using our
+framework in two manners. First, by implementing additional
+asynchronous transmissions of the necessary state updates as a real
+implementation would proceed. Second, in a much more lightweight
+manner through direct accesses by the GMs to the states of their
+respective LCs. In order to ensure that this lightweight
+implementation mimics a real implementation closely, delays induced by
+communication in the ``real'' implementation are accounted for
+explicitly (congestion issues are not relevant in this case because
+notification of a resource conflict implies little communication and
+conflict resolution blocks the GM and its LCs anyway). We have
+implemented this lightweight variant of reactive scheduling including
+an explicit model of communication delays. Using the abstractions
+provided by \vmps, in particular harnessing its extended notion of
+hosts that represent the VMs managed by the LCs of a VM, reactive
+scheduling has been implemented by adding or modifying just 4~lines of
+code of the variant with periodic scheduling.
 
-\begin{table*}[ht]
-\begin{center}
-\begin{tabular}{|P{30mm}||c|c|c|c||c|c|c|c|}
+{\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
     \thickhline
     \textbf{Algorithm}
-      & \multicolumn{4}{c||}{\textbf{No.\ migrations}}
-      & \multicolumn{4}{c|}{\textbf{Total violation time (s)}}
+      & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
+      & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
         \Tstrut \\
-    ~\hfill{\small \#LCs/\#GMs}  & 64/6 & 128/12 & 256/25 & 512/51 &  64/6 & 128/12 & 256/25 & 512/51 \Bstrut \\
+       \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
     \thickhline
-      Reactive      & 30 & 89 & 179 & 338 & 267 & 764 & 1638 & 3088 \\
-      Periodic 120s & 9 & 24 & 69 & 142 & 814 & 2548 & 6238 & 16038
-    \Rstrut \\ \hline
+      Reactive      & 107 & 201 & 421 & 1075 & 1955 & 4385 \\
+      Periodic 30s  & 62 & 124 & 269 & 1770 & 3453 & \:8196
+    \Rstrut  \\ \hline
     \thickhline
-\end{tabular}
-\end{center}
-    \caption{Reconfiguration nos. and violation times for reactive and
-    periodic scheduling}
-\label{tbl:reactiveRes}
-\end{table*}
+\end{tabular} }
 
 We have shown the usefulness of our framework by exploring some
 properties of reactive scheduling compared to periodic scheduling. To
 this end we have simulated reactive scheduling and a periodic
-algorithm that reconfigures all LCs every 2 mins for configurations
-ranging from 64 to 512 LCs. These simulations have yielded, among
-others, the results shown in Tbl.~\ref{tbl:reactiveRes}. The results
-clearly show that while a reactive strategy entails a much higher
-number of migrations (because the periodic one misses many overload
-situations), reactive scheduling results in a significantly lower
-total migration time.
+algorithm for configurations ranging from 128 to 512~LCs. In each case
+the Entropy scheduler has been applied on groups of 32~LCs per GM. The
+periodic strategy has computed and applied reconfiguration plans every
+30 secs. These simulations have yielded the results shown in the table
+above. They clearly show that, while a reactive strategy entails a
+much higher number of migrations (because the periodic one aggregates
+overload situations and misses some of them), reactive scheduling
+results in a significantly lower total migration time.
 
 
 % \paragraph{Assignment of LCs to GMs}
@@ -989,31 +987,31 @@ total migration time.
 % % \label{fig:snoozeBFRRViolation}
 % \end{figure}
 
-\begin{table*}[ht]
-\begin{center}
-%    \begin{tabular}{|c!{\vrule width 3pt}c|c|c!{\vrule width 2pt}c|c|c!{\vrule width 3pt}c|c!{\vrule width 2pt}c|c|}
-    \begin{tabular}{|P{30mm}|||c|c||c|c|||M{30mm}|M{30mm}|}
-        \thickhline
-        \multirow{3}*{\textbf{Strategy}}
-          & \multicolumn{4}{c|||}{\textbf{\#LCs/\#GMs}}
-          & \multicolumn{2}{c|}{\textbf{Total violation time (s)}}
-          \Tstrut \\
-          & \multicolumn{2}{c||}{128 LCs, 12 GMs}
-            & \multicolumn{2}{c|||}{256 LCs, 25 GMs}
-          & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs}
-          \Bstrut \\
-          & range & stdev & range & stdev & &  \Bstrut \\
-        \thickhline
-        Best-Fit & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \Rstrut \\
-        Round-Robin & 0--49 & 15.7  & 0--35 & 12.22 & 630 & 1265
-        \Rstrut \\ \hline
-        \thickhline
-    \end{tabular}
-\end{center}
-    \caption{LCs to GM assignment and cumulated violation times for RR
-      and BF strategies}
-    \label{tbl:assignmentResults}
-\end{table*}
+% \begin{table*}[ht]
+% \begin{center}
+% %    \begin{tabular}{|c!{\vrule width 3pt}c|c|c!{\vrule width 2pt}c|c|c!{\vrule width 3pt}c|c!{\vrule width 2pt}c|c|}
+%     \begin{tabular}{|P{30mm}|||c|c||c|c|||M{30mm}|M{30mm}|}
+%         \thickhline
+%         \multirow{3}*{\textbf{Strategy}}
+%           & \multicolumn{4}{c|||}{\textbf{\#LCs/\#GMs}}
+%           & \multicolumn{2}{c|}{\textbf{Total violation time (s)}}
+%           \Tstrut \\
+%           & \multicolumn{2}{c||}{128 LCs, 12 GMs}
+%             & \multicolumn{2}{c|||}{256 LCs, 25 GMs}
+%           & \multirow{2}*{128 LCs, 12 GMs} & \multirow{2}*{256 LCs, 25 GMs}
+%           \Bstrut \\
+%           & range & stdev & range & stdev & &  \Bstrut \\
+%         \thickhline
+%         Best-Fit & 0--30 & 10.53 & 0--18 & 6.62  & 395 & 1005 \Rstrut \\
+%         Round-Robin & 0--49 & 15.7  & 0--35 & 12.22 & 630 & 1265
+%         \Rstrut \\ \hline
+%         \thickhline
+%     \end{tabular}
+% \end{center}
+%     \caption{LCs to GM assignment and cumulated violation times for RR
+%       and BF strategies}
+%     \label{tbl:assignmentResults}
+% \end{table*}
 
 
 % We have evaluated the two LC assignment strategies using \vmps on
