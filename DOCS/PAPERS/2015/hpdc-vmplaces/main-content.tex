@@ -684,7 +684,102 @@ the application of the reconfiguration plan led to new violations.
   métrique pertinente. Plusieurs algorithms tentent de reduire cette
   metrique }
 \AL[AL]{Il faudra mettre des snapshots de PajeNG}
+
+\subsubsection{Experimental testbed}
+
+% Evaluation of VMPlaceS on Grid'5000: simulations were running on one server.
+We evaluated the behaviour of the VMPlaceS frameworks using simulations 
+conducted on the Grid'5000 testbed. Each of the simulations was running on a
+dedicated server, thus avoiding interferences between simulations.
+
+% Scripts: automation of the deployment, running of simulations and the collect
+% of results.
+
+% It enables us to run a large number of simulations, with several variants
+% of the scheduling algorithm.
+
 \subsection{Comparison of Entropy, Snooze and DVMS}
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/1024-hierarchical.pdf}
+    \caption{Load of the cluster.}
+\end{center}
+\label{fig:experiments_1024_hierarchical}
+\end{figure}
+
+% * 1024-hierarchical.pdf
+% For the simulations a load of 85% has been injected.
+% Stationary phase at 1200s => 1800s of simulation.
+% The 3 algorithms have been tested with the same loads.
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/compute_time_per_service_node.pdf}
+    \caption{Cumulated computation time per node invocking Entropy.}
+\end{center}
+\label{fig:experiments_compute_time_per_service_node}
+\end{figure}
+
+% * compute_time_per_service_node.pdf: 
+The conductions of the simulations enables the comparison of three different 
+scheduling algorithms. Firstly, even if all the implementations of these three 
+algorithms are based on Entropy, their respectif amount of nodes invocking 
+Entropy differs: to enable a fair comparison of the time spend on computing 
+reconfiguration plan time, 
+Figure \ref{fig:experiments_compute_time_per_service_node} depicts the 
+computation time per node invocking Entropy. It is noticeable that the 
+distributed and hierarchical algorithms are significantly below the centralised
+algorithm. This can be easily explained: the centralised policy concentrates all
+the computations on one node, while the distribured and the hierarchical 
+policies distribute computation on several nodes.
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
+    \caption{Cumulated violation time.}
+\end{center}
+\label{fig:experiments_violation_time}
+\end{figure}
+
+% * experiments_violation_time.pdf:
+% - Centralized is not efficient: it violation is much more high than 
+%   distributed or hierarchical.
+% - Distributed approaches are better. However a flat peer to peer approach such
+%   as DVMS has better results that Snooze (hierarchical).
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
+    \caption{Cumulated migration time.}
+\end{center}
+\label{fig:experiments_violation_time}
+\end{figure}
+
+% * migration_time.pdf:
+% - On the other hand centralised do less migrations: it can be explained by its
+%   lack of reactivity.
+% - Distributed and Hierarchical have similar results, even if hierarchical do
+%   less migrations.
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
+    \caption{Average migration of a migration.}
+\end{center}
+\label{fig:experiments_migration_time}
+\end{figure}
+
+% * migration_avg_duration.pdf:
+% - Centralized was doing less migrations than the others. However, at 1024 
+%   nodes, the migration time is becoming increasing dramatically: it can be
+%   explained by the "first_solution" policy: to improve its reactivity entropy
+%   returns the first working reconfiguration plan. At 1024 nodes, computations
+%   takes too much time, thus degrading the results of entropy which programs
+%   several migrations on some nodes.
+%   
+%
+
 
 \subsubsection{Reactivity and Violation time}
 
