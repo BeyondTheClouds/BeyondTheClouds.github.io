@@ -17,13 +17,17 @@
 \BOOKMARK [3][-]{subsubsection.5.3.2}{Iterative Scheduling Procedure}{subsection.5.3}% 17
 \BOOKMARK [3][-]{subsubsection.5.3.3}{Fault-tolerance}{subsection.5.3}% 18
 \BOOKMARK [1][-]{section.6}{Experiments}{}% 19
-\BOOKMARK [2][-]{subsection.6.1}{Comparison of Entropy, Snooze and DVMS}{section.6}% 20
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Reactivity and Violation time}{subsection.6.1}% 21
-\BOOKMARK [3][-]{subsubsection.6.1.2}{Fault Tolerance}{subsection.6.1}% 22
-\BOOKMARK [2][-]{subsection.6.2}{Investigating Variants and Possible Improvements}{section.6}% 23
-\BOOKMARK [3][-]{subsubsection.6.2.1}{Variants of hierarchical scheduling}{subsection.6.2}% 24
-\BOOKMARK [3][-]{subsubsection.6.2.2}{DVMS Analysis}{subsection.6.2}% 25
-\BOOKMARK [1][-]{section.7}{Related Work}{}% 26
-\BOOKMARK [1][-]{section.8}{Conclusion}{}% 27
-\BOOKMARK [1][-]{section.9}{Acknowledgment}{}% 28
-\BOOKMARK [1][-]{section.10}{References}{}% 29
+\BOOKMARK [2][-]{subsection.6.1}{Accuracy Evaluation of VMPlaceS}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.2}{A First Use-Case: Comparison of Entropy, Snooze and DVMS}{section.6}% 21
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Experimental testbed}{subsection.6.2}% 22
+\BOOKMARK [2][-]{subsection.6.3}{Comparison of Entropy, Snooze and DVMS}{section.6}% 23
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Reactivity and Violation time}{subsection.6.3}% 24
+\BOOKMARK [3][-]{subsubsection.6.3.2}{Fault Tolerance}{subsection.6.3}% 25
+\BOOKMARK [3][-]{subsubsection.6.3.3}{Snooze Related Characteristics}{subsection.6.3}% 26
+\BOOKMARK [2][-]{subsection.6.4}{Investigating Variants and Possible Improvements Thanks to VMPlaceS}{section.6}% 27
+\BOOKMARK [3][-]{subsubsection.6.4.1}{Variants of hierarchical scheduling}{subsection.6.4}% 28
+\BOOKMARK [3][-]{subsubsection.6.4.2}{DVMS Analysis}{subsection.6.4}% 29
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 30
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 31
+\BOOKMARK [1][-]{section.9}{Acknowledgment}{}% 32
+\BOOKMARK [1][-]{section.10}{References}{}% 33
