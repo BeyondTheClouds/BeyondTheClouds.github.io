@@ -159,13 +159,13 @@ simulations. This study reveals:
   comparison to the computation one (\ie the step where the scheduler
   try to solve the VMPP, see Section \ref{sec:vmpp} for a complete
   definition of both steps).
-\item The quasi-inexistant impact of failures on the reactivity for
-  all systems when considering a 6 months failure
-  rate;
+%\item The quasi-inexistant impact of failures on the reactivity for
+%  all systems when considering a 6 months failure
+%  rate;
 \item The pros and cons of partitioning Snooze in small or large
   groups;
-\item The pros and cons of a reactive vs a periodic scheduling
-  strategies.
+\item The relevance of a reactive strategy in comparison to a periodic
+  one.
 \item The interest of leveraging our toolkit to identify limitations
   of proposals and study variants and possible improvements.
 \end{itemize}
@@ -686,7 +686,7 @@ In this section, we, first, analyze the accuracy of \vmps by comparing
 the  results of an Entropy execution through simulations and
 \textit{in-vivo} experiments. This first experiment enables us to
 confirm the expected behavior of \vmps Second, we present and discuss
-our analysis of the three algorithms described in the previous Section.
+our analysis of the three algorithms previously described.
 We show that the performances of the hierarchical approach could
 reached the distributed ones through minor changes.
 
@@ -829,6 +829,26 @@ failures. Node crashes does not have an significant impact of the
 violation time resolution. When a GL or a GM crashes, LCs are correcly
 reassigned in less than 10 seconds.}
 
+Simulations have been performed for infrastructures composed of 128,
+256, 512 and 1024 PMs, hosting respectively 1280, 2560, 5120 and 10240
+VMs. Additional simulated PMs have been provided to execute the
+Entropy and Snooze service nodes. For Snooze, one GM has been created
+every 32 LCs (\ie PMs). Entropy and Snooze are invoked every 30
+seconds. Finally, it is noteworthy that no service node had to be
+provisioned for DVMS as a DVMS process had been executed directly on
+top of the hosting nodes.
+
+\AL[all]{We should talk about scalability capabilities of \vmps.
+  Something like: Although the simulations discussed in this article
+  are limited to 10K VMs, we succeeded to conduct simulations with
+  DVMS up to 8K PMs/80K VMs in a bit less than two days. We did not
+  present such results to the paper because it was not possible to run
+  a sufficient number of Snooze simulations at such scale. The Snooze
+  protocol being more complex than the DVMS one (heartbeats,
+  consensus,~\ldots), the time to perform a similar experiment is much
+  more important (around 7 days). We are currently investigating with
+  the \sg core developers how we can reduce the required time to
+  perform such advanced simulations.}
 
 \subsubsection{General  Analysis}
 \label{subsec:general-comparison}
@@ -865,13 +885,6 @@ reassigned in less than 10 seconds.}
 %parameters that cause the workload to reach a stationary phase after 1200
 %seconds of simulations, thus enabling us to limit the simulation duration to
 %1800 seconds.
-
-Simulations have been performed for infrastructures composed of 128,
-256, 512 and 1024 PMs, hosting respectively 1280, 2560, 5120 and 10240 VMs.
-Additional simulated PMs have been provided to execute the Entropy and Snooze
-service  nodes. For Snooze, one GM has been created every 32 LCs (\ie PMs).
-It is noteworthy that no service node had to be provisioned for DVMS as
-it had been executed directly on top of the hosting nodes.
 
 Fig.~\ref{fig:cumulated_violation} presents the cumulated violation
 time for each placement policy while
@@ -1475,23 +1488,23 @@ its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:25684
 
 \section{Conclusion}
 \label{sec:conclusion}
-
-In this paper we have presented \vmps, a framework providing
-programming support for the definition of VM placement algorithms,
-execution support for their simulation at large scales, as well as new
-means for their trace-based analysis. \vmps enables, in particular,
-the investigation of placement algorithms in the context of numerous
-and diverse real-world scenarios. We have validated its accuracy of
-returned results by comparing simulated and \textit{in-vivo}
-executions of the Entropy strategy on top of 32~PMS and 192~VMs. We
-have illustrated the relevancce of \vmps by evaluating and comparing
-algorithms representative for three different classes of
-virtualization environments: centralized, hierarchical and fully
-distributed placement algorithms. We have also shown how \vmps
-facilitates the implementation and evaluation of variants of placement
-algorithms. The corresponding experiments have provided the first
-systematic results comparing these algorithms in environments
-including up to one thousand of nodes and ten thousands of VMs.
+In this paper we have presented
+\vmps, a framework providing programming support for the definition of
+VM placement algorithms, execution support for their simulation at
+large scales, as well as new means for their trace-based analysis.
+\vmps enables, in particular, the investigation of placement
+algorithms in the context of numerous and diverse real-world
+scenarios. We have validated its accuracy of returned results by
+comparing simulated and \textit{in-vivo} executions of the Entropy
+strategy on top of 32~PMS and 192~VMs. We have illustrated the
+relevancce of \vmps by evaluating and comparing algorithms
+representative for three different classes of virtualization
+environments: centralized, hierarchical and fully distributed
+placement algorithms. We have also shown how \vmps facilitates the
+implementation and evaluation of variants of placement algorithms. The
+corresponding experiments have provided the first systematic results
+comparing these algorithms in environments including up to one
+thousand of nodes and ten thousands of VMs.
 
 A beta-version of \vmps is available on a public git
 repository\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}.

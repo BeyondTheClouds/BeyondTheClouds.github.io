@@ -23,7 +23,7 @@ Chord ~\cite{stoica:2001:sigcomm01}) or unstructured. For this study,
 we have implemented a simple but effective unstructured overlay that
 enables the agents to collaborate without side effects: when
 necessary, \eg in case of node failures, the overlay provides a link
-to a neighbor of a node on the latter's request.  
+to a neighbor of a node on the latter's request.
 % \MS[AL, JP]{A bit short. What about an architecture figure (as for
 %  Snooze?)}
 
@@ -34,7 +34,7 @@ overloaded node is created; the partition then grows by including free
 nodes until the resource requirements can be satisfied by a VM
 reconfiguration. This way, resource problems that appear at many
 different nodes can be handled in parallel using different
-partitions. 
+partitions.
 % Partitioning the nodes is mandatory in this case: sharing free nodes
 % among different parallel VM reconfigurations leads to very intricate
 % concurrency or performance issues.
@@ -146,13 +146,7 @@ thus identify if the partition's leader is not active anymore.  In
 this case, each node leaves the partition and can be integrated in
 other partitions.
 
-\AL[MS]{A paragraph that provides info on how the specific means of
-  \vmps have been harnessed in the implementation would be helpful.}
-
-
-
-
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
-%%% End: 
+%%% End:
