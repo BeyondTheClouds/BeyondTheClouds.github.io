@@ -813,15 +813,6 @@ state was reached after 20 min of the simulated time with a global
 load of 85\% as depicted in Fig. \ref{fig:load_figure}.
 To accelerate the simulations, we have chosen to limit the simulated time to 1800 seconds.
 
-The parameters for node crashes have been assigned in order to simulate
-a fault on average every 6 months for a duration of 300 seconds. These
-values correspond to the Mean Time To Failure (MTTF) and the Mean Time
-To Repair (MTTR) of a server in a Google DC~\cite[pp.
-107-108]{datacenterAsComputer}.
-\AL{TODO complete this sentence->}As highlighted in Section \ref{todo},
-this rate was not big enough to have an impact on the analyzed
-simulations.
-
 Simulations have been performed for infrastructures composed of 128,
 256, 512 and 1024 PMs, hosting respectively 1280, 2560, 5120 and 10240
 VMs. Additional simulated PMs have been provided to execute the
@@ -831,7 +822,29 @@ seconds. Finally, it is noteworthy that no service node had to be
 provisioned for DVMS as a DVMS process had been executed directly on
 top of the hosting nodes.
 
-Finally, all configuration files used to perform the simulations can
+In order to cope with real DC conditions, we defined the parameters
+for node crashes to simulate a fault on average every 6 months for a
+duration of 300 seconds. These values correspond to the Mean Time To
+Failure (MTTF) and the Mean Time To Repair (MTTR) of a Google DC
+server~\cite[pp. 107-108]{datacenterAsComputer}. We underline that at
+the scale we performed our simulations such a crash ratio was not
+sufficient to impact the behavior of the scheduling policies.
+Dedicated simulations were mandatory to study the influence of node
+crashes. However, due to the space limitations, we do not present them
+in the article and only gives major trends. Regarding Entropy,
+although the lost of the service node can be critic, the failure
+probability is so small that the single point of failure issue can be
+easily solved by a fail-over approach. Regarding Snooze, the heartbeat
+strategy enables the reconstruction of the hierarchy in a relative
+short time and thus crashes on service nodes do not significantly
+impact the resolution of violations (in our case less than 10 seconds
+is mandatory to reorganize the Snooze topology with a 6 seconds
+heartbeat mechanism). Finally regarding DVMS, the crash of one node
+does not have any impact of the resolution has the composition of the
+microcosm is reevaluated immediately.
+
+
+All configuration files used to perform the discussed simulations can
 be downloaded from the \vmps repository.
 
 \subsubsection{General  Analysis}
@@ -1074,7 +1087,7 @@ nodes capable to solve a particular violation.
 
 Finally regarding DVMS.....
 
-
+\AL[MS,AL]{TODO find the best place to add the following paragraph}
 To conclude, although the simulations discussed in this article are
 limited to 10K VMs, we succeeded to conduct DVMS simulations including
 up to 8K~PMs/80K~VMs in a bit less than two days. We did not present
@@ -1087,10 +1100,6 @@ code are related to \sg internals such as \texttt{sleep} and
 \texttt{send/recv} calls. Hence, we have contacted the \sg core
 developers in order to investigate how we can reduce the required time
 to perform such advanced simulations.
-
-
-
-
 
 % \begin{figure}[ht]
 % \begin{center}
@@ -1209,22 +1218,22 @@ evaluated only rarely results in many LCs of a GM to be overloaded:
 violations can therefore be resolved even in the case of a smaller
 number of 8~LCs available for load distribution.
 
-\subsubsection{Fault Tolerance}
-%\AL[JP]{perform an experiment on Snooze and DVMS with fault
-%  periodicity of a crash on average every 160 seconds, corresponding
-%  to a 6 month fault in a DC of 1000 }
+% \subsubsection{Fault Tolerance}
+% %\AL[JP]{perform an experiment on Snooze and DVMS with fault
+% %  periodicity of a crash on average every 160 seconds, corresponding
+% %  to a 6 month fault in a DC of 1000 }
 
-However, we underline that at the scale we
-performed our simulations, the number of crashes was mostly null and
-dedicated simulations were mandatory to study the impact of node
-crashes on the difference strategies.
-\AL[all]{We can maybe add few sentences on that point. Something like:
-Due to the space limitations these results are not discussed in the
-present article. However, we highlight that due to the rather short
-time to reconstruct the Snooze service nodes topology in case of a
-failures. Node crashes does not have an significant impact of the
-violation time resolution. When a GL or a GM crashes, LCs are correcly
-reassigned in less than 10 seconds.}
+% However, we underline that at the scale we
+% performed our simulations, the number of crashes was mostly null and
+% dedicated simulations were mandatory to study the impact of node
+% crashes on the difference strategies.
+% \AL[all]{We can maybe add few sentences on that point. Something like:
+% Due to the space limitations these results are not discussed in the
+% present article. However, we highlight that due to the rather short
+% time to reconstruct the Snooze service nodes topology in case of a
+% failures. Node crashes does not have an significant impact of the
+% violation time resolution. When a GL or a GM crashes, LCs are correcly
+% reassigned in less than 10 seconds.}
 
 
 \subsection{Exploring Variants and Possible Improvements}
