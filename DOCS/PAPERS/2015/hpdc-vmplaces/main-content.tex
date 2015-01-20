@@ -788,55 +788,149 @@ dedicated server, thus avoiding interferences between simulations.
     \includegraphics[width=.65\linewidth]{figures/experiments/1024-hierarchical.pdf}
     \caption{Load of the cluster.}
 \end{center}
-\label{fig:experiments_1024_hierarchical}
+\label{fig:load_figure}
 \end{figure}
 
-% * 1024-hierarchical.pdf
+% * {fig:load_figure}
 % For the simulations a load of 85% has been injected.
 % Stationary phase at 1200s => 1800s of simulation.
 % The 3 algorithms have been tested with the same loads.
+To enable a fair comparison of several scheduling algorithms, the simulations is
+associated with a workload simulator which simulates a virtual workload in each 
+simulated virtual machines, thus enabling the study of the behaviour of the 
+simulated algorithms. The figure \ref{fig:load_figure} illustrates the workload 
+injected in the cluster. To accelerate the simulations, we have chosen 
+parameters that cause the workload to reach a stationary phase after 1200 
+seconds of simulations, thus enabling us to limit the simulation duration to 
+1800 seconds.
 
 \begin{figure}[ht]
 \begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/compute_time_per_service_node.pdf}
-    \caption{Cumulated computation time per node invocking Entropy.}
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Computation duration}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+      \thickhline
+        128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
+        256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
+        512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
+        1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+
+    \caption{Mean values and standard deviations (mean $\pm$ standard deviation) of computation duration.}
+\label{fig:detailed_computation_time}
 \end{center}
-\label{fig:experiments_compute_time_per_service_node}
 \end{figure}
 
-% * compute_time_per_service_node.pdf: 
-The conductions of the simulations enables the comparison of three different 
-scheduling algorithms. Firstly, even if all the implementations of these three 
-algorithms are based on Entropy, their respectif amount of nodes invocking 
+% * {fig:detailed_computation_time}
+The conduction of simulations enables the comparison of three different 
+scheduling algorithms. Firstly, even the implementations of these three 
+algorithms are all based on Entropy, their respectif amount of nodes invocking 
 Entropy differs: to enable a fair comparison of the time spend on computing 
 reconfiguration plan time, 
-Figure \ref{fig:experiments_compute_time_per_service_node} depicts the 
+Figure \ref{fig:detailed_computation_time} depicts the 
 computation time per node invocking Entropy. It is noticeable that the 
 distributed and hierarchical algorithms are significantly below the centralised
 algorithm. This can be easily explained: the centralised policy concentrates all
-the computations on one node, while the distribured and the hierarchical 
-policies distribute computation on several nodes.
+the computations on one node, while the distributed and the hierarchical 
+algorithms will organize computations on several nodes.
 
 \begin{figure}[ht]
 \begin{center}
     \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
-    \caption{Cumulated violation time.}
+    \caption{Cumulated violation duration.}
 \end{center}
 \label{fig:experiments_violation_time}
 \end{figure}
 
-% * experiments_violation_time.pdf:
+\begin{figure}[ht]
+\label{fig:detailed_violation_time}
+\begin{center}
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Violation duration}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+      \thickhline
+        128 nodes   & 21.26 $\pm$ 13.55 & 21.07 $\pm$ 12.32 &   9.55 $\pm$ 2.57 \\
+        256 nodes   & 40.09 $\pm$ 24.15 & 21.45 $\pm$ 12.10 &   9.58 $\pm$ 2.51 \\
+        512 nodes   & 55.63 $\pm$ 42.26 & 24.54 $\pm$ 16.95 &   9.57 $\pm$ 2.67 \\
+        1024 nodes  & 81.57 $\pm$ 86.59 & 29.01 $\pm$ 38.14 & \:9.61 $\pm$ 2.54
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+
+    \caption{Mean values and standard deviations (mean $\pm$ standard deviation) of violation duration.}
+\end{center}
+\end{figure}
+
+% * {fig:experiments_violation_time} and {fig:detailed_violation_time}:
 % - Centralized is not efficient: it violation is much more high than 
 %   distributed or hierarchical.
 % - Distributed approaches are better. However a flat peer to peer approach such
 %   as DVMS has better results that Snooze (hierarchical).
+This way of organizing computation has a direct impact on performance of the 
+scheduling policy: according figure \ref{fig:experiments_violation_time}, the time
+spend with VMs that are experiencing a QoS violation is dramatically higher than
+with the distributed and hierachical scheduler, and this trend continues when 
+the number of hosting nodes reaches 1024 nodes. Although this validate the 
+relevance at large scale of distributed scheduling algorithms, it should be 
+noted that in a carefuly observation figure \ref{fig:detailed_violation_time} 
+emphasizes that the results of the distributed policy is more stable than the
+hierarchical one, and has better results. In addition to depicting the gap of
+performance between the distributed and the hierarchical schedulers, figure
+\ref{violation_clouds_256} shows how significant is the dispersion of the 
+violation duration when using the hierarchical algorithm. 
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.95\linewidth]{figures/experiments/256-distributed-hierarchical.pdf}
+    \caption{Details of violations duration occuring during simulation (2560 VMS).}
+\end{center}
+\label{fig:violation_clouds_256}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Reconfiguration duration}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+      \thickhline
+        128 nodes   & 10.34 $\pm$  1.70 &  10.02 $\pm$  0.14 &   10.01 $\pm$ 0.11 \\
+        256 nodes   & 10.26 $\pm$  1.45 &  10.11 $\pm$  0.83 &   10.01 $\pm$ 0.08 \\
+        512 nodes   & 11.11 $\pm$  3.23 &  10.28 $\pm$  1.50 &   10.08 $\pm$ 0.82 \\
+        1024 nodes  & 18.90 $\pm$  7.57 &  10.30 $\pm$  1.60 & \:10.04 $\pm$ 0.63
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+
+    \caption{Mean values and standard deviations (mean $\pm$ standard deviation) of reconfiguration duration.}
+\end{center}
+\label{fig:detailed_violation_time}
+\end{figure}
 
 \begin{figure}[ht]
 \begin{center}
     \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
     \caption{Cumulated migration time.}
 \end{center}
-\label{fig:experiments_violation_time}
+\label{fig:cumulated_migration_time}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
+    \caption{Average duration of a migration.}
+\end{center}
+\label{fig:avg_migration_time}
 \end{figure}
 
 % * migration_time.pdf:
@@ -844,14 +938,21 @@ policies distribute computation on several nodes.
 %   lack of reactivity.
 % - Distributed and Hierarchical have similar results, even if hierarchical do
 %   less migrations.
+As the three algorithms resolve QoS degradation by performing VMs migrations, 
+the time migration is in this study an interesting metric. Figure 
+\ref{fig:cumulated_migration_time} describes the cumulated migration time for
+each aforementioned algorithms: the distributed algorithm spend more time
+on migrating VMs, followed by the hierarchical scheduler. It is noticeable that
+the centralized scheduler performes spend less time in migration of VMs. Thanks
+to figure \ref{fig:avg_migration_time}, we can see that the average duration
+of a migration increases dramatically with the centralized policy at large scale
+(10240 VMs), while it remains stable with the distributed and hierarchical 
+schedulers. This is due to the fact that the unique node invocking Entropy does
+not find the best reconfiguration in an adequate time, and must confine itself
+to a non optimal reconfiguration. These non optimal reconfigurations usually 
+contain several migrations to the same nodes, thus leading to network congestion 
+and increasing the average migration duration.
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
-    \caption{Average migration of a migration.}
-\end{center}
-\label{fig:experiments_migration_time}
-\end{figure}
 
 % * migration_avg_duration.pdf:
 % - Centralized was doing less migrations than the others. However, at 1024 
