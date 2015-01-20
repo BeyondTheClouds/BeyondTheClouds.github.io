@@ -821,13 +821,32 @@ The parameters for node crashes have been assigned in order to simulate
 a fault on average every 6 months for a duration of 300 seconds. These
 values correspond to the Mean Time To Failure (MTTF) and the Mean Time
 To Repair (MTTR) of a server in a Google DC~\cite[pp. 107-108]{datacenterAsComputer}.
+\AL[all]{It might make sense to omit that point because this on a 1800
+period simulation is a non sense. We should have launched something
+with a 160 second crash in average}
 
-\begin{figure}[ht]
-\centering
-    \includegraphics[width=.48\textwidth]{figures/experiments/1024-hierarchical.pdf}
-    \caption{Evolution of the global CPU load}
-\label{fig:load_figure}
+\begin{figure}
+\subcapcentertrue
+\subfigure[Load of the Cluster]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
+\subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/experiments/violation_time.pdf}\label{fig:cumulated_violation}}
+\caption{Simulation - Results Overview 10 VMs per node (VM load: $\mu=60$ and $\sigma=20$)}
+\label{fig:simulation-overview}
 \end{figure}
+%%%
+
+% \begin{figure}[ht]
+% \centering
+% \begin{minipage}[c]{.48\textwidth}
+%     \includegraphics[width=.48\textwidth]{figures/experiments/1024-hierarchical.pdf}
+%     \caption{Evolution of the global CPU load}
+% \label{fig:load_figure}
+% \end{minipage}
+% \begin{minipage}[c]{.48\textwidth}
+%      \includegraphics[width=.48\textwidth]{figures/experiments/violation_time.pdf}
+%      \caption{Cumulated Violation Duration}
+% \label{fig:cumulated_violation}
+% \end{minipage}
+% \end{figure}
 
 %To enable a fair comparison of several scheduling algorithms, the simulations is
 %associated with a workload simulator which simulates a virtual workload in each
@@ -874,13 +893,13 @@ algorithm. This can be easily explained: the centralised policy concentrates all
 the computations on one node, while the distributed and the hierarchical
 algorithms will organize computations on several nodes.
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
-    \caption{Cumulated violation duration.}
-\end{center}
-\label{fig:experiments_violation_time}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
+%     \caption{Cumulated violation duration.}
+% \end{center}
+% \label{fig:experiments_violation_time}
+% \end{figure}
 
 \begin{figure}[ht]
 \label{fig:detailed_violation_time}
@@ -1000,19 +1019,48 @@ and increasing the average migration duration.
 %
 %
 
+\subsubsection{Hierarchical VM placement: evaluation of GM sizes}
 
-\subsubsection{Reactivity and Violation time}
+We have also explored the use of \vmps in order to explore the
+principal parameters of different VM placement algorithms. In the
+remainder of this section we report of one example, the influence of
+the cluster size, \ie the ratio of LCs to GMs, on hierarchical VM
+placement. For these experiments, VM reconfigurations have been
+calculated and applied periodically every 30 secs.
+
+{\scriptsize \begin{tabular}{|P{25mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+    \thickhline
+    \textbf{Algorithm}
+      & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Reconf.\ time (s)}}
+      & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
+        \Tstrut \\
+       \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
+    \thickhline
+      ~8 LC/GM      & 4680 & 10755 & 22022 & 1423 & 3429 & 7470 \\
+      32 LC/GM      & 16533 & 33376 & 73623 & 1770 & 3453 & \:8196
+    \Rstrut  \\ \hline
+    \thickhline
+\end{tabular} }
+
+The table above shows some of the corresponding results for
+experiments on 128, 256 and 512 LCs. The results show that the total
+reconfiguration time (cumulative over all nodes) is significantly
+higher for the configuration of 32~LCs per GM than for 8~LCs per
+GM. This can be explained because the computation of a reconfiguration
+plan for 32~LCs is much costlier than for 8. The cumulative violation
+times of both algorithms are, however, relatively close, which
+indicates that no algorithm is clearly better in resolving
+violations. This is understandable because the load is statistically
+evenly distributed among the LCs. Furthermore, the load profile we
+evaluated only rarely results in many LCs of a GM to be overloaded:
+violations can therefore be resolved even in the case of a smaller
+number of 8~LCs available for load distribution.
 
 \subsubsection{Fault Tolerance}
 \AL[JP]{perform an experiment on Snooze and DVMS with fault
-  periodicity of 10 days for instance}
-\MS[JP]{perform an experiment on Snooze with additional fautls (i.e.
-  reducing the fault periodicity) in order to illustrate the pros/cons
-of the two different join mechanisms. To switch between one and the
-other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
-\MS[JP]{}
+  periodicity of a crash on average every 160 seconds, corresponding
+  to a 6 month fault in a DC of 1000 }
 
-\subsubsection{Snooze Related Characteristics}
 
 \subsection{Exploring Variants and Possible Improvements}
 
