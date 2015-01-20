@@ -922,7 +922,7 @@ Regarding
   \end{tabular} }
 
     \caption{Means $\pm$ standard deviations of computation duration.}
-\label{table:detailed_computation_time}
+\label{tab:detailed_computation_time}
 \end{center}
 \end{table}
 
@@ -949,12 +949,12 @@ Regarding
 \end{table}
 
 
- even the implementations of these three
-algorithms are all based on Entropy, their respectif amount of nodes invocking
+Even if the implementations of these three
+algorithms are all based on Entropy, their respective amount of nodes invocking
 Entropy differs: to enable a fair comparison of the time spend on computing
 reconfiguration plan time,
 
-Figure \ref{fig:detailed_computation_time} depicts the
+Figure \ref{tab:detailed_computation_time} depicts the
 computation time per node invocking Entropy. It is noticeable that the
 distributed and hierarchical algorithms are significantly below the centralised
 algorithm. This can be easily explained: the centralised policy concentrates all
@@ -967,29 +967,40 @@ time spend with VMs that are experiencing a QoS violation is dramatically higher
 with the distributed and hierachical scheduler, and this trend continues when
 the number of hosting nodes reaches 1024 nodes. Although this validate the
 relevance at large scale of distributed scheduling algorithms, it should be
-noted that in a carefuly observation Figure \ref{fig:detailed_violation_time}
+noted that in a carefuly observation Figure \ref{tab:detailed_violation_time}
 emphasizes that the results of the distributed policy is more stable than the
 hierarchical one, and has better results. In addition to depicting the gap of
 performance between the distributed and the hierarchical schedulers, figure
-\ref{fig:violation_clouds_snooze_1024} shows how significant is the dispersion 
+\ref{tab:violation_clouds_snooze_1024} shows how significant is the dispersion 
 of the violation duration when using the hierarchical algorithm.
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
-    \caption{Details of violations duration occuring during simulation (10240 VMS).}
-\end{center}
-\label{fig:violation_clouds_dvms_1024}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
+%     \caption{Details of violations duration occuring during simulation (10240 VMS).}
+% \end{center}
+% \label{fig:violation_clouds_dvms_1024}
+% \end{figure}
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-hierarchical.pdf}
-    \caption{Details of violations duration occuring during simulation (10240 VMS).}
-\end{center}
-\label{fig:violation_clouds_snooze_1024}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-hierarchical.pdf}
+%     \caption{Details of violations duration occuring during simulation (10240 VMS).}
+% \end{center}
+% \label{fig:violation_clouds_snooze_1024}
+% \end{figure}
 
+\begin{figure}
+\subcapcentertrue
+\subfigure[DVMS]{
+  \includegraphics[width=7cm]{figures/experiments/clouds-1024-distributed.pdf}
+  \label{fig:violation_clouds_dvms_1024}}
+\subfigure[Snooze]{
+  \includegraphics[width=7cm]{figures/experiments/clouds-1024-hierarchical.pdf}
+  \label{fig:violation_clouds_snooze_1024}}
+\caption{Details of violations duration occuring during simulation (10240 VMS).}
+\label{fig:violation_clouds}
+\end{figure}
 
 \begin{figure}[ht]
 \begin{center}
@@ -1287,13 +1298,26 @@ its members has been found. As, in the original design of DVMS, partitions had
 no size constraint, it was interesting for us to verify if adding such a
 constraint would have an impact on its behaviour.
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/dvms_comparison_migration_count.pdf}
-    \caption{Comparison of two flavour of DVMS (migration count).}
-    \label{fig:dvms_comparison_migration_count}
-\end{center}
+\begin{figure}
+\subcapcentertrue
+\subfigure[Migration count]{
+  \includegraphics[width=.47\linewidth]{figures/experiments/dvms_comparison_migration_count.pdf}
+  \label{fig:dvms_comparison_migration_count}}
+\subfigure[Cumulated violation duration]{
+  \includegraphics[width=.47\linewidth]{figures/experiments/dvms_comparison_violation_duration.pdf}
+  \label{fig:dvms_comparison_violation_duration}}
+\caption{Comparison of two flavour of DVMS}
+\label{fig:violation_clouds}
 \end{figure}
+
+
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/dvms_comparison_migration_count.pdf}
+%     \caption{Comparison of two flavour of DVMS (migration count).}
+%     \label{fig:dvms_comparison_migration_count}
+% \end{center}
+% \end{figure}
 
 In Figures \ref{fig:dvms_comparison_migration_count} and
 \ref{fig:dvms_comparison_violation_duration}, we compared two implementations of
@@ -1304,13 +1328,13 @@ slightly smaller with the implementation that works with at least 4 nodes. This
 is due to the quality of reconfiguration plans: as more nodes can be used to
 rebalance the VMs workload, its quality can be improved.
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/dvms_comparison_violation_duration.pdf}
-    \caption{Comparison of two flavour of DVMS (cumulated violation time).}
-    \label{fig:dvms_comparison_violation_duration}
-\end{center}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/dvms_comparison_violation_duration.pdf}
+%     \caption{Comparison of two flavour of DVMS (cumulated violation time).}
+%     \label{fig:dvms_comparison_violation_duration}
+% \end{center}
+% \end{figure}
 
 Figure \ref{fig:dvms_comparison_violation_duration} shows that the preceding
 fact has a direct impact on the VMs QoS: the cumulated violation duration
