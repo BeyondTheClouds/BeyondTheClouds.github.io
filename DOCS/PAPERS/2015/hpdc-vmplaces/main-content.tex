@@ -682,10 +682,16 @@ the application of the reconfiguration plan led to new violations.
 \section{Experiments}
 \label{sec:experiments}
 %\AL[JP,AL,MS]{2 pages}
-This section
-\AL{TODO}
+In this section, we, first, analyze the accuracy of \vmps by comparing
+the  results of an Entropy execution through simulations and
+\textit{in-vivo} experiments. This first experiment enables us to
+confirm the expected behavior of \vmps Second, we present and discuss
+our analysis of the three algorithms described in the previous Section.
+We show that the performances of the hierarchical approach could
+reached the distributed ones through minor changes.
 
 \subsection{Accuracy Evaluation of \vmps}
+\label{subsec:accuracy}
 In order to validate the accuracy of \vmps, we implemented a dedicated
 version of our
 framework\footnote{\url{https://github.com/BeyondTheClouds/G5K-VMPlaceS}}
@@ -750,30 +756,38 @@ configuration that solves the QoS issues).}
 \end{figure}
 
 As an example, we noticed that applying the
-reconfiguration plan was much more time-consuming than computing it
-in. This result that has been correctly reported by the simuations means that VM placement problem also needs
+reconfiguration plan was much more time-consuming than computing it. This result that has been correctly reported by the simuations means that VMPP also needs
 to address the way of shorten reconfiguration phases, not only that of
-computing phases.
+computing ones.
 % This is rather important as most relocation
 % algorithms try to reduce the computation phase instead of focusing on the
 % reconfiguration one.
 Leveraging \vmps will enable researchers to observe such key points
 without facing with the burden of conducting large scale
-\textit{in-vivo} experiments.
+\textit{in-vivo} experiments. We illustrate such an advantage in the
+following section.
 
 \subsection{A First Use-Case:  Comparison of Entropy, Snooze and DVMS}
-\AL{Il faudra parler du nombre de migrations qui est egalement une
-  métrique pertinente. Plusieurs algorithms tentent de reduire cette
-  metrique }
-\AL[AL]{Il faudra mettre des snapshots de PajeNG}
+\label{subsec:first-usecase}
+%\AL{Il faudra parler du nombre de migrations qui est egalement une
+%  métrique pertinente. Plusieurs algorithms tentent de reduire cette
+%  metrique }
+%\AL[AL]{Il faudra mettre des snapshots de PajeNG}
 
-
-\subsubsection{Experimental testbed}
 
 % Evaluation of VMPlaceS on Grid'5000: simulations were running on one server.
-We evaluated the behaviour of the VMPlaceS frameworks using simulations 
-conducted on the Grid'5000 testbed. Each of the simulations was running on a
-dedicated server, thus avoiding interferences between simulations.
+In this section, we analyze the results of the simulations we
+performed on the Entropy, Snooze and DVMS strategies. After discussing a
+rather general comparison, we show the pros and cons of having a
+different topology in Snooze. Finally, we present some variants and possible
+improvements of Snooze and DVMS that we easily studied thanks to
+\vmps.
+
+Regarding the experimental conditions, all simulations have been
+performed on the Lyon clusters of the Grid'5000 testbed.
+Each execution was running on a dedicated server, thus avoiding
+interferences between simulations and ensuring reproducibility between
+the different invocations.
 
 % Scripts: automation of the deployment, running of simulations and the collect
 % of results.
@@ -781,28 +795,68 @@ dedicated server, thus avoiding interferences between simulations.
 % It enables us to run a large number of simulations, with several variants
 % of the scheduling algorithm.
 
-\subsection{Comparison of Entropy, Snooze and DVMS}
-
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/1024-hierarchical.pdf}
-    \caption{Load of the cluster.}
-\end{center}
-\label{fig:load_figure}
-\end{figure}
+\subsubsection{General  Comparison}
+\label{subsec:general-comparison}
 
 % * {fig:load_figure}
 % For the simulations a load of 85% has been injected.
 % Stationary phase at 1200s => 1800s of simulation.
 % The 3 algorithms have been tested with the same loads.
-To enable a fair comparison of several scheduling algorithms, the simulations is
-associated with a workload simulator which simulates a virtual workload in each 
-simulated virtual machines, thus enabling the study of the behaviour of the 
-simulated algorithms. The figure \ref{fig:load_figure} illustrates the workload 
-injected in the cluster. To accelerate the simulations, we have chosen 
-parameters that cause the workload to reach a stationary phase after 1200 
-seconds of simulations, thus enabling us to limit the simulation duration to 
-1800 seconds.
+\vmps has been configured in order to simulate an homogeneous
+infrastructure of PMs composed of 8 cores, 32~GB of RAM and 1~Gpbs
+Ethernet NIC. To enable fair comparison between the three strategies,
+the scheduling resolver only considered 7 cores (\ie one was devoted
+to run the Snooze LC or the DVMS processes). Dedicating one core for
+the host OS and other administrative processes is something which is
+rather usual and thus we believe acceptable. Each simulated VM relied
+one of the VM classes previously described in Section
+\ref{subsec:accuracy}. Ten VMs have been initially launched on each
+PM. The parameters for changing the load of the VMs were the same too
+($\lambda$ = Nb VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary
+state was reached after 20 min of the simulated time with a global
+load of 85\% as depicted in Fig. \ref{fig:load_figure}.
+To accelerate the simulations, we have chosen to limit the simulated time to 1800 seconds.
+
+The parameters for node crashes have been assigned in order to simulate
+a fault on average every 6 months for a duration of 300 seconds. These
+values correspond to the Mean Time To Failure (MTTF) and the Mean Time
+To Repair (MTTR) of a server in a Google DC~\cite[pp. 107-108]{datacenterAsComputer}.
+\AL[all]{It might make sense to omit that point because this on a 1800
+period simulation is a non sense. We should have launched something
+with a 160 second crash in average}
+
+\begin{figure}
+\subcapcentertrue
+\subfigure[Load of the Cluster]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
+\subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/experiments/violation_time.pdf}\label{fig:cumulated_violation}}
+\caption{Simulation - Results Overview 10 VMs per node (VM load: $\mu=60$ and $\sigma=20$)}
+\label{fig:simulation-overview}
+\end{figure}
+%%%
+
+% \begin{figure}[ht]
+% \centering
+% \begin{minipage}[c]{.48\textwidth}
+%     \includegraphics[width=.48\textwidth]{figures/experiments/1024-hierarchical.pdf}
+%     \caption{Evolution of the global CPU load}
+% \label{fig:load_figure}
+% \end{minipage}
+% \begin{minipage}[c]{.48\textwidth}
+%      \includegraphics[width=.48\textwidth]{figures/experiments/violation_time.pdf}
+%      \caption{Cumulated Violation Duration}
+% \label{fig:cumulated_violation}
+% \end{minipage}
+% \end{figure}
+
+%To enable a fair comparison of several scheduling algorithms, the simulations is
+%associated with a workload simulator which simulates a virtual workload in each
+%simulated virtual machines, thus enabling the study of the behaviour of the
+%simulated algorithms.
+The figure \ref{fig:load_figure} illustrates the global load.
+%To accelerate the simulations, we have chosen
+%parameters that cause the workload to reach a stationary phase after 1200
+%seconds of simulations, thus enabling us to limit the simulation duration to
+%1800 seconds.
 
 \begin{figure}[ht]
 \begin{center}
@@ -827,25 +881,25 @@ seconds of simulations, thus enabling us to limit the simulation duration to
 \end{figure}
 
 % * {fig:detailed_computation_time}
-The conduction of simulations enables the comparison of three different 
-scheduling algorithms. Firstly, even the implementations of these three 
-algorithms are all based on Entropy, their respectif amount of nodes invocking 
-Entropy differs: to enable a fair comparison of the time spend on computing 
-reconfiguration plan time, 
-Figure \ref{fig:detailed_computation_time} depicts the 
-computation time per node invocking Entropy. It is noticeable that the 
+The conduction of simulations enables the comparison of three different
+scheduling algorithms. Firstly, even the implementations of these three
+algorithms are all based on Entropy, their respectif amount of nodes invocking
+Entropy differs: to enable a fair comparison of the time spend on computing
+reconfiguration plan time,
+Figure \ref{fig:detailed_computation_time} depicts the
+computation time per node invocking Entropy. It is noticeable that the
 distributed and hierarchical algorithms are significantly below the centralised
 algorithm. This can be easily explained: the centralised policy concentrates all
-the computations on one node, while the distributed and the hierarchical 
+the computations on one node, while the distributed and the hierarchical
 algorithms will organize computations on several nodes.
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
-    \caption{Cumulated violation duration.}
-\end{center}
-\label{fig:experiments_violation_time}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
+%     \caption{Cumulated violation duration.}
+% \end{center}
+% \label{fig:experiments_violation_time}
+% \end{figure}
 
 \begin{figure}[ht]
 \label{fig:detailed_violation_time}
@@ -870,22 +924,23 @@ algorithms will organize computations on several nodes.
 \end{figure}
 
 % * {fig:experiments_violation_time} and {fig:detailed_violation_time}:
-% - Centralized is not efficient: it violation is much more high than 
+% - Centralized is not efficient: it violation is much more high than
+
 %   distributed or hierarchical.
 % - Distributed approaches are better. However a flat peer to peer approach such
 %   as DVMS has better results that Snooze (hierarchical).
-This way of organizing computation has a direct impact on performance of the 
+This way of organizing computation has a direct impact on performance of the
 scheduling policy: according figure \ref{fig:experiments_violation_time}, the time
 spend with VMs that are experiencing a QoS violation is dramatically higher than
-with the distributed and hierachical scheduler, and this trend continues when 
-the number of hosting nodes reaches 1024 nodes. Although this validate the 
-relevance at large scale of distributed scheduling algorithms, it should be 
-noted that in a carefuly observation figure \ref{fig:detailed_violation_time} 
+with the distributed and hierachical scheduler, and this trend continues when
+the number of hosting nodes reaches 1024 nodes. Although this validate the
+relevance at large scale of distributed scheduling algorithms, it should be
+noted that in a carefuly observation Figure \ref{fig:detailed_violation_time}
 emphasizes that the results of the distributed policy is more stable than the
 hierarchical one, and has better results. In addition to depicting the gap of
 performance between the distributed and the hierarchical schedulers, figure
 \ref{violation_clouds_1024} shows how significant is the dispersion of the 
-violation duration when using the hierarchical algorithm. 
+violation duration when using the hierarchical algorithm.
 
 \begin{figure}[ht]
 \begin{center}
@@ -938,45 +993,74 @@ violation duration when using the hierarchical algorithm.
 %   lack of reactivity.
 % - Distributed and Hierarchical have similar results, even if hierarchical do
 %   less migrations.
-As the three algorithms resolve QoS degradation by performing VMs migrations, 
-the time migration is in this study an interesting metric. Figure 
+As the three algorithms resolve QoS degradation by performing VMs migrations,
+the time migration is in this study an interesting metric. Figure
 \ref{fig:cumulated_migration_time} describes the cumulated migration time for
 each aforementioned algorithms: the distributed algorithm spend more time
 on migrating VMs, followed by the hierarchical scheduler. It is noticeable that
 the centralized scheduler performes spend less time in migration of VMs. Thanks
 to figure \ref{fig:avg_migration_time}, we can see that the average duration
 of a migration increases dramatically with the centralized policy at large scale
-(10240 VMs), while it remains stable with the distributed and hierarchical 
+(10240 VMs), while it remains stable with the distributed and hierarchical
 schedulers. This is due to the fact that the unique node invocking Entropy does
 not find the best reconfiguration in an adequate time, and must confine itself
-to a non optimal reconfiguration. These non optimal reconfigurations usually 
-contain several migrations to the same nodes, thus leading to network congestion 
+to a non optimal reconfiguration. These non optimal reconfigurations usually
+contain several migrations to the same nodes, thus leading to network congestion
 and increasing the average migration duration.
 
 
 % * migration_avg_duration.pdf:
-% - Centralized was doing less migrations than the others. However, at 1024 
+% - Centralized was doing less migrations than the others. However, at 1024
 %   nodes, the migration time is becoming increasing dramatically: it can be
 %   explained by the "first_solution" policy: to improve its reactivity entropy
 %   returns the first working reconfiguration plan. At 1024 nodes, computations
 %   takes too much time, thus degrading the results of entropy which programs
 %   several migrations on some nodes.
-%   
+%
 %
 
+\subsubsection{Hierarchical VM placement: evaluation of GM sizes}
 
-\subsubsection{Reactivity and Violation time}
+We have also explored the use of \vmps in order to explore the
+principal parameters of different VM placement algorithms. In the
+remainder of this section we report of one example, the influence of
+the cluster size, \ie the ratio of LCs to GMs, on hierarchical VM
+placement. For these experiments, VM reconfigurations have been
+calculated and applied periodically every 30 secs.
+
+{\scriptsize \begin{tabular}{|P{25mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+    \thickhline
+    \textbf{Algorithm}
+      & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Reconf.\ time (s)}}
+      & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
+        \Tstrut \\
+       \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
+    \thickhline
+      ~8 LC/GM      & 4680 & 10755 & 22022 & 1423 & 3429 & 7470 \\
+      32 LC/GM      & 16533 & 33376 & 73623 & 1770 & 3453 & \:8196
+    \Rstrut  \\ \hline
+    \thickhline
+\end{tabular} }
+
+The table above shows some of the corresponding results for
+experiments on 128, 256 and 512 LCs. The results show that the total
+reconfiguration time (cumulative over all nodes) is significantly
+higher for the configuration of 32~LCs per GM than for 8~LCs per
+GM. This can be explained because the computation of a reconfiguration
+plan for 32~LCs is much costlier than for 8. The cumulative violation
+times of both algorithms are, however, relatively close, which
+indicates that no algorithm is clearly better in resolving
+violations. This is understandable because the load is statistically
+evenly distributed among the LCs. Furthermore, the load profile we
+evaluated only rarely results in many LCs of a GM to be overloaded:
+violations can therefore be resolved even in the case of a smaller
+number of 8~LCs available for load distribution.
 
 \subsubsection{Fault Tolerance}
 \AL[JP]{perform an experiment on Snooze and DVMS with fault
-  periodicity of 10 days for instance}
-\MS[JP]{perform an experiment on Snooze with additional fautls (i.e.
-  reducing the fault periodicity) in order to illustrate the pros/cons
-of the two different join mechanisms. To switch between one and the
-other strategies, see AUX.java line 34, GLElectionForEachNewGM = false/true}
-\MS[JP]{}
+  periodicity of a crash on average every 160 seconds, corresponding
+  to a 6 month fault in a DC of 1000 }
 
-\subsubsection{Snooze Related Characteristics}
 
 \subsection{Exploring Variants and Possible Improvements}
 
