@@ -1,123 +1,85 @@
-As the third use-case, we implemented the DVMS
-(Distributed Virtual Machine Scheduler) proposal~\cite{quesnel:cpe2012}.
-%DVMS is an algorithm that targets the dynamic scheduling of VMs hosted on
-%arge-scale distributed infrastructure. It  aims at preserving resource
-%requirements of VMs   by migrating VMs located on overloaded servers to underloaded ones.
-%DVMS works in a cooperative and fully distributed manner.
-Through a cooperative and fully distributed approach, DVMS aims at
-preserving resource requiements of VMs by migrating VMs located on
-overloaded servers to underloaded ones.
+As the third use-case, we have implemented the DVMS (Distributed
+Virtual Machine Scheduler) proposal for the cooperative and fully
+distributed placement of VMs~\cite{quesnel:cpe2012}.
+%
+% DVMS is an algorithm that targets the dynamic scheduling of VMs
+% hosted on arge-scale distributed infrastructure. It aims at
+% preserving resource requirements of VMs by migrating VMs located on
+% overloaded servers to underloaded ones.  DVMS works in a cooperative
+% and fully distributed manner.
+%
+% Through a cooperative and fully distributed approach, DVMS aims at
+% preserving resource requiements of VMs by migrating VMs located on
+% overloaded servers to underloaded ones.
 
 
 \subsubsection{Architecture}
-A DVMS agent is deployed on each node composing the infrastructure.
-Agents are organized on top of an overlay network, which can be structured (such as
-Chord ~\cite{stoica:2001:sigcomm01}) or unstructured. For the sake of this study,
-we implemented a simple but effective unstructured overlay that enables the 
-simulated agents to collaborate without side effects: when it is requested, the
-overlay simply provide a link to a potential collaborator. \AL[JP]{How it is structured in the current situation}
-\JP[AL]{I added the preceding paragraph, is it enough?}
 
-When a server is overloaded (i.e. VMs hosted on the server consume resources
-that can be produced), an \emph{Iteraive Scheduling Procedure (ISP})  is started and a partition
-containing nodes considered for the reconfiguration will grow. Initially, the
-partition only contains the overloaded node.
+A DVMS agent is deployed on each node in order to manage the VMs on
+the node and collaborate with (the agents of) neighboring nodes.
+Agents are defined on top of an overlay communication network, which
+defines the node-neighbor relation and can be structured (using, \eg
+Chord ~\cite{stoica:2001:sigcomm01}) or unstructured. For this study,
+we have implemented a simple but effective unstructured overlay that
+enables the agents to collaborate without side effects: when
+necessary, \eg in case of node failures, the overlay provides a link
+to a neighbor of a node on the latter's request.  
+% \MS[AL, JP]{A bit short. What about an architecture figure (as for
+%  Snooze?)}
 
-Partitioning the infrastructure is mandatory to avoid conflicts between several
-schedulers that could manipulate the same nodes or VMs when they apply their
-reconfiguration plans.
+When a server is overloaded (\ie VMs hosted on the server require more
+resources than available), an \emph{Iterative Scheduling Procedure
+  (ISP}) is started: a partition initially containing only the
+overloaded node is created; the partition then grows by including free
+nodes until the resource requirements can be satisfied by a VM
+reconfiguration. This way, resource problems that appear at many
+different nodes can be handled in parallel using different
+partitions. 
+% Partitioning the nodes is mandatory in this case: sharing free nodes
+% among different parallel VM reconfigurations leads to very intricate
+% concurrency or performance issues.
 
-Each partition includes two special nodes, the initiator and the leader.
-The initiator of a partition is its initial node (i.e. the overloaded node).
-The leader of a partition is the last node of the partition: it will lead the
-scheduling computations, aiming at solving the overloading of the initiator;
-In case of the scheduling computation is unsuccesful, a new node will be
-inserted in the partition, becoming the new leader of the partition.
+Each partition includes two special nodes, the initiator and the
+leader.  The initiator of a partition is its initial node (i.e. the
+overloaded node).  The leader of a partition is the node that was the
+last to be added to the partition: it manages the scheduling
+computations necessary to resolve the overload resource conflict. If a
+valid reconfiguration plan cannot be computed, a new node will be
+inserted in the partition, who becomes the new leader of the
+partition.
 
 
 \subsubsection{Iterative Scheduling Procedure}
-\AL[MS,JP]{if we succeed to have only one or two subsections in
-  Snooze, we should do the same here.}
+% \AL[MS,JP]{if we succeed to have only one or two subsections in
+%   Snooze, we should do the same here.}
 
-When a node N\(_{\textit{i}}\) detects that it cannot provide enough resources
-to its hosted VMs, it generates a partition and reserves itself to solve the
-problem (see Figure~\ref{fig:dvms_pte_1}) : the node N\(_{\textit{i}}\) is the
-initiator of the partition. After that, the partition is forwarded to its
-closest neighbor N\(_{\textit{i+1}}\), given by the network overlay.
+When a node N\(_{\textit{i}}\)
+detects that it cannot provide enough resources for its hosted VMs, it
+generates a partition and reserves itself to solve the problem (see
+Figure~\ref{fig:dvms_pte_1}) and thus initiates a partition. Then, its
+closest neighbor, as defined by the network overlay, is considered.
 
-If N\(_{\textit{i+1}}\) is already involved in another partition, it directly
-forwards the received partition to node N\(_{\textit{i+2}}\); otherwise,
-N\(_{\textit{i+1}}\) joins the new partition (see Figure~\ref{fig:dvms_pte_2})
-and checks that the scheduling procedure is still valid.  If the partition is
-not valid anymore (for instance because VMs workload fluctuated),
-N\(_{\textit{i+1}}\) cancels the reservations to destroy
-the partition and thus allow the nodes that composed it to take part to an other
-problem solving procedure.
+If this neighbor, N\(_{\textit{i+1}}\),
+is already part of another partition, its neighbor is considered.
+Otherwise, N\(_{\textit{i+1}}\)
+joins the partition (see Figure~\ref{fig:dvms_pte_2}).  If the
+partition is not valid anymore (\eg because the workload of the
+partition's VM has decreased), N\(_{\textit{i+1}}\)
+cancels the reservations, destroys the partition and thus frees its
+nodes for another problem solving procedure.
 %
-On the contrary, if the procedure is still valid, N\(_{\textit{i+1}}\) notifies
-members of the partition that it has become the new leader; in return, the new
-leader receives information regarding (i)~the capacities of each node and
-(ii)~the resources consumed by virtual machines that are hosted on each node.
-The leader then starts a scheduling computation; if no solution is found, the
-event is then forwarded to node N\(_{\textit{i+2}}\).
+On the contrary, if the procedure is still valid, N\(_{\textit{i+1}}\)
+notifies members of the partition that it has become the new
+leader. The other nodes then send it information about their
+capacities and current load. The leader, in turn, starts a scheduling
+computation looking for a reconfiguration within the current
+partition. If no solution is found, the same algorithm is applied to
+the next node N\(_{\textit{i+2}}\).
+In the extreme case a partition may grow until all resources in a
+cluster contribute to the resolution of its resource scheduling
+problem. This approach harnesses as few nodes as possible, thus
+accelerating the scheduling computations to the maximum possible.
 
-N\(_{\textit{i+2}}\) repeats the same procedure: self-reservation
-(if it is free, see Figure~\ref{fig:dvms_pte_3}), event validity check, becoming
-the leader, monitoring of VMs and nodes inside the partition and launching a
-scheduling computation.  If N\(_{\textit{i+2}}\) finds a working reconfiguration
-plan, it is applied in order to solve the overloading of the initator; Once the
-application has been performed, the partition is dissolved and the nodes that
-composed it are now able to take part to other problem solving procedures.
-
-Note that, if N\(_{\textit{i+2}}\) did not find a solution, the partition would
-have grown until a solution was found or the partition would have used all the
-node constituting the infrastructure. In the latter case, the problem would be
-considered as unsolvable and the partition would be destroyed.
-
-The progressing increase in size of the partition aims at adapting it to the
-complexity of the problem to solve.
-This approach enables to consider as few nodes as possible, thus accelerating
-the scheduling computations to solve the event as fast as possible.
-
-% The problem solving procedure is initiated when a node
-% N\(_{\textit{i}}\) observes that there is a problem, for instance when its
-% resources are overused (see Figure~\ref{fig:dvms_pte}); it then generates an
-% event and reserves itself to process this event (see
-% Figure~\ref{fig:dvms_pte_1}).  After that, it forwards this event to its
-% neighbor on the ring, node N\(_{\textit{i+1}}\).
-
-% If N\(_{\textit{i+1}}\) is already involved in another partition, it directly
-% forwards the event to node N\(_{\textit{i+2}}\); otherwise, N\(_{\textit{i+1}}\)
-% joins the new partition (see Figure~\ref{fig:dvms_pte_2}) and checks that the
-% event is still valid.  If the event is not valid anymore (for instance because
-% the virtual machines demands for resources fluctuated), N\(_{\textit{i+1}}\)
-% cancels the reservations to destroy the partition and thus allow the nodes that
-% composed it to take part to other problem solving procedures.
-% %
-% On the contrary, if the event is still valid, N\(_{\textit{i+1}}\) notifies all
-% the nodes inside the partition that it is the new leader; in return, it receives
-% information regarding (i)~the capacities of each node and (ii)~the resources
-% consumed by the virtual machines hosted on each node.  It then starts a
-% scheduling computation; if no solution is found, the event is then forwarded to
-% node N\(_{\textit{i+2}}\).
-
-% N\(_{\textit{i+2}}\) repeats the same operations, that is to say: self-reservation
-% (if it is free, see Figure~\ref{fig:dvms_pte_3}), event validity check, leader
-% change notification, monitoring of VMs and nodes inside the partition,
-% scheduling computation.  If N\(_{\textit{i+2}}\) finds a solution, it applies the
-% corresponding reconfiguration plan that solves the event; it then cancels
-% reservations to destroy the partition and thus allow the nodes that composed it
-% to take part to other problem solving procedures.
-
-% Note that, if N\(_{\textit{i+2}}\) did not find a solution, the partition would
-% have grown until a solution was found or the even had traversed the whole ring.
-% In the latter case, the problem would be considered as unsolvable and the
-% partition would be destroyed.
-
-% The progressing increase in size of the partition aims at adapting it to the
-% complexity of the problem to solve.
-% This approach enables to consider as few nodes as possible, thus accelerating
-% the scheduling computations to solve the event as quickly as possible.
 
 \begin{figure}[h]
 \subfigure[]{
@@ -141,56 +103,55 @@ the scheduling computations to solve the event as fast as possible.
 
 
 \subsubsection{Fault-tolerance}
-% DVMS uses the inter-node collaboration: an overloaded node tries to find
-% underloaded nodes that may rebalance its load. As in large scale computing
-% nodes failures are frequent, DVMS includes fault tolerant mechanisms.
+
+The main advantage of using overlay networks is that they have
+built-in fault tolerance mechanisms. DVMS therefore works on top of an
+overlay network such as Chord: when a node needs to rebalance its VMs
+workload, it uses the overlay network to find collaborators. For this
+study we implemented a simple overlay network as a flat list of
+agents: a typical request for collaborators includes the list of
+agents that are already collaborating with the requesting agent. A
+link to a new collaborator is then provided to the requesting
+agent. Communication is performed by message exchanges containing
+immutable data: our implementation harnesses the principles of the
+actor model in order to ease the handling of concurrency and
+distributed issues.
+
+% Even if the implementation of the overlay network is simple, it
+% fulfills its purpose, and in the case where one would want to use a
+% different overlay network such as a ring topology, it only has to
+% reuse the API provided by this simple implementation, and adapts its
+% functionning to the targeted overlay network.
+% \AL[JP]{here we do not describe DVMS in general but we should
+% emphasize what has been exactly implemented and how} \JP[AL]{I added
+% the preceding paragraph that gives more details about the overlay
+% network used.}
 %
-% \paragraph{Using overlay networks.}
+% This functionning allows firstly a loosely coupling between DVMS and
+% the overlay network used, and, secondly, to delegate most of the
+% fault tolerance mechanisms to the overlay network. Although
+% leveraging an overlay network to address node crashes is helpfull,
+% it is not enough to make the problem solving procedure
+% fault-tolerant.
 
-The main advantage of using overlay networks is that they have built-in fault
-tolerance mechanisms. Thus, to manage the connectivity between its nodes, DVMS
-works on top of an overlay network such as Chord: when a node needs to rebalance
-its VMs workload, it asks the overlay network to find some
-collaborators. In this study we implemented a simple overlay network as a flat 
-list of agents : a typical request for collaborators includes a filter (i.e. a 
-list of agents that is already collaborating with the requesting agent), thus 
-finding a suitable collaborator only consist in finding an agent that is not the 
-filter. A link to the collaborator is then given to the requesting agent, which 
-will only collaborate by the mean of message exchange containg immutable data: 
-our implementation of the DVMS follows the guidelines advocated by the actor 
-model, in order to ease the design of concurrent and distributed applications. 
+Harnessing the fault tolerance mechanisms of the underlying overlay
+network is, however, not sufficient. If the leader of a partition
+crashes, a new leader must take over in order for the resource problem
+to be solved and the nodes of a partition to be finally freed.  To
+avoid these issues, DVMS now relies on timeout mechanisms.  Each node
+of a partition periodically checks whether the state of its partition
+changed recently (\eg, if a new node joined the partition) and can
+thus identify if the partition's leader is not active anymore.  In
+this case, each node leaves the partition and can be integrated in
+other partitions.
 
-Even if the implementation of the overlay network is simple, it fulfills its 
-purpose, and in the case where one would want to use a different overlay network
-such as a ring topology, it only has to reuse the API provided by this simple 
-implementation, and adapts its functionning to the targeted overlay network. 
+\AL[MS]{A paragraph that provides info on how the specific means of
+  \vmps have been harnessed in the implementation would be helpful.}
 
-\AL[JP]{here we do not describe DVMS in general but we should
-  emphasize what has been exactly implemented and how}
-\JP[AL]{I added the preceding paragraph that gives more details about the overlay
-network used.}
 
-This functionning allows firstly a loosely coupling between DVMS and the overlay
-network used, and, secondly, to delegate most of the fault tolerance mechanisms
-to the overlay network. Although leveraging an overlay network to address node 
-crashes is helpfull, it is not enough to make the problem solving procedure 
-fault-tolerant.
 
-Previously, if the leader of a partition crashed, the problem identified by the
-initiator would never be solved; moreover, the nodes of this partition would
-remain reserved indefinitely and would not be able to take part to other problem
-solving procedures.
 
-To avoid these issues, DVMS now relies on a timeout.  Each node involved in a
-partition periodically checks whether the state of its partition changed
-recently (for instance, a new node joined the partition).
-%
-If the state does not change anymore, it probably means that the problem solving
-procedure is stuck (maybe because the leader crashed).
-%
-In this case, each node decides to leave the partition and becomes free to take
-part to other problem solving procedures.
-
-\AL[JP, MS]{here we miss a paragraph that gives few details regarding
-  how the overlay and the communication process have been implemented.}
-\JP[AL]{I modified the first paragraph of this section.}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
