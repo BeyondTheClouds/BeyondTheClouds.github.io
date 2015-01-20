@@ -817,7 +817,8 @@ The parameters for node crashes have been assigned in order to simulate
 a fault on average every 6 months for a duration of 300 seconds. These
 values correspond to the Mean Time To Failure (MTTF) and the Mean Time
 To Repair (MTTR) of a server in a Google DC~\cite[pp.
-107-108]{datacenterAsComputer}. As highlighted in Section \ref{todo},
+107-108]{datacenterAsComputer}.
+\AL{TODO complete this sentence->}As highlighted in Section \ref{todo},
 this rate was not big enough to have an impact on the analyzed
 simulations.
 
@@ -830,16 +831,8 @@ seconds. Finally, it is noteworthy that no service node had to be
 provisioned for DVMS as a DVMS process had been executed directly on
 top of the hosting nodes.
 
-Although the simulations discussed in this article
-  are limited to 10K VMs, we succeeded to conduct simulations with
-  DVMS up to 8K PMs/80K VMs in a bit less than two days. We did not
-  present such results to the paper because it was not possible to run
-  a sufficient number of Snooze simulations at such scale. The Snooze
-  protocol being more complex than the DVMS one (heartbeats,
-  consensus,~\ldots), the time to perform a similar experiment is much
-  more important (around 7 days). We are currently investigating with
-  the \sg core developers how we can reduce the required time to
-  perform such advanced simulations.
+Finally, all configuration files used to perform the simulations can
+be downloaded from the \vmps repository.
 
 \subsubsection{General  Analysis}
 \label{subsec:general-comparison}
@@ -1079,11 +1072,23 @@ Once again, this information is valuable as it will help
 algorithms favoring the automatic discovery of the optimal subset of
 nodes capable to solve a particular violation.
 
-
-
-
-
 Finally regarding DVMS.....
+
+
+To conclude, although the simulations discussed in this article are
+limited to 10K VMs, we succeeded to conduct DVMS simulations including
+up to 8K~PMs/80K~ VMs in a bit less than two days. We did not present
+such results to the paper because it was not possible to run a
+sufficient number of Snooze simulations at such scale. The Snooze
+protocol being more complex than the DVMS one (heartbeats,
+consensus,~\ldots), the time to perform a similar experiment is much
+more important (around 7 days). The consuming portions of code are
+related to \sg internals such as sleep and communication calls and we
+are currently investigating with the \sg core developers how we can
+reduce the required time to perform such advanced simulations.
+
+
+
 
 
 % \begin{figure}[ht]
