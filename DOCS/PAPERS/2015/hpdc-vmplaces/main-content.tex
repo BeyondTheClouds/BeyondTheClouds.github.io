@@ -870,19 +870,26 @@ it had been executed directly on top of the hosting nodes.
 Fig.~\ref{fig:cumulated_violation} presents the cumulated violation
 time for each placement policy while
 Tables~\ref{table:detailed_violation_time},
-\ref{table:detailed_computation_time} and \ref{tab:detailed_reconf_time}  give more details by presenting the mean and the
-standard deviations of the duration of, respectively, the violations,
-the computation phases and the reconfiguration phases.
-As anticipated, the centralized approach does not scale well and becomes
-even counterproductive in comparison to a system where there is no dynamic
-scheduling performed. The more nodes Entropy has to monitor, the less
-efficient it is. On the computation phase, Entropy took longer
-to resolve the scheduling problem. Moreover, the more nodes are
-involved in the reconfiguration the more complex is the
-reconfiguration plan leading to some expensive manipulations including
-migrations towards the same destination nodes.
+\ref{table:detailed_computation_time} and
+\ref{tab:detailed_reconf_time} give more details by presenting the
+mean and the standard deviations of the duration of, respectively, the
+violations, the computation and reconfiguration phases. As
+anticipated, the centralized approach did not scale and became even
+counterproductive for the largest scenario in comparison to a system
+where there were no dynamic scheduling. The more nodes Entropy has to
+monitor, the less efficient it is on both the computation and
+reconfiguration phases. Regarding the computation, the VMPP is a
+NP-Hard problem and thus it is not surprising that it takes more time
+to resolve larger problems. Regarding the reconfiguration, as Entropy
+has to solve more violations simultaneously, the reconfiguration plan
+is more complex for large scenarios, including several migrations
+coming from and going to the same nodes. Such reconfiguration plans
+are non optimal as they increase the bottleneck effects at the network
+level of each involved PM. Such a simulated result is valuable as it confirms
+that reconfiguration plans should avoid as much as possible such
+manipulations.
 
-\AL[MS]{replay the simulations without any
+\AL[JP]{replay the simulations without any
   algorithm in order to have reference values}
 
 \begin{table}[ht]
@@ -945,30 +952,93 @@ migrations towards the same destination nodes.
 \label{tab:detailed_reconf_time}
 \end{table}
 
-Regarding Snooze....
+Regarding Snooze, although the performances are better than the
+Entropy ones, we may erroneously conclude that the hierarchical
+approach is not competitve with respect to the distribued strategy at
+the first sight. However, diving into details, we can see that both
+the computation and reconfiguration phases are almost constants
+(around 3 seconds and 10 seconds) and not so far from the DVMS values,
+especially for the reconfiguration phase, which is predominant. These
+results can be easily explained: the centralized policy adresses the
+VMPP by considering all nodes at each invovation, while the
+hierarchical and the distributed algorithms divide the VMPP into sub
+problems, considering smaller numbers of nodes (32~PMs in Snooze and
+4 in average with DVMS). To clarify the influence of the group size on
+the Snooze performances, \ie the ratio of LCs attached to one GM, we
+performed additional simulations aiming at investigating whether a
+smaller group size can lead to similar performances of DVMS. We
+higlight that the use of \vmps eased such a study as it has consisted
+to simply relaunch the previous simulation with a distinct
+assignment.
+
+\begin{table}
+\centering
+{\scriptsize
+\begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Snooze (8 LCs per GM)}}
+          \Tstrut \\
+         \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
+      \thickhline
+        128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
+        256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+        512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+        1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
+      \Rstrut  \\ \hline
+      \thickhline
+\end{tabular} }
+\label{table:snooze-gmpart-8}
+\caption{Influence of the group size in Snooze ($Med\pm \sigma$)}
+\end{table}
+
+\begin{table}
+\centering
+{\scriptsize
+\begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Snooze (4 LCs per GM)}}
+          \Tstrut \\
+         \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
+      \thickhline
+        128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
+        256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+        512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+        1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
+      \Rstrut  \\ \hline
+      \thickhline
+\end{tabular} }
+\label{table:snooze-gmpart-4}
+\caption{Influence of the group size in Snooze ($Med\pm \sigma$)}
+\end{table}
+
+Tables \ref{table:snooze-gmpart-8} and \ref{table:snooze-gmpart-4}
+show the simulated values obtained
+for scenarios with respectively 8~LCs and 4~LCs per GM for each infrastructure size.
+Once again, the overall performances (\ie cumulated violation time) are relatively close, which
+seems to indicate that a small group size does not help  in resolving
+violations faster. However, looking into details, we can see that the
+duration of the computation phases has
+been significantly reduced to reach a value close to the DVMS one for
+the 8-LCs per GM scenario. We noticed, however, that reducing the
+number of LCs too significantly can lead to counterproductive
+situations where GMs do not supervise a sufficient amount of PMs to
+find solutions. In such a case, most GMs failed to solve the VMPP
+problem. This is a rather important limitations
+tried to reduce to number to 4
+
+
+This is understandable because the load is statistically
+evenly distributed among the LCs. Furthermore, the load profile we
+evaluated only rarely results in many LCs of a GM to be overloaded:
+violations can therefore be resolved even in the case of a smaller
+number of 8~LCs available for load distribution.
+
 
 
 Finally regarding DVMS.....
 
-Figure \ref{tab:detailed_computation_time} depicts the
-computation time per node invocking Entropy. It is noticeable that the
-distributed and hierarchical algorithms are significantly below the centralised
-algorithm. This can be easily explained: the centralised policy concentrates all
-the computations on one node, while the distributed and the hierarchical
-algorithms will organize computations on several nodes.
-
-This way of organizing computation has a direct impact on performance of the
-scheduling policy: according to figure \ref{fig:cumulated_violation}, the
-time spend with VMs that are experiencing a QoS violation is dramatically higher than
-with the distributed and hierachical scheduler, and this trend continues when
-the number of hosting nodes reaches 1024 nodes. Although this validate the
-relevance at large scale of distributed scheduling algorithms, it should be
-noted that in a carefuly observation Figure \ref{tab:detailed_violation_time}
-emphasizes that the results of the distributed policy is more stable than the
-hierarchical one, and has better results. In addition to depicting the gap of
-performance between the distributed and the hierarchical schedulers, figure
-\ref{tab:violation_clouds_snooze_1024} shows how significant is the dispersion
-of the violation duration when using the hierarchical algorithm.
 
 % \begin{figure}[ht]
 % \begin{center}
@@ -986,17 +1056,17 @@ of the violation duration when using the hierarchical algorithm.
 % \label{fig:violation_clouds_snooze_1024}
 % \end{figure}
 
-\begin{figure}
+\begin{figure*}
 \subcapcentertrue
 \subfigure[DVMS]{
-  \includegraphics[width=7cm]{figures/experiments/clouds-1024-distributed.pdf}
+  \includegraphics[width=.45\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
   \label{fig:violation_clouds_dvms_1024}}
 \subfigure[Snooze]{
-  \includegraphics[width=7cm]{figures/experiments/clouds-1024-hierarchical.pdf}
+  \includegraphics[width=.45\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30.pdf}
   \label{fig:violation_clouds_snooze_1024}}
 \caption{Details of violations duration occuring during simulation (10240 VMS).}
 \label{fig:violation_clouds}
-\end{figure}
+\end{figure*}
 
 \begin{figure}[ht]
 \begin{center}
@@ -1045,28 +1115,28 @@ and increasing the average migration duration.
 %
 %
 
-\subsubsection{Hierarchical VM placement: evaluation of GM sizes}
+% \subsubsection{Hierarchical VM placement: evaluation of GM sizes}
 
-We have also explored the use of \vmps in order to explore the
-principal parameters of different VM placement algorithms. In the
-remainder of this section we report of one example, the influence of
-the cluster size, \ie the ratio of LCs to GMs, on hierarchical VM
-placement. For these experiments, VM reconfigurations have been
-calculated and applied periodically every 30 secs.
+% We have also explored the use of \vmps in order to explore the
+% principal parameters of different VM placement algorithms. In the
+% remainder of this section we report of one example, the influence of
+% the cluster size, \ie the ratio of LCs to GMs, on hierarchical VM
+% placement. For these experiments, VM reconfigurations have been
+% calculated and applied periodically every 30 secs.
 
-{\scriptsize \begin{tabular}{|P{25mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-    \thickhline
-    \textbf{Algorithm}
-      & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Reconf.\ time (s)}}
-      & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
-        \Tstrut \\
-       \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
-    \thickhline
-      ~8 LC/GM      & 4680 & 10755 & 22022 & 1423 & 3429 & 7470 \\
-      32 LC/GM      & 16533 & 33376 & 73623 & 1770 & 3453 & \:8196
-    \Rstrut  \\ \hline
-    \thickhline
-\end{tabular} }
+% {\scriptsize \begin{tabular}{|P{25mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%     \thickhline
+%     \textbf{Algorithm}
+%       & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Reconf.\ time (s)}}
+%       & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
+%         \Tstrut \\
+%        \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
+%     \thickhline
+%       ~8 LC/GM      & 4680 & 10755 & 22022 & 1423 & 3429 & 7470 \\
+%       32 LC/GM      & 16533 & 33376 & 73623 & 1770 & 3453 & \:8196
+%     \Rstrut  \\ \hline
+%     \thickhline
+% \end{tabular} }
 
 The table above shows some of the corresponding results for
 experiments on 128, 256 and 512 LCs. The results show that the total
