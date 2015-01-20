@@ -876,7 +876,11 @@ the computation phases and the reconfiguration phases.
 As anticipated, the centralized approach does not scale well and becomes
 even counterproductive in comparison to a system where there is no dynamic
 scheduling performed. The more nodes Entropy has to monitor, the less
-efficient it is. First, on the computation phase, Entropy took longer
+efficient it is. On the computation phase, Entropy took longer
+to resolve the scheduling problem. Moreover, the more nodes are
+involved in the reconfiguration the more complex is the
+reconfiguration plan leading to some expensive manipulations including
+migrations towards the same destination nodes.
 
 \AL[MS]{replay the simulations without any
   algorithm in order to have reference values}
@@ -941,7 +945,9 @@ efficient it is. First, on the computation phase, Entropy took longer
 \label{tab:detailed_reconf_time}
 \end{table}
 
+Regarding Snooze....
 
+Finally regarding DVMS.....
 
 Figure \ref{fig:detailed_computation_time} depicts the
 computation time per node invocking Entropy. It is noticeable that the
