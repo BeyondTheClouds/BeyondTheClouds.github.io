@@ -1003,21 +1003,21 @@ assignment.
 
 \begin{table}
 \centering
-{\scriptsize
-\begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Infrastructure Size}
-        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Snooze (8 LCs per GM)}}
-          \Tstrut \\
-         \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
-      \thickhline
-        128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
-        256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-        512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-        1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
-      \Rstrut  \\ \hline
-      \thickhline
-\end{tabular}}
+% {\scriptsize
+% \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Snooze (8 LCs per GM)}}
+%           \Tstrut \\
+%          \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
+%       \thickhline
+%         128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
+%         256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+%         512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+%         1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
+%       \Rstrut  \\ \hline
+%       \thickhline
+% \end{tabular}}
 {\scriptsize
 \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
@@ -1056,7 +1056,7 @@ assignment.
   cumulated violation times for these three different ''GM size'' strategies}
 
 Table \ref{table:snooze-gmpart} presents the simulated values obtained
-for scenarios with respectively 8~LCs, 4~LCs and 2~LCs per GM for each infrastructure size.
+for scenarios with respectively 4~LCs and 2~LCs per GM for each infrastructure size.
 Once again, the overall performances (\ie cumulated violation time) are relatively close, which
 seems to indicate that a small group size does not help  in resolving
 violations faster. However, looking into details, we can see that the
@@ -1067,7 +1067,7 @@ This is understandable because the load is statistically
 evenly distributed among the LCs. Furthermore, the load profile we
 evaluated only rarely results in many LCs of a GM to be overloaded:
 violations can therefore be resolved even in the case of a smaller
-number of 8 or 4~LCs available for load distribution.
+number of 4~LCs available for load distribution.
 We noticed, however, that reducing the
 number of LCs too significantly can lead to counterproductive
 situations where GMs do not supervise a sufficient amount of PMs to
