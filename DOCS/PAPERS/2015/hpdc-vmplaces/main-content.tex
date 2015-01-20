@@ -869,22 +869,24 @@ it had been executed directly on top of the hosting nodes.
 
 Fig.~\ref{fig:cumulated_violation} presents the cumulated violation
 time for each placement policy while
-Table~\ref{table:detailed_violation_time} gives the mean and the
-standard deviations of the duration of each violation.
-As expected, the centralized approach does not scale well and becomes
+Tables~\ref{table:detailed_violation_time},
+\ref{table:detailed_computation_time} and \ref{tab:detailed_reconf_time}  give more details by presenting the mean and the
+standard deviations of the duration of, respectively, the violations,
+the computation phases and the reconfiguration phases.
+As anticipated, the centralized approach does not scale well and becomes
 even counterproductive in comparison to a system where there is no dynamic
-scheduling performed.
-
+scheduling performed. The more nodes Entropy has to monitor, the less
+efficient it is. On the computation phase, Entropy took longer
+to resolve the scheduling problem. Moreover, the more nodes are
+involved in the reconfiguration the more complex is the
+reconfiguration plan leading to some expensive manipulations including
+migrations towards the same destination nodes.
 
 \AL[MS]{replay the simulations without any
-  algorithm in order to have reference values}.
-Regarding
-
-
+  algorithm in order to have reference values}
 
 \begin{table}[ht]
-\label{table:detailed_violation_time}
-\begin{center}
+\centering
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
@@ -899,13 +901,12 @@ Regarding
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-
-    \caption{Means $\pm$ standard deviations of violation durations.}
-\end{center}
+\caption{Means $\pm$ Std deviations of violation durations.}
+\label{table:detailed_violation_time}
 \end{table}
 
 \begin{table}[ht]
-\begin{center}
+\centering
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
@@ -920,14 +921,12 @@ Regarding
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-
-    \caption{Means $\pm$ standard deviations of computation duration.}
-\label{tab:detailed_computation_time}
-\end{center}
+\caption{Means $\pm$ Std deviations of computation durations.}
+\label{table:detailed_computation_time}
 \end{table}
 
 \begin{table}[ht]
-\begin{center}
+\centering
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
@@ -942,17 +941,14 @@ Regarding
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-
-    \caption{Means $\pm$ standard deviations of Reconfiguration Durations.}
-\end{center}
-\label{tab:detailed_violation_time}
+\caption{Means $\pm$ Std deviations of reconfiguration durations.}
+\label{tab:detailed_reconf_time}
 \end{table}
 
+Regarding Snooze....
 
-Even if the implementations of these three
-algorithms are all based on Entropy, their respective amount of nodes invocking
-Entropy differs: to enable a fair comparison of the time spend on computing
-reconfiguration plan time,
+
+Finally regarding DVMS.....
 
 Figure \ref{tab:detailed_computation_time} depicts the
 computation time per node invocking Entropy. It is noticeable that the
@@ -971,7 +967,7 @@ noted that in a carefuly observation Figure \ref{tab:detailed_violation_time}
 emphasizes that the results of the distributed policy is more stable than the
 hierarchical one, and has better results. In addition to depicting the gap of
 performance between the distributed and the hierarchical schedulers, figure
-\ref{tab:violation_clouds_snooze_1024} shows how significant is the dispersion 
+\ref{tab:violation_clouds_snooze_1024} shows how significant is the dispersion
 of the violation duration when using the hierarchical algorithm.
 
 % \begin{figure}[ht]
