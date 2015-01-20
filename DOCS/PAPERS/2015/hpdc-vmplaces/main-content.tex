@@ -940,15 +940,15 @@ noted that in a carefuly observation Figure \ref{fig:detailed_violation_time}
 emphasizes that the results of the distributed policy is more stable than the
 hierarchical one, and has better results. In addition to depicting the gap of
 performance between the distributed and the hierarchical schedulers, figure
-\ref{violation_clouds_256} shows how significant is the dispersion of the
+\ref{violation_clouds_1024} shows how significant is the dispersion of the 
 violation duration when using the hierarchical algorithm.
 
 \begin{figure}[ht]
 \begin{center}
-    \includegraphics[width=.95\linewidth]{figures/experiments/256-distributed-hierarchical.pdf}
-    \caption{Details of violations duration occuring during simulation (2560 VMS).}
+    \includegraphics[width=.95\linewidth]{figures/experiments/1024-distributed-hierarchical.pdf}
+    \caption{Details of violations duration occuring during simulation (10240 VMS).}
 \end{center}
-\label{fig:violation_clouds_256}
+\label{fig:violation_clouds_1024}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1057,10 +1057,10 @@ evaluated only rarely results in many LCs of a GM to be overloaded:
 violations can therefore be resolved even in the case of a smaller
 number of 8~LCs available for load distribution.
 
-\subsubsection{Fault Tolerance}
-\AL[JP]{perform an experiment on Snooze and DVMS with fault
-  periodicity of a crash on average every 160 seconds, corresponding
-  to a 6 month fault in a DC of 1000 }
+% \subsubsection{Fault Tolerance}
+% \AL[JP]{perform an experiment on Snooze and DVMS with fault
+%   periodicity of a crash on average every 160 seconds, corresponding
+%   to a 6 month fault in a DC of 1000 }
 
 
 \subsection{Exploring Variants and Possible Improvements}
@@ -1261,6 +1261,45 @@ results in a significantly lower total migration time.
 
 \subsubsection{DVMS Analysis}
 \AL{if space and time add PajeGN view for DVMS}
+
+In section \ref{sec:ISP}, the functioning of the iterative scheduling procedure
+has been described: DVMS includes each overloaded node in a new partition, these
+partitions will include new nodes, until a satisfactory reconfiguration implying
+its members has been found. As, in the original design of DVMS, partitions had 
+no size constraint, it was interesting for us to verify if adding such a 
+constraint would have an impact on its behaviour.
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/dvms_comparison_migration_count.pdf}
+    \caption{Comparison of two flavour of DVMS (migration count).}
+    \label{fig:dvms_comparison_migration_count}
+\end{center}
+\end{figure}
+
+In Figures \ref{fig:dvms_comparison_migration_count} and 
+\ref{fig:dvms_comparison_violation_duration}, we compared two implementations of
+DVMS: one that complies the description given in Section \ref{sec:ISP} and one 
+that works on partitions which contain at least 4 nodes. It is noticeable in Figure
+\ref{fig:dvms_comparison_migration_count} that the number of migrations is 
+slightly smaller with the implementation that works with at least 4 nodes. This 
+is due to the quality of reconfiguration plans: as more nodes can be used to 
+rebalance the VMs workload, its quality can be improved.
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.65\linewidth]{figures/experiments/dvms_comparison_violation_duration.pdf}
+    \caption{Comparison of two flavour of DVMS (cumulated violation time).}
+    \label{fig:dvms_comparison_violation_duration}
+\end{center}
+\end{figure}
+
+Figure \ref{fig:dvms_comparison_violation_duration} shows that the preceding
+fact has a direct impact on the VMs QoS: the cumulated violation duration 
+is reduced in the same proportion as the reduction of migrations.
+% The comparison of different flavours of the DVMS algorithm is eased by the use
+% of the VMPlaceS framework.
+
 
 \section{Related Work}
 \label{sec:related}
