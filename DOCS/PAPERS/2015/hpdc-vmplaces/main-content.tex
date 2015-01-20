@@ -930,8 +930,8 @@ algorithms will organize computations on several nodes.
 % - Distributed approaches are better. However a flat peer to peer approach such
 %   as DVMS has better results that Snooze (hierarchical).
 This way of organizing computation has a direct impact on performance of the
-scheduling policy: according figure \ref{fig:experiments_violation_time}, the time
-spend with VMs that are experiencing a QoS violation is dramatically higher than
+scheduling policy: according to figure \ref{fig:cumulated_violation}, the
+time spend with VMs that are experiencing a QoS violation is dramatically higher than
 with the distributed and hierachical scheduler, and this trend continues when
 the number of hosting nodes reaches 1024 nodes. Although this validate the
 relevance at large scale of distributed scheduling algorithms, it should be
@@ -939,15 +939,23 @@ noted that in a carefuly observation Figure \ref{fig:detailed_violation_time}
 emphasizes that the results of the distributed policy is more stable than the
 hierarchical one, and has better results. In addition to depicting the gap of
 performance between the distributed and the hierarchical schedulers, figure
-\ref{violation_clouds_1024} shows how significant is the dispersion of the 
-violation duration when using the hierarchical algorithm.
+\ref{fig:violation_clouds_snooze_1024} shows how significant is the dispersion 
+of the violation duration when using the hierarchical algorithm.
 
 \begin{figure}[ht]
 \begin{center}
-    \includegraphics[width=.95\linewidth]{figures/experiments/1024-distributed-hierarchical.pdf}
+    \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
     \caption{Details of violations duration occuring during simulation (10240 VMS).}
 \end{center}
-\label{fig:violation_clouds_1024}
+\label{fig:violation_clouds_dvms_1024}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-hierarchical.pdf}
+    \caption{Details of violations duration occuring during simulation (10240 VMS).}
+\end{center}
+\label{fig:violation_clouds_snooze_1024}
 \end{figure}
 
 \begin{figure}[ht]
@@ -1056,10 +1064,10 @@ evaluated only rarely results in many LCs of a GM to be overloaded:
 violations can therefore be resolved even in the case of a smaller
 number of 8~LCs available for load distribution.
 
-% \subsubsection{Fault Tolerance}
-% \AL[JP]{perform an experiment on Snooze and DVMS with fault
-%   periodicity of a crash on average every 160 seconds, corresponding
-%   to a 6 month fault in a DC of 1000 }
+\subsubsection{Fault Tolerance}
+\AL[JP]{perform an experiment on Snooze and DVMS with fault
+  periodicity of a crash on average every 160 seconds, corresponding
+  to a 6 month fault in a DC of 1000 }
 
 
 \subsection{Exploring Variants and Possible Improvements}
