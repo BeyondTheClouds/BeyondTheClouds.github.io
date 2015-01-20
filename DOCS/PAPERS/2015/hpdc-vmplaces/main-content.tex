@@ -1026,7 +1026,7 @@ assignment.
         1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
       \Rstrut  \\ \hline
       \thickhline
-\end{tabular} }
+\end{tabular}}
 {\scriptsize
 \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
@@ -1057,33 +1057,38 @@ assignment.
       \Rstrut  \\ \hline
       \thickhline
 \end{tabular} }
-\label{table:snooze-gmpart}
 \caption{Influence of the Snooze group size ($Med\pm \sigma$)}
+\label{table:snooze-gmpart}
 \end{table}
 
 \AL[JP]{Could you please make a figure with 3 curves represented the
   cumulated violation times for these three different ''GM size'' strategies}
 
 Table \ref{table:snooze-gmpart} presents the simulated values obtained
-for scenarios with respectively 8~LCs and 4~LCs per GM for each infrastructure size.
+for scenarios with respectively 8~LCs, 4~LCs and 2~LCs per GM for each infrastructure size.
 Once again, the overall performances (\ie cumulated violation time) are relatively close, which
 seems to indicate that a small group size does not help  in resolving
 violations faster. However, looking into details, we can see that the
 duration of the computation phases has
 been significantly reduced to reach a value close to the DVMS one for
-the 8-LCs per GM scenario. We noticed, however, that reducing the
-number of LCs too significantly can lead to counterproductive
-situations where GMs do not supervise a sufficient amount of PMs to
-find solutions. In such a case, most GMs failed to solve the VMPP
-problem. This is a rather important limitations
-tried to reduce to number to 4
-
-
+the 4-LCs per GM scenario.
 This is understandable because the load is statistically
 evenly distributed among the LCs. Furthermore, the load profile we
 evaluated only rarely results in many LCs of a GM to be overloaded:
 violations can therefore be resolved even in the case of a smaller
-number of 8~LCs available for load distribution.
+number of 8 or 4~LCs available for load distribution.
+We noticed, however, that reducing the
+number of LCs too significantly can lead to counterproductive
+situations where GMs do not supervise a sufficient amount of PMs to
+find solutions. In such a case, most GMs failed to solve the VMPP
+problem. \AL[MS]{Please complete this discussion with additional
+  values/arguments.}
+Once again, this information is valuable as it will help
+ researchers to design new
+algorithms favoring the automatic discovery of the optimal subset of
+nodes capable to solve a particular violation.
+
+
 
 
 
