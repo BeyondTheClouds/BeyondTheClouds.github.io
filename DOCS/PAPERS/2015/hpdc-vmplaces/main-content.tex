@@ -808,11 +808,12 @@ Ethernet NIC. To enable fair comparison between the three strategies,
 the scheduling resolver only considered 7 cores (\ie one was devoted
 to run the Snooze LC or the DVMS processes). Dedicating one core for
 the host OS and other administrative processes is something which is
-rather usual and thus we believe acceptable. Each simulated VM relied
-one of the VM classes previously described in Section
-\ref{subsec:accuracy}. Ten VMs have been initially launched on each
-PM. The parameters for changing the load of the VMs were the same too
-($\lambda$ = Nb VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary
+rather usual and thus we believe acceptable in our experimental
+methodology.
+Regarding the Virtual Machines, Ten VMs have been initially launched
+on each simulated PM. Each VM relied one of the VM classes previously described in Section
+\ref{subsec:accuracy} and the parameters for changing the load were
+the same too($\lambda$ = Nb VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary
 state was reached after 20 min of the simulated time with a global
 load of 85\% as depicted in Fig. \ref{fig:load_figure}.
 To accelerate the simulations, we have chosen to limit the simulated time to 1800 seconds.
@@ -829,7 +830,7 @@ with a 160 second crash in average}
 \subcapcentertrue
 \subfigure[Load of the Cluster]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
 \subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/experiments/violation_time.pdf}\label{fig:cumulated_violation}}
-\caption{Simulation - Results Overview 10 VMs per node (VM load: $\mu=60$ and $\sigma=20$)}
+\caption{Simulation Results - 10 VMs per node (VM load: $\mu=60$ and $\sigma=20$)}
 \label{fig:simulation-overview}
 \end{figure}
 %%%
@@ -852,7 +853,7 @@ with a 160 second crash in average}
 %associated with a workload simulator which simulates a virtual workload in each
 %simulated virtual machines, thus enabling the study of the behaviour of the
 %simulated algorithms.
-The figure \ref{fig:load_figure} illustrates the global load.
+%The figure \ref{fig:load_figure} illustrates the global load.
 %To accelerate the simulations, we have chosen
 %parameters that cause the workload to reach a stationary phase after 1200
 %seconds of simulations, thus enabling us to limit the simulation duration to
