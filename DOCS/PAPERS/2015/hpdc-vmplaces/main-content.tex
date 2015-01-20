@@ -855,11 +855,14 @@ top of the hosting nodes.
 
 \begin{figure}
 \subcapcentertrue
-\subfigure[Load of the Cluster]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
+\subfigure[Infrastructure load]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
 \subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/experiments/violation_time.pdf}\label{fig:cumulated_violation}}
 \caption{Simulation Results - 10 VMs per node (VM load: $\mu=60$ and $\sigma=20$)}
 \label{fig:simulation-overview}
 \end{figure}
+
+\AL[JP/MS]{Update the figure 6b in order to show the  values without
+  any scheduling policies.}
 %%%
 
 % \begin{figure}[ht]
@@ -893,14 +896,14 @@ Tables~\ref{table:detailed_violation_time},
 \ref{tab:detailed_reconf_time} give more details by presenting the
 mean and the standard deviations of the duration of, respectively, the
 violations, the computation and reconfiguration phases. As
-anticipated, the centralized approach did not scale and became even
+anticipated, the centralized approach did not scale and became almost
 counterproductive for the largest scenario in comparison to a system
-where there were no dynamic scheduling. The more nodes Entropy has to
+that did not use any dynamic scheduling strategy. The more nodes Entropy has to
 monitor, the less efficient it is on both the computation and
 reconfiguration phases. Regarding the computation, the VMPP is a
 NP-Hard problem and thus it is not surprising that it takes more time
 to resolve larger problems. Regarding the reconfiguration, as Entropy
-has to solve more violations simultaneously, the reconfiguration plan
+has to solve much more violations simultaneously, the reconfiguration plan
 is more complex for large scenarios, including several migrations
 coming from and going to the same nodes. Such reconfiguration plans
 are non optimal as they increase the bottleneck effects at the network
@@ -1024,12 +1027,6 @@ assignment.
       \Rstrut  \\ \hline
       \thickhline
 \end{tabular} }
-\label{table:snooze-gmpart-8}
-\caption{Influence of the Snooze group size ($Med\pm \sigma$)}
-\end{table}
-
-\begin{table}
-\centering
 {\scriptsize
 \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
@@ -1045,12 +1042,26 @@ assignment.
       \Rstrut  \\ \hline
       \thickhline
 \end{tabular} }
-\label{table:snooze-gmpart-4}
+{\scriptsize
+\begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Snooze (2 LCs per GM)}}
+          \Tstrut \\
+         \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
+      \thickhline
+        128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
+        256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+        512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
+        1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
+      \Rstrut  \\ \hline
+      \thickhline
+\end{tabular} }
+\label{table:snooze-gmpart}
 \caption{Influence of the Snooze group size ($Med\pm \sigma$)}
 \end{table}
 
-Tables \ref{table:snooze-gmpart-8} and \ref{table:snooze-gmpart-4}
-show the simulated values obtained
+Table \ref{table:snooze-gmpart} presents the simulated values obtained
 for scenarios with respectively 8~LCs and 4~LCs per GM for each infrastructure size.
 Once again, the overall performances (\ie cumulated violation time) are relatively close, which
 seems to indicate that a small group size does not help  in resolving
