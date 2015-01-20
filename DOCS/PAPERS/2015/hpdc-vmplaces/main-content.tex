@@ -813,7 +813,7 @@ methodology.
 Regarding the Virtual Machines, Ten VMs have been initially launched
 on each simulated PM. Each VM relied one of the VM classes previously described in Section
 \ref{subsec:accuracy} and the parameters for changing the load were
-the same too($\lambda$ = Nb VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary
+the same ($\lambda$ = Nb VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary
 state was reached after 20 min of the simulated time with a global
 load of 85\% as depicted in Fig. \ref{fig:load_figure}.
 To accelerate the simulations, we have chosen to limit the simulated time to 1800 seconds.
@@ -825,6 +825,7 @@ To Repair (MTTR) of a server in a Google DC~\cite[pp. 107-108]{datacenterAsCompu
 \AL[all]{It might make sense to omit that point because this on a 1800
 period simulation is a non sense. We should have launched something
 with a 160 second crash in average}
+
 
 \begin{figure}
 \subcapcentertrue
@@ -859,55 +860,34 @@ with a 160 second crash in average}
 %seconds of simulations, thus enabling us to limit the simulation duration to
 %1800 seconds.
 
-\begin{figure}[ht]
+Simulations have been performed for infrastructures composed of 128,
+256, 512 and 1024 PMs, hosting respectively 1280, 2560, 5120 and 10240 VMs.
+Additional simulated PMs have been provided to execute the Entropy and Snooze
+service  nodes. For Snooze, one GM has been created every 32 LCs (\ie PMs).
+It is noteworthy that no service node had to be provisioned for DVMS as
+it had been executed directly on top of the hosting nodes.
+
+Fig.~\ref{fig:cumulated_violation} presents the cumulated violation
+time for each placement policy while
+Table~\ref{table:detailed_violation_time} gives the mean and the
+standard deviations of the duration of each violation.
+As expected, the centralized approach does not scale well and becomes
+even counterproductive in comparison to a system where there is no dynamic
+scheduling performed.
+
+
+\AL[MS]{replay the simulations without any
+  algorithm in order to have reference values}.
+Regarding
+
+
+
+\begin{table}[ht]
+\label{table:detailed_violation_time}
 \begin{center}
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
-      \textbf{Computation duration}
-        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
-          \Tstrut \\
-         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
-      \thickhline
-        128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
-        256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
-        512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
-        1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
-      \Rstrut  \\ \hline
-      \thickhline
-  \end{tabular} }
-
-    \caption{Mean values and standard deviations (mean $\pm$ standard deviation) of computation duration.}
-\label{fig:detailed_computation_time}
-\end{center}
-\end{figure}
-
-% * {fig:detailed_computation_time}
-The conduction of simulations enables the comparison of three different
-scheduling algorithms. Firstly, even the implementations of these three
-algorithms are all based on Entropy, their respectif amount of nodes invocking
-Entropy differs: to enable a fair comparison of the time spend on computing
-reconfiguration plan time,
-Figure \ref{fig:detailed_computation_time} depicts the
-computation time per node invocking Entropy. It is noticeable that the
-distributed and hierarchical algorithms are significantly below the centralised
-algorithm. This can be easily explained: the centralised policy concentrates all
-the computations on one node, while the distributed and the hierarchical
-algorithms will organize computations on several nodes.
-
-% \begin{figure}[ht]
-% \begin{center}
-%     \includegraphics[width=.65\linewidth]{figures/experiments/violation_time.pdf}
-%     \caption{Cumulated violation duration.}
-% \end{center}
-% \label{fig:experiments_violation_time}
-% \end{figure}
-
-\begin{figure}[ht]
-\label{fig:detailed_violation_time}
-\begin{center}
-    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Violation duration}
+      \textbf{Infrastructure Size}
         & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
           \Tstrut \\
          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
@@ -920,42 +900,37 @@ algorithms will organize computations on several nodes.
       \thickhline
   \end{tabular} }
 
-    \caption{Mean values and standard deviations (mean $\pm$ standard deviation) of violation duration.}
+    \caption{Means $\pm$ standard deviations of violation durations.}
 \end{center}
-\end{figure}
+\end{table}
 
-% * {fig:experiments_violation_time} and {fig:detailed_violation_time}:
-% - Centralized is not efficient: it violation is much more high than
-
-%   distributed or hierarchical.
-% - Distributed approaches are better. However a flat peer to peer approach such
-%   as DVMS has better results that Snooze (hierarchical).
-This way of organizing computation has a direct impact on performance of the
-scheduling policy: according figure \ref{fig:experiments_violation_time}, the time
-spend with VMs that are experiencing a QoS violation is dramatically higher than
-with the distributed and hierachical scheduler, and this trend continues when
-the number of hosting nodes reaches 1024 nodes. Although this validate the
-relevance at large scale of distributed scheduling algorithms, it should be
-noted that in a carefuly observation Figure \ref{fig:detailed_violation_time}
-emphasizes that the results of the distributed policy is more stable than the
-hierarchical one, and has better results. In addition to depicting the gap of
-performance between the distributed and the hierarchical schedulers, figure
-\ref{violation_clouds_1024} shows how significant is the dispersion of the 
-violation duration when using the hierarchical algorithm.
-
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.95\linewidth]{figures/experiments/1024-distributed-hierarchical.pdf}
-    \caption{Details of violations duration occuring during simulation (10240 VMS).}
-\end{center}
-\label{fig:violation_clouds_1024}
-\end{figure}
-
-\begin{figure}[ht]
+\begin{table}[ht]
 \begin{center}
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
-      \textbf{Reconfiguration duration}
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+      \thickhline
+        128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
+        256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
+        512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
+        1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+
+    \caption{Means $\pm$ standard deviations of computation duration.}
+\label{table:detailed_computation_time}
+\end{center}
+\end{table}
+
+\begin{table}[ht]
+\begin{center}
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
         & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Algorithm}}
           \Tstrut \\
          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
@@ -968,10 +943,45 @@ violation duration when using the hierarchical algorithm.
       \thickhline
   \end{tabular} }
 
-    \caption{Mean values and standard deviations (mean $\pm$ standard deviation) of reconfiguration duration.}
+    \caption{Means $\pm$ standard deviations of Reconfiguration Durations.}
 \end{center}
-\label{fig:detailed_violation_time}
+\label{tab:detailed_violation_time}
+\end{table}
+
+
+ even the implementations of these three
+algorithms are all based on Entropy, their respectif amount of nodes invocking
+Entropy differs: to enable a fair comparison of the time spend on computing
+reconfiguration plan time,
+
+Figure \ref{fig:detailed_computation_time} depicts the
+computation time per node invocking Entropy. It is noticeable that the
+distributed and hierarchical algorithms are significantly below the centralised
+algorithm. This can be easily explained: the centralised policy concentrates all
+the computations on one node, while the distributed and the hierarchical
+algorithms will organize computations on several nodes.
+
+This way of organizing computation has a direct impact on performance of the
+scheduling policy: according figure \ref{fig:experiments_violation_time}, the time
+spend with VMs that are experiencing a QoS violation is dramatically higher than
+with the distributed and hierachical scheduler, and this trend continues when
+the number of hosting nodes reaches 1024 nodes. Although this validate the
+relevance at large scale of distributed scheduling algorithms, it should be
+noted that in a carefuly observation Figure \ref{fig:detailed_violation_time}
+emphasizes that the results of the distributed policy is more stable than the
+hierarchical one, and has better results. In addition to depicting the gap of
+performance between the distributed and the hierarchical schedulers, figure
+\ref{violation_clouds_1024} shows how significant is the dispersion of the
+violation duration when using the hierarchical algorithm.
+
+\begin{figure}[ht]
+\begin{center}
+    \includegraphics[width=.95\linewidth]{figures/experiments/1024-distributed-hierarchical.pdf}
+    \caption{Details of violations duration occuring during simulation (10240 VMS).}
+\end{center}
+\label{fig:violation_clouds_1024}
 \end{figure}
+
 
 \begin{figure}[ht]
 \begin{center}
@@ -1265,8 +1275,8 @@ results in a significantly lower total migration time.
 In section \ref{sec:ISP}, the functioning of the iterative scheduling procedure
 has been described: DVMS includes each overloaded node in a new partition, these
 partitions will include new nodes, until a satisfactory reconfiguration implying
-its members has been found. As, in the original design of DVMS, partitions had 
-no size constraint, it was interesting for us to verify if adding such a 
+its members has been found. As, in the original design of DVMS, partitions had
+no size constraint, it was interesting for us to verify if adding such a
 constraint would have an impact on its behaviour.
 
 \begin{figure}[ht]
@@ -1277,13 +1287,13 @@ constraint would have an impact on its behaviour.
 \end{center}
 \end{figure}
 
-In Figures \ref{fig:dvms_comparison_migration_count} and 
+In Figures \ref{fig:dvms_comparison_migration_count} and
 \ref{fig:dvms_comparison_violation_duration}, we compared two implementations of
-DVMS: one that complies the description given in Section \ref{sec:ISP} and one 
+DVMS: one that complies the description given in Section \ref{sec:ISP} and one
 that works on partitions which contain at least 4 nodes. It is noticeable in Figure
-\ref{fig:dvms_comparison_migration_count} that the number of migrations is 
-slightly smaller with the implementation that works with at least 4 nodes. This 
-is due to the quality of reconfiguration plans: as more nodes can be used to 
+\ref{fig:dvms_comparison_migration_count} that the number of migrations is
+slightly smaller with the implementation that works with at least 4 nodes. This
+is due to the quality of reconfiguration plans: as more nodes can be used to
 rebalance the VMs workload, its quality can be improved.
 
 \begin{figure}[ht]
@@ -1295,7 +1305,7 @@ rebalance the VMs workload, its quality can be improved.
 \end{figure}
 
 Figure \ref{fig:dvms_comparison_violation_duration} shows that the preceding
-fact has a direct impact on the VMs QoS: the cumulated violation duration 
+fact has a direct impact on the VMs QoS: the cumulated violation duration
 is reduced in the same proportion as the reduction of migrations.
 % The comparison of different flavours of the DVMS algorithm is eased by the use
 % of the VMPlaceS framework.
