@@ -776,14 +776,16 @@ following section.
 
 
 % Evaluation of VMPlaceS on Grid'5000: simulations were running on one server.
-In this section, we analyze the results of the simulations we
-performed on the Entropy, Snooze and DVMS strategies. After discussing a
-rather general comparison, we show the pros and cons of having a
-different topology in Snooze. Finally, we present some variants and possible
-improvements of Snooze and DVMS that we easily studied thanks to
+In this section, we discuss the results of the simulations we
+performed on the Entropy, Snooze and DVMS strategies. First, we
+present a general study analyzing the violation times as well as the
+duration of the computation and reconfiguration phases.
+Second, we examine some variants and possible
+improvements of Snooze and DVMS that made possible to easily study  thanks to
 \vmps.
 
-Regarding the experimental conditions, all simulations have been
+\subsubsection{Experimental Conditions}
+All simulations have been
 performed on the Lyon clusters of the Grid'5000 testbed.
 Each execution was running on a dedicated server, thus avoiding
 interferences between simulations and ensuring reproducibility between
@@ -795,13 +797,6 @@ the different invocations.
 % It enables us to run a large number of simulations, with several variants
 % of the scheduling algorithm.
 
-\subsubsection{General  Comparison}
-\label{subsec:general-comparison}
-
-% * {fig:load_figure}
-% For the simulations a load of 85% has been injected.
-% Stationary phase at 1200s => 1800s of simulation.
-% The 3 algorithms have been tested with the same loads.
 \vmps has been configured in order to simulate an homogeneous
 infrastructure of PMs composed of 8 cores, 32~GB of RAM and 1~Gpbs
 Ethernet NIC. To enable fair comparison between the three strategies,
@@ -821,11 +816,22 @@ To accelerate the simulations, we have chosen to limit the simulated time to 180
 The parameters for node crashes have been assigned in order to simulate
 a fault on average every 6 months for a duration of 300 seconds. These
 values correspond to the Mean Time To Failure (MTTF) and the Mean Time
-To Repair (MTTR) of a server in a Google DC~\cite[pp. 107-108]{datacenterAsComputer}.
-\AL[all]{It might make sense to omit that point because this on a 1800
-period simulation is a non sense. We should have launched something
-with a 160 second crash in average}
+To Repair (MTTR) of a server in a Google DC~\cite[pp.
+107-108]{datacenterAsComputer}. However, we underline that at the scale we
+performed our simulations, the number of crashes was mostly null and
+dedicated simulations were mandatory to study the impact of node
+crashes on the difference strategies.
+\AL[all]{We can maybe add few sentences on that point. Something like:
+Due to the space limitations these results are not discussed in the
+present article. However, we highlight that due to the rather short
+time to reconstruct the Snooze service nodes topology in case of a
+failures. Node crashes does not have an significant impact of the
+violation time resolution. When a GL or a GM crashes, LCs are correcly
+reassigned in less than 10 seconds.}
 
+
+\subsubsection{General  Analysis}
+\label{subsec:general-comparison}
 
 \begin{figure}
 \subcapcentertrue
@@ -925,7 +931,7 @@ manipulations.
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-\caption{Means $\pm$ Std deviations of violation durations.}
+\caption{Duration of violations ($Med \pm \sigma$)}
 \label{table:detailed_violation_time}
 \end{table}
 
@@ -945,7 +951,7 @@ manipulations.
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-\caption{Means $\pm$ Std deviations of computation durations.}
+\caption{Duration of computations ($Med \pm \sigma$)}
 \label{table:detailed_computation_time}
 \end{table}
 
@@ -965,7 +971,7 @@ manipulations.
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-\caption{Means $\pm$ Std deviations of reconfiguration durations.}
+\caption{Duration of reconfigurations ($Med \pm \sigma$).}
 \label{tab:detailed_reconf_time}
 \end{table}
 
@@ -1006,7 +1012,7 @@ assignment.
       \thickhline
 \end{tabular} }
 \label{table:snooze-gmpart-8}
-\caption{Influence of the group size in Snooze ($Med\pm \sigma$)}
+\caption{Influence of the Snooze group size ($Med\pm \sigma$)}
 \end{table}
 
 \begin{table}
@@ -1027,7 +1033,7 @@ assignment.
       \thickhline
 \end{tabular} }
 \label{table:snooze-gmpart-4}
-\caption{Influence of the group size in Snooze ($Med\pm \sigma$)}
+\caption{Influence of the Snooze group size ($Med\pm \sigma$)}
 \end{table}
 
 Tables \ref{table:snooze-gmpart-8} and \ref{table:snooze-gmpart-4}
