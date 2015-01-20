@@ -31,6 +31,12 @@ A.~Barker, B.~Varghese, J.~S. Ward, and I.~Sommerville.
 \newblock In {\em Proceedings of the 6th USENIX Workshop on Hot Topics in Cloud
   Computing (HotCloud)}, June 2014.
 
+\bibitem{datacenterAsComputer}
+L.~A. Barroso and U.~Hölzle.
+\newblock {\em The Datacenter as a Computer: An Introduction to the Design of
+  Warehouse-Scale Machines}.
+\newblock 2009.
+
 \bibitem{R:Bloomfield:2014}
 V.~A. Bloomfield.
 \newblock {\em Using {R} for Numerical Analysis in Science and Engineering}.
