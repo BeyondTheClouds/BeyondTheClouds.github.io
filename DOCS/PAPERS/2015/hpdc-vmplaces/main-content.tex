@@ -771,7 +771,7 @@ without facing with the burden of conducting large scale
 \subsubsection{Experimental testbed}
 
 % Evaluation of VMPlaceS on Grid'5000: simulations were running on one server.
-We evaluated the behaviour of the VMPlaceS frameworks using simulations 
+We evaluated the behaviour of the VMPlaceS frameworks using simulations
 conducted on the Grid'5000 testbed. Each of the simulations was running on a
 dedicated server, thus avoiding interferences between simulations.
 
@@ -785,7 +785,7 @@ dedicated server, thus avoiding interferences between simulations.
 
 \begin{figure}[ht]
 \begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/1024-hierarchical.pdf}
+    \includegraphics[width=.85\textwidth]{figures/experiments/1024-hierarchical.pdf}
     \caption{Load of the cluster.}
 \end{center}
 \label{fig:experiments_1024_hierarchical}
@@ -804,17 +804,17 @@ dedicated server, thus avoiding interferences between simulations.
 \label{fig:experiments_compute_time_per_service_node}
 \end{figure}
 
-% * compute_time_per_service_node.pdf: 
-The conductions of the simulations enables the comparison of three different 
-scheduling algorithms. Firstly, even if all the implementations of these three 
-algorithms are based on Entropy, their respectif amount of nodes invocking 
-Entropy differs: to enable a fair comparison of the time spend on computing 
-reconfiguration plan time, 
-Figure \ref{fig:experiments_compute_time_per_service_node} depicts the 
-computation time per node invocking Entropy. It is noticeable that the 
+% * compute_time_per_service_node.pdf:
+The conductions of the simulations enables the comparison of three different
+scheduling algorithms. Firstly, even if all the implementations of these three
+algorithms are based on Entropy, their respectif amount of nodes invocking
+Entropy differs: to enable a fair comparison of the time spend on computing
+reconfiguration plan time,
+Figure \ref{fig:experiments_compute_time_per_service_node} depicts the
+computation time per node invocking Entropy. It is noticeable that the
 distributed and hierarchical algorithms are significantly below the centralised
 algorithm. This can be easily explained: the centralised policy concentrates all
-the computations on one node, while the distribured and the hierarchical 
+the computations on one node, while the distribured and the hierarchical
 policies distribute computation on several nodes.
 
 \begin{figure}[ht]
@@ -826,7 +826,7 @@ policies distribute computation on several nodes.
 \end{figure}
 
 % * experiments_violation_time.pdf:
-% - Centralized is not efficient: it violation is much more high than 
+% - Centralized is not efficient: it violation is much more high than
 %   distributed or hierarchical.
 % - Distributed approaches are better. However a flat peer to peer approach such
 %   as DVMS has better results that Snooze (hierarchical).
@@ -854,13 +854,13 @@ policies distribute computation on several nodes.
 \end{figure}
 
 % * migration_avg_duration.pdf:
-% - Centralized was doing less migrations than the others. However, at 1024 
+% - Centralized was doing less migrations than the others. However, at 1024
 %   nodes, the migration time is becoming increasing dramatically: it can be
 %   explained by the "first_solution" policy: to improve its reactivity entropy
 %   returns the first working reconfiguration plan. At 1024 nodes, computations
 %   takes too much time, thus degrading the results of entropy which programs
 %   several migrations on some nodes.
-%   
+%
 %
 
 
@@ -1084,7 +1084,7 @@ total migration time.
 
 Several simulator toolkits have been proposed since the last years in
 order to adress CC concerns~\cite{CC13, DGSIM, cloudsim, icancloud,
-  greencloud}.  They can be classified into two categories: The first
+  greencloud}.  They can be classified into two categories: The first
 one corresponds to ad-hoc simulators that have been developped to
 address a particular concern. For instance, CReST~\cite{CC13} is a
 discrete event simulation toolkit built to evaluate Cloud provisioning
