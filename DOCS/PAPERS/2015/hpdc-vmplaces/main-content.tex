@@ -804,23 +804,30 @@ the scheduling resolver only considered 7 cores (\ie one was devoted
 to run the Snooze LC or the DVMS processes). Dedicating one core for
 the host OS and other administrative processes is something which is
 rather usual and thus we believe acceptable in our experimental
-methodology.
-Regarding the Virtual Machines, Ten VMs have been initially launched
-on each simulated PM. Each VM relied one of the VM classes previously described in Section
-\ref{subsec:accuracy} and the parameters for changing the load were
-the same ($\lambda$ = Nb VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary
-state was reached after 20 min of the simulated time with a global
-load of 85\% as depicted in Fig. \ref{fig:load_figure}.
-To accelerate the simulations, we have chosen to limit the simulated time to 1800 seconds.
+methodology. Regarding the Virtual Machines, Ten VMs have been
+initially launched on each simulated PM. Each VM relied one of the VM
+classes previously described in Section \ref{subsec:accuracy} and the
+parameters for changing the load were the same ($\lambda$ = Nb
+VMs/300, $\mu$ = 60 and $\sigma$ = 20). The stationary state was
+reached after 20 min of the simulated time with a global load of 85\%
+as depicted in Fig. \ref{fig:load_figure}. To accelerate the
+simulations, we have chosen to limit the simulated time to 1800
+seconds. It is noteworthy that the consolidation ratio, \ie the number
+of VMs per node, has been defined to generate a sufficient number of
+violations. We discovered that under a global load of 75\%, our
+infrastructure almost did not face VM violations with our selected Gaussian
+distribution. Such a result is rather
+satisfactory as it can explained why most production DCs target such
+an overall utilization rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
 
-Simulations have been performed for infrastructures composed of 128,
-256, 512 and 1024 PMs, hosting respectively 1280, 2560, 5120 and 10240
-VMs. Additional simulated PMs have been provided to execute the
-Entropy and Snooze service nodes. For Snooze, one GM has been created
-every 32 LCs (\ie PMs). Entropy and Snooze are invoked every 30
-seconds. Finally, it is noteworthy that no service node had to be
-provisioned for DVMS as a DVMS process had been executed directly on
-top of the hosting nodes.
+We conducted simulations in order to study infrastructures composed of
+128, 256, 512 and 1024 PMs, hosting respectively 1280, 2560, 5120 and
+10240 VMs. Additional simulated PMs have been provided to execute the
+Entropy and Snooze service nodes on distinct nodes. For Snooze, one GM
+has been created every 32 LCs (\ie PMs). Entropy and Snooze are
+invoked every 30 seconds. Finally, it is noteworthy that no service
+node had to be provisioned for DVMS as a DVMS process had been
+executed directly on top of the hosting nodes.
 
 In order to cope with real DC conditions, we defined the parameters
 for node crashes to simulate a fault on average every 6 months for a
@@ -990,7 +997,7 @@ manipulations.
 
 Regarding Snooze, although the performances are better than the
 Entropy ones, we may erroneously conclude that the hierarchical
-approach is not competitve with respect to the distribued strategy at
+approach is not competitive with respect to the distribued strategy at
 the first sight. However, diving into details, we can see that both
 the computation and reconfiguration phases are almost constants
 (around 3 seconds and 10 seconds) and not so far from the DVMS values,
@@ -1058,7 +1065,7 @@ assignment.
 \label{table:snooze-gmpart}
 \end{table}
 
-\AL[JP]{Could you please make a figure with 3 curves represented the
+\AL[JP]{Could you please make a figure with 2 curves represented the
   cumulated violation times for these three different ''GM size'' strategies}
 
 Table \ref{table:snooze-gmpart} presents the simulated values obtained
@@ -1067,7 +1074,7 @@ Once again, the overall performances (\ie cumulated violation time) are relative
 seems to indicate that a small group size does not help  in resolving
 violations faster. However, looking into details, we can see that the
 duration of the computation phases has
-been significantly reduced to reach a value close to the DVMS one for
+been significantly reduced to reach a value close to the DVMS ones for
 the 4-LCs per GM scenario.
 This is understandable because the load is statistically
 evenly distributed among the LCs. Furthermore, the load profile we
@@ -1078,28 +1085,15 @@ We noticed, however, that reducing the
 number of LCs too significantly can lead to counterproductive
 situations where GMs do not supervise a sufficient amount of PMs to
 find solutions. In such a case, most GMs failed to solve the VMPP
-problem. \AL[MS]{Please complete this discussion with additional
+problem. \AL[MS]{Please validate and complete this discussion with additional
   values/arguments.}
 Once again, this information is valuable as it will help
  researchers to design new
 algorithms favoring the automatic discovery of the optimal subset of
-nodes capable to solve a particular violation.
+nodes capable to solve a particular violation. Although DVMS selects
+naively its neighborhood without considering whether it is relevant or
+note, we can consider that DVMS is one of such advanced algorithm.
 
-Finally regarding DVMS.....
-
-\AL[MS,AL]{TODO find the best place to add the following paragraph}
-To conclude, although the simulations discussed in this article are
-limited to 10K VMs, we succeeded to conduct DVMS simulations including
-up to 8K~PMs/80K~VMs in a bit less than two days. We did not present
-such results to the paper because it was not possible to run a
-sufficient number of Snooze simulations at such scale. The Snooze
-protocol being more complex than the DVMS one (heartbeats,
-consensus,~\ldots), the time to perform a similar experiment is much
-more important (around 7 days). The time-consuming portions of the
-code are related to \sg internals such as \texttt{sleep} and
-\texttt{send/recv} calls. Hence, we have contacted the \sg core
-developers in order to investigate how we can reduce the required time
-to perform such advanced simulations.
 
 % \begin{figure}[ht]
 % \begin{center}
@@ -1155,10 +1149,18 @@ to perform such advanced simulations.
 %   lack of reactivity.
 % - Distributed and Hierarchical have similar results, even if hierarchical do
 %   less migrations.
-As the three algorithms resolve QoS degradation by performing VMs migrations,
-the time migration is in this study an interesting metric. Figure
-\ref{fig:cumulated_migration_time} describes the cumulated migration time for
-each aforementioned algorithms: the distributed algorithm spend more time
+
+
+Another important metric when performing dynamic relocations is
+related to the migration overhead on the network but also on the
+workload running inside each VM. Hence it is important to understand
+how VM Placement algorithms deal with such a concern.
+
+
+
+
+Figure \ref{fig:cumulated_migration_time} describes the cumulated migrations number for
+each strategy: the distributed algorithm spend more time
 on migrating VMs, followed by the hierarchical scheduler. It is noticeable that
 the centralized scheduler performes spend less time in migration of VMs. Thanks
 to figure \ref{fig:avg_migration_time}, we can see that the average duration
@@ -1169,6 +1171,9 @@ not find the best reconfiguration in an adequate time, and must confine itself
 to a non optimal reconfiguration. These non optimal reconfigurations usually
 contain several migrations to the same nodes, thus leading to network congestion
 and increasing the average migration duration.
+
+
+
 
 
 % * migration_avg_duration.pdf:
@@ -1204,19 +1209,19 @@ and increasing the average migration duration.
 %     \thickhline
 % \end{tabular} }
 
-The table above shows some of the corresponding results for
-experiments on 128, 256 and 512 LCs. The results show that the total
-reconfiguration time (cumulative over all nodes) is significantly
-higher for the configuration of 32~LCs per GM than for 8~LCs per
-GM. This can be explained because the computation of a reconfiguration
-plan for 32~LCs is much costlier than for 8. The cumulative violation
-times of both algorithms are, however, relatively close, which
-indicates that no algorithm is clearly better in resolving
-violations. This is understandable because the load is statistically
-evenly distributed among the LCs. Furthermore, the load profile we
-evaluated only rarely results in many LCs of a GM to be overloaded:
-violations can therefore be resolved even in the case of a smaller
-number of 8~LCs available for load distribution.
+% The table above shows some of the corresponding results for
+% experiments on 128, 256 and 512 LCs. The results show that the total
+% reconfiguration time (cumulative over all nodes) is significantly
+% higher for the configuration of 32~LCs per GM than for 8~LCs per
+% GM. This can be explained because the computation of a reconfiguration
+% plan for 32~LCs is much costlier than for 8. The cumulative violation
+% times of both algorithms are, however, relatively close, which
+% indicates that no algorithm is clearly better in resolving
+% violations. This is understandable because the load is statistically
+% evenly distributed among the LCs. Furthermore, the load profile we
+% evaluated only rarely results in many LCs of a GM to be overloaded:
+% violations can therefore be resolved even in the case of a smaller
+% number of 8~LCs available for load distribution.
 
 % \subsubsection{Fault Tolerance}
 % %\AL[JP]{perform an experiment on Snooze and DVMS with fault
@@ -1234,6 +1239,20 @@ number of 8~LCs available for load distribution.
 % failures. Node crashes does not have an significant impact of the
 % violation time resolution. When a GL or a GM crashes, LCs are correcly
 % reassigned in less than 10 seconds.}
+
+\AL[MS,AL]{TODO find the best place to add the following paragraph}
+To conclude, although the simulations discussed in this article are
+limited to 10K VMs, we succeeded to conduct DVMS simulations including
+up to 8K~PMs/80K~VMs in a bit less than two days. We did not present
+such results to the paper because it was not possible to run a
+sufficient number of Snooze simulations at such scale. The Snooze
+protocol being more complex than the DVMS one (heartbeats,
+consensus,~\ldots), the time to perform a similar experiment is much
+more important (around 7 days). The time-consuming portions of the
+code are related to \sg internals such as \texttt{sleep} and
+\texttt{send/recv} calls. Hence, we have contacted the \sg core
+developers in order to investigate how we can reduce the required time
+to perform such advanced simulations.
 
 
 \subsection{Exploring Variants and Possible Improvements}
