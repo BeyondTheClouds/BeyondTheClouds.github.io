@@ -1111,22 +1111,6 @@ note, we can consider that DVMS is one of such advanced algorithm.
 % \label{fig:violation_clouds_snooze_1024}
 % \end{figure}
 
-\begin{figure*}
-\subcapcentertrue
-\subfigure[DVMS]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
-  \label{fig:violation_clouds_dvms_1024}}
-\subfigure[Snooze Periodic]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30-gm32.pdf}
-  \label{fig:violation_clouds_snooze_1024_periodic}}
-\subfigure[Snooze Reactive]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
-  \label{fig:violation_clouds_snooze_1024_reactive}}
-
-\caption{Details of violations duration occuring during simulation (10240 VMS).}
-
-\label{fig:violation_clouds}
-\end{figure*}
 
 \begin{figure}[ht]
 \begin{center}
@@ -1155,9 +1139,7 @@ Another important metric when performing dynamic relocations is
 related to the migration overhead on the network but also on the
 workload running inside each VM. Hence it is important to understand
 how VM Placement algorithms deal with such a concern.
-
-
-
+\AL[AL]{finalized that part with the following paragraph}
 
 Figure \ref{fig:cumulated_migration_time} describes the cumulated migrations number for
 each strategy: the distributed algorithm spend more time
@@ -1172,19 +1154,6 @@ to a non optimal reconfiguration. These non optimal reconfigurations usually
 contain several migrations to the same nodes, thus leading to network congestion
 and increasing the average migration duration.
 
-
-
-
-
-% * migration_avg_duration.pdf:
-% - Centralized was doing less migrations than the others. However, at 1024
-%   nodes, the migration time is becoming increasing dramatically: it can be
-%   explained by the "first_solution" policy: to improve its reactivity entropy
-%   returns the first working reconfiguration plan. At 1024 nodes, computations
-%   takes too much time, thus degrading the results of entropy which programs
-%   several migrations on some nodes.
-%
-%
 
 % \subsubsection{Hierarchical VM placement: evaluation of GM sizes}
 
@@ -1322,6 +1291,10 @@ code of the variant with periodic scheduling.
     \thickhline
 \end{tabular} }
 
+\AL[MS]{Update the table: it may make
+sense to put all values to make the read and the understanding easier
+Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
+
 We have shown the usefulness of our framework by exploring some
 properties of reactive scheduling compared to periodic scheduling. To
 this end we have simulated reactive scheduling and a periodic
@@ -1332,9 +1305,25 @@ periodic strategy has computed and applied reconfiguration plans every
 above. They clearly show that, while a reactive strategy entails a
 much higher number of migrations (because the periodic one aggregates
 overload situations and misses some of them), reactive scheduling
-results in a significantly lower total migration time.
+results in a significantly lower total migration time. \AL[MS]{lower
+  total migration time ? you mean violation time, please correct.}
 
-
+\begin{figure*}
+\subcapcentertrue
+\subfigure[DVMS]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
+  \label{fig:violation_clouds_dvms_1024}}
+\subfigure[Snooze Periodic]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30-gm32.pdf}
+  \label{fig:violation_clouds_snooze_1024_periodic}}
+\subfigure[Snooze Reactive]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
+  \label{fig:violation_clouds_snooze_1024_reactive}}
+\caption{Details of violations duration occuring during simulation (10240 VMS).}
+\label{fig:violation_clouds}
+\end{figure*}
+\AL[AL]{Figure \ref{fig:violation_clouds} should be discussed after
+  the reactive discussion, the figure illustrates the pros of the reactivity.}
 % \paragraph{Assignment of LCs to GMs}
 
 % LCs are assigned to GMs by the GL as part of the LC join protocol. In
@@ -1452,7 +1441,7 @@ results in a significantly lower total migration time.
 
 
 \subsubsection{DVMS Analysis}
-\AL{if space and time add PajeGN view for DVMS}
+\AL{For the journal: add PajeGN view for DVMS}
 
 In section \ref{sec:ISP}, the functioning of the iterative scheduling procedure
 has been described: DVMS includes each overloaded node in a new partition, these
