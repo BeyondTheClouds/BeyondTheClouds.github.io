@@ -1450,17 +1450,58 @@ its members has been found. As, in the original design of DVMS, partitions had
 no size constraint, it was interesting for us to verify if adding such a
 constraint would have an impact on its behaviour.
 
-\begin{figure}
-\subcapcentertrue
-\subfigure[Migration count]{
-  \includegraphics[width=.47\linewidth]{figures/experiments/dvms_comparison_migration_count.pdf}
-  \label{fig:dvms_comparison_migration_count}}
-\subfigure[Cumulated violation duration]{
-  \includegraphics[width=.47\linewidth]{figures/experiments/dvms_comparison_violation_duration.pdf}
-  \label{fig:dvms_comparison_violation_duration}}
-\caption{Comparison of two flavour of DVMS}
-\label{fig:violation_clouds}
-\end{figure}
+% \begin{figure}
+% \subcapcentertrue
+% \subfigure[Migration count]{
+%   \includegraphics[width=.47\linewidth]{figures/experiments/dvms_comparison_migration_count.pdf}
+%   \label{fig:dvms_comparison_migration_count}}
+% \subfigure[Cumulated violation duration]{
+%   \includegraphics[width=.47\linewidth]{figures/experiments/dvms_comparison_violation_duration.pdf}
+%   \label{fig:dvms_comparison_violation_duration}}
+% \caption{Comparison of two flavours of DVMS}
+% \label{fig:violation_clouds}
+% \end{figure}
+
+\begin{table}[ht]
+\centering
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
+        & \multicolumn{2}{c@{\:}|}{\textbf{Violation time (s)}}
+          \Tstrut \\
+         \hfill flavour &  ~Original~ & 4 nodes  &  ~Original~ & 4 nodes \Bstrut \\
+      \thickhline
+
+        128 nodes &   78  & 76  & 914.28  & 884.46  \\
+        256 nodes &   152 & 127 & 1709.23 & 1498.71 \\
+        512 nodes &   308 & 286 & 3513.18 & 3314.72 \\
+       1024 nodes &   702 & 616 & 7967.03 & \:7101.49 
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+\caption{Comparison of two DVMS flavours.}
+\label{tab:dvms_flavours}
+\end{table}
+
+% {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%     \thickhline
+%     \textbf{Algorithm}
+%       & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
+%       & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
+%         \Tstrut \\
+%        \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
+%     \thickhline
+%       Reactive      & 107 & 201 & 421 & 1075 & 1955 & 4385 \\
+%       Periodic 30s  & 62 & 124 & 269 & 1770 & 3453 & \:8196
+%     \Rstrut  \\ \hline
+%     \thickhline
+% \end{tabular} 
+
+% \caption{Influence of the Snooze group size ($Med\pm \sigma$)}
+% \label{tab:dvms_flavours}
+% }
 
 
 % \begin{figure}[ht]
@@ -1471,14 +1512,13 @@ constraint would have an impact on its behaviour.
 % \end{center}
 % \end{figure}
 
-In Figures \ref{fig:dvms_comparison_migration_count} and
-\ref{fig:dvms_comparison_violation_duration}, we compared two implementations of
+In Table \ref{tab:dvms_flavours}, we compared two implementations of
 DVMS: one that complies the description given in Section \ref{sec:ISP} and one
-that works on partitions which contain at least 4 nodes. It is noticeable in Figure
-\ref{fig:dvms_comparison_migration_count} that the number of migrations is
-slightly smaller with the implementation that works with at least 4 nodes. This
-is due to the quality of reconfiguration plans: as more nodes can be used to
-rebalance the VMs workload, its quality can be improved.
+that works on partitions which contain at least 4 nodes. It is noticeable that
+the number of migrations is slightly smaller with the implementation that works
+with at least 4 nodes. This is due to the quality of reconfiguration plans: as 
+more nodes can be used to rebalance the VMs workload, its quality can be 
+improved.
 
 % \begin{figure}[ht]
 % \begin{center}
@@ -1488,7 +1528,7 @@ rebalance the VMs workload, its quality can be improved.
 % \end{center}
 % \end{figure}
 
-Figure \ref{fig:dvms_comparison_violation_duration} shows that the preceding
+Table \ref{tab:dvms_flavours} also shows that the preceding
 fact has a direct impact on the VMs QoS: the cumulated violation duration
 is reduced in the same proportion as the reduction of migrations.
 % The comparison of different flavours of the DVMS algorithm is eased by the use
