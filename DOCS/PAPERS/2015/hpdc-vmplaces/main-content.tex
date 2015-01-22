@@ -1014,85 +1014,72 @@ higlight that the use of \vmps eased such a study as it has consisted
 to simply relaunch the previous simulation with a distinct
 assignment.
 
-\begin{table}
-\centering
-% {\scriptsize
-% \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-%       \thickhline
-%       \textbf{Infrastructure Size}
-%         & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Snooze (8 LCs per GM)}}
-%           \Tstrut \\
-%          \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
-%       \thickhline
-%         128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
-%         256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-%         512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-%         1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
-%       \Rstrut  \\ \hline
-%       \thickhline
-% \end{tabular}}
-{\scriptsize
-\begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+\begin{figure*}
+\subcapcentertrue
+\subfigure[No.\ of Failed Reconfigurations]{
+    {\scriptsize \begin{tabular}[b]{|r@{\:}||@{\:}r@{\:}|@{\:}r@{\:}|@{\:}r@{\:}|@{\:}r@{\:}|}
       \thickhline
-      \textbf{Infrastructure Size}
-        & \multicolumn{3}{c@{\:}|}{\textbf{Snooze (4 LCs per GM)}}
+      \textbf{Infra.\ Size~~}
+        & \multicolumn{ 4 }{c@{\:}|}{\textbf{No.\ of failed reconfigurations}}
           \Tstrut \\
-         \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
+         \hfill &  ~2 LCs~ & ~4 LCs~ & ~8 LCs~ &  ~32 LCs~  \Bstrut \\
       \thickhline
-        128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
-        256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-        512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-        1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
+
+        128~~~~~~~ &  19~ & 0~ & 0~ & 0~ \\
+        256~~~~~~~ &  29~ & 0~ & 0~ & 0~ \\
+        512~~~~~~~ &  83~ & 1~ & 0~ & 0~ \\
+       1024~~~~~~~ & 173~ & 7~ & 0~ &  0 
       \Rstrut  \\ \hline
       \thickhline
-\end{tabular} }
-{\scriptsize
-\begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Infrastructure Size}
-        & \multicolumn{3}{c@{\:}|}{\textbf{Snooze (2 LCs per GM)}}
-          \Tstrut \\
-         \hfill  & ~Violation~ & ~Computation~ & Reconfiguration \Bstrut \\
-      \thickhline
-        128 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx  $\pm$ xxx \\
-        256 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-        512 nodes   & xxx $\pm$  xxx &  xxx $\pm$  xxx &  xxx $\pm$ xxx \\
-        1024 nodes  & xxx $\pm$  xxx &  xxx $\pm$  xxx & xxx $\pm$ xxx
-      \Rstrut  \\ \hline
-      \thickhline
-\end{tabular} }
-\caption{Influence of the Snooze group size ($Med\pm \sigma$)}
-\label{table:snooze-gmpart}
-\end{table}
+  \end{tabular} }
+  \label{fig:groupSizesReconfigFail}
+  }
+\subfigure[Total Reconfiguration Times]{
+  \includegraphics[width=.32\linewidth]{figures/groupSizes-reconfigurationTime.pdf}
+  \label{fig:groupSizesReconfigTime}}
+\subfigure[Total Violation Times]{
+  \includegraphics[width=.32\linewidth]{figures/groupSizes-violationTime.pdf}
+  \label{fig:groupSizesViolationTime}}
+\caption{Experimental results for 4 group sizes and infrastructure sizes}
+\label{fig:snoozeGroupSizes}
+\end{figure*}
 
-\AL[JP]{Could you please make a figure with 2 curves represented the
-  cumulated violation times for these three different ''GM size'' strategies}
+\paragraph{Varying group sizes}
 
-Table \ref{table:snooze-gmpart} presents the simulated values obtained
-for scenarios with respectively 4~LCs and 2~LCs per GM for each infrastructure size.
-Once again, the overall performances (\ie cumulated violation time) are relatively close, which
-seems to indicate that a small group size does not help  in resolving
-violations faster. However, looking into details, we can see that the
-duration of the computation phases has
-been significantly reduced to reach a value close to the DVMS ones for
-the 4-LCs per GM scenario.
-This is understandable because the load is statistically
-evenly distributed among the LCs. Furthermore, the load profile we
-evaluated only rarely results in many LCs of a GM to be overloaded:
-violations can therefore be resolved even in the case of a smaller
-number of 4~LCs available for load distribution.
-We noticed, however, that reducing the
-number of LCs too significantly can lead to counterproductive
-situations where GMs do not supervise a sufficient amount of PMs to
-find solutions. In such a case, most GMs failed to solve the VMPP
-problem. \AL[MS]{Please validate and complete this discussion with additional
-  values/arguments.}
-Once again, this information is valuable as it will help
- researchers to design new
-algorithms favoring the automatic discovery of the optimal subset of
-nodes capable to solve a particular violation. Although DVMS selects
-naively its neighborhood without considering whether it is relevant or
-note, we can consider that DVMS is one of such advanced algorithm.
+Figure \ref{fig:snoozeGroupSizes} presents the simulated values
+obtained for scenarios with respectively 2,~4,~8 and~32~LCs per GM for
+four infrastructure sizes. The table~\ref{fig:groupSizesReconfigFail}
+shows how often overloading has been discovered but could not be
+resolved because the GM did not manage enough resources. 2~LCs per GM
+is clearly insufficient at our load level, failed reconfigurations are
+already very rare in the case of 4~LCs per GM and do not occur at all
+for 8~and 32~LCs per GM. This is understandable because the load is
+statistically evenly distributed among the LCs. Furthermore, the load
+profile we evaluated only rarely results in many LCs of a GM to be
+overloaded: violations can therefore be resolved even in the case of a
+smaller number of 4~LCs available for load distribution.
+
+The overall performance (\ie cumulated violation time), shown if
+Fig.~\ref{fig:groupSizesViolationTime} shows that 2~LCs per GM result in
+significantly higher violation times: this is due to the relatively
+high failure rate. All other group sizes yield violation times that
+are relatively close, which seems to indicate that a small group size
+does not help much in resolving violations faster. 
+
+However, considering the total times used for reconfigurations, see
+Fig.~\ref{fig:groupSizesReconfigTime}, we can see that the duration of
+the overall reconfiguration phases has been significantly reduced to
+reach a value close to the DVMS ones for the 4-LCs per GM scenario.
+We noticed, however, that reducing the number of LCs too significantly
+can lead to counterproductive situations if the VM load increases and
+GMs do not supervise anymore a sufficient amount of PMs to find
+solutions. \MS{Last argument not yet validated: is it obvious enough?}
+Once again, this information is valuable as it will help researchers
+to design new algorithms favoring the automatic discovery of the
+optimal subset of nodes capable to solve a particular
+violation. Although DVMS selects naively its neighborhood without
+considering whether it is relevant or note, we can consider that DVMS
+is one of such advanced algorithm.
 
 
 % \begin{figure}[ht]
