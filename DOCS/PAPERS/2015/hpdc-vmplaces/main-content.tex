@@ -1014,8 +1014,14 @@ higlight that the use of \vmps eased such a study as it has consisted
 to simply relaunch the previous simulation with a distinct
 assignment.
 
+
 \begin{figure*}
 \subcapcentertrue
+\subfigure[Total Violation Times]{
+  \includegraphics[width=.32\textwidth]{figures/groupSizes-violationTime.pdf}
+  \label{fig:groupSizesViolationTime}}
+\begin{minipage}{.66\textwidth}\centering
+  \vspace*{-4.5cm}
 \subfigure[No.\ of Failed Reconfigurations]{
     {\scriptsize \begin{tabular}[b]{|r@{\:}||@{\:}r@{\:}|@{\:}r@{\:}|@{\:}r@{\:}|@{\:}r@{\:}|}
       \thickhline
@@ -1034,52 +1040,74 @@ assignment.
   \end{tabular} }
   \label{fig:groupSizesReconfigFail}
   }
-\subfigure[Total Reconfiguration Times]{
-  \includegraphics[width=.32\linewidth]{figures/groupSizes-reconfigurationTime.pdf}
-  \label{fig:groupSizesReconfigTime}}
-\subfigure[Total Violation Times]{
-  \includegraphics[width=.32\linewidth]{figures/groupSizes-violationTime.pdf}
-  \label{fig:groupSizesViolationTime}}
-\caption{Experimental results for 4 group sizes and infrastructure sizes}
+
+\subfigure[Means $\pm$ Std deviations of computation durations.]{
+    {\scriptsize \begin{tabular}[b]{|r@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infra.\ Size~~}
+        & \multicolumn{ 4 }{c@{\:}|}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill &  ~2 LCs~ & ~4 LCs~ & ~8 LCs~ & 32 LCs  \Bstrut \\
+      \thickhline
+
+        128~~~~~~~ &   0.16 $\pm$   1.23 &   0.34 $\pm$   1.81 &   0.58 $\pm$   2.40 &   2.53 $\pm$   4.62  \\
+        256~~~~~~~ &   0.18 $\pm$   1.31 &   0.42 $\pm$   1.99 &   0.66 $\pm$   2.50 &   2.65 $\pm$   4.69  \\
+        512~~~~~~~ &   0.15 $\pm$   1.20 &   0.33 $\pm$   1.78 &   0.67 $\pm$   2.54 &   2.83 $\pm$   4.98  \\
+       1024~~~~~~~ &   0.19 $\pm$   1.37 &   0.42 $\pm$   2.02 &   0.89 $\pm$   2.90 &   ~2.69 $\pm$   4.91  
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+  \label{fig:groupSizesComputationTime}
+  }
+\end{minipage}
+\caption{Hierarchical placement: influence of varying group sizes}
 \label{fig:snoozeGroupSizes}
 \end{figure*}
 
 \paragraph{Varying group sizes}
 
 Figure \ref{fig:snoozeGroupSizes} presents the simulated values
-obtained for scenarios with respectively 2,~4,~8 and~32~LCs per GM for
-four infrastructure sizes. The table~\ref{fig:groupSizesReconfigFail}
-shows how often overloading has been discovered but could not be
-resolved because the GM did not manage enough resources. 2~LCs per GM
-is clearly insufficient at our load level, failed reconfigurations are
-already very rare in the case of 4~LCs per GM and do not occur at all
-for 8~and 32~LCs per GM. This is understandable because the load is
-statistically evenly distributed among the LCs. Furthermore, the load
-profile we evaluated only rarely results in many LCs of a GM to be
-overloaded: violations can therefore be resolved even in the case of a
-smaller number of 4~LCs available for load distribution.
+obtained for scenarios with 2,~4,~8 and 32~LCs per GM for four
+infrastructure sizes. The overall performance (\ie cumulated violation
+time), shown in Fig.~\ref{fig:groupSizesViolationTime}, shows that
+2~LCs per GM result in significantly higher violation times. All other
+group sizes yield violation times that are relatively close, which
+indicates that a small group size does not help much in
+resolving violations faster.
 
-The overall performance (\ie cumulated violation time), shown if
-Fig.~\ref{fig:groupSizesViolationTime} shows that 2~LCs per GM result in
-significantly higher violation times: this is due to the relatively
-high failure rate. All other group sizes yield violation times that
-are relatively close, which seems to indicate that a small group size
-does not help much in resolving violations faster. 
+The relatively bad performance of the smallest group size can be
+explained in terms of the number of failures of the reconfiguration
+process, that is, overloading situations that are discovered but
+cannot be resolved because the GM managing the overloaded VM(s) did
+not dispose of enough resources, see
+Table~\ref{fig:groupSizesReconfigFail}. Groups of 2~LCs per GM are
+clearly insufficient at our load level (60\% mean, 20\% stddev).
+Failed reconfigurations are, however, already very rare in the case of
+4~LCs per GM and do not occur at all for 8~and 32~LCs per GM. This is
+understandable because the load is statistically evenly distributed
+among the LCs and tthe load profile we evaluated only rarely results
+in many LCs of a GM to be overloaded. Violations can therefore be
+resolved even in the case of a smaller number (4) LCs available for
+load distribution.
 
-However, considering the total times used for reconfigurations, see
-Fig.~\ref{fig:groupSizesReconfigTime}, we can see that the duration of
-the overall reconfiguration phases has been significantly reduced to
-reach a value close to the DVMS ones for the 4-LCs per GM scenario.
-We noticed, however, that reducing the number of LCs too significantly
-can lead to counterproductive situations if the VM load increases and
-GMs do not supervise anymore a sufficient amount of PMs to find
-solutions. \MS{Last argument not yet validated: is it obvious enough?}
-Once again, this information is valuable as it will help researchers
-to design new algorithms favoring the automatic discovery of the
-optimal subset of nodes capable to solve a particular
-violation. Although DVMS selects naively its neighborhood without
-considering whether it is relevant or note, we can consider that DVMS
-is one of such advanced algorithm.
+Conversely, we can see that the duration of the overall
+reconfiguration phases decreases strongly along with the group
+size. It reaches a value close to the computation times of DVMS for a
+group size of 4-LCs per GM, see Fig.~\ref{fig:groupSizesComputationTime}.
+We thus cannot minimize computation times and violation times by
+reducing the number of LCs because larger group sizes are necessary to
+resolve overload situations if the VM load gets higher.  Once again,
+this information is valuable as it will help researchers to design new
+algorithms favoring the automatic discovery of the optimal subset of
+nodes capable to solve violations under for given load profiles. 
+
+In contrast, DVMS resolves this trade-off by construction because of its
+automatic and dynamic choice of the partition size necessary to handle
+an overload situation.
+% Although DVMS selects naively its neighborhood without
+% considering whether it is relevant or note, we can consider that DVMS
+% is one of such advanced algorithm.
 
 
 % \begin{figure}[ht]
