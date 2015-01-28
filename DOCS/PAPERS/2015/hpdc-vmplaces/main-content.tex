@@ -353,6 +353,7 @@ framework, and a second one executing the to-be-simulated
 strategy is evaluated by injecting scheduling-relevant events.
 Currently, the supported events are VM CPU load change and node
 apparitions/removals that we use to simulate node crashes.  It
+\TODO[AL]{IT ??? WTF ?}
 
 \begin{figure}
   {\centering ~\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.png}}
@@ -865,8 +866,6 @@ be downloaded from the \vmps repository.
 \label{fig:simulation-overview}
 \end{figure}
 
-\AL[JP/MS]{Update the figure 6b in order to show the  values without
-  any scheduling policies.}
 %%%
 
 % \begin{figure}[ht]
@@ -1016,6 +1015,9 @@ assignment.
 
 \begin{figure*}
 \subcapcentertrue
+\subfigure[Total Violation Times]{
+  \includegraphics[width=.32\linewidth]{figures/groupSizes-violationTime.pdf}
+  \label{fig:groupSizesViolationTime}}
 \subfigure[No.\ of Failed Reconfigurations]{
     {\scriptsize \begin{tabular}[b]{|r@{\:}||@{\:}r@{\:}|@{\:}r@{\:}|@{\:}r@{\:}|@{\:}r@{\:}|}
       \thickhline
@@ -1028,7 +1030,7 @@ assignment.
         128~~~~~~~ &  19~ & 0~ & 0~ & 0~ \\
         256~~~~~~~ &  29~ & 0~ & 0~ & 0~ \\
         512~~~~~~~ &  83~ & 1~ & 0~ & 0~ \\
-       1024~~~~~~~ & 173~ & 7~ & 0~ &  0 
+       1024~~~~~~~ & 173~ & 7~ & 0~ &  0
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1037,9 +1039,6 @@ assignment.
 \subfigure[Total Reconfiguration Times]{
   \includegraphics[width=.32\linewidth]{figures/groupSizes-reconfigurationTime.pdf}
   \label{fig:groupSizesReconfigTime}}
-\subfigure[Total Violation Times]{
-  \includegraphics[width=.32\linewidth]{figures/groupSizes-violationTime.pdf}
-  \label{fig:groupSizesViolationTime}}
 \caption{Experimental results for 4 group sizes and infrastructure sizes}
 \label{fig:snoozeGroupSizes}
 \end{figure*}
@@ -1064,7 +1063,7 @@ Fig.~\ref{fig:groupSizesViolationTime} shows that 2~LCs per GM result in
 significantly higher violation times: this is due to the relatively
 high failure rate. All other group sizes yield violation times that
 are relatively close, which seems to indicate that a small group size
-does not help much in resolving violations faster. 
+does not help much in resolving violations faster.
 
 However, considering the total times used for reconfigurations, see
 Fig.~\ref{fig:groupSizesReconfigTime}, we can see that the duration of
