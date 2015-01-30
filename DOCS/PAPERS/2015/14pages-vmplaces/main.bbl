@@ -1,0 +1,170 @@
+\begin{thebibliography}{10}
+
+\bibitem{cloudstack}
+{CloudStack, Open Source Cloud Computing}.
+\newblock \url{http://cloudstack.apache.org}.
+
+\bibitem{opennebula}
+{Open Source Data Center Virtualization}.
+\newblock \url{http://www.opennebula.org}.
+
+\bibitem{pageng:www}
+{PajeNG - Trace Visualization Tool}.
+\newblock \url{https://github.com/schnorr/pajeng}.
+
+\bibitem{simgridpub}
+Simgrid publications.
+\newblock \url{http://simgrid.gforge.inria.fr/Publications.html}.
+
+\bibitem{snoozeweb}
+Snooze web site.
+\newblock \url{http://snooze.inria.fr}, Last access: 21 Oct. 2014.
+
+\bibitem{openstack}
+{The Open Source, Open Standards Cloud}.
+\newblock \url{http://www.openstack.org}.
+
+\bibitem{barker:pitfalls}
+A.~Barker, B.~Varghese, J.~S. Ward, and I.~Sommerville.
+\newblock {Academic Cloud Computing Research: Five Pitfalls and Five
+  Opportunities}.
+\newblock In {\em Proceedings of the 6th USENIX Workshop on Hot Topics in Cloud
+  Computing (HotCloud)}, June 2014.
+
+\bibitem{datacenterAsComputer}
+L.~A. Barroso and U.~Hölzle.
+\newblock {\em The Datacenter as a Computer: An Introduction to the Design of
+  Warehouse-Scale Machines}.
+\newblock 2009.
+
+\bibitem{R:Bloomfield:2014}
+V.~A. Bloomfield.
+\newblock {\em Using {R} for Numerical Analysis in Science and Engineering}.
+\newblock Chapman \& Hall/CRC, 2014.
+
+\bibitem{cloudsim}
+R.~N. Calheiros, R.~Ranjan, A.~Beloglazov, C.~A.~F. De~Rose, and R.~Buyya.
+\newblock Cloudsim: a toolkit for modeling and simulation of cloud computing
+  environments and evaluation of resource provisioning algorithms.
+\newblock {\em Software: Practice and Experience}, 41(1):23--50, 2011.
+
+\bibitem{CC13}
+J.~Cartlidge and D.~Cliff.
+\newblock Comparison of cloud middleware protocols and subscription network
+  topologies using crest, the cloud research simulation toolkit - the three
+  truths of cloud computing are: Hardware fails, software has bugs, and people
+  make mistakes.
+\newblock In {\em {CLOSER} 2013 - Proceedings of the 3rd International
+  Conference on Cloud Computing and Services Science, Aachen, Germany, 8-10
+  May, 2013}, pages 58--68, 2013.
+
+\bibitem{casanova:hal-01017319}
+H.~Casanova, A.~Giersch, A.~Legrand, M.~Quinson, and F.~Suter.
+\newblock Versatile, scalable, and accurate simulation of distributed
+  applications and platforms.
+\newblock {\em Journal of Parallel and Distributed Computing},
+  74(10):2899--2917, June 2014.
+
+\bibitem{feller:ccgrid12}
+E.~Feller, L.~Rilling, and C.~Morin.
+\newblock {Snooze: A Scalable and Autonomic Virtual Machine Management
+  Framework for Private Clouds}.
+\newblock In {\em CCGRID '12: 12th Int. Symp. on Cluster, Cloud and Grid
+  Comp.}, pages 482--489, May 2012.
+
+\bibitem{hermenier:cp11}
+F.~Hermenier, S.~Demassey, and X.~Lorca.
+\newblock {Bin Repacking Scheduling in Virtualized Datacenters}.
+\newblock In {\em CP '11: Proceedings of the 17th international conference on
+  Principles and practice of constraint programming}, pages 27--41. Springer,
+  2011.
+
+\bibitem{Hermenier:2009:ECM:1508293.1508300}
+F.~Hermenier, X.~Lorca, J.-M. Menaud, G.~Muller, and J.~Lawall.
+\newblock Entropy: A consolidation manager for clusters.
+\newblock In {\em Proceedings of the 2009 ACM SIGPLAN/SIGOPS International
+  Conference on Virtual Execution Environments}, VEE '09, pages 41--50, New
+  York, NY, USA, 2009. ACM.
+
+\bibitem{Hirofuchi:2013:ALM:2568486.2568524}
+T.~Hirofuchi, A.~Lebre, and L.~Pouilloux.
+\newblock Adding a live migration model into simgrid: One more step toward the
+  simulation of infrastructure-as-a-service concerns.
+\newblock In {\em Proceedings of the 2013 IEEE International Conference on
+  Cloud Computing Technology and Science - Volume 01}, CLOUDCOM '13, pages
+  96--103, Washington, DC, USA, 2013. IEEE Computer Society.
+
+\bibitem{5715067}
+J.~Hu, J.~Gu, G.~Sun, and T.~Zhao.
+\newblock A scheduling strategy on load balancing of virtual machine resources
+  in cloud computing environment.
+\newblock In {\em Parallel Architectures, Algorithms and Programming (PAAP),
+  2010 Third International Symposium on}, pages 89--96, Dec 2010.
+
+\bibitem{DGSIM}
+A.~Iosup, O.~Sonmez, and D.~Epema.
+\newblock Dgsim: Comparing grid resource management architectures through
+  trace-based simulation.
+\newblock In E.~Luque, T.~Margalef, and D.~Ben\'itez, editors, {\em Euro-Par
+  2008 -- Parallel Processing}, volume 5168 of {\em Lecture Notes in Computer
+  Science}, pages 13--25. Springer Berlin Heidelberg, 2008.
+
+\bibitem{greencloud}
+D.~Kliazovich, P.~Bouvry, Y.~Audzevich, and S.~Khan.
+\newblock Greencloud: A packet-level simulator of energy-aware cloud computing
+  data centers.
+\newblock In {\em Global Telecommunications Conference (GLOBECOM 2010), 2010
+  IEEE}, pages 1--5, Dec 2010.
+
+\bibitem{lucas:cloud2014}
+J.~L. Lucas-Simarro, R.~Moreno-Vozmediano, F.~Desprez, and J.~Rouzaud-Cornabas.
+\newblock Image transfer and storage cost aware brokering strategies for
+  multiple clouds.
+\newblock In {\em IEEE CLOUD 2014. 7th IEEE International Conference on Cloud
+  Computing}, Anchorage, USA, June 27-July 2 2014. IEEE Computer Society.
+
+\bibitem{moreno:2012}
+R.~Moreno-Vozmediano, R.~Montero, and I.~Llorente.
+\newblock {IaaS Cloud Architecture: From Virtualized Datacenters to Federated
+  Cloud Infrastructures}.
+\newblock {\em Computer}, 45(12):65--72, 2012.
+
+\bibitem{icancloud}
+A.~Nunez, J.~Vazquez-Poletti, A.~Caminero, G.~Castan\'e, J.~Carretero, and
+  I.~Llorente.
+\newblock icancloud: A flexible and scalable cloud infrastructure simulator.
+\newblock {\em Journal of Grid Computing}, 10(1):185--209, 2012.
+
+\bibitem{quesnel:cpe2012}
+F.~Quesnel, A.~Lebre, and M.~S\"{u}dholt.
+\newblock {Cooperative and Reactive Scheduling in Large-Scale Virtualized
+  Platforms with DVMS}.
+\newblock {\em Concurrency and Computation: Practice and Experience},
+  25(12):1643--1655, Aug. 2013.
+
+\bibitem{stoica:2001:sigcomm01}
+I.~Stoica, R.~Morris, D.~Karger, M.~F. Kaashoek, and H.~Balakrishnan.
+\newblock {Chord: A Scalable Peer-to-Peer Lookup Service for Internet
+  Applications}.
+\newblock In {\em Proceedings of the 2001 conference on Applications,
+  technologies, architectures, and protocols for computer communications},
+  SIGCOMM '01, pages 149--160, New York, NY, USA, 2001. ACM.
+
+\bibitem{snoozedev14}
+S.~D. Team.
+\newblock Snooze characteristics and implementation, July 2014.
+\newblock Personal communication.
+
+\bibitem{5328077}
+H.~N. Van, F.~Tran, and J.-M. Menaud.
+\newblock Sla-aware virtual resource management for cloud infrastructures.
+\newblock In {\em Computer and Information Technology, 2009. CIT '09. Ninth
+  IEEE International Conference on}, volume~1, pages 357--362, Oct 2009.
+
+\bibitem{5935254}
+M.~Wang, X.~Meng, and L.~Zhang.
+\newblock Consolidating virtual machines with dynamic bandwidth demand in data
+  centers.
+\newblock In {\em INFOCOM, 2011 Proceedings IEEE}, pages 71--75, April 2011.
+
+\end{thebibliography}

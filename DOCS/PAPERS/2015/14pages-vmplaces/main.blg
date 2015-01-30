@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: abbrv.bst
+Database file #1: main.bib
+Warning--to sort, need author or key in cloudstack
+Warning--to sort, need author or key in opennebula
+Warning--to sort, need author or key in openstack
+Warning--to sort, need author or key in simgridpub
+Warning--to sort, need author or key in pageng:www
+Warning--to sort, need author or key in snoozeweb
+Warning--empty publisher in datacenterAsComputer
+You've used 27 entries,
+            2118 wiz_defined-function locations,
+            654 strings with 9561 characters,
+and the built_in function-call counts, 9597 in all, are:
+= -- 922
+> -- 438
+< -- 13
++ -- 176
+- -- 147
+* -- 651
+:= -- 1462
+add.period$ -- 81
+call.type$ -- 27
+change.case$ -- 151
+chr.to.int$ -- 0
+cite$ -- 34
+duplicate$ -- 393
+empty$ -- 815
+format.name$ -- 147
+if$ -- 2122
+int.to.chr$ -- 0
+int.to.str$ -- 27
+missing$ -- 22
+newline$ -- 132
+num.names$ -- 44
+pop$ -- 218
+preamble$ -- 1
+purify$ -- 126
+quote$ -- 0
+skip$ -- 301
+stack$ -- 0
+substring$ -- 513
+swap$ -- 119
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 104
+warning$ -- 7
+while$ -- 78
+width$ -- 29
+write$ -- 284
+(There were 7 warnings)
