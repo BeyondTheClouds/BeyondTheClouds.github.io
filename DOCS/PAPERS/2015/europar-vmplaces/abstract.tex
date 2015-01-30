@@ -27,18 +27,19 @@
 %different design choices.
 
  Due to the underlying complexity of cloud infrastructures, advanced
- Virtual Machines (VM) placement policies are evaluated either using limited scale testbeds/\emph{in-vivo}
+ Virtual Machines (VM) placement policies are evaluated either using limited scale \emph{in-vivo}
 experiments or ad-hoc simulator techniques. These validation
-methodologies are unsatisfactory to favor technological transfers to
-cloud production platforms: First, they
-do not model precisely enough real productions platforms (size,
+methodologies are unsatisfactory:
+%to favor technological transfers to cloud production platforms:
+First, they do not model precisely enough real productions platforms (size,
 workload representativeness, etc.) and second, they do not enable the
-fair comparison of different approaches.
+fair comparison of different approaches. Finally, they hinder
+technological transfers to cloud production platforms.
 
 In this article, we propose \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
 them in a fair way. Built on top of the \sg simulation toolkit, our
-framework provides programming support to easy the implementation of
+framework provides programming support to ease the implementation of
 placement algorithms and runtime support dedicated to load injection
 and execution trace analysis.
 \vmps supports a large set of parameters enabling researchers to design simulations representative of
