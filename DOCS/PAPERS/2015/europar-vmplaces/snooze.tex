@@ -1,33 +1,36 @@
-We now present Snooze~\cite{feller:ccgrid12} as a second case study of how
-to implement and simulate advanced algorithms.
-We present its architecture summarizing its main
-characteristics from its original presentation~\cite{feller:ccgrid12} and
-additional information  stemming from personal communications of the Snooze
-developers and its implementation~\cite{snoozeweb,snoozedev14}.
-\begin{figure}
-  {\centering ~\includegraphics[width=.95\linewidth]{figures/snoozearch.pdf}}
+% We now present Snooze~\cite{feller:ccgrid12} as a second case study of how
+% to implement and simulate advanced algorithms.
+% We present its architecture summarizing its main
+% characteristics from its original presentation~\cite{feller:ccgrid12} and
+% additional information  stemming from personal communications of the Snooze
+% developers and its implementation~\cite{snoozeweb,snoozedev14}.
+
+% \subsubsection{Architecture}
+% \label{sec:snoozeArchi}
+
+Snooze~\cite{snoozeweb,snoozedev14} harnesses a hierarchical
+architecture in order to support load balancing and fault tolerance,
+cf.\ Fig.~\ref{fig:snoozearch}. At the top of the hierarchy, a
+\emph{group leader (GL)} centralizes information about the whole
+cluster using summary data about \emph{group managers (GMs)} that
+constitute the intermediate layer of the hierarchy. GMs manage a
+number of \emph{local controllers (LCs)} that, in turn, manage the VMs
+assigned to nodes.
+% The GL and the GMs are deployed on service nodes while the LCs are
+% executed on hosting node.
+
+\begin{wrapfigure}{r}{.4\linewidth}
+  {\centering ~\includegraphics[width=.99\linewidth]{figures/snoozearch.pdf}}
   \caption{Overview of Snooze's architecture}
   \label{fig:snoozearch}
-\end{figure}
-
-\subsubsection{Architecture}
-\label{sec:snoozeArchi}
-
-Snooze harnesses a hierarchical architecture in order to support load
-balancing and fault tolerance, cf.\ Fig.~\ref{fig:snoozearch}. At the
-top of the hierarchy, a \emph{group leader (GL)} centralizes
-information about the whole cluster using summary data about
-\emph{group managers (GMs)} that constitute the intermediate layer of
-the hierarchy. GMs manage a number of \emph{local controllers (LCs)}
-that, in turn, manage the VMs assigned to nodes. The GL and the GMs
-are deployed on service nodes while the LCs are executed on hosting
-node.  During execution, higher-level components periodically send
-heartbeats to lower-level ones; monitoring information, \eg about the
-system load, is also sent periodically in the opposite direction. In
-order to propagate information down the hierarchy, Snooze relies on
-hardware support for multicast communication. Finally, a number of
-replicated entry points allows clients to contact the GL, \eg in order
-to submit new VMs for integration into the system.
+\end{wrapfigure}
+During execution, higher-level components periodically send heartbeats
+to lower-level ones; monitoring information, \eg about the system
+load, is also sent periodically in the opposite direction. In order to
+propagate information, Snooze relies on hardware support for multicast
+communication. Finally, a number of replicated entry points allows
+clients to contact the GL, \eg in order to submit new VMs for
+integration into the system.
 
 \emph{Simulation using \vmps.~} The \texttt{XHOST}, \texttt{XVM} and
 \texttt{SimulatorManager} classes have been harnessed to implement the
@@ -47,43 +50,43 @@ multi-threaded implementation (\ie based on multiple SG processes) in
 order to optimize reactivity even for large groups of LCs (or GMs)
 that have to be managed by one GM (or GL).
 
-\subsubsection{Algorithms}
-\label{sec:snoozeAlgs}
+% \subsubsection{Algorithms}
+% \label{sec:snoozeAlgs}
 
-Apart from the handling of faults (described below), two types of
-algorithms are of major importance for the administration of the
-Snooze architecture: the algorithms that enable components to
-dynamically enter the system and the algorithms that propagate info
-between the components.
+% Apart from the handling of faults (described below), two types of
+% algorithms are of major importance for the administration of the
+% Snooze architecture: the algorithms that enable components to
+% dynamically enter the system and the algorithms that propagate info
+% between the components.
 
-A GL is created, if it does not exist, by promotion of a GM that is
-selected according to some leader election algorithm. When a GM joins
-a cluster, it starts listening on a predefined channel for the
-heartbeat of the GL and registers once it has received the
-heartbeat. New LCs first also wait for the GL heartbeat, contact the
-GL then in order to obtain a GM assignment, and finally register at
-the GM assigned to them.
+% A GL is created, if it does not exist, by promotion of a GM that is
+% selected according to some leader election algorithm. When a GM joins
+% a cluster, it starts listening on a predefined channel for the
+% heartbeat of the GL and registers once it has received the
+% heartbeat. New LCs first also wait for the GL heartbeat, contact the
+% GL then in order to obtain a GM assignment, and finally register at
+% the GM assigned to them.
 
-Two kinds of (load) information are passed within the system: the
-periodic heartbeat message sent by the GL and the GMs; second,
-periodic load information sent from LCs to their respective GMs and
-summary load info sent by the GMs to the GL.
+% Two kinds of (load) information are passed within the system: the
+% periodic heartbeat message sent by the GL and the GMs; second,
+% periodic load information sent from LCs to their respective GMs and
+% summary load info sent by the GMs to the GL.
 
-\subsubsection{Fault tolerance}
+% \subsubsection{Fault tolerance}
 
-GLs, GMs and LCs may fail during the system execution. System
-components identify that a node on the corresponding higher-level node
-has failed (the GL in case of a GM, a GM in the case of an LC) in an
-asynchronous fashion through the lack of heartbeat messages.
+% GLs, GMs and LCs may fail during the system execution. System
+% components identify that a node on the corresponding higher-level node
+% has failed (the GL in case of a GM, a GM in the case of an LC) in an
+% asynchronous fashion through the lack of heartbeat messages.
 
-In the case of a GL failure, one of the GMs becomes the new GL, stops
-its GM activities and prevents the LCs it manages so that they can
-start rejoining the system. If a GM fails, the GL and the LCs it has
-managed will become aware of it based on the lack of heartbeats,
-update its data structures and, for the LCs, rejoin the system. If an
-LC fails, its GM will finally learn of it due to the missing heartbeat
-and charge information of the LC. The GM will then remove the LC from
-its data structures.
+% In the case of a GL failure, one of the GMs becomes the new GL, stops
+% its GM activities and prevents the LCs it manages so that they can
+% start rejoining the system. If a GM fails, the GL and the LCs it has
+% managed will become aware of it based on the lack of heartbeats,
+% update its data structures and, for the LCs, rejoin the system. If an
+% LC fails, its GM will finally learn of it due to the missing heartbeat
+% and charge information of the LC. The GM will then remove the LC from
+% its data structures.
 
 
 % \subsubsection{Variants}

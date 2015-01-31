@@ -7,6 +7,9 @@ proposal~\cite{Hermenier:2009:ECM:1508293.1508300}, a hierarchical one
 based on Snooze~\cite{feller:ccgrid12}, and a fully-distributed one
 based on DVMS~\cite{quesnel:cpe2012}.
 
+\MS{We should differentiate more clearly between the complete VMPP
+  system and the solver.}
+
 These systems enable the recognition of violations in form of
 overloaded nodes. A host is overloaded when the VMs try to consume
 more than 100\% of the CPU capacity of the host. In such a case, a
@@ -47,8 +50,9 @@ three approaches to be compared.
 The centralized VM placement mechanism consists in one single \sg
 process deployed on a service node. This process implements a simple loop that
 iteratively checks the viability of the current configuration by
-invoking every $p$ seconds the aforementioned VMPP solver. $p$ is
-defined as an input parameter of the simulation.
+invoking seconds the aforementioned VMPP solver with a predefined
+frequency.
+% $p$ is defined as an input parameter of the simulation.
 
 % \AL{Should we explain the issue right now or not if we add VMPP section}
 % Indeed, during
@@ -61,27 +65,30 @@ defined as an input parameter of the simulation.
 % applied.
 % \vmps enables researchers to investigate such concerns in-depth.
 
-As the Entropy proposal does not provide a specific mechanism for the
-collect of resource usage information but simply uses an external tool
-(namely ganglia), we had two different ways to implement the monitoring to
-process:  either by implementing additional asynchronous transmissions
-as a real implementation of the necessary state updates would proceed
-or, in a much more lightweight manner, through direct accesses by the
-aforementioned process to the states of the hosts and their respective
-VMs. While the latter does not mimic a real implementation closely, it
-can be harnessed to yield a valid simulation: overheads induced by
-communication in the ``real'' implementation, for instance, can be
-easily added as part of the lightweight simulation. We have
-implemented this lightweight variant for the monitoring
-
-Regarding fault tolerance, similarly to the Entropy proposal, our
-implementation does not provide any failover mechanism.
-
-Finally, as mentioned in Section \ref{subsec:traces-analysis}, we monitor, for each iteration,
-whether the VMPP solver succeeds or fails. In case of success, \vmps
-records the number of migration that has been performed, the time it
-took to apply the reconfiguration and whether
-the application of the reconfiguration plan led to new violations.
+% As the Entropy proposal does not provide a specific mechanism for the
+% collection of resource usage information but simply uses an external
+% tool (namely ganglia), we had two different ways to implement the
+% monitoring to process: either by implementing additional asynchronous
+% transmissions as a real implementation of the necessary state updates
+% would proceed or, in a much more lightweight manner,
+We monitor the resource usage through direct accesses 
+% by the aforementioned process 
+to the states of the hosts and their respective VMs, while accounting
+for communication overheads explicitly
+% induced by communication in the ``real'' implementation, for
+% instance, can be easily added as part of the lightweight
+% simulation. We have implemented this lightweight variant for the
+% monitoring
+%
+% Regarding fault tolerance, similarly to the Entropy proposal, our
+% implementation does not provide any failover mechanism.
+%
+% as mentioned in Section \ref{subsec:traces-analysis},
+We also monitor, for each iteration, whether the VMPP solver succeeds
+or fails. In case of success, \vmps records the number of migrations
+that have been performed, the time it took to apply the
+reconfiguration and whether the application of the reconfiguration
+plan led to new violations.
 
 \subsection{Snooze-based Hierarchical Approach}
 \label{subsec:snooze}
