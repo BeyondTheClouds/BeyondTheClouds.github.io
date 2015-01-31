@@ -1,45 +1,46 @@
 \section{Dynamic VMPP Algorithms}
 \label{sec:vm-schedulers}
-To illustrate the interest of \vmps, we implemented three dynamic VM
-placement mechanisms respectively based on the Entropy
-\cite{Hermenier:2009:ECM:1508293.1508300}, Snooze
-\cite{feller:ccgrid12}, and DVMS \cite{quesnel:cpe2012} proposals. For the three
-implementations, we chose to use the latest VMPP solver that has been
-developed as part of the Entropy
-framework~\cite{hermenier:cp11}.
 
-%
-Giving up consolidation
-optimality in favor of scalability, this algorithm provides a ``repair
-mode'' that enables the correction of VM requirement violations. The algorithm considers that a host is
-overloaded when the VMs try to consume more than 100\% of the CPU
-capacity of the host. In such a case, the algorithm looks for
-an optimal viable configuration until it reaches a predefined timeout.
-The optimal solution is a new placement that satisfies
-the requirements of all VMs while minimizing the cost of the
-reconfiguration.
-Once the timeout has been triggered, the algorithm returns
-the best solution among the ones it finds and applies the associated
+To illustrate the interest of \vmps, we implemented three dynamic VM
+placement mechanisms: a centralized one based on the Entropy
+proposal~\cite{Hermenier:2009:ECM:1508293.1508300}, a hierarchical one
+based on Snooze~\cite{feller:ccgrid12}, and a fully-distributed one
+based on DVMS~\cite{quesnel:cpe2012}.
+
+These systems enable the recognition of violations in form of
+overloaded nodes. A host is overloaded when the VMs try to consume
+more than 100\% of the CPU capacity of the host. In such a case, a
+resolution algorithm looks for an optimal viable configuration until
+it reaches a predefined timeout. In all cases, we chose to use the
+latest solver developed as part of the Entropy
+framework~\cite{hermenier:cp11} as this resolution algorithm.
+% Giving up consolidation optimality in favor of scalability, this
+% algorithm provides a ``repair mode'' that enables the correction of VM
+% requirement violations. The optimal solution is a new placement that
+% satisfies the requirements of all VMs while minimizing the cost of the
+% reconfiguration.  
+Once the timeout has been triggered, the algorithm returns the best
+solution among the ones it finds and applies the associated
 reconfiguration plan by invoking live migrations in the simulation
 world.
-
 %
-Although using the Entropy VMPP solver
-implies a modification from the original Snooze proposal,  we
-highlight that our goal is to illustrate the capabilities of \vmps and
-thus we believe that such a modification is acceptable as it does not
-change the global behavior of Snooze. Moreover by
-conducting such a comparison, we also investigate the pros and cons of
-the three  architecture models on which these proposals rely on (\ie centralized, hierarchical and
-distributed).
-
+% Although using the Entropy VMPP solver implies a modification from the
+% original Snooze proposal, we highlight that our goal is to 
 %
-Before discussing the simulation results, we
-describe in this section an overview of the three implemented systems.
-We highlight that the extended abstractions for hosts (\texttt{XHost})
-and VMs (\texttt{XVM}) as well as the available functions of the \sg
-MSG API enabled us to develop them in a direct and natural manner.
+% and thus we believe that such a modification is acceptable as it
+% does not change the global behavior of Snooze
 
+Simulating these three VMPP systems illustrates the capabilities of
+\vmps. Moreover, by conducting such a comparison, we also investigate
+the pros and cons of the three architecture models on which these
+proposals rely on (\ie centralized, hierarchical and distributed).
+
+In the remainder of this section, we first present an overview of the
+three systems, showing, in particular, that the extended abstractions
+for hosts (\texttt{XHost}), VMs (\texttt{XVM}) and the functions of
+the \sg MSG API enabled us to develop them in a direct and natural
+manner. We then present simulation results that, as a first, allow the
+three approaches to be compared.
 
 \subsection{Entropy-based Centralized Approach}
 \label{subsec:entropy}
@@ -94,3 +95,8 @@ the application of the reconfiguration plan led to new violations.
 \input{dvms}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
