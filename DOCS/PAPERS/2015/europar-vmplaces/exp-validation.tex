@@ -29,14 +29,17 @@ factor).
 \begin{wrapfigure}{r}{.48\linewidth}
 \centering
 \vspace*{-.6cm}
-\includegraphics[width=0.99\linewidth]{./figures/simu-vivo-32PM-192VM-6020-original.pdf}
+%\includegraphics[width=0.99\linewidth]{./figures/simu-vivo-32PM-192VM-6020-original.pdf}
+ \subcapcentertrue
+\subfigure{\includegraphics[width=0.99\linewidth]{./figures/accuraci-simu.pdf}
+\label{fig:accu-simu}}
+\subfigure{\includegraphics[width=0.99\linewidth]{./figures/accuraci-invivo.pdf}
+\label{fig:accu-vivo}}
 \vspace*{-.6cm}
 \caption{Comparison between simulated and \textit{in-vivo} Executions}
-\flushleft\scriptsize{The red parts correspond to the time periods where Entropy checks the viability
-of the current configuration and compute a new viable configuration if necessary.
-The black parts correspond to the reconfiguration phases (\ie when
-Entropy performs the migrations of the VM to reach the new
-configuration that solves the QoS issues).}
+\flushleft\scriptsize{The red parts correspond the computation phase (\ie
+  the time where Entropy looks for a new configuration). The black parts correspond to the reconfiguration phase (\ie when
+VM are relocated throughout the cluster.}
 \label{fig:usecase-vivosimu}
 \vspace*{-.6cm}
 \end{wrapfigure}
