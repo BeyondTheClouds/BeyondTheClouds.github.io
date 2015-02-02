@@ -1,6 +1,6 @@
 \subsection{Accuracy Evaluation of \vmps}
 \label{subsec:accuracy}
-In order to validate the accuracy of \vmps, we implemented a dedicated
+To validate the accuracy of \vmps, we implemented a dedicated
 version of our
 framework\footnote{\url{https://github.com/BeyondTheClouds/G5K-VMPlaceS}}
 on top of the Grid'5000 testbed and compared the execution of the
@@ -55,7 +55,8 @@ statisfied all VM requirements). At 540 seconds, Entropy started to
 detect non viable configurations and performed reconfigurations.
 Diving into details, the difference between the \textit{simulated} and
 \textit{in-vivo} reconfiguration time fluctuated between 6\% and 18\%
-(median was around 12\%) during the experiment. The worst case, \ie 18\%, was reached when
+(median was around 12\%). %during the experiment.
+The worst case, \ie 18\%, was reached when
 multiple migrations were performed simultaneously on the same
 destination node. In this case and even if the SFQ network policy was
 enabled, we discovered that in the reality the throughput of migration
