@@ -4,8 +4,10 @@
 
 The purpose of \vmps is to deliver a generic tool to evaluate new VM
 placement algorithms and offer the possibility to compare
-them. Concretely, it supports the management of VM creations, workload
-fluctuations as well as node apparitions/removals.  Researchers can
+them. Concretely, it supports the management of VM creations and
+workload fluctuations.
+% as well as node apparitions/removals.
+ Researchers can
 thus focus on the implementation of new placement algorithms and
 evaluate how they behave in the presence of changes that occur during
 the simulation.
@@ -17,7 +19,7 @@ benefits to researchers for the implementation of advanced scheduling
 strategies, notably concerning the ease of implementation of new
 strategies. As examples, we reimplemented the Snooze proposal in Java
 and the DVMS proposal using Scala/Java.
-
+%
 In the following we give an overview of the framework and describe its
 general functioning.% and how researchers can develop new algorithms
 
@@ -28,32 +30,43 @@ From a high-level view, \vmps performs a simulation in three phases:
 (i) initialization (ii) injection and (iii) trace analysis (see Figure
 \ref{fig:workflow}).  The initialization phase corresponds to the
 creation of the environment, the VMs and the generation of the queue
-of events that may represent, \eg load changes.  The
-simulation is performed by at least two \sg processes, one executing
-the \emph{injector}, which constitutes the generic part of the
-framework, and a second one executing the to-be-simulated
-\emph{scheduling algorithm}. During the simulation the scheduling
-strategy is evaluated by injecting scheduling-relevant events.
-\AL[MS]{This sentence above is not accurate enough I? previously it
-  was : The
-\emph{injector} constitutes the generic part of the framework. It
-injects scheduling-relevant events during the execution of
-simulations. We should reformulate}
-Currently, the supported events are VM CPU load change and node
-apparitions/removals that we use to simulate node crashes.
+of events (for the moment, VM load changes).
 
-
-
-\begin{wrapfigure}{r}{.5\linewidth}
+\begin{wrapfigure}{r}{.48\linewidth}
 \centering
-\vspace*{-.8cm}
-\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.png}
+\vspace*{-.2cm}
+\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.pdf}
+\vspace*{-.1cm}
 \caption{\vmps's Workflow}
 {\small Gray parts correspond to the generic code while the white one
-  must be provided by end-users. The current version is released with
-  three different schedulers (centralized/hierarchical and distributed).}
+  must be provided by end-users. %The current version is released with
+%  three different schedulers (centralized/hierarchical and
+%  distributed).
+}
+\vspace*{-.6cm}
 \label{fig:workflow}
 \end{wrapfigure}
+%
+The
+simulation is performed by at least two \sg processes, one executing
+the \emph{injector}, which constitutes the generic part of the
+framework and which, is in charge of injecting the events during the
+execution of the simulation, and a second one executing the to-be-simulated
+\emph{scheduling algorithm}.
+%During the simulation the scheduling
+%strategy is evaluated by injecting scheduling-relevant events.
+%\AL[MS]{This sentence above is not accurate enough I? previously it
+ % was : The
+%\emph{injector} constitutes the generic part of the framework. It
+%njects scheduling-relevant events during the execution of
+%simulations. We should reformulate}
+%Currently, the supported events are VM CPU load changes.
+% node apparitions/removals that we use to simulate node crashes.
+%
+The last phase consists in the analysis of the collected traces in
+order to gather the results of the simulation, notably by means of the
+generation of figures representing, \eg resource usage statistics.
+
 
 
 % \begin{figure}
@@ -81,10 +94,11 @@ the VM placement simulator.  Throughout these three classes, users can
 inspect, at any time, the current state of the infrastructure (\ie the
 load of a host/VM, the number of VMs hosted on the whole
 infrastructure or on a particular host, check whether a host is
-overloaded, etc.) We have used \vmps in order to analyze three
-scheduling mechanisms, cf.\ Sec.~\ref{sec:vm-schedulers}, that
-represent three different software architecture models: centralized,
-hierarchical and fully-distributed models for VM placement.
+overloaded, etc.).
+%We have used \vmps in order to analyze three
+%scheduling mechanisms, cf.\ Sec.~\ref{sec:vm-schedulers}, that
+%represent three different software architecture models: centralized,
+%hierarchical and fully-distributed models for VM placement.
 %% TODO
 %\MS{The
 %  following point is too low-level and should not come here} Although
@@ -94,9 +108,6 @@ hierarchical and fully-distributed models for VM placement.
 %a generic python script.  \AL{We should highlight that point in the
 %  README.org}
 
-The last phase consists in the analysis of the collected traces in
-order to gather the results of the simulation, notably by means of the
-generation of figures representing, \eg resource usage statistics.
 
 %\begin{itemize}
 %\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
@@ -136,14 +147,18 @@ defined in terms of five parameters: the number of cores
 network bandwidth \texttt{net\_bw}, the maximum bandwidth available
 migrate it \texttt{mig\_speed} and the maximum memory update speed
 \texttt{mem\_speed} when the VM is consuming 100\% of its CPU
-resources. As pointed out in Section \ref{sec:sg}, the memory update
-speed is a critical parameter that governs the migration time as well
-as the amount of transferred data. By giving the possibility to define
-VM classes, \vmps allows researchers to simulate different kinds of
-workload (\ie memory-intensive vs non-intensive workloads), and thus
-analyze more realistic Cloud Computing problems.  Available classes
+resources.
+Available classes
 are defined in a specific text file that can be modified according to
 the user's needs.
+As pointed out in Section \ref{sec:sg}, the memory update
+speed is a critical parameter that governs the migration time as well
+as the amount of transferred data.
+By giving the possibility to define
+VM classes, \vmps allows researchers to simulate different kinds of
+workload (\ie memory-intensive vs non-intensive workloads), and thus
+analyze more realistic CC problems.
+
 %\MS{Follows a low-level mechanism!}
 % TODO not addressed yet. This text should appear in the README
 %At creation time
@@ -160,8 +175,9 @@ least two SG processes, the \emph{injector} and the launcher of the
 selected scheduler.  The first action of the \emph{injector} consists
 in creating the different event queues and merge them into a global
 one that will be consumed during the second phase of the simulation.
-For now, we generate two kinds of event: \emph{CPU load} and
-\emph{node crash} events.
+For the moment, we generate one kind of events: \emph{CPU load}.
+%and
+%\emph{node crash} events.
 %\todo{Before apparitions/ removals}
 % The former consists in changing the load of a VM by creating and
 % assigning a new \sg task in the VM while the second aims at
@@ -194,24 +210,27 @@ seed that is defined in a configuration file. This way, we can ensure
 that different simulations are reproducible and may be used to
 establish fair comparisons.
 
-The \emph{node crash} event queue is generated in order to turn off a
-node every $f$ seconds on average for a duration of $d$ seconds.
-Similarly to the $t$ value above, $f$ follows an exponential
-distribution with rate $\lambda_f$. $f$ and $d$ are also provided as
-input parameters of a simulation.
+%The \emph{node crash} event queue is generated in order to turn off a
+%node every $f$ seconds on average for a duration of $d$ seconds.
+%Similarly to the $t$ value above, $f$ follows an exponential
+%distribution with rate $\lambda_f$. $f$ and $d$ are also provided as
+%input parameters of a simulation.
 
-Adding new events can easily be done by simply defining new event Java
+We highlight that adding new events can be
+done by simply defining new event Java
 classes implementing the \texttt{InjectorEvent} interface and by
 adding the code in charge of generating the associated queue. Such a
 new queue will be merged into the global one and its events will then be
-consumed similarly to other ones during the \emph{injector phase}.
+consumed similarly to the \emph{CPU Load} one during the \emph{injector phase}.
+As an example, the next release of \vmps will integrate   \emph{node
+  apparition/removal events} that will be used to simulate crashes.
 
 \subsection{Injector Phase}
 
 Once the VMs and the global event queue are ready, the evaluation of
 the scheduling mechanism can start. First, the injector process
-iteratively consumes the different events that represent, for now,
-load changes of a VM or turning a node off or on. Changing the load of
+iteratively consumes the different events that represent, for now, load changes of a VM.
+Changing the load of
 a VM corresponds to the creation and the assignment of a new \sg task
 in the VM. This new task has a direct impact on the time that will be
 needed to migrate the VM as it increases or decreases the current CPU
@@ -220,16 +239,16 @@ its memory update speed.
 % \MS[AL]{Is the above paragraph clear enough?}
 % that is indicated by the \texttt{mem\_speed}
 %% parameter given in the class description.
-When a node is turning off, the VMs that were running on that node are
-temporarily discarded, \ie they are hidden and cannot be accessed
-until the node comes back to life. This way, the scheduler cannot
-handle them.
+%When a node is turning off, the VMs that were running on that node are
+%temporarily discarded, \ie they are hidden and cannot be accessed
+%until the node comes back to life. This way, the scheduler cannot
+%handle them.
  %\AL[AL, MS, JP]{This is ugly but unfortunately the true,
  % it will be better to reassign those VMs on other nodes, but which
  % one?  }
-We leave for future work other approaches that can better
-match realistic scenarios such as turning off the VMs and
-reprovisioning them on other nodes.
+%We leave for future work other approaches that can better
+%match realistic scenarios such as turning off the VMs and
+%reprovisioning them on other nodes.
 %
 
 As defined by the scheduling algorithm, VMs will be suspended/resumed
@@ -247,11 +266,12 @@ systems.
 %   What do you think? Yes, would be cleaner. Can we just present the
 %   interface as such? Or not talk about the direct possibility?}
 Last but not least, it is noteworthy that \vmps really invokes the
-execution of each scheduling strategy in order to get the effective
+execution of each scheduling solver to get the effective
 reconfiguration plan.  That is, the computation time that is observed
 is not simulated but corresponds to the effective one, only the
-workload inside the VMs and the migration operations are simulated in
-\sg. It is hence mandatory to propagate the reconfiguration time into
+workload inside the VMs and the reconfiguration operations (\ie
+suspend/resume and migrate)  are simulated in
+\sg. It is hence mandatory to propagate the effective computation time into
 the \sg engine.%
 % The following is IMO a technical detail
 % by invoking a \texttt{wait} call of the MSG interface.
@@ -264,15 +284,15 @@ been collected during the simulation.
 % in order to understand and compare the behavior of the different
 % algorithms.
 This analysis is done in two steps. First, \vmps records several
-metrics related to the platform utilization throughout the simulation
+metrics related to the platform utilization % throughout the simulation
 by leveraging an extended version of \sg's TRACE
 module\footnote{\url{http://simgrid.gforge.inria.fr/simgrid/3.12/doc/tracing.html}}.
 This way, visualization tools that have been developed by the \sg
 community, such as PajeNG~\cite{pageng:www}, may be used. Furthermore,
 our extension enables the creation of a trace file in the JSON file
-format, which is used to generate several figures using the R
-statistical environment~\cite{R:Bloomfield:2014} about the resource
-usage during the simulation.
+format, which is used to generate several figures  about the resource
+usage during the simulation using the R
+statistical environment~\cite{R:Bloomfield:2014}.
 
 By default, \vmps records the load of the different VMs and hosts, the
 appearance and the duration of each violation of VM requirements in

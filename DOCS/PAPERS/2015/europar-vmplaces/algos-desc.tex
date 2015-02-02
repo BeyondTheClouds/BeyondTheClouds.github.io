@@ -10,7 +10,7 @@ based on DVMS~\cite{quesnel:cpe2012}.
 \MS{We should differentiate more clearly between the complete VMPP
   system and the solver.}
 
-These systems enable the recognition of violations in form of
+These systems enable  the resolution  of violations in form of
 overloaded nodes. A host is overloaded when the VMs try to consume
 more than 100\% of the CPU capacity of the host. In such a case, a
 resolution algorithm looks for an optimal viable configuration until
@@ -21,14 +21,14 @@ framework~\cite{hermenier:cp11} as this resolution algorithm.
 % algorithm provides a ``repair mode'' that enables the correction of VM
 % requirement violations. The optimal solution is a new placement that
 % satisfies the requirements of all VMs while minimizing the cost of the
-% reconfiguration.  
+% reconfiguration.
 Once the timeout has been triggered, the algorithm returns the best
 solution among the ones it finds and applies the associated
 reconfiguration plan by invoking live migrations in the simulation
 world.
 %
 % Although using the Entropy VMPP solver implies a modification from the
-% original Snooze proposal, we highlight that our goal is to 
+% original Snooze proposal, we highlight that our goal is to
 %
 % and thus we believe that such a modification is acceptable as it
 % does not change the global behavior of Snooze
@@ -71,8 +71,8 @@ frequency.
 % monitoring to process: either by implementing additional asynchronous
 % transmissions as a real implementation of the necessary state updates
 % would proceed or, in a much more lightweight manner,
-We monitor the resource usage through direct accesses 
-% by the aforementioned process 
+We monitor the resource usage through direct accesses
+% by the aforementioned process
 to the states of the hosts and their respective VMs, while accounting
 for communication overheads explicitly
 % induced by communication in the ``real'' implementation, for
