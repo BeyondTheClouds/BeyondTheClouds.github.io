@@ -6,32 +6,8 @@ Developed for more than a decade,
 % and used in a large number of studies described in mor than
 % 100~publications,
 \sg is a toolkit for the simulation of potentially complex algorithms
-executed on large-scale distributed systems.
-We chose to base \vmps on \sg since (i) the latter's relevance in
-terms of performance and validity has already been
-demonstrated~\cite{simgridpub} and (ii) because it has been recently
-extended to integrate virtual machine abstractions and a live
-migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
-
-% Its main characteristics are the
-% following:
-% \begin{itemize}
-%   \item Extensibility: after Grids, HPC and P2P systems, \sg has been
-%     recently extended with abstractions for virtualization
-%     technologies (\ie Virtual Machines including a live migration
-%     model \cite{Hirofuchi:2013:ALM:2568486.2568524}) to allow users to
-%     investigate Cloud Computing challenges \cite{lucas:cloud2014}.
-%   \item Scalability: it is possible to simulate large-scale scenarios;
-%     as an example, users can simulate applications composed of
-%     2~million processors and an infrastructure composed of
-%     10,000~servers~\cite{casanova:hal-01017319}.
-% %hosting more than 100,000~VMs on a computer with 16~GB of memory. \MS[AL]{Add a ref.}
-%   \item Flexibility: it enables simulations to be run on arbitrary
-%     network topologies under dynamically changing computations and
-%     available network resources.
-%   \item Versatile APIs: users can leverage \sg through easy-to-use
-%     APIs for~C and~Java.
-% \end{itemize}
+executed on large-scale distributed
+systems~\cite{casanova:hal-01017319}.
 
 To perform simulations, users should develop a \emph{program} and
 define a \emph{platform} file and a \emph{deployment} file. The
@@ -51,37 +27,18 @@ engine that internally relies on an constraint solver to correctly
 assign the amount of CPU/network resources to each \sg abstraction
 during the entire simulation.
 
-\sg provides many other features such as model checking, the
-simulation of DAGs (Direct Acyclic Graphs) or MPI-based
-applications. In the following, we only give a brief description of
-the virtualization abstractions that have been recently implemented
-and on which our framework relies on (for further information regarding
-\sg see~\cite{casanova:hal-01017319}).
 
-The VM support has been designed so that all operations that can be
-performed on a host can also be performed inside a VM. From the point
-of view of a \sg Host, a \sg VM is an ordinary task while from the
-point of view of a task running inside a \sg VM, a VM is considered as
-an ordinary host.
-% below the task.
-\sg users can thus easily switch between a virtualized and
-non-virtualized infrastructure.  Moreover, thanks to MSG API
-extensions, users can control VMs in the same manner as in the real
-world (\eg create/destroy VMs; start/shutdown, suspend/resume and
-migrate them).
-% TODO: Not addressed
-%\AL{Shoudl we talk about over-provisionning limitations}
-For migration operations, a VM live migration model implementing the
-precopy migration algorithm of Qemu/KVM has been integrated into \sg.
-This model is the only one that successfully simulates the live
+We chose to base \vmps on \sg
+since (i) the latter's relevance in terms of performance and validity
+has already been demonstrated~\cite{simgridpub} and (ii) because it
+has been recently extended to integrate VM abstractions and a live
+migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}. In addition
+to enabling researchers to control VMs in the same manner as in the
+real world (\eg create/destroy VMs; start/shutdown, suspend/resume and
+migrate them), the model implementing the precopy migration algorithm
+of Qemu/KVM is the only one that successfully simulates the live
 migration behavior by taking into account the competition arising in
 the presence of resource sharing as well as the memory refreshing rate
 of the VM, thus determining correctly the live migration time as well
-as the resulting network
-traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
-%
-%\AL[AL]{Add more details regarding live migration in order to reply to
-%the Mario's remark (not clear enoug)}
-%
-These two capabilities are mandatory to build our VM placement
-simulator toolkit.
+as the resulting network traffic. These two capabilities were
+mandatory to build our VM placement simulator toolkit.
