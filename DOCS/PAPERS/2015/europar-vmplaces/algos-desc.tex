@@ -10,13 +10,15 @@ based on DVMS~\cite{quesnel:cpe2012}.
 \MS{We should differentiate more clearly between the complete VMPP
   system and the solver.}
 
-These systems enable  the resolution  of violations in form of
+These systems enable, if it is possible,  the resolution  of violations in form of
 overloaded nodes. A host is overloaded when the VMs try to consume
 more than 100\% of the CPU capacity of the host. In such a case, a
-resolution algorithm looks for an optimal viable configuration until
-it reaches a predefined timeout. In all cases, we chose to use the
-latest solver developed as part of the Entropy
-framework~\cite{hermenier:cp11} as this resolution algorithm.
+resolution algorithm looks for a reconfiguration plan that can lead to
+a viable configuration. For the sake of
+simplicity, we chose to use the latest solver developed as part of the Entropy
+framework~\cite{hermenier:cp11} in the three systems as this resolution algorithm.
+The Entropy evaluates different viable configurations until  it
+reaches a predefined timeout.
 % Giving up consolidation optimality in favor of scalability, this
 % algorithm provides a ``repair mode'' that enables the correction of VM
 % requirement violations. The optimal solution is a new placement that
