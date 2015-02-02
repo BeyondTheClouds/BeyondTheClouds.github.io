@@ -60,26 +60,26 @@ invoked every 30 seconds. Finally, it is noteworthy that no service
 node had to be provisioned for DVMS as a DVMS process had been
 executed directly on top of the hosting nodes.
 
-In order to cope with real DC conditions, we defined the parameters
-for node crashes to simulate a fault on average every 6 months for a
-duration of 300 seconds. These values correspond to the Mean Time To
-Failure (MTTF) and the Mean Time To Repair (MTTR) of a Google DC
-server~\cite[pp. 107-108]{datacenterAsComputer}. We underline that at
-the scale we performed our simulations such a crash ratio was not
-sufficient to impact the behavior of the scheduling policies.
-Dedicated simulations were mandatory to study the influence of node
-crashes. However, due to the space limitations, we do not present them
-in the article and only gives major trends. Regarding Entropy,
-although the lost of the service node can be critic, the failure
-probability is so small that the single point of failure issue can be
-easily solved by a fail-over approach. Regarding Snooze, the heartbeat
-strategy enables the reconstruction of the hierarchy in a relative
-short time and thus crashes on service nodes do not significantly
-impact the resolution of violations (in our case less than 10 seconds
-is mandatory to reorganize the Snooze topology with a 6 seconds
-heartbeat mechanism). Finally regarding DVMS, the crash of one node
-does not have any impact of the resolution has the composition of the
-microcosm is reevaluated immediately.
+% In order to cope with real DC conditions, we defined the parameters
+% for node crashes to simulate a fault on average every 6 months for a
+% duration of 300 seconds. These values correspond to the Mean Time To
+% Failure (MTTF) and the Mean Time To Repair (MTTR) of a Google DC
+% server~\cite[pp. 107-108]{datacenterAsComputer}. We underline that at
+% the scale we performed our simulations such a crash ratio was not
+% sufficient to impact the behavior of the scheduling policies.
+% Dedicated simulations were mandatory to study the influence of node
+% crashes. However, due to the space limitations, we do not present them
+% in the article and only gives major trends. Regarding Entropy,
+% although the lost of the service node can be critic, the failure
+% probability is so small that the single point of failure issue can be
+% easily solved by a fail-over approach. Regarding Snooze, the heartbeat
+% strategy enables the reconstruction of the hierarchy in a relative
+% short time and thus crashes on service nodes do not significantly
+% impact the resolution of violations (in our case less than 10 seconds
+% is mandatory to reorganize the Snooze topology with a 6 seconds
+% heartbeat mechanism). Finally regarding DVMS, the crash of one node
+% does not have any impact of the resolution has the composition of the
+% microcosm is reevaluated immediately.
 
 
 All configuration files used to perform the discussed simulations can
@@ -465,7 +465,3 @@ code are related to \sg internals such as \texttt{sleep} and
 \texttt{send/recv} calls. Hence, we have contacted the \sg core
 developers in order to investigate how we can reduce the required time
 to perform such advanced simulations.
-
-
-
-

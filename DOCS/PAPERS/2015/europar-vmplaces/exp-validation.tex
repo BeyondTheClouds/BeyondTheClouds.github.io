@@ -9,7 +9,7 @@ in both the simulated and real world. Regarding the \textit{in-vivo}
 conditions, experiments have been performed on top of the Graphene
 cluster (Intel Xeon X3440-4 CPU cores, 16 GB memory, a GbE NIC, Linux
 3.2, Qemu 1.5 and SFQ network policy enabled) with 6 VMs per node.
-Each VM has been created as one of the 8 VM predefined classes. The
+Each VM has been created as one of 8 VM predefined classes. The
 template was 1:1GB:1Gbps:1Gbps:X, where the memory update speed X was
 a value between 0 and 80\% of the migration bandwidth (1Gbps) in steps
 of 10. Starting from 0\%, the load of each VM varied according to the
@@ -17,7 +17,7 @@ exponential and the Gaussian distributions previously described. The
 parameters were $\lambda$ = Nb VMs/300 and $\mu$= 60, $\sigma$ = 20.
 Concretely, the load of each VM varied on average every 5 min in steps
 of 10 (with a significant part between 40\% and 80\%). A dedicated
-\texttt{memtouch} program\cite{Hirofuchi:2013:ALM:2568486.2568524} has
+\texttt{memtouch} program~\cite{Hirofuchi:2013:ALM:2568486.2568524} has
 been used to stress both the CPU and the memory accordingly. Regarding
 the simulated executions, \vmps has been configured to reflect the
 \textit{in-vivo} conditions. In particular, we configured the network model of
@@ -25,7 +25,22 @@ SimGrid in order to cope with the network performance of the Graphene
 servers that were allocated to our experiment (6 MBytes for the TCP
 gamma parameter and 0.88 for the bandwidth corrective simulation
 factor).
-
+%\begin{figure}[hbt]
+\begin{wrapfigure}{r}{.48\linewidth}
+\centering
+\vspace*{-.6cm}
+\includegraphics[width=0.99\linewidth]{./figures/simu-vivo-32PM-192VM-6020-original.pdf}
+\vspace*{-.6cm}
+\caption{Comparison between simulated and \textit{in-vivo} Executions}
+\flushleft\scriptsize{The red parts correspond to the time periods where Entropy checks the viability
+of the current configuration and compute a new viable configuration if necessary.
+The black parts correspond to the reconfiguration phases (\ie when
+Entropy performs the migrations of the VM to reach the new
+configuration that solves the QoS issues).}
+\label{fig:usecase-vivosimu}
+\vspace*{-.6cm}
+\end{wrapfigure}
+%\end{figure}
 Fig.~\ref{fig:usecase-vivosimu} shows the cost of the two phases of
 the Entropy algorithm for each invocation when considering 32~PMs and
 192~VMs through simulations (top) and in reality (bottom). At
@@ -50,18 +65,6 @@ migration lasts less than 15 seconds in average, we believe that that
 the current simulation results are sufficiently accurate to capture
 performance trends of placement strategies.
 
-\begin{figure}[hbt]
-\centering
-\includegraphics[width=0.39\textwidth]{./figures/simu-vivo-32PM-192VM-6020.png}
-\caption{Comparison between simulated and \textit{in-vivo} Executions}
-\flushleft\scriptsize{The red parts correspond to the time periods where Entropy checks the viability
-of the current configuration and compute a new viable configuration if necessary.
-The black parts correspond to the reconfiguration phases (\ie when
-Entropy performs the migrations of the VM to reach the new
-configuration that solves the QoS issues).}
-\label{fig:usecase-vivosimu}
-%% TH \vspace*{-.3cm}
-\end{figure}
 
 As an example, we noticed that applying the
 reconfiguration plan was much more time-consuming than computing it. This result that has been correctly reported by the simuations means that VMPP also needs
@@ -74,5 +77,3 @@ Leveraging \vmps will enable researchers to observe such key points
 without facing with the burden of conducting large scale
 \textit{in-vivo} experiments. We illustrate such an advantage in the
 following section.
-
-
