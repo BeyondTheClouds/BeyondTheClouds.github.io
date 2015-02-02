@@ -1,4 +1,4 @@
-% As the third use-case, we have implemented the 
+% As the third use-case, we have implemented the
 DVMS (Distributed Virtual Machine Scheduler)~\cite{quesnel:cpe2012} enables the
 cooperative and fully-distributed placement of
 VMs.
@@ -25,8 +25,8 @@ defines the node-neighbor relation.
 % study,
 We have implemented a simple % but effective
 unstructured overlay that enables the agents to collaborate
-% without side effects: when necessary, \eg in case of node failures, 
-% the overlay 
+% without side effects: when necessary, \eg in case of node failures,
+% the overlay
 by providing a link to a neighbor of a node on the latter's request.
 % \MS[AL, JP]{A bit short. What about an architecture figure (as for
 %  Snooze?)}
@@ -45,9 +45,9 @@ partitions.
 %
 Each partition includes two special nodes, the initiator and the
 leader.  The initiator of a partition is its initial node (i.e. the
-overloaded node).  The leader of a partition is the node that was the
+overloaded one).  The leader of a partition is the node that was the
 last to be added to the partition: it manages the scheduling
-computations necessary to resolve the overload resource conflict. 
+computations necessary to resolve the overload resource conflict.
 % If a valid reconfiguration plan cannot be computed, a new node will be
 % inserted in the partition, who becomes the new leader of the
 % partition.
@@ -86,6 +86,7 @@ is considered.
 %
 If this neighbor, N\(_{\textit{i+1}}\),
 is already part of another partition, its neighbor is considered.
+\AL[MS]{Not clear enough, its next neighbor ?}
 Otherwise, N\(_{\textit{i+1}}\)
 joins the partition (see Fig.~\ref{fig:dvms_pte_2}) and becomes its
 leader.
@@ -96,7 +97,7 @@ leader.
 % %
 % On the contrary, if the procedure is still valid, N\(_{\textit{i+1}}\)
 % notifies members of the partition that it has become the new
-% leader. 
+% leader.
 The other nodes then send it information about their
 capacities and current load. The leader, in turn, starts a scheduling
 computation looking for a reconfiguration within the current
@@ -104,7 +105,7 @@ partition. If no solution is found, the same algorithm is applied to
 the next node N\(_{\textit{i+2}}\).
 % In the extreme case a partition may grow until all resources in a
 % cluster contribute to the resolution of its resource scheduling
-% problem. 
+% problem.
 This approach constructs small parititions in a highly parallel
 manner, thus significantly accelerating the scheduling computations.
 
