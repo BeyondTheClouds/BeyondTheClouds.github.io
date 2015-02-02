@@ -1,37 +1,10 @@
 \section{Introduction}
 \label{sec:intro}
-%\AL[AL]{1 page (including the abstract)}
-
-% Although a lot of progress has been made on Cloud Computing (CC)
-% system management, \aka Infrastructure-as-a-Service
-% toolkits~\cite{moreno:2012}, most of the popular
-% solutions~\cite{cloudstack, opennebula, openstack} continue to rely on
-%  elementary Virtual Machine (VM) placement
-% policies that prevent them from maximizing the usage of CC resources
-% while guaranteeing VM resource requirements as defined by Service
-% Level Agreements (SLAs).
-% %% THE TEXT BELOW COMES FROM ISPA'13
-% %%%%%%%
-% Typically, a batch scheduling approach is used: VMs (i)~are allocated
-% according to user requests for resource reservations, and (ii)~are
-% tied to the nodes where they were deployed until their
-% destruction. Besides the fact that users often overestimate their
-% resource requirements, such static policies are definitely not optimal
-% for CC providers, since the effective resource requirements of each
-% operated VM may significantly vary during its lifetime.
-% %%%%%%%
-%  Dynamic strategies such as consolidation, load balancing
-% and other SLA-ensuring algorithms have been deeply investigated \cite
-% {feller:ccgrid12}, \cite{Hermenier:2009:ECM:1508293.1508300},
-% \cite{5715067}, \cite{quesnel:cpe2012}, \cite{5328077},
-% \cite{5935254}. \MS{Be more assertive on the motivation: Adrien, which
-%   was the article for justification?}
 
 Even if more flexible and often more efficient approaches to the
-Virtual Machine Placement Problem (VMPP) have been developed
-%by the research community
-, most of the popular Cloud Computing (CC) system
-management \cite{cloudstack, opennebula, openstack}, \aka
+Virtual Machine Placement Problem (VMPP) have been developed,
+most of the popular Cloud Computing (CC) system
+management \cite{cloudstack,opennebula,openstack}, \aka
 Infrastructure-as-a-Service toolkits~\cite{moreno:2012}, continue to
 rely on elementary Virtual Machine (VM) placement policies that
 prevent them from maximizing the usage of CC resources while
@@ -50,11 +23,13 @@ significantly vary during its lifetime.
 An important impediment to the adoption of more advanced strategies
 such as consolidation, load balancing and other SLA-ensuring
 algorithms that have been deeply investigated by the research community
-\cite{feller:ccgrid12, Hermenier:2009:ECM:1508293.1508300, 5715067,
-  quesnel:cpe2012, 5328077, 5935254} is related to the experimental
+%\cite{feller:ccgrid12,Hermenier:2009:ECM:1508293.1508300,5715067,quesnel:cpe2012,5328077,5935254}
+%is related to the experimental
+% REMOVE: 5328077 can be removed if need be
+\cite{feller:ccgrid12,Hermenier:2009:ECM:1508293.1508300,quesnel:cpe2012,5328077,5935254} is related to the experimental
 processes that have been used to validate them: most VMPP proposals have
-been evaluated either by leveraging ad-hoc simulators or small
-testbeds. These evaluation environments are not accurate and not
+been evaluated either by leveraging ad-hoc simulators or small \textit
+{in-vivo} experiments. These evaluation environments are not accurate and not
 representative enough to (i) ensure their correctness on real
 platforms and (ii) perform fair comparisons between them.
 
@@ -104,17 +79,18 @@ propose appropriate solutions for CC production infrastructures.
 % and compare  with existing proposals.
 However, \textit{in-vivo} (\ie real-world) experiments, if they can be
 executed at all, are always expensive and tedious to perform (for
-recent reference see~\cite{barker:pitfalls}). They may
-even be counterproductive if the observed behaviors are clearly
-different from the expected ones.
+recent reference see~\cite{barker:pitfalls}).
+% They may even be counterproductive if the observed behaviors are clearly
+%different from the expected ones.
 
 In this article, we propose \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
 them in a fair way. To cope with real conditions such as the
 increasing scale of modern data centers and the dynamicity of the
 workloads that are specific to the CC paradigm, notably its elasticity
-capacity, \vmps allows users to study large-scale scenarios that take
-into account server crashes and that involve tens of thousands of VMs,
+capacity, \vmps allows users to study large-scale scenarios
+%that take into account server crashes and
+that involve thousands of VMs,
 each executing a specific workload that evolves during the
 simulation lifetime.
 
@@ -122,58 +98,55 @@ Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
 provides three additional simulation facilities: a more abstract
 representation of hosts and virtual machines, and two frameworks, one
 for the management of load injection abstract and another one for the
-extraction and analysis of execution traces. We believe that such a
-tool will be beneficial to a large number of researchers in the field
-of CC as it enables them to quickly validate
-% AL->MS the characterisctics -> the trends,  simulations are
-% well-known scientific intrusments to validate trends (and only trends).
-the trends of a new proposal and compare it with existing
-ones. This way, our approach allows \textit{in vivo} experiments to be
-restricted to VMPP mechanisms that have the potential to handle CC
-production infrastructures.
+extraction and analysis of execution traces.
 
 %
-We chose to base \vmps on \sg since (i) the latter's relevance in
-terms of performance and validity has already been
-demonstrated~\cite{simgridpub} and (ii) because it has been recently
-extended to integrate virtual machine abstractions and a live
-migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-To illustrate the relevance of \vmps, we have implemented the
-essential mechanisms of three well-known VMPP approaches:
+To illustrate the relevance of \vmps, we have implemented and analyzed
+three well-known VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}.
 Besides being well-known from the literature, we chose
 these three systems as they are built on three different software
 architecture approaches: Entropy relies on a centralized model, Snooze
 on a hierarchical one and DVMS on a fully distributed one.
+Results returned by \vmps enables us to discuss in details the
+scalability and reactivity (\ie the time to solve
+resource violations, \aka SLA violation) criterions of each strategy.
+This study reveals, in particular, the importance of the duraction of
+the reconfiguration phase (\ie the step where VMs are relocated throughout the infrastructure) in
+comparison to the computation one (\ie the step where the scheduler try to solve the VMPP).
 
-Once the accuracy of \vmps validated, we have also investigated the
-characteristics of these three strategies by studying their
-scalability, reliability and reactivity (\ie the time to solve
-resource violations, \aka SLA violation) criterions through several
-simulations. This study reveals:
-\begin{itemize}
-\item The importance of the duration of the reconfiguration phase (\ie
-  the step where VMs are relocated throughout the infrastructure) in
-  comparison to the computation one (\ie the step where the scheduler
-  try to solve the VMPP, see Section \ref{sec:vmpp} for a complete
-  definition of both steps).
+%\begin{itemize}
+%\item The importance of the duration of the reconfiguration phase (\ie
+% the step where VMs are relocated throughout the infrastructure) in
+%  comparison to the computation one (\ie the step where the scheduler
+% try to solve the VMPP)
+%, see Section \ref{sec:vmpp} for a complete  definition of both steps).
 %\item The quasi-inexistant impact of failures on the reactivity for
 %  all systems when considering a 6 months failure
 %  rate;
-\item The pros and cons of partitioning Snooze in small or large
-  groups;
-\item The relevance of a reactive strategy in comparison to a periodic
-  one.
-\item The interest of leveraging our toolkit to identify limitations
-  of proposals and study variants and possible improvements.
-\end{itemize}
+%\item The pros and cons of partitioning Snooze in small or large
+% groups;
+%\item The relevance of a reactive strategy in comparison to a periodic
+%  one.
+%\item The interest of leveraging our toolkit to identify limitations
+%  of proposals and study variants and possible improvements.
+%\end{itemize}
+
+We believe that such a
+tool will be beneficial to a large number of researchers in the field
+of CC as it enables them to quickly validate
+the trends of a new proposal and compare it with existing
+ones.
+This way, our approach allows \textit{in vivo} experiments to be
+restricted to VMPP mechanisms that have the potential to handle CC
+production infrastructures.
 
 The rest of the article is
-organized as follow. Section~\ref{sec:vmpp} highlights the importance
-of the scalability, reliability and reactivity criterions for the VM
-Placement Problem.
+organized as follow.
+%Section~\ref{sec:vmpp} highlights the importance of the scalability, reliability and reactivity criterions for the VM
+%Placement Problem.
 Section~\ref{sec:sg} gives an overview of the \sg
 framework on which our proposal is built. \ref{sec:injector}
 introduces \vmps and discusses its general functioning. The three
@@ -182,5 +155,3 @@ Section~\ref{sec:vm-schedulers} and evaluated in
 Section~\ref{sec:experiments}. Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
-
-
