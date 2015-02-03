@@ -1,5 +1,7 @@
+%\vspace*{-.4cm}
 \section{Introduction}
 \label{sec:intro}
+%\vspace*{-.2cm}
 
 Even if more flexible and often more efficient approaches to the
 Virtual Machine Placement Problem (VMPP) have been developed,
@@ -32,7 +34,7 @@ been evaluated either by leveraging ad-hoc simulators or small \textit
 {in-vivo} experiments. These evaluation environments are not accurate and not
 representative enough to (i) ensure their correctness on real
 platforms and (ii) perform fair comparisons between them.
-
+%
 % %
 % \begin{figure}[ht]
 % \vspace*{-.2cm}
@@ -86,60 +88,33 @@ recent reference see~\cite{barker:pitfalls}).
 In this article, we propose \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
 them in a fair way. To cope with real conditions such as the
-increasing scale of modern data centers and the dynamicity of the
-workloads that are specific to the CC paradigm, notably its elasticity
+increasing scale of modern data centers and the workloads dynamicity
+that are specific to the CC paradigm, notably its elasticity
 capacity, \vmps allows users to study large-scale scenarios
 %that take into account server crashes and
 that involve thousands of VMs,
 each executing a specific workload that evolves during the
 simulation lifetime.
-
-Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
-provides three additional simulation facilities: a more abstract
-representation of hosts and virtual machines, and two frameworks, one
-for the management of load injection abstract and another one for the
-extraction and analysis of execution traces.
-
 %
-
 To illustrate the relevance of \vmps, we have implemented and analyzed
-three well-known VMPP approaches:
+three VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}.
 Besides being well-known from the literature, we chose
 these three systems as they are built on three different software
 architecture approaches: Entropy relies on a centralized model, Snooze
 on a hierarchical one and DVMS on a fully distributed one.
-Results returned by \vmps enables us to discuss in details the
+Results returned by \vmps enable us to discuss the
 scalability and reactivity (\ie the time to solve
 resource violations, \aka SLA violation) criterions of each strategy.
-This study reveals, in particular, the importance of the duraction of
+In particular, this study reveals the importance of the duraction of
 the reconfiguration phase (\ie the step where VMs are relocated throughout the infrastructure) in
 comparison to the computation one (\ie the step where the scheduler try to solve the VMPP).
-
-%\begin{itemize}
-%\item The importance of the duration of the reconfiguration phase (\ie
-% the step where VMs are relocated throughout the infrastructure) in
-%  comparison to the computation one (\ie the step where the scheduler
-% try to solve the VMPP)
-%, see Section \ref{sec:vmpp} for a complete  definition of both steps).
-%\item The quasi-inexistant impact of failures on the reactivity for
-%  all systems when considering a 6 months failure
-%  rate;
-%\item The pros and cons of partitioning Snooze in small or large
-% groups;
-%\item The relevance of a reactive strategy in comparison to a periodic
-%  one.
-%\item The interest of leveraging our toolkit to identify limitations
-%  of proposals and study variants and possible improvements.
-%\end{itemize}
-
-We believe that such a
-tool will be beneficial to a large number of researchers in the field
+%
+%Built on top of the \sg toolkit~\cite{casanova:hal-01017319},
+We believe that \vmps  will be beneficial to a large number of researchers in the field
 of CC as it enables them to quickly validate
-the trends of a new proposal and compare it with existing
-ones.
-This way, our approach allows \textit{in vivo} experiments to be
+the trends of a new proposal, allowing \textit{in vivo} experiments to be
 restricted to VMPP mechanisms that have the potential to handle CC
 production infrastructures.
 
