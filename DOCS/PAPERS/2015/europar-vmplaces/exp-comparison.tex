@@ -306,133 +306,15 @@ this information is valuable as it will help researchers to design new
 algorithms favoring the automatic discovery of the optimal subset of
 nodes capable to solve violations under for given load profiles.
 
-\AL{Ici dire qu'il y a pleins d'autres metriques pertinentes comme le
-  nombre de migrations qui a été faite, ..... mais que faute de place
-  nous ne pouvons pas les discuter ici. Neanmoins cette etude nous a
-  permis de voir pleins de trucs sympa et des améliorations possibles.
-Le reactif vs le periodique. puis passer aux related works}
-% Although DVMS selects naively its neighborhood without
-% considering whether it is relevant or note, we can consider that DVMS
-% is one of such advanced algorithm.
+\vmps provides additional metrics such as the number of migrations
+that has been performed overall, the average duration of each
+migration~\ldots. Due to space limitations, we cannot discuss all
+these metrics. However, we emphasize that they provide importance
+guidances on the pros and cons of each scheduling policy, notably on
+the migration overhead on the network but
+also on the workload running inside each VM.
 
-
-% \begin{figure}[ht]
-% \begin{center}
-%     \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
-%     \caption{Details of violations duration occuring during simulation (10240 VMS).}
-% \end{center}
-% \label{fig:violation_clouds_dvms_1024}
-% \end{figure}
-
-% \begin{figure}[ht]
-% \begin{center}
-%     \includegraphics[width=.85\linewidth]{figures/experiments/clouds-1024-hierarchical.pdf}
-%     \caption{Details of violations duration occuring during simulation (10240 VMS).}
-% \end{center}
-% \label{fig:violation_clouds_snooze_1024}
-% \end{figure}
-
-
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
-    \caption{Cumulated migration time.}
-\end{center}
-\label{fig:cumulated_migration_time}
-\end{figure}
-
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
-    \caption{Average duration of a migration.}
-\end{center}
-\label{fig:avg_migration_time}
-\end{figure}
-
-% * migration_time.pdf:
-% - On the other hand centralised do less migrations: it can be explained by its
-%   lack of reactivity.
-% - Distributed and Hierarchical have similar results, even if hierarchical do
-%   less migrations.
-
-
-Another important metric when performing dynamic relocations is
-related to the migration overhead on the network but also on the
-workload running inside each VM. Hence it is important to understand
-how VM Placement algorithms deal with such a concern.
-\AL[AL]{finalized that part with the following subsubsection}
-
-Figure \ref{fig:cumulated_migration_time} describes the cumulated migrations number for
-each strategy: the distributed algorithm spend more time
-on migrating VMs, followed by the hierarchical scheduler. It is noticeable that
-the centralized scheduler performes spend less time in migration of VMs. Thanks
-to figure \ref{fig:avg_migration_time}, we can see that the average duration
-of a migration increases dramatically with the centralized policy at large scale
-(10240 VMs), while it remains stable with the distributed and hierarchical
-schedulers. This is due to the fact that the unique node invocking Entropy does
-not find the best reconfiguration in an adequate time, and must confine itself
-to a non optimal reconfiguration. These non optimal reconfigurations usually
-contain several migrations to the same nodes, thus leading to network congestion
-and increasing the average migration duration.
-
-
-% \subsubsection{Hierarchical VM placement: evaluation of GM sizes}
-
-% We have also explored the use of \vmps in order to explore the
-% principal parameters of different VM placement algorithms. In the
-% remainder of this section we report of one example, the influence of
-% the cluster size, \ie the ratio of LCs to GMs, on hierarchical VM
-% placement. For these experiments, VM reconfigurations have been
-% calculated and applied periodically every 30 secs.
-
-% {\scriptsize \begin{tabular}{|P{25mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-%     \thickhline
-%     \textbf{Algorithm}
-%       & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{Reconf.\ time (s)}}
-%       & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
-%         \Tstrut \\
-%        \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
-%     \thickhline
-%       ~8 LC/GM      & 4680 & 10755 & 22022 & 1423 & 3429 & 7470 \\
-%       32 LC/GM      & 16533 & 33376 & 73623 & 1770 & 3453 & \:8196
-%     \Rstrut  \\ \hline
-%     \thickhline
-% \end{tabular} }
-
-% The table above shows some of the corresponding results for
-% experiments on 128, 256 and 512 LCs. The results show that the total
-% reconfiguration time (cumulative over all nodes) is significantly
-% higher for the configuration of 32~LCs per GM than for 8~LCs per
-% GM. This can be explained because the computation of a reconfiguration
-% plan for 32~LCs is much costlier than for 8. The cumulative violation
-% times of both algorithms are, however, relatively close, which
-% indicates that no algorithm is clearly better in resolving
-% violations. This is understandable because the load is statistically
-% evenly distributed among the LCs. Furthermore, the load profile we
-% evaluated only rarely results in many LCs of a GM to be overloaded:
-% violations can therefore be resolved even in the case of a smaller
-% number of 8~LCs available for load distribution.
-
-% \subsubsection{Fault Tolerance}
-% %\AL[JP]{perform an experiment on Snooze and DVMS with fault
-% %  periodicity of a crash on average every 160 seconds, corresponding
-% %  to a 6 month fault in a DC of 1000 }
-
-% However, we underline that at the scale we
-% performed our simulations, the number of crashes was mostly null and
-% dedicated simulations were mandatory to study the impact of node
-% crashes on the difference strategies.
-% \AL[all]{We can maybe add few sentences on that point. Something like:
-% Due to the space limitations these results are not discussed in the
-% present article. However, we highlight that due to the rather short
-% time to reconstruct the Snooze service nodes topology in case of a
-% failures. Node crashes does not have an significant impact of the
-% violation time resolution. When a GL or a GM crashes, LCs are correcly
-% reassigned in less than 10 seconds.}
-
-\AL[MS,AL]{TODO find the best place to add the following subsubsection}
-To conclude, although the simulations discussed in this article are
-limited to 10K VMs, we succeeded to conduct DVMS simulations including
+Moreover,  we underline that we succeeded to conduct DVMS simulations including
 up to 8K~PMs/80K~VMs in a bit less than two days. We did not present
 such results to the paper because it was not possible to run a
 sufficient number of Snooze simulations at such scale. The Snooze
@@ -444,6 +326,8 @@ code are related to \sg internals such as \texttt{sleep} and
 developers in order to investigate how we can reduce the required time
 to perform such advanced simulations.
 
-\AL{Mettre un truc pour dire que cette etude a permis de detecter des
-  variantes qu'on a pu facilement etudier grace à vmps (voir la partie
-commenter dans le preambule du second subsubsection)}
+Last but not the least, the study performed in this paper has
+highlighted several variants and possible improvements such as a
+reactive approach of Snooze instead of a periodical one, a more
+aggresive partitionning integration for DVMS~\ldots. All these
+variants can be easily studied and evaluated thanks to VMPlaceS.
