@@ -1,5 +1,5 @@
 %\subsection{Accuracy Evaluation of \vmps}
-\paragraph{Accuracy Evaluation of \vmps}
+\subsubsection{Accuracy Evaluation}
 \label{subsec:accuracy}
 To validate the accuracy of \vmps, we implemented a dedicated
 version of our
@@ -29,15 +29,16 @@ factor).
 %\begin{figure}[hbt]
 \begin{wrapfigure}{r}{.48\linewidth}
 \centering
-\vspace*{-.6cm}
+\vspace*{-.8cm}
 %\includegraphics[width=0.99\linewidth]{./figures/simu-vivo-32PM-192VM-6020-original.pdf}
  \subcapcentertrue
 \subfigure{\includegraphics[width=0.99\linewidth]{./figures/accuraci-simu.pdf}
 \label{fig:accu-simu}}
 \subfigure{\includegraphics[width=0.99\linewidth]{./figures/accuraci-invivo.pdf}
 \label{fig:accu-vivo}}
-\vspace*{-.6cm}
-\caption{Comparison between simulated and \textit{in-vivo} Executions}
+\vspace*{-.8cm}
+\caption{Comparison between simulated (top) and \textit{in-vivo}
+  (bottom) Executions}
 \flushleft\scriptsize{The red parts correspond the computation phase (\ie
   the time where Entropy looks for a new configuration). The black parts correspond to the reconfiguration phase (\ie when
 VM are relocated throughout the cluster.}
@@ -71,14 +72,14 @@ the current simulation results are sufficiently accurate to capture
 performance trends of placement strategies.
 
 
-As an example, we noticed that applying the
-reconfiguration plan was much more time-consuming than computing it. This result that has been correctly reported by the simuations means that VMPP also needs
-to address the way of shorten reconfiguration phases, not only that of
-computing ones.
-% This is rather important as most relocation
-% algorithms try to reduce the computation phase instead of focusing on the
-% reconfiguration one.
-Leveraging \vmps will enable researchers to observe such key points
-without facing with the burden of conducting large scale
-\textit{in-vivo} experiments. We illustrate such an advantage in the
-following section.
+% As an example, we noticed that applying the
+% reconfiguration plan was much more time-consuming than computing it. This result that has been correctly reported by the simuations means that VMPP also needs
+% to address the way of shorten reconfiguration phases, not only that of
+% computing ones.
+% % This is rather important as most relocation
+% % algorithms try to reduce the computation phase instead of focusing on the
+% % reconfiguration one.
+% Leveraging \vmps will enable researchers to observe such key points
+% without facing with the burden of conducting large scale
+% \textit{in-vivo} experiments. We illustrate such an advantage in the
+% following section.

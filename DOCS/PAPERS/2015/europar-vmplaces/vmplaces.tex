@@ -21,9 +21,9 @@ compare them.
 In the following we give an overview of \vmps and describe its
 general functioning.
 
-\vspace*{-.1cm}
+\vspace*{-.3cm}
 %\subsection{Overview}
-\paragraph{Overview}
+\subsubsection{Overview}
 \label{sec:overview}
 
 \vmps has been implemented in Java by leveraging the \sg MSG API.
@@ -110,8 +110,9 @@ overloaded, etc.).
 % \end{itemize}
 
 %\subsection{Initialization Phase}
-%\\vspace*{-.15cm}
-\paragraph{Initialization Phase}
+
+\vspace*{-.4cm}
+\subsubsection{Initialization Phase}
 In the beginning, \vmps creates $n$ VMs and assigns them in a
 round-robin manner to the first $p$ hosts defined in the platform
 file.  The default platform file corresponds to a cluster of $h+s$
@@ -216,9 +217,9 @@ consumed similarly to the \emph{CPU Load} ones.% during the \emph{injector phase
 As an example, the next release of \vmps will integrate   \emph{node
   apparition/removal events} that will be used to simulate crashes.
 
-%\vspace*{-.1cm}
+\vspace*{-.4cm}
 %\subsection{Injector Phase}
-\paragraph{Injector Phase}
+\subsubsection{Injector Phase}
 Once the VMs and the global event queue are ready, the evaluation of
 the scheduling mechanism can start. First, the injector process
 iteratively consumes the different events that represent, for now, load changes of a VM.
@@ -268,9 +269,9 @@ the \sg engine.%
 % The following is IMO a technical detail
 % by invoking a \texttt{wait} call of the MSG interface.
 
-\vspace*{-.2cm}
+\vspace*{-.4cm}
 %\subsection{Trace Analysis}
-\paragraph{Trace Analysis}
+\subsubsection{Trace Analysis}
 \label{subsec:traces-analysis}
 
 The last step of \vmps consists in analyzing the information that has
