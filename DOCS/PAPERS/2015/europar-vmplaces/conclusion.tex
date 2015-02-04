@@ -1,0 +1,30 @@
+\section{Conclusion}
+\label{sec:conclusion}
+In this paper we have presented
+\vmps, a framework providing programming support for the definition of
+VM placement algorithms, execution support for their simulation at
+large scales, as well as new means for their trace-based analysis.
+\vmps enables, in particular, the investigation of placement
+algorithms in the context of numerous and diverse real-world
+scenarios. We have validated its accuracy of returned results by
+comparing simulated and \textit{in-vivo} executions of the Entropy
+strategy on top of 32~PMS and 192~VMs. We have illustrated the
+relevancce of \vmps by evaluating and comparing algorithms
+representative for three different classes of virtualization
+environments: centralized, hierarchical and fully distributed
+placement algorithms. We have also shown how \vmps facilitates the
+implementation and evaluation of variants of placement algorithms. The
+corresponding experiments have provided the first systematic results
+comparing these algorithms in environments including up to one
+thousand of nodes and ten thousands of VMs.
+
+A beta-version of \vmps is available on a public git
+repository\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}.
+We are in touch with the \sg core developers in order to improve ou
+code with the ultimate objective of adressing infrastructures up to
+100K PMs and 1 Millions VMs. As future work, it would be valuable to add
+additional dimensions in order to simulate other workload variations
+stemming from network and HDD I/O changes. Finally,
+we plan to provide a dedicated API to be able to
+provision and remove VMs during the execution of a simulation.
+% conference papers do not normally have an appendix

@@ -1,0 +1,108 @@
+\section{Dynamic VMPP Algorithms}
+\label{sec:vm-schedulers}
+\vspace*{-.2cm}
+To illustrate the interest of \vmps, we implemented three dynamic VM
+placement mechanisms: a centralized one based on the Entropy
+proposal~\cite{Hermenier:2009:ECM:1508293.1508300}, a hierarchical one
+based on Snooze~\cite{feller:ccgrid12}, and a fully-distributed one
+based on DVMS~\cite{quesnel:cpe2012}.
+%\MS{We should differentiate more clearly between the complete VMPP
+ % system and the solver.}
+%
+These systems enable, if it is possible,  the resolution  of violations in form of
+overloaded nodes. A host is overloaded when the VMs try to consume
+more than 100\% of the CPU capacity of the host. In such a case, a
+resolution algorithm looks for a reconfiguration plan that can lead to
+a viable configuration. For the sake of
+simplicity, we chose to use the latest solver developed as part of the Entropy
+framework~\cite{hermenier:cp11} in the three systems as this resolution algorithm.
+The Entropy solver evaluates different viable configurations until  it
+reaches a predefined timeout.
+% Giving up consolidation optimality in favor of scalability, this
+% algorithm provides a ``repair mode'' that enables the correction of VM
+% requirement violations. The optimal solution is a new placement that
+% satisfies the requirements of all VMs while minimizing the cost of the
+% reconfiguration.
+Once the timeout has been triggered, the algorithm returns the best
+solution among the ones it finds and applies the associated
+reconfiguration plan by invoking live migrations in the simulation
+world.
+%
+% Although using the Entropy VMPP solver implies a modification from the
+% original Snooze proposal, we highlight that our goal is to
+%
+% and thus we believe that such a modification is acceptable as it
+% does not change the global behavior of Snooze
+
+%Simulating these three VMPP systems illustrates the capabilities of
+%\vmps. Moreover, by conducting such a comparison, we also investigate
+%the pros and cons of the three architecture models on which these
+%proposals rely on.% (\ie centralized, hierarchical and distributed).
+
+In the remainder of this section, we present an overview of the
+three systems, showing, in particular, that the extended abstractions
+for hosts (\texttt{XHost}), VMs (\texttt{XVM}) and the functions of
+the \sg MSG API enabled us to develop them in a direct and natural
+manner.
+
+%\subsection{Entropy-based Centralized Approach}
+\subsubsection{Entropy-based Centralized Approach}
+\label{subsec:entropy}
+The centralized VM placement mechanism consists in one single \sg
+process deployed on a service node. This process implements a simple loop that
+iteratively checks the viability of the current configuration by
+invoking the aforementioned VMPP solver with a predefined
+frequency.
+% $p$ is defined as an input parameter of the simulation.
+% \AL{Should we explain the issue right now or not if we add VMPP section}
+% Indeed, during
+% the computation and the application of a schedule, the algorithm does
+% not enforce QoS properties anymore, and thus cannot react quickly to
+% violations. Second, since the manipulation of VMs is costly, the time
+% needed to apply a new schedule is particularly important: The longer
+% the reconfiguration process is, the higher is the risk that the schedule may
+% be outdated, due to the workload fluctuations, when it is eventually
+% applied.
+% \vmps enables researchers to investigate such concerns in-depth.
+%
+% As the Entropy proposal does not provide a specific mechanism for the
+% collection of resource usage information but simply uses an external
+% tool (namely ganglia), we had two different ways to implement the
+% monitoring to process: either by implementing additional asynchronous
+% transmissions as a real implementation of the necessary state updates
+% would proceed or, in a much more lightweight manner,
+The resource usage is monitored through direct accesses
+% by the aforementioned process
+to the states of the hosts and their respective VMs.
+%, while accounting for communication overheads explicitly.
+%\AL[MS]{Not sure I understood  what you would say ?}
+% induced by communication in the ``real'' implementation, for
+% instance, can be easily added as part of the lightweight
+% simulation. We have implemented this lightweight variant for the
+% monitoring
+%
+% Regarding fault tolerance, similarly to the Entropy proposal, our
+% implementation does not provide any failover mechanism.
+%
+% as mentioned in Section \ref{subsec:traces-analysis},
+We also monitor, for each iteration, whether the VMPP solver succeeds
+or fails. In case of success, \vmps records the number of migrations
+that have been performed, the time it took to apply the
+reconfiguration and whether the reconfiguration
+led to new violations.
+
+%\subsection{Snooze-based Hierarchical Approach}
+\subsubsection{Snooze-based Hierarchical Approach}
+\label{subsec:snooze}
+\input{snooze.tex}
+
+%\subsection{DVMS-based Distributed Approach}
+\subsubsection{DVMS-based Distributed Approach}
+\label{subsec:dvms}
+\input{dvms.tex}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
