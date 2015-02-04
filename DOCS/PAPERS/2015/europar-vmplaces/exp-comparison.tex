@@ -172,6 +172,7 @@ every 30s for Entropy and Snooze.
 \vspace*{-.8cm}
 \end{figure*}
 
+\emph{Simulation results and analysis. ~}
 Fig.~\ref{fig:general-comparison} presents on the left the cumulated
 violation time for each placement policy and on the right several
 tables that give more details by presenting the mean and the standard
@@ -185,17 +186,17 @@ it is during both the computation and reconfiguration phases.
 % is not surprising that it takes more time to resolve larger
 % problems.
 This is to be expected for the computation phase (which tries to solve
-an NP-complete problem).  Regarding the reconfiguration phase, as
-Entropy has to solve much more violations simultaneously, the
-reconfiguration plan is more complex for large scenarios, including
-several migrations coming from and going to the same nodes. Such
-reconfiguration plans are not optimal as they increase the bottleneck
+an NP-complete problem).  As to reconfiguration,
+% as Entropy has to solve much more violations simultaneously,
+the reconfiguration plan becomes more complex for large scenarios,
+including several migrations coming from and going to the same
+nodes. Such plans are not optimal as they increase the bottleneck
 effects at the network level of each involved PM. Such a simulated
 result is valuable as it confirms that reconfiguration plans should
 avoid as much as possible such manipulations.
 %
 The results of the hierarchical approach are clearly better than the
-Entropy-based ones but worse than those using fully distributed VM
+Entropy-based ones but worse than those using DVMS-based
 placement. However, diving into the details, we can see that both the
 time needed for the computation and reconfiguration are almost
 independent from the cluster size (around~3s and~10s) and not much
@@ -206,12 +207,11 @@ invocation, while the hierarchical and the distributed algorithms
 divide the VMPP into sub problems, considering smaller numbers of
 nodes (32~PMs in Snooze and, on average, 4 in the case of DVMS). To
 clarify the influence of the group size on the performance of Snooze,
-\ie the ratio of LCs attached to one GM, we performed additional
-simulations aiming at investigating whether a smaller group size can
-lead to similar performances of DVMS. We highlight that the use of
-\vmps eased this study as the corresponding simulations differ just by
-configuration parameters without requiring any modifications to the
-code base.
+\ie the ratio of LCs attached to one GM, we have performed additional
+simulations for varying group sizes.  \vmps has significantly
+facilitated this study as the corresponding simulations differ just by
+configuration parameters and do not require modifications to the code
+base.
 
 
 \begin{figure*}
@@ -312,13 +312,13 @@ researchers to design new algorithms favoring the automatic discovery
 of the optimal subset of nodes capable to solve violations for given
 load profiles.
 
-\vmps provides additional metrics such as the number of migrations
-that has been performed overall, the average duration of each
-migration~\ldots \ Due to space limitations, we cannot discuss all
-these metrics. However, we emphasize that they provide importance
-guidance on the pros and cons of each scheduling policy, notably on
-the migration overhead on the network but
-also on the workload running inside each VM.
+% \vmps provides additional metrics such as the number of migrations
+% that has been performed overall, the average duration of each
+% migration~\ldots \ Due to space limitations, we cannot discuss all
+% these metrics. However, we emphasize that they provide importance
+% guidance on the pros and cons of each scheduling policy, notably on
+% the migration overhead on the network but
+% also on the workload running inside each VM.
 
 Moreover, we have succeeded to conduct DVMS simulations up to
 8K~PMs/80K~VMs in a bit less than two days. We did not present these
@@ -333,12 +333,14 @@ such as \texttt{sleep} and \texttt{send/recv} calls. Hence, we are
 collaborating with \sg core developers in order to reduce the
 simulation time in such cases.
 
-Last but not the least, the study performed in this paper has enables
-us to analyze several variants and possible improvements such as a
-reactive approach to hierarchical placement instead of the periodical
-one used by Snooze, more aggressive partitioning in the case of
-DVMS~\ldots \ All these variants can be easily studied and evaluated
-thanks to VMPlaceS.
+Finally, the study performed in this paper has allowed us to analyze
+several variants and possible improvements such as a reactive approach
+to hierarchical placement instead of the periodical one used by
+Snooze, more aggressive partitioning in the case of DVMS.  \vmps also
+provides additional metrics such as the overall count of migrations,
+the average duration of each migration~\ldots\ These allow important
+properties, \eg the migration overhead, to be studied. All these
+variants can be easily studied and evaluated thanks to \vmps.
 
 
 
