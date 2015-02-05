@@ -2,23 +2,23 @@
 \label{sec:related}
 %\AL[AL]{Add few lines related to Google scheduling simulator - https://code.google.com/p/cluster-scheduler-simulator/}
 %\AL[AL]{Add few lines about FlexCloud - http://arxiv.org/pdf/1501.05789v1.pdf}
-Several simulator toolkits have been proposed since the last years in
-order to adress CC concerns~\cite{CC13,DGSIM,cloudsim,icancloud,greencloud}.  They can be classified into two categories: The first
-one corresponds to ad-hoc simulators that have been developped to
-address a particular concern. For instance, CReST~\cite{CC13} is a
-discrete event simulation toolkit built to evaluate Cloud provisioning
-algorithms. If ad-hoc simulators enable to provide some trends
-regarding the bevahiours of the system, they do consider the
+Simulator toolkits that  have been proposed
+to adress CC concerns~\cite{CC13,DGSIM,cloudsim,icancloud,greencloud}
+can be classified into two categories.
+ The first one corresponds to ad-hoc simulators that have been developped to
+address one particular concern. For instance, CReST~\cite{CC13} is a
+discrete event simulation toolkit built for Cloud provisioning
+algorithms. If ad-hoc simulators provide some trends
+regarding the bevahiours of the system, they do not consider the
 implication of the different layers, which can lead to non
-representative results at the end. Moreover, such ad-hoc solutions are
-developped for one shot and thus, they are not available for the
-scientific community. The second category \cite{icancloud,greencloud,
-  cloudsim} corresponds to more generic cloud simulator toolkits (\ie
+representative results at the end. Moreover, most ad-hoc solutions are
+developped for one shot. That is, there is no effort to release them
+as a complete tool for the scientific community. The second category
+\cite{icancloud,greencloud,cloudsim}
+corresponds to more generic cloud simulator toolkits (\ie
 they have been designed to adress a majority of CC
-challenges). However, they have focused mainly on the API and not on
-the model of the different mechanisms of CC systems.
-
-For instance, CloudSim~\cite{cloudsim}, which has been widely used to
+challenges). However,  they focused mainly on the API and not on
+the model of the different mechanisms of CC systems. For instance, CloudSim~\cite{cloudsim}, which has been widely used to
 validate algorithms and applications in different scientific
 publications, is based on a relatively top-down viewpoint of cloud
 environments.  That is, there is no papers that properly validate the
