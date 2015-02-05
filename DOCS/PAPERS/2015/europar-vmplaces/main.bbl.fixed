@@ -1,0 +1,106 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{cloudstack}
+{CloudStack, Open Source Cloud Computing}. \url{http://cloudstack.apache.org}
+
+\bibitem{opennebula}
+{Open Source Data Center Virtualization}. \url{http://www.opennebula.org}
+
+\bibitem{pageng:www}
+{PajeNG - Trace Visualization Tool}. \url{https://github.com/schnorr/pajeng}
+
+\bibitem{simgridpub}
+Simgrid publications. \url{http://simgrid.gforge.inria.fr/Publications.html}
+
+\bibitem{snoozeweb}
+Snooze web site, \url{http://snooze.inria.fr}, % Last access: 21 Oct. 2014
+
+\bibitem{openstack}
+{The Open Source, Open Standards Cloud}. \url{http://www.openstack.org}
+
+\bibitem{DGSIM}
+Dgsim: Comparing grid resource management architectures through trace-based
+  simulation. In: Luque, E., Margalef, T., Ben\'itez, D. (eds.) Euro-Par 2008
+  -- Parallel Processing, Lecture Notes in Computer Science, vol. 5168 (2008)
+
+\bibitem{icancloud}
+icancloud: A flexible and scalable cloud infrastructure simulator. Journal of
+  Grid Computing  10(1) (2012)
+
+\bibitem{barker:pitfalls}
+Barker, A., Varghese, B., Ward, J.S., Sommerville, I.: {Academic Cloud
+  Computing Research: Five Pitfalls and Five Opportunities}. In: Proceedings of
+  the 6th USENIX Workshop on Hot Topics in Cloud Computing (HotCloud 2014) (June
+  2014)
+
+\bibitem{R:Bloomfield:2014}
+Bloomfield, V.A.: Using {R} for Numerical Analysis in Science and Engineering.
+  Chapman \& Hall/CRC (2014)
+
+\bibitem{cloudsim}
+Calheiros, R.N., Ranjan, R., Beloglazov, A., De~Rose, C.A.F., Buyya, R.:
+  Cloudsim: a toolkit for modeling and simulation of cloud computing
+  environments and evaluation of resource provisioning algorithms. Software:
+  Practice and Experience (2011)
+
+\bibitem{CC13}
+Cartlidge, J., Cliff, D.: Comparison of cloud middleware protocols and
+  subscription network topologies using crest, In: {CLOSER} 2013 - Proceedings of the
+  3rd International Conference on Cloud Computing and Services Science, Germany, (2013)
+
+\bibitem{casanova:hal-01017319}
+Casanova, H., Giersch, A., Legrand, A., Quinson, M., Suter, F.: Versatile,
+  scalable, and accurate simulation of distributed applications and platforms.
+  Journal of Parallel and Distributed Computing  74(10),  2899--2917 (June 2014)
+
+\bibitem{feller:ccgrid12}
+Feller, E., Rilling, L., Morin, C.: {Snooze: A Scalable and Autonomic Virtual
+  Machine Management Framework for Private Clouds}. In: CCGRID '12: 12th Int.
+  Symp. on Cluster, Cloud and Grid Comp. pp. 482--489 (May 2012)
+
+\bibitem{hermenier:cp11}
+Hermenier, F., Demassey, S., Lorca, X.: {Bin Repacking Scheduling in
+  Virtualized Datacenters}. In: CP '11: Proceedings of the 17th international
+  conference on Principles and practice of constraint programming. pp. 27--41.
+  Springer (2011)
+
+\bibitem{Hermenier:2009:ECM:1508293.1508300}
+Hermenier, F., Lorca, X., Menaud, J.M., Muller, G., Lawall, J.: Entropy: A
+  consolidation manager for clusters. In: Proceedings of the 2009 ACM
+  SIGPLAN/SIGOPS International Conference on Virtual Execution Environments.
+  VEE '09 (2009)
+
+\bibitem{Hirofuchi:2013:ALM:2568486.2568524}
+Hirofuchi, T., Lebre, A., Pouilloux, L.: Adding a live migration model into
+  simgrid. In: Proceedings of the 2013 IEEE International Conference on Cloud
+  Computing Technology and Science - Volume 01. pp. 96--103. CLOUDCOM '13
+  (2013)
+
+\bibitem{greencloud}
+Kliazovich, D., Bouvry, P., Audzevich, Y., Khan, S.: Greencloud: A packet-level
+  simulator of energy-aware cloud computing data centers. In: Global
+  Telecommunications Conference (GLOBECOM 2010), 2010 IEEE. pp. 1--5 (Dec 2010)
+
+\bibitem{moreno:2012}
+Moreno-Vozmediano, R., Montero, R., Llorente, I.: {IaaS Cloud Architecture:
+  From Virtualized Datacenters to Federated Cloud Infrastructures}. Journal of
+  Computer  (2012)
+
+\bibitem{quesnel:cpe2012}
+Quesnel, F., Lebre, A., S\"{u}dholt, M.: {Cooperative and Reactive Scheduling
+  in Large-Scale Virtualized Platforms with DVMS}. Concurrency and Computation:
+  Practice and Experience  25(12),  1643--1655 (Aug 2013)
+
+\bibitem{5328077}
+Van, H.N., Tran, F., Menaud, J.M.: Sla-aware virtual resource management for
+  cloud infrastructures. In: Computer and Information Technology, 2009. CIT
+  '09. Ninth IEEE International Conference on. vol.~1, pp. 357--362 (Oct 2009)
+
+\bibitem{5935254}
+Wang, M., Meng, X., Zhang, L.: Consolidating virtual machines with dynamic
+  bandwidth demand in data centers. In: INFOCOM, 2011 Proceedings IEEE. pp.
+  71--75 (April 2011)
+
+\end{thebibliography}
