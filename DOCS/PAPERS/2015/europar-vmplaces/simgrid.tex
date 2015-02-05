@@ -4,30 +4,30 @@
 %\vspace*{-.05cm}
 %\AL[AL]{0.5page}
 
-Developed for more than a decade,
+% Developed for more than a decade,
 % and used in a large number of studies described in mor than
 % 100~publications,
 \sg is a toolkit for the simulation of potentially complex algorithms
 executed on large-scale distributed
 systems~\cite{casanova:hal-01017319}.
-
-To perform simulations, users should develop a \emph{program} and
-define a \emph{platform} file and a \emph{deployment} file. The
-\emph{program} leverages, in most cases, the \sg MSG API that allows
-end-users to create and execute \sg abstractions such as processes,
-tasks, VMs and network communications. The \emph{platform} file
-provides the physical description of each resource composing the
-environment and on which aforementioned computations and network
-interactions will be performed in the \sg world.
-% (host, CPU capacity, network topology and link capacities, etc.)
+%
+To perform simulations, users develop a \emph{program}, and define a
+\emph{platform} and a \emph{deployment} files. The \emph{program}
+typically leverages \sg's MSG API that allows end users to create
+and execute \sg abstractions such as processes, tasks, VMs and network
+communications. The \emph{platform} file provides the physical
+description of all resources that are the object of the simulation.
+% composing the environment and on which aforementioned computations
+% and network interactions will be performed in the \sg world.  (host,
+% CPU capacity, network topology and link capacities, etc.)
 The \emph{deployment} file is used to launch the different \sg
-processes defined in the \emph{program} on the simulated nodes.
+processes of the program on the simulated nodes.
 % (at least the mapping between one process and one host is mandatory
 % to start the simulation)
-Finally, the execution of the program is orchestrated by the \sg
-engine that internally relies on an constraint solver to correctly
-assign the amount of CPU/network resources to each \sg abstraction
-during the entire simulation.% (for a complete overview see ~\cite{casanova:hal-01017319}).
+Finally, the simulation is orchestrated by the \sg engine that
+internally relies on a constraint solver to assign the CPU/network
+resources during the entire
+simulation.% (for a complete overview see ~\cite{casanova:hal-01017319}).
 
 
 We chose to base \vmps on \sg
@@ -44,3 +44,10 @@ the presence of resource sharing as well as the memory refreshing rate
 of the VM, thus determining correctly the live migration time as well
 as the resulting network traffic. These two capabilities were
 mandatory to build \vmps.%our VM placement simulator toolkit.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
