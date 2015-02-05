@@ -27,25 +27,30 @@
 %different design choices.
 
 %Due to the underlying complexity of cloud infrastructures,
-Advanced
-Virtual Machines (VM) placement policies are evaluated either using
-limited scale \emph{in-vivo} experiments or ad-hoc simulator
+Advanced Virtual Machines placement policies are evaluated either
+using limited scale \emph{in-vivo} experiments or ad hoc simulator
 techniques. These validation methodologies are unsatisfactory. First
 they do not model precisely enough real production platforms (size,
 workload representativeness, etc.). Second, they do not enable the
-fair comparison of different approaches. To resolve this situation, we
-propose \vmps, a dedicated simulation framework to
-perform in-depth investigations and fair comparisons of VM placement
-algorithms. Built on top of \sg,
+fair comparison of different approaches. To resolve these issues, we
+propose \vmps, a dedicated simulation framework to perform in-depth
+investigations and fair comparisons of VM placement algorithms. Built
+on top of \sg,
 %simulation toolkit,
-our
-framework provides programming support to ease the implementation of
-placement algorithms and runtime support dedicated to load injection
-and execution trace analysis.
-\vmps supports a large set of parameters enabling researchers to design simulations representative of
-real-world scenarios.
+our framework provides programming support to ease the implementation
+of placement algorithms and runtime support dedicated to load
+injection and execution trace analysis.  \vmps supports a large set of
+parameters enabling researchers to design simulations representative
+of a large space of real-world scenarios.
 %The accuracy of \vmps has been validated by comparing simulated and
 %in-vivo execution on top of Grid'5000.
-We report on a validation
-of our framework by evaluating three classes of placement algorithms:
-centralized, hierarchical and fully-distributed ones.
+We also report on a comparison using \vmps of three classes of
+placement algorithms: centralized, hierarchical and fully-distributed
+ones.
+
+
+
+%%% Local Variables:
+%%% mode: plain-tex
+%%% TeX-master: "main"
+%%% End:
