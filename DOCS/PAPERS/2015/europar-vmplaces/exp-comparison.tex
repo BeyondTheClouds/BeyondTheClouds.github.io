@@ -1,3 +1,4 @@
+\vspace*{-.3cm}
 \subsubsection{Analysis of Entropy, Snooze and DVMS}
 \label{subsec:first-usecase}
 
@@ -17,9 +18,9 @@ strategies.
 % \vmps.
 
 %\subsubsection{Experimental Conditions}
-\emph{Experimental conditions. ~} 
+%\emph{Experimental conditions. ~}
 % All simulations have been performed on the Lyons-based clusters of the
-% Grid'5000 testbed.  
+% Grid'5000 testbed.
 Each simulation has been executed on a dedicated server, thus
 avoiding interferences between simulations and ensuring
 reproducibility between the different invocations.
@@ -35,15 +36,15 @@ resolver only considered 7 cores, \ie one was devoted to run the
 Snooze LC or the DVMS processes (a quite common experimental setup).
 % Dedicating one core for the host OS and other administrative processes
 % is something which is rather usual and thus we believe acceptable in
-% our experimental methodology.  
+% our experimental methodology.
 Ten VMs have been initially launched on each simulated PM. Each VM
 relied on one of the VM classes described in the accuracy experiment
-and one set of load-change parameters has been used: $\lambda$ = 
+and one set of load-change parameters has been used: $\lambda$ =
 \#VMs/300, $\mu$ = 60 and $\sigma$ = 20. The stationary state was
 reached after 20 min of the simulated time with a global cluster load
 of 85\%.
 %as depicted in Fig. \ref{fig:load_figure}.
-% To accelerate the simulations, we have chosen to limit the 
+% To accelerate the simulations, we have chosen to limit the
 We have performed simulations over a period of 1800 seconds. The
 consolidation ratio, \ie the number of VMs per node, has been defined
 such that a sufficient number of violations is generated. We have
@@ -172,7 +173,7 @@ every 30s for Entropy and Snooze.
 \vspace*{-.8cm}
 \end{figure*}
 
-\emph{Simulation results and analysis. ~}
+%\emph{Simulation results and analysis. ~}
 Fig.~\ref{fig:general-comparison} presents on the left the cumulated
 violation time for each placement policy and on the right several
 tables that give more details by presenting the mean and the standard
@@ -286,14 +287,14 @@ time) shows that
 The relatively bad performance of the smallest group size can be
 explained in terms of the number of failures of the reconfiguration
 process, that is, overloading situations that are discovered but
-cannot be resolved 
+cannot be resolved
 % because the GM managing the overloaded VM(s) did not dispose of
-% enough 
+% enough
 due to a lack of resources (see tables on the right).  Groups of 2~LCs
 per GM are clearly insufficient at our global load level (85\%).
 Failed reconfigurations are, however, already very rare in the case of
 4~LCs per GM and do not occur at all for 8~and 32~LCs per GM. This is
-understandable because 
+understandable because
 % the load is statistically evenly distributed among the LCs and
 the load profile we evaluated rarely results in many LCs of a GM to be
 overloaded at once. Violations can therefore be resolved even in the
@@ -344,8 +345,7 @@ variants can be easily studied and evaluated thanks to \vmps.
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
-%%% End: 
-
+%%% End:

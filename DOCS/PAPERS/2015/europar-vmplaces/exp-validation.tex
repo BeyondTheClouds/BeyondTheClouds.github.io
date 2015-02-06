@@ -1,12 +1,15 @@
 %\subsection{Accuracy Evaluation of \vmps}
+\vspace*{-.4cm}
 \subsubsection{Accuracy Evaluation}
 \label{subsec:accuracy}
+
 To validate the accuracy of \vmps, we implemented a dedicated
 version of our
 framework\footnote{\url{https://github.com/BeyondTheClouds/G5K-VMPlaceS}}
 on top of the Grid'5000 testbed and compared the execution of the
 Entropy strategy invoked every 60 seconds over a 3600 seconds period
-in both the simulated and real world. Regarding the \textit{in-vivo}
+in both the simulated and real world.
+Regarding the \textit{in-vivo}
 conditions, experiments have been performed on top of the Graphene
 cluster (Intel Xeon X3440-4 CPU cores, 16 GB memory, a GbE NIC, Linux
 3.2, Qemu 1.5 and SFQ network policy enabled) with 6 VMs per node.
@@ -26,6 +29,22 @@ SimGrid in order to cope with the network performance of the Graphene
 servers that were allocated to our experiment (6 MBytes for the TCP
 gamma parameter and 0.88 for the bandwidth corrective simulation
 factor).
+
+Fig.~\ref{fig:usecase-vivosimu} shows the cost of the two phases of
+the Entropy algorithm for each invocation when considering 32~PMs and
+192~VMs through simulations (top) and in reality (bottom). At
+coarse-grained, we can see that simulation results successfully
+followed the in-vivo ones. During the first hundreds seconds, the cluster did not
+experience VM requirement violations because the loads of VM were
+still small (\ie Entropy simply validated that the curent placement
+statisfied all VM requirements). At 540 seconds, Entropy started to
+detect non viable configurations and performed reconfigurations.
+Diving into details, the difference between the \textit{simulated} and
+\textit{in-vivo} reconfiguration time fluctuated between 6\% and 18\%
+(median was around 12\%). %during the experiment.
+The worst case, \ie 18\%, was reached when
+multiple migrations were performed simultaneously on the same
+destination node.
 %\begin{figure}[hbt]
 \begin{wrapfigure}{r}{.48\linewidth}
 \centering
@@ -46,21 +65,7 @@ VM are relocated throughout the cluster.}
 \vspace*{-.6cm}
 \end{wrapfigure}
 %\end{figure}
-Fig.~\ref{fig:usecase-vivosimu} shows the cost of the two phases of
-the Entropy algorithm for each invocation when considering 32~PMs and
-192~VMs through simulations (top) and in reality (bottom). At
-coarse-grained, we can see that simulation results successfully
-followed the in-vivo ones. During the first hundreds seconds, the cluster did not
-experience VM requirement violations because the loads of VM were
-still small (\ie Entropy simply validated that the curent placement
-statisfied all VM requirements). At 540 seconds, Entropy started to
-detect non viable configurations and performed reconfigurations.
-Diving into details, the difference between the \textit{simulated} and
-\textit{in-vivo} reconfiguration time fluctuated between 6\% and 18\%
-(median was around 12\%). %during the experiment.
-The worst case, \ie 18\%, was reached when
-multiple migrations were performed simultaneously on the same
-destination node. In this case and even if the SFQ network policy was
+ In this case and even if the SFQ network policy was
 enabled, we discovered that in the reality the throughput of migration
 traffic fluctuated when multiple migration sessions simultaneously
 shared the same destination node. We confirmed this point by analyzing
