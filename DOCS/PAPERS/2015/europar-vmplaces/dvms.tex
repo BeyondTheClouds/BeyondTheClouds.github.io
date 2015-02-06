@@ -1,22 +1,7 @@
 % As the third use-case, we have implemented the
 DVMS (Distributed Virtual Machine Scheduler)~\cite{quesnel:cpe2012} enables the
 cooperative and fully-distributed placement of
-VMs.
-%
-% DVMS is an algorithm that targets the dynamic scheduling of VMs
-% hosted on arge-scale distributed infrastructure. It aims at
-% preserving resource requirements of VMs by migrating VMs located on
-% overloaded servers to underloaded ones.  DVMS works in a cooperative
-% and fully distributed manner.
-%
-% Through a cooperative and fully distributed approach, DVMS aims at
-% preserving resource requiements of VMs by migrating VMs located on
-% overloaded servers to underloaded ones.
-%
-%
-% \paragraph{Architecture.}
-%
-A DVMS agent is deployed on each node in order to manage the VMs on
+VMs. A DVMS agent is deployed on each node in order to manage the VMs on
 the node and collaborate with (the agents of) neighboring nodes.
 Agents are defined on top of an overlay communication network that
 defines the node-neighbor relation.
@@ -27,56 +12,13 @@ We have implemented a simple % but effective
 unstructured overlay that enables the agents to collaborate
 % without side effects: when necessary, \eg in case of node failures,
 % the overlay
-by providing a link to a neighbor of a node on the latter's request.
+by providing a link to a neighbor %of a node
+on the latter's request.
 % \MS[AL, JP]{A bit short. What about an architecture figure (as for
 %  Snooze?)}
 
-%When a server is overloaded, %(\ie VMs hosted on the server require more
-%resources than available),
-%an \emph{Iterative Scheduling Procedure
-%  (ISP}) is started:
 
-%a partition initially containing only the
-%overloaded node is created; the partition then grows by including free
-%nodes until the resource requirements can be satisfied by a VM
-%reconfiguration. This way, resource problems that appear at many
-%different nodes can be handled in parallel using different
-%partitions.
-% Partitioning the nodes is mandatory in this case: sharing free nodes
-% among different parallel VM reconfigurations leads to very intricate
-% concurrency or performance issues.
-%
-%Each partition includes two special nodes, the initiator and the
-%leader.  The initiator of a partition is its initial node (i.e. the
-%overloaded one).  The leader of a partition is the node that was the
-%last to be added to the partition: it manages the scheduling
-%computations necessary to resolve the overload resource conflict.
-% If a valid reconfiguration plan cannot be computed, a new node will be
-% inserted in the partition, who becomes the new leader of the
-% partition.
 
-\begin{figure}[h]
-\vspace*{-.6cm}
-\subfigure[]{
-\includegraphics[width=2.7cm]{./figures/fig-24.pdf}
-\label{fig:dvms_pte_1}}
-%
-\subfigure[]{
-\includegraphics[width=2.7cm]{./figures/fig-25.pdf}
-\label{fig:dvms_pte_2}}
-%
-\subfigure[]{
-\includegraphics[width=2.7cm]{./figures/fig-26.pdf}
-\label{fig:dvms_pte_3}}
-%
-\subfigure[Legend]{
-\includegraphics[width=2.7cm]{./figures/fig-27.pdf}
-\label{fig:dvms_pte_4}}
-%
-\vspace*{-.3cm}
-\caption{Processing two events simultaneously\label{fig:dvms_pte}}
-\vspace*{-.6cm}
-\end{figure}
 
 % \paragraph{Iterative Scheduling Procedure.}
 % \label{sec:ISP}
@@ -97,6 +39,8 @@ Fig.~\ref{fig:dvms_pte_1}).
 Then, its
 closest neighbor % , as defined by the network overlay,
 is considered.
+%
+%
 %
 If this neighbor, N\(_{\textit{i+1}}\),
 is already part of another partition, the next neighbor is considered.
@@ -128,6 +72,30 @@ the scheduling process and thus the reactivity criteria.
 
 Most of the DVMS code has been coded in SCALA leveraging the Java
 primitives of \sg for the communications between the different DVMS agents.
+
+\begin{figure}[t]
+\vspace*{-.6cm}
+\subfigure[]{
+\includegraphics[width=2.7cm]{./figures/fig-24.pdf}
+\label{fig:dvms_pte_1}}
+%
+\subfigure[]{
+\includegraphics[width=2.7cm]{./figures/fig-25.pdf}
+\label{fig:dvms_pte_2}}
+%
+\subfigure[]{
+\includegraphics[width=2.7cm]{./figures/fig-26.pdf}
+\label{fig:dvms_pte_3}}
+%
+\subfigure[Legend]{
+\includegraphics[width=2.7cm]{./figures/fig-27.pdf}
+\label{fig:dvms_pte_4}}
+%
+\vspace*{-.3cm}
+\caption{Processing two events simultaneously\label{fig:dvms_pte}}
+\vspace*{-.6cm}
+\end{figure}
+
 
 % \subsubsection{Fault-tolerance}
 

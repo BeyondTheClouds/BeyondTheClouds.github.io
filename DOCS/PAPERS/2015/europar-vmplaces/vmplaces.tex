@@ -1,5 +1,6 @@
 \section{VM Placement Simulator}
 \label{sec:injector}
+\vspace*{-.17cm}
 
 The aim of \vmps is twofold:~(i) to relieve researchers of the burden of
 dealing with VM creations and workload fluctuations when they evaluate
@@ -19,6 +20,7 @@ compare them.
 % In the following we give an overview of \vmps and describe its
 % general functioning.
 
+\vspace*{-.25cm}
 \subsubsection{Overview.}
 \label{sec:overview}
 
@@ -45,7 +47,7 @@ and the DVMS proposal using Scala and Java.
 \label{fig:workflow}
 \end{wrapfigure}
 %
-% From a high-level view, 
+% From a high-level view,
 \vmps performs a simulation in three phases, see
 Fig.~\ref{fig:workflow}: (i) initialization, (ii) injection and (iii)
 trace analysis.  The initialization phase corresponds to the creation
@@ -106,8 +108,8 @@ overloaded, etc.).
 
 %\subsection{Initialization Phase}
 
+\vspace*{-.25cm}
 \subsubsection{Initialization Phase.}
-
 \vmps first creates $n$ VMs and assigns them in a round-robin manner
 to the first $p$ hosts defined in the platform file.  The default
 platform file corresponds to a cluster of $h+s$ hosts, where $h$
@@ -153,8 +155,8 @@ simulation in terms of the injected load as explained below.
 %
 Once the creation and the assignment of VMs completed, \vmps spawns at
 least two \sg processes, the \emph{injector} and the launcher of the
-selected scheduler.  At its start the \emph{injector} 
-% consists in creating the different event queues and merge them into 
+selected scheduler.  At its start the \emph{injector}
+% consists in creating the different event queues and merge them into
 creates an event queue that will be consumed during the second phase
 of the simulation.  Currently, \vmps supports \emph{CPU
   load change} events (only).
@@ -173,7 +175,7 @@ exponential distribution with rate parameter $\lambda_t$ while the CPU
 load of a VM evolves according to a Gaussian distribution defined by a
 given mean ($\mu$) as well as a given standard deviation
 ($\sigma$). $t$, $\mu$ and $\sigma$ are provided as input parameters
-of a simulation.  
+of a simulation.
 % As the CPU load can fluctuate between 0 and 100\%, \vmps prevents
 % the assignment of nonsensical values when the Gaussian distribution
 % returns a number smaller than 0 or greater than 100.
@@ -204,12 +206,13 @@ defining new event Java classes implementing the
 generating the corresponding events that are then handled
 % the associated queue. Such a
 % new queue will be merged into the global one and its events will then be
-% consumed 
+% consumed
 similarly to the \emph{CPU Load}
 ones.% during the \emph{injector phase}.
 As an example, the next release of \vmps will integrate \emph{node
   apparition/removal events} that will be used to simulate crashes.
 
+\vspace*{-.25cm}
 \subsubsection{Injector Phase.}
 
 Once the VMs and the global event queue are ready, the evaluation of
@@ -254,7 +257,7 @@ solver, as a real implementation would do, to get the effective
 reconfiguration plan.  That is, the computation time that is observed
 is not simulated but corresponds to the effective one, only the
 workload inside the VMs and the reconfiguration operations (\ie
-suspend/resume and migrate) are simulated in \sg. 
+suspend/resume and migrate) are simulated in \sg.
 % It is hence mandatory to propagate the effective computation time
 % into the \sg engine.%
 % The following is IMO a technical detail by invoking a \texttt{wait}
@@ -278,7 +281,7 @@ community, such as PajeNG~\cite{pageng:www}, may be used with
 file, which is used to represent resource usage by figures generated
 using the R statistical environment~\cite{R:Bloomfield:2014}.
 
-By default, \vmps records the load of the different VMs and hosts, the
+By default, \vmps records the load of the VMs and hosts, the
 start and the duration of each violation of VM requirements in
 the system, the number of migrations, the number of times the
 scheduler mechanism has been invoked and the number of times it
@@ -286,7 +289,7 @@ succeeds or fails to resolve non-viable configurations.
 %
 % Although these pieces of information are key elements to understand
 % and compare the behavior of the different algorithms, we emphasize
-% that 
+% that
 The TRACE API is extensible in that as many variables as necessary can
 be created by users of our system, thus allowing researchers to
 instrument their own algorithm with specific variables that record
