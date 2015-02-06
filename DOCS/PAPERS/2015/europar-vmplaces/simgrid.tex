@@ -35,12 +35,20 @@ has been recently extended to integrate VM abstractions and a live
 migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}. In addition
 to enabling researchers to control VMs in the same manner as in the
 real world (\eg create/destroy VMs; start/shutdown, suspend/resume and
-migrate them), the model implementing the precopy migration algorithm
-of Qemu/KVM is the only one that successfully simulates the live
-migration behavior by taking into account the competition arising in
-the presence of resource sharing as well as the memory refreshing rate
-of the VM, thus determining correctly the live migration time as well
-as the resulting network traffic. These two capabilities were
+migrate them),
+the live migration model provided by \sg  is the only one that successfully determines
+correctly the time and the resulting network traffic of a migration by taking into
+account the competition arising in the presence of resource sharing
+and the memory refreshing rate.
+%
+% the model implementing the precopy migration algorithm
+% %of Qemu/KVM
+% is the only one that successfully simulates the live
+% migration behavior by taking into account the competition arising in
+% the presence of resource sharing as well as the memory refreshing rate
+% of the VM, thus determining correctly the live migration time as well
+% as the resulting network traffic.
+These two capabilities were
 mandatory to build \vmps.%our VM placement simulator toolkit.
 
 
