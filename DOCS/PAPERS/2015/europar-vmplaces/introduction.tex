@@ -11,11 +11,11 @@ of CC resources while guaranteeing VM resource requirements as defined
 by Service Level Agreements (SLAs).
 % %% THE TEXT BELOW COMES FROM ISPA'13
 % %%%%%%%
-Typically, a batch scheduling approach is used: VMs are allocated
-according to user requests and statically allocated to physical
-machines. Such static policies are clearly suboptimal, because users
-often overestimate their needs and the effective resource requirements
-of a VM may significantly vary during its lifetime.
+Typically, a batch scheduling approach is used: VMs are statically
+allocated to physical machines according to user requests. Such static
+policies are clearly suboptimal, because users often overestimate
+their needs and the effective resource requirements of a VM may
+significantly vary during its lifetime.
 
 An important impediment to the adoption of more advanced strategies
 such as dynamic consolidation, load balancing and other SLA-enforcing
@@ -24,12 +24,12 @@ algorithms developed by the academic community
 %is related to the experimental
 % REMOVE: 5328077 can be removed if need be
 \cite{feller:ccgrid12,Hermenier:2009:ECM:1508293.1508300,quesnel:cpe2012,5328077,5935254}
-is related to the experimental processes used for validation: most VM
-placement proposals have been evaluated either using ad hoc simulators
-or small \textit {in-vivo} (\ie real-world) experiments. These methods
-are not accurate and not representative enough to (i) ensure their
-correctness on real platforms and (ii) perform fair comparisons
-between them.
+is related to the experimental processes used for their validation:
+most VM placement proposals have been evaluated either using ad hoc
+simulators or small \textit {in-vivo} (\ie real-world)
+experiments. These methods are not accurate and not representative
+enough to (i) ensure their correctness on real platforms and (ii)
+perform fair comparisons between them.
 %
 % %
 % \begin{figure}[ht]
@@ -75,18 +75,18 @@ terms of scalability, reliability and varying workload changes would
 definitely be the most rigorous way to support their development for
 CC production infrastructures.
 % and compare  with existing proposals.
-However, \textit{in-vivo} experiments, if they can be
-executed at all, are always expensive and tedious to perform (for
-recent reference see~\cite{barker:pitfalls}).
+However, \textit{in-vivo} experiments, if they can be executed at all,
+are always expensive and tedious to perform,
+see~\cite{barker:pitfalls} for a recent reference.
 % They may even be counterproductive if the observed behaviors are clearly
 %different from the expected ones.
 
 In this article, we propose \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
 them in a fair way. To cope with real conditions such as the
-increasing scale of modern data centers, the workload dynamicity
-that are specific to the CC paradigm and its elasticity
-characteristics, \vmps allows users to study large-scale scenarios
+increasing scale of modern data centers, as well as the workload
+dynamicity and elasticity characteristics that are specific to the CC
+paradigm, \vmps allows users to study large-scale scenarios
 %that take into account server crashes and
 that involve thousands of VMs,
 each executing a specific workload that evolves during the
@@ -132,8 +132,8 @@ conclusion.
 
 
 
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
 %%% End:
-%
