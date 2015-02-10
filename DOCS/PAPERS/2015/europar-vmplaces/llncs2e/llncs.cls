@@ -340,44 +340,32 @@
 \renewcommand\section{\@startsection{section}{1}{\z@}%
                        % {-18\p@ \@plus -4\p@ \@minus -4\p@}%
                        % {12\p@ \@plus 4\p@ \@minus 4\p@}%
-                       {-10\p@ \@plus -3\p@ \@minus -3\p@}%
+                       {-8\p@ \@plus -2\p@ \@minus -2\p@}%
                        {6\p@ \@plus 3\p@ \@minus 3\p@}%
                        {\normalfont\large\bfseries\boldmath
                         \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-                       {-10\p@ \@plus -2\p@ \@minus -2\p@}%
+%                        {-18\p@ \@plus -4\p@ \@minus -4\p@}%
+%                        {8\p@ \@plus 4\p@ \@minus 4\p@}%
+                       {-8\p@ \@plus -2\p@ \@minus -2\p@}%
                        {4\p@ \@plus 2\p@ \@minus 2\p@}%
                        {\normalfont\normalsize\bfseries\boldmath
                         \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                       {-10\p@ \@plus -2\p@ \@minus -2\p@}%
+%                        {-18\p@ \@plus -4\p@ \@minus -4\p@}%
+%                        {-0.5em \@plus -0.22em \@minus -0.1em}%
+                       {-8\p@ \@plus -2\p@ \@minus -2\p@}%
                        {-0.3em \@plus -0.18em \@minus -0.1em}%
                        {\normalfont\normalsize\bfseries\boldmath}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-                       {-10\p@ \@plus -2\p@ \@minus -2\p@}%
+%                        {-12\p@ \@plus -4\p@ \@minus -4\p@}%
+%                        {-0.5em \@plus -0.22em \@minus -0.1em}%
+                       {10\p@ \@plus -2\p@ \@minus -2\p@}%
                        {-0.3em \@plus -0.18em \@minus -0.1em}%
                        {\normalfont\normalsize\itshape}}
 \renewcommand\subparagraph[1]{\typeout{LLNCS warning: You should not use
                   \string\subparagraph\space with this class}\vskip0.5cm
 You should not use \verb|\subparagraph| with this class.\vskip0.5cm}
-% \renewcommand\section{\@startsection{section}{1}{\z@}%
-%                        {-18\p@ \@plus -4\p@ \@minus -4\p@}%
-%                        {12\p@ \@plus 4\p@ \@minus 4\p@}%
-%                        {\normalfont\large\bfseries\boldmath
-%                         \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
-% \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-%                        {-18\p@ \@plus -4\p@ \@minus -4\p@}%
-%                        {8\p@ \@plus 4\p@ \@minus 4\p@}%
-%                        {\normalfont\normalsize\bfseries\boldmath
-%                         \rightskip=\z@ \@plus 8em\pretolerance=10000 }}
-% \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-%                        {-18\p@ \@plus -4\p@ \@minus -4\p@}%
-%                        {-0.5em \@plus -0.22em \@minus -0.1em}%
-%                        {\normalfont\normalsize\bfseries\boldmath}}
-% \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-%                        {-12\p@ \@plus -4\p@ \@minus -4\p@}%
-%                        {-0.5em \@plus -0.22em \@minus -0.1em}%
-%                        {\normalfont\normalsize\itshape}}
 
 \DeclareMathSymbol{\Gamma}{\mathalpha}{letters}{"00}
 \DeclareMathSymbol{\Delta}{\mathalpha}{letters}{"01}
