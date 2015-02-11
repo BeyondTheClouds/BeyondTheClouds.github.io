@@ -1,4 +1,4 @@
-\subsubsection{Analysis of Entropy, Snooze and DVMS}
+\subsection{Analysis of Entropy, Snooze and DVMS}
 \label{subsec:first-usecase}
 
 %\AL{Il faudra parler du nombre de migrations qui est egalement une
@@ -16,7 +16,8 @@ strategies.
 % improvements of Snooze and DVMS that made possible to easily study  thanks to
 % \vmps.
 
-%\subsubsection{Experimental Conditions}
+\subsubsection{Experimental Conditions.}
+
 %\emph{Experimental conditions. ~}
 % All simulations have been performed on the Lyons-based clusters of the
 % Grid'5000 testbed.
@@ -32,7 +33,7 @@ reproducibility between the different invocations.
 PMs composed of 8 cores, 32~GB of RAM and 1~Gpbs Ethernet NIC. To
 enable a fair comparison between the three strategies, the scheduling
 resolver only considered 7 cores, \ie one was devoted to run the
-Snooze LC or the DVMS processes (a quite common experimental setup).
+Snooze LC or the DVMS admin processes (a common experimental setup).
 % Dedicating one core for the host OS and other administrative processes
 % is something which is rather usual and thus we believe acceptable in
 % our experimental methodology.
@@ -85,8 +86,8 @@ every 30s for Entropy and Snooze.
 %Finally, we highlight that all configuration files used to perform the discussed simulations can
 %be downloaded from the \vmps repository.
 
-%\subsubsection{General  Analysis}
-%\label{subsec:general-comparison}
+\subsubsection{General  Analysis}
+\label{subsec:general-comparison}
 
 % \begin{figure}
 % \subcapcentertrue
@@ -173,7 +174,7 @@ every 30s for Entropy and Snooze.
 \end{figure*}
 
 %\emph{Simulation results and analysis. ~}
-Fig.~\ref{fig:general-comparison} presents on the left the cumulated
+Figure~\ref{fig:general-comparison} presents on the left the cumulated
 violation time for each placement policy and on the right several
 tables that give more details by presenting the mean and the standard
 deviations of the duration of, respectively, the violations and the
@@ -185,15 +186,15 @@ it is during both the computation and reconfiguration phases.
 % Regarding the computation, the VMPP is a NP-Hard problem and thus it
 % is not surprising that it takes more time to resolve larger
 % problems.
-This is to be expected for the computation phase (which tries to solve
-an NP-complete problem).  As to reconfiguration,
+This is to be expected for the computation phase (which tries to
+tackle an NP-complete problem).  As to reconfiguration,
 % as Entropy has to solve much more violations simultaneously,
 the reconfiguration plan becomes more complex for large scenarios,
 including several migrations coming from and going to the same
 nodes. Such plans are not optimal as they increase the bottleneck
 effects at the network level of each involved PM. Such a simulated
 result is valuable as it confirms that reconfiguration plans should
-avoid as much as possible such manipulations.
+avoid such manipulations as much as possible.
 %
 The results of the hierarchical approach are clearly better than the
 Entropy-based ones but worse than those using DVMS-based
@@ -271,14 +272,17 @@ base.
 \label{fig:snoozeGroupSizes}
 \vspace*{-.6cm}
 \end{figure*}
-%
-%\paragraph{Varying group sizes}
-%
-Figure \ref{fig:snoozeGroupSizes} presents the simulated values
-obtained for scenarios with 2,~4,~8 and 32~LCs per GM for four
-infrastructure sizes. The overall performance (\ie cumulated violation
-time) shows that
-2~LCs per GM result in significantly higher violation times.
+
+\subsubsection{Investigating Algorithm Variants.}
+
+\vmps facilitates the in-depth analysis of variants of placement
+algorithms. We have, for example, analyzed, as a first study of its
+kind, how the Snooze-based placement depends on the no.\ of LCs
+assigned to a GM. Fig.~\ref{fig:snoozeGroupSizes} presents the
+simulated values obtained for scenarios with 2,~4,~8 and 32~LCs per GM
+for four infrastructure sizes. The overall performance (\ie cumulated
+violation time) shows that 2~LCs per GM result in significantly higher
+violation times.
 % All other
 %group sizes yield violation times that are relatively close, which
 %indicates that a small group size does not help much in
@@ -320,28 +324,27 @@ load profiles.
 % the migration overhead on the network but
 % also on the workload running inside each VM.
 
-Moreover, we have succeeded to conduct DVMS simulations up to
+The study performed in this paper has allowed us to analyze several
+other variants and possible improvements (which we cannot present here
+for lack of space), such as a reactive approach to hierarchical
+placement instead of the periodical one used by Snooze, as well as
+more aggressive partitioning in the case of DVMS.  \vmps also provides
+additional metrics such as the overall count of migrations, the
+average duration of each migration~\ldots\ These allow important
+properties, \eg the migration overhead, to be studied. All these
+variants can be easily studied and evaluated thanks to \vmps.
+
+Finally, we have succeeded to conduct DVMS simulations up to
 8K~PMs/80K~VMs in a bit less than two days. We did not present these
 results in this paper because it was not possible to run a sufficient
 number of Snooze simulations at such a scale (the Snooze protocol
-being more
-complex).
+being more complex).
 % , the time to perform a similar experiment is much more important
 % (around 7 days).
 The time-consuming portions of the code are related to \sg internals
 such as \texttt{sleep} and \texttt{send/recv} calls. Hence, we are
 collaborating with \sg core developers in order to reduce the
 simulation time in such cases.
-
-Finally, the study performed in this paper has allowed us to analyze
-several variants and possible improvements such as a reactive approach
-to hierarchical placement instead of the periodical one used by
-Snooze, more aggressive partitioning in the case of DVMS.  \vmps also
-provides additional metrics such as the overall count of migrations,
-the average duration of each migration~\ldots\ These allow important
-properties, \eg the migration overhead, to be studied. All these
-variants can be easily studied and evaluated thanks to \vmps.
-
 
 
 %%% Local Variables:

@@ -354,7 +354,7 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
 %                        {-18\p@ \@plus -4\p@ \@minus -4\p@}%
 %                        {-0.5em \@plus -0.22em \@minus -0.1em}%
-                       {-8\p@ \@plus -2\p@ \@minus -2\p@}%
+                       {-6\p@ \@plus -2\p@ \@minus -2\p@}%
                        {-0.3em \@plus -0.18em \@minus -0.1em}%
                        {\normalfont\normalsize\bfseries\boldmath}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%

@@ -11,16 +11,6 @@
 Snooze~\cite{snoozeweb,feller:ccgrid12} harnesses a hierarchical
 architecture in order to support load balancing and fault tolerance,
 cf.\ Fig.~\ref{fig:snoozearch}.
-
-\begin{wrapfigure}{r}{.46\linewidth}
-  {\centering
-\vspace*{-.6cm}
-\includegraphics[width=.97\linewidth]{figures/snoozearch.pdf}}
-\vspace*{-.3cm}
-  \caption{Snooze's Architecture Overview}
-  \label{fig:snoozearch}
-\vspace*{-.5cm}
-\end{wrapfigure}
 At the top, %of the hierarchy,
  a \emph{group leader (GL)} centralizes information about the whole
 cluster using summary data about \emph{group managers (GMs)} that
@@ -30,28 +20,37 @@ assigned to nodes.
 % The GL and the GMs are deployed on service nodes while the LCs are
 % executed on hosting node.
 
+\begin{wrapfigure}{r}{.46\linewidth}
+  {\centering
+\vspace*{-.6cm}
+\includegraphics[width=.97\linewidth]{figures/snoozearch.pdf}}
+\vspace*{-.3cm}
+  \caption{Snooze Architecture}
+  \label{fig:snoozearch}
+\vspace*{-.5cm}
+\end{wrapfigure}
 During execution, higher-level components periodically send heartbeats
 to lower-level ones; monitoring information, \eg about the system
 load, is also sent periodically in the opposite direction. In order to
 propagate information, Snooze relies on hardware support for multicast
-communication. Finally, a number of replicated entry points allows
-clients to contact the GL, \eg to submit new VMs for
-integration into the system.
+communication.
+% Finally, entry points allow clients to contact the GL, \eg to submit
+% new VMs for integration into the system.
 
-The implementation in \vmps of the core architectural abstractions of Snooze  (\ie
-VM monitoring and manipulations) leverages the \texttt{XHOST}, \texttt{XVM} and
+The implementation in \vmps of the core architectural abstractions of
+Snooze % (\ie VM monitoring and manipulations)
+leverages the \texttt{XHOST}, \texttt{XVM} and
 \texttt{SimulatorManager} while other mechanisms have been implemented
 using Simgrid's primitives and standard Java mechanisms.
 %
-For instance, communication between Snooze actors is implemented based on Simgrid's
-primitives for, mainly asynchronous, event handling.
-The multicast capability that is used, \eg
-to relay heartbeats, is implemented as a dedicated actor that manages
-a state representing GL and GM heartbeat groups and relaying heartbeat
-events.
+For instance, communication between Snooze actors is implemented based
+on Simgrid's primitives for, mainly asynchronous, event handling.  The
+multicast capability that is used, \eg to relay heartbeats, is
+implemented as a dedicated service that manages a state to relay
+heartbeat events in a concurrent manner to all receivers.
 %
 Finally, our Snooze simulation uses, as its original counterpart, a
-multi-threaded implementation (\ie based on multiple SG processes) in
+multi-threaded implementation (\ie based on multiple \sg processes) in
 order to optimize reactivity even for large groups of LCs (or GMs)
 that have to be managed by one GM (or GL).
 

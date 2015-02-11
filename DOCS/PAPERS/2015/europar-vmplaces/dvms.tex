@@ -25,7 +25,7 @@ on the latter's request.
 % \AL[MS,JP]{if we succeed to have only one or two subsections in
 %   Snooze, we should do the same here.}
 
-Fig. \ref{fig:dvms_pte} depictes the DVMS algorithm.
+Fig. \ref{fig:dvms_pte} depicts the DVMS algorithm.
 When a node N\(_{\textit{i}}\) detects that it cannot provide enough
 resources for its hosted VMs, %(\ie VMs hosted on the server require more
 %resources than available),
@@ -34,10 +34,9 @@ an \emph{Iterative Scheduling Procedure
 %
 %When a node N\(_{\textit{i}}\)
 %detects that it cannot provide enough resources for its hosted VMs,
-it initiates a partition, reserving itself to solve the problem (sse
-Fig.~\ref{fig:dvms_pte_1}).
-Then, its
-closest neighbor % , as defined by the network overlay,
+it initiates a partition, reserving itself to solve the problem, see
+Fig.~\ref{fig:dvms_pte_1}.  Then, its closest
+neighbor % , as defined by the network overlay,
 is considered.
 %
 %
@@ -66,15 +65,16 @@ the next node N\(_{\textit{i+2}}\).
 % % In the extreme case a partition may grow until all resources in a
 % % cluster contribute to the resolution of its resource scheduling
 % % problem.
-This approach constructs small parititions in a highly parallel
-manner (Fig.~\ref{fig:dvms_pte_3}), thus significantly accelerating
-the scheduling process and thus the reactivity criteria.
+This approach constructs small partitions in a highly parallel manner
+(Fig.~\ref{fig:dvms_pte_3}), thus accelerating the scheduling process
+and reactivity.
 
 Most of the DVMS code has been coded in SCALA leveraging the Java
-primitives of \sg for the communications between the different DVMS agents.
+primitives of \sg for the communications between the different DVMS
+agents that have been implemented, in turn, using the abstractions of \vmps.
 
 \begin{figure}[t]
-\vspace*{-.6cm}
+\vspace*{-.2cm}
 \subfigure[]{
 \includegraphics[width=2.7cm]{./figures/fig-24.pdf}
 \label{fig:dvms_pte_1}}
