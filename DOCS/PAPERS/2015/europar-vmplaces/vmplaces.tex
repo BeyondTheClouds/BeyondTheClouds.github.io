@@ -1,6 +1,5 @@
 \section{VM Placement Simulator}
 \label{sec:injector}
-\vspace*{-.17cm}
 
 The aim of \vmps is twofold:~(i) to relieve researchers of the burden of
 dealing with VM creations and workload fluctuations when they evaluate
@@ -20,7 +19,6 @@ compare them.
 % In the following we give an overview of \vmps and describe its
 % general functioning.
 
-\vspace*{-.25cm}
 \subsubsection{Overview.}
 \label{sec:overview}
 
@@ -78,7 +76,7 @@ and consists of the classes \texttt{XHost}, \texttt{XVM} and
 \texttt{SimulatorManager}. The two former classes respectively
 extend \sg's \texttt{Host} and \texttt{VM} abstractions while the
 latter controls the interactions between the different components of
-the simulator.  Through these three classes, users can
+the simulator.  Through these three classes users can
 inspect, at any time, the current state of the infrastructure (\ie the
 load of a host/VM, the number of VMs hosted on the whole
 infrastructure or on a particular host, check whether a host is
@@ -108,8 +106,8 @@ overloaded, etc.).
 
 %\subsection{Initialization Phase}
 
-\vspace*{-.25cm}
 \subsubsection{Initialization Phase.}
+
 \vmps first creates $n$ VMs and assigns them in a round-robin manner
 to the first $p$ hosts defined in the platform file.  The default
 platform file corresponds to a cluster of $h+s$ hosts, where $h$
@@ -140,8 +138,8 @@ CPU resources.  Available classes are defined in a text file that is
 modifyable by users.  As pointed out in Section \ref{sec:sg}, the
 memory update speed is a critical parameter that governs the migration
 time as well as the amount of transferred data.  VM classes provide
-means to simulate arbitrary kinds of workload (\eg memory-intensive or
-workloads), and thus analyze more realistic CC problems.
+means to simulate arbitrary kinds of workload (\eg memory-intensive
+ones) % , and thus analyze more realistic CC problems.
 
 %\MS{Follows a low-level mechanism!}
 % TODO not addressed yet. This text should appear in the README
@@ -151,7 +149,7 @@ workloads), and thus analyze more realistic CC problems.
 %simply repeat the line of the class several times.
 %
 All VMs start with a CPU consumption of 0 that will evolve during the
-simulation in terms of the injected load as explained below.
+simulation depending on the injected load as explained below.
 %
 Once the creation and the assignment of VMs completed, \vmps spawns at
 least two \sg processes, the \emph{injector} and the launcher of the
@@ -212,7 +210,6 @@ ones.% during the \emph{injector phase}.
 As an example, the next release of \vmps will integrate \emph{node
   apparition/removal events} that will be used to simulate crashes.
 
-\vspace*{-.25cm}
 \subsubsection{Injector Phase.}
 
 Once the VMs and the global event queue are ready, the evaluation of
@@ -302,3 +299,4 @@ other pieces of information.
 %%% mode: latex
 %%% TeX-master: "main"
 %%% End:
+%

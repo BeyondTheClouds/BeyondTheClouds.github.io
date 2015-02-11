@@ -1,7 +1,5 @@
-\vspace*{-.15cm}
 \section{Dynamic VMPP Algorithms}
 \label{sec:vm-schedulers}
-\vspace*{-.15cm}
 
 To illustrate the interest of \vmps, we implemented three dynamic VM
 placement mechanisms: a centralized one based on the Entropy
@@ -11,15 +9,15 @@ based on DVMS~\cite{quesnel:cpe2012}.
 %\MS{We should differentiate more clearly between the complete VMPP
  % system and the solver.}
 %
-These systems enable, if it is possible,  the resolution  of violations in form of
-overloaded nodes. A host is overloaded when the VMs try to consume
-more than 100\% of the CPU capacity of the host. In such a case, a
-resolution algorithm looks for a reconfiguration plan that can lead to
-a viable configuration. For the sake of
-simplicity, we chose to use the latest solver developed as part of the Entropy
-framework~\cite{hermenier:cp11} in the three systems as this resolution algorithm.
-The Entropy solver evaluates different viable configurations until  it
-reaches a predefined timeout.
+These systems search for solutions to violations caused by overloaded
+nodes. A host is overloaded when its VMs try to consume more than
+100\% of the CPU capacity of the host. In such a case, a resolution
+algorithm looks for a reconfiguration plan that can lead to a viable
+configuration. For the sake of simplicity, we chose to use the latest
+solver developed as part of the Entropy
+framework~\cite{hermenier:cp11} as this resolution algorithm for all
+three systems.  The Entropy solver evaluates different viable
+configurations until it reaches a predefined timeout.
 % Giving up consolidation optimality in favor of scalability, this
 % algorithm provides a ``repair mode'' that enables the correction of VM
 % requirement violations. The optimal solution is a new placement that
@@ -42,15 +40,14 @@ world.
 %proposals rely on.% (\ie centralized, hierarchical and distributed).
 
 In the remainder of this section, we present an overview of the
-three systems, showing, in particular, that the extended abstractions
-for hosts (\texttt{XHost}), VMs (\texttt{XVM}) and the functions of
-the \sg MSG API enabled us to develop them in a direct and natural
-manner.
+three systems.
+% showing, in particular, that the extended abstractions for hosts
+% (\texttt{XHost}), VMs (\texttt{XVM}) and the functions of the \sg
+% MSG API enabled us to develop them in a direct and natural manner.
 
-%\subsection{Entropy-based Centralized Approach}
-\vspace*{-.2cm}
-\subsubsection{Entropy-based Centralized Approach}
+\subsubsection{Entropy-based Centralized Approach.}
 \label{subsec:entropy}
+
 The centralized VM placement mechanism consists in one single \sg
 process deployed on a service node. This process implements a simple loop that
 iteratively checks the viability of the current configuration by
@@ -89,19 +86,16 @@ to the states of the hosts and their respective VMs.
 %
 % as mentioned in Section \ref{subsec:traces-analysis},
 We also monitor, for each iteration, whether the VMPP solver succeeds
-or fails. In case of success, \vmps records the number of migrations
+or fails. In the case of success, \vmps records the number of migrations
 that have been performed, the time it took to apply the
 reconfiguration and whether the reconfiguration
 led to new violations.
 
-%\subsection{Snooze-based Hierarchical Approach}
-\subsubsection{Snooze-based Hierarchical Approach}
+\subsubsection{Snooze-based Hierarchical Approach.}
 \label{subsec:snooze}
 \input{snooze.tex}
 
-%\subsection{DVMS-based Distributed Approach}
-\vspace*{-.2cm}
-\subsubsection{DVMS-based Distributed Approach}
+\subsubsection{DVMS-based Distributed Approach.}
 \label{subsec:dvms}
 \input{dvms.tex}
 
