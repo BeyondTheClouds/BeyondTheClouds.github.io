@@ -1,4 +1,4 @@
-\subsection{Comparison of Entropy, Snooze and DVMS}
+\section{Comparison of Entropy, Snooze and DVMS}
 \label{subsec:first-usecase}
 
 \MS{From Euro-Par: to be extended and rewritten}
@@ -91,82 +91,76 @@ every 30s for Entropy and Snooze.
 \subsubsection{General  Analysis.}
 \label{subsec:general-comparison}
 
-% \begin{figure}
-% \subcapcentertrue
-% \subfigure[Infrastructure load]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
-% \subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/experiments/violation_time.pdf}\label{fig:cumulated_violation}}
-% \caption{Simulation Results - 10 VMs per node (VM load: $\mu=60$ and $\sigma=20$)}
-% \label{fig:simulation-overview}
-% \end{figure}
+~ \MS{Tables don't not compile}
 
-\begin{figure*}[t]
+\begin{figure*}
 \subcapcentertrue
 \subfigure{
-  \includegraphics[width=.46\textwidth]{figures/experiments/violation_time.pdf}
+  \includegraphics[width=.46\textwidth]{figures/comparison/violation_time.pdf}
   \label{fig:violation_time}}
-\begin{minipage}{.5\textwidth}
-\centering
+%  \begin{minipage}{.5\textwidth}
+%    \centering
 
-%\subfigure[Duration of violation ($med \pm \sigma$)]{
-\subfigure{
-    {\tiny \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Infrastructure size}
-        & \multicolumn{3}{c@{\:}|}{Duration of \textbf{violations}
-          ($\mu \pm \sigma$)}
-          \Tstrut \\
-         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
-      \thickhline
-        128 nodes   & 21.26 $\pm$ 13.55 & 21.07 $\pm$ 12.32 &   9.55 $\pm$ 2.57 \\
-        256 nodes   & 40.09 $\pm$ 24.15 & 21.45 $\pm$ 12.10 &   9.58 $\pm$ 2.51 \\
-        512 nodes   & 55.63 $\pm$ 42.26 & 24.54 $\pm$ 16.95 &   9.57 $\pm$ 2.67 \\
-        1024 nodes  & 81.57 $\pm$ 86.59 & 29.01 $\pm$ 38.14 & \:9.61 $\pm$ 2.54
-      \Rstrut  \\ \hline
-      \thickhline
-  \end{tabular} }
-%\label{table:detailed_violation_time}
-}
+%    %\subfigure[Duration of violation ($med \pm \sigma$)]{
+%    \subfigure{
+%        {\footnotesize \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%          \thickhline
+%          \textbf{Infra.\ size}
+%            & \multicolumn{3}{c@{\:}|}{Duration of \textbf{violations}
+%              ($\mu \pm \sigma$)}
+%              \Tstrut \\
+%             \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+%          \thickhline
+%            128 nodes   & 21.26 $\pm$ 13.55 & 21.07 $\pm$ 12.32 &   9.55 $\pm$ 2.57 \\
+%            256 nodes   & 40.09 $\pm$ 24.15 & 21.45 $\pm$ 12.10 &   9.58 $\pm$ 2.51 \\
+%            512 nodes   & 55.63 $\pm$ 42.26 & 24.54 $\pm$ 16.95 &   9.57 $\pm$ 2.67 \\
+%            1024 nodes  & 81.57 $\pm$ 86.59 & 29.01 $\pm$ 38.14 &   9.61 $\pm$ 2.54
+%          \Rstrut  \\ \hline
+%          \thickhline
+%      \end{tabular} }
+%    %\label{table:detailed_violation_time}
+%    }
 
-%\subfigure[Duration of computations ($\mu \pm \sigma$)]{
-\subfigure{
-    {\tiny \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Infrastructure size}
-        & \multicolumn{3}{c@{\:}|}{Duration of \textbf{computations}
-          ($\mu \pm \sigma$)}
-          \Tstrut \\
-         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
-      \thickhline
-        128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
-        256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
-        512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
-        1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
-      \Rstrut  \\ \hline
-      \thickhline
-  \end{tabular} }
-%\label{table:detailed_computation_time}
-}
+% %\subfigure[Duration of computations ($\mu \pm \sigma$)]{
+% \subfigure{
+%     {\footnotesize \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infra.\ size}
+%         & \multicolumn{3}{c@{\:}|}{Duration of \textbf{computations}
+%           ($\mu \pm \sigma$)}
+%           \Tstrut \\
+%          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+%       \thickhline
+%         128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
+%         256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
+%         512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
+%         1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% %\label{table:detailed_computation_time}
+% }
 
-%\subfigure[Duration of reconfigurations ($\mu \pm \sigma$)]{
-\subfigure{
-    {\tiny \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Infrastructure size}
-        & \multicolumn{3}{c@{\:}|}{Duration of \textbf{reconfigurations}
-          ($\mu \pm \sigma$)}
-          \Tstrut \\
-         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
-      \thickhline
-        128 nodes   & 10.34 $\pm$  1.70 &  10.02 $\pm$  0.14 &   10.01 $\pm$ 0.11 \\
-        256 nodes   & 10.26 $\pm$  1.45 &  10.11 $\pm$  0.83 &   10.01 $\pm$ 0.08 \\
-        512 nodes   & 11.11 $\pm$  3.23 &  10.28 $\pm$  1.50 &   10.08 $\pm$ 0.82 \\
-        1024 nodes  & 18.90 $\pm$  7.57 &  10.30 $\pm$  1.60 & \:10.04 $\pm$ 0.63
-      \Rstrut  \\ \hline
-      \thickhline
-  \end{tabular} }
-%\label{tab:detailed_reconf_time}
-}
-\end{minipage}
+% %\subfigure[Duration of reconfigurations ($\mu \pm \sigma$)]{
+% \subfigure{
+%     {\footnotesize \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infra.\ size}
+%         & \multicolumn{3}{c@{\:}|}{Duration of \textbf{reconfigurations}
+%           ($\mu \pm \sigma$)}
+%           \Tstrut \\
+%          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+%       \thickhline
+%         128 nodes   & 10.34 $\pm$  1.70 &  10.02 $\pm$  0.14 &   10.01 $\pm$ 0.11 \\
+%         256 nodes   & 10.26 $\pm$  1.45 &  10.11 $\pm$  0.83 &   10.01 $\pm$ 0.08 \\
+%         512 nodes   & 11.11 $\pm$  3.23 &  10.28 $\pm$  1.50 &   10.08 $\pm$ 0.82 \\
+%         1024 nodes  & 18.90 $\pm$  7.57 &  10.30 $\pm$  1.60 & \:10.04 $\pm$ 0.63
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+%   \label{tab:detailed_reconf_time}
+% }
+% \end{minipage}
 \caption{Scalability/Reactivity analysis of Entropy, Snooze and DVMS}
 \label{fig:general-comparison}
 \end{figure*}
@@ -212,3 +206,10 @@ facilitated this study as the corresponding simulations differ just by
 configuration parameters and do not require modifications to the code
 base.
 
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
