@@ -8,15 +8,13 @@
   - From Snooze (32 / 8 / 4 / 2)
   -  From DVMS (1 vs 4 vs 8)
   => Objective : show whether it is better to have an incremental
- - TODO 8 for DVMS and 16 for Snooze (just to be consistent)
+ - TODO 8 for DVMS (Jonathan) and 16 (Mario) for Snooze (just to be consistent)
   approach to build microcosm/partition or a static partitionning
   (i.e. composed of 4 nodes at the first sight)
  - What's happen when the load differs (typically if the load is
    higher we can expect more faults with small groups)
-  +  65 /15
-  + Please see
-    http://onlinestatbook.com/2/calculators/normal_dist.html
-- TODO
+  +  65 /15 Only for Snooze with 4 LCS per GM.
+   - Please see  http://onlinestatbook.com/2/calculators/normal_dist.html
 - Expected conclusion: it is impossible to define the correct
   partitioning strategy since we do not know in advance the overall
   load.
