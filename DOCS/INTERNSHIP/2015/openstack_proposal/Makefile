@@ -1,6 +1,6 @@
-all: clean compile
+all: compile
 
-clean: main.aux main.log
+clean:
 	rm main.aux
 	rm main.log
 
