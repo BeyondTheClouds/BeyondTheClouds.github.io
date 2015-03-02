@@ -1,6 +1,7 @@
 \documentclass{letter}
 \usepackage{style-ltr}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 
 \signature{Adrien Lebre}
@@ -44,10 +45,10 @@ However, concentrating the production of computing resources leads to several
 issues:
 
 \begin{itemize}
-\item  Writing scalable software to manage large scale infrastructures is
+\item  Writing scalable software to manage such large scale infrastructures is
 difficult.
-\item Large DCs requires dedicated electrical and cooling facilities.
-\item Providing services to far-away users causes a network overhead.
+\item Large DCs require dedicated electrical and cooling facilities.
+\item Providing services to far-away users is source of network overhead.
 \item World-wide infrastructures leads to jurisdictional conflicts.
 \end{itemize}
 
@@ -62,16 +63,24 @@ that are mandatory to operate network/data centers while delivering widely
 distributed cloud computing platforms being able to better match the 
 geographical dispersal of users.
 
+More information can be found at 
+\href{http://beyondtheclouds.github.io}{http://beyondtheclouds.github.io}.
+
+
 {\Large \textbf{II- Description of the Internship}}
 
 In a first time the intern will study the functionning of OpenStack: he will
-identify the interactions between the composing services of OpenStack, in
-order to indentify which mechanisms can be distributed.
+identify services of OpenStack and understand their interactions, in order to
+check which mechanisms can be distributed.
 
-In a second time, the intern will work directly on a prototype of an OpenStack 
+In a second time, the intern will work directly on our prototype of an OpenStack 
 based IaaS manager. The intern will demonstrate the results of its previous work
 by applying it on the prototype. During this stage, the intern will work in team
-with some members of the Discovery initiative.
+with members of the Discovery initiative.
+
+At the present time, our prototype is working with a distributed version of the
+nova controller. The internship will be considered as successful if more 
+components would be distribued at the end of the intern's work.
 
 {\Large \textbf{III- Required skills}}
 
