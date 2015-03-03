@@ -1,34 +1,43 @@
 \section{Related Work}
 \label{sec:related}
+
 %\AL[AL]{Add few lines related to Google scheduling simulator - https://code.google.com/p/cluster-scheduler-simulator/}
 %\AL[AL]{Add few lines about FlexCloud - http://arxiv.org/pdf/1501.05789v1.pdf}
-Several simulator toolkits have been proposed since the last years in
-order to adress CC concerns~\cite{CC13,DGSIM,cloudsim,icancloud,greencloud}.  They can be classified into two categories: The first
-one corresponds to ad-hoc simulators that have been developped to
-address a particular concern. For instance, CReST~\cite{CC13} is a
-discrete event simulation toolkit built to evaluate Cloud provisioning
-algorithms. If ad-hoc simulators enable to provide some trends
-regarding the bevahiours of the system, they do consider the
-implication of the different layers, which can lead to non
-representative results at the end. Moreover, such ad-hoc solutions are
-developped for one shot and thus, they are not available for the
-scientific community. The second category \cite{icancloud,greencloud,
-  cloudsim} corresponds to more generic cloud simulator toolkits (\ie
-they have been designed to adress a majority of CC
-challenges). However, they have focused mainly on the API and not on
-the model of the different mechanisms of CC systems.
-
-For instance, CloudSim~\cite{cloudsim}, which has been widely used to
-validate algorithms and applications in different scientific
-publications, is based on a relatively top-down viewpoint of cloud
-environments.  That is, there is no papers that properly validate the
-different models it relies on: a migration time is calculated by
-dividing a VM memory size by a network bandwidth.
+Simulator toolkits that have been proposed to address CC
+concerns~\cite{cloudsim,CC13,DGSIM,greencloud,icancloud} can be
+classified into two categories.  The first corresponds to ad-hoc
+simulators that have been developed to address one particular
+concern. For instance, CReST~\cite{CC13} is a discrete event
+simulation toolkit built for Cloud provisioning algorithms. If ad-hoc
+simulators allow some characteristics of the behaviors of the system
+to be analyzed, they do not consider the implication of the different
+layers, which can lead to non-representative results. Moreover, most
+ad-hoc solutions are developed for one shot analyses. That is, there
+is no effort to release them as a complete and reusable tool for the
+scientific community. The second category
+\cite{cloudsim,greencloud,icancloud} corresponds to more generic cloud
+simulator toolkits (\ie they have been designed to address multiple CC
+challenges). However, they focus mainly on the API and not on the
+model of the different mechanisms of CC systems. For instance,
+CloudSim~\cite{cloudsim}, which has been widely used to validate
+algorithms and applications in different scientific publications, is
+based on a top-down viewpoint of cloud environments.  That is, there
+are no articles that properly validate the different models it relies
+on: a migration time is simply (and often imprecisely) calculated by
+dividing VM memory sizes by network bandwidth values.
 %Such a model cannot correctly simulate many real
 %environments where workloads perform substantial memory writes.
- In addition to having inaccuracy weaknesses at the low level, available cloud
-simulator toolkits over simplified the model for the virtualization
-technologies, leading also to non representation results at the
-end. As highlighted several times throughout this document, we chose to
-build \vmps on top of \sg in order to benefit fromt its accuracy of
-its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+In addition to be subject to inaccuracies at the low level, available
+cloud simulator toolkits often use oversimplified models for
+virtualization technologies, also leading to non-representative
+results. As highlighted throughout this article, we have chosen to
+build \vmps on top of \sg in order to build a generic tool that
+benefits from the accuracy of its models related to virtualization
+abstractions~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

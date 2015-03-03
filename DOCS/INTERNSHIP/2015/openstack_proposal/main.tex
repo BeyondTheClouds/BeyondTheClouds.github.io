@@ -1,0 +1,95 @@
+\documentclass{letter}
+\usepackage{style-ltr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+\signature{Adrien Lebre}
+\begin{document}
+\name{Dr.\ Adrien lebre}
+\position{Researcher\\(currently on leave from Mines Nantes)}
+\address{B216 - Ecole des Mines de Nantes\\
+4, rue Alfred Kastler, BP 20722\\
+44307 Nantes Cedex 3,\\
+France}
+\email{adrien.lebre@inria.fr}
+
+
+\begin{letter}
+{\Large \textbf{Master Internship}}
+
+
+\date{01 March 2015}
+
+\opening{}
+
+{\textbf{Title}: Participation to the development of a fully distributed
+ IaaS manager based on OpenStack.\\
+\textbf{Duration}: 4 to 6 months\\
+\textbf{Location}: Ecole des Mines de Nantes (France)\\
+\textbf{Supervisors}: \begin{itemize}
+\item Adrien Lebre (adrien.lebre@inria.fr)
+\item Jonathan Pastor (jonathan.pastor@inria.fr)
+\end{itemize}
+}
+
+{\Large \textbf{I- Context of the Internship}}
+
+In the current ecosystem of the Internet, service-providers are offering services
+to their users from all over the world. These services require
+a large amount of computing resources, and each service-provider has its own computing
+infrastructure leveraging tens of thousand servers concentrated in large 
+data-centers (DCs). 
+
+However, concentrating the production of computing resources leads to several 
+issues:
+
+\begin{itemize}
+\item  Writing scalable software to manage such large scale infrastructures is
+difficult.
+\item Large DCs require dedicated electrical and cooling facilities.
+\item Providing services to far-away users is source of network overhead.
+\item World-wide infrastructures leads to jurisdictional conflicts.
+\end{itemize}
+
+The DISCOVERY initiative proposes to change this model of \textbf{"few large 
+data-centers"} to \textbf{"many small data-centers, geographically spread, deployed upon 
+the network backbones"} in order to benefit from existing network centers, starting from the 
+core nodes of the backbone to the different network access points in charge of 
+interconnecting public and private institutions. 
+
+By such a mean, network and cloud providers would be able to mutualize resources
+that are mandatory to operate network/data centers while delivering widely 
+distributed cloud computing platforms being able to better match the 
+geographical dispersal of users.
+
+More information can be found at 
+\href{http://beyondtheclouds.github.io}{http://beyondtheclouds.github.io}.
+
+
+{\Large \textbf{II- Description of the Internship}}
+
+In a first time the intern will study the functionning of OpenStack: he will
+identify services of OpenStack and understand their interactions, in order to
+check which mechanisms can be distributed.
+
+In a second time, the intern will work directly on our prototype of an OpenStack 
+based IaaS manager. The intern will demonstrate the results of its previous work
+by applying it on the prototype. During this stage, the intern will work in team
+with members of the Discovery initiative.
+
+At the present time, our prototype is working with a distributed version of the
+nova controller. The internship will be considered as successful if more 
+components would be distribued at the end of the intern's work.
+
+{\Large \textbf{III- Required skills}}
+
+\begin{itemize}
+\item Curiosity and inquiring spirit.
+\item Good algorithmic skills.
+\item Knowledge in Python and Scala is a plus.
+\item Knowledge in web programming is a plus.
+\end{itemize}
+
+\end{letter}
+\end{document}
