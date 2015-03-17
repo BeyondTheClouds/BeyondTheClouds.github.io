@@ -7,93 +7,115 @@
 \signature{Adrien Lebre}
 \begin{document}
 \name{Dr.\ Adrien lebre}
-\position{Researcher\\(currently on leave from Mines Nantes)}
+\position{Inria Researcher}
+%\\(on leave from an Ass. Prof  position at Mines Nantes)}
 \address{B216 - Ecole des Mines de Nantes\\
 4, rue Alfred Kastler, BP 20722\\
 44307 Nantes Cedex 3,\\
 France}
-\email{adrien.lebre@inria.fr}
+%\email{adrien.lebre@inria.fr}
 
 
 \begin{letter}
-{\Large \textbf{Master Internship}}
+{\Large \textbf{Master Internship Position}}
 
-
-\date{01 March 2015}
+\date{}
 
 \opening{}
 
+
 {\textbf{Title}: Participation to the development of a fully distributed
  IaaS manager based on OpenStack.\\
+\textbf{Application deadline: 15 April 2015}
+\\
 \textbf{Duration}: 4 to 6 months\\
 \textbf{Location}: Ecole des Mines de Nantes (France)\\
+\textbf{Allowance}: 500 Euros per month\\
 \textbf{Supervisors}: \begin{itemize}
 \item Adrien Lebre (adrien.lebre@inria.fr)
 \item Jonathan Pastor (jonathan.pastor@inria.fr)
 \end{itemize}
 }
 
-{\Large \textbf{I- Context of the Internship}}
+{\Large \textbf{Context of the Internship}}
 
 In the current ecosystem of the Internet, service-providers are offering services
 to their users from all over the world. These services require
 a large amount of computing resources, and each service-provider has its own computing
-infrastructure leveraging tens of thousand servers concentrated in large 
-data-centers (DCs). 
+infrastructure leveraging tens of thousand servers concentrated in large
+data-centers (\textit{a.k.a., } mega-DCs).
 
-However, concentrating the production of computing resources leads to several 
+However, concentrating the production of computing resources in few
+mega-DCs  leads to several
 issues:
 
 \begin{itemize}
-\item  Writing scalable software to manage such large scale infrastructures is
+\item  Designing and implementing dedicated software to manage such large scale infrastructures is
 difficult.
-\item Large DCs require dedicated electrical and cooling facilities.
-\item Providing services to far-away users is source of network overhead.
+\item mega-DCs require dedicated electrical and cooling facilities.
+\item Providing services to users far-away  is source of network overhead.
 \item World-wide infrastructures leads to jurisdictional conflicts.
 \end{itemize}
 
-The DISCOVERY initiative proposes to change this model of \textbf{"few large 
-data-centers"} to \textbf{"many small data-centers, geographically spread, deployed upon 
-the network backbones"} in order to benefit from existing network centers, starting from the 
-core nodes of the backbone to the different network access points in charge of 
-interconnecting public and private institutions. 
+The DISCOVERY initiative proposes an alternative to the mega-DC model.
+Instead of building DCs of ever-increasing size, the initiative
+proposes to build many small data-centers, geographically spread,
+deployed upon the network backbones, taking the advantages of existing
+network centers, starting from the core nodes of the backbone to the
+different network access points in charge of interconnecting public
+and private institutions.
 
 By such a mean, network and cloud providers would be able to mutualize resources
-that are mandatory to operate network/data centers while delivering widely 
-distributed cloud computing platforms being able to better match the 
+that are mandatory to operate network/data centers while delivering widely
+distributed cloud computing platforms being able to better match the
 geographical dispersal of users.
 
-More information can be found at 
-\href{http://beyondtheclouds.github.io}{http://beyondtheclouds.github.io}.
+More information can be found on the
+\href{http://beyondtheclouds.github.io}{DISCOVERY website}.
 
 
-{\Large \textbf{II- Description of the Internship}}
+{\Large \textbf{Description of the Internship}}
 
-In a first time the intern will study the functionning of OpenStack: he will
-identify the interactions between its constituting services, in order to 
-understand how they collaborate. In parallel he will take cognizance of the
-approach proposed by Jonathan Pastor, a Ph.D student of the Ascola team.
+The internship will be integrated in the ASCOLA research group located
+at the Ecole des Mines de Nantes (further information on the
+\href{http://www.emn.fr/z-info/ascola/doku.php}{ASCOLA website}).
+The objectives of this internship are structured around the on-going
+development ASCOLA is doing for the aforementionned initiative.
+Concretely, ASCOLA is currently revisiting the design of the OpenStack
+solution in order to deliver a fully distributed IaaS manager. A
+prototype is currently tested on the Grid'5000 testbed.
 
-In a second time, the intern will focus his work on distributing the Glance 
-image service, which is in charge of managing the images used by the virtual 
-machines that are provisioned by an OpenStack deployment. Leveraging the work 
-accomplished during the first stage, the intern will migrate the database 
-backend from a MySQL solution to a non relational database such as RIAK.
+After studying the OpenStack system (identifying the interactions between its constituting services in order to
+understand how they collaborate), the student will focus on
+extending the current OpenStack scheduler in order to take the
+advantage of the BtrPlace system currently developed at the
+University of Sophia-Antipolis (see the
+\href{http://www.btrplace.org}{BtrPlace website} for further
+information).
 
-Researchers of the Ascola team are currently working on building a fully 
-distributed IaaS manager based on the OpenStack project. A prototype is actually
-tested on the Grid'5000 testbed. In the last stage, the intern will 
-integrate its work in this prototype, in order to validate the proposed 
-approach. To facilitate this part, the intern will work closely with Jonathan 
-Pastor, in particular for the validation on Grid'5000.
+This objective will be performed by successive actions enabling the
+student to reach this final goal:
+\begin{itemize}
+\item Replace the current Entropy Scheduler by the BtrPlace one in the
+  VMPlaceS system;
+\item Validate this integration by comparing the centralized vs the
+  distributed approaches available in VMPlaceS ;
+\item Integrate the above results in the OpenStack environment.
+\item Validate this integration on top of Grid'5000.
+\end{itemize}
 
-{\Large \textbf{III- Required skills}}
+ In the last stage, the intern will integrate his/her work in the
+ prototype developped by ASCOLA, in order to validate the proposed
+approach. To facilitate this part, the intern will work closely with Jonathan
+Pastor, a 3rd year PhD applicant at Mines Nantes, in particular for the validation on Grid'5000.
+
+{\Large \textbf{Required skills}}
 
 \begin{itemize}
 \item Curiosity and inquiring spirit.
 \item Good algorithmic skills.
 \item Knowledge in Python and Scala is a plus.
-\item Knowledge in web programming is a plus.
+%\item Knowledge in web programming is a plus.
 \end{itemize}
 
 \end{letter}

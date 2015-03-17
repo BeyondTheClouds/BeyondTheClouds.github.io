@@ -1,15 +1,15 @@
 %% style-ltr.sty - style University letterhead style
-%% 2009/08/20 Shami Chatterjee 
+%% 2009/08/20 Shami Chatterjee
 %% http://www.astro.style.edu/~shami/style-letterhead/
 %% Format based on style University Style Guide rev 3.07, March 2007
 %% LaTeX adapted from Stanford's suletter.sty and MIT's mitletter3.cls
 %
-% In the letter preamble (before \begin{document}), 
+% In the letter preamble (before \begin{document}),
 % declare \name{} and \address{}
 % and optionally, \telephone{}, \fax{}, \email{}.
 % At the end of the first page, use \closefirstpage to revert
 % to the standard left margin.
-%  
+%
 % Class options:
 % color-logo: print the logo in color [Default]
 % bw-logo: print the logo in black and white, not color
@@ -26,10 +26,10 @@
 \def\CULogofile{logo_mines.png}
 \def\CULogoBWfile{logo_mines.png}
 \newlength{\defaultmargin}
-\setlength{\defaultmargin}{1.1in}  
+\setlength{\defaultmargin}{1in}
 % Extra left margin on first page
 \newlength{\firstpageindent}
-\setlength{\firstpageindent}{0.8in}  
+\setlength{\firstpageindent}{0.8in}
 
 \RequirePackage[margin=\defaultmargin,top=0.7in,nohead]{geometry}
 
@@ -106,28 +106,28 @@
 %%% First page style definition:
 % Reduce textwidth and increase left margin for this page
 \renewcommand{\ps@firstpage}{%
-  \addtolength{\oddsidemargin}{0in} 
+  \addtolength{\oddsidemargin}{0in}
   % Defining it here fails, but we need the side effects.
 % Could define the letterhead here: \renewcommand{\@oddhead}{}
 }
 
 
   \addtolength{\oddsidemargin}{\firstpageindent}
-  \addtolength{\textwidth}{-\firstpageindent}  
+  \addtolength{\textwidth}{-\firstpageindent}
   \typeout{** First Oddsidemargin = \the\oddsidemargin}
-  \typeout{** First Textwidth = \the\textwidth} 
+  \typeout{** First Textwidth = \the\textwidth}
   \onecolumn
 
 \newcommand{\closefirstpage}{%
   \clearpage
   \addtolength{\oddsidemargin}{-\firstpageindent}
-  \addtolength{\textwidth}{\firstpageindent}   
+  \addtolength{\textwidth}{\firstpageindent}
   \typeout{** Next Oddsidemargin = \the\oddsidemargin}
   \typeout{** Next Textwidth = \the\textwidth}
   \onecolumn
-} 
+}
 
-% Text is in 11 pt Times with 13 pt leading; 
+% Text is in 11 pt Times with 13 pt leading;
 % we prefer it a bit larger.
 \renewcommand{\opening}[1]{
   \thispagestyle{firstpage}
