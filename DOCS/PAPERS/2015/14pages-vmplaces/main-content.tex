@@ -107,22 +107,39 @@ executed at all, are always expensive and tedious to perform (for
 recent reference see~\cite{barker:pitfalls}). They may
 even be counterproductive if the observed behaviors are clearly
 different from the expected ones.
+Consequently, lot of placement algorithms are continuously proposed
+without really identifying the significant benefits of each of them.
 
 In this article, we illustrate how \vmps, a dedicated simulation
 framework that enables in-depth investigations and fair comparisons of VM placement
 algorithms~\cite{vmplaces:europar15}, can help
-researchers to mesure and validate real benefits of new proposals.
+researchers to mesure and validate the advantages of new propoosals.
 
 To cope with real conditions such as the
 increasing scale of modern data centers and the dynamicity of the
-workloads that are specific to the CC paradigm \cite{6838300,shen:ccgrid2015}, \vmps allows users to study large-scale scenarios that take
-into account server crashes and that involve tens of thousands of VMs,
+workloads that are specific to the CC paradigm
+\cite{6838300,shen:ccgrid2015},
+
+Built on top the \sg toolkit~\cite{casanova:hal-01017319},
+\vmps allows users to study large-scale scenarios that include server crashes and that involve tens of thousands of VMs,
 each executing a specific workload that evolves during the
-simulation lifetime. Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
-provides three additional simulation facilities: a more abstract
+simulation lifetime. Such conditions are mandatory to perform
+simulations that are representative enough of CC production platforms
+\cite{6838300,shen:ccgrid2015}, allowing \textit{in vivo} experiments
+to be restricted to VMPP mechanisms that have the potential to handle CC
+production infrastructures.
+
+We chose to base \vmps on \sg since (i) the latter's relevance in
+terms of performance and validity has already been
+demonstrated~\cite{simgridpub} and (ii) because it has been recently
+extended to integrate virtual machine abstractions and an accurate live
+migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+\vmps provides three additional simulation facilities: a more abstract
 representation of hosts and virtual machines, and two frameworks, one
 for the management of load injection  and another one for the
 extraction and analysis of execution traces.
+
 %We believe that such a
 %tool will be beneficial to a large number of researchers in the field
 %of CC as it enables them to quickly validate
@@ -130,16 +147,8 @@ extraction and analysis of execution traces.
 % well-known scientific intrusments to validate trends (and only trends).
 %the trends of a new proposal and compare it with existing
 %ones.
-This way, our approach allows \textit{in vivo} experiments to be
-restricted to VMPP mechanisms that have the potential to handle CC
-production infrastructures.
 
 %
-We chose to base \vmps on \sg since (i) the latter's relevance in
-terms of performance and validity has already been
-demonstrated~\cite{simgridpub} and (ii) because it has been recently
-extended to integrate virtual machine abstractions and a live
-migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
 To illustrate the relevance of \vmps, we have implemented the
 essential mechanisms of three well-known VMPP approaches:
