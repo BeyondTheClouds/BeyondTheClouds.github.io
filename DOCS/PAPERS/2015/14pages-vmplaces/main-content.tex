@@ -108,9 +108,10 @@ recent reference see~\cite{barker:pitfalls}). They may
 even be counterproductive if the observed behaviors are clearly
 different from the expected ones.
 
-In this article, we propose \vmps, a dedicated simulation framework to
+In this article, we illustrate how \vmps, a dedicated simulation framework to
 perform in-depth investigations of VM placement algorithms and compare
-them in a fair way. To cope with real conditions such as the
+them in a fair way can help researchers to move forward in VM
+placement proposals.. To cope with real conditions such as the
 increasing scale of modern data centers and the dynamicity of the
 workloads that are specific to the CC paradigm, notably its elasticity
 capacity, \vmps allows users to study large-scale scenarios that take
@@ -162,8 +163,8 @@ simulations. This study reveals:
 %\item The quasi-inexistant impact of failures on the reactivity for
 %  all systems when considering a 6 months failure
 %  rate;
-\item The pros and cons of partitioning Snooze in small or large
-  groups;
+\item The pros and cons of partitioning an infrastructure into small or large
+  groups to handle the scheduling process;
 \item The relevance of a reactive strategy in comparison to a periodic
   one.
 \item The interest of leveraging our toolkit to identify limitations
@@ -173,7 +174,7 @@ simulations. This study reveals:
 The rest of the article is
 organized as follow. Section~\ref{sec:vmpp} highlights the importance
 of the scalability, reliability and reactivity criterions for the VM
-Placement Problem.
+Placement problem.
 Section~\ref{sec:sg} gives an overview of the \sg
 framework on which our proposal is built. \ref{sec:injector}
 introduces \vmps and discusses its general functioning. The three
