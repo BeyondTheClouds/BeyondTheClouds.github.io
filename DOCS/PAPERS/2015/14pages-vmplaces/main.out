@@ -23,8 +23,9 @@
 \BOOKMARK [3][-]{subsubsection.6.2.2}{General Analysis}{subsection.6.2}% 23
 \BOOKMARK [2][-]{subsection.6.3}{Exploring Variants and Possible Improvements}{section.6}% 24
 \BOOKMARK [3][-]{subsubsection.6.3.1}{Hierarchical scheduling: periodic vs. reactive}{subsection.6.3}% 25
-\BOOKMARK [3][-]{subsubsection.6.3.2}{DVMS Analysis}{subsection.6.3}% 26
-\BOOKMARK [1][-]{section.7}{Related Work}{}% 27
-\BOOKMARK [1][-]{section.8}{Conclusion}{}% 28
-\BOOKMARK [1][-]{section.9}{Acknowledgment}{}% 29
-\BOOKMARK [1][-]{section.10}{References}{}% 30
+\BOOKMARK [3][-]{subsubsection.6.3.2}{Hierarchical scheduling: fault tolerance}{subsection.6.3}% 26
+\BOOKMARK [3][-]{subsubsection.6.3.3}{DVMS Analysis}{subsection.6.3}% 27
+\BOOKMARK [1][-]{section.7}{Related Work}{}% 28
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 29
+\BOOKMARK [1][-]{section.9}{Acknowledgment}{}% 30
+\BOOKMARK [1][-]{section.10}{References}{}% 31

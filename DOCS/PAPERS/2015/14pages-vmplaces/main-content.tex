@@ -57,7 +57,7 @@ been evaluated either by leveraging ad-hoc simulators or small
 testbeds. These evaluation environments are not accurate and not
 representative enough to (i) ensure their correctness on real
 platforms and (ii) perform fair comparisons between them.
-
+%
 % %
 % \begin{figure}[ht]
 % \vspace*{-.2cm}
@@ -107,38 +107,48 @@ executed at all, are always expensive and tedious to perform (for
 recent reference see~\cite{barker:pitfalls}). They may
 even be counterproductive if the observed behaviors are clearly
 different from the expected ones.
+Consequently, lot of placement algorithms are continuously proposed
+without really identifying the significant benefits of each of them.
 
-In this article, we illustrate how \vmps, a dedicated simulation framework to
-perform in-depth investigations of VM placement algorithms and compare
-them in a fair way can help researchers to move forward in VM
-placement proposals.. To cope with real conditions such as the
-increasing scale of modern data centers and the dynamicity of the
-workloads that are specific to the CC paradigm, notably its elasticity
-capacity, \vmps allows users to study large-scale scenarios that take
-into account server crashes and that involve tens of thousands of VMs,
+In this article, we illustrate how \vmps, a dedicated simulation
+framework that enables in-depth investigations and fair comparisons of VM placement
+algorithms~\cite{vmplaces:europar15}, can help
+researchers to mesure and validate the advantages of new propoosals.
+
+% To cope with real conditions such as the
+% increasing scale of modern data centers and the dynamicity of the
+% workloads that are specific to the CC paradigm
+% \cite{6838300,shen:ccgrid2015},
+
+Built on top the \sg toolkit~\cite{casanova:hal-01017319},
+\vmps allows users to study large-scale scenarios that include server crashes and that involve tens of thousands of VMs,
 each executing a specific workload that evolves during the
-simulation lifetime.
-
-Built on top of the \sg toolkit~\cite{casanova:hal-01017319}, \vmps
-provides three additional simulation facilities: a more abstract
-representation of hosts and virtual machines, and two frameworks, one
-for the management of load injection abstract and another one for the
-extraction and analysis of execution traces. We believe that such a
-tool will be beneficial to a large number of researchers in the field
-of CC as it enables them to quickly validate
-% AL->MS the characterisctics -> the trends,  simulations are
-% well-known scientific intrusments to validate trends (and only trends).
-the trends of a new proposal and compare it with existing
-ones. This way, our approach allows \textit{in vivo} experiments to be
-restricted to VMPP mechanisms that have the potential to handle CC
+simulation lifetime. Such conditions are mandatory to perform
+simulations that are representative enough of CC production platforms
+\cite{6838300,shen:ccgrid2015}, allowing \textit{in vivo} experiments
+to be restricted to VMPP mechanisms that have the potential to handle CC
 production infrastructures.
 
-%
 We chose to base \vmps on \sg since (i) the latter's relevance in
 terms of performance and validity has already been
 demonstrated~\cite{simgridpub} and (ii) because it has been recently
-extended to integrate virtual machine abstractions and a live
+extended to integrate virtual machine abstractions and an accurate live
 migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+\vmps provides three additional simulation facilities: a more abstract
+representation of hosts and virtual machines, and two frameworks, one
+for the management of load injection  and another one for the
+extraction and analysis of execution traces.
+
+%We believe that such a
+%tool will be beneficial to a large number of researchers in the field
+%of CC as it enables them to quickly validate
+% AL->MS the characterisctics -> the trends,  simulations are
+% well-known scientific intrusments to validate trends (and only trends).
+%the trends of a new proposal and compare it with existing
+%ones.
+
+%
 
 To illustrate the relevance of \vmps, we have implemented the
 essential mechanisms of three well-known VMPP approaches:
@@ -1502,6 +1512,44 @@ results in a significantly lower total migration time. \AL[MS]{lower
 % resulting degradation was surprising.
 
 
+
+\subsubsection{Hierarchical scheduling: fault tolerance}
+
+\begin{figure}\centering
+  \includegraphics[width=.45\linewidth]{figures/snoozeFault-successPsize.pdf}
+  \quad
+  \includegraphics[width=.45\linewidth]{figures/snoozeFault-violationTime.pdf}
+  \caption{Behavior in the presence of faults}
+  \label{fig:snoozeFaults}
+\end{figure}
+
+We have also harnessed VMPlaceS in order to analyze the fault
+tolerance properties of hierarchical scheduling a la Snooze,
+presenting, to the best of our knowledge, a first analysis of such
+properties.
+
+We have, in particular, compared standard executions (no faults, 32
+LCs per GM, periodic calls every 30s to the centralized solver) to
+executions that have been subject to faults. In order be able to
+clearly evaluate the influence of faults, we have decided to analyze
+faulty executions under heavy stress: for a simulated time frame of
+1800s, the following numbers of GM faults have been simulated: 10~GM
+faults for 256~LCs/8~GMs, 20~GM faults for 520~LCs/16~GMs, and 40~GM
+faults for 1024~LCs/32~GMs, that is, failure rates much higher than in
+real datacenters.
+
+Figure~\ref{fig:snoozeFaults} shows two principal metrics for the
+standard (non-faulty) and faulty executions: the average GM sizes (in
+terms of LCs) during reconfigurations (left) and the violation times
+(right).
+
+The results show that the average GM sizes are moderately affected by
+faults: 32 LCs in the case of non-faulty executions, 39--46 LCs in the
+case of the faulty executions. However, the violation times are rather
+strongly affected: 3453--18998s for the non-faulty executions,
+7284--28636s in the presence of faults. This is very probably the case
+because the faults disturb on-going and future resolution actions
+triggered that are triggered by violations.
 
 \subsubsection{DVMS Analysis}
 \AL{For the journal: add PajeGN view for DVMS}
