@@ -1024,6 +1024,50 @@ manipulations.
 \label{tab:detailed_reconf_time}
 \end{table}
 
+\begin{table}[ht]
+\centering
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill &  ~Centralized~ & ~Hierarchical~ & ~Distributed  \Bstrut \\
+      \thickhline
+
+        128 nodes &   9.64 $\pm$   0.93 &   9.64 $\pm$   1.03 &   9.65 $\pm$   0.84  \\
+        256 nodes &  10.01 $\pm$   1.99 &   9.61 $\pm$   0.73 &   9.63 $\pm$   0.82  \\
+        512 nodes &  11.05 $\pm$   2.67 &   9.66 $\pm$   0.90 &   9.65 $\pm$   0.79  \\
+       1024 nodes &  23.65 $\pm$   6.65 &   9.92 $\pm$   1.74 &   9.69 $\pm$   0.85  
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+\caption{Duration of migrations ($Med \pm \sigma$).}
+\label{table:detailed_migrations}
+\end{table}
+
+\begin{table}[ht]
+\centering
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill &  ~Centralized~ & ~Hierarchical~ & ~Distributed \Bstrut \\
+      \thickhline
+
+        128 nodes & 232   & 334    & 271   \\
+        256 nodes & 307   & 708    & 533   \\
+        512 nodes & 523   & 1578   & 1254  \\
+       1024 nodes & 693   & 1760   & 2632  
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+\caption{Number of migrations.}
+\label{table:detailed_migrations_count}
+\end{table}
+
 Regarding Snooze, although the performances are better than the
 Entropy ones, we may erroneously conclude that the hierarchical
 approach is not competitive with respect to the distribued strategy at
@@ -1155,21 +1199,21 @@ an overload situation.
 % \end{figure}
 
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
-    \caption{Cumulated migration time.}
-\end{center}
-\label{fig:cumulated_migration_time}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
+%     \caption{Cumulated migration time.}
+% \end{center}
+% \label{fig:cumulated_migration_time}
+% \end{figure}
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
-    \caption{Average duration of a migration.}
-\end{center}
-\label{fig:avg_migration_time}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
+%     \caption{Average duration of a migration.}
+% \end{center}
+% \label{fig:avg_migration_time}
+% \end{figure}
 
 % * migration_time.pdf:
 % - On the other hand centralised do less migrations: it can be explained by its
@@ -1482,6 +1526,44 @@ results in a significantly lower total migration time. \AL[MS]{lower
 % resulting degradation was surprising.
 
 
+
+\subsubsection{Hierarchical scheduling: fault tolerance}
+
+\begin{figure}\centering
+  \includegraphics[width=.45\linewidth]{figures/snoozeFault-successPsize.pdf}
+  \quad
+  \includegraphics[width=.45\linewidth]{figures/snoozeFault-violationTime.pdf}
+  \caption{Behavior in the presence of faults}
+  \label{fig:snoozeFaults}
+\end{figure}
+
+We have also harnessed VMPlaceS in order to analyze the fault
+tolerance properties of hierarchical scheduling a la Snooze,
+presenting, to the best of our knowledge, a first analysis of such
+properties.
+
+We have, in particular, compared standard executions (no faults, 32
+LCs per GM, periodic calls every 30s to the centralized solver) to
+executions that have been subject to faults. In order be able to
+clearly evaluate the influence of faults, we have decided to analyze
+faulty executions under heavy stress: for a simulated time frame of
+1800s, the following numbers of GM faults have been simulated: 10~GM
+faults for 256~LCs/8~GMs, 20~GM faults for 520~LCs/16~GMs, and 40~GM
+faults for 1024~LCs/32~GMs, that is, failure rates much higher than in
+real datacenters.
+
+Figure~\ref{fig:snoozeFaults} shows two principal metrics for the
+standard (non-faulty) and faulty executions: the average GM sizes (in
+terms of LCs) during reconfigurations (left) and the violation times
+(right).
+
+The results show that the average GM sizes are moderately affected by
+faults: 32 LCs in the case of non-faulty executions, 39--46 LCs in the
+case of the faulty executions. However, the violation times are rather
+strongly affected: 3453--18998s for the non-faulty executions,
+7284--28636s in the presence of faults. This is very probably the case
+because the faults disturb on-going and future resolution actions
+triggered that are triggered by violations.
 
 \subsubsection{DVMS Analysis}
 \AL{For the journal: add PajeGN view for DVMS}
