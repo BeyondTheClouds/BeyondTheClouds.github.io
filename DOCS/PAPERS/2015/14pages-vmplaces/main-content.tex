@@ -1069,33 +1069,34 @@ manipulations.
 \label{table:detailed_migrations_count}
 \end{table}
 
-Regarding Snooze, although the performances are better than the
-Entropy ones, we may erroneously conclude that the hierarchical
-approach is not competitive with respect to the distribued strategy at
-the first sight. However, diving into details, we can see that both
-the computation and reconfiguration phases are almost constants
-(around 3 seconds and 10 seconds) and not so far from the DVMS values,
-especially for the reconfiguration phase, which is predominant. These
-results can be easily explained: the centralized policy adresses the
-VMPP by considering all nodes at each invovation, while the
-hierarchical and the distributed algorithms divide the VMPP into sub
-problems, considering smaller numbers of nodes (32~PMs in Snooze and
-4 in average with DVMS). This results raises the question of the
-influence of the group size on the Snooze performances, \ie the ratio
-of LCs attached to one GM.
+Regarding Snooze, whose performance is better than those of Entropy,
+we may erroneously conclude that the hierarchical approach is not
+competitive compared to the distribued strategy at the first
+sight. However, diving into the details, we can see that both the
+computation and reconfiguration phases are almost of constant duration
+(around 3 seconds and 10 seconds) and not much longer than DVMS's
+corresponding phases, especially for the reconfiguration phase, which
+is predominant. These results can be easily explained: the centralized
+policy adresses the VMPP by considering all nodes at each invovation,
+while the hierarchical and the distributed algorithms divide the VMPP
+into sub problems, considering smaller numbers of nodes (32~PMs in
+Snooze and 4~nodes on average with DVMS). These results raises the
+question of the influence of the group size, \ie the ratio of LCs
+attached to one GM, on Snooze's performance (a relationship we
+investigate below).
 
-Last but not the least, Table \ref{table:detailed_migrations_count}
-gives the number of migrations that has been performed overall for
-each simulation. While
-DVMS enables the resolution of violations in a short time, one of its
-drawback can be the number of migration it performs. In addition to
-adding an significant overhead at the network level, performing
-migrations can negatively impact the performance of the workload
-running inside the VM during the migration. Hence, it is usually
-better to try to find the right trade-off between the reactivity
-criterion and the number of VM migration as investigated by other VM
-placement strategies \cite{eyraud:ipdps2013}. As illustrated \vmps
-enables researchers to monitor such a metric.
+Last but not least, Table \ref{table:detailed_migrations_count}
+presents the number of migrations that has been performed overall for
+each simulation. While DVMS enables the resolution of violations in a
+short time, one of its potential drawbacks is the number of migration
+it performs. In addition to adding a significant overhead at the
+network level, performing migrations can negatively impact the
+performance of the workload running inside the VM during the
+migration. Hence, it is usually better to try to find the right
+trade-off between the reactivity criterion and the number of VM
+migration as investigated by other VM placement strategies
+\cite{eyraud:ipdps2013}. As we have illustrated here, \vmps enables
+researchers to monitor such a metric.
 
 \subsubsection{\vmps Scalability}
 \AL[MS,AL]{TODO find the best place to add the following paragraph}
