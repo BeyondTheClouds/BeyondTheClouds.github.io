@@ -1469,6 +1469,44 @@ results in a significantly lower total migration time. \AL[MS]{lower
 
 
 
+\subsubsection{Hierarchical scheduling: fault tolerance}
+
+\begin{figure}\centering
+  \includegraphics[width=.45\linewidth]{figures/snoozeFault-successPsize.pdf}
+  \quad
+  \includegraphics[width=.45\linewidth]{figures/snoozeFault-violationTime.pdf}
+  \caption{Behavior in the presence of faults}
+  \label{fig:snoozeFaults}
+\end{figure}
+
+We have also harnessed VMPlaceS in order to analyze the fault
+tolerance properties of hierarchical scheduling a la Snooze,
+presenting, to the best of our knowledge, a first analysis of such
+properties.
+
+We have, in particular, compared standard executions (no faults, 32
+LCs per GM, periodic calls every 30s to the centralized solver) to
+executions that have been subject to faults. In order be able to
+clearly evaluate the influence of faults, we have decided to analyze
+faulty executions under heavy stress: for a simulated time frame of
+1800s, the following numbers of GM faults have been simulated: 10~GM
+faults for 256~LCs/8~GMs, 20~GM faults for 520~LCs/16~GMs, and 40~GM
+faults for 1024~LCs/32~GMs, that is, failure rates much higher than in
+real datacenters.
+
+Figure~\ref{fig:snoozeFaults} shows two principal metrics for the
+standard (non-faulty) and faulty executions: the average GM sizes (in
+terms of LCs) during reconfigurations (left) and the violation times
+(right).
+
+The results show that the average GM sizes are moderately affected by
+faults: 32 LCs in the case of non-faulty executions, 39--46 LCs in the
+case of the faulty executions. However, the violation times are rather
+strongly affected: 3453--18998s for the non-faulty executions,
+7284--28636s in the presence of faults. This is very probably the case
+because the faults disturb on-going and future resolution actions
+triggered that are triggered by violations.
+
 \subsubsection{DVMS Analysis}
 \AL{For the journal: add PajeGN view for DVMS}
 

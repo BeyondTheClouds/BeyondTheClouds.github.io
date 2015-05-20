@@ -1,8 +1,9 @@
-This is BibTeX, Version 0.99d (TeX Live 2013)
+This is BibTeX, Version 0.99d (TeX Live 2014)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: abbrv.bst
 Database file #1: main.bib
+Warning--I didn't find a database entry for "6838300"
 Warning--to sort, need author or key in cloudstack
 Warning--to sort, need author or key in opennebula
 Warning--to sort, need author or key in openstack
@@ -10,45 +11,45 @@ Warning--to sort, need author or key in simgridpub
 Warning--to sort, need author or key in pageng:www
 Warning--to sort, need author or key in snoozeweb
 Warning--empty publisher in datacenterAsComputer
-You've used 27 entries,
+You've used 29 entries,
             2118 wiz_defined-function locations,
-            654 strings with 9561 characters,
-and the built_in function-call counts, 9597 in all, are:
-= -- 922
-> -- 438
+            666 strings with 10107 characters,
+and the built_in function-call counts, 10234 in all, are:
+= -- 980
+> -- 474
 < -- 13
-+ -- 176
-- -- 147
-* -- 651
-:= -- 1462
-add.period$ -- 81
-call.type$ -- 27
-change.case$ -- 151
++ -- 190
+- -- 159
+* -- 693
+:= -- 1570
+add.period$ -- 89
+call.type$ -- 29
+change.case$ -- 163
 chr.to.int$ -- 0
-cite$ -- 34
-duplicate$ -- 393
-empty$ -- 815
-format.name$ -- 147
-if$ -- 2122
+cite$ -- 36
+duplicate$ -- 421
+empty$ -- 871
+format.name$ -- 159
+if$ -- 2258
 int.to.chr$ -- 0
-int.to.str$ -- 27
-missing$ -- 22
-newline$ -- 132
-num.names$ -- 44
-pop$ -- 218
+int.to.str$ -- 29
+missing$ -- 24
+newline$ -- 143
+num.names$ -- 48
+pop$ -- 234
 preamble$ -- 1
-purify$ -- 126
+purify$ -- 136
 quote$ -- 0
-skip$ -- 301
+skip$ -- 315
 stack$ -- 0
-substring$ -- 513
-swap$ -- 119
+substring$ -- 523
+swap$ -- 123
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 104
+type$ -- 112
 warning$ -- 7
-while$ -- 78
-width$ -- 29
-write$ -- 284
-(There were 7 warnings)
+while$ -- 82
+width$ -- 31
+write$ -- 308
+(There were 8 warnings)
