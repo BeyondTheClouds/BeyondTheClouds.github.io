@@ -1000,6 +1000,50 @@ manipulations.
 \label{tab:detailed_reconf_time}
 \end{table}
 
+\begin{table}[ht]
+\centering
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill &  ~Centralized~ & ~Hierarchical~ & ~Distributed  \Bstrut \\
+      \thickhline
+
+        128 nodes &   9.64 $\pm$   0.93 &   9.64 $\pm$   1.03 &   9.65 $\pm$   0.84  \\
+        256 nodes &  10.01 $\pm$   1.99 &   9.61 $\pm$   0.73 &   9.63 $\pm$   0.82  \\
+        512 nodes &  11.05 $\pm$   2.67 &   9.66 $\pm$   0.90 &   9.65 $\pm$   0.79  \\
+       1024 nodes &  23.65 $\pm$   6.65 &   9.92 $\pm$   1.74 &   9.69 $\pm$   0.85  
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+\caption{Duration of migrations ($Med \pm \sigma$).}
+\label{table:detailed_migrations}
+\end{table}
+
+\begin{table}[ht]
+\centering
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill &  ~Centralized~ & ~Hierarchical~ & ~Distributed \Bstrut \\
+      \thickhline
+
+        128 nodes & 232   & 334    & 271   \\
+        256 nodes & 307   & 708    & 533   \\
+        512 nodes & 523   & 1578   & 1254  \\
+       1024 nodes & 693   & 1760   & 2632  
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+\caption{Number of migrations.}
+\label{table:detailed_migrations_count}
+\end{table}
+
 Regarding Snooze, although the performances are better than the
 Entropy ones, we may erroneously conclude that the hierarchical
 approach is not competitive with respect to the distribued strategy at
@@ -1131,21 +1175,21 @@ an overload situation.
 % \end{figure}
 
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
-    \caption{Cumulated migration time.}
-\end{center}
-\label{fig:cumulated_migration_time}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/migration_time.pdf}
+%     \caption{Cumulated migration time.}
+% \end{center}
+% \label{fig:cumulated_migration_time}
+% \end{figure}
 
-\begin{figure}[ht]
-\begin{center}
-    \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
-    \caption{Average duration of a migration.}
-\end{center}
-\label{fig:avg_migration_time}
-\end{figure}
+% \begin{figure}[ht]
+% \begin{center}
+%     \includegraphics[width=.65\linewidth]{figures/experiments/migration_avg_duration.pdf}
+%     \caption{Average duration of a migration.}
+% \end{center}
+% \label{fig:avg_migration_time}
+% \end{figure}
 
 % * migration_time.pdf:
 % - On the other hand centralised do less migrations: it can be explained by its
