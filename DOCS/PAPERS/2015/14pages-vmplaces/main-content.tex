@@ -28,15 +28,14 @@
 %   was the article for justification?}
 
 Even if more flexible and often more efficient approaches to the
-Virtual Machine Placement Problem (VMPP) have been developed
+Virtual Machine Placement Problem (VMPP) have been developed,
 %by the research community
-, most of the popular Cloud Computing (CC) system
-management \cite{cloudstack, opennebula, openstack}, \aka
-Infrastructure-as-a-Service toolkits~\cite{moreno:2012}, continue to
-rely on elementary Virtual Machine (VM) placement policies that
-prevent them from maximizing the usage of CC resources while
-guaranteeing VM resource requirements as defined by Service Level
-Agreements (SLAs).
+most of the popular Cloud Computing (CC) system management
+\cite{cloudstack, opennebula, openstack}, \aka IaaS
+toolkits~\cite{moreno:2012}, continue to rely on elementary Virtual
+Machine (VM) placement policies that prevent them from maximizing the
+usage of CC resources while guaranteeing VM resource requirements as
+defined by Service Level Agreements (SLAs).
 % %% THE TEXT BELOW COMES FROM ISPA'13
 % %%%%%%%
 Typically, a batch scheduling approach is used: VMs are allocated
@@ -141,61 +140,49 @@ migration model~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
 % extraction and analysis of execution traces.
 
 In addition to validating the accuracy of \vmps, we discussed in our
-previous work \cite{vmplaces:europar15} a
-preliminary analysis of three well-known VMPP approaches:
+previous work \cite{vmplaces:europar15} a preliminary analysis of
+three well-known VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}.
-Besides being well-known from the literature, we chose
-these three systems as they are built on three different software
-architecture approaches: Entropy relies on a centralized model, Snooze
-on a hierarchical one and DVMS on a fully distributed one. In this
-article, we complete this preliminary analysis by diving into
-details, showing the relevance of VMPlaces to compare VM placement
-strategies, to identify major limitations and investigate variants that can have a
-significant impact on the overall behavior.
-in particular, we show in this article:
+Besides being well-known from the literature, we chose these three
+systems as they are built on three different software architecture
+approaches: Entropy relies on a centralized model, Snooze on a
+hierarchical one and DVMS on a fully distributed one. In this article,
+we complete this preliminary analysis by diving into details, showing
+the relevance of VMPlaces to compare VM placement strategies, to
+identify major limitations and investigate variants that can have a
+significant impact on the overall behavior.  in particular, we show in
+this article:
 \begin{itemize}
-\item The importance of the duration of the reconfiguration phase (\ie
-  the step where VMs are relocated throughout the infrastructure) in
-  comparison to the computation one (\ie the step where the scheduler
-  try to solve the VMPP, see Section \ref{sec:vmpp} for a complete
-  definition of both steps).
-%\item The quasi-inexistant impact of failures on the reactivity for
-%  all systems when considering a 6 months failure
-%  rate;
-\item The pros and cons of partitioning an infrastructure into small or large
-  groups to handle the scheduling process;
-\item The relevance of a reactive strategy in comparison to a periodic
-  one.
-\item The negligible impact of node crashes for hierarchical and
-  distributed approaches.
-\AL[MS]{To be confirmed ?}
-\item The relevance of \vmps to identify the best VM placement
-  approaches that have the potential to handle CC production infrastructures.
+  \item The importance of the duration of the reconfiguration phase
+    (\ie the step where VMs are relocated throughout the
+    infrastructure) in comparison to the computation one (\ie the step
+    where the scheduler try to solve the VMPP, see Section
+    \ref{sec:vmpp} for a complete definition of both steps).
+    % \item The quasi-inexistant impact of failures on the reactivity
+    %   for all systems when considering a 6 months failure rate;
+  \item The pros and cons of partitioning an infrastructure into small
+    or large groups to handle the scheduling process;
+  \item The relevance of a reactive strategy in comparison to a
+    periodic one.
+  \item The moderate impact of node crashes for hierarchical and
+    distributed approaches even in the presence of high failure rates.
+    \AL[MS]{To be confirmed ?}
+  \item The relevance of \vmps to identify the best VM placement
+    approaches that have the potential to handle CC production
+    infrastructures.
 \end{itemize}
 
-%We believe that such a
-%tool will be beneficial to a large number of researchers in the field
-%of CC as it enables them to quickly validate
-% AL->MS the characterisctics -> the trends,  simulations are
-% well-known scientific intrusments to validate trends (and only trends).
-%the trends of a new proposal and compare it with existing
-%ones.
-
-
-The rest of the article is
-organized as follow. Section~\ref{sec:vmpp} highlights the importance
-of the scalability, reliability and reactivity criterions for the VM
-Placement problem.
-Section~\ref{sec:sg} gives an overview of the \sg
-framework on which our proposal is built. Section \ref{sec:injector}
-completes the previous  description of \vmps by giving, in particular,
-additional details regarding the probability distributions we are using.
-The essential mechanisms of the three
-algorithms are presented in
-Section~\ref{sec:vm-schedulers} for the sake of clarity.
- Section~\ref{sec:experiments} discusses the different experiments
- that have been performed. Section~\ref{sec:related} and
+The rest of the article is structured as
+follow. Section~\ref{sec:vmpp} highlights the importance of the
+scalability, reliability and reactivity properties for the VM
+Placement problem.  Section~\ref{sec:sg} gives an overview of the \sg
+framework on which our proposal is built. Section~\ref{sec:injector}
+introduces \vmps and discusses its general functioning. The three
+algorithms implemented as use-cases are presented in
+Section~\ref{sec:vm-schedulers} and evaluated in
+Section~\ref{sec:experiments}. Section~\ref{sec:related} and
+>>>>>>> Stashed changes
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
 
