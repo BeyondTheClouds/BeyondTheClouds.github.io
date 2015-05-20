@@ -42,7 +42,9 @@ Agreements (SLAs).
 Typically, a batch scheduling approach is used: VMs are allocated
 according to user requests for resource reservations and tied to
 the nodes where they were deployed until their destruction. Besides
-the fact that users often overestimate their resource requirements,
+the fact that users often overestimate their resource requirements, in
+particular for web-services and entreprise information systems
+\cite{birke:nom2014, shen:ccgrid2015},
 such static policies are definitely not optimal for CC providers,
 since the effective resource requirements of each operated VM may
 significantly vary during its lifetime.
@@ -107,63 +109,51 @@ executed at all, are always expensive and tedious to perform (for
 recent reference see~\cite{barker:pitfalls}). They may
 even be counterproductive if the observed behaviors are clearly
 different from the expected ones.
-Consequently, lot of placement algorithms are continuously proposed
+Consequently, new placement algorithms are continuously proposed
 without really identifying the significant benefits of each of them.
 
-In this article, we illustrate how \vmps, a dedicated simulation
+In this article, we illustrate in details how \vmps, a dedicated simulation
 framework that enables in-depth investigations and fair comparisons of VM placement
 algorithms~\cite{vmplaces:europar15}, can help
-researchers to mesure and validate the advantages of new propoosals.
+researchers to mesure and validate the advantages of new proposals.
 
 % To cope with real conditions such as the
 % increasing scale of modern data centers and the dynamicity of the
 % workloads that are specific to the CC paradigm
 % \cite{6838300,shen:ccgrid2015},
-
+%
 Built on top the \sg toolkit~\cite{casanova:hal-01017319},
 \vmps allows users to study large-scale scenarios that include server crashes and that involve tens of thousands of VMs,
 each executing a specific workload that evolves during the
 simulation lifetime. Such conditions are mandatory to perform
 simulations that are representative enough of CC production platforms
-\cite{6838300,shen:ccgrid2015}, allowing \textit{in vivo} experiments
-to be restricted to VMPP mechanisms that have the potential to handle CC
-production infrastructures.
-
+\cite{datacenterAsComputer,birke:nom2014,shen:ccgrid2015}.
+%
 We chose to base \vmps on \sg since (i) the latter's relevance in
 terms of performance and validity has already been
 demonstrated~\cite{simgridpub} and (ii) because it has been recently
 extended to integrate virtual machine abstractions and an accurate live
-migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}.
+migration model~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
-\vmps provides three additional simulation facilities: a more abstract
-representation of hosts and virtual machines, and two frameworks, one
-for the management of load injection  and another one for the
-extraction and analysis of execution traces.
+% \vmps provides three additional simulation facilities: a more abstract
+% representation of hosts and virtual machines, and two frameworks, one
+% for the management of load injection  and another one for the
+% extraction and analysis of execution traces.
 
-%We believe that such a
-%tool will be beneficial to a large number of researchers in the field
-%of CC as it enables them to quickly validate
-% AL->MS the characterisctics -> the trends,  simulations are
-% well-known scientific intrusments to validate trends (and only trends).
-%the trends of a new proposal and compare it with existing
-%ones.
-
-%
-
-To illustrate the relevance of \vmps, we have implemented the
-essential mechanisms of three well-known VMPP approaches:
+In addition to validating the accuracy of \vmps, we discussed in our
+previous work \cite{vmplaces:europar15} a
+preliminary analysis of three well-known VMPP approaches:
 Entropy~\cite{Hermenier:2009:ECM:1508293.1508300},
 Snooze~\cite{feller:ccgrid12}, and DVMS~\cite{quesnel:cpe2012}.
 Besides being well-known from the literature, we chose
 these three systems as they are built on three different software
 architecture approaches: Entropy relies on a centralized model, Snooze
-on a hierarchical one and DVMS on a fully distributed one.
-
-Once the accuracy of \vmps validated, we have also investigated the
-characteristics of these three strategies by studying their
-scalability, reliability and reactivity (\ie the time to solve
-resource violations, \aka SLA violation) criterions through several
-simulations. This study reveals:
+on a hierarchical one and DVMS on a fully distributed one. In this
+article, we complete this preliminary analysis by diving into
+details, showing the relevance of VMPlaces to compare VM placement
+strategies, to identify major limitations and investigate variants that can have a
+significant impact on the overall behavior.
+in particular, we show in this article:
 \begin{itemize}
 \item The importance of the duration of the reconfiguration phase (\ie
   the step where VMs are relocated throughout the infrastructure) in
@@ -177,20 +167,35 @@ simulations. This study reveals:
   groups to handle the scheduling process;
 \item The relevance of a reactive strategy in comparison to a periodic
   one.
-\item The interest of leveraging our toolkit to identify limitations
-  of proposals and study variants and possible improvements.
+\item The negligible impact of node crashes for hierarchical and
+  distributed approaches.
+\AL{MS}{To be confirmed ?}
+\item The relevance of \vmps to identify the best VM placement
+  approaches that have the potential to handle CC production infrastructures.
 \end{itemize}
+
+%We believe that such a
+%tool will be beneficial to a large number of researchers in the field
+%of CC as it enables them to quickly validate
+% AL->MS the characterisctics -> the trends,  simulations are
+% well-known scientific intrusments to validate trends (and only trends).
+%the trends of a new proposal and compare it with existing
+%ones.
+
 
 The rest of the article is
 organized as follow. Section~\ref{sec:vmpp} highlights the importance
 of the scalability, reliability and reactivity criterions for the VM
 Placement problem.
 Section~\ref{sec:sg} gives an overview of the \sg
-framework on which our proposal is built. \ref{sec:injector}
-introduces \vmps and discusses its general functioning. The three
-algorithms implemented as use-cases are presented in
-Section~\ref{sec:vm-schedulers} and evaluated in
-Section~\ref{sec:experiments}. Section~\ref{sec:related} and
+framework on which our proposal is built. Section \ref{sec:injector}
+completes the previous  description of \vmps by giving, in particular,
+additional details regarding the probability distributions we are using.
+The essential mechanisms of the three
+algorithms are presented in
+Section~\ref{sec:vm-schedulers} for the sake of clarity.
+ Section~\ref{sec:experiments} discusses the different experiments
+ that have been performed. Section~\ref{sec:related} and
 Section~\ref{sec:conclusion} present, respectively, related work as
 well as a conclusion and future work.
 
@@ -201,7 +206,7 @@ A VMPP can be summarized in three-steps (see Figure
 \ref{fig:scheduling_steps}): monitoring the resources usages,
 computing a new schedule each time is it needed and applying the
 resulting reconfiguration plan (\ie performing VM migration and
-suspend/resume operations to realize to the new placement solution).
+suspend/resume operations to switch to the new placement solution).
 % that are mandatory to solve resource violations while optimizing resource usages).
 
 \begin{figure}[ht]
@@ -223,7 +228,7 @@ suspend/resume operations to realize to the new placement solution).
 %
 
 VMPP solutions stand and fall with their scalability, reliability and
-reactivity of properties, because they have to maintain a placement
+reactivity of properties (\ie the time to solve a SLA violations), because they have to maintain a placement
 that satisfies the requirements of all VMs while optimizing the usage
 of CC resources. For instance, a naive implementation of a
 master/worker approach as described in
@@ -234,8 +239,8 @@ violations that are caused by the VMPP mechanism). In other words, the
 longer each phase,
 % the longer the reconfiguration process,
 the higher the risk that the schedule may be outdated when it is
-computed or eventually applied, cf.\ the different loads during the
-three phases in Figure \ref{fig:workload_fluctuations}. Similarly,
+computed or eventually applied (see the different loads during the
+three phases in Figure \ref{fig:workload_fluctuations}). Similarly,
 servers and network crashes can impede the detection and resolution of
 resource violations if the master node crashes or if a group of VMs is
 temporarily isolated from the master node.
@@ -295,7 +300,7 @@ during the entire simulation.
 simulation of DAGs (Direct Acyclic Graphs) or MPI-based
 applications. In the following, we only give a brief description of
 the virtualization abstractions that have been recently implemented
-and on which our framework relies on (for further information regarding
+and on which \vmps relies on (for further information regarding
 \sg see~\cite{casanova:hal-01017319}).
 
 The VM support has been designed so that all operations that can be
@@ -323,10 +328,10 @@ traffic~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
 %\AL[AL]{Add more details regarding live migration in order to reply to
 %the Mario's remark (not clear enoug)}
 %
-These two capabilities are mandatory to build our VM placement
+These two capabilities were mandatory to build the VM placement
 simulator toolkit.
 
-\section{VM Placement Simulator}
+\section{VMPlaceS}
 \label{sec:injector}
 %\AL[AL]{1.5 page}
 
@@ -358,18 +363,17 @@ From a high-level view, \vmps performs a simulation in three phases:
 creation of the environment, the VMs and the generation of the queue
 of events that may represent, \eg load changes.  The
 simulation is performed by at least two \sg processes, one executing
-the \emph{injector}, which constitutes the generic part of the
-framework, and a second one executing the to-be-simulated
+the \emph{injector}
+% which constitutes the generic part of the framework,
+and a second one executing the to-be-simulated
 \emph{scheduling algorithm}. During the simulation the scheduling
-strategy is evaluated by injecting scheduling-relevant events.
-\AL[MS]{This sentence above is not accurate enough I? previously it
-  was : The
-\emph{injector} constitutes the generic part of the framework. It
-injects scheduling-relevant events during the execution of
-simulations. We should reformulate}
-Currently, the supported events are VM CPU load change and node
-apparitions/removals that we use to simulate node crashes.
-
+strategy is evaluated by taking into account the different events
+played by the injector. Currently, the supported events are VM CPU
+load changes and node apparitions/removals that we use to simulate node crashes.
+%
+The last phase consists in the analysis of the collected traces in
+order to gather the results of the simulation, notably by means of the
+generation of figures representing, \eg resource usage statistics.
 
 \begin{figure}
   {\centering ~\includegraphics[width=.95\linewidth]{figures/VMPlaceS-workflow.png}}
@@ -386,20 +390,23 @@ apparitions/removals that we use to simulate node crashes.
 %\MS{Yes, the figures are important. They could also be useful to
  % partially provide a more abstract explanation.}
 
-Users develop their scheduling algorithm by leveraging the \sg
-messaging API and a more abstract interface that is provided vy \vmps
-and consists of the classes \texttt{XHost}, \texttt{XVM} and
-\texttt{SimulatorManager} classes. The two former classes respectively
-extend \sg's \texttt{Host} and \texttt{VM} abstractions while the
-latter controls the interactions between the different components of
-the VM placement simulator.  Throughout these three classes, users can
-inspect, at any time, the current state of the infrastructure (\ie the
-load of a host/VM, the number of VMs hosted on the whole
-infrastructure or on a particular host, check whether a host is
-overloaded, etc.) We have used \vmps in order to analyze three
-scheduling mechanisms, cf.\ Sec.~\ref{sec:vm-schedulers}, that
-represent three different software architecture models: centralized,
-hierarchical and fully-distributed models for VM placement.
+Regarding the non-generic part, users must develop their scheduling
+algorithm by leveraging the \sg messaging API and a more abstract
+interface that is provided by \vmps and consists of the classes
+\texttt{XHost}, \texttt{XVM} and \texttt{SimulatorManager} classes.
+The two former classes respectively extend \sg's \texttt{Host} and
+\texttt{VM} abstractions while the latter controls the interactions
+between the different components of the VM placement simulator.
+Throughout these three classes, users can inspect, at any time, the
+current state of the infrastructure (\ie the load of a host/VM, the
+number of VMs hosted on the whole infrastructure or on a particular
+host, check whether a host is overloaded,
+etc.)
+
+%We have used \vmps in order to analyze three
+%scheduling mechanisms, cf.\ Sec.~\ref{sec:vm-schedulers}, that
+%represent three different software architecture models: centralized,
+%hierarchical and fully-distributed models for VM placement.
 %% TODO
 %\MS{The
 %  following point is too low-level and should not come here} Although
@@ -408,10 +415,6 @@ hierarchical and fully-distributed models for VM placement.
 %how the deployment file of \sg is automatically generated by leveraging
 %a generic python script.  \AL{We should highlight that point in the
 %  README.org}
-
-The last phase consists in the analysis of the collected traces in
-order to gather the results of the simulation, notably by means of the
-generation of figures representing, \eg resource usage statistics.
 
 %\begin{itemize}
 %\item Entropy \cite{Hermenier:2009:ECM:1508293.1508300}, a centralized approach using a constraint programming approach to solve the placement/reconfiguration VM problem;
@@ -449,7 +452,8 @@ memory footprint. Concretely, it is
 defined in terms of five parameters: the number of cores
 \texttt{nb\_cpus}, the size of the memory \texttt{ramsize}, the
 network bandwidth \texttt{net\_bw}, the maximum bandwidth available
-migrate it \texttt{mig\_speed} and the maximum memory update speed
+to migrate it \texttt{mig\_speed} (generally equal to
+\texttt{net\_bw}) and the maximum memory update speed
 \texttt{mem\_speed} when the VM is consuming 100\% of its CPU
 resources. As pointed out in Section \ref{sec:sg}, the memory update
 speed is a critical parameter that governs the migration time as well
@@ -484,20 +488,19 @@ For now, we generate two kinds of event: \emph{CPU load} and
 %
 % Changing the load of a VM has a direct impact of its memory update
 % speed and thus on the time to migrate it between two hosts.
-The \emph{CPU load} event queue is generated in order to change the
+Regarding \emph{CPU loads}, the event queue is generated in order to change the
 load of each VM every $t$ seconds on average. $t$ is a random variable
 that follows an exponential distribution with rate parameter
 $\lambda_t$ while the CPU load of a VM evolves according to a Gaussian
-distribution defined by a particular mean ($\mu$) as well as a
-particular standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$ are
-provided as input parameters of a simulation.  As the CPU load can
-fluctuate between 0 and 100\%, \vmps prevents the assignment of
-nonsensical values when the Gaussian distribution returns a number
-smaller than 0 or greater than 100. Although this has no impact on the
-execution of the simulation, we emphasize that this can
-reduce/increase the effective mean of the VM load, especially when
-$\sigma$ is high.  Hence, it is important for users to specify
-appropriate values.
+distribution defined by a given mean ($\mu$) as well as a given
+standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$ are provided as
+input parameters of a simulation. As the CPU load can fluctuate
+between 0 and 100\%, \vmps prevents the assignment of nonsensical
+values when the Gaussian distribution returns a number smaller than 0
+or greater than 100. Although this has no impact on the execution of
+the simulation, we emphasize that this can reduce/increase the
+effective mean of the VM load, especially when $\sigma$ is high.
+Hence, it is important for users to specify appropriate values.
 %% TODO
 %\AL[AL]{A binomial law would have solved this issue: too late too bad :(}
 %Although this can have an impact on the
@@ -508,18 +511,29 @@ Furthermore, each random process used in \vmps is initialized with a
 seed that is defined in a configuration file. This way, we can ensure
 that different simulations are reproducible and may be used to
 establish fair comparisons.
+We highlight that a recent study on the characterization of production CC
+workloads~\cite{birke:nom2014} advocate the use of exponential
+distributions to capture both CPU usages and the temporal variability.
+Consequently, we are currently study a way to switch between a
+Gaussian distribution and a truncated exponential one. We are also
+investigating how it can be possible to simulate daily workloads
+patterns in order to be able to conduct simulations over longer
+periods~\cite{shen:ccgrid2015}.
 
-The \emph{node crash} event queue is generated in order to turn off a
-node every $f$ seconds on average for a duration of $d$ seconds.
+Regarding \emph{node crashes}, the event queue is generated in order to turn off a
+node every $f$ seconds on average for a duration of $d$ seconds~\cite{datacenterAsComputer}.
 Similarly to the $t$ value above, $f$ follows an exponential
-distribution with rate $\lambda_f$. $f$ and $d$ are also provided as
+distribution with rate $\lambda_f$.
+$f$ and $d$ are also provided as
 input parameters of a simulation.
 
-Adding new events can easily be done by simply defining new event Java
+Finally, we highlight that adding new events can easily be done by simply defining new event Java
 classes implementing the \texttt{InjectorEvent} interface and by
 adding the code in charge of generating the associated queue. Such a
 new queue will be merged into the global one and its events will then be
 consumed similarly to other ones during the \emph{injector phase}.
+We are currently integrating new events in order to simulate network
+and disk usage events.
 
 \subsection{Injector Phase}
 
@@ -530,7 +544,7 @@ load changes of a VM or turning a node off or on. Changing the load of
 a VM corresponds to the creation and the assignment of a new \sg task
 in the VM. This new task has a direct impact on the time that will be
 needed to migrate the VM as it increases or decreases the current CPU
-load and thus% the percentage of
+load and thus % the percentage of
 its memory update speed.
 % \MS[AL]{Is the above paragraph clear enough?}
 % that is indicated by the \texttt{mem\_speed}
