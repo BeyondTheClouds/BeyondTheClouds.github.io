@@ -37,6 +37,13 @@ L.~A. Barroso and U.~Hölzle.
   Warehouse-Scale Machines}.
 \newblock 2009.
 
+\bibitem{birke:nom2014}
+R.~Birke, L.~Chen, and E.~Smirni.
+\newblock Multi-resource characterization and their (in)dependencies in
+  production datacenters.
+\newblock In {\em Network Operations and Management Symposium (NOMS), 2014
+  IEEE}, pages 1--6, May 2014.
+
 \bibitem{R:Bloomfield:2014}
 V.~A. Bloomfield.
 \newblock {\em Using {R} for Numerical Analysis in Science and Engineering}.
@@ -116,6 +123,15 @@ D.~Kliazovich, P.~Bouvry, Y.~Audzevich, and S.~Khan.
 \newblock In {\em Global Telecommunications Conference (GLOBECOM 2010), 2010
   IEEE}, pages 1--5, Dec 2010.
 
+\bibitem{vmplaces:europar15}
+A.~Lebre, J.~Pastor, and M.~Südholt.
+\newblock {VMplaceS: A Generic Tool to Investigate and Compare VM Placement
+  Algorithms}.
+\newblock In {\em To appear in Euro-Par 2015 Parallel Processing}, Lecture
+  Notes in Computer Science. Springer, August 2015.
+\newblock Preprint available at
+  \href{http://people.rennes.inria.fr/Adrien.Lebre/PREPRINT/Europar-VMPlaceS.pdf}{http://people.rennes.inria.fr/Adrien.Lebre/PREPRINT/Europar-VMPlaceS.pdf}.
+
 \bibitem{lucas:cloud2014}
 J.~L. Lucas-Simarro, R.~Moreno-Vozmediano, F.~Desprez, and J.~Rouzaud-Cornabas.
 \newblock Image transfer and storage cost aware brokering strategies for
@@ -141,6 +157,12 @@ F.~Quesnel, A.~Lebre, and M.~S\"{u}dholt.
   Platforms with DVMS}.
 \newblock {\em Concurrency and Computation: Practice and Experience},
   25(12):1643--1655, Aug. 2013.
+
+\bibitem{shen:ccgrid2015}
+A.~Shen, V.~van Beek, and A.~Iosup.
+\newblock Statistical characterization of business-critical workloads hosted in
+  cloud datacenters.
+\newblock In {\em IEEE/ACM CCGRID 2015}, May 2015.
 
 \bibitem{stoica:2001:sigcomm01}
 I.~Stoica, R.~Morris, D.~Karger, M.~F. Kaashoek, and H.~Balakrishnan.
