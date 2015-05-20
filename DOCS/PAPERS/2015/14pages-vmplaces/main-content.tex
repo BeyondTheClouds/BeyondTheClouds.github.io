@@ -723,7 +723,7 @@ the application of the reconfiguration plan led to new violations.
 % a value between 0 and 80\% of the migration bandwidth (1Gbps) in steps
 % of 10. Starting from 0\%, the load of each VM varied according to the
 % exponential and the Gaussian distributions previously described. The
-% parameters were $\lambda$ = Nb VMs/300 and $\mu$= 60, $\sigma$ = 20.
+% parameters were $\lambda$ = No VMs/300 and $\mu$= 60, $\sigma$ = 20.
 % Concretely, the load of each VM varied on average every 5 min in steps
 % of 10 (with a significant part between 40\% and 80\%). A dedicated
 % \texttt{memtouch} program\cite{Hirofuchi:2013:ALM:2568486.2568524} has
@@ -796,23 +796,23 @@ the application of the reconfiguration plan led to new violations.
 %server.
 In this section, we discuss the results of the simulations we
 performed on the Entropy, Snooze and DVMS strategies. First, we
-present a general study analyzing the violation times, the
-duration of the computation and reconfiguration phases and the number
-of migration performs for the standard implementations (\aka vanilla code).
-Second, we examine some variants and possible
-improvements of Snooze and DVMS that made possible to easily study  thanks to
-\vmps. We highlight that the accuracy of the results have been
-validated in our previous work~\cite{vmplaces:europar15}.
+present a general study analyzing the violation times, the duration of
+the computation and reconfiguration phases and the number of migration
+performed for the standard implementations (\aka vanilla code).
+Second, we examine some variants of and improvements to Snooze and
+DVMS that have been studied easily thanks to \vmps. We highlight that
+the accuracy of the results have been validated in our previous
+work~\cite{vmplaces:europar15}.
 
- \subsection{Comparison of Entropy, Snooze and DVMS Vanilla Codes}
+ \subsection{Comparing Entropy, Snooze and DVMS (Vanilla Impl.)}
 % \label{subsec:first-usecase}
 %
 \subsubsection{Experimental Conditions}
-All simulations have been
-performed on the Lyon clusters of the Grid'5000 testbed~\cite{grid5000}.
-Each execution was running on a dedicated server, thus avoiding
-interferences between simulations and ensuring reproducibility between
-the different invocations.
+
+All simulations have been performed on the % Lyon clusters of the
+Grid'5000 testbed~\cite{grid5000}.  Each execution was running on a
+dedicated server, thus avoiding interferences between simulations and
+ensuring reproducibility between the different invocations.
 
 % Scripts: automation of the deployment, running of simulations and the collect
 % of results.
@@ -822,42 +822,44 @@ the different invocations.
 
 \vmps has been configured in order to simulate an homogeneous
 infrastructure of PMs composed of 8 cores, 32~GB of RAM and 1~Gpbs
-Ethernet NIC. To enable fair comparison between the three strategies,
+Ethernet NIC. To enable fair comparisons between the three strategies,
 the scheduling resolver only considered 7 cores (\ie one was devoted
-to run the Snooze LC or the DVMS processes). Dedicating one core for
+to run the Snooze GL or the DVMS processes). Dedicating one core for
 the host OS and other administrative processes is something which is
-rather usual and thus we believe acceptable in our experimental
-methodology. Regarding the Virtual Machines, Ten VMs have been
-initially launched on each simulated PM.
- Each VM has been created as one of the 8 VM predefined classes. The
-template was 1:1GB:1Gbps:1Gbps:X, where the memory update speed X was a value between 0 and 80\% of the migration bandwidth (1Gbps) in steps
-of 10. Starting from 0\%, the load of each VM varied according to the
- exponential and the Gaussian distributions previously described. The
- parameters were $\lambda$ = Nb VMs/300 and $\mu$= 60, $\sigma$ = 20.
- Concretely, the load of each VM varied on average every 5 min in
- steps of 10 (with a significant part between 40\% and 80\%). The stationary state was
-reached after 20 min of the simulated time with a global load of 85\%
-as depicted in Fig. \ref{fig:load_figure}. To accelerate the
-simulations, we have chosen to limit the simulated time to 1800
+quite common and, as we believe, acceptable as part of our
+experimental methodology. Regarding the virtual machines, ten VMs have
+been initially launched on each simulated PM.  Each VM has been
+created as one of the 8 VM predefined classes. The template was
+1:1GB:1Gbps:1Gbps:X, where the memory update speed X was a value
+between 0 and 80\% of the migration bandwidth (1Gbps) in steps of
+10. Starting from 0\%, the load of each VM varied according to the
+exponential and the Gaussian distributions previously described. The
+parameters were $\lambda$ = No VMs/300 and $\mu$= 60, $\sigma$ = 20.
+Concretely, the load of each VM varied on average every 5 min in steps
+of 10 (with a significant part between 40\% and 80\%). The stationary
+state was reached after 20 min of the simulated time with a global
+load of 85\% as depicted in Fig. \ref{fig:load_figure}. To accelerate
+the simulations, we have chosen to limit the simulated time to 1800
 seconds. It is noteworthy that the consolidation ratio, \ie the number
 of VMs per node, has been defined to generate a sufficient number of
 violations. We discovered that under a global load of 75\%, our
-infrastructure almost did not face VM violations with our selected Gaussian
-distribution. Such a result is rather
-satisfactory as it can explained why most production DCs target such
-an overall utilization rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
+infrastructure almost did not face VM violations with our selected
+Gaussian distribution. Such a result is rather satisfactory as it can
+explain why most production DCs target such an overall utilization
+rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
 
 We conducted simulations in order to study infrastructures composed of
-128, 256, 512 and 1024 PMs,
-\AL[JP]{Add 2048 if suceeded}
-hosting respectively 1280, 2560, 5120 and
-10240 VMs. Additional simulated PMs have been provided to execute the
-Entropy and Snooze service nodes on distinct nodes. For Snooze, one GM
-has been created every 32 LCs (\ie PMs). Entropy and Snooze are
-invoked every 30 seconds. Finally, it is noteworthy that no service
-node had to be provisioned for DVMS as a DVMS process had been
-executed directly on top of the hosting nodes.
+128, 256, 512 and 1024 PMs, \AL[JP]{Add 2048 if succeeded} for each PM
+number hosting 10 times as many VMs. Additional simulated PMs have
+been provided to execute the Entropy and Snooze service nodes on
+distinct nodes. For Snooze, one GM has been created for every 32 LCs
+(\ie PMs). Entropy and Snooze are invoked every 30 seconds. Finally,
+it is noteworthy that no service node had to be provisioned for DVMS
+as a DVMS process is executed directly on top of the hosting nodes.
 
+\MS[AL]{The following paragraph is wrong with respect to the fault
+  experiments of Snooze: much higher fault rate and still only
+  moderate impact. I can replace it with an accurate 4--5 line par.}
 In order to cope with real DC conditions, we defined the parameters
 for node crashes to simulate a fault on average every 6 months for a
 duration of 300 seconds. These values correspond to the Mean Time To
@@ -867,20 +869,18 @@ the scale we performed our simulations such a crash ratio was not
 sufficient to impact the behavior of the scheduling policies.
 Dedicated simulations were mandatory to study the influence of node
 crashes. However, due to the space limitations, we do not present them
-in the article and only gives major trends.
-\AL[MS]{Please update consequently the sentence above and the
-  paragraph below}
- Regarding Entropy,
-although the lost of the service node can be critic, the failure
-probability is so small that the single point of failure issue can be
-easily solved by a fail-over approach. Regarding Snooze, the heartbeat
-strategy enables the reconstruction of the hierarchy in a relative
-short time and thus crashes on service nodes do not significantly
-impact the resolution of violations (in our case less than 10 seconds
-is mandatory to reorganize the Snooze topology with a 6 seconds
-heartbeat mechanism). Finally regarding DVMS, the crash of one node
-does not have any impact of the resolution has the composition of the
-microcosm is reevaluated immediately.
+in the article and only gives major trends.  \AL[MS]{Please update
+  consequently the sentence above and the paragraph below} Regarding
+Entropy, although the lost of the service node can be critic, the
+failure probability is so small that the single point of failure issue
+can be easily solved by a fail-over approach. Regarding Snooze, the
+heartbeat strategy enables the reconstruction of the hierarchy in a
+relative short time and thus crashes on service nodes do not
+significantly impact the resolution of violations (in our case less
+than 10 seconds is mandatory to reorganize the Snooze topology with a
+6 seconds heartbeat mechanism). Finally regarding DVMS, the crash of
+one node does not have any impact of the resolution has the
+composition of the microcosm is reevaluated immediately.
 
 
 All configuration files used to perform the discussed simulations can
