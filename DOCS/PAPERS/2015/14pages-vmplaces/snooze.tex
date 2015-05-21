@@ -4,17 +4,23 @@ We present its architecture summarizing its main
 characteristics from its original presentation~\cite{feller:ccgrid12} and
 additional information  stemming from personal communications of the Snooze
 developers and its implementation~\cite{snoozeweb,snoozedev14}.
-\begin{figure}
-  {\centering ~\includegraphics[width=.95\linewidth]{figures/snoozearch.pdf}}
-  \caption{Overview of Snooze's architecture}
-  \label{fig:snoozearch}
-\end{figure}
 
 \subsubsection{Architecture}
 \label{sec:snoozeArchi}
 
 Snooze harnesses a hierarchical architecture in order to support load
-balancing and fault tolerance, cf.\ Fig.~\ref{fig:snoozearch}. At the
+balancing and fault tolerance, cf.\ Fig.~\ref{fig:snoozearch}.
+
+\begin{figure}[hbp]
+  \begin{center}
+  \includegraphics[width=.85\linewidth]{figures/snoozearch.pdf}
+  \caption{Overview of Snooze's architecture}
+  \label{fig:snoozearch}
+\end{center}
+\vspace*{-.3cm}
+\end{figure}
+
+At the
 top of the hierarchy, a \emph{group leader (GL)} centralizes
 information about the whole cluster using summary data about
 \emph{group managers (GMs)} that constitute the intermediate layer of

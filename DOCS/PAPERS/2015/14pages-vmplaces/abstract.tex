@@ -1,26 +1,41 @@
+% Most current infrastructures for cloud computing leverage static and
+% greedy policies for the placement of virtual machines. Such policies
+% impede the optimal allocation of resources and the satisfaction of
+% operational guarantees like service-level agreements. In recent years,
+% more dynamic and often more efficient policies based, \eg on
+% consolidation and load balancing techniques, have been developed. Due
+% to the underlying complexity of cloud infrastructures, these policies
+% are evaluated either using limited scale testbeds/\emph{in-vivo}
+% experiments or ad-hoc simulator techniques. These validation
+% methodologies are unsatisfactory for two important reasons: they (i)
+% do not model precisely enough real productions platforms (size,
+% workload representativeness, failure, etc.) and (ii) do not enable the
+% fair comparison of different approaches.
+
 Most current infrastructures for cloud computing leverage static and
 greedy policies for the placement of virtual machines. Such policies
 impede the optimal allocation of resources and the satisfaction of
 operational guarantees like service-level agreements. In recent years,
-more dynamic and often more efficient policies based, \eg on
+more dynamic and often more efficient policies based, e.g., on
 consolidation and load balancing techniques, have been developed. Due
 to the underlying complexity of cloud infrastructures, these policies
-are evaluated either using limited scale testbeds/\emph{in-vivo}
-experiments or ad-hoc simulator techniques. These validation
-methodologies are unsatisfactory for two important reasons: they (i)
-do not model precisely enough real productions platforms (size,
-workload representativeness, failure, etc.) and (ii) do not enable the
-fair comparison of different approaches.
-
+are evaluated either using limited scale testbeds/in-vivo experiments
+or ad-hoc simulator techniques. These validation methodologies are
+unsatisfactory for two important reasons: they (i) do not model
+precisely enough real productions platforms (size, workload
+representativeness, failure, etc.) and (ii) do not enable the fair
+comparison of different approaches. More generally, new placement
+algorithms are thus continuously proposed without really identifying
+the significant benefits of each of them.
 
 In this article, we show how VMPlaceS, a dedicated simulation
 framework enables researchers (i) to study and compare VM placement
 algorithms , (ii) to detect possible limitations at large scale and
 (iii) easily investigate different design choices. Built on top of the
 SimGrid simulation platform, VMPlaceS provides programming support to
-easy the implementation of placement algorithms and runtime support
+ease the implementation of placement algorithms and runtime support
 dedicated to load injection and execution trace analysis. We
-investigate in particular three well known strategies in terms of
+investigate three well known strategies in terms of
 reactivity and fault tolerant properties. Diving into the details, we
 also identify several modifications that can significantly increase
 their performance. We believe that VMPlaceS will allow researchers to
