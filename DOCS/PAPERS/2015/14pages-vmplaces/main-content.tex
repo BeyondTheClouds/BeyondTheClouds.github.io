@@ -1602,22 +1602,25 @@ results in a significantly lower total migration time. \AL[MS]{lower
 
 
 
-\subsubsection{Impact of Nodes Crashes}
+\subsubsection{Analysis of fault tolerance properties}
 
- \AL[MS]{Please use the paragraph below to make a general preamble
-   before focusing on snooze} Regarding
-Entropy, although the lost of the service node can be critic, the
-failure probability is so small that the single point of failure issue
-can be easily solved by a fail-over approach. Regarding Snooze, the
-heartbeat strategy enables the reconstruction of the hierarchy in a
-relative short time and thus crashes on service nodes do not
-significantly impact the resolution of violations (in our case less
-than 10 seconds is mandatory to reorganize the Snooze topology with a
-6 seconds heartbeat mechanism). Finally regarding DVMS, the crash of
-one node does not have any impact of the resolution has the
-composition of the microcosm is reevaluated immediately.
+We have performed a series of analysis of fault tolerance
+properties. For space reasons, we only detail below some corresponding
+results for the hierachical placement strategy. It turns out that
+Snooze's strategy based on heartbeats enables the reconstruction of
+the hierarchy in a relative short time and thus crashes on service
+nodes only moderately impact the resolution of violations even in the
+case of high failure rates.
+% (in our case less than 10 seconds is mandatory to reorganize the
+% Snooze topology with a 6 seconds heartbeat mechanism).
 
+As to Entropy, although the loss of the service node can be critical,
+its failure probability is so small that the single point of failure
+issue can be easily solved by a fail-over approach.  Regarding DVMS,
+the crash of one node does not have any impact on the resolution as
+the composition of the microcosms is reevaluated immediately.
 
+\paragraph{Fault tolerance analysis of hierarchical scheduling.}
 
 \begin{figure}
   \parbox{.47\linewidth}{\centering
