@@ -849,7 +849,7 @@ explain why most production DCs target such an overall utilization
 rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
 
 We conducted simulations in order to study infrastructures composed of
-128, 256, 512 and 1024 PMs, \AL[JP]{Add 2048 if succeeded} for each PM
+128, 256, 512, 1024 and 2048 PMs, \AL[JP]{Add 2048 if succeeded} for each PM
 number hosting 10 times as many VMs. Additional simulated PMs have
 been provided to execute the Entropy and Snooze service nodes on
 distinct nodes. For Snooze, one GM has been created for every 32 LCs
@@ -965,6 +965,26 @@ manipulations.
 % \label{table:detailed_violation_time}
 % \end{table}
 
+% \begin{table}[ht]
+% \centering
+%     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+%           \Tstrut \\
+%          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+%       \thickhline
+%         128 nodes   & 21.26 $\pm$ 13.55 & 21.07 $\pm$ 12.32 &   9.55 $\pm$ 2.57 \\
+%         256 nodes   & 40.09 $\pm$ 24.15 & 21.45 $\pm$ 12.10 &   9.58 $\pm$ 2.51 \\
+%         512 nodes   & 55.63 $\pm$ 42.26 & 24.54 $\pm$ 16.95 &   9.57 $\pm$ 2.67 \\
+%         1024 nodes  & 81.57 $\pm$ 86.59 & 29.01 $\pm$ 38.14 & \:9.61 $\pm$ 2.54
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% \caption{Duration of violations ($Med \pm \sigma$)}
+% \label{table:detailed_violation_time}
+% \end{table}
+
 \begin{table}[ht]
 \centering
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
@@ -974,10 +994,11 @@ manipulations.
           \Tstrut \\
          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
       \thickhline
-        128 nodes   & 21.26 $\pm$ 13.55 & 21.07 $\pm$ 12.32 &   9.55 $\pm$ 2.57 \\
-        256 nodes   & 40.09 $\pm$ 24.15 & 21.45 $\pm$ 12.10 &   9.58 $\pm$ 2.51 \\
-        512 nodes   & 55.63 $\pm$ 42.26 & 24.54 $\pm$ 16.95 &   9.57 $\pm$ 2.67 \\
-        1024 nodes  & 81.57 $\pm$ 86.59 & 29.01 $\pm$ 38.14 & \:9.61 $\pm$ 2.54
+          128 nodes &  23.30 $\pm$  15.64 &  22.62 $\pm$  15.27 &   9.47 $\pm$   2.49  \\
+          256 nodes &  39.06 $\pm$  26.89 &  24.03 $\pm$  15.30 &   9.49 $\pm$   2.28  \\
+          512 nodes &  60.67 $\pm$  49.66 &  25.45 $\pm$  25.18 &   9.56 $\pm$   2.62  \\
+         1024 nodes &  87.62 $\pm$  90.67 &  29.31 $\pm$  35.55 &   9.67 $\pm$   2.37  \\
+         2048 nodes &  98.61 $\pm$ 136.20 &  31.39 $\pm$  60.58 &  \:12.18 $\pm$   6.32  
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -985,25 +1006,25 @@ manipulations.
 \label{table:detailed_violation_time}
 \end{table}
 
-\begin{table}[ht]
-\centering
-    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-      \thickhline
-      \textbf{Infrastructure Size}
-        & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
-          \Tstrut \\
-         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
-      \thickhline
-        128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
-        256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
-        512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
-        1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
-      \Rstrut  \\ \hline
-      \thickhline
-  \end{tabular} }
-\caption{Duration of computations ($Med \pm \sigma$)}
-\label{table:detailed_computation_time}
-\end{table}
+% \begin{table}[ht]
+% \centering
+%     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+%           \Tstrut \\
+%          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+%       \thickhline
+%         128 nodes   &  3.76 $\pm$  7.43 &  2.52 $\pm$  4.63 &   0.29 $\pm$ 0.03 \\
+%         256 nodes   &  7.97 $\pm$ 15.03 &  2.65 $\pm$  4.69 &   0.25 $\pm$ 0.02 \\
+%         512 nodes   & 15.71 $\pm$ 29.14 &  2.83 $\pm$  4.98 &   0.21 $\pm$ 0.01 \\
+%         1024 nodes  & 26.41 $\pm$ 50.35 &  2.69 $\pm$  4.92 & \:0.14 $\pm$ 0.01
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% \caption{Duration of computations ($Med \pm \sigma$)}
+% \label{table:detailed_computation_time}
+% \end{table}
 
 \begin{table}[ht]
 \centering
@@ -1014,10 +1035,52 @@ manipulations.
           \Tstrut \\
          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
       \thickhline
-        128 nodes   & 10.34 $\pm$  1.70 &  10.02 $\pm$  0.14 &   10.01 $\pm$ 0.11 \\
-        256 nodes   & 10.26 $\pm$  1.45 &  10.11 $\pm$  0.83 &   10.01 $\pm$ 0.08 \\
-        512 nodes   & 11.11 $\pm$  3.23 &  10.28 $\pm$  1.50 &   10.08 $\pm$ 0.82 \\
-        1024 nodes  & 18.90 $\pm$  7.57 &  10.30 $\pm$  1.60 & \:10.04 $\pm$ 0.63
+        128 nodes &   5.01 $\pm$   8.38 &   2.70 $\pm$   4.86 &   0.03 $\pm$   0.02   \\
+        256 nodes &  10.08 $\pm$  16.96 &   3.32 $\pm$   5.28 &   0.02 $\pm$   0.02   \\
+        512 nodes &  16.41 $\pm$  29.32 &   2.86 $\pm$   4.92 &   0.01 $\pm$   0.01   \\
+       1024 nodes &  27.60 $\pm$  52.99 &   3.35 $\pm$   5.28 &   0.01 $\pm$   0.02   \\
+       2048 nodes &  90.10 $\pm$ 122.42 &   3.04 $\pm$   5.27 &   \:0.01 $\pm$   0.01   
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+\caption{Duration of computations ($Med \pm \sigma$)}
+\label{table:detailed_computation_time}
+\end{table}
+
+% \begin{table}[ht]
+% \centering
+%     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+%           \Tstrut \\
+%          \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+%       \thickhline
+%         128 nodes   & 10.34 $\pm$  1.70 &  10.02 $\pm$  0.14 &   10.01 $\pm$ 0.11 \\
+%         256 nodes   & 10.26 $\pm$  1.45 &  10.11 $\pm$  0.83 &   10.01 $\pm$ 0.08 \\
+%         512 nodes   & 11.11 $\pm$  3.23 &  10.28 $\pm$  1.50 &   10.08 $\pm$ 0.82 \\
+%         1024 nodes  & 18.90 $\pm$  7.57 &  10.30 $\pm$  1.60 & \:10.04 $\pm$ 0.63
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% \caption{Duration of reconfigurations ($Med \pm \sigma$).}
+% \label{tab:detailed_reconf_time}
+% \end{table}
+
+\begin{table}[ht]
+\centering
+    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+          \Tstrut \\
+         \hfill  & ~Centralized~ & ~Hierarchical~ & Distributed \Bstrut \\
+      \thickhline
+        128 nodes &  10.44 $\pm$   1.95 &  10.02 $\pm$   0.14 &  10.01 $\pm$   0.10  \\
+        256 nodes &  11.10 $\pm$   2.95 &  10.16 $\pm$   1.22 &  10.00 $\pm$   0.00  \\
+        512 nodes &  12.22 $\pm$   5.26 &  10.15 $\pm$   1.19 &  10.01 $\pm$   0.12  \\
+       1024 nodes &  20.64 $\pm$   9.87 &  10.22 $\pm$   1.33 &  10.03 $\pm$   0.41  \\
+       2048 nodes &  32.33 $\pm$  16.58 &  10.53 $\pm$   1.85 &  \:13.40 $\pm$   6.06  
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1047,6 +1110,28 @@ manipulations.
 % \label{table:detailed_migrations}
 % \end{table}
 
+% \begin{table}[ht]
+% \centering
+%     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{3}{c@{\:}|}{\textbf{Algorithm}}
+%           \Tstrut \\
+%          \hfill &  ~Centralized~ & ~Hierarchical~ & ~Distributed \Bstrut \\
+%       \thickhline
+
+%         128 nodes & 232   & 334    & 271   \\
+%         256 nodes & 307   & 708    & 533   \\
+%         512 nodes & 523   & 1578   & 1254  \\
+%        1024 nodes & 693   & 1760   & 2632
+
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% \caption{Number of migrations.}
+% \label{table:detailed_migrations_count}
+% \end{table}
+
 \begin{table}[ht]
 \centering
     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
@@ -1056,12 +1141,11 @@ manipulations.
           \Tstrut \\
          \hfill &  ~Centralized~ & ~Hierarchical~ & ~Distributed \Bstrut \\
       \thickhline
-
-        128 nodes & 232   & 334    & 271   \\
-        256 nodes & 307   & 708    & 533   \\
-        512 nodes & 523   & 1578   & 1254  \\
-       1024 nodes & 693   & 1760   & 2632
-
+          128 nodes & 103 &   70  &   93 \\
+          256 nodes & 135 &  164  &  194 \\
+          512 nodes & 163 &  267  &  344 \\
+         1024 nodes & 266 &  651  &  842 \\
+         2048 nodes & 285 & 1174  & 1489 
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1296,7 +1380,7 @@ depicted by the previous Snooze scenarios.
         128 nodes & 11.57 $\pm$   3.44 & 11.49 $\pm$   3.51 &   78  & 76  \\
         256 nodes & 10.96 $\pm$   3.44 & 11.44 $\pm$   3.62 &   152 & 127 \\
         512 nodes & 11.33 $\pm$   3.56 & 11.75 $\pm$   3.12 &   308 & 286 \\
-       1024 nodes & 11.41 $\pm$   3.36 & \:11.45 $\pm$ 3.39 &   702 & 616 
+       1024 nodes & 11.41 $\pm$   3.36 & \:11.45 $\pm$ 3.39 &   702 & \:616 
 
       \Rstrut  \\ \hline
       \thickhline
@@ -1389,7 +1473,7 @@ code of the variant with periodic scheduling.
 
         128 nodes & 20.92 $\pm$  13.02 &  10.24 $\pm$   4.48 &  62  & 107   \\
         256 nodes & 23.33 $\pm$  14.47 &  10.02 $\pm$   3.32 &  124 & 201   \\
-        512 nodes & 23.57 $\pm$  20.19 &  10.62 $\pm$   7.21 &  269 & 421   
+        512 nodes & 23.57 $\pm$  20.19 &  10.62 $\pm$   7.21 &  269 & \:421   
       
       \Rstrut  \\ \hline
       \thickhline
