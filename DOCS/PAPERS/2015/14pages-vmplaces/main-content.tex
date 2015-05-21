@@ -1420,8 +1420,23 @@ be used to rebalance the VMs workload, its efficiency is improved.
 
 \subsubsection{Hierarchical scheduling: periodic vs.\  reactive}
 
-Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
-introduced before.  Using \vmps, we have also implemented an
+\begin{figure*}[htbp]
+\subcapcentertrue
+\subfigure[DVMS]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
+  \label{fig:violation_clouds_dvms_1024}}
+\subfigure[Snooze Periodic]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30-gm32.pdf}
+  \label{fig:violation_clouds_snooze_1024_periodic}}
+\subfigure[Snooze Reactive]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
+  \label{fig:violation_clouds_snooze_1024_reactive}}
+\caption{Details of violations duration occuring during simulation (10240 VMS).}
+\label{fig:violation_clouds}
+\end{figure*}
+
+Our vanilla implementation of Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
+introduced before.  Using \vmps, we have also developed an
 alternative, reactive, strategy to scheduling: as soon as resource
 conflicts occur, LCs avert their GMs of them; the GMs then immediately
 initiate scheduling. Implementing this reactive scheme can be done
@@ -1436,12 +1451,17 @@ issues are not relevant in this case because notification of a
 resource conflict implies little communication and conflict resolution
 blocks the GM and its LCs anyway). We have implemented this
 lightweight variant of reactive scheduling including an explicit model
-of communication delays. Using the abstractions provided by \vmps, in
-particular harnessing its extended notion of hosts that represent the
-VMs managed by the LCs of a VM, reactive scheduling has been
+of communication delays. Using the abstractions provided by \vmps,
+%in
+%particular harnessing its extended notion of hosts that represent the
+%VMs managed by the LCs of a VM,
+reactive scheduling has been
 implemented by adding or modifying just 4~lines of code of the variant
 with periodic scheduling.
-\begin{table}
+
+
+
+\begin{table}[htbp]
     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
@@ -1459,7 +1479,7 @@ with periodic scheduling.
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
- \caption{Comparison between Snooze periodic and Snooze reactive.}
+ \caption{Snooze periodic \vs Snooze reactive.}
  \label{tab:reactivePeriodic}
 \end{table}
 
@@ -1482,20 +1502,6 @@ the periodic one aggregates overload situations and misses some of
 them), reactive scheduling results in a significantly lower total
 violation time.
 
-\begin{figure*}[hbtp]
-\subcapcentertrue
-\subfigure[DVMS]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
-  \label{fig:violation_clouds_dvms_1024}}
-\subfigure[Snooze Periodic]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30-gm32.pdf}
-  \label{fig:violation_clouds_snooze_1024_periodic}}
-\subfigure[Snooze Reactive]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
-  \label{fig:violation_clouds_snooze_1024_reactive}}
-\caption{Details of violations duration occuring during simulation (10240 VMS).}
-\label{fig:violation_clouds}
-\end{figure*}
 % \MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
 %   the reactive discussion, the figure illustrates the pros of the reactivity.}
 % \paragraph{Assignment of LCs to GMs}
@@ -1613,10 +1619,7 @@ violation time.
 % resulting degradation was surprising.
 
 
-
-
-
-\subsubsection{Analysis of fault tolerance properties}
+\subsubsection{Analysis of Fault Tolerance Property}
 \label{subsubsec:node-crashes}
 We have performed a series of analysis of fault tolerance
 properties. For space reasons, we only detail below some corresponding
@@ -1634,29 +1637,37 @@ issue can be easily solved by a fail-over approach.  Regarding DVMS,
 the crash of one node does not have any impact on the resolution as
 the composition of the microcosms is reevaluated immediately.
 
-\paragraph{Fault tolerance analysis of hierarchical scheduling.}
+%\Paragraph{Fault tolerance analysis of hierarchical scheduling.}
 
-\begin{figure}
-  \parbox{.47\linewidth}{\centering
-  \includegraphics[width=.95\linewidth]{figures/snoozeFault-successPsize.pdf}
+% \begin{figure}
+%   \parbox{.47\linewidth}{\centering
+%   \includegraphics[width=.95\linewidth]{figures/snoozeFault-successPsize.pdf}
 
-  a) GM size (\#LCs)
-  }
-  \
-  \parbox{.47\linewidth}{\centering
-  \includegraphics[width=.95\linewidth]{figures/snoozeFault-violationTime.pdf}
+%   (a) GM size (\#LCs)
+%   }
+%   \
+%   \parbox{.47\linewidth}{\centering
+%   \includegraphics[width=.95\linewidth]{figures/snoozeFault-violationTime.pdf}
 
-  b) Violation times
-  }
-  \caption{Behavior in the presence of faults}
-  \label{fig:snoozeFaults}
+%   b) Violation times
+%   }
+%   \caption{Behavior in the presence of faults}
+%   \label{fig:snoozeFaults}
+% \end{figure}
+
+\begin{figure}[bp]
+\subcapcentertrue
+\subfigure[GM Size (\#LCs)]{\includegraphics[width=4cm]{./figures/snoozeFault-successPsize.pdf}\label{fig:snooze-fault-psize}}
+\subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/snoozeFault-violationTime}\label{fig:snooze-fault-viol}}
+\caption{Behavior in the presence of faults}
+\label{fig:snoozeFaults}
 \end{figure}
 
-We have also harnessed VMPlaceS in order to analyze the fault
-tolerance properties of hierarchical scheduling a la Snooze,
-presenting, to the best of our knowledge, a first analysis of such
-properties.
 
+
+Regarding the hierarchical scheduling a la Snooze, we have also
+harnessed VMPlaceS in order to analyze and present to the best of our
+knowledge, a first analysis of such property.
 We have, in particular, compared standard executions (no faults, 32
 LCs per GM, periodic calls every 30s to the centralized solver) to
 executions that have been subject to faults. In order be able to
