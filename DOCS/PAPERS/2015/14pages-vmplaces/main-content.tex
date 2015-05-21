@@ -1263,6 +1263,7 @@ strong evidence that the modification and evaluation of existing
 algorithms is much facilitated by our simulation framework.
 
 \subsubsection{Varying group sizes}
+\label{sec:groupSizes}
 
 As a first example, we propose to clarify the influence of the group
 size observed during the general comparison.
@@ -1413,34 +1414,28 @@ be used to rebalance the VMs workload, its efficiency is improved.
 %   scheduling parameters for the evals.?}
 
 \subsubsection{Hierarchical scheduling: periodic vs.\  reactive}
-\AL[MS]{Please add a preamble for this section}
 
-Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
-after a fixed time period a GM calls the scheduler in order to resolve
-resource conflicts among the LCs it manages. The information whether a
-resource conflict has to be handled is taken based on the summary
-information that is periodically sent by the LCs to the GM.
-
-Using \vmps, we have also implemented an alternative, reactive,
-strategy to scheduling: as soon as resource conflicts occur, LCs avert
-their GMs of them; the GMs then immediately initiate
-scheduling. Implementing this reactive scheme can be done using our
-framework in two manners. First, by implementing additional
-asynchronous transmissions of the necessary state updates as a real
-implementation would proceed. Second, in a much more lightweight
-manner through direct accesses by the GMs to the states of their
-respective LCs. In order to ensure that this lightweight
-implementation mimics a real implementation closely, delays induced by
-communication in the ``real'' implementation are accounted for
-explicitly (congestion issues are not relevant in this case because
-notification of a resource conflict implies little communication and
-conflict resolution blocks the GM and its LCs anyway). We have
-implemented this lightweight variant of reactive scheduling including
-an explicit model of communication delays. Using the abstractions
-provided by \vmps, in particular harnessing its extended notion of
-hosts that represent the VMs managed by the LCs of a VM, reactive
-scheduling has been implemented by adding or modifying just 4~lines of
-code of the variant with periodic scheduling.
+Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
+introduced before.  Using \vmps, we have also implemented an
+alternative, reactive, strategy to scheduling: as soon as resource
+conflicts occur, LCs avert their GMs of them; the GMs then immediately
+initiate scheduling. Implementing this reactive scheme can be done
+using our framework in two manners. First, by implementing additional
+asynchronous communication of the necessary state updates as a real
+implementation would proceed. Second, in a more lightweight manner
+through direct accesses by the GMs to the states of their respective
+LCs. In order to ensure that this lightweight implementation mimics a
+real implementation closely, delays induced by communication in the
+``real'' implementation are accounted for explicitly (congestion
+issues are not relevant in this case because notification of a
+resource conflict implies little communication and conflict resolution
+blocks the GM and its LCs anyway). We have implemented this
+lightweight variant of reactive scheduling including an explicit model
+of communication delays. Using the abstractions provided by \vmps, in
+particular harnessing its extended notion of hosts that represent the
+VMs managed by the LCs of a VM, reactive scheduling has been
+implemented by adding or modifying just 4~lines of code of the variant
+with periodic scheduling.
 \begin{table}
     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
@@ -1460,30 +1455,27 @@ code of the variant with periodic scheduling.
       \thickhline
   \end{tabular} }
  \caption{Means $\pm$ Std deviations of violations durations.}
- \label{table:detailed_violations}
+ \label{tab:reactivePeriodic}
 \end{table}
 
 
-\AL[MS]{Update the table: it may make
-sense to put all values to make the read and the understanding easier
-Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
-\AL[MS]{The values for the vanilla implementation do not correspond to
-Table 1. Moreover it is strange that the value with 32LCs per GM is as
-close as the DVMS ones after the reactive change ? We should clarify
-that point}
+% \AL[MS]{Update the table: it may make
+% sense to put all values to make the read and the understanding easier
+% Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
 
-We have shown the usefulness of our framework by exploring some
-properties of reactive scheduling compared to periodic scheduling. To
-this end we have simulated reactive scheduling and a periodic
-algorithm for configurations ranging from 128 to 512~LCs. In each case
-the Entropy scheduler has been applied on groups of 32~LCs per GM. The
-periodic strategy has computed and applied reconfiguration plans every
-30 secs. These simulations have yielded the results shown in the table
-above. They clearly show that, while a reactive strategy entails a
-much higher number of migrations (because the periodic one aggregates
-overload situations and misses some of them), reactive scheduling
-results in a significantly lower total migration time. \AL[MS]{lower
-  total migration time ? you mean violation time, please correct.}
+We have simulated reactive scheduling and a periodic algorithm for
+configurations ranging from 128 to 512~LCs. In each case the Entropy
+scheduler has been applied to groups of 8~LCs per GM, the variant of
+hierarchical scheduling that performs most efficiently and closely
+matches the efficiency of DVMS, see Sec.~\ref{sec:groupSizes}.
+% The periodic strategy has computed and applied reconfiguration plans
+% every 30 secs.
+These simulations have yielded the results shown in
+Table~\ref{tab:reactivePeriodic}. They clearly show that, while a
+reactive strategy entails a much higher number of migrations (because
+the periodic one aggregates overload situations and misses some of
+them), reactive scheduling results in a significantly lower total
+violation time.
 
 \begin{figure*}
 \subcapcentertrue
@@ -1499,8 +1491,8 @@ results in a significantly lower total migration time. \AL[MS]{lower
 \caption{Details of violations duration occuring during simulation (10240 VMS).}
 \label{fig:violation_clouds}
 \end{figure*}
-\MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
-  the reactive discussion, the figure illustrates the pros of the reactivity.}
+% \MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
+%   the reactive discussion, the figure illustrates the pros of the reactivity.}
 % \paragraph{Assignment of LCs to GMs}
 
 % LCs are assigned to GMs by the GL as part of the LC join protocol. In
@@ -1617,22 +1609,27 @@ results in a significantly lower total migration time. \AL[MS]{lower
 
 
 
-\subsubsection{Impact of Node Crashes}
+
+
+\subsubsection{Analysis of fault tolerance properties}
 \label{subsubsec:node-crashes}
- \AL[MS]{Please use the paragraph below to make a general preamble
-   before focusing on snooze} Regarding
-Entropy, although the lost of the service node can be critic, the
-failure probability is so small that the single point of failure issue
-can be easily solved by a fail-over approach. Regarding Snooze, the
-heartbeat strategy enables the reconstruction of the hierarchy in a
-relative short time and thus crashes on service nodes do not
-significantly impact the resolution of violations (in our case less
-than 10 seconds is mandatory to reorganize the Snooze topology with a
-6 seconds heartbeat mechanism). Finally regarding DVMS, the crash of
-one node does not have any impact of the resolution has the
-composition of the microcosm is reevaluated immediately.
+We have performed a series of analysis of fault tolerance
+properties. For space reasons, we only detail below some corresponding
+results for the hierachical placement strategy. It turns out that
+Snooze's strategy based on heartbeats enables the reconstruction of
+the hierarchy in a relative short time and thus crashes on service
+nodes only moderately impact the resolution of violations even in the
+case of high failure rates.
+% (in our case less than 10 seconds is mandatory to reorganize the
+% Snooze topology with a 6 seconds heartbeat mechanism).
 
+As to Entropy, although the loss of the service node can be critical,
+its failure probability is so small that the single point of failure
+issue can be easily solved by a fail-over approach.  Regarding DVMS,
+the crash of one node does not have any impact on the resolution as
+the composition of the microcosms is reevaluated immediately.
 
+\paragraph{Fault tolerance analysis of hierarchical scheduling.}
 
 \begin{figure}
   \parbox{.47\linewidth}{\centering
@@ -1682,11 +1679,20 @@ triggered that are triggered by violations.
 
 \section{Related Work}
 \label{sec:related}
-\AL[AL]{Add few lines related to Google scheduling simulator - https://code.google.com/p/cluster-scheduler-simulator/}
+%\AL[AL]{Add few lines related to Google scheduling simulator - https://code.google.com/p/cluster-scheduler-simulator/}
 
-Several simulator toolkits have been proposed since the last years in
-order to adress CC concerns~\cite{CC13, DGSIM, cloudsim, icancloud,
-  greencloud}.  They can be classified into two categories: The first
+Jobs/tasks scheduling in distributed
+system is an old challenge and thus several simulators have been
+proposed to investigate pros and cons of new strategies for several years. As a recent
+example, Google has released the simulator~\footnote{\href{https://github.com/google/cluster-scheduler-simulator}{https://github.com/google/cluster-scheduler-simulator}} it used for the Omega
+framework \cite{schwarzkopf:2013}. However, jobs/tasks scheduling
+simulators do not consider the notion of VM and its associated
+capabilities (suspend/resume, migrate) and thus are not appropriate
+to investigate CC production platforms.
+
+Simulator toolkits that have bee proposed to address CC
+concerns~\cite{cloudsim, CC13, DGSIM,  greencloud,
+  icancloud} can be classified into two categories: The first
 one corresponds to ad-hoc simulators that have been developped to
 address a particular concern. For instance, CReST~\cite{CC13} is a
 discrete event simulation toolkit built to evaluate Cloud provisioning
@@ -1694,9 +1700,9 @@ algorithms. If ad-hoc simulators enable to provide some trends
 regarding the bevahiours of the system, they do consider the
 implication of the different layers, which can lead to non
 representative results at the end. Moreover, such ad-hoc solutions are
-developped for one shot and thus, they are not available for the
-scientific community. The second category \cite{icancloud, greencloud,
-  cloudsim} corresponds to more generic cloud simulator toolkits (\ie
+developed for one shot and thus, they are not available for the
+scientific community. The second category \cite{cloudsim, greencloud,
+  icancloud} corresponds to more generic cloud simulator toolkits (\ie
 they have been designed to adress a majority of CC
 challenges). However, they have focused mainly on the API and not on
 the model of the different mechanisms of CC systems.
@@ -1715,6 +1721,10 @@ technologies, leading also to non representation results at the
 end. As highlighted several times throughout this document, we chose to
 build \vmps on top of \sg in order to benefit fromt its accuracy of
 its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
+
+
+ is a old other simulators to investigate
+scheduling challenges have been proposed
 
 \section{Conclusion}
 \label{sec:conclusion}
