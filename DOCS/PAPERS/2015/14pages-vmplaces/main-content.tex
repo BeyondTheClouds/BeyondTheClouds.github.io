@@ -158,16 +158,18 @@ this article:
     (\ie the step where VMs are relocated throughout the
     infrastructure) in comparison to the computation one (\ie the step
     where the scheduler try to solve the VMPP, see Section
-    \ref{sec:vmpp} for a complete definition of both steps).
+    \ref{sec:vmpp} for a complete definition).
+\item The high number of migrations overall.
     % \item The quasi-inexistant impact of failures on the reactivity
     %   for all systems when considering a 6 months failure rate;
   \item The pros and cons of partitioning an infrastructure into small
     or large groups to handle the scheduling process;
   \item The relevance of a reactive strategy in comparison to a
     periodic one.
-  \item The moderate impact of node crashes for hierarchical and
-    distributed approaches even in the presence of high failure rates.
-    \AL[MS]{To be confirmed ?}
+  \item The moderate impact of node crashes for the hierarchical
+%and  distributed
+approach even in the presence of high failure rates.
+%    \AL[MS]{To be confirmed ?}
   \item The relevance of \vmps to identify the best VM placement
     approaches that have the potential to handle CC production
     infrastructures.
@@ -878,10 +880,8 @@ Gaussian distribution. Such a result is rather satisfactory as it can
 explain why most production DCs target such an overall utilization
 rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
 
-
-
 All configuration files used to perform the discussed simulations can
-be downloaded from the \vmps repository.
+be downloaded from the \vmps repository.\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}
 
 \subsubsection{General  Analysis}
 \label{subsec:general-comparison}
@@ -995,8 +995,8 @@ manipulations.
           256 nodes &  39.06 $\pm$  26.89 &  24.03 $\pm$  15.30 &   9.49 $\pm$   2.28  \\
           512 nodes &  60.67 $\pm$  49.66 &  25.45 $\pm$  25.18 &   9.56 $\pm$   2.62  \\
          1024 nodes &  87.62 $\pm$  90.67 &  29.31 $\pm$  35.55 &   9.67 $\pm$   2.37  \\
-         2048 nodes &  98.61 $\pm$ 136.20 &  31.39 $\pm$  60.58 &  \:12.18 $\pm$   6.32
-      \Rstrut  \\ \hline
+%         2048 nodes &  98.61 $\pm$ 136.20 &  31.39 $\pm$  60.58 &  \:12.18 $\pm$   6.32
+%      \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
 \caption{Duration of violations ($Med \pm \sigma$)}
@@ -1036,8 +1036,8 @@ manipulations.
         256 nodes &  10.08 $\pm$  16.96 &   3.32 $\pm$   5.28 &   0.02 $\pm$   0.02   \\
         512 nodes &  16.41 $\pm$  29.32 &   2.86 $\pm$   4.92 &   0.01 $\pm$   0.01   \\
        1024 nodes &  27.60 $\pm$  52.99 &   3.35 $\pm$   5.28 &   0.01 $\pm$   0.02   \\
-       2048 nodes &  90.10 $\pm$ 122.42 &   3.04 $\pm$   5.27 &   \:0.01 $\pm$   0.01
-      \Rstrut  \\ \hline
+%       2048 nodes &  90.10 $\pm$ 122.42 &   3.04 $\pm$   5.27 &   \:0.01 $\pm$   0.01
+%      \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
 \caption{Duration of computations ($Med \pm \sigma$)}
@@ -1077,8 +1077,8 @@ manipulations.
         256 nodes &  11.10 $\pm$   2.95 &  10.16 $\pm$   1.22 &  10.00 $\pm$   0.00  \\
         512 nodes &  12.22 $\pm$   5.26 &  10.15 $\pm$   1.19 &  10.01 $\pm$   0.12  \\
        1024 nodes &  20.64 $\pm$   9.87 &  10.22 $\pm$   1.33 &  10.03 $\pm$   0.41  \\
-       2048 nodes &  32.33 $\pm$  16.58 &  10.53 $\pm$   1.85 &  \:13.40 $\pm$   6.06
-      \Rstrut  \\ \hline
+%       2048 nodes &  32.33 $\pm$  16.58 &  10.53 $\pm$   1.85 &  \:13.40 $\pm$   6.06
+%      \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
 \caption{Duration of reconfigurations ($Med \pm \sigma$).}
@@ -1142,8 +1142,8 @@ manipulations.
           256 nodes & 135 &  164  &  194 \\
           512 nodes & 163 &  267  &  344 \\
          1024 nodes & 266 &  651  &  842 \\
-         2048 nodes & 285 & 1174  & 1489
-      \Rstrut  \\ \hline
+%         2048 nodes & 285 & 1174  & 1489
+%      \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
 \caption{Number of migrations.}
@@ -1173,14 +1173,19 @@ short time, one of its potential drawbacks is the number of migration
 it performs. In addition to adding a significant overhead at the
 network level, performing migrations can negatively impact the
 performance of the workload running inside the VM during the
-relocation phases. Hence, it is usually better to try to find the right
-trade-off between the reactivity criterion and the number of VM
+relocation phases. Hence, it is usually better to try to find the
+right trade-off between the reactivity criterion and the number of VM
 migration as investigated by other VM placement strategies
-\cite{eyraud:ipdps2013}. As we have illustrated here, \vmps enables
-researchers to monitor such a metric.
-\AL{Put a sentence regarding number of migrations in average per vm
-  and std if possible}
-
+\cite{eyraud:ipdps2013}. Diving into the details, \vmps monitors how
+many times each VM has been migrated. This feature is also interesting as
+several schedulers, including the ones discussed in the present
+article, do not consider whether a VM has been previously migrated or
+not.
+%For instance, some VMs are migrated up to ten times with DVMS
+%while other are never migrated.
+Hence, it is possible to migrate the same VM a significant number
+of times while never relocating the others. As we have illustrated
+here, \vmps enables researchers to monitor such a metric.
 
 \subsubsection{\vmps Scalability}
 \AL[MS,AL]{If we do not have the last results, just remove the
@@ -1271,8 +1276,8 @@ to perform such advanced simulations.
 
 \subsection{Exploring Variants and Possible Improvements}
 \label{subsec:variant}
-\MS{Adapt this intro or even the structure depending on other
-  variants.}
+%\MS{Adapt this intro or even the structure depending on other
+%  variants.}
 
 In the following, we present several variants of
 the placement algorithms introduced in Sec.~\ref{sec:vm-schedulers}
@@ -1434,8 +1439,23 @@ be used to rebalance the VMs workload, its efficiency is improved.
 
 \subsubsection{Hierarchical scheduling: periodic vs.\  reactive}
 
-Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
-introduced before.  Using \vmps, we have also implemented an
+\begin{figure*}[htbp]
+\subcapcentertrue
+\subfigure[DVMS]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
+  \label{fig:violation_clouds_dvms_1024}}
+\subfigure[Snooze Periodic]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30-gm32.pdf}
+  \label{fig:violation_clouds_snooze_1024_periodic}}
+\subfigure[Snooze Reactive]{
+  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
+  \label{fig:violation_clouds_snooze_1024_reactive}}
+\caption{Details of violations duration occuring during simulation (10240 VMS).}
+\label{fig:violation_clouds}
+\end{figure*}
+
+Our vanilla implementation of Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
+introduced before.  Using \vmps, we have also developed an
 alternative, reactive, strategy to scheduling: as soon as resource
 conflicts occur, LCs avert their GMs of them; the GMs then immediately
 initiate scheduling. Implementing this reactive scheme can be done
@@ -1450,20 +1470,25 @@ issues are not relevant in this case because notification of a
 resource conflict implies little communication and conflict resolution
 blocks the GM and its LCs anyway). We have implemented this
 lightweight variant of reactive scheduling including an explicit model
-of communication delays. Using the abstractions provided by \vmps, in
-particular harnessing its extended notion of hosts that represent the
-VMs managed by the LCs of a VM, reactive scheduling has been
+of communication delays. Using the abstractions provided by \vmps,
+%in
+%particular harnessing its extended notion of hosts that represent the
+%VMs managed by the LCs of a VM,
+reactive scheduling has been
 implemented by adding or modifying just 4~lines of code of the variant
 with periodic scheduling.
-\begin{table}
+
+
+
+\begin{table}[htbp]
     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
         & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{Violation time (s)}}
         & \multicolumn{2}{c@{\:}|}{\textbf{No.\ migrations}}
           \Tstrut \\
-         \hfill &  ~period30~ & reactive  \Bstrut
-         \hfill &  ~period30~ & reactive  \Bstrut \\
+         \hfill &  ~period 30~ & reactive  \Bstrut
+         \hfill &  ~period 30~ & reactive  \Bstrut \\
       \thickhline
 
         128 nodes & 20.92 $\pm$  13.02 &  10.24 $\pm$   4.48 &  62  & 107   \\
@@ -1473,7 +1498,7 @@ with periodic scheduling.
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
- \caption{Means $\pm$ Std deviations of violations durations.}
+ \caption{Snooze periodic \vs Snooze reactive.}
  \label{tab:reactivePeriodic}
 \end{table}
 
@@ -1496,20 +1521,6 @@ the periodic one aggregates overload situations and misses some of
 them), reactive scheduling results in a significantly lower total
 violation time.
 
-\begin{figure*}
-\subcapcentertrue
-\subfigure[DVMS]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-distributed.pdf}
-  \label{fig:violation_clouds_dvms_1024}}
-\subfigure[Snooze Periodic]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-periodic-30-gm32.pdf}
-  \label{fig:violation_clouds_snooze_1024_periodic}}
-\subfigure[Snooze Reactive]{
-  \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
-  \label{fig:violation_clouds_snooze_1024_reactive}}
-\caption{Details of violations duration occuring during simulation (10240 VMS).}
-\label{fig:violation_clouds}
-\end{figure*}
 % \MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
 %   the reactive discussion, the figure illustrates the pros of the reactivity.}
 % \paragraph{Assignment of LCs to GMs}
@@ -1627,10 +1638,7 @@ violation time.
 % resulting degradation was surprising.
 
 
-
-
-
-\subsubsection{Analysis of fault tolerance properties}
+\subsubsection{Analysis of Fault Tolerance Property}
 \label{subsubsec:node-crashes}
 We have performed a series of analysis of fault tolerance
 properties. For space reasons, we only detail below some corresponding
@@ -1648,29 +1656,37 @@ issue can be easily solved by a fail-over approach.  Regarding DVMS,
 the crash of one node does not have any impact on the resolution as
 the composition of the microcosms is reevaluated immediately.
 
-\paragraph{Fault tolerance analysis of hierarchical scheduling.}
+%\Paragraph{Fault tolerance analysis of hierarchical scheduling.}
 
-\begin{figure}
-  \parbox{.47\linewidth}{\centering
-  \includegraphics[width=.95\linewidth]{figures/snoozeFault-successPsize.pdf}
+% \begin{figure}
+%   \parbox{.47\linewidth}{\centering
+%   \includegraphics[width=.95\linewidth]{figures/snoozeFault-successPsize.pdf}
 
-  a) GM size (\#LCs)
-  }
-  \
-  \parbox{.47\linewidth}{\centering
-  \includegraphics[width=.95\linewidth]{figures/snoozeFault-violationTime.pdf}
+%   (a) GM size (\#LCs)
+%   }
+%   \
+%   \parbox{.47\linewidth}{\centering
+%   \includegraphics[width=.95\linewidth]{figures/snoozeFault-violationTime.pdf}
 
-  b) Violation times
-  }
-  \caption{Behavior in the presence of faults}
-  \label{fig:snoozeFaults}
+%   b) Violation times
+%   }
+%   \caption{Behavior in the presence of faults}
+%   \label{fig:snoozeFaults}
+% \end{figure}
+
+\begin{figure}[bp]
+\subcapcentertrue
+\subfigure[GM Size (\#LCs)]{\includegraphics[width=4cm]{./figures/snoozeFault-successPsize.pdf}\label{fig:snooze-fault-psize}}
+\subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/snoozeFault-violationTime}\label{fig:snooze-fault-viol}}
+\caption{Behavior in the presence of faults}
+\label{fig:snoozeFaults}
 \end{figure}
 
-We have also harnessed VMPlaceS in order to analyze the fault
-tolerance properties of hierarchical scheduling a la Snooze,
-presenting, to the best of our knowledge, a first analysis of such
-properties.
 
+
+Regarding the hierarchical scheduling a la Snooze, we have also
+harnessed VMPlaceS in order to analyze and present to the best of our
+knowledge, a first analysis of such property.
 We have, in particular, compared standard executions (no faults, 32
 LCs per GM, periodic calls every 30s to the centralized solver) to
 executions that have been subject to faults. In order be able to
@@ -1765,7 +1781,7 @@ corresponding experiments have provided the first systematic results
 comparing these algorithms in environments including up to one
 thousand of nodes and ten thousands of VMs.
 
-A beta-version of \vmps is available on a public git
+The current version of \vmps is available on a public git
 repository\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}.
 We are in touch with the \sg core developers in order to improve ou
 code with the ultimate objective of adressing infrastructures up to
