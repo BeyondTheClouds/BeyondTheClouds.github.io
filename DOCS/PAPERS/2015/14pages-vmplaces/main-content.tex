@@ -1658,6 +1658,21 @@ the composition of the microcosms is reevaluated immediately.
 
 %\Paragraph{Fault tolerance analysis of hierarchical scheduling.}
 
+
+Regarding the hierarchical scheduling a la Snooze, we have also
+harnessed VMPlaceS in order to analyze and present to the best of our
+knowledge, a first analysis of such property.
+We have, in particular, compared standard executions (no faults, 32
+LCs per GM, periodic calls every 30s to the centralized solver) to
+executions that have been subject to faults. In order be able to
+clearly evaluate the influence of faults, we have decided to analyze
+faulty executions under heavy stress: for a simulated time frame of
+1800s, the following numbers of GM faults have been simulated: 10~GM
+faults for 256~LCs/8~GMs, 20~GM faults for 512~LCs/16~GMs, and 40~GM
+faults for 1024~LCs/32~GMs, that is, failure rates much higher than in
+real datacenters.
+
+
 % \begin{figure}
 %   \parbox{.47\linewidth}{\centering
 %   \includegraphics[width=.95\linewidth]{figures/snoozeFault-successPsize.pdf}
@@ -1674,7 +1689,7 @@ the composition of the microcosms is reevaluated immediately.
 %   \label{fig:snoozeFaults}
 % \end{figure}
 
-\begin{figure}[bp]
+\begin{figure}[htbp]
 \subcapcentertrue
 \subfigure[GM Size (\#LCs)]{\includegraphics[width=4cm]{./figures/snoozeFault-successPsize.pdf}\label{fig:snooze-fault-psize}}
 \subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/snoozeFault-violationTime}\label{fig:snooze-fault-viol}}
@@ -1682,20 +1697,6 @@ the composition of the microcosms is reevaluated immediately.
 \label{fig:snoozeFaults}
 \end{figure}
 
-
-
-Regarding the hierarchical scheduling a la Snooze, we have also
-harnessed VMPlaceS in order to analyze and present to the best of our
-knowledge, a first analysis of such property.
-We have, in particular, compared standard executions (no faults, 32
-LCs per GM, periodic calls every 30s to the centralized solver) to
-executions that have been subject to faults. In order be able to
-clearly evaluate the influence of faults, we have decided to analyze
-faulty executions under heavy stress: for a simulated time frame of
-1800s, the following numbers of GM faults have been simulated: 10~GM
-faults for 256~LCs/8~GMs, 20~GM faults for 512~LCs/16~GMs, and 40~GM
-faults for 1024~LCs/32~GMs, that is, failure rates much higher than in
-real datacenters.
 
 Figure~\ref{fig:snoozeFaults} shows two principal metrics for the
 standard (non-faulty) and faulty executions: the average GM sizes (in
