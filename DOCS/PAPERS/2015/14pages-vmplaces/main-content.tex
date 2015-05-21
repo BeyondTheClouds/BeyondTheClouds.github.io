@@ -1451,7 +1451,8 @@ be used to rebalance the VMs workload, its efficiency is improved.
 \subfigure[Snooze Reactive]{
   \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
   \label{fig:violation_clouds_snooze_1024_reactive}}
-\caption{Details of violations duration occuring during simulation (10240 VMS).}
+\caption{Details of violations duration occuring during simulation
+  (1024 PMs).}
 \label{fig:violation_clouds}
 \end{figure*}
 
@@ -1509,18 +1510,24 @@ with periodic scheduling.
 % Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
 
 We have simulated reactive scheduling and a periodic algorithm for
-configurations ranging from 128 to 512~LCs. In each case the Entropy
+configurations ranging from 128 to 1024~LCs. In each case the Entropy
 scheduler has been applied to groups of 8~LCs per GM, the variant of
 hierarchical scheduling that performs most efficiently and closely
 matches the efficiency of DVMS, see Sec.~\ref{sec:groupSizes}.
 % The periodic strategy has computed and applied reconfiguration plans
 % every 30 secs.
 These simulations have yielded the results shown in
-Table~\ref{tab:reactivePeriodic}. They clearly show that, while a
+Table~\ref{tab:reactivePeriodic} and in Figure
+\ref{fig:violation_clouds} for the largest test (
+Figure \ref{fig:violation_clouds} being an output of the Trace
+analysis module of \vmps).
+
+They clearly show that, while a
 reactive strategy entails a much higher number of migrations (because
 the periodic one aggregates overload situations and misses some of
 them), reactive scheduling results in a significantly lower total
 violation time.
+
 
 % \MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
 %   the reactive discussion, the figure illustrates the pros of the reactivity.}
