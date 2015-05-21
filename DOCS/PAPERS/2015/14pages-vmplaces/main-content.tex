@@ -497,14 +497,22 @@ Furthermore, each random process used in \vmps is initialized with a
 seed that is defined in a configuration file. This way, we can ensure
 that different simulations are reproducible and may be used to
 establish fair comparisons.
-We highlight that a recent study on the characterization of production CC
+
+While a recent study on the characterization of production CC
 workloads~\cite{birke:nom2014} advocate the use of exponential
-distributions to capture both CPU usages and the temporal variability.
-Consequently, we are currently study a way to switch between a
-Gaussian distribution and a truncated exponential one. We are also
-investigating how it can be possible to simulate daily workloads
-patterns in order to be able to conduct simulations over longer
-periods~\cite{shen:ccgrid2015}.
+distributions to capture both CPU usages and the temporal variability,
+we believe that a Gaussian distribution is more appropriate to simulate small periods of CC
+platforms (\ie less than 2 hours). In addition to being more expressive for
+researchers (\ie it is simpler to define $\mu$ and $\sigma$ than
+finding the right $\lambda$), the exponential law does not allow \vmps
+to concentrate the possible changes around a common value for a
+particular period, which corresponds to the normal behavior of CC
+workloads at a certain moment of the day~\cite{shen:ccgrid2015}. In
+other words, the load of a CC workload significantly differs at the
+scale of the day but not at the scale of the hour. Finding the right
+distribution that will enable \vmps to simulate CC production
+platforms over longer periods (\ie days) is part of our planned future
+work.
 
 Regarding \emph{node crashes}, the event queue is generated in order to turn off a
 node every $f$ seconds on average for a duration of $d$ seconds~\cite{datacenterAsComputer}.
@@ -827,7 +835,29 @@ the scheduling resolver only considered 7 cores (\ie one was devoted
 to run the Snooze GL or the DVMS processes). Dedicating one core for
 the host OS and other administrative processes is something which is
 quite common and, as we believe, acceptable as part of our
-experimental methodology. Regarding the virtual machines, ten VMs have
+experimental methodology.
+
+We conducted simulations in order to study infrastructures composed of
+128, 256, 512, 1024,
+% and 2048 PMs, \AL[JP]{Add 2048 if succeeded}
+for each PM number hosting 10 times as many VMs. Additional simulated PMs have
+been provided to execute the Entropy and Snooze service nodes on
+distinct nodes. For Snooze, one GM has been created for every 32 LCs
+(\ie PMs). Entropy and Snooze are invoked every 30 seconds. Finally,
+it is noteworthy that no service node had to be provisioned for DVMS
+as a DVMS process is executed directly on top of the hosting nodes.
+
+In order to cope with real DC conditions, we defined the parameters
+for node crashes to simulate a fault on average every 6 months for a
+duration of 300 seconds. These values correspond to the Mean Time To
+Failure (MTTF) and the Mean Time To Repair (MTTR) of a Google DC
+server~\cite[pp. 107-108]{datacenterAsComputer}. We underline that at
+the scale we performed our simulations such a crash ratio was not
+sufficient to impact the behavior of the scheduling policies.
+Dedicated simulations were mandatory to study the influence of node
+crashes with an higher failure rate (see Section \ref{subsubsec:node-crashes})
+
+Regarding the virtual machines, ten VMs have
 been initially launched on each simulated PM.  Each VM has been
 created as one of the 8 VM predefined classes. The template was
 1:1GB:1Gbps:1Gbps:X, where the memory update speed X was a value
@@ -848,25 +878,7 @@ Gaussian distribution. Such a result is rather satisfactory as it can
 explain why most production DCs target such an overall utilization
 rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
 
-We conducted simulations in order to study infrastructures composed of
-128, 256, 512, 1024,
-% and 2048 PMs, \AL[JP]{Add 2048 if succeeded}
-for each PM number hosting 10 times as many VMs. Additional simulated PMs have
-been provided to execute the Entropy and Snooze service nodes on
-distinct nodes. For Snooze, one GM has been created for every 32 LCs
-(\ie PMs). Entropy and Snooze are invoked every 30 seconds. Finally,
-it is noteworthy that no service node had to be provisioned for DVMS
-as a DVMS process is executed directly on top of the hosting nodes.
 
-In order to cope with real DC conditions, we defined the parameters
-for node crashes to simulate a fault on average every 6 months for a
-duration of 300 seconds. These values correspond to the Mean Time To
-Failure (MTTF) and the Mean Time To Repair (MTTR) of a Google DC
-server~\cite[pp. 107-108]{datacenterAsComputer}. We underline that at
-the scale we performed our simulations such a crash ratio was not
-sufficient to impact the behavior of the scheduling policies.
-Dedicated simulations were mandatory to study the influence of node
-crashes with an higher failure rate (see Section)
 
 All configuration files used to perform the discussed simulations can
 be downloaded from the \vmps repository.
@@ -874,7 +886,7 @@ be downloaded from the \vmps repository.
 \subsubsection{General  Analysis}
 \label{subsec:general-comparison}
 
-\begin{figure}
+\begin{figure}[bp]
 \subcapcentertrue
 \subfigure[Infrastructure load]{\includegraphics[width=4cm]{./figures/experiments/1024-hierarchical.pdf}\label{fig:load_figure}}
 \subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/experiments/violation_time.pdf}\label{fig:cumulated_violation}}
@@ -1166,6 +1178,9 @@ trade-off between the reactivity criterion and the number of VM
 migration as investigated by other VM placement strategies
 \cite{eyraud:ipdps2013}. As we have illustrated here, \vmps enables
 researchers to monitor such a metric.
+\AL{Put a sentence regarding number of migrations in average per vm
+  and std if possible}
+
 
 \subsubsection{\vmps Scalability}
 \AL[MS,AL]{If we do not have the last results, just remove the
@@ -1602,8 +1617,8 @@ results in a significantly lower total migration time. \AL[MS]{lower
 
 
 
-\subsubsection{Impact of Nodes Crashes}
-
+\subsubsection{Impact of Node Crashes}
+\label{subsubsec:node-crashes}
  \AL[MS]{Please use the paragraph below to make a general preamble
    before focusing on snooze} Regarding
 Entropy, although the lost of the service node can be critic, the
