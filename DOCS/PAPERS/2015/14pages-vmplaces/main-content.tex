@@ -1453,9 +1453,10 @@ be used to rebalance the VMs workload, its efficiency is improved.
 \subfigure[Snooze Reactive]{
   \includegraphics[width=.32\linewidth]{figures/experiments/clouds-1024-hierarchical-reactive-gm32.pdf}
   \label{fig:violation_clouds_snooze_1024_reactive}}
-\caption{Details of violations duration occuring during simulation
+\caption{Details of violations duration occurring during simulation
   (1024 PMs).}
 \label{fig:violation_clouds}
+\vspace*{-.3cm}
 \end{figure*}
 
 Our vanilla implementation of Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
@@ -1520,8 +1521,7 @@ matches the efficiency of DVMS, see Sec.~\ref{sec:groupSizes}.
 % every 30 secs.
 These simulations have yielded the results shown in
 Table~\ref{tab:reactivePeriodic} and in Figure
-\ref{fig:violation_clouds} for the largest test (
-Figure \ref{fig:violation_clouds} being an output of the trace
+\ref{fig:violation_clouds} for the largest test (Figure \ref{fig:violation_clouds} being an output of the trace
 analysis module of \vmps).
 They clearly show that, while a
 reactive strategy entails a much higher number of migrations (because
@@ -1681,7 +1681,7 @@ faults for 256~LCs/8~GMs, 20~GM faults for 512~LCs/16~GMs, and 40~GM
 faults for 1024~LCs/32~GMs, that is, failure rates much higher than in
 real datacenters.
 
-
+%
 % \begin{figure}
 %   \parbox{.47\linewidth}{\centering
 %   \includegraphics[width=.95\linewidth]{figures/snoozeFault-successPsize.pdf}
@@ -1697,13 +1697,15 @@ real datacenters.
 %   \caption{Behavior in the presence of faults}
 %   \label{fig:snoozeFaults}
 % \end{figure}
-
+%
 \begin{figure}[htbp]
+\vspace*{-.3cm}
 \subcapcentertrue
 \subfigure[GM Size (\#LCs)]{\includegraphics[width=4cm]{./figures/snoozeFault-successPsize.pdf}\label{fig:snooze-fault-psize}}
 \subfigure[Cumulated Violation Time]{\includegraphics[width=4cm]{./figures/snoozeFault-violationTime}\label{fig:snooze-fault-viol}}
 \caption{Behavior in the presence of faults}
 \label{fig:snoozeFaults}
+\vspace*{-.3cm}
 \end{figure}
 
 
@@ -1768,9 +1770,6 @@ build \vmps on top of \sg in order to benefit fromt its accuracy of
 its models related to virtualization abstractions~\cite{Hirofuchi:2013:ALM:2568486.2568524}.
 
 
- is a old other simulators to investigate
-scheduling challenges have been proposed
-
 \section{Conclusion}
 \label{sec:conclusion}
 In this paper we have illustrated the use of
@@ -1791,20 +1790,23 @@ thousand of nodes and ten thousands of VMs in most cases.
 
 The current version of \vmps is available on a public git
 repository\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}.
-We are in touch with the \sg core developers in order to improve ou
+We are in touch with the \sg core developers in order to improve our
 code with the ultimate objective of addressing infrastructures up to
 100K PMs and 1 Millions VMs over a period of one day.
 
  As future work,
-it would be valuable to add additional dimensions in order to simulate
+ we plan to add additional dimensions in order to simulate
 other workload variations stemming from network and HDD I/O changes.
 We are also investigating how it can be possible to replay real traces
 either from the Google cluster data
 set~\footnote{\href{https://code.google.com/p/googleclusterdata/}{https://code.google.com/p/googleclusterdata/}}
 or the more recent one provided by
 Bitbrains~\footnote{\href{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains}{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains}}.
-Finally, we plan to provide a dedicated API to be able to provision
-and remove VMs during the execution of a simulation.
+Finally, we are studying the current energy models that are present in
+SimGrid in order to be able to leverage these models to evaluate the
+energy footprint of consolidation strategies.
+%plan to provide a dedicated API to be able to provision
+%and remove VMs during the execution of a simulation.
 % conference papers do not normally have an appendix
 
 \section{Acknowledgment}
