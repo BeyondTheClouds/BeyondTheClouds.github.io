@@ -834,7 +834,7 @@ created as one of the 8 VM predefined classes. The template was
 between 0 and 80\% of the migration bandwidth (1Gbps) in steps of
 10. Starting from 0\%, the load of each VM varied according to the
 exponential and the Gaussian distributions previously described. The
-parameters were $\lambda$ = No VMs/300 and $\mu$= 60, $\sigma$ = 20.
+parameters were $\lambda$~=~No VMs/300 and $\mu$= 60, $\sigma$ = 20.
 Concretely, the load of each VM varied on average every 5 min in steps
 of 10 (with a significant part between 40\% and 80\%). The stationary
 state was reached after 20 min of the simulated time with a global
@@ -842,24 +842,22 @@ load of 85\% as depicted in Fig. \ref{fig:load_figure}. To accelerate
 the simulations, we have chosen to limit the simulated time to 1800
 seconds. It is noteworthy that the consolidation ratio, \ie the number
 of VMs per node, has been defined to generate a sufficient number of
-violations. We discovered that under a global load of 75\%, our
-infrastructure almost did not face VM violations with our selected
+violations. We discovered that under a global load of 75\%, the
+simulated infrastructure almost did not face VM violations with our selected
 Gaussian distribution. Such a result is rather satisfactory as it can
 explain why most production DCs target such an overall utilization
 rate.\footnote{\url{http://www.cloudscaling.com/blog/cloud-computing/amazons-ec2-generating-220m-annually/}}
 
 We conducted simulations in order to study infrastructures composed of
-128, 256, 512, 1024 and 2048 PMs, \AL[JP]{Add 2048 if succeeded} for each PM
-number hosting 10 times as many VMs. Additional simulated PMs have
+128, 256, 512, 1024,
+% and 2048 PMs, \AL[JP]{Add 2048 if succeeded}
+for each PM number hosting 10 times as many VMs. Additional simulated PMs have
 been provided to execute the Entropy and Snooze service nodes on
 distinct nodes. For Snooze, one GM has been created for every 32 LCs
 (\ie PMs). Entropy and Snooze are invoked every 30 seconds. Finally,
 it is noteworthy that no service node had to be provisioned for DVMS
 as a DVMS process is executed directly on top of the hosting nodes.
 
-\MS[AL]{The following paragraph is wrong with respect to the fault
-  experiments of Snooze: much higher fault rate and still only
-  moderate impact. I can replace it with an accurate 4--5 line par.}
 In order to cope with real DC conditions, we defined the parameters
 for node crashes to simulate a fault on average every 6 months for a
 duration of 300 seconds. These values correspond to the Mean Time To
@@ -868,20 +866,7 @@ server~\cite[pp. 107-108]{datacenterAsComputer}. We underline that at
 the scale we performed our simulations such a crash ratio was not
 sufficient to impact the behavior of the scheduling policies.
 Dedicated simulations were mandatory to study the influence of node
-crashes. However, due to the space limitations, we do not present them
-in the article and only gives major trends.  \AL[MS]{Please update
-  consequently the sentence above and the paragraph below} Regarding
-Entropy, although the lost of the service node can be critic, the
-failure probability is so small that the single point of failure issue
-can be easily solved by a fail-over approach. Regarding Snooze, the
-heartbeat strategy enables the reconstruction of the hierarchy in a
-relative short time and thus crashes on service nodes do not
-significantly impact the resolution of violations (in our case less
-than 10 seconds is mandatory to reorganize the Snooze topology with a
-6 seconds heartbeat mechanism). Finally regarding DVMS, the crash of
-one node does not have any impact of the resolution has the
-composition of the microcosm is reevaluated immediately.
-
+crashes with an higher failure rate (see Section)
 
 All configuration files used to perform the discussed simulations can
 be downloaded from the \vmps repository.
@@ -1617,7 +1602,22 @@ results in a significantly lower total migration time. \AL[MS]{lower
 
 
 
-\subsubsection{Hierarchical scheduling: fault tolerance}
+\subsubsection{Impact of Nodes Crashes}
+
+ \AL[MS]{Please use the paragraph below to make a general preamble
+   before focusing on snooze} Regarding
+Entropy, although the lost of the service node can be critic, the
+failure probability is so small that the single point of failure issue
+can be easily solved by a fail-over approach. Regarding Snooze, the
+heartbeat strategy enables the reconstruction of the hierarchy in a
+relative short time and thus crashes on service nodes do not
+significantly impact the resolution of violations (in our case less
+than 10 seconds is mandatory to reorganize the Snooze topology with a
+6 seconds heartbeat mechanism). Finally regarding DVMS, the crash of
+one node does not have any impact of the resolution has the
+composition of the microcosm is reevaluated immediately.
+
+
 
 \begin{figure}
   \parbox{.47\linewidth}{\centering
