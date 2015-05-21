@@ -1235,21 +1235,68 @@ especially because having only two nodes seems to be not enough as
 depicted by the previous Snooze scenarios.
 
 
+% \begin{table}[ht]
+% \centering
+%     {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
+%         & \multicolumn{2}{c@{\:}|}{\textbf{Violation time (s)}}
+%           \Tstrut \\
+%          \hfill flavour &  ~Original~ & 4 nodes  &  ~Original~ & 4 nodes \Bstrut \\
+%       \thickhline
+
+%         128 nodes &   78  & 76  & 914.28  & 884.46  \\
+%         256 nodes &   152 & 127 & 1709.23 & 1498.71 \\
+%         512 nodes &   308 & 286 & 3513.18 & 3314.72 \\
+%        1024 nodes &   702 & 616 & 7967.03 & \:7101.49
+
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% \caption{Comparison of two DVMS flavours.}
+% \label{tab:dvms_flavours}
+% \end{table}
+
+% \begin{table}[ht]
+% \centering
+%     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
+%       \thickhline
+%       \textbf{Infrastructure Size}
+%         & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
+%         & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{No.\ violations}}
+%         & \multicolumn{2}{c@{\:}|}{\textbf{Violation time (s)}}
+%           \Tstrut \\
+%          \hfill flavour &  ~Original~ & 4 nodes  &  ~Original~ & 4 nodes &  ~Original~ & 4 nodes \Bstrut \\
+%       \thickhline
+
+%         128 nodes &   78  & 76  &   77 &  79 & 11.57 $\pm$   3.44 & 11.49 $\pm$   3.51 \\
+%         256 nodes &   152 & 127 &  131 & 156 & 10.96 $\pm$   3.44 & 11.44 $\pm$   3.62 \\
+%         512 nodes &   308 & 286 &  282 & 310 & 11.33 $\pm$   3.56 & 11.75 $\pm$   3.12 \\
+%        1024 nodes &   702 & 616 &  620 & 698 & 11.41 $\pm$   3.36 & \:11.45 $\pm$ 3.39
+
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+% \caption{Comparison of two DVMS flavours.}
+% \label{tab:dvms_flavours}
+% \end{table}
+
 \begin{table}[ht]
 \centering
-    {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
+    {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
-        & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
-        & \multicolumn{2}{c@{\:}|}{\textbf{Violation time (s)}}
+        & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{Violation time (s)}}
+        & \multicolumn{2}{c@{\:}|}{\textbf{No.\ migrations}}
           \Tstrut \\
          \hfill flavour &  ~Original~ & 4 nodes  &  ~Original~ & 4 nodes \Bstrut \\
       \thickhline
 
-        128 nodes &   78  & 76  & 914.28  & 884.46  \\
-        256 nodes &   152 & 127 & 1709.23 & 1498.71 \\
-        512 nodes &   308 & 286 & 3513.18 & 3314.72 \\
-       1024 nodes &   702 & 616 & 7967.03 & \:7101.49
+        128 nodes & 11.57 $\pm$   3.44 & 11.49 $\pm$   3.51 &   78  & 76  \\
+        256 nodes & 10.96 $\pm$   3.44 & 11.44 $\pm$   3.62 &   152 & 127 \\
+        512 nodes & 11.33 $\pm$   3.56 & 11.75 $\pm$   3.12 &   308 & 286 \\
+       1024 nodes & 11.41 $\pm$   3.36 & \:11.45 $\pm$ 3.39 &   702 & 616 
 
       \Rstrut  \\ \hline
       \thickhline
@@ -1314,19 +1361,43 @@ hosts that represent the VMs managed by the LCs of a VM, reactive
 scheduling has been implemented by adding or modifying just 4~lines of
 code of the variant with periodic scheduling.
 
-{\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-    \thickhline
-    \textbf{Algorithm}
-      & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
-      & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
-        \Tstrut \\
-       \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
-    \thickhline
-      Reactive      & 107 & 201 & 421 & 1075 & 1955 & 4385 \\
-      Periodic 30s  & 62 & 124 & 269 & 1770 & 3453 & \:8196
-    \Rstrut  \\ \hline
-    \thickhline
-\end{tabular} }
+% {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
+%     \thickhline
+%     \textbf{Algorithm}
+%       & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
+%       & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
+%         \Tstrut \\
+%        \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
+%     \thickhline
+%       Reactive      & 107 & 201 & 421 & 10.24 $\pm$   4.48 & 10.02 $\pm$   3.32 & 10.62 $\pm$   7.21 \\
+%       Periodic 30s  & 62 & 124 & 269 & 20.92 $\pm$  13.02 & 23.33 $\pm$  14.47 & \:23.57 $\pm$  20.19
+%     \Rstrut  \\ \hline
+%     \thickhline
+% \end{tabular} }
+
+% \begin{table}[ht]
+% \centering
+    {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
+      \thickhline
+      \textbf{Infrastructure Size}
+        & \multicolumn{2}{c@{\:}||@{\:}}{\textbf{Violation time (s)}}
+        & \multicolumn{2}{c@{\:}|}{\textbf{No.\ migrations}}
+          \Tstrut \\
+         \hfill &  ~period30~ & reactive  \Bstrut
+         \hfill &  ~period30~ & reactive  \Bstrut \\
+      \thickhline
+
+        128 nodes & 20.92 $\pm$  13.02 &  10.24 $\pm$   4.48 &  62  & 107   \\
+        256 nodes & 23.33 $\pm$  14.47 &  10.02 $\pm$   3.32 &  124 & 201   \\
+        512 nodes & 23.57 $\pm$  20.19 &  10.62 $\pm$   7.21 &  269 & 421   
+      
+      \Rstrut  \\ \hline
+      \thickhline
+  \end{tabular} }
+% \caption{Means $\pm$ Std deviations of violations durations.}
+% \label{table:detailed_violations}
+% \end{table}
+
 
 \AL[MS]{Update the table: it may make
 sense to put all values to make the read and the understanding easier
