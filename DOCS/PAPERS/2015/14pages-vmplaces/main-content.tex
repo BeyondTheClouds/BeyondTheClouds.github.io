@@ -190,7 +190,7 @@ well as a conclusion and future work.
 \section{The VM Placement Problem}
 \label{sec:vmpp}
 
-A VMPP can be summarized in three-steps (see Figure
+The VMPP can be summarized in three-steps (see Figure
 \ref{fig:scheduling_steps}): monitoring the resources usages,
 computing a new schedule each time is it needed and applying the
 resulting reconfiguration plan (\ie performing VM migration and
@@ -476,32 +476,16 @@ For now, we generate two kinds of event: \emph{CPU load} and
 %
 % Changing the load of a VM has a direct impact of its memory update
 % speed and thus on the time to migrate it between two hosts.
+
 Regarding \emph{CPU loads}, the event queue is generated in order to change the
 load of each VM every $t$ seconds on average. $t$ is a random variable
 that follows an exponential distribution with rate parameter
 $\lambda_t$ while the CPU load of a VM evolves according to a Gaussian
 distribution defined by a given mean ($\mu$) as well as a given
 standard deviation ($\sigma$). $t$, $\mu$ and $\sigma$ are provided as
-input parameters of a simulation. As the CPU load can fluctuate
-between 0 and 100\%, \vmps prevents the assignment of nonsensical
-values when the Gaussian distribution returns a number smaller than 0
-or greater than 100. Although this has no impact on the execution of
-the simulation, we emphasize that this can reduce/increase the
-effective mean of the VM load, especially when $\sigma$ is high.
-Hence, it is important for users to specify appropriate values.
-%% TODO
-%\AL[AL]{A binomial law would have solved this issue: too late too bad :(}
-%Although this can have an impact on the
-%effective mean, especially when $\sigma$ is high, we believe it was
-%non appropriated to request it is easier for end-users to specify $\mu$ and
-%$\sigma$ parameters than
-Furthermore, each random process used in \vmps is initialized with a
-seed that is defined in a configuration file. This way, we can ensure
-that different simulations are reproducible and may be used to
-establish fair comparisons.
-
-While a recent study on the characterization of production CC
-workloads~\cite{birke:nom2014} advocate the use of exponential
+input parameters of a simulation.
+Although a recent study on the characterization of production CC
+workloads~\cite{birke:nom2014} advocates the use of exponential
 distributions to capture both CPU usages and the temporal variability,
 we believe that a Gaussian distribution is more appropriate to simulate small periods of CC
 platforms (\ie less than 2 hours). In addition to being more expressive for
@@ -514,7 +498,20 @@ other words, the load of a CC workload significantly differs at the
 scale of the day but not at the scale of the hour. Finding the right
 distribution that will enable \vmps to simulate CC production
 platforms over longer periods (\ie days) is part of our planned future
-work.
+work. Getting back to the Gaussian, as the CPU load can fluctuate
+between 0 and 100\%, \vmps prevents the assignment of nonsensical
+values when the Gaussian distribution returns a number smaller than 0
+or greater than 100. Although this has no impact on the execution of
+the simulation, we emphasize that this can reduce/increase the
+effective mean of the VM load, especially when $\sigma$ is high.
+Hence, it is important for users to specify appropriate values.
+%% TODO
+%\AL[AL]{A binomial law would have solved this issue: too late too bad :(}
+%Although this can have an impact on the
+%effective mean, especially when $\sigma$ is high, we believe it was
+%non appropriated to request it is easier for end-users to specify $\mu$ and
+%$\sigma$ parameters than
+%
 
 Regarding \emph{node crashes}, the event queue is generated in order to turn off a
 node every $f$ seconds on average for a duration of $d$ seconds~\cite{datacenterAsComputer}.
@@ -523,13 +520,18 @@ distribution with rate $\lambda_f$.
 $f$ and $d$ are also provided as
 input parameters of a simulation.
 
-Finally, we highlight that adding new events can easily be done by simply defining new event Java
+We underline that adding new events can easily be done by simply defining new event Java
 classes implementing the \texttt{InjectorEvent} interface and by
 adding the code in charge of generating the associated queue. Such a
 new queue will be merged into the global one and its events will then be
 consumed similarly to other ones during the \emph{injector phase}.
 We are currently integrating new events in order to simulate network
 and disk usage events.
+
+Finally, we highlight that each random process used in \vmps is initialized with a
+seed defined in a configuration file. This way, we can ensure
+that different simulations are reproducible and may be used to
+establish fair comparisons.
 
 \subsection{Injector Phase}
 
@@ -1044,6 +1046,7 @@ manipulations.
   \end{tabular} }
 \caption{Duration of computations ($Med \pm \sigma$)}
 \label{table:detailed_computation_time}
+\vspace*{-.3cm}
 \end{table}
 %
 % \begin{table}[ht]
@@ -1150,6 +1153,7 @@ manipulations.
   \end{tabular} }
 \caption{Number of migrations.}
 \label{table:detailed_migrations_count}
+\vspace*{-.3cm}
 \end{table}
 
 Regarding Snooze, whose performance is better than those of Entropy,
@@ -1791,7 +1795,7 @@ comparing these algorithms in environments including up to one
 thousand of nodes and ten thousands of VMs in most cases.
 
 The current version of \vmps is available on a public git
-repository\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}.
+repository.~\footnote{\url{http://beyondtheclouds.github.io/VMPlaceS/}}
 We are in touch with the \sg core developers in order to improve our
 code with the ultimate objective of addressing infrastructures up to
 100K PMs and 1 Millions VMs over a period of one day.
@@ -1803,7 +1807,7 @@ We are also investigating how it can be possible to replay real traces
 either from the Google cluster data
 set~\footnote{\href{https://code.google.com/p/googleclusterdata/}{https://code.google.com/p/googleclusterdata/}}
 or the more recent one provided by
-Bitbrains~\footnote{\href{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains}{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains}}.
+Bitbrains.~\footnote{\href{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains}{http://gwa.ewi.tudelft.nl/datasets/gwa-t-12-bitbrains}}
 Finally, we are studying the current energy models that are present in
 SimGrid in order to be able to leverage these models to evaluate the
 energy footprint of consolidation strategies.
