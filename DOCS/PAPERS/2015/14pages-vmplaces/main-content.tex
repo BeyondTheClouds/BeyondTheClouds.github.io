@@ -1248,6 +1248,7 @@ strong evidence that the modification and evaluation of existing
 algorithms is much facilitated by our simulation framework.
 
 \subsubsection{Varying group sizes}
+\label{sec:groupSizes}
 
 As a first example, we propose to clarify the influence of the group
 size observed during the general comparison.
@@ -1398,34 +1399,28 @@ be used to rebalance the VMs workload, its efficiency is improved.
 %   scheduling parameters for the evals.?}
 
 \subsubsection{Hierarchical scheduling: periodic vs.\  reactive}
-\AL[MS]{Please add a preamble for this section}
 
-Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion:
-after a fixed time period a GM calls the scheduler in order to resolve
-resource conflicts among the LCs it manages. The information whether a
-resource conflict has to be handled is taken based on the summary
-information that is periodically sent by the LCs to the GM.
-
-Using \vmps, we have also implemented an alternative, reactive,
-strategy to scheduling: as soon as resource conflicts occur, LCs avert
-their GMs of them; the GMs then immediately initiate
-scheduling. Implementing this reactive scheme can be done using our
-framework in two manners. First, by implementing additional
-asynchronous transmissions of the necessary state updates as a real
-implementation would proceed. Second, in a much more lightweight
-manner through direct accesses by the GMs to the states of their
-respective LCs. In order to ensure that this lightweight
-implementation mimics a real implementation closely, delays induced by
-communication in the ``real'' implementation are accounted for
-explicitly (congestion issues are not relevant in this case because
-notification of a resource conflict implies little communication and
-conflict resolution blocks the GM and its LCs anyway). We have
-implemented this lightweight variant of reactive scheduling including
-an explicit model of communication delays. Using the abstractions
-provided by \vmps, in particular harnessing its extended notion of
-hosts that represent the VMs managed by the LCs of a VM, reactive
-scheduling has been implemented by adding or modifying just 4~lines of
-code of the variant with periodic scheduling.
+Snooze~\cite{feller:ccgrid12} schedules VMs in a periodic fashion as
+introduced before.  Using \vmps, we have also implemented an
+alternative, reactive, strategy to scheduling: as soon as resource
+conflicts occur, LCs avert their GMs of them; the GMs then immediately
+initiate scheduling. Implementing this reactive scheme can be done
+using our framework in two manners. First, by implementing additional
+asynchronous communication of the necessary state updates as a real
+implementation would proceed. Second, in a more lightweight manner
+through direct accesses by the GMs to the states of their respective
+LCs. In order to ensure that this lightweight implementation mimics a
+real implementation closely, delays induced by communication in the
+``real'' implementation are accounted for explicitly (congestion
+issues are not relevant in this case because notification of a
+resource conflict implies little communication and conflict resolution
+blocks the GM and its LCs anyway). We have implemented this
+lightweight variant of reactive scheduling including an explicit model
+of communication delays. Using the abstractions provided by \vmps, in
+particular harnessing its extended notion of hosts that represent the
+VMs managed by the LCs of a VM, reactive scheduling has been
+implemented by adding or modifying just 4~lines of code of the variant
+with periodic scheduling.
 \begin{table}
     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
@@ -1445,30 +1440,27 @@ code of the variant with periodic scheduling.
       \thickhline
   \end{tabular} }
  \caption{Means $\pm$ Std deviations of violations durations.}
- \label{table:detailed_violations}
+ \label{tab:reactivePeriodic}
 \end{table}
 
 
-\AL[MS]{Update the table: it may make
-sense to put all values to make the read and the understanding easier
-Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
-\AL[MS]{The values for the vanilla implementation do not correspond to
-Table 1. Moreover it is strange that the value with 32LCs per GM is as
-close as the DVMS ones after the reactive change ? We should clarify
-that point}
+% \AL[MS]{Update the table: it may make
+% sense to put all values to make the read and the understanding easier
+% Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
 
-We have shown the usefulness of our framework by exploring some
-properties of reactive scheduling compared to periodic scheduling. To
-this end we have simulated reactive scheduling and a periodic
-algorithm for configurations ranging from 128 to 512~LCs. In each case
-the Entropy scheduler has been applied on groups of 32~LCs per GM. The
-periodic strategy has computed and applied reconfiguration plans every
-30 secs. These simulations have yielded the results shown in the table
-above. They clearly show that, while a reactive strategy entails a
-much higher number of migrations (because the periodic one aggregates
-overload situations and misses some of them), reactive scheduling
-results in a significantly lower total migration time. \AL[MS]{lower
-  total migration time ? you mean violation time, please correct.}
+We have simulated reactive scheduling and a periodic algorithm for
+configurations ranging from 128 to 512~LCs. In each case the Entropy
+scheduler has been applied to groups of 8~LCs per GM, the variant of
+hierarchical scheduling that performs most efficiently and closely
+matches the efficiency of DVMS, see Sec.~\ref{sec:groupSizes}. 
+% The periodic strategy has computed and applied reconfiguration plans
+% every 30 secs.
+These simulations have yielded the results shown in
+Table~\ref{tab:reactivePeriodic}. They clearly show that, while a
+reactive strategy entails a much higher number of migrations (because
+the periodic one aggregates overload situations and misses some of
+them), reactive scheduling results in a significantly lower total
+violation time.
 
 \begin{figure*}
 \subcapcentertrue
@@ -1484,8 +1476,8 @@ results in a significantly lower total migration time. \AL[MS]{lower
 \caption{Details of violations duration occuring during simulation (10240 VMS).}
 \label{fig:violation_clouds}
 \end{figure*}
-\MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
-  the reactive discussion, the figure illustrates the pros of the reactivity.}
+% \MS[AL]{Figure \ref{fig:violation_clouds} should be discussed after
+%   the reactive discussion, the figure illustrates the pros of the reactivity.}
 % \paragraph{Assignment of LCs to GMs}
 
 % LCs are assigned to GMs by the GL as part of the LC join protocol. In
