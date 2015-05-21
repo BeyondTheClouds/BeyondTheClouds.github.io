@@ -1187,42 +1187,43 @@ Hence, it is possible to migrate the same VM a significant number
 of times while never relocating the others. As we have illustrated
 here, \vmps enables researchers to monitor such a metric.
 
-\subsubsection{\vmps Scalability}
-\AL[MS,AL]{If we do not have the last results, just remove the
-  subsubsection title and directly put To conclude on this general comparison}
-To conclude, although the simulations discussed in this article are
+\subsubsection{Simulations Scalability}
+%\AL[MS,AL]{If we do not have the last results, just remove the
+%  subsubsection title and directly put To conclude on this general comparison}
+To conclude this general comparison, although the simulations discussed in this article are
 limited to 10K VMs, we succeeded to conduct DVMS simulations including
-up to 8K~PMs/80K~VMs in a bit less than two days. We did not present
-such results to the paper because it was not possible to run a
-sufficient number of Snooze simulations at such scale. The Snooze
+up to 8K~PMs/80K~VMs in a bit less than two days.
+Similarly, we performed DVMS simulations for 10K VMs over a simulated period of
+3600 and 7200 seconds (\ie. two hours). The duration to get the
+results were respectively 7420 and 17198 seconds.
+We do not discuss into details these results for the hierarchical
+approach a la Snooze because it was not possible to run a
+sufficient number of simulations at such scale. The Snooze
 protocol being more complex than the DVMS one (heartbeats,
 consensus,~\ldots), the time to perform a similar experiment is much
-more important (around 7 days). The time-consuming portions of the
+more important (around 7 days for the 80K~VMs experiment). The time-consuming portions of the
 code are related to \sg internals such as \texttt{sleep} and
 \texttt{send/recv} calls. Hence, we have contacted the \sg core
 developers in order to investigate how we can reduce the required time
 to perform such advanced simulations.
 
-\AL[JP]{Please add scalability test (i.e. in terms of durations) here}
-
-
-\begin{table}
-    {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|c@{\:}|}
-      \thickhline
-      \textbf{Simulated Duration}
-        & \multicolumn{1}{c@{\:}|}{\textbf{Simulation duration}}
-          \Tstrut \\
-         \hfill &    \Bstrut \\
-      \thickhline
-        1800 s & 3400 s  \\
-        3600 s & 7420 s  \\
-        7200 s & 17198 s 
-      \Rstrut  \\ \hline
-      \thickhline
-  \end{tabular} }
- \caption{Impact of simulated duration over the simulation duration.}
- \label{tab:scalability_duration}
-\end{table}
+% \begin{table}
+%     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|c@{\:}|}
+%       \thickhline
+%       \textbf{Simulated Duration}
+%         & \multicolumn{1}{c@{\:}|}{\textbf{Simulation duration}}
+%           \Tstrut \\
+%          \hfill &    \Bstrut \\
+%       \thickhline
+%         1800 s & 3400 s  \\
+%         3600 s & 7420 s  \\
+%         7200 s & 17198 s
+%       \Rstrut  \\ \hline
+%       \thickhline
+%   \end{tabular} }
+%  \caption{Impact of simulated duration over the simulation duration.}
+%  \label{tab:scalability_duration}
+% \end{table}
 
 
 \begin{figure*}[htbp]
