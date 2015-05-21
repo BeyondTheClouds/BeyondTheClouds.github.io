@@ -998,7 +998,7 @@ manipulations.
           256 nodes &  39.06 $\pm$  26.89 &  24.03 $\pm$  15.30 &   9.49 $\pm$   2.28  \\
           512 nodes &  60.67 $\pm$  49.66 &  25.45 $\pm$  25.18 &   9.56 $\pm$   2.62  \\
          1024 nodes &  87.62 $\pm$  90.67 &  29.31 $\pm$  35.55 &   9.67 $\pm$   2.37  \\
-         2048 nodes &  98.61 $\pm$ 136.20 &  31.39 $\pm$  60.58 &  \:12.18 $\pm$   6.32  
+         2048 nodes &  98.61 $\pm$ 136.20 &  31.39 $\pm$  60.58 &  \:12.18 $\pm$   6.32
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1039,7 +1039,7 @@ manipulations.
         256 nodes &  10.08 $\pm$  16.96 &   3.32 $\pm$   5.28 &   0.02 $\pm$   0.02   \\
         512 nodes &  16.41 $\pm$  29.32 &   2.86 $\pm$   4.92 &   0.01 $\pm$   0.01   \\
        1024 nodes &  27.60 $\pm$  52.99 &   3.35 $\pm$   5.28 &   0.01 $\pm$   0.02   \\
-       2048 nodes &  90.10 $\pm$ 122.42 &   3.04 $\pm$   5.27 &   \:0.01 $\pm$   0.01   
+       2048 nodes &  90.10 $\pm$ 122.42 &   3.04 $\pm$   5.27 &   \:0.01 $\pm$   0.01
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1080,7 +1080,7 @@ manipulations.
         256 nodes &  11.10 $\pm$   2.95 &  10.16 $\pm$   1.22 &  10.00 $\pm$   0.00  \\
         512 nodes &  12.22 $\pm$   5.26 &  10.15 $\pm$   1.19 &  10.01 $\pm$   0.12  \\
        1024 nodes &  20.64 $\pm$   9.87 &  10.22 $\pm$   1.33 &  10.03 $\pm$   0.41  \\
-       2048 nodes &  32.33 $\pm$  16.58 &  10.53 $\pm$   1.85 &  \:13.40 $\pm$   6.06  
+       2048 nodes &  32.33 $\pm$  16.58 &  10.53 $\pm$   1.85 &  \:13.40 $\pm$   6.06
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1145,7 +1145,7 @@ manipulations.
           256 nodes & 135 &  164  &  194 \\
           512 nodes & 163 &  267  &  344 \\
          1024 nodes & 266 &  651  &  842 \\
-         2048 nodes & 285 & 1174  & 1489 
+         2048 nodes & 285 & 1174  & 1489
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
@@ -1167,7 +1167,7 @@ into sub problems, considering smaller numbers of nodes (32~PMs in
 Snooze and 4~nodes on average with DVMS). These results raises the
 question of the influence of the group size, \ie the ratio of LCs
 attached to one GM, on Snooze's performance (a relationship we
-investigate below).
+investigate in Section \ref{subsec:variant}).
 
 Last but not least, Table \ref{table:detailed_migrations_count}
 presents the number of migrations that has been performed overall for
@@ -1176,14 +1176,15 @@ short time, one of its potential drawbacks is the number of migration
 it performs. In addition to adding a significant overhead at the
 network level, performing migrations can negatively impact the
 performance of the workload running inside the VM during the
-migration. Hence, it is usually better to try to find the right
+relocation phases. Hence, it is usually better to try to find the right
 trade-off between the reactivity criterion and the number of VM
 migration as investigated by other VM placement strategies
 \cite{eyraud:ipdps2013}. As we have illustrated here, \vmps enables
 researchers to monitor such a metric.
 
 \subsubsection{\vmps Scalability}
-\AL[MS,AL]{TODO find the best place to add the following paragraph}
+\AL[MS,AL]{If we do not have the last results, just remove the
+  subsubsection title and directly put To conclude on this general comparison}
 To conclude, although the simulations discussed in this article are
 limited to 10K VMs, we succeeded to conduct DVMS simulations including
 up to 8K~PMs/80K~VMs in a bit less than two days. We did not present
@@ -1199,32 +1200,8 @@ to perform such advanced simulations.
 
 \AL[JP]{Please add scalability test (i.e. in terms of durations) here}
 
-\subsection{Exploring Variants and Possible Improvements}
 
-\MS{Adapt this intro or even the structure depending on other
-  variants.}
-
-In the following, we present several variants of
-the placement algorithms introduced in Sec.~\ref{sec:vm-schedulers}
-that have been discussed in the literature or come up during the
-implementation of their models using \vmps. This section provides
-strong evidence that the modification and evaluation of existing
-algorithms is much facilitated by our simulation framework.
-
-\subsubsection{Varying group sizes}
-
-As a first example, we propose to clarify the influence of the group
-size observed during the general comparison.
-Concretely, we performed additional simulations aiming at
-investigating whether a smaller group size can lead to similar
-performances of DVMS and reciprocally, whether DVMS can increase its
-reactivity by integrating more nodes at the first iteration of each
-ISP. We highlight that the use of \vmps eased such a study as it has consisted
-to simply relaunch the previous simulation with a distinct
-assignment for Snooze and to slightly modify the DVMS algorithm.
-
-
-\begin{figure*}
+\begin{figure*}[htbp]
 \subcapcentertrue
 \subfigure[Total Violation Times]{
   \includegraphics[width=.32\textwidth]{figures/groupSizes-violationTime.pdf}
@@ -1273,6 +1250,29 @@ assignment for Snooze and to slightly modify the DVMS algorithm.
 \label{fig:snoozeGroupSizes}
 \end{figure*}
 
+\subsection{Exploring Variants and Possible Improvements}
+\label{subsec:variant}
+\MS{Adapt this intro or even the structure depending on other
+  variants.}
+
+In the following, we present several variants of
+the placement algorithms introduced in Sec.~\ref{sec:vm-schedulers}
+that have been discussed in the literature or come up during the
+implementation of their models using \vmps. This section provides
+strong evidence that the modification and evaluation of existing
+algorithms is much facilitated by our simulation framework.
+
+\subsubsection{Varying group sizes}
+
+As a first example, we propose to clarify the influence of the group
+size observed during the general comparison.
+Concretely, we performed additional simulations aiming at
+investigating whether a smaller group size for Snooze can lead to similar
+performances of DVMS and reciprocally, whether DVMS can increase its
+reactivity by integrating more nodes at the first iteration of each
+ISP. We highlight that the use of \vmps eased such a study as it has consisted
+to simply relaunch the previous simulation with a distinct
+assignment for Snooze and to slightly modify the ISP algorithm for DVMS.
 
 
 Figure \ref{fig:snoozeGroupSizes} presents the simulated values
@@ -1380,7 +1380,7 @@ depicted by the previous Snooze scenarios.
         128 nodes & 11.57 $\pm$   3.44 & 11.49 $\pm$   3.51 &   78  & 76  \\
         256 nodes & 10.96 $\pm$   3.44 & 11.44 $\pm$   3.62 &   152 & 127 \\
         512 nodes & 11.33 $\pm$   3.56 & 11.75 $\pm$   3.12 &   308 & 286 \\
-       1024 nodes & 11.41 $\pm$   3.36 & \:11.45 $\pm$ 3.39 &   702 & \:616 
+       1024 nodes & 11.41 $\pm$   3.36 & \:11.45 $\pm$ 3.39 &   702 & \:616
 
       \Rstrut  \\ \hline
       \thickhline
@@ -1389,11 +1389,8 @@ depicted by the previous Snooze scenarios.
 \label{tab:dvms_flavours}
 \end{table}
 
-\AL[JP]{Please instead of putting cumulated violation time, could you
-  please add mean and std to cope with Snooze information (see Figure
-  6). Please keep also the number of migrations that is important and
-  it would be great to add such an information to the Snooze results
-  if possible}
+\AL[JP]{Why the original values do not correspond to the values in
+  Table 1}
 
 Table \ref{tab:dvms_flavours} presents the violation time and the
 number of migrations for the DVMS vanilla implementation and our
@@ -1403,7 +1400,7 @@ In addition to have a smaller violation time,
 it is noticeable that
 the number of migrations is slightly smaller in the DVMS variant.
 This is due to the quality of reconfiguration plans: as more nodes can
-be used to rebalance the VMs workload, its efficiency can be improved.
+be used to rebalance the VMs workload, its efficiency is improved.
 
 
 % \subsubsection{Variants of hierarchical scheduling}
@@ -1444,23 +1441,7 @@ provided by \vmps, in particular harnessing its extended notion of
 hosts that represent the VMs managed by the LCs of a VM, reactive
 scheduling has been implemented by adding or modifying just 4~lines of
 code of the variant with periodic scheduling.
-
-% {\scriptsize \begin{tabular}{|P{27mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
-%     \thickhline
-%     \textbf{Algorithm}
-%       & \multicolumn{3}{c@{\:}||@{\:}}{\textbf{No.\ migrations}}
-%       & \multicolumn{3}{c@{\:}|}{\textbf{Violation time (s)}}
-%         \Tstrut \\
-%        \hfill\#LCs  & ~128~ & ~256~ & 512 & ~~128~~ & ~~256~~ & 512 \Bstrut \\
-%     \thickhline
-%       Reactive      & 107 & 201 & 421 & 10.24 $\pm$   4.48 & 10.02 $\pm$   3.32 & 10.62 $\pm$   7.21 \\
-%       Periodic 30s  & 62 & 124 & 269 & 20.92 $\pm$  13.02 & 23.33 $\pm$  14.47 & \:23.57 $\pm$  20.19
-%     \Rstrut  \\ \hline
-%     \thickhline
-% \end{tabular} }
-
-% \begin{table}[ht]
-% \centering
+\begin{table}
     {\scriptsize \begin{tabular}{|P{20mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|}
       \thickhline
       \textbf{Infrastructure Size}
@@ -1473,19 +1454,23 @@ code of the variant with periodic scheduling.
 
         128 nodes & 20.92 $\pm$  13.02 &  10.24 $\pm$   4.48 &  62  & 107   \\
         256 nodes & 23.33 $\pm$  14.47 &  10.02 $\pm$   3.32 &  124 & 201   \\
-        512 nodes & 23.57 $\pm$  20.19 &  10.62 $\pm$   7.21 &  269 & \:421   
-      
+        512 nodes & 23.57 $\pm$  20.19 &  10.62 $\pm$   7.21 &  269 & \:421
+
       \Rstrut  \\ \hline
       \thickhline
   \end{tabular} }
-% \caption{Means $\pm$ Std deviations of violations durations.}
-% \label{table:detailed_violations}
-% \end{table}
+ \caption{Means $\pm$ Std deviations of violations durations.}
+ \label{table:detailed_violations}
+\end{table}
 
 
 \AL[MS]{Update the table: it may make
 sense to put all values to make the read and the understanding easier
 Periodic 32 GMs, Reactive 32 GMs and finally DVMS}
+\AL[MS]{The values for the vanilla implementation do not correspond to
+Table 1. Moreover it is strange that the value with 32LCs per GM is as
+close as the DVMS ones after the reactive change ? We should clarify
+that point}
 
 We have shown the usefulness of our framework by exploring some
 properties of reactive scheduling compared to periodic scheduling. To
@@ -1640,7 +1625,7 @@ results in a significantly lower total migration time. \AL[MS]{lower
 
   a) GM size (\#LCs)
   }
-  \ 
+  \
   \parbox{.47\linewidth}{\centering
   \includegraphics[width=.95\linewidth]{figures/snoozeFault-violationTime.pdf}
 
