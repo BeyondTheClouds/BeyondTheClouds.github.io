@@ -1,5 +1,7 @@
+\vspace*{-.1cm}
 \subsection{Analysis of Entropy, Snooze and DVMS}
 \label{subsec:first-usecase}
+\vspace*{-.1cm}
 
 %\AL{Il faudra parler du nombre de migrations qui est egalement une
 %  métrique pertinente. Plusieurs algorithms tentent de reduire cette
@@ -98,13 +100,19 @@ every 30s for Entropy and Snooze.
 % \end{figure}
 
 \begin{figure*}[t]
-\subcapcentertrue
-\subfigure{
-  \includegraphics[width=.46\textwidth]{figures/experiments/violation_time.pdf}
-  \label{fig:violation_time}}
+%\subcapcentertrue
+%\subfigure{
 \begin{minipage}{.5\textwidth}
 \centering
-  \vspace*{-5.5cm}
+%{\small Cumulated violation time}\\
+\vspace*{-.5cm}
+\hspace*{-.8cm}\includegraphics[width=\textwidth]{figures/experiments/violation_time.pdf}
+%}
+%  \label{fig:violation_time}}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\centering
+  %\vspace*{-5.5cm}
 %\subfigure[Duration of violation ($med \pm \sigma$)]{
 \subfigure{
     {\tiny \begin{tabular}{|P{17mm}@{\:}||@{\:}c@{\:}|@{\:}c@{\:}|@{\:}c@{\:}|}
@@ -219,8 +227,7 @@ base.
   \vspace*{-.5cm}
 \subcapcentertrue
 %\subfigure[Total Violation Times]{
-\subfigure{
-  \includegraphics[width=.38\textwidth]{figures/groupSizes-violationTime.pdf}
+\subfigure{ \hspace*{-.8cm}\includegraphics[width=.45\textwidth]{figures/groupSizes-violationTime.pdf}
   \label{fig:groupSizesViolationTime}}
 \begin{minipage}{.60\textwidth}\centering
   \vspace*{-4.5cm}
@@ -267,10 +274,10 @@ base.
   \label{fig:groupSizesComputationTime}
   }
 \end{minipage}
-\vspace*{-.6cm}
+\vspace*{-.8cm}
 \caption{Hierarchical placement: influence of varying group sizes}
 \label{fig:snoozeGroupSizes}
-\vspace*{-.6cm}
+\vspace*{-.8cm}
 \end{figure*}
 
 \subsubsection{Investigating Algorithm Variants.}

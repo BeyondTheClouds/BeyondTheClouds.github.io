@@ -56,6 +56,7 @@ partition leader.
 % % notifies members of the partition that it has become the new
 % % leader.
 %
+
 The other nodes involved in the partition then send it information about their
 capacities and current load. The leader, in turn, starts a scheduling
 computation looking for a reconfiguration within the current
@@ -69,32 +70,34 @@ This approach constructs small partitions in a highly parallel manner
 (Fig.~\ref{fig:dvms_pte_3}), thus accelerating the scheduling process
 and reactivity.
 
-Most of the DVMS code has been coded in SCALA leveraging the Java
-primitives of \sg for the communications between the different DVMS
-agents that have been implemented, in turn, using the abstractions of \vmps.
-
-\begin{figure}[t]
-\vspace*{-.2cm}
+\begin{figure}[hbp]
+\vspace*{-.4cm}
 \subfigure[]{
-\includegraphics[width=2.7cm]{./figures/fig-24.pdf}
+\hspace*{-.6cm}\includegraphics[width=3.3cm]{./figures/fig-24.pdf}
 \label{fig:dvms_pte_1}}
 %
 \subfigure[]{
-\includegraphics[width=2.7cm]{./figures/fig-25.pdf}
+\hspace*{-.8cm}\includegraphics[width=3.3cm]{./figures/fig-25.pdf}
 \label{fig:dvms_pte_2}}
 %
 \subfigure[]{
-\includegraphics[width=2.7cm]{./figures/fig-26.pdf}
+\hspace*{-.8cm}
+\includegraphics[width=3.3cm]{./figures/fig-26.pdf}
 \label{fig:dvms_pte_3}}
 %
 \subfigure[Legend]{
-\includegraphics[width=2.7cm]{./figures/fig-27.pdf}
+\hspace*{-.6cm}
+\includegraphics[width=3.3cm]{./figures/fig-27.pdf}
 \label{fig:dvms_pte_4}}
 %
-\vspace*{-.3cm}
+\vspace*{-.4cm}
 \caption{Processing two events simultaneously\label{fig:dvms_pte}}
-\vspace*{-.6cm}
+\vspace*{-1cm}
 \end{figure}
+
+Most of the DVMS code has been coded in SCALA leveraging the Java
+primitives of \sg for the communications between the different DVMS
+agents that have been implemented, in turn, using the abstractions of \vmps.
 
 
 % \subsubsection{Fault-tolerance}
