@@ -41,9 +41,8 @@
 
 
 
-\initTitre{UV \og Projet \fge -- Sujet DisOStack  \\ Distribution de
-  l'architecture OpenStack}
-\initAbrevTitre{Projet DIsOStack}
+\initTitre{UV \og Sensibilisation à la recherche \fge \\ BtrPlaceS  \\ Simulateur pour l'étude d'algorithmes de placements de machines virtuelles}
+\initAbrevTitre{Projet BtrPlaceS}
 
 %\initSousTitre{}
 
@@ -51,8 +50,8 @@
 
 %\initDate{22}{8}{2006}
 
-\initSousEntite{Option GSI}
-\initCodeSousEntite{GSI}
+\initSousEntite{FIL}
+\initCodeSousEntite{FIL}
 
 %\initDestinataires{}
 
@@ -71,7 +70,9 @@
 \begin{couverture}
   \afficherDate
   \afficherTitre
-\begin{sujet}
+
+{\footnotesize
+  \begin{sujet}
 
 \afficherTuteur{%
 \href{mailto:adrien.lebre@inria.fr}{Adrien Lebre}
@@ -79,42 +80,36 @@
 
 
 \afficherProjet{%
- DisOStack
+ BtrPlaceS
 
  \begin{quote}
-  OpenStack est une suite logiciel permettant d'opérer des plateformes
-  de Cloud Computing de type IaaS.
-  Bien le passage à l'échelle (i.e. scalabilité) soit un critère décisif lors du 
-  choix d'un système pour opérer ce genre de plateforme, et bien
-  que l'accent soit mis sur la scalabilité au cours du développment, 
-  de nombreuses briques fondamentales constituants les IaaS contemporains ne 
-  satisfont pas ce critère, impactant negativement la 
-  scalabilité globale.
+   L'étude d'algorithmes de placements de machines virtuelles dans les
+   infrastructures dites de ``cloud computing'' est un axe de recherche
+   particulièrement actif. Avec plus de 150 articles de recherche depuis 2008,
+   il est difficile pour les chercheurs de déterminer les avantages des
+   nouvelles propositions par rapport à l'état de l'art. C'est dans ce contexte
+   que l'équipe ASCOLA de l'école des Mines de Nantes a proposé la solution
+   VMPlaceS: un simulateur générique dédiée à l'évaluation et la comparaison
+   d'algorithmes de placements de machines virtuelles. Disponible en
+   open-source, VMplaceS est livré avec trois exemples permettant aux chercheurs
+   de comprendre comment mettre en oeuvre et évaluer de nouvelles stratégies.
+   Néanmoins, ces trois solutions reposent sur un algorithme qui n'est plus maintenu.
+   Le travail proposé consiste à remplacer cet algorithme de résolution par celui
+   utilisé dans le système BtrPlace.
 
-  Le travail proposé comporte deux objectifs:
-\begin{itemize}
-\item L'identification de l'ensemble des briques élémentaires ne
-  validant la propriété de scalabilité
-\item la proposition d'une solution et sa mise en \oe uvre au travers
-  d'un prototype experimental (selon l'avancée des travaux réalisées,
-  les étudiants pourront mener des campagnes d'experiences sur la
-  plateforme \href{Grid'5000}{Grid'5000}).
-\end{itemize}
-
-A plus gros grain, ce projet s'insère dans l'initiative
-\href{http://beyondtheclouds.github.io}{Discovery} piloté par l'école.
+   A plus gros grain, ce projet s'insère dans l'initiative
+\href{http://beyondtheclouds.github.io}{Discovery} pilotée par l'école.
  \end{quote}
 }
 
 \afficherSiteWeb{http://beyondtheclouds.github.io}
 
 \afficherIntitule{%
- Analyse du système OpenStack en vue de sa distribution à large
- échelle.
+  Remplacement de l'algorithme de résolution par défaut dans le système VMPlaceS
 }
 
 \end{sujet}
-
+}
 \end{couverture}
 
 
@@ -127,103 +122,87 @@ A plus gros grain, ce projet s'insère dans l'initiative
 
 \begin{itemize}
  \item Intégration logicielle
- \item Cloud Computing
- \item Modele de données (SQL, NoSQL, Clé/Valeur)
+ \item Cloud Computing (IaaS)
+ \item Java
 \end{itemize}
 
 \paragraph*{Compétences requises}
 
 \begin{itemize}
  \item Fondamentaux Cloud Computing
- \item Maîtrise des modèles de données relationnels.
  \item Programmation objets/composants
+ \item JAVA 
 \end{itemize}
 
 \paragraph*{Compétences à acquérir}
 
 \begin{itemize}
- \item Expertise sur l'architecture OpenStack
- \item Langage python
- \item Prise en main de l'EDI \texttt{IntelliJ}
- \item Développement de schémas de données NoSQL
+ \item Prise en main de l'EDI \texttt{IntelliJ} et des outils de collaboration Github
+ \item Sensibilistation au un simulateur à évènements discrets
  \item Contribution à un projet \og~open source~\fg
 \end{itemize}
 
 \paragraph*{Contexte\\}
+   Le cloud computing peut-être vu comme une solution permettant aux entreprises
+   d'externaliser leurs ressources informatiques dans des infrastructures
+   distantes et ce au travers d'environnements virtualisés (communément appelés
+   machines virtuelles). Le fournisseur du service cloud est en charge de
+   l'éxécution de ces dernières au dessus des ressources physiques qu'il
+   possède, son objectif étant généralement de maximiser son bénéfice (c'est à
+   dire de déterminer le meilleur compromis entre les gains que lui rapporte la
+   location de ces machines virtuelles par rapport aux coûts liés à leurs
+   exécutions sur les machines physiques). Ce problème d'optimisation est traité
+   au travers d'algorithmes de placements de machines virtuelles. Un tel
+   algorithme sert à déterminer et à maintenir un affectation des machines
+   virtuelles sur les machines physiques afin de garantir d'une part que les
+   ressources escomptées par les machines virtuelles puissent être affectées et
+   d'autres part de manière à optimiser un critère propre au fournisseur
+   (critère économique comme préalablement cité, énergétique ou encore
+   équilibrage de charge pour des applications spécifiques). De part
+   l'importance de ces algorithmes pour les fournisseurs, un nombre significatif
+   de solutions a été proposé et il est malheureusement aujourd'hui très
+   compliqué d'arriver à identifier les avantages et inconvénients de chacune
+   d'entre elles.
 
- Afin de supporter la demande croissante d'informatique utilitaire (UC: Utility Computing) tout en prenant en compte les aspects énergétique et financier, la tendance actuelle consiste à construire des centres de données (ou centrales numériques) de plus en plus grands dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun doute de satisfaire la demande tout en conservant une approche centralisée de la gestion de ces ressources mais elle reste loin de pouvoir fournir des infrastructures de calcul utilitaire efficaces et durables.
-   L'initiative de recherche \discovery propose une approche radicalement différente permettant de prendre en compte la localité des demandes dès le départ.
-Pour ce faire, elle propose de tirer parti de tous les équipements
-disponibles sur l'Internet afin de fournir des infrastructures de calcul
-utilitaire  qui permettront de part leur distribution de prendre en compte plus
-efficacement la dispersion géographique des utilisateurs et leur demande
-toujours croissante [1]. Un des aspects critique pour l'émergence de telles
-plates-formes de calcul utilitaire ''local'' (LUC: Locality aware Utility Computing) est la disponibilité de
-mécanismes de gestion appropriés exploitant les dernières
-contributions en terme d'algorithmiques distribués.
-Des premiers travaux menés à l'école des Mines ont permis de valider
-plusieurs mécanismes via la mise en \oe uvre de prototypes
-experimentaux.
-Afin de passer du mode recherche à un mode plus industriel, nous
-avons commencé à regarder comment intégrer nos propositions au système
-OpenStack.
-
-\paragraph*{Problème: Les faiblesses dans la conception d'OpenStack\\}
-
-  OpenStack est une suite logiciel permettant d'opérer des plateformes
-  de Cloud Computing de type IaaS. Elle est aujourd'hui la solution
-  OpenSource retenue et supportée par un grand nombre d'acteurs
-  aussi bien académiques et qu'industriels (850 institutions sont
-  impliquées dans son développement, avec des acteurs de premier rangs
-  tels que HP ou encore RedHat).
-  Bien qu'une des règles fondamentales pour le développement du
-  système a pour objectif d'adresser la problématique du passage à
-  l'échelle de chaque composant (le terme scalabilité sera utilisé par
-  la suite), le système comprend plusieurs briques
-  logicielles qui ne repondent pas à
-  cette règle. A titre d'exemple, Jonathan Pastor, actuellement en
-  thèse de doctorat à l'école, a identifié la base de données MySQL au
-  sein du composant Nova et a débuté des travaux visant à basculer sur
-  un modèle NoSQL passant à l'échelle de manière native.
-
+\paragraph*{VMPlaceS: un simulateur dédiée à l'étude d'algorithmes de placements\\}
+   Depuis 2014, l'équipe ASCOLA développe un simulateur générique ayant pour
+   principal objectif le développement et l'évaluation de nouvelles techniques
+   de placements de machines virtuelles. Intitulé VMPlaceS, cet outil a été
+   officiellement présenté en 2015 lors de la conférence Europar. Sa pertinence
+   a été démontré au travers la comparaison de trois stratégies référencées à
+   plusieurs reprises dans la littérature. Néanmoins l'algorithme d'optimisation
+   utilisé dans cette preuve de concept repose sur le système Entropy qui n'est plus maintenu. Il est donc primordiale afin de favoriser
+   l'adoption de l'outil VMPlaceS par la communauté, de
+   remplacer cet algorithme par une solution plus récente qui pourra être
+   comparée avec des nouvelles stratégies. 
+ 
+ 
 
 \paragraph*{Objectif\\}
-
-  L'objectif du travail proposé dans ce projet d'option s'insère dans
-  la continuité de ces travaux. Il comporte deux
-  volets:
+L'objectif du travail proposé dans ce projet vise à remplacer l'algorithme
+actuel par celui utilisé dans le système BtrPlace. BtrPlace propose une version
+``revisitée'' de l'algorithme Entropy en y intégrant des nouvelles abstractions
+offrant une plus grande flexibilité aux administrateurs dans la gestion des
+machines virtuelles et également une plus grande efficacité dans le processus de résolution.
+Le projet sera articulé autour de deux volets: 
 \begin{itemize}
-\item L'identification de l'ensemble des briques élémentaires ne
-  validant le critère de scalabilité.
-\item la proposition d'une solution et sa mise en \oe uvre au travers
-  d'un prototype experimental (selon l'avancée des travaux réalisées,
-  les étudiants pourront mener des campagnes d'experiences sur la
-  plateforme \href{Grid'5000}{Grid'5000}).
-\end{itemize}
-
-\paragraph*{Livrables\\}
-
-\begin{itemize}
-\item L0 : rapport sur l'architecture d'OpenStack (ces principaux
-  composants et leur rôle).
-\item L1 : identification des briques logicielles ne respectant par la
-  règle du passage à l'échelle.
-\item L2 : Proposition d'une solution pour un des composants choisis
-  avec le tuteur.
-\item L3 : implémentation de la solution et évualuation sur la
-  plateforme Grid'5000.
-\item L4 : synthèse des travaux réalisés.
+\item La lecture et la compréhension de deux articles scientifiques (référencés ci-après) ; 
+\item Le remplacement de l'algorithme caduque au sein du code de VMPlaceS par l'algorithme utilisé dans BtrPlace.
 \end{itemize}
 
 \paragraph*{Méthodologie du projet\\}
 Ce projet sera réalisé suivant une méthode agile. Il devra impliquer une
-contribution au projet \og~open source~\fg\ Discovery.
+contribution au projet \og~open source~\fg VMPlaceS.
 
 
 \paragraph*{Bibliographie:\\}
 %
-\texttt{[1]} Adrien Lebre, Jonathan Pastor, Marin Bertier, Frédéric Desprez, Jonathan Rouzaud-Cornabas, Cédric Tedeschi, Paolo Anedda, Gianluigi Zanetti, Ramon Nou, Toni Cortes, Etienne Rivière, and Thomas Ropars. Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed? Research Report RR-8348, Inria, July 2013.\\
+\texttt{[1]}Fabien Hermenier, Julia Lawall et Gilles Muller. 
+Btrplace: A Flexible Consolidation Manager for Highly Available Applications, IEEE Transactions of Dependable and Secure Computing (TDSC), vol 10, no. 5, pp. 273--286, Sept.-Oct. 2013.\\
+\href{https://sites.google.com/site/hermenierfabien/btrplace-tdsc2013.pdf}{https://sites.google.com/site/hermenierfabien/btrplace-tdsc2013.pdf}
 
+\texttt{[2]} Adrien Lebre, Jonathan Pastor, et Mario Südholt. VMPlaceS: A Generic Tool to Investigate and Compare VM Placement Algorithms. Europar 2015, Août 2015, Vienne, Autriche.\\
+\href{http://people.rennes.inria.fr/Adrien.Lebre/PREPRINT/Europar-VMPlaceS.pdf}{http://people.rennes.inria.fr/Adrien.Lebre/PREPRINT/Europar-VMPlaceS.pdf}
 \end{note}
 
 
