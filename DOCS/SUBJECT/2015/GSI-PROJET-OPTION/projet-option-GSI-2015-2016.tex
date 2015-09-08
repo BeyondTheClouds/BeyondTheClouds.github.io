@@ -41,9 +41,9 @@
 
 
 
-\initTitre{UV \og Projet \fge -- Sujet DisOStack  \\ Distribution de
+\initTitre{UV \og Projet \fge -- Sujet Mercury  \\ Distribution de
   l'architecture OpenStack}
-\initAbrevTitre{Projet DIsOStack}
+\initAbrevTitre{Projet Mercury}
 
 %\initSousTitre{}
 
@@ -69,8 +69,11 @@
 \begin{document}
 
 \begin{couverture}
-  \afficherDate
-  \afficherTitre
+\afficherTitre
+
+\vspace*{-1.5cm}
+
+{\small
 \begin{sujet}
 
 \afficherTuteur{%
@@ -79,26 +82,24 @@
 
 
 \afficherProjet{%
- DisOStack
+ Mercury
 
  \begin{quote}
-  OpenStack est une suite logiciel permettant d'opérer des plateformes
-  de Cloud Computing de type IaaS.
-  Bien le passage à l'échelle (i.e. scalabilité) soit un critère décisif lors du 
-  choix d'un système pour opérer ce genre de plateforme, et bien
-  que l'accent soit mis sur la scalabilité au cours du développment, 
-  de nombreuses briques fondamentales constituants les IaaS contemporains ne 
-  satisfont pas ce critère, impactant negativement la 
-  scalabilité globale.
+  OpenStack est une suite logiciel permettant d'opérer des plateformes de Cloud
+  Computing de type IaaS. Bien le passage à l'échelle (i.e. scalabilité) soit un
+  critère décisif lors du choix d'un système pour opérer ce genre de plateforme,
+  et bien que l'accent soit mis sur la scalabilité au cours du développement, de
+  nombreuses briques fondamentales constituants le système OpenStack ne satisfont pas ce
+  critère. L'équipe ASCOLA revisite depuis 2013 les principaux composants de
+  cette suite logiciel afin de traiter ces limitations.
 
-  Le travail proposé comporte deux objectifs:
+  Le travail proposé dans ce projet s'inscrit dans cette action. il consiste à:
 \begin{itemize}
-\item L'identification de l'ensemble des briques élémentaires ne
-  validant la propriété de scalabilité
-\item la proposition d'une solution et sa mise en \oe uvre au travers
-  d'un prototype experimental (selon l'avancée des travaux réalisées,
-  les étudiants pourront mener des campagnes d'experiences sur la
-  plateforme \href{Grid'5000}{Grid'5000}).
+\item Analyser le modèle de données exploité  dans le composant OpenStack Glance
+\item Remplacer le système MySQL par le système REDIS en exploitant le
+  pilote ROME développé dans l'équipe.
+\item Valider le prototype qui aura été mis en oeuvre au dessus de la
+  plateforme \href{Grid'5000}{Grid'5000}.
 \end{itemize}
 
 A plus gros grain, ce projet s'insère dans l'initiative
@@ -109,12 +110,12 @@ A plus gros grain, ce projet s'insère dans l'initiative
 \afficherSiteWeb{http://beyondtheclouds.github.io}
 
 \afficherIntitule{%
- Analyse du système OpenStack en vue de sa distribution à large
+ Remplacement du système MYSQL du composant OpenStack Glance  en vue de sa distribution à large
  échelle.
 }
 
 \end{sujet}
-
+}
 \end{couverture}
 
 
@@ -122,7 +123,7 @@ A plus gros grain, ce projet s'insère dans l'initiative
 
 \begin{note}
 
-
+\vspace*{-.5cm}
 \paragraph*{Domaines}
 
 \begin{itemize}
@@ -144,29 +145,33 @@ A plus gros grain, ce projet s'insère dans l'initiative
 \begin{itemize}
  \item Expertise sur l'architecture OpenStack
  \item Langage python
- \item Prise en main de l'EDI \texttt{IntelliJ}
  \item Développement de schémas de données NoSQL
  \item Contribution à un projet \og~open source~\fg
 \end{itemize}
 
 \paragraph*{Contexte\\}
 
- Afin de supporter la demande croissante d'informatique utilitaire (UC: Utility Computing) tout en prenant en compte les aspects énergétique et financier, la tendance actuelle consiste à construire des centres de données (ou centrales numériques) de plus en plus grands dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun doute de satisfaire la demande tout en conservant une approche centralisée de la gestion de ces ressources mais elle reste loin de pouvoir fournir des infrastructures de calcul utilitaire efficaces et durables.
-   L'initiative de recherche \discovery propose une approche radicalement différente permettant de prendre en compte la localité des demandes dès le départ.
-Pour ce faire, elle propose de tirer parti de tous les équipements
-disponibles sur l'Internet afin de fournir des infrastructures de calcul
-utilitaire  qui permettront de part leur distribution de prendre en compte plus
-efficacement la dispersion géographique des utilisateurs et leur demande
-toujours croissante [1]. Un des aspects critique pour l'émergence de telles
-plates-formes de calcul utilitaire ''local'' (LUC: Locality aware Utility Computing) est la disponibilité de
-mécanismes de gestion appropriés exploitant les dernières
-contributions en terme d'algorithmiques distribués.
-Des premiers travaux menés à l'école des Mines ont permis de valider
-plusieurs mécanismes via la mise en \oe uvre de prototypes
-experimentaux.
-Afin de passer du mode recherche à un mode plus industriel, nous
-avons commencé à regarder comment intégrer nos propositions au système
-OpenStack.
+ Afin de supporter la demande croissante d'informatique utilitaire (UC: Utility
+ Computing) tout en prenant en compte les aspects énergétique et financier, la
+ tendance actuelle consiste à construire des centres de données (ou centrales
+ numériques) de plus en plus grands dans un nombre limité de lieux stratégiques.
+ Cette approche permet sans aucun doute de satisfaire la demande tout en
+ conservant une approche centralisée de la gestion de ces ressources mais elle
+ reste loin de pouvoir fournir des infrastructures de calcul utilitaire
+ efficaces et durables. L'initiative de recherche \discovery propose une
+ approche radicalement différente permettant de prendre en compte la localité
+ des demandes dès le départ. Pour ce faire, elle propose de tirer parti de tous
+ les équipements disponibles sur l'Internet afin de fournir des infrastructures
+ de calcul utilitaire qui permettront de part leur distribution de prendre en
+ compte plus efficacement la dispersion géographique des utilisateurs et leur
+ demande toujours croissante [1]. Un des aspects critique pour l'émergence de
+ telles plates-formes de calcul utilitaire ''local'' (LUC: Locality aware
+ Utility Computing) est la disponibilité de mécanismes de gestion appropriés
+ exploitant les dernières contributions en terme d'algorithmiques distribués.
+ Des premiers travaux menés à l'école des Mines ont permis de valider plusieurs
+ mécanismes via la mise en \oe uvre de prototypes experimentaux. Afin de passer
+ du mode recherche à un mode plus industriel, nous avons commencé à regarder
+ comment intégrer nos propositions au système OpenStack.
 
 \paragraph*{Problème: Les faiblesses dans la conception d'OpenStack\\}
 
@@ -175,29 +180,26 @@ OpenStack.
   OpenSource retenue et supportée par un grand nombre d'acteurs
   aussi bien académiques et qu'industriels (850 institutions sont
   impliquées dans son développement, avec des acteurs de premier rangs
-  tels que HP ou encore RedHat).
+  tels que HP, RedHat ou encore plus récemment Google).
   Bien qu'une des règles fondamentales pour le développement du
   système a pour objectif d'adresser la problématique du passage à
   l'échelle de chaque composant (le terme scalabilité sera utilisé par
   la suite), le système comprend plusieurs briques
   logicielles qui ne repondent pas à
-  cette règle. A titre d'exemple, Jonathan Pastor, actuellement en
-  thèse de doctorat à l'école, a identifié la base de données MySQL au
-  sein du composant Nova et a débuté des travaux visant à basculer sur
+  cette règle. A titre d'exemple, Jonathan Pastor, candidat à une thèse de doctorat à l'école,
+  a identifié la base de données MySQL au
+  sein du composant Nova et a proposé un pilote permettant de basculer sur
   un modèle NoSQL passant à l'échelle de manière native.
 
 
 \paragraph*{Objectif\\}
 
-  L'objectif du travail proposé dans ce projet d'option s'insère dans
-  la continuité de ces travaux. Il comporte deux
-  volets:
+  Le travail demandé s'insère dans la continuité du projet proposé en
+  2014/2015 qui a permis d'identifier la faiblesse propre au système MySQL dans
+  plusieurs sous-composants, en particulier le mécanisme Glance. Il comporte deux volets:
 \begin{itemize}
-\item L'identification de l'ensemble des briques élémentaires ne
-  validant le critère de scalabilité.
-\item la proposition d'une solution et sa mise en \oe uvre au travers
-  d'un prototype experimental (selon l'avancée des travaux réalisées,
-  les étudiants pourront mener des campagnes d'experiences sur la
+\item Le basculement vers un modèle NoSQL pour le mécanisme Glance en s'appuyant sur le pilote ROME conçu par M. Pastor;
+\item La validation du prototype implanté au dessus de la
   plateforme \href{Grid'5000}{Grid'5000}).
 \end{itemize}
 
@@ -205,13 +207,12 @@ OpenStack.
 
 \begin{itemize}
 \item L0 : rapport sur l'architecture d'OpenStack (ces principaux
-  composants et leur rôle).
-\item L1 : identification des briques logicielles ne respectant par la
-  règle du passage à l'échelle.
-\item L2 : Proposition d'une solution pour un des composants choisis
-  avec le tuteur.
-\item L3 : implémentation de la solution et évualuation sur la
-  plateforme Grid'5000.
+  composants et leur rôle) ; 
+\item L1 : Le modèle SQL dans Glance et les extensions nécessaires au pilote ROME afin de permettre d'utiliser le système REDIS en place du système MySQL ; 
+\item L2 : Version alpha du prototype et test de comportement sur la plateforme Grid'5000
+\item L3 : Version beta et évaluation des performances (selon l'avancement du
+  projet les étudiants évalueront leur proposition via l'outil
+  \href{https://wiki.openstack.org/wiki/Rally}){Rally}.
 \item L4 : synthèse des travaux réalisés.
 \end{itemize}
 
@@ -222,10 +223,9 @@ contribution au projet \og~open source~\fg\ Discovery.
 
 \paragraph*{Bibliographie:\\}
 %
-\texttt{[1]} Adrien Lebre, Jonathan Pastor, Marin Bertier, Frédéric Desprez, Jonathan Rouzaud-Cornabas, Cédric Tedeschi, Paolo Anedda, Gianluigi Zanetti, Ramon Nou, Toni Cortes, Etienne Rivière, and Thomas Ropars. Beyond The Cloud, How Should Next Generation Utility Computing Infrastructures Be Designed? Research Report RR-8348, Inria, July 2013.\\
+\texttt{[1]} Adrien Lebre, Jonathan Pastor, Frédéric Desprez, white paper, July 2015.\\
 
 \end{note}
-
 
 
 \end{document}

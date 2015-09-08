@@ -45,7 +45,7 @@
 
 \newcommand{\entite}{\'Ecole des mines de Nantes\\Département
   d'informatique}
-\newcommand{\codeEntite}{EMN/INFO}
+\newcommand{\codeEntite}{Mines Nantes/INFO}
 \newcommand{\initEntite}[1]{%
   \renewcommand{\entite}{#1}}
 \newcommand{\initCodeEntite}[1]{%
@@ -106,7 +106,8 @@
 
 \newcommand{\afficherTitre}{%
   \if@couverture
-    \maketitle\thispagestyle{couverture}
+     \date{}
+     \maketitle\thispagestyle{couverture}
   \else
     & \\
     \textbf{Titre} & \textbf{\titre} \\ & \\ \hline
@@ -161,7 +162,7 @@
 
 %% programme d'un module
 \newenvironment{sujet}{%
-  \begin{center}
+    \begin{center}
     \begin{longtable}{|p{\widthof{mmmmmmmmmm}}|p{\textwidth - \widthof{mmmmmmmmmmmmm}}|}
       \hline
 }{%
