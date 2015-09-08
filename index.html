@@ -5,7 +5,7 @@
     <meta name="description" content="Beyond the Clouds, Boarding on the Discovery shuttle">
 	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Discovery">
 	 <meta name="robots" content="index, follow, all">
-    <meta name="author" content="The Beyond the Clouds Consortium">
+    <meta name="author" content="The Discovery Consortium">
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -93,8 +93,21 @@
       .coming-soon {
         font-style: italic;
         font-weight: bold;
-      }  
+      }
 
+      .commented {
+        font-weight: normal; 
+        pointer-events: none;
+        cursor: default;
+        color: #BCBCBC;
+      }
+
+      .commented a:link, .commented a:visited, .commented a:hover, .commented a:active {
+        text-decoration: none;
+        color: #BCBCBC;
+      }
+
+      
     </style>
 
     <link href="stylesheets/animation.css" rel="stylesheet">
@@ -124,24 +137,13 @@
           <li><a href="https://github.com/BeyondTheClouds/">View on GitHub</a></li>
           <li><a href="dcc.html">Distributed Clouds</a></li>
         </ul>
-        <h3 class="muted">Beyond the Clouds</h3>
+        <h3 class="muted">The Discovery Initiative</h3>
       </div>
 
-      
        <hr>
-       <div class="alert alert-info text-center">
-        
-        <h3>Open positions !</h3>
-        <h5>PhD grant@<a href="http://www.inria.fr">Inria</a> on  <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/Phd_2015_ASAP_MYRIADS.pdf"><em>Locality-aware and lazy overlay networks for WANs
-</em></a> - CLOSED </h5>
-
-        <h5>Postdoc grant@<a href="http://www.inria.fr">Inria</a> on <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/Postdoc_2015_ASCOLA_MYRIADS.pdf"><em>Energy/cost-benefit analysis of a decentralized Cloud infrastructure</em></a> - CLOSED</h5>
-    <!--    <h5> Phd grand@<a href="https://orange.jobs/site/en-innovation-rd/">Orange</a> on <a href="https://orange.jobs/jobs/offer.do?joid=46351">Programmable distributed observation system</a> - CLOSED </h5> -->
-	<h5> Phd grant@<a href="http://www.emn.fr/z-info/ascola/doku.php">Inria</a> on <a href="http://bigstorage.oeg-upm.net/jobs.html#job7"><em>Elasticity in Cloud Computing and HPC storage solutions</em></a></h5>
-<h5> Next call 1st semester 2016 ! </h5> 
-      </div>
- 
-<!--       <hr>-->
+    <!-- Title -->   
+    <div class="jumbotron">
+        <h2>Discover what could happen beyond the Clouds !</h2>
 
 
         <ul id="scene" class="scene">
@@ -161,11 +163,26 @@
           </li>
         </ul>
 
-      <div class="jumbotron">
-        <h1>Beyond the Clouds: The DisCoVErY Initiative!</h1>
-        <p class="lead coming-soon">An OpenResearch Initiative for a Fully Decentralized IaaS manager</p>
+            <p class="lead coming-soon">An Open-Science Initiative aiming at implementing a fully decentralized IaaS manager</p>
         <p class="lead">The Discovery initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions by revising the OpenStack software in order to make it natively cooperative.</p>
       </div>
+
+    <!-- End of Title -->   
+    <!-- Announcement section-->
+    <div class="alert alert-info text-center">
+      <h3>Open positions !</h3>
+        <div class="commented">
+        <h5>PhD grant@<a href="http://www.inria.fr">Inria</a> on  <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/Phd_2015_ASAP_MYRIADS.pdf"><em>Locality-aware and lazy overlay networks for WANs</em></a> - CLOSED </h5>
+        <h5>Postdoc grant@<a href="http://www.inria.fr">Inria</a> on <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/Postdoc_2015_ASCOLA_MYRIADS.pdf"><em>Energy/cost-benefit analysis of a decentralized Cloud infrastructure</em></a> - CLOSED</h5>
+        <!--    <h5> Phd grand@<a href="https://orange.jobs/site/en-innovation-rd/">Orange</a> on <a href="https://orange.jobs/jobs/offer.do?joid=46351">Programmable distributed observation system</a> - CLOSED </h5> -->
+        </div>
+	<h5> Phd grant@<a href="http://www.emn.fr/z-info/ascola/doku.php">Inria</a> on <a href="http://bigstorage.oeg-upm.net/jobs.html#job7"><em>Elasticity in Cloud Computing and HPC storage solutions</em></a></h5>
+  <h5> Next call 1st semester 2016 ! </h5>
+      </div>
+
+<!-- End of announcement -->
+
+
       <hr>
 
       <div class="row marketing">
@@ -181,7 +198,7 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
         <div class="span3 initiative_description">
           <div class="caption">
             <h3>Fully Distributed</h3>
-            <p>Critical to the emergence of such an global infrastructure is the design and the implementation of  a cooperative IaaS Manager (aka. the LUC OS) that will work in a fully distributed way, following a peer to peer architecture.</p>
+            <p>Critical to the emergence of such an global infrastructure is the design and the implementation of  a cooperative IaaS Manager (aka. the LUC OS) that will work in a fully distributed way, following a peer to peer architecture. Instead of developing our system from scratch, we have chosen to revise the OpenStack solution.</p>
          </div>
         </div>
 
@@ -217,45 +234,44 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
 
 
     
-<h2>Projects</h2>
+    <h2>Projects</h2>
+    <p> While the initiative focuses on OpenStack, secondary projects are also implemented in order to make progresses toward on goal. Major ones are referenced below.</p>
     <div class="row marketing">
 
       <div class="span3 project_description">
         <div class="thumbnail">
-          <div class="caption">
-            <a href="https://github.com/BeyondTheClouds/PeerActor"><h3>PeerActor</h3></a>
-            <p>Collection of tools build on top of Scala and Akka to develop the LUC OS</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          <div class="caption initiative_documents">
+            <a href="https://github.com/BeyondTheClouds/nova"><h3>OpenStack Nova</h3></a>
+            <p>Non intrusive fork of the Nova vanilla code (the MySQL DB has been replaced by REDIS (a noSQL system)</p>
+            <br/><a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/tree/master/DOCS/PAPERS/2015/nova-description/BTC-DISCOVERY-Overview.pdf"><span class="label label-info">Get the white paper</span</a>
           </div>
         </div>
       </div>
 
-      <div class="span3 project_description">
+<!--      <div class="span3 project_description">
         <div class="thumbnail">
           <div class="caption">
             <a href="https://github.com/BeyondTheClouds/Vivaldi"><h3>Locality Based Overlay</h3></a>
             <p>One of the main building block of the LUC OS leveraging the Vivaldi algorithm.</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
           </div>
         </div>
-      </div>
+      </div> 
  
       <div class="span3 project_description">
         <div class="thumbnail">
           <div class="caption">
             <a href="https://github.com/BeyondTheClouds/DVMS"><h3>DVMS</h3></a>
             <p>Distributed Virtual Machines Scheduler, the first ``high level'' service of our system.</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
           </div>
         </div>
-      </div>
+      </div>-->
 
      <div class="span3 project_description">
         <div class="thumbnail">
-          <div class="caption">
+          <div class="caption initiative_documents">
             <a href="https://github.com/BeyondTheClouds/VMplaceS"><h3>VMPlaceS</h3></a>
             <p>A load injector leveraging simigrid to perform large-scale simulations on VM management systems.</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+            <br/><a href=">http://people.rennes.inria.fr/Adrien.Lebre/PREPRINT/Europar-VMPlaceS.pdf"><span class="label label-info">Get the paper</span</a>
           </div>
         </div>
       </div>
@@ -288,7 +304,7 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
 
       <div class="footer">
         <hr>
-        <p>The Beyond the Clouds Consortium, © 2014-2015</p>
+        <p>The Discovery Consortium, © 2014-2015</p>
       </div>
 
     </div> <!-- /container -->
