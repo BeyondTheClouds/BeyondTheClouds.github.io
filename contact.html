@@ -1,17 +1,20 @@
 <html lang="en"><head>
     <meta charset="utf-8">
-	 <title>Beyond the Clouds - Who are we? / Contact</title>
+    <title>Who are we?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Beyond the Clouds, Boarding on the Discovery shuttle">
-	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Distributed Cloud Computing, Beyond the Clouds, Discovery">
+	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Discovery">
 	 <meta name="robots" content="index, follow, all">
-    <meta name="author" content="The Beyond the Clouds Consortium">
+    <meta name="author" content="The Discovery Consortium">
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;
         padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
       /* Custom container */
@@ -45,28 +48,76 @@
         margin-top: 28px;
       }
 
+      /* project description */
+      .project_description {
+        height: 200px;
+        margin-bottom: 30px;
+      }
+
+      .initiative_description {
+        height: 110px;
+        margin-bottom: 30px;
+      }
+      @media (min-width: 890px) and (max-width: 955px) {
+        .initiative_description {
+          width: 245px;
+        }
+
+        .initiative_documents {
+          width: 245px;
+        }
+
+        .project_description {
+          width: 245px;
+        }
+      }
+
+      .initiative_description .caption h3 {
+        text-align: center;
+      }
+
+      .initiative_documents {
+        text-align: center;
+      }
+
+      .project_description .thumbnail {
+        height: 100%;
+      }
+
+      .twitter-container {
+        width: 100%;
+        text-align: center;
+      }
+
+
       .coming-soon {
         font-style: italic;
         font-weight: bold;
-      }  
-
-      .rocket {
-        width: 200px;
       }
 
-      sup {
-        font-size: 9px;
-        position: relative;
-        top: -8px;
+      .commented {
+        font-weight: normal; 
+        pointer-events: none;
+        cursor: default;
+        color: #BCBCBC;
       }
 
-      #affiliation_list {
-        margin-left: 40px;
-        font-size: 11px;
-        font-style: italic;
+      .commented a:link, .commented a:visited, .commented a:hover, .commented a:active {
+        text-decoration: none;
+        color: #BCBCBC;
       }
+
+      .caption {
+        text-align: justify;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+      }
+
+      
     </style>
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <link href="stylesheets/animation.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -74,7 +125,6 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-   <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/rocket_icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/rocket_icon.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/rocket_icon.png">
