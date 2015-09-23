@@ -1,0 +1,38 @@
+\section{Future work}
+\label{sec:future_work}
+
+\subsection{Deeper validation with larger testbed}
+
+Even if this article has demonstrated that the relational database used by Nova
+could be replaced by a non relational key/value store, a more advanced
+validation of this change is required and the question of which metrics to use
+remains. On one hand, a larger deployment involving more geographical sites
+would be more demonstrative, on the other hand the changes we introduced have
+been have been motivated by more than overall scalabity, but also fault
+tolerance and reduction of response times when processing API requests.
+
+\subsection{Distributing the remaining services of OpenStack}
+
+As introduced in section \ref{leveraging-openstack}, the other services
+composing OpenStack are historically leveraging a relational database to store
+their inner-states. As done with Nova, this relational database may be replaced
+by a key/value data-store. Among the remaining services, the next candidate is
+the image service Glance: as its images are already stored in fully distributed
+cloud storage software (SWIFT), the next step to reach a fully distributed
+functionning with Glance is to apply the same strategy that we did with Nova. On
+the other  hand, the situation may be different with some other services:
+Neutron works  with drivers that may be intented to work in a distributed way.
+In such  situation alternatives have to be found.
+
+\subsection{Locality aware objects in OpenStack}
+
+Having a wan-wide infrastructure can be source of networking overheads: some
+objects manipulated by OpenStack are subject to be manipulated by any service of
+the deployed controllers, and by extension should be visible to any of the
+controllers. On the other hand, some objects may benefit from a restrained
+visibility: if a user has build an OpenStack project (tenant) that is based on
+few sites, appart from data-replication there is no need for storing objects
+related to this project on external sites. Restraining the storage of such
+objects according to visibility rules would enable to save network bandwidth and
+to settle policies for applications such as privacy and efficient data-
+replication.

@@ -1,0 +1,296 @@
+\section{The LUC OS: Design Discussion}
+\label{sec:design}
+
+The massively distributed cloud we target is an infrastructure that is composed of up to
+hundreds of micro DCs, which are themselves composed of up to tens of servers. Thus the
+system in charge of operating such an infrastructure should be able to manage up to
+thousands of servers spread geographically. Delivering such a system is a tedious task
+where wrong design choices could prevent to achieve our goal.  In this section we first
+discuss few conceptual considerations that led us to the LUC OS proposal and second remain
+the major services that the LUC OS should deliver.
+%In this section, we discuss several conceptual considerations that led
+%us to the LUC OS proposal.
+
+\subsection{From Centralized to Distributed Management}
+\label{subsec:design-arg}
+
+% \subsection{Distributing the clouds: From few large DCs to many spread Nano DCs}
+
+% In the current model of cloud computing, cloud providers are targeting the
+% delivery of services to users who are located all over the world. Some very
+% successful services have build world-wide infrastructure to be able to handle
+% every  requests issued from their users with a good quality of service (QoS).
+% However in the  current model, the production of computing resources is
+% concentrated in few  large data-centers that contains tens of thousand of
+% servers, in order to  benefit from economies of scale introduced by SKU (stock
+% keeping unit) standardization and saving in technical staff capacity. Moreover,
+% this  concentration of servers in geographically restricted areas with extremely
+% performant networking enables IaaS mechanisms to take advantage of such fast
+% connectivity.
+
+% However the ever increasing data-centers size has become a  problem, as these
+% big data-centers have dramatic needs in terms of dedicated electrical and
+% cooling facilities. As an alternative to this concentration of the production of
+% computing resources in such large data-centers Greenberg and al
+% \cite{greenberg:2008} have proposed the concept of geographically spread micro
+% data-centers that would bring the cloud closer to end users. Although this
+% model seems to solve some issues encountered with large data-centers, two
+% crucial questions remains: \begin{itemize} \item How to connect these
+% geographically spread micro data-centers? \item How to operate efficiently such
+% an infrastructure? \end{itemize}
+
+% \subsection{The Discovery initiative: Nano DCs on top of ISPs backbone}
+
+% Deploying an infrastructure which is able to connect hundreds of micro-DCs is a
+% tedious task as it has to take into account a large number of parameters.
+% Moreover, starting from zero would involve a huge financial and human effort,
+% which goes beyond what can do a research team. In this context, a better
+% approach would be to use existing works and to leverage existing
+% infrastructures.
+
+% The Discovery follows this line by proposing to associate these geographically
+% spread micro-DCs to the network backbone deployed by internet service providers
+% (ISPs). The idea is to extend each point of presence (PoP) with few utility
+% computing capacities such as commodity servers. This would enables to deploy
+% fully distributed cloud computing infrastructure on top of existing networks.
+
+% The question of how to operate such an infrastructure still remains: at this
+% level of distribution, latency and fault tolerance become primary concerns, and
+% collaboration between servers of differents location must be organized wisely.
+% For these reasons, the Discovery initiative proposes to develop a new kind of
+% IaaS system that would operate such an infrastructure, by taking into  account
+% network locality to ensure an efficient functioning.
+
+%In keeping with the decentralization of resource delivering as allowed by models
+%like CDNs, we propose to study a model where the production of computing
+%resources is decentralized:
+%deploying the micro/nano DC concept \cite{greenberg:2008} directly in
+%network points of presence (PoPs) of major backbones
+%\cite{lebre:beyond2013}, thereby benefiting from high connectivity
+%(low latency and high bandwidth) with end users.
+%Several models that can be used to operate such an infrastructure.
+
+The first way that comes generally to the mind to pilot and use
+distinct clouds is to rely on classical models like federated
+approaches: each micro DC hosts and operates
+% by a specific IaaS manager
+its own Cloud infrastructure and a brokering service is in
+charge of resources provisioning by picking on each cloud. While such
+approaches can be acceptable for elementary usages, advanced brokering
+services are mandatory to meet production environment requirements
+(monitoring, scheduling, automated provisioning, SLAs
+enforcements~\ldots). In addition to dealing with scalability and
+single point of failure (SPOF) issues, brokering services should
+integrate mechanisms similar to those that are already implemented at
+the level of IaaS managers~\cite{buyya:2010,houidi:2011}.
+Consequently, the development of a brokering
+solution is as difficult as the one of a IaaS manager but with the
+complexity of relying only on the least common denominator APIs.
+While few standards such as OCCI~\cite{loutas:2010} start to be
+adopted, they do not allow developers to manipulate low-level
+capabilities of each system, which is generally mandatory to finely
+administrate resources.
+%In other words, federated cloud approaches
+%do not go far enough to operate a
+%network of micro DCs as they primarily focus on the use of the different
+%clouds rather than operating them.
+In other words, building mechanisms on top of existing ones like in the case of federated systems prevent from going beyond the provided APIs (or require when possible, intrusive mechanisms that must be adapted to the different systems).
+
+The other way to operate such infrastructure is to design and build a dedicated system,
+\ie the \emph{LUC Operating System}, in charge of operating all the geographically spread
+micro DCs in a distributed manner. %thus preventing from SPOFs and scalability issues.
+% - Alors que les federations fonctionnent sur le plus petit denominateur commun,
+%   le Cloud OS passe par un Adapter (API + outils) qui va étendre les capacités
+%   des clouds. Cela permet d'aller plus loin que les fédérations classiques et
+%   de créer des mecanismes distribués la où ils sont classiquement centralisés
+%   (noeuds de services).
+A LUC OS will define and leverage its own software interface, thus
+extending capacities of traditional Clouds with its API and a set of dedicated
+tools. This
+offers a unique opportunity to go beyond classical federations of
+Clouds by addressing all
+ crosscutting concerns of a software stack as complex as a IaaS manager and by revising in a fully distributed manner, mechanisms that have been traditionally
+implemented in a centralized one~(service nodes).
+
+% - Hierarchical structure -> maintenance cost and high complexity.
+% - We want a flat structure and a single image system that will be distributed.
+% - Geographicaly spread DCs -> need to take into account locality properties.
+% - locality properties -> high overall reactivity.
+The following question is now to analyze whether the collaborations between instances of
+the system, that is the service nodes, should be structured either in hierarchical way or
+in a
+%Working in a fully distributed context implies that collaborations between
+%instances of the system have to be structured whether in hierarchical way or in a
+P2P (\ie flat) one. Few hierarchical solutions have been proposed during the last years in
+industry~\cite{cascading-os, cells} and
+academia~\cite{farahnakian:cloudcom14,feller:snooze}. Although they may look easier than
+P2P structures, hierarchical approaches require additional maintenance costs and complex
+operations in case of failure.
+% As a
+%consequence, most proposals do not correctly address for instance
+%fault tolerant issues when one peer of the hierarchy is facing a
+%crash.
+Moreover, mapping and maintaining a relevant tree architecture on top of a network
+backbone is not meaningful (static partitioning of resources is usually performed). As a
+consequence, hierarchical approaches do not look to be satisfactory to operate a massively
+distributed IaaS infrastructure such as the one we target. On the
+other side, Peer-to-Peer (P2P)
+file sharing systems are a good example of software that works well at large scale and in
+a context where computing resources are geographically spread.
+%
+%We claim that the LUC OS should be a single image system
+%composed of several agents distributed throughout the infrastructure
+%and cooperating through P2P mechanisms.
+%Furthermore, the LUC OS needs to take into account
+%several measurements in real-time (latency, bandwidth,~\ldots) in order to organize
+%collaborations between its computing resources in an efficient manner.
+%
+While largely unexplored for building operating systems,
+peer-to-peer/decentralized mechanisms have the potential to natively
+handle the intrinsic distribution of LUC infrastructures as well as
+the scalability required to manage them. Hence, we propose to leverage
+advanced P2P mechanisms like overlay networks and distributed hash tables to design the
+LUC OS building blocks.
+
+%agents, following the actor model \cite{agha:ispdc14},  and
+%cooperating through advanced P2P mechanisms
+%like overlay networks and distributed hash tables.
+% The LUC-OS will
+%enable the unification of many UC resources distributed on distinct sites, to be
+%operated through a single system.
+% It would enable ISPs and other institutions in
+% charge of operating a network backbone to build an extreme-scale LUC
+% infrastructure with a limited additional cost. Instead of redeploying a complete
+% installation, they will be able to leverage IT resources and specific devices
+% such as computer room air conditioning units, inverters or redundant power
+% supply.
+
+
+% \AL[FD]{Please reorganize this section, the idea is to argue in favor
+% of (i) a distributed cloud, ie a system and not a system of systems
+% and (ii) creating the wheel once again is a non sense. Hence, we will
+% revisit OpenStack}
+
+\subsection{Cloud Capabilities}
+
+From the administrators and end-users point of views, the LUC OS should deliver a set of
+high level mechanisms whose assembly results in an operational IaaS system. Recent studies
+have showed that state of the art IaaS manager~\cite{peng:2009} were constructed over the
+same concepts and that a reference architecture for IaaS manager can could
+defined~\cite{moreno2012iaas}.
+%The
+%strength of this reference architecture resides in the fact that it  considered every aspects
+%composing "industrial class" IaaS management systems.
+%
+This architecture covers primary services that are needed for building
+the LUC OS~:
+\begin{itemize}
+\item The \textbf{virtual machines manager} is in charge of managing VMs' cycle of life
+(configuration, scheduling, deployment, suspend/resume and shut down).
+\item The \textbf{Image
+  manager} is in charge of VM' template files (\aka VM images).
+\item The \textbf{Network
+  manager} provides connectivity to the infrastructure: virtual networks for VMs and
+external access for users.
+\item The \textbf{Storage manager} provides persistent storage
+facilities to VMs.
+\item The \textbf{Administrative tools} provide user interfaces to operate
+and use the infrastructure.
+\item Finally, the \textbf{Information manager} monitors data of the
+infrastructure for the auditing/accounting.
+\end{itemize}
+
+%each aspect of the cloud is supervised by a specific manager. The following list gives a
+%The principal services are:
+% \begin{itemize}
+%   \setlength{\itemsep}{0pt}
+%  \setlength{\parskip}{0pt}
+%   \setlength{\parsep}{0pt}
+%         \item The virtual machines manager
+%         %is the most important part of the Cloud OS:
+%           is in charge of managing VMs' cycle of life (configuration, scheduling,
+%           deployment,
+%         %migration, suspension, resume
+%         suspend/resume and shut down).
+%         %It is also responsible for preserving service-level agreements
+%         %(SLAs).
+%         %Examples of
+%         %such manager can be found in OpenStack's Nova \cite{OPENSTACK:2014:nova}
+%         %service and CloudStack management server \cite{CLOUDSTACK:2014:management}.
+%         %\item The scheduler decides which server will host newly
+%          % created VMs.
+%           % (static scheduling). To preserve a good quality of service (QoS),
+%         %overloaded servers may migrate virtual machines on underloaded servers
+%         %(dynamic scheduling).
+%         \item The Image manager is in charge of VM' template files (\aka
+%         VM images).
+%        % As users have their own images with specific systems or
+%        % configurations, this manager must be able to handle a large number of VM
+%        % images in a distributed manner.
+%         \item The Network manager provides connectivity to the infrastructure: virtual
+%         networks for VMs and external access for users.
+%         %The current trend is towards the virtualisation of networking devices through the use of Software Defined
+%         %Networks (SDN) \cite{onf2012software}.
+%         %This manager must enable flexible
+%         %networking deployment without losing performance (bandwidth and latency).
+%         \item The Storage manager provides persistent storage facilities to VMs. % As physical single storage device might be a source of failure,
+%         %factors like distribution and redundancy must be anticipated.
+
+%         \item The Administrative tools provide user interfaces to operate and use the
+%           infrastructure.
+%           % This is the components that enables users access to
+%           %the Cloud OS internals.
+
+%         \item Information manager monitors data of the infrastructure for the
+%           auditing/accounting.% and produce value-added from the raw data
+%         %respectively. As authors mentioned it, both are very important for billing
+%         %process.
+
+% \end{itemize}
+
+The challenge is thus to propose a distributed version of the
+aforementioned services by relying on advanced P2P mechanisms.
+However, designing and developing a complete LUC OS from scratch would
+be an herculean work, including several non-sense actions aiming at
+simply providing basic mechanisms available in most IaaS solutions.
+Instead of reinventing the wheel, we propose to minimize both design
+and implementation efforts by reusing as much as possible existing
+piece of codes. With this in mind, we propose to investigate whether
+the OpenStack solution~\cite{openstack} can be revised to fulfill
+the LUC infrastructure requirements. Concretely, we propose to
+determine which mechanisms can be directly used and which ones must be
+revisited with P2P algorithms. This strategy enables us to focus the
+effort on the key issues such as the distributed functioning, fault
+tolerance mechanisms, and the organization of efficient collaborations
+between service nodes of the infrastructure according to the
+constraints/requirements of the LUC OS.
+
+%We highlight that other managers, not included in the
+%list, are taking place at higher levels of the CC hierarchy (IaaS++/PaaS) and
+%hence are out-of-scope of this present work.
+
+% As this work provides a good level of
+% details, we think that a new architectural proposition for a distributed Cloud-
+% OS should leverage this work.
+
+% However, since we aim at making a research prototype of a massively distributed
+% cloud, some parts of the aforementioned architecture are outiside the scope of a
+% research prototype. That is why we will volontarily neglect advanced services in
+% order to focus on those that can be considered as vitals, enabling us to propose
+% an architecure for a simple but working massively distributed IaaS manager. We
+% also keep in mind that the architecture should be flexible enough to later
+% include these advanced services in a painless way.
+
+% Finally, to maximize the chance of being reused by a large community,
+% a LUC OS
+% should enable an easy integration with one or several existing IaaS cloud
+% managers. In our case we have chosen to leverage the OpenStack project: as a
+% result mechanisms of the LUC-OS will integrate well with existing clouds that
+% are based on OpenStack.
+
+% As this project is successful and is used by a large community, we propose that
+% instead of reinventing the wheel By developing each components of the LUC-OS
+% from scratch, to leverage the OpenStack project. This strategy would enable to
+% focus the effort on the key issues such as the distributed functionning, the
+% fault tolerance mechanisms and the organization of efficient collaborations
+% between nodes of the infrastructure.

@@ -1,0 +1,102 @@
+\section{Conclusion and Future Work\label{sec:con}}
+\label{sec:conclusion}
+Distributing the way Cloud are managed is one solution to favor the
+adoption of the distributed cloud model.
+%
+In this document, we have presented our view of how such distribution can
+be achieved. We highlighted that it has however a design cost and it
+should be developed over mature and efficient solutions. With this
+objective in mind, we chose to design our system, the LUC Operating
+System, over OpenStack. This choice presents two advantages: minimizing the development
+efforts and maximizing the chance
+of being reused by a large community.
+As as first step, we modified the Nova SQL backend by a
+distributed key/value system.
+% and validated this prototype through a
+%first series of experiments on top of Grid'5000.
+Although a more advanced validation of this
+change is required and the question of which metrics to use remains,
+this first prototype paves the way toward the distribution of
+additional OpenStack services.
+
+%As introduced in Section~\ref{leveraging-openstack}, the other services composing
+%OpenStack are historically leveraging a relational database to store their
+%inner-states.
+% As done with Nova, this relational database may be replaced by a key/value
+%data-store.
+
+Among the remaining services, the next candidate
+is the image service Glance. Indeed, as its images are already stored in fully distributed cloud storage
+software (SWIFT or CEPH), the
+next step to reach a fully distributed functionning with Glance is to apply the same
+strategy that we did with Nova. On the other hand, the situation may be different with
+some other services: Neutron works with drivers that may not be intented to work in a
+distributed way.  In such situation alternatives will have to be
+found.
+%Instead of redeploying a complete installation, they will be able to leverage IT resources and specific devices
+%such as computer room air conditioning units, inverters or redundant power supply.
+%
+%% DIRE QUE LE FAIT DE POUSSER VERS OPENSTACK EST SUPER BIEN CAR CA VA
+%% PERMETTRE D'AVOIR UN IMPACT SI ON GAGNE
+% Finally, to maximize the chance of being reused by a large community,
+% a LUC OS
+% should enable an easy integration with one or several existing IaaS cloud
+% managers. In our case we have chosen to leverage the OpenStack project: as a
+% result mechanisms of the LUC-OS will integrate well with existing clouds that
+% are based on OpenStack.
+
+% As this project is successful and is used by a large community, we propose that
+% instead of reinventing the wheel by developing each components of the LUC-OS
+% from scratch, to leverage the OpenStack project. This strategy would enable to
+% focus the effort on the key issues such as the distributed functionning, the
+% fault tolerance mechanisms and the organization of efficient collaborations
+% between nodes of the infrastructure.
+
+%\subsection{Deeper validation with larger testbed}
+
+% Several other researches and developments needs to be performed to get the distributed
+% environment we have in mind.
+
+% First, even if this article has demonstrated that the relational database used by Nova
+% could be replaced by a non relational key/value store,
+
+%  a more advanced validation of this
+% change is required and the question of which metrics to use remains. On one hand, a larger
+% deployment involving more geographical sites would be more demonstrative, on the other
+% hand the changes we introduced have been have been motivated by more than overall
+% scalabity, but also fault tolerance and reduction of response times when processing API
+% requests.
+%
+%\subsection{Distributing the remaining services of OpenStack}
+%
+% As introduced in Section~\ref{leveraging-openstack}, the other services composing
+% OpenStack are historically leveraging a relational database to store their
+% inner-states. As done with Nova, this relational database may be replaced by a key/value
+% data-store. Among the remaining services, the next candidate is the image service Glance:
+% as its images are already stored in fully distributed cloud storage software (SWIFT), the
+% next step to reach a fully distributed functionning with Glance is to apply the same
+% strategy that we did with Nova. On the other hand, the situation may be different with
+% some other services: Neutron works with drivers that may be intented to work in a
+% distributed way.  In such situation alternatives have to be found.
+
+%\subsection{Locality aware objects in OpenStack}
+
+Finally, having a wan-wide infrastructure can be source of networking overheads: some objects
+manipulated by OpenStack are subject to be manipulated by any service of the deployed
+controllers, and by extension should be visible to any of the controllers. On the other
+hand, some objects may benefit from a restrained visibility: if a user has build an
+OpenStack project (tenant) that is based on few sites, appart from data-replication there
+is no need for storing objects related to this project on external sites. Restraining the
+storage of such objects according to visibility rules would enable to save network
+bandwidth and to settle policies for applications such as privacy and efficient data-
+replication.
+
+We believe, however, that adressing all these challenges are key
+elements to promote a new generation of cloud computing more
+sustainable and efficient. Indeed, by revising OpenStack in order to
+make it natively cooperative, it would enable Internet Service Providers and other
+institutions in charge of operating a network backbone to build an
+extreme-scale LUC infrastructure with a limited additional cost. The
+interest of important actors such as Orange Labs that has officially
+announced its support to the initiative is an excellent sign of the
+importance of our action.

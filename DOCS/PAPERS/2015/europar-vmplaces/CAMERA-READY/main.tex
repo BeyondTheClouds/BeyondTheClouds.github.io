@@ -1,0 +1,105 @@
+
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[runningheads,a4paper]{llncs2e/llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\usepackage{url}
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\usepackage{xspace}
+%\newcommand{\ie}{\textit{i.e.,}\xspace}
+%\newcommand{\eg}{\textit{e.g.,}\xspace}
+%\newcommand{\vs}{\textit{v.s.}\xspace}
+
+%
+
+%\mainmatter  % start of an individual contribution
+
+\usepackage{wrapfig}
+
+\sloppy
+
+%%% FORMAT DOCUMENT
+
+\def\textfraction{0}
+\def\floatpagefraction{1}
+\def\topnumber{3}
+\def\bottomnumber{3}
+\def\totalnumber{3}
+\def\topfraction{1}
+\def\bottomfraction{1}
+
+\input{include.tex}
+
+%\usepackage{titlesec}
+%\titlespacing\subsubsection{0pt}{10pt plus 4pt minus 2pt}{0pt plus 2pt
+% minus 2pt}[12pt]
+
+
+
+\begin{document}
+% first the title is needed
+\title{VMPlaceS: A Generic Tool to Investigate and Compare VM Placement Algorithms}
+\titlerunning{VMPlaceS - VM Placement Simulator}
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+\author{Adrien Lebre, Jonathan Pastor, Mario S\"udholt}
+%
+\authorrunning{A. Lebre, J. Pastor \and M. S\"udholt}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address unless you
+% accept that it will be published
+\institute{ASCOLA Research Group (Mines Nantes, Inria, LINA), Nantes, France\\
+\email{firstname.lastname@inria.fr}
+ }
+
+\maketitle
+
+\input{abstract}
+
+%% Comment this line for submission
+%\listoftodos
+
+\input{toc}
+
+%\bibliographystyle{abbrv}
+%\bibliography{refs}
+
+%\appendices
+%\input{appendix}
+
+% \subsubsection{Acknowledgments.}
+% Experiments presented in this paper were carried out using the Grid'5000 experimental
+% testbed, being developed under the INRIA ALADDIN development action with support from
+% CNRS, RENATER, and several Universities as well as other funding bodies (see
+% \url{https://www.grid5000.fr}).
+
+\bibliographystyle{llncs2e/splncs03}
+\bibliography{main}
+
+\end{document}
