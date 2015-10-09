@@ -79,18 +79,14 @@ deliver widely distributed CC platforms better suited to cope with
 disasters and to match the geographical dispersal of users and their
 needs.  
 
-A preliminary study has established the fundamentals of such an
-\emph{in-network distributed cloud} referred by the consortium  as the
-\emph{Locality-Based Utility Computing} (LUC) concept
-\cite{lebre:beyond2013}. However, the question of how operating such
-an infrastructure is still under investigations. Indeed, at this level of
-distribution, latency and fault tolerance become primary concerns, and
-collaboration between servers of different locations must be organized
-wisely, in order, for example, to balance the load according to renewable
-energy availability.
-
-
-
+A preliminary study has established the fundamentals of such an \emph{in-network
+  distributed cloud} referred by the consortium as the \emph{Locality-Based
+  Utility Computing} (LUC) concept \cite{lebre:beyond2013}. However, the
+question of how operating such an infrastructure is still under investigations.
+Indeed, at this level of distribution, latency and fault tolerance become
+primary concerns, and collaboration between servers of different locations must
+be organized wisely, in order, for example, to find the right trade-off between
+applications' locality and renewable energy availability.
 
 \section{The LUC OS Design}
 \label{sec:design}
@@ -199,19 +195,29 @@ pieces of codes. With this in mind, we propose to investigate whether
 the OpenStack solution~\cite{openstack} can be revised to fulfill
 the LUC infrastructure requirements. Concretely, we propose to
 determine which mechanisms can be directly used and which ones must be
-revisited with P2P algorithms. %This strategy enables us to focus the
-%effort on the key issues such as the distributed functioning, fault
+revisited with P2P algorithms. This strategy enables us to focus on the key issues but also on the opportunities of operating LUC infrastructures.
+% This strategy enables us to focus the effort on the key issues
+% such as the distributed functioning or  fault
 %tolerance mechanisms, and the organization of efficient collaborations
 %between service nodes of the infrastructure according to the
 %constraints/requirements of the LUC OS.
 
 
+%\vspace*{-.1cm}
 \section{On-going work}
-We are currently performing an energy/cost-benefit analysis of the massively distributed Cloud architecture proposed in the Discovery project. Conducting such an in-depth analysis is mandatory (i) to design models that will allow us to extrapolate from the obtained values to the whole infrastructure and (ii) to determine the latitude we have to extend each PoP to a micro/nano DC. Such models will enable us to compare distributed vs. Mega-DC approaches in terms of energy, performance and financial aspects. Our current on-going work includes analyzing the energy footprint of OpenStack operations in order to improve their energy consumption.
+Among the on-going actions, two are related to energy. First,  we are 
+analyzing the energy footprint of OpenStack in order to identify critical components.
+Second, we are performing an energy/cost-benefit
+analysis of the massively distributed Cloud architecture proposed by Discovery. Conducting such an in-depth analysis is mandatory (i) to
+design models that will allow us to extrapolate from the obtained values to the
+whole infrastructure and (ii) to determine the latitude we have to extend each
+PoP to a micro/nano DC. Such models will enable us to compare distributed vs.
+Mega-DC approaches in terms of energy, performance and financial aspects.
 
-
+\vspace*{-.1cm}
 \section*{Acknowledgments}
 This work was partially supported by the Inria Project Lab Discovery, an Open-Science Initiative aiming at implementing a fully decentralized IaaS manager: \url{http://beyondtheclouds.github.io}.
+\vspace*{-.4cm}
 
 \bibliographystyle{IEEEtranS}
 \bibliography{references}
