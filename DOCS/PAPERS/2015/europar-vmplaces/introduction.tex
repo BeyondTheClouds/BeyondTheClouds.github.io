@@ -15,7 +15,7 @@ Typically, a batch scheduling approach is used: VMs are statically
 allocated to physical machines according to user requests. Such static
 policies are clearly suboptimal, because users often overestimate
 their needs and the effective resource requirements of a VM may
-significantly vary during its lifetime.
+significantly vary during its lifetime~\cite{birke:nom2014}.
 
 An important impediment to the adoption of more advanced strategies
 such as dynamic consolidation, load balancing and other SLA-enforcing
@@ -120,13 +120,13 @@ The rest of the article is
 organized as follow.
 %Section~\ref{sec:vmpp} highlights the importance of the scalability, reliability and reactivity criterions for the VM
 %Placement Problem.
-Section~\ref{sec:sg} gives an overview of the \sg
+Sec.~\ref{sec:sg} gives an overview of the \sg
 framework on which our proposal is built. Sec.~\ref{sec:injector}
 introduces \vmps.
 % and discusses its general functioning
 Entropy, Snooze and DVMS are briefly presented in
 Sec.~\ref{sec:vm-schedulers} and evaluated in
-Sec.~\ref{sec:experiments}. Sections~\ref{sec:related}
+Sec.~\ref{sec:experiments}. Secs.~\ref{sec:related}
 and~\ref{sec:conclusion} present, respectively, related work and a
 conclusion.
 

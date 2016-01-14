@@ -5,7 +5,7 @@
     <meta name="description" content="Beyond the Clouds, Boarding on the Discovery shuttle">
 	 <meta name="keywords" content="Utility Computing, LUC, Locality, Cloud Computing, Discovery">
 	 <meta name="robots" content="index, follow, all">
-    <meta name="author" content="The Beyond the Clouds Consortium">
+    <meta name="author" content="The Discovery Consortium">
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -93,8 +93,28 @@
       .coming-soon {
         font-style: italic;
         font-weight: bold;
-      }  
+      }
 
+      .commented {
+        font-weight: normal; 
+        pointer-events: none;
+        cursor: default;
+        color: #BCBCBC;
+      }
+
+      .commented a:link, .commented a:visited, .commented a:hover, .commented a:active {
+        text-decoration: none;
+        color: #BCBCBC;
+      }
+
+      .caption {
+        text-align: justify;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+      }
+
+      
     </style>
 
     <link href="stylesheets/animation.css" rel="stylesheet">
@@ -114,20 +134,25 @@
 
   <body>
 
+    <!-- Menu -->
     <div class="container-narrow">
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="dcc.html">Distributed Clouds</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="https://github.com/BeyondTheClouds/">View on GitHub</a></li>
-          <li><a href="dcc.html">Distributed Clouds</a></li>
         </ul>
-        <h3 class="muted">Beyond the Clouds</h3>
+        <h3 class="muted">The Discovery Initiative</h3>
       </div>
+    <!-- End of Menu -->
 
-      <hr>
+       <hr>
+    <!-- Title -->   
+    <div class="jumbotron">
+        <h2>Discover what could happen beyond the Clouds !</h2>
 
 
         <ul id="scene" class="scene">
@@ -147,11 +172,29 @@
           </li>
         </ul>
 
-      <div class="jumbotron">
-        <h1>Beyond the Clouds!</h1>
-        <p class="lead">This initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions.</p>
-        <p class="lead coming-soon">An OpenResearch Initiative for a Fully Decentralized IaaS manager</p>
+            <p class="lead coming-soon">An Open-Science Initiative aiming at implementing a fully decentralized IaaS manager</p>
+        <p class="lead">The Discovery initiative aims at overcoming the main limitations of the traditional server-centric cloud solutions by revising the OpenStack software in order to make it natively cooperative.</p>
       </div>
+
+    <!-- End of Title -->   
+
+    <!-- Announcement section-->
+    <div class="alert alert-info text-center">
+      <h3>Open positions !</h3>
+        <div class="commented">
+        <h5>PhD grant@<a href="http://www.inria.fr">Inria</a> on  <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/Phd_2015_ASAP_MYRIADS.pdf"><em>Locality-aware and lazy overlay networks for WANs</em></a> - CLOSED </h5>
+        <h5>Postdoc grant@<a href="http://www.inria.fr">Inria</a> on <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/Postdoc_2015_ASCOLA_MYRIADS.pdf"><em>Energy/cost-benefit analysis of a decentralized Cloud infrastructure</em></a> - CLOSED</h5>
+        <!--    <h5> Phd grand@<a href="https://orange.jobs/site/en-innovation-rd/">Orange</a> on <a href="https://orange.jobs/jobs/offer.do?joid=46351">Programmable distributed observation system</a> - CLOSED </h5> -->
+	<h5> Phd grant@<a href="http://www.emn.fr/z-info/ascola/doku.php">Inria</a> on <a href="http://bigstorage.oeg-upm.net/jobs.html#job7"><em>Elasticity in Cloud Computing and HPC storage solutions</em></a> - CLOSED</h5>
+        </div>
+        <h5>PhD grant@<a href="http://www.orange.com/en/Innovation">Orange Labs/Inria</a> on  <a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/SUBJECT/2015/phd-offer-EN-Security.pdf"><em>Unified architecture isolation and mechanisms protecting
+  against side channels for decentralized Cloud infrastructures</em></a></h5>
+         <h5> Postdoc grand@<a href="https://orange.jobs/site/en-innovation-rd/">Orange</a> on <a href="https://orange.jobs/jobs/offer.do?joid=47887&lang=EN">Computational Storage and Internet of Things</a> (description in French) </h5> 
+  <h5> Next call 1st semester 2016 ! </h5>
+      </div>
+
+<!-- End of announcement -->
+
 
       <hr>
 
@@ -168,7 +211,10 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
         <div class="span3 initiative_description">
           <div class="caption">
             <h3>Fully Distributed</h3>
-            <p>Critical to the emergence of such an global infrastructure is the design and the implementation of  a cooperative IaaS Manager (aka. the LUC OS) that will work in a fully distributed way, following a peer to peer architecture.</p>
+            <!-- <p>Critical to the emergence of such an global infrastructure is the design and the implementation of  a cooperative IaaS Manager (aka. the LUC OS) that will work in a fully distributed way, following a peer to peer architecture. Instead of developing our system from scratch, we have chosen to revise the OpenStack solution.</p> -->
+            <p>Implementing a fully Distributed IaaS manager (aka. the LUC OS) is critical for the
+emergence of such a global infrastructure. Instead of developing from scratch, we
+decided to revise OpenStack with peer to peer mechanisms.</p>
          </div>
         </div>
 
@@ -186,15 +232,15 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
       <div class="row marketing">
 
         <div class="span3 initiative_documents">
-          <a href="http://hal.inria.fr/hal-00854204">How Should Next Generation Utility Computing Infrastructures Be Designed?<br/><span class="label label-info">Get the report</span></a>
+          <a href="https://hal.inria.fr/hal-01203648">How Should Next Generation Utility Computing Infrastructures Be Designed?<br/><span class="label label-info">Get our last report</span></a>
         </div>
 
         <div class="span3 initiative_documents">
-          <a href="./DOCS/SLIDES/discovery-short-factsheet-jan2014.pdf" alt="Version January 2014">An overview of the initiative<br/><span class="label label-info">Get the slides</span></a>
+          <a href="./DOCS/SLIDES/2015/discovery-SUCCES-francegrille.pdf" alt="Version Nov 2015">An overview of the initiative<br/><span class="label label-info">Get the slides</span></a>
         </div>
 
         <div class="span3 initiative_documents">
-          <a href="./DOCS/SLIDES/Discovery_short.pdf">A shorter presentation<br/><span class="label label-info">Get the slides</span></a>
+          <a href="./DOCS/SLIDES/Discovery_short.pdf">A shorter (but older) presentation<br/><span class="label label-info">Get the slides</span></a>
         </div>
 
       </div>
@@ -204,78 +250,71 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
 
 
     
-<h2>Projects</h2>
+    <h2>Projects</h2>
+    <p> While the initiative focuses on OpenStack, secondary projects are also implemented in order to make progresses toward on goal. Major ones are referenced below.</p>
     <div class="row marketing">
 
       <div class="span3 project_description">
         <div class="thumbnail">
-          <div class="caption">
-            <a href="https://github.com/BeyondTheClouds/PeerActor"><h3>PeerActor</h3></a>
-            <p>Collection of tools build on top of Scala and Akka to develop the LUC OS</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          <div class="caption initiative_documents">
+            <a href="https://github.com/BeyondTheClouds/nova"><h3>OpenStack Nova</h3></a>
+            <p>Non intrusive fork of the Nova vanilla code (the MySQL DB has been replaced by the noSQL system REDIS)</p>
+            <br/><a href="https://github.com/BeyondTheClouds/BeyondTheClouds.github.io/raw/master/DOCS/PAPERS/2015/nova-description/BTC-DISCOVERY-Overview.pdf"><span class="label label-info">Get the white paper</span</a>
           </div>
         </div>
       </div>
 
-      <div class="span3 project_description">
+<!--      <div class="span3 project_description">
         <div class="thumbnail">
           <div class="caption">
             <a href="https://github.com/BeyondTheClouds/Vivaldi"><h3>Locality Based Overlay</h3></a>
             <p>One of the main building block of the LUC OS leveraging the Vivaldi algorithm.</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
           </div>
         </div>
-      </div>
+      </div> 
  
       <div class="span3 project_description">
         <div class="thumbnail">
           <div class="caption">
             <a href="https://github.com/BeyondTheClouds/DVMS"><h3>DVMS</h3></a>
             <p>Distributed Virtual Machines Scheduler, the first ``high level'' service of our system.</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
           </div>
         </div>
-      </div>
+      </div>-->
 
      <div class="span3 project_description">
         <div class="thumbnail">
-          <div class="caption">
+          <div class="caption initiative_documents">
             <a href="https://github.com/BeyondTheClouds/VMplaceS"><h3>VMPlaceS</h3></a>
             <p>A load injector leveraging simigrid to perform large-scale simulations on VM management systems.</p>
-            <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+            <br/><a href="http://people.rennes.inria.fr/Adrien.Lebre/PREPRINT/Europar-VMPlaceS.pdf"><span class="label label-info">Get the paper</span></a>
           </div>
         </div>
       </div>
-
     </div>
-
-    <hr>
-
-    <h2>Latest Activity</h2>
-
-
-
-
-    <div class="row">
-
-      <div class="span5">
+    <!-- Put as a follow us on twitter -->
+<!--    <h2>Latest Activity</h2>
         <a class="twitter-timeline" href="https://twitter.com/BeyondClouds_io" data-widget-id="490173690726719488">Tweets by @BeyondClouds_io</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </a>
-      </div>
+-->
 
-      <div class="span4">
-        <iframe src="http://ghactivity.com/BeyondTheClouds" style="border: 0; height: 400px; width: 400px;"></iframe>
-        <br/>
-        <br/>
-        <div id="clustrmaps-widget" style="position:relative; margin-left:auto; margin-right:auto"></div>
-      </div>
-
-    </div>
-
-      <div class="footer">
-        <hr>
-        <p>The Beyond the Clouds Consortium, © 2014</p>
+       <hr>
+       <div class="footer">
+         <div class="row">
+           <div class="span5">
+<br/>
+             <h4>Since July 2015, the Discovery initiative is mainly supported through the <a href="http://www.inria.fr/en/research/research-teams/inria-project-labs">Inria Project Labs program</a> and the I/O labs, a joint lab between Inria and Orange Labs. </h4>
+             <p>The Discovery Consortium, © 2014-2015</p>
+           </div>
+           <div class="span3 offset1"> 
+             <p class="text-center"><a href="http://www.inria.fr/en/"><img src="./images/inria-logo.jpg"></a></p>
+             <p class="text-center"><a href="http://www.orange.com/en/innovation"><img src="./images/logo-orange-labs.png"></a></p>
+           </div>
+         </div>
+         
+           <div id="clustrmaps-widget" style="position:relative; margin-left:auto; margin-right:auto"></div>
+        <!-- <iframe src="http://ghactivity.com/BeyondTheClouds" style="border: 0; height: 400px; width: 400px;"></iframe> -->
       </div>
 
     </div> <!-- /container -->
@@ -307,6 +346,8 @@ The initiative aims at delivering a new generation of Utility Computing (UC) tha
   ga('send', 'pageview');
 
 </script>
-<script type="text/javascript">var _clustrmaps = {'url' : 'http://beyondtheclouds.github.io', 'user' : 1142288, 'server' : '2', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2014-05-06', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www2.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www2.clustrmaps.com/user/819116e10"><img src="http://www2.clustrmaps.com/stats/maps-no_clusters/beyondtheclouds.github.io-thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
-
+<!--<script type="text/javascript">var _clustrmaps = {'url' : 'http://beyondtheclouds.github.io', 'user' : 1142288, 'server' : '2', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2014-05-06', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www2.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script>-->
+<!-- Adrien/Jonathan, Nov 4th, try to update the clustrmap with the new embeded code but does not work -->
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?u=93DF&d=dHzmaYBsmvKAFBpfyaDmYmuo8fAuFFSdbFL51ATvqKc"></script>
+<noscript><a href="http://www2.clustrmaps.com/user/819116e10"><img src="http://www2.clustrmaps.com/stats/maps-no_clusters/beyondtheclouds.github.io-thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
 </body></html>

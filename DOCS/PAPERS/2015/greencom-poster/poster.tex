@@ -1,0 +1,225 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{color}
+
+
+
+\begin{document}
+
+\title{Energy-Aware Massively Distributed Cloud Facilities: the DISCOVERY Initiative}
+
+\author{\IEEEauthorblockN{
+Fr\'ed\'eric Desprez\IEEEauthorrefmark{1},
+Shadi Ibrahim\IEEEauthorrefmark{1},
+Adrien Lebre\IEEEauthorrefmark{1},
+Anne-C\'ecile Orgerie\IEEEauthorrefmark{2},
+Jonathan Pastor\IEEEauthorrefmark{1},
+Anthony Simonet\IEEEauthorrefmark{1}
+}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Inria, France, firstname.name@inria.fr}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}CNRS, France, 
+firstname.name@irisa.fr}
+}
+% Feel free to add any relevant co-author and/or to change the order (which is currently alphabetical)
+
+
+\maketitle
+
+\begin{abstract}
+Instead of the current trend consisting of building larger and larger data centers (DCs) in few strategic locations, the DISCOVERY initiative proposes to leverage any network point of presences (PoP, i.e., a small or medium-sized network center) available through the Internet. The key idea is to demonstrate a widely distributed Cloud platform that can better match the geographical dispersal of users and of renewable energy sources. This involves radical changes in the way resources are managed, but leveraging computing resources around the end-users will enable to deliver a new generation of highly efficient and sustainable Utility Computing (UC) platforms, thus providing a strong alternative to the actual Cloud model based on mega DCs (i.e., DCs composed of tens of thousands resources). This poster will present the DISCOVERY initiative efforts towards achieving energy-aware massively distributed cloud facilities.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cloud computing, green computing, decentralized systems.
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+
+\section{Motivation}
+
+To satisfy the escalating demand for Cloud Computing (CC) resources while
+realizing economy of scale, the production of computing resources is
+concentrated in mega data centers (DCs) of ever-increasing size, where
+the number of physical resources that one DC can host is limited by
+the capacity of its energy supply and its cooling system. To
+meet these critical needs in terms of energy supply and cooling, the
+current trend is toward building DCs in regions with abundant and
+affordable electricity supplies or in regions close to the polar
+circle to leverage free cooling techniques \cite{greenpeace:2013}.
+
+However, concentrating Mega-DCs in only few attractive places implies
+different issues. First, a disaster 
+in these areas would be dramatic for IT services the DCs host as the
+connectivity to CC resources would not be guaranteed.
+Second,  in addition to jurisdiction concerns, hosting
+computing resources in a few locations leads to useless network
+overheads to reach each DC. Such overheads can prevent the
+adoption of the UC paradigm by several kinds of applications such as mobile
+computing or big data ones.
+
+The concept of micro/nano DCs at the edge of the
+backbone~\cite{greenberg:2008} is a promising solution to address the
+aforementioned concerns. However, operating multiple small DCs breaks
+somehow the idea of mutualization in terms of physical resources and
+administration simplicity, making this approach questionable in terms
+of energy efficiency. One way
+to enhance mutualization is to leverage existing network centers,
+starting from the core nodes of the backbone to the different network
+access points (a.k.a. PoPs – Points of Presence) in charge of
+interconnecting public and private institutions.
+By hosting micro/nano DCs in PoPs, it becomes possible to mutualize
+resources, and so to make use of
+locally produced renewable energy, coming from solar panels or windmills 
+for instance, which are often not dimension to power big facilities.
+This kind of architecture is also more suitable to
+deliver widely distributed CC platforms better suited to cope with
+disasters and to match the geographical dispersal of users and their
+needs.  
+
+A preliminary study has established the fundamentals of such an \emph{in-network
+  distributed cloud} referred by the consortium as the \emph{Locality-Based
+  Utility Computing} (LUC) concept \cite{lebre:beyond2013}. However, the
+question of how operating such an infrastructure is still under investigations.
+Indeed, at this level of distribution, latency and fault tolerance become
+primary concerns, and collaboration between servers of different locations must
+be organized wisely, in order, for example, to find the right trade-off between
+applications' locality and renewable energy availability.
+
+\section{The LUC OS Design}
+\label{sec:design}
+The massively distributed cloud we target is an infrastructure that is composed of up to
+hundreds of micro DCs, which are themselves composed of up to tens of servers. Thus the
+system in charge of operating such an infrastructure should be able to manage up to
+thousands of servers spread geographically. Delivering such a system is a tedious task
+where wrong design choices could prevent to achieve our goal.  In this section we first
+discuss few conceptual considerations that led us to the LUC OS proposal and second remain
+the major services that the LUC OS should deliver.
+
+
+\subsection{From Centralized to Distributed Management}
+\label{subsec:design-arg}
+
+The first way that comes generally to the mind to pilot and use
+distinct clouds is to rely on classical models like federated
+approaches: each micro DC hosts and operates
+its own Cloud infrastructure and a brokering service is in
+charge of resources provisioning by picking on each cloud. While such
+approaches can be acceptable for elementary usages, advanced brokering
+services are mandatory to meet production environment requirements
+(monitoring, energy-aware scheduling, automated provisioning, SLAs
+enforcement~\ldots). In addition to dealing with scalability and
+single point of failure (SPOF) issues, brokering services should
+integrate mechanisms similar to those that are already implemented at
+the level of IaaS managers~\cite{houidi:2011}.
+Consequently, the development of a brokering
+solution is as difficult as developing an IaaS manager but with the
+complexity of relying only on the least common denominator APIs.
+While few standards such as OCCI~\cite{loutas:2010} start to be
+adopted, they do not allow developers to manipulate low-level
+capabilities of each system, which is generally mandatory to finely
+administrate resources.
+
+
+The other way to operate such an infrastructure is to design and build a dedicated system,
+i.e. the \emph{LUC Operating System}, in charge of operating all the geographically spread
+micro DCs in a distributed manner. 
+A LUC OS will define and leverage its own software interface, thus
+extending capacities of traditional Clouds with its API and a set of dedicated
+tools. This
+offers a unique opportunity to go beyond classical federations of
+Clouds by addressing all
+ crosscutting concerns of a software stack as complex as a IaaS manager and by revising in a fully distributed manner, mechanisms that have been traditionally
+implemented in a centralized one~(service nodes).
+
+The following question is now to analyze whether the collaborations between instances of
+the system, that is the service nodes, should be structured either in a hierarchical way or
+in a
+P2P (i.e. flat) one. Few hierarchical solutions have been proposed during the last years in
+industry~\cite{cascading-os} and
+academia~\cite{farahnakian:cloudcom14}. Although they may look easier than
+P2P structures, hierarchical approaches require additional maintenance costs and complex
+operations in case of failure.
+
+%Moreover, mapping and maintaining a relevant tree architecture on top of a network
+%backbone is not meaningful (static partitioning of resources is usually performed). As a
+%consequence, hierarchical approaches do not look to be satisfactory to operate a massively
+%distributed IaaS infrastructure such as the one we target.
+On the other side, Peer-to-Peer (P2P)
+file sharing systems are a good example of software that works well at large scale and in
+a context where computing resources are geographically spread.
+While largely unexplored for building operating systems,
+peer-to-peer/decentralized mechanisms have the potential to natively
+handle the intrinsic distribution of LUC infrastructures as well as
+the scalability required to manage them. Hence, we propose to leverage
+advanced P2P mechanisms like overlay networks and distributed hash tables to design the
+LUC OS building blocks.
+
+
+
+\subsection{Cloud Capabilities}
+
+From the administrators and end-users point of views, the LUC OS should deliver a set of
+high level mechanisms whose assembly results in an operational IaaS system. Recent studies
+have shown that state of the art IaaS manager~\cite{peng:2009} were constructed over the
+same concepts and that a reference architecture for IaaS manager can be
+defined~\cite{moreno2012iaas}.
+This architecture covers primary services that are needed for building
+the LUC OS~:
+\begin{itemize}
+\item The \textbf{virtual machines manager} is in charge of managing VMs' cycle of life
+(configuration, scheduling, deployment, suspend/resume and shut down).
+\item The \textbf{Image
+  manager} is in charge of VM' template files (a.k.a. VM images).
+\item The \textbf{Network
+  manager} provides connectivity to the infrastructure: virtual networks for VMs and
+external access for users.
+\item The \textbf{Storage manager} provides persistent storage
+facilities to VMs.
+\item The \textbf{Administrative tools} provide user interfaces to operate
+and use the infrastructure.
+\item Finally, the \textbf{Information manager} monitors data of the
+infrastructure for the auditing/accounting.
+\end{itemize}
+
+The challenge is thus to propose a distributed version of the
+aforementioned services by relying on advanced P2P mechanisms.
+%However, designing and developing a complete LUC OS from scratch would
+%be an herculean work, including several non-sense actions aiming at
+%simply providing basic mechanisms available in most IaaS solutions.
+Instead of reinventing the wheel, we propose to minimize both design
+and implementation efforts by reusing as much as possible existing
+pieces of codes. With this in mind, we propose to investigate whether
+the OpenStack solution~\cite{openstack} can be revised to fulfill
+the LUC infrastructure requirements. Concretely, we propose to
+determine which mechanisms can be directly used and which ones must be
+revisited with P2P algorithms. This strategy enables us to focus on the key issues but also on the opportunities of operating LUC infrastructures.
+% This strategy enables us to focus the effort on the key issues
+% such as the distributed functioning or  fault
+%tolerance mechanisms, and the organization of efficient collaborations
+%between service nodes of the infrastructure according to the
+%constraints/requirements of the LUC OS.
+
+
+%\vspace*{-.1cm}
+\section{On-going work}
+Among the on-going actions, two are related to energy. First,  we are 
+analyzing the energy footprint of OpenStack in order to identify critical components.
+Second, we are performing an energy/cost-benefit
+analysis of the massively distributed Cloud architecture proposed by Discovery. Conducting such an in-depth analysis is mandatory (i) to
+design models that will allow us to extrapolate from the obtained values to the
+whole infrastructure and (ii) to determine the latitude we have to extend each
+PoP to a micro/nano DC. Such models will enable us to compare distributed vs.
+Mega-DC approaches in terms of energy, performance and financial aspects.
+
+\vspace*{-.1cm}
+\section*{Acknowledgments}
+This work was partially supported by the Inria Project Lab Discovery, an Open-Science Initiative aiming at implementing a fully decentralized IaaS manager: \url{http://beyondtheclouds.github.io}.
+\vspace*{-.4cm}
+
+\bibliographystyle{IEEEtranS}
+\bibliography{references}
+
+\end{document}

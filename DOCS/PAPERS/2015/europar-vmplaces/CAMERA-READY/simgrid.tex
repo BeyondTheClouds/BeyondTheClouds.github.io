@@ -1,0 +1,59 @@
+\section{Simgrid, a Generic Toolkit To Build Simulators}
+\label{sec:sg}
+
+
+% Developed for more than a decade,
+% and used in a large number of studies described in mor than
+% 100~publications,
+\sg is a toolkit for the simulation of potentially complex algorithms
+executed on large-scale distributed
+systems~\cite{casanova:hal-01017319}.
+%
+To perform simulations, users develop a \emph{program}, and define a
+\emph{platform} and a \emph{deployment} files. The \emph{program}
+typically leverages \sg's MSG API that allows end users to create
+and execute \sg abstractions such as processes, tasks, VMs and network
+communications. The \emph{platform} file provides the physical
+description of all resources that are the object of the simulation.
+% composing the environment and on which aforementioned computations
+% and network interactions will be performed in the \sg world.  (host,
+% CPU capacity, network topology and link capacities, etc.)
+The \emph{deployment} file is used to launch the different \sg
+processes of the program on the simulated nodes.
+% (at least the mapping between one process and one host is mandatory
+% to start the simulation)
+Finally, the simulation is orchestrated by the \sg engine that
+internally relies on a constraint solver to assign the CPU/network
+resources during the entire
+simulation.% (for a complete overview see ~\cite{casanova:hal-01017319}).
+
+
+We chose to base \vmps on \sg
+since (i) the latter's relevance in terms of performance and validity
+has already been demonstrated~\cite{simgridpub} and (ii) because it
+has been recently extended to integrate VM abstractions and a live
+migration model \cite{Hirofuchi:2013:ALM:2568486.2568524}. In addition
+to enabling researchers to control VMs in the same manner as in the
+real world (\eg create/destroy VMs; start/shutdown, suspend/resume and
+migrate them),
+the live migration model provided by \sg  is the only one that successfully determines
+correctly the time and the resulting network traffic of a migration by taking into
+account the competition arising in the presence of resource sharing
+and the memory refresh rate.
+%
+% the model implementing the precopy migration algorithm
+% %of Qemu/KVM
+% is the only one that successfully simulates the live
+% migration behavior by taking into account the competition arising in
+% the presence of resource sharing as well as the memory refreshing rate
+% of the VM, thus determining correctly the live migration time as well
+% as the resulting network traffic.
+These two capabilities were
+mandatory to build \vmps.%our VM placement simulator toolkit.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

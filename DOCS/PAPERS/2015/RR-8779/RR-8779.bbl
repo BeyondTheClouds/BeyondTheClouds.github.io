@@ -1,0 +1,136 @@
+\begin{thebibliography}{10}
+
+\bibitem{grid5000}
+D.~Balouek, A.~Carpen~Amarie, G.~Charrier, F.~Desprez, E.~Jeannot,
+  E.~Jeanvoine, A.~Lebre, D.~Margery, N.~Niclausse, L.~Nussbaum, O.~Richard,
+  C.~P{\'e}rez, F.~Quesnel, C.~Rohr, and L.~Sarzyniec.
+\newblock Adding virtualization capabilities to the {Grid'5000} testbed.
+\newblock In I.~Ivanov, M.~Sinderen, F.~Leymann, and T.~Shan, editors, {\em
+  Cloud Computing and Services Science}, volume 367 of {\em Communications in
+  Computer and Information Science}, pages 3--20. Springer International
+  Publishing, 2013.
+
+\bibitem{lebre:beyond2013}
+M.~Bertier, F.~Desprez, G.~Fedak, A.~Lebre, A.-C. Orgerie, J.~Pastor,
+  F.~Quesnel, J.~Rouzaud-Cornabas, and C.~Tedeschi.
+\newblock Beyond the clouds: How should next generation utility computing
+  infrastructures be designed?
+\newblock In Z.~Mahmood, editor, {\em Cloud Computing}, Computer Communications
+  and Networks, pages 325--345. Springer International Publishing, 2014.
+
+\bibitem{buyya:intercloud}
+R.~Buyya, R.~Ranjan, and R.~N. Calheiros.
+\newblock Intercloud: Utility-oriented federation of cloud computing
+  environments for scaling of application services.
+\newblock In {\em 10th Int. Conf. on Algorithms and Architectures for Parallel
+  Processing - Vol. Part I}, ICA3PP'10, pages 13--31, 2010.
+
+\bibitem{buyya:2010}
+R.~Buyya, R.~Ranjan, and R.~N. Calheiros.
+\newblock Intercloud: Utility-oriented federation of cloud computing
+  environments for scaling of application services.
+\newblock In {\em Algorithms and architectures for parallel processing}, pages
+  13--31. Springer, 2010.
+
+\bibitem{cascading-os}
+{Cascading OpenStack}.
+\newblock \url{https://wiki.openstack.org/wiki/OpenStack_cascading_solution}.
+
+\bibitem{cells}
+{Scaling solutions for OpenStack}.
+\newblock \url{http://docs.openstack.org/openstack-ops/content/scaling.html}.
+
+\bibitem{cloudstack}
+{CloudStack, Open Source Cloud Computing}.
+\newblock \url{http://cloudstack.apache.org}.
+
+\bibitem{decandia:dynamo}
+G.~DeCandia, D.~Hastorun, M.~Jampani, G.~Kakulapati, A.~Lakshman, A.~Pilchin,
+  S.~Sivasubramanian, P.~Vosshall, and W.~Vogels.
+\newblock Dynamo: amazon's highly available key-value store.
+\newblock In {\em ACM SIGOPS Operating Systems Review}, volume~41, pages
+  205--220. ACM, 2007.
+
+\bibitem{farahnakian:cloudcom14}
+F.~Farahnakian, P.~Liljeberg, T.~Pahikkala, J.~Plosila, and H.~Tenhunen.
+\newblock Hierarchical vm management architecture for cloud data centers.
+\newblock In {\em 6th International Conf. on Cloud Computing Technology and
+  Science (CloudCom)}, pages 306--311, Dec 2014.
+
+\bibitem{feller:snooze}
+E.~Feller, L.~Rilling, and C.~Morin.
+\newblock Snooze: A scalable and autonomic virtual machine management framework
+  for private clouds.
+\newblock In {\em 12th IEEE/ACM Int. Symp. on Cluster, Cloud and Grid Computing
+  (Ccgrid 2012)}, pages 482--489, 2012.
+
+\bibitem{greenpeace:2013}
+J.~V.~H. Gary~Cook.
+\newblock How dirty is your data ?
+\newblock Greenpeace International Report, 2013.
+
+\bibitem{greenberg:2008}
+A.~Greenberg, J.~Hamilton, D.~A. Maltz, and P.~Patel.
+\newblock The cost of a cloud: research problems in data center networks.
+\newblock {\em ACM SIGCOMM Computer Communication Review}, 39(1):68--73, 2008.
+
+\bibitem{han:2011}
+J.~Han, E.~Haihong, G.~Le, and J.~Du.
+\newblock Survey on nosql database.
+\newblock In {\em Pervasive computing and applications (ICPCA), 2011 6th
+  international conference on}, pages 363--366. IEEE, 2011.
+
+\bibitem{zeromq:2013}
+P.~Hintjens.
+\newblock {\em ZeroMQ: Messaging for Many Applications}.
+\newblock " O'Reilly Media, Inc.", 2013.
+
+\bibitem{houidi:2011}
+I.~Houidi, M.~Mechtri, W.~Louati, and D.~Zeghlache.
+\newblock Cloud service delivery across multiple cloud platforms.
+\newblock In {\em Services Computing (SCC), 2011 IEEE International Conference
+  on}, pages 741--742. IEEE, 2011.
+
+\bibitem{kemme:vldb2010}
+B.~Kemme and G.~Alonso.
+\newblock Database replication: A tale of research across communities.
+\newblock {\em Proc. VLDB Endow.}, 3(1-2):5--12, Sept. 2010.
+
+\bibitem{lakshman:2010}
+A.~Lakshman and P.~Malik.
+\newblock Cassandra: a decentralized structured storage system.
+\newblock {\em ACM SIGOPS Operating Systems Review}, 44(2):35--40, 2010.
+
+\bibitem{loutas:2010}
+N.~Loutas, V.~Peristeras, T.~Bouras, E.~Kamateri, D.~Zeginis, and K.~Tarabanis.
+\newblock Towards a reference architecture for semantically interoperable
+  clouds.
+\newblock In {\em Cloud Computing Technology and Science (CloudCom), 2010 IEEE
+  Second International Conference on}, pages 143--150. IEEE, 2010.
+
+\bibitem{moreno2012iaas}
+R.~Moreno-Vozmediano, R.~S. Montero, and I.~M. Llorente.
+\newblock Iaas cloud architecture: From virtualized datacenters to federated
+  cloud infrastructures.
+\newblock {\em Computer}, 45(12):65--72, 2012.
+
+\bibitem{opennebula}
+{Open Source Data Center Virtualization}.
+\newblock \url{http://www.opennebula.org}.
+
+\bibitem{openstack}
+{The Open Source, Open Standards Cloud}.
+\newblock \url{http://www.openstack.org}.
+
+\bibitem{peng:2009}
+J.~Peng, X.~Zhang, Z.~Lei, B.~Zhang, W.~Zhang, and Q.~Li.
+\newblock Comparison of several cloud computing platforms.
+\newblock In {\em 2nd Int. Symp. on Information Science and Engineering
+  (ISISE)}, pages 23--27, 2009.
+
+\bibitem{activemq:2011}
+B.~Snyder, D.~Bosnanac, and R.~Davies.
+\newblock {\em ActiveMQ in action}.
+\newblock Manning, 2011.
+
+\end{thebibliography}
