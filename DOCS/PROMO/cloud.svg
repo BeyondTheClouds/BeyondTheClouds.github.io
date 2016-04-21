@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="441px" height="315px" viewBox="0 0 441 315" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
+    <title>Cloud Icon</title>
+    <description>Created with Sketch.</description>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feMorphology radius="8" in="SourceAlpha" operator="dilate" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.492931548   0 0 0 0 0.427891968   0 0 0 0 0.427891968  0 0 0 0.35 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M79.0801871,126.249771 C44.028907,134.747276 18,166.326874 18,204 C18,248.18278 53.8162895,284 97.9995909,284 L338.000409,284 C382.182963,284 418,248.192495 418,204 C418,171.959 399.164089,144.317477 371.960899,131.544973 L371.960899,131.544973 C370.394883,72.4358456 321.987063,25 262.5,25 C222.215415,25 187.011755,46.7540128 167.995534,79.1555252 C161.360165,77.1044357 154.30906,76 147,76 C115.00684,76 87.9560475,97.1607786 79.0801871,126.249771 Z" id="path-2"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Slices" sketch:type="MSLayerGroup"></g>
+        <g id="Cloud" filter="url(#filter-1)" stroke-linecap="round" stroke-linejoin="round">
+            <use stroke="#979797" stroke-width="18" fill="#D9D9D9" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
+            <use stroke="#F9F9F9" stroke-width="16" fill="none" xlink:href="#path-2"></use>
+        </g>
+    </g>
+</svg>
