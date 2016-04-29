@@ -1,0 +1,74 @@
+%%%
+\section{Design Considerations\label{sec:design}}
+
+The massively distributed cloud we target is an infrastructure that is composed of up to hundreds of micro DCs, which are themselves composed of up to
+tens of servers. While brokering and federated approaches are generally the solutions that have been investigated to operate such infrastructures, we
+explain in this section why revising OpenStack with P2P mechanisms is an interesting opportunity.
+
+%%%
+\subsection{From Centralized to Distributed\label{subsec:design-arg}}
+
+Federations of clouds are the first approaches that are considered when it comes to operate and use distinct clouds. Each micro DC hosts and
+supervises its own CC infrastructure and a brokering service is in charge of provisioning resources by picking them on each cloud. While federated
+approaches with a simple centralized broker can be acceptable for basic use cases, advanced brokering services become mandatory to meet requirements
+of production environments (monitoring, scheduling, automated provisioning, SLAs enforcements~\ldots). In addition to dealing with scalability and
+single point of failure (SPOF) issues, brokering services become more and more complex to finally integrate most of the mechanisms that are already
+implemented by IaaS managers~\cite{buyya:2010,houidi:2011}. Consequently, the development of a brokering solution is as difficult as the development
+of an IaaS manager but with the complexity of relying only on the least common denominator APIs. While few standards such as OCCI~\cite{loutas:2010}
+start to be adopted, they do not allow developers to manipulate low-level capabilities of each system, which is generally mandatory to finely
+administrate resources. In other words, building mechanisms on top of existing ones, as it is the case of federated systems, prevents them from going
+beyond the provided APIs (or require intrusive mechanisms that must be adapted to the different systems).
+%
+%\AL{Ameliorer la transition en expliquant qu'il faut donc trouver le bon tradeoff entre prendre de la hauteur et descendre au niveau le plus bas. Libvirt est bien pour le niveau bas, il faut donc regarder à ce niveau et donc refaire un OS à ce niveau}
+The second way to operate a distributed cloud infrastructure is to design and build a dedicated system, \ie an \emph{Operating System},
+which %is in charge of operating all the geographically spread micro DCs in a distributed manner.
+%A LUC OS
+will define and leverage its own software interface, thus extending capacities of traditional Clouds with its API and a set of dedicated
+tools. Designing a specific system offers an opportunity to go beyond classical federations of Clouds by addressing all crosscutting concerns of a
+software stack as complex as an IaaS manager.
+ %and by revising in a fully distributed manner, mechanisms that
+ %are traditionally implemented in a centralized way~(service nodes).
+
+%\AL{idem, la transition n'est pas super....}
+The following question is to analyze whether collaborations between mechanisms of the system should be structured either in hierarchical or in
+flat way via a P2P scheme. During the last years few hierarchical solutions have been proposed in industry~\cite{cascading-os, cells} and
+academia~\cite{farahnakian:cloudcom14,feller:snooze}. Although they may look easier at first sight than Peer-to-Peer structures, hierarchical
+approaches require additional maintenance costs and complex operations in case of failure.  Moreover, mapping and maintaining a relevant tree
+architecture on top of a network backbone is not meaningful (static partitioning of resources is usually performed). As a consequence, hierarchical
+approaches do not look to be satisfactory to operate a massively distributed IaaS infrastructure such as the one we target. On the other side, P2P
+file sharing systems are a good example of software that works well at large scale in a context where Computing/Storage resources are geographically
+spread. While P2P/decentralized mechanisms have been under-used for building operating system mechanisms, they have showed the potential handle the
+intrinsic distribution of LUC infrastructures as well as the scalability required to manage them~\cite{decandia:dynamo}.
+
+To summarize, we advocate the development of a dedicated system, \ie the \emph{LUC Operating system} that will interact with low level mechanisms on
+each physical server and leverage advanced P2P mechanisms.
+% like overlay networks and distributed hash tables to design building blocks of the LUC OS.
+In the following section, we describe the expected LUC OS capabilities.
+
+%%%
+\subsection{Cloud Capabilities}
+
+The LUC OS should deliver a set of high level mechanisms whose assembly results in a system capable of operating an IaaS infrastructure.
+%At coarse-grained an IaaS infrastructure is composed of two kind of nodes: controller nodes (in charge of every aspect of the infrastructure) and
+%compute nodes (dedicated to the hosting of VMs).
+
+Recent studies have showed that state of the art IaaS managers~\cite{peng:2009} were constructed over the same concepts and that a reference
+architecture for IaaS managers can be defined~\cite{moreno2012iaas}.
+
+This architecture covers primary services that are needed for building the LUC OS:
+\begin{itemize}
+\item The \textbf{virtual machines manager} is in charge of managing VMs' cycle of life (configuration, scheduling, deployment, suspend/resume and
+  shut down).
+\item The \textbf{Image manager} is in charge of VM' template files (\aka VM images).
+\item The \textbf{Network manager} provides connectivity to the infrastructure: virtual networks for VMs and external access for users.
+\item The \textbf{Storage manager} provides persistent storage facilities to VMs.
+\item The \textbf{Administrative tools} provide user interfaces to operate and use the infrastructure.
+\item Finally, the \textbf{Information manager} monitors data of the infrastructure for the auditing/accounting.
+\end{itemize}
+
+Thus the challenge is to guarantee for each of the aforementioned services, its decentralized functionning in a fully distributed way. However, as
+designing and developing the LUC OS from scratch would be an herculean work, we propose to minimize both design and implementation efforts by reusing
+as much as possible succesful mechanisms, and more concretly by investigating whether a revised version of the OpenStack~\cite{openstack} could
+fulfill requirements to operate a LUC infrastructure. In other words, we propose to determine which parts of OpenStack can be directly used and which
+ones must be revised with P2P approaches. This strategy enables us to focus the effort on key issues such as the distributed functioning and the
+organization of efficient collaborations between software components composing our revised version of OpenStack, \aka the LUC OS.
