@@ -1,0 +1,234 @@
+\documentclass[a4paper,11pt]{article}
+
+% paquets perso
+%\usepackage{clavierFonte}
+%\usepackage{guillemets}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\newcommand{\fge}{\fg\ }
+
+
+% paquet / note EMN
+\usepackage{sujetProjet}
+
+\usepackage{pdfpages}
+
+\newcommand{\aegis}{\texttt{Aegis}}
+\newcommand{\api}{\texttt{API}}
+\newcommand{\cxf}{\texttt{Apache CXF}}
+\newcommand{\ccxf}{\texttt{CXF}}
+\newcommand{\corba}{\texttt{CORBA}}
+\newcommand{\emn}{EMN}
+\newcommand{\eclipse}{\texttt{Eclipse}}
+\newcommand{\gsi}{GSI}
+\newcommand{\discovery}{DisCoVery }
+\newcommand{\http}{\texttt{HTTP}}
+\newcommand{\java}{\texttt{Java}}
+\newcommand{\jaxb}{\texttt{JAXB}}
+\newcommand{\jaxws}{\texttt{JAX-WS}}
+\newcommand{\jaxrs}{\texttt{JAX-RS}}
+\newcommand{\jbi}{\texttt{JBI}}
+\newcommand{\jee}{\texttt{JEE}}
+\newcommand{\javaJEE}{\java{}/\jee{}}
+\newcommand{\jms}{\texttt{JMS}}
+\newcommand{\json}{\texttt{JSON}}
+\newcommand{\restful}{\texttt{RESTful}}
+\newcommand{\soap}{\texttt{SOAP}}
+\newcommand{\uv}{UV}
+\newcommand{\xml}{\texttt{XML}}
+
+
+
+
+\initTitre{UV \og Sensibilisation à la recherche \fge \\ OpenStack et architecture  multi-sites}
+\initAbrevTitre{Projet Fog/Edge Computing}
+
+%\initSousTitre{}
+
+\initAuteurs{}
+
+%\initDate{22}{8}{2006}
+
+\initSousEntite{FIL}
+\initCodeSousEntite{FIL}
+
+%\initDestinataires{}
+
+%\initDiffusion{}
+
+%\initCodeNote{UV/}
+
+%\initVersionNote{1.0}
+
+%\initHistorique{}
+
+\pasIndentation
+
+\begin{document}
+
+\begin{couverture}
+  \afficherDate
+  \afficherTitre
+
+{\footnotesize
+  \begin{sujet}
+
+\afficherTuteur{%
+\href{mailto:adrien.lebre@inria.fr}{Adrien Lebre}
+}
+
+
+\afficherProjet{%
+ Fog/Edge Computing
+
+ \begin{quote}
+   OpenStack est une suite logiciel permettant d'opérer des
+   plateformes de Cloud Computing de type IaaS. Bien que le passage à
+   l'échelle (le terme de scalabilité est généralement utilisé) soit
+   un critère décisif lors du choix d'un système pour opérer ce genre
+   de plateforme, de nombreuses briques fondamentales constituants
+   OpenStack ne satisfont pas ce critère, notamment lorsque vient
+   s'associer au problème du passage à l'échelle celui de
+   géo-distribution.  L'initiative Discovery pilotée par l'équipe
+   ASCOLA éudie de manière approfondie le système OpenStack afin de
+   déterminer les principales faiblesses et proposer des modifications
+   permettant dy pallier.
+ 
+
+  Le travail proposé dans ce projet s'inscrit dans cette action. il consiste à:
+\begin{itemize}
+\item Prendre en main l'outil Kolla-G5K utilisé pour l'évaluation des performanes du système OpenStack mono-site
+\item D'étendre ce même outil afin de permettre aux chercheurs d'étudier des deploiements multi-sites (\textit{i.e.,} multi-sites)
+ \item Valider les modifications proposées au dessus plateforme \href{Grid'5000}{Grid'5000}.
+\end{itemize}
+
+   A plus gros grain, ce projet s'insère dans l'initiative
+\href{http://beyondtheclouds.github.io}{Discovery} pilotée par l'école.
+ \end{quote}
+}
+
+\afficherSiteWeb{http://beyondtheclouds.github.io}
+
+\afficherIntitule{%
+  Extension de l'outil Kolla-G5K pour l'évaluation de performance d'OpenStack en contexte multi-sites}
+
+\end{sujet}
+}
+\end{couverture}
+
+
+%\includepdf[pages=-, offset=2cm 0cm]{KeyCopyKey-projet.pdf}
+
+\begin{note}
+
+
+\paragraph*{Domaines}
+
+\begin{itemize}
+ \item Systèmes distribués
+ \item Cloud Computing (IaaS)
+ \item Python
+\end{itemize}
+
+\paragraph*{Compétences requises}
+
+\begin{itemize}
+ \item Fondamentaux Cloud Computing
+ \item Programmation objets/composants
+\end{itemize}
+
+\paragraph*{Compétences à acquérir}
+
+\begin{itemize}
+\item Expertise sur l'architecture OpenStack
+\item Sensibilistation à l'évalution de performances de systèmes complexes
+\item Contribution à un projet \og~open source~\fg
+\item Programmation Python
+\end{itemize}
+
+\paragraph*{Contexte\\}
+Afin de supporter la demande croissante d'informatique utilitaire (UC:
+Utility Computing) tout en prenant en compte les aspects énergétique
+et financier, la tendance actuelle consiste à construire des centres
+de données (ou centrales numériques) de plus en plus grands dans un
+nombre limité de lieux stratégiques.  Cette approche permet sans aucun
+doute de satisfaire la demande tout en conservant une approche
+centralisée de la gestion de ces ressources mais elle reste loin de
+pouvoir fournir des infrastructures de calcul utilitaire efficaces et
+durables. L'initiative de recherche \discovery propose une approche
+radicalement différente permettant de prendre en compte la localité
+des demandes dès le départ. Pour ce faire, elle propose de tirer parti
+de tous les équipements disponibles sur l'Internet afin de fournir des
+infrastructures de calcul utilitaire qui permettront de part leur
+distribution de prendre en compte plus efficacement la dispersion
+géographique des utilisateurs et leur demande toujours croissante
+[1]. Un des aspects critique pour l'émergence de telles plates-formes
+de calcul utilitaire (peu à peu connues sous les termes Fog et Edge
+Computing) est la disponibilité de mécanismes de gestion appropriés
+exploitant les dernières contributions en terme d'algorithmiques
+distribués.  Des premiers travaux menés à l'école des Mines ont permis
+de valider plusieurs mécanismes via la mise en \oe uvre de prototypes
+experimentaux. Afin de passer du mode recherche à un mode plus
+industriel, nous avons commencé à regarder comment intégrer nos
+propositions au système OpenStack.
+
+\paragraph*{Maitriser OpenStack pour comprendre comment le modifier.\\}
+
+\paragraph*{Problème: Les faiblesses dans la conception d'OpenStack\\}
+
+OpenStack est une suite logiciel permettant d'opérer des plateformes
+de Cloud Computing de type IaaS. Elle est aujourd'hui la solution
+OpenSource retenue et supportée par un grand nombre d'acteurs aussi
+bien académiques et qu'industriels (850 institutions sont impliquées
+dans son développement, avec des acteurs de premier rangs tels que HP,
+RedHat ou encore plus récemment Google).  Bien qu'une des règles
+fondamentales pour le développement du système a pour objectif
+d'adresser la problématique du passage à l'échelle de chaque
+composant, le système comprend plusieurs briques logicielles qui ne
+repondent pas à cette règle. A titre d'exemple, Jonathan Pastor,
+candidat à une thèse de doctorat à l'école, a identifié la base de
+données MySQL au sein du composant Nova et a proposé un pilote
+permettant de basculer sur un modèle NoSQL passant à l'échelle de
+manière native. 
+
+
+
+\paragraph*{Objectif\\}
+L'objectif du travail proposé dans ce projet vise à étendre l'outil
+d'évaluation de performances
+Kolla-G5K\footnote{https://github.com/BeyondTheClouds/kolla-g5k}
+développé dans le cadre de l'initiative Discovery. Cet outil permet à
+ce jour de deployer une infrastructure OpenStack mono site dessus de
+la plateforme experimentale Grid'5000 via la technologie Docker et
+Ansible.  De part l'objectif visé par Discovery, à savoir la
+supervision d'infrastructures de type Fog/Edge Computing, il est
+primordiale d'étendre les fonctionnalités de l'outil actuel afin de
+permettre aux chercheurs du consortium d'évaluter la solution
+OpenStack dans un contexte multi-site et d'identifier les autres
+freins à la supervision d'architectures massivement distribuées.
+
+Le projet sera articulé autour de trois volets (le dernier pouvant être vu comme un bonus):
+\begin{itemize}
+\item La lecture et la compréhension d'articles scientifiques et de documentation technique (référencés ci-après) ; 
+\item L'extension de l'outil G5K afin de pouvoir décrire des configurations multi-sites et d'en assurer le deploiment.
+\item La mise en place d'un système d'analyse post-morten des resultats collectés. 
+\end{itemize}
+
+\paragraph*{Méthodologie du projet\\}
+Ce projet sera réalisé suivant une méthode agile. Il devra impliquer une
+contribution au projet \og~open source~\fg Kolla-G5K.
+
+
+\paragraph*{Bibliographie:\\}
+%
+\texttt{[1]} The DISCOVERY Initiative - Overcoming Major Limitations of Traditional Server-Centric Clouds by Operating Massively Distributed IaaS Facilities,  The DISCOVERY Consortium, Research Report - RR-8779, Mars 2016 - \url{https://hal.inria.fr/hal-01203648/file/RR-8779.pdf}.
+
+\texttt{[2]} Using the EXECO toolbox to perform automatic and reproducible cloud experiments, Matthieu Imbert et al., in Proceedings of 1st International Workshop on UsiNg and building ClOud Testbeds (UNICO, collocated with IEEE CloudCom 2013, Dec 2013 - \url{https://hal.inria.fr/hal-00861886/}.
+
+\texttt{[3]} OpenStack, Multisite deployment, Documentation technique - \url{http://docs.openstack.org/arch-design/multi-site.html}
+\end{note}
+
+
+
+\end{document}

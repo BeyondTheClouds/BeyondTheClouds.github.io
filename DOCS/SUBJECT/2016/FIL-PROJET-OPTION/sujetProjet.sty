@@ -1,0 +1,228 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sujetProjet}[2006/08/22]
+
+%\hoffset = -2cm
+%\voffset  =  -2cm
+%\textwidth = 16cm 
+%\textheight = 25cm
+
+%% date ? diff?rents formats
+\RequirePackage{datetime} % utilise fmtcount
+
+%% haut et bas de page
+\RequirePackage{fancyhdr}
+
+%% indentation
+\newcommand{\pasIndentation}{%
+% pas d'indentation au d?but d'un paragraphe
+\setlength{\parindent}{0pt}
+% saut plus important entre paragraphes 
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+}
+
+\newcommand{\titre}{Titre à initialiser (\verb+\initTitre{...}+)}
+\newcommand{\initTitre}[1]{\renewcommand{\titre}{#1}\title{#1}}
+
+\newcommand{\abrevTitre}{\titre}
+\newcommand{\initAbrevTitre}[1]{\renewcommand{\abrevTitre}{#1}}
+
+\newcommand{\sousTitre}{}
+\newcommand{\initSousTitre}[1]{%
+  \renewcommand{\sousTitre}{#1}\title{\titre \\ #1}}
+
+\newcommand{\auteurs}{}
+\newcommand{\initAuteurs}[1]{%
+  \author{#1} \renewcommand{\auteurs}{#1}}
+
+\newcommand{\destinataires}{}
+\newcommand{\initDestinataires}[1]{%
+  \renewcommand{\destinataires}{#1}}
+
+\newcommand{\dateNote}{\today}
+\newcommand{\abrevDateNote}{\ddmmyyyydate\today}
+\newcommand{\initDate}[3]{\renewcommand{\dateNote}{\formatdate{#1}{#2}{#3}} %
+                         \renewcommand{\abrevDateNote}{\ddmmyyyydate\formatdate{#1}{#2}{#3}} }
+
+\newcommand{\entite}{\'Ecole des mines de Nantes\\Département
+  d'informatique}
+\newcommand{\codeEntite}{Mines Nantes/INFO}
+\newcommand{\initEntite}[1]{%
+  \renewcommand{\entite}{#1}}
+\newcommand{\initCodeEntite}[1]{%
+  \renewcommand{\codeEntite}{#1}}
+
+\newcommand{\sousEntite}{}
+\newcommand{\codeSousEntite}{}
+\newcommand{\initSousEntite}[1]{%
+  \renewcommand{\sousEntite}{#1}}
+\newcommand{\initCodeSousEntite}[1]{%
+  \renewcommand{\codeSousEntite}{#1}}
+
+\newcommand{\codeNote}{}
+\newcommand{\initCodeNote}[1]{%
+  \renewcommand{\codeNote}{#1}}
+
+\newcommand{\versionNote}{}
+\newcommand{\initVersionNote}[1]{%
+  \renewcommand{\versionNote}{#1}}
+
+\newcommand{\historique}{}
+\newcommand{\initHistorique}[1]{%
+  \renewcommand{\historique}{#1}}
+
+\newcommand{\resumeNote}{}
+\newcommand{\initResumeNote}[1]{%
+  \renewcommand{\resumeNote}{#1}}
+
+\newif\if@couverture     \@couverturetrue
+
+\newenvironment{couverture}{%
+  \pagestyle{couverture}
+  \tocloftpagestyle{couverture}   
+}{%
+ \newpage
+ \pagestyle{pageInterieure}
+}
+
+\newenvironment{note}{%
+ \pagestyle{pageInterieure}
+}{
+ \thispagestyle{pageInterieure}
+}
+
+\RequirePackage{hyperref}
+
+\RequirePackage{longtable}
+\RequirePackage{calc}
+\newenvironment{cartouche}{%
+  \@couverturefalse
+  \begin{center}
+    \begin{longtable}{|p{\widthof{mmmmm}}|p{\textwidth - \widthof{mmmmmm}}|}
+      \hline
+}{%
+    \end{longtable}
+  \end{center}
+}
+
+\newcommand{\afficherTitre}{%
+  \if@couverture
+    \maketitle\thispagestyle{couverture}
+  \else
+    & \\
+    \textbf{Titre} & \textbf{\titre} \\ & \\ \hline
+  \fi}
+
+\newcommand{\afficherDate}{
+  \if@couverture
+    \date{\dateNote}
+  \else
+    & \\
+    \textbf{Date} & \dateNote \\ & \\ \hline
+  \fi}
+
+\newcommand{\afficherSousTitre}{
+  & \\
+  \textbf{Sous-titre} & \sousTitre \\ & \\ \hline}
+
+\newcommand{\afficherAuteurs}{
+  & \\
+  \textbf{Auteur(s)} & \auteurs \\ & \\ \hline}
+
+\newcommand{\afficherDestinataires}{
+  & \\
+  \textbf{Destinataire(s)} & \destinataires \\ & \\ \hline}
+
+\newcommand{\afficherCode}{
+  &\\
+  \textbf{Code} & \codeEntite/\codeSousEntite/\codeNote\\ & \\ \hline}
+
+\newcommand{\afficherVersion}{
+  & \\
+  \textbf{Version} & \versionNote \\ & \\ \hline}
+
+\newcommand{\afficherHistorique}{
+  & \\
+  \textbf{Historique} & \historique \\ & \\ \hline}
+
+\newcommand{\afficherResume}{
+  & \\
+  \textbf{Résumé} & \resumeNote \\ & \\ \hline}
+
+\RequirePackage{tocloft}
+\newcommand{\afficherSommaire}{%
+  & \\ 
+  \textbf{Sommaire} & %
+  \renewcommand{\@cftmaketoctitle}{}
+  \setlength{\cftbeforetoctitleskip}{0pt}
+  \setlength{\cftaftertoctitleskip}{0pt}
+  %\renewcommand{\contentsname}{}
+  \tableofcontents 
+  \\ \hline }
+
+%% programme d'un module
+\newenvironment{sujet}{%
+    \begin{center}
+    \begin{longtable}{|p{\widthof{mmmmmm}}|p{\textwidth - \widthof{mmmmmmm}}|}
+      \hline
+}{%
+    \end{longtable}
+  \end{center}
+}
+
+
+\newcommand{\afficherTuteur}[1]{
+  & \\
+  \textbf{Tuteur} & #1 \\ & \\ \hline}
+
+\newcommand{\afficherTuteurs}[1]{
+  & \\
+  \textbf{Tuteurs} & #1 \\ & \\ \hline}
+
+\newcommand{\afficherEntreprise}[1]{
+  & \\
+  \textbf{Entreprise} & #1 \\ & \\ \hline}
+
+\newcommand{\afficherProjet}[1]{
+  & \\
+  \textbf{Projet} & #1 \\ & \\ \hline}
+
+\newcommand{\afficherSiteWeb}[1]{
+  & \\
+  \textbf{Site Web} & \href{#1}{#1} \\ & \\ \hline}
+
+\newcommand{\afficherIntitule}[1]{
+  & \\
+  \textbf{Intitulé} & #1 \\ & \\ \hline}
+
+\newcommand{\afficherSujet}[1]{
+  & \\
+  \textbf{Sujet} & #1 \\ & \\ \hline}
+
+
+%\pagestyle{fancy}
+
+\addtolength{\headheight}{17pt}
+
+\fancypagestyle{couverture}{%
+\fancyhf{} % clear all header and footer fiel
+\fancyhead[L]{\entite}
+\fancyhead[C]{}
+\fancyhead[R]{\sousEntite}
+\fancyfoot[L]{\small\codeNote\ \versionNote} 
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\small\abrevDateNote}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+\fancypagestyle{pageInterieure}{%
+\fancyhf{} % clear all header and footer fiel
+\fancyhead[L]{\codeEntite}
+\fancyhead[C]{\abrevTitre}
+\fancyhead[R]{\codeSousEntite}
+\fancyfoot[L]{\small\codeNote\ \versionNote} 
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\small\abrevDateNote}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+\endinput
