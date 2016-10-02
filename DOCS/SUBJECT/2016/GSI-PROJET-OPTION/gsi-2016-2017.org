@@ -1,0 +1,143 @@
+* Titre + Courte introduction
+Mesurer les performances d'exécution d'un OpenStack large échelle
+
+OpenStack[fn:openstack] est un ensemble de services libres (free
+software) pour déployer et opérer des plateformes de Cloud Computing.
+Le dessein de ce projet est d'utiliser les outils de profilage de code
+pour comprendre les limites de déploiement d'un OpenStack à très large
+échelle (plusieurs centaines de machines en parallèle).
+
+# En particulier, étudier et intégrer l'outil de profilage de code
+# d'OpenStack (un cloud open source) dans la suite d'outil de
+# monitorage utilisé par les chercheurs du projet DisCoVery.
+
+[fn:openstack] https://www.openstack.org/
+
+* Tuteurs
+Adrien Lebre, Ronan-Alexandre Cherrueau
+
+* Projet associé
+Ce projet accompagne l'initiative DisCoVery[fn:discovery] qui
+implémente une infrastructure de Cloud Computing entièrement
+décentralisée pour permettre son passage à l'échelle. Pour ce faire,
+l'initiative DisCoVery revisite depuis 2013 les principaux composants
+du Cloud Computing. En particulier, DisCoVery revisite la solution
+libre OpenStack pour laquelle, bien que l’accent ait été mis sur le
+passage à l'échelle au cours de son développement, de nombreux
+services ne satisfont pas ce critère.
+
+[fn:discovery] [[https://beyondtheclouds.github.io/]]
+
+* Domaines
+- Cloud Computing
+- Monitorage
+- Développement python, système
+
+* Compétences requises
+- Fondamentaux Cloud Computing
+- Programmation objet, système
+
+* Compétences à acquérir
+- Expertise sur l’architecture OpenStack
+- Langage python, système
+- Opérer un cloud de plusieurs centaines de machines
+- Contribution à un projet libre
+
+* Contexte
+Afin de supporter la demande croissante d’informatique utilitaire tout
+en prenant en compte les aspects énergétique et financier, la tendance
+actuelle consiste à construire des centres de données de plus en plus
+grands dans un nombre limité de lieux stratégiques. Cette approche
+permet sans aucun doute de satisfaire la demande tout en conservant
+une approche centralisée de la gestion de ces ressources, mais elle
+reste loin de pouvoir fournir des infrastructures de calcul utilitaire
+efficaces et durables. L’initiative de recherche DisCoVery propose une
+approche radicalement différente permettant de prendre en compte la
+localité des demandes dès le départ. Pour ce faire, elle propose de
+tirer parti de tous les équipements disponibles sur l’Internet afin de
+fournir des infrastructures de calcul utilitaire qui permettront par
+leur distribution de prendre en compte plus efficacement la dispersion
+géographique des utilisateurs et leur demande toujours croissante. Un
+des aspects critiques pour l’émergence de telles plateformes de
+calcul utilitaire "local" (LUC : Locality aware Utility Computing) est
+la disponibilité de mécanismes de gestion appropriés exploitant les
+dernières contributions en terme d’algorithmiques distribuées. Des
+premiers travaux menés à l’école des Mines ont permis de valider
+plusieurs mécanismes par la mise en œuvre de prototypes expérimentaux.
+Afin de passer du mode recherche à un mode plus industriel, nous avons
+commencé à regarder comment intégrer nos propositions au système
+OpenStack.
+
+* Problème
+Concrètement, cinq services principaux forment OpenStack : glance,
+nova, keyston, cinder, neutron. Chaque service est une brique
+logicielle compliquée qui est faite de plusieurs centaines de classes
+et plusieurs milliers de lignes de code. Tous ces services sont
+ensuite composés pour implémenter les fonctionnalités d'OpenStack tels
+que le démarrage d'une machine virtuelle. Mais, la composition de tous
+ces services compliqués produit une application dont les performances
+sont difficilement prédictibles.
+
+Ces problèmes de performances sont au coeur de l'initiative DisCoVery
+qui réalise actuellement des expérimentations pour montrer les limites
+d'OpenStack dans un contexte à très large échelle. En informatique, il
+existe plusieurs moyens de traquer les problèmes de performance. Par
+exemple, DisCoVery utilise des outils de monitorage pour mesurer la
+consommation mémoire et CPU des principaux composants d'OpenStack. Un
+autre moyen de traquer les problèmes de performance est de faire du
+profilage de code (/code profiling/). Le profilage instrumente le code
+pour analyser dynamiquement l'exécution d'un programme et mesurer sa
+complexité temporelle, le temps passé à exécuter une instruction
+particulière ou le nombre de fois qu'une fonction est appelée.
+OpenStack dispose de son propre outil de profilage, nommé
+/osprofiler/[fn:osprofiler], mais celui-ci n'est pas intégré dans la
+suite d'outils de monitorage utilisée par DisCoVery.
+
+[fn:osprofiler] http://docs.openstack.org/developer/osprofiler/
+
+* Objectifs
+** Le profilage dans OpenStack
+L'outil osprofiler est très récent. De ce fait, il n'est pas encore
+empaqueté avec tous les services d'OpenStack. Il convient donc de
+passer en revue l'ensemble de ces services pour savoir où l'outil
+osprofiler est empaqueté et où il faut modifier le code pour permettre
+son utilisation. L'intérêt de ce premier objectif est de se
+familiariser avec l'écosystème d'OpenStack.
+
+** Intégrer osprofiler dans la suite d'outils de DisCoVery
+Une fois l'écosystème d'OpenStack passé en revue, il convient
+d'ajouter le support d'osprofiler dans kolla-g5k[fn:kolla-g5k], la
+suite d'outils de monitorage utilisée par DisCoVery. Cette suite
+permet de déployer une infrastructure OpenStack large échelle
+au-dessus de la plateforme expérimentale Grid’5000[fn:g5k] via les
+technologies Docker et Ansible pour réaliser des tests de performance.
+
+Le support d'osprofiler dans kolla-g5k doit démarrer à la demande un
+profilage dans un déploiement d'OpenStack et retourner les résultats.
+Ceci présuppose de modifier automatiquement les images Docker où
+osprofiler n'est pas empaqueté.
+
+[fn:kolla-g5k] [[https://github.com/BeyondTheClouds/kolla-g5k]]
+[fn:g5k] [[https://www.grid5000.fr/]]
+
+** Mesurer les performances dans un déploiement à large échelle
+Dans le même temps, des mesures large échelle doivent être faites. Les
+mesures portent sur le démarrage de plusieurs centaines de machines
+virtuelles en parallèle dans différents contextes de déploiement (ex,
+OpenStack monosite vs. multisites).
+
+L'objectif final est d'identifier les faiblesses actuelles dans
+l'implémentation d'OpenStack lors d'un déploiement à très large
+échelle et de faire un retour à la communauté.
+
+* Livrables
+- rapport sur l’architecture d’OpenStack (ces principaux composants
+  et leur rôle ainsi que leur support d'osprofiler)
+- génération de trace par osprofiler sur un OpenStack local
+- intégration de l'outil osprofiler dans la suite kolla-g5k
+- évaluation des performances dans un OpenStack monosite vs
+  multisites
+- synthèse des résultats obtenus et retour à la communauté
+
+* Méthodologie du projet
+Méthode agile
