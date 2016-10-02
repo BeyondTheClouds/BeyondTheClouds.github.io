@@ -71,14 +71,14 @@ OpenStack.
 * Problème
 Concrètement, cinq services principaux forment OpenStack : glance,
 nova, keyston, cinder, neutron. Chaque service est une brique
-logicielle compliquée qui est faite de plusieurs centaines de classes
+logicielle complexe qui est faite de plusieurs centaines de classes
 et plusieurs milliers de lignes de code. Tous ces services sont
-ensuite composés pour implémenter les fonctionnalités d'OpenStack tels
+ensuite composés pour implémenter les fonctionnalités d'OpenStack telles
 que le démarrage d'une machine virtuelle. Mais, la composition de tous
-ces services compliqués produit une application dont les performances
+ces services complexes produit une application dont les performances
 sont difficilement prédictibles.
 
-Ces problèmes de performances sont au coeur de l'initiative DisCoVery
+Ces problèmes de performance sont au cœur de l'initiative DisCoVery
 qui réalise actuellement des expérimentations pour montrer les limites
 d'OpenStack dans un contexte à très large échelle. En informatique, il
 existe plusieurs moyens de traquer les problèmes de performance. Par
@@ -133,7 +133,7 @@ l'implémentation d'OpenStack lors d'un déploiement à très large
 * Livrables
 - rapport sur l’architecture d’OpenStack (ces principaux composants
   et leur rôle ainsi que leur support d'osprofiler)
-- génération de trace par osprofiler sur un OpenStack local
+- génération de traces par osprofiler sur un OpenStack local
 - intégration de l'outil osprofiler dans la suite kolla-g5k
 - évaluation des performances dans un OpenStack monosite vs
   multisites
