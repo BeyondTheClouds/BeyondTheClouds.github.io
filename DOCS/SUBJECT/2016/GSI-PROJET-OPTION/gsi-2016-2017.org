@@ -1,5 +1,5 @@
 * Titre + Courte introduction
-Mesurer les performances d'exécution d'un OpenStack large échelle
+Mesurer et comprendre les performances d'exécution d'un OpenStack large échelle
 
 OpenStack[fn:openstack] est un ensemble de services libres (free
 software) pour déployer et opérer des plateformes de Cloud Computing.
@@ -30,7 +30,7 @@ services ne satisfont pas ce critère.
 
 * Domaines
 - Cloud Computing
-- Monitorage
+- Supervision / Monitorage
 - Développement python, système
 
 * Compétences requises
