@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="112.24094mm"
+   height="80.622009mm"
+   viewBox="0 0 397.70414 285.66853"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.0 r"
+   sodipodi:docname="deployment-scenario-multi-regions2.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.9670282"
+     inkscape:cx="122.46046"
+     inkscape:cy="43.035582"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1600"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     showguides="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-151.91524,-199.38524)">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect390"
+       width="93.198448"
+       height="60.810173"
+       x="351.34665"
+       y="269.9436" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5602"
+       d="m 303.64823,249.34035 1.36634,155.77864"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.79475152;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5933"
+       d="M 502.35205,249.9375 H 303.28655"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.21903396;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.83040583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 502.46797,268.27152 V 250.15189"
+       id="path6022"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path6456"
+       d="m 273.90643,329.89825 c -5.6782,0 -5.74165,0 -5.74165,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g859">
+      <path
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 317.9136,304.87836 19.18287,26.35608 -17.83197,25.58842 -27.82868,0.25588 -17.83197,-27.63549 19.45306,-24.30901 z"
+         id="path6462"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccc" />
+      <text
+         id="text6464"
+         y="337.20547"
+         x="285.22186"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:17.5px"
+           y="337.20547"
+           x="285.22186"
+           id="tspan6466"
+           sodipodi:role="line">WAN</tspan></text>
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.84291476;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 267.18821,241.69161 1.36352,176.88994"
+       id="path6468"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       y="266.1936"
+       x="347.59665"
+       height="60.810173"
+       width="93.198448"
+       id="rect4140-4"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15.96067238px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:none;stroke-width:1.10000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="484.11435"
+       y="208.51811"
+       id="text4193-6"
+       transform="scale(0.72048295,1.3879579)"><tspan
+         sodipodi:role="line"
+         id="tspan4195-4"
+         x="484.11435"
+         y="208.51811"
+         style="fill:none;fill-opacity:1;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none">Nova compute</tspan><tspan
+         sodipodi:role="line"
+         x="484.11435"
+         y="228.46895"
+         id="tspan4197-6"
+         style="fill:none;fill-opacity:1;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none">Neutron agents</tspan></text>
+    <rect
+       y="272.86197"
+       x="356.45447"
+       height="22.312515"
+       width="75.482765"
+       id="rect4425-4"
+       style="opacity:1;fill:#89d199;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text4427-3"
+       y="289.37955"
+       x="374.91119"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="289.37955"
+         x="374.91119"
+         id="tspan4429-1"
+         sodipodi:role="line">Nova</tspan></text>
+    <rect
+       y="272.11862"
+       x="355.71115"
+       height="23.799196"
+       width="76.969444"
+       id="rect4431-4"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#ff9600;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4435-1"
+       width="75.482765"
+       height="22.312515"
+       x="356.4545"
+       y="298.02289" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="363.89923"
+       y="314.54047"
+       id="text4437-0"><tspan
+         sodipodi:role="line"
+         id="tspan4439-8"
+         x="363.89923"
+         y="314.54047"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">Neutron</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4441-3"
+       width="76.969444"
+       height="23.799196"
+       x="355.71115"
+       y="297.27954" />
+    <g
+       id="g6086"
+       transform="translate(-102.74505,32.974852)">
+      <g
+         id="g5771"
+         style="fill:#c8c8c8;fill-opacity:1"
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,83.153775)">
+        <rect
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect5773"
+           width="141.83122"
+           height="48.038212"
+           x="407.78265"
+           y="210.49057" />
+        <text
+           id="text5775"
+           y="228.83427"
+           x="409.60806"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             y="228.83427"
+             x="409.60806"
+             id="tspan5777"
+             sodipodi:role="line">Nova compute</tspan><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             id="tspan5779"
+             y="250.70927"
+             x="409.60806"
+             sodipodi:role="line">Neutron agents</tspan></text>
+      </g>
+      <g
+         transform="translate(157.20641,36.669927)"
+         id="g4245-7">
+        <rect
+           style="opacity:1;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4241-4"
+           width="75.482765"
+           height="22.312515"
+           x="106.57784"
+           y="205.19876" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="108.69423"
+           y="220.36136"
+           id="text4164-6"><tspan
+             sodipodi:role="line"
+             id="tspan4166-4"
+             x="108.69423"
+             y="220.36136"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">KeyStone</tspan></text>
+        <rect
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4243-2"
+           width="76.969444"
+           height="23.799196"
+           x="105.8345"
+           y="204.45541" />
+      </g>
+    </g>
+    <g
+       id="g6073"
+       transform="translate(-102.74505,32.974852)">
+      <g
+         id="g5059"
+         style="fill:#c8c8c8;fill-opacity:1"
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,38.630344)">
+        <rect
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect5061"
+           width="141.83122"
+           height="48.038212"
+           x="407.78265"
+           y="210.49057" />
+        <text
+           id="text5063"
+           y="228.83427"
+           x="409.60806"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             y="228.83427"
+             x="409.60806"
+             id="tspan5065"
+             sodipodi:role="line">Nova compute</tspan><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             id="tspan5067"
+             y="250.70927"
+             x="409.60806"
+             sodipodi:role="line">Neutron agents</tspan></text>
+      </g>
+      <g
+         transform="translate(163.85269,-98.527764)"
+         id="g4291-3">
+        <g
+           transform="translate(-6.6462809,90.674261)"
+           id="g4251-2">
+          <rect
+             style="opacity:1;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect4253-6"
+             width="75.482765"
+             height="22.312515"
+             x="106.57784"
+             y="205.19876" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             x="115.54604"
+             y="221.31082"
+             id="text4255-2"><tspan
+               sodipodi:role="line"
+               id="tspan4257-6"
+               x="115.54604"
+               y="221.31082"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">Horizon</tspan></text>
+          <rect
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect4259-8"
+             width="76.969444"
+             height="23.799196"
+             x="105.8345"
+             y="204.45541" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g6098"
+       transform="translate(-102.74505,32.974852)">
+      <g
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,127.67723)"
+         style="fill:#c8c8c8;fill-opacity:1"
+         id="g5761">
+        <rect
+           y="210.49057"
+           x="407.78265"
+           height="48.038212"
+           width="141.83122"
+           id="rect5763"
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="409.60806"
+           y="228.83427"
+           id="text5765"><tspan
+             sodipodi:role="line"
+             id="tspan5767"
+             x="409.60806"
+             y="228.83427"
+             style="fill:#c8c8c8;fill-opacity:1">Nova compute</tspan><tspan
+             sodipodi:role="line"
+             x="409.60806"
+             y="250.70927"
+             id="tspan5769"
+             style="fill:#c8c8c8;fill-opacity:1">Neutron agents</tspan></text>
+      </g>
+      <g
+         transform="translate(70.804754,1.91274)"
+         id="g4375-8">
+        <rect
+           y="284.4794"
+           x="192.97949"
+           height="22.312515"
+           width="75.482765"
+           id="rect4363-9"
+           style="opacity:1;fill:#922e2e;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           id="text4365-6"
+           y="300.23526"
+           x="208.9057"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="300.23526"
+             x="208.9057"
+             id="tspan4367-3"
+             sodipodi:role="line">AMQP</tspan></text>
+        <rect
+           y="283.73605"
+           x="192.23616"
+           height="23.799196"
+           width="76.969444"
+           id="rect4369-0"
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      </g>
+    </g>
+    <g
+       id="g6135"
+       transform="translate(200.94233,-213.93567)">
+      <g
+         id="g5781"
+         style="fill:#c8c8c8;fill-opacity:1"
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,261.24754)">
+        <rect
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect5783"
+           width="141.83122"
+           height="48.038212"
+           x="407.78265"
+           y="210.49057" />
+        <text
+           id="text5785"
+           y="228.83427"
+           x="409.60806"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             y="228.83427"
+             x="409.60806"
+             id="tspan5787"
+             sodipodi:role="line">Nova compute</tspan><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             id="tspan5789"
+             y="250.70927"
+             x="409.60806"
+             sodipodi:role="line">Neutron agents</tspan></text>
+      </g>
+      <g
+         transform="translate(163.37796,97.029563)"
+         id="g4302">
+        <rect
+           y="322.93289"
+           x="100.4063"
+           height="22.312515"
+           width="75.482765"
+           id="rect4263"
+           style="opacity:1;fill:#ff9600;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           id="text4265"
+           y="339.45047"
+           x="107.85104"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="339.45047"
+             x="107.85104"
+             id="tspan4267"
+             sodipodi:role="line">Neutron</tspan></text>
+        <rect
+           y="322.18954"
+           x="99.662956"
+           height="23.799196"
+           width="76.969444"
+           id="rect4269"
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      </g>
+    </g>
+    <g
+       id="g6110"
+       transform="translate(-102.74505,32.974852)">
+      <g
+         id="g5751"
+         style="fill:#c8c8c8;fill-opacity:1"
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,172.20067)">
+        <rect
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect5753"
+           width="141.83122"
+           height="48.038212"
+           x="407.78265"
+           y="210.49057" />
+        <text
+           id="text5755"
+           y="228.83427"
+           x="409.60806"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             y="228.83427"
+             x="409.60806"
+             id="tspan5757"
+             sodipodi:role="line">Nova compute</tspan><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             id="tspan5759"
+             y="250.70927"
+             x="409.60806"
+             sodipodi:role="line">Neutron agents</tspan></text>
+      </g>
+      <g
+         id="g4381-7"
+         transform="translate(70.804754,46.436183)">
+        <g
+           id="g4391-8">
+          <rect
+             y="284.4794"
+             x="192.97949"
+             height="22.312515"
+             width="75.482765"
+             id="rect4383-8"
+             style="opacity:1;fill:#922e2e;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+          <text
+             id="text4385-8"
+             y="301.09586"
+             x="203.05365"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+               y="301.09586"
+               x="203.05365"
+               id="tspan4387-6"
+               sodipodi:role="line">RDBMS</tspan></text>
+          <rect
+             y="283.73605"
+             x="192.23616"
+             height="23.799196"
+             width="76.969444"
+             id="rect4389-5"
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g6147"
+       transform="translate(-102.38557,-57.254564)">
+      <g
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,305.77098)"
+         style="fill:#c8c8c8;fill-opacity:1"
+         id="g5741">
+        <rect
+           y="210.49057"
+           x="407.78265"
+           height="48.038212"
+           width="141.83122"
+           id="rect5743"
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="409.60806"
+           y="228.83427"
+           id="text5745"><tspan
+             sodipodi:role="line"
+             id="tspan5747"
+             x="409.60806"
+             y="228.83427"
+             style="fill:#c8c8c8;fill-opacity:1">Nova compute</tspan><tspan
+             sodipodi:role="line"
+             x="409.60806"
+             y="250.70927"
+             id="tspan5749"
+             style="fill:#c8c8c8;fill-opacity:1">Neutron agents</tspan></text>
+      </g>
+      <g
+         transform="translate(157.20641,100.25112)"
+         id="g4308-8">
+        <g
+           transform="translate(4.6830018e-8,159.03601)"
+           id="g4275-1">
+          <rect
+             style="opacity:1;fill:#89d1fb;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect4277-6"
+             width="75.482765"
+             height="22.312515"
+             x="106.57784"
+             y="205.19876" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             x="118.29628"
+             y="221.94705"
+             id="text4279-3"><tspan
+               sodipodi:role="line"
+               id="tspan4281-8"
+               x="118.29628"
+               y="221.94705"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">Glance</tspan></text>
+          <rect
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect4283-7"
+             width="76.969444"
+             height="23.799196"
+             x="105.8345"
+             y="204.45541" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g6123"
+       transform="translate(94.8958,-169.41224)">
+      <g
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,216.72411)"
+         style="fill:#c8c8c8;fill-opacity:1"
+         id="g5791">
+        <rect
+           y="210.49057"
+           x="407.78265"
+           height="48.038212"
+           width="141.83122"
+           id="rect5793"
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="409.60806"
+           y="228.83427"
+           id="text5795"><tspan
+             sodipodi:role="line"
+             id="tspan5797"
+             x="409.60806"
+             y="228.83427"
+             style="fill:#c8c8c8;fill-opacity:1">Nova compute</tspan><tspan
+             sodipodi:role="line"
+             x="409.60806"
+             y="250.70927"
+             id="tspan5799"
+             style="fill:#c8c8c8;fill-opacity:1">Neutron agents</tspan></text>
+      </g>
+      <g
+         id="g4331"
+         transform="translate(157.20641,11.204249)">
+        <rect
+           style="opacity:1;fill:#89d199;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4319"
+           width="75.482765"
+           height="22.312515"
+           x="106.57784"
+           y="364.23477" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="125.03456"
+           y="380.75235"
+           id="text4321"><tspan
+             sodipodi:role="line"
+             id="tspan4323"
+             x="125.03456"
+             y="380.75235"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">Nova</tspan></text>
+        <rect
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4325"
+           width="76.969444"
+           height="23.799196"
+           x="105.8345"
+           y="363.49142" />
+      </g>
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path5268-3"
+       d="m 267.20712,241.94352 c -21.11589,0 -21.35183,0 -21.35183,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.51024431px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.5235225px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 267.96486,285.83081 H 245.8243"
+       id="path5419-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5421-7"
+       d="m 268.67767,330.07618 c -23.26199,0 -23.52191,0 -23.52191,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.53554618px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5425"
+       d="M 268.60178,418.29825 H 246.44244"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.50704753px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.52756077px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 267.98144,373.49836 c -22.57346,0 -22.82568,0 -22.82568,0"
+       id="path5278"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path10084"
+       d="m 502.46797,250.58548 c 0,-15.0046 0,-15.17226 0,-15.17226"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.83040583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.87821692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 394.20413,251.66392 c 0,-16.78214 0,-16.96966 0,-16.96966"
+       id="path10086"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path10088"
+       d="m 394.20413,266.40259 c 0,-16.78214 0,-16.96966 0,-16.96966"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.87821692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       transform="translate(95.97424,-14.47647)"
+       id="g10166">
+      <g
+         id="g10168"
+         style="fill:#c8c8c8;fill-opacity:1"
+         transform="matrix(0.65576553,0,0,0.7243674,-12.388184,216.72411)">
+        <rect
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect10170"
+           width="141.83122"
+           height="48.038212"
+           x="407.78265"
+           y="210.49057" />
+        <text
+           id="text10172"
+           y="228.83427"
+           x="409.60806"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             y="228.83427"
+             x="409.60806"
+             id="tspan10174"
+             sodipodi:role="line">Nova compute</tspan><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             id="tspan10176"
+             y="250.70927"
+             x="409.60806"
+             sodipodi:role="line">Neutron agents</tspan></text>
+      </g>
+      <g
+         transform="translate(157.20641,11.204249)"
+         id="g10178">
+        <rect
+           y="364.23477"
+           x="106.57784"
+           height="22.312515"
+           width="75.482765"
+           id="rect10180"
+           style="opacity:1;fill:#89d199;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+        <text
+           id="text10182"
+           y="380.75235"
+           x="125.03456"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="380.75235"
+             x="125.03456"
+             id="tspan10184"
+             sodipodi:role="line">Nova</tspan></text>
+        <rect
+           y="363.49142"
+           x="105.8345"
+           height="23.799196"
+           width="76.969444"
+           id="rect10186"
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      </g>
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path10224"
+       d="m 395.28257,406.59969 c 0,-16.78214 0,-16.96966 0,-16.96966"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.87821692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.87821692;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 395.28257,421.33836 c 0,-16.78214 0,-16.96966 0,-16.96966"
+       id="path10226"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g314"
+       transform="translate(-103.50072,85.78218)">
+      <g
+         id="g4353"
+         style="fill:#c8c8c8;fill-opacity:1"
+         transform="matrix(0.65432596,0,0,1.1684557,293.13291,-63.197668)">
+        <rect
+           style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4355"
+           width="141.83122"
+           height="48.038212"
+           x="407.78265"
+           y="210.49057" />
+        <text
+           id="text4357"
+           y="228.83427"
+           x="409.60806"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             y="228.83427"
+             x="409.60806"
+             id="tspan4359"
+             sodipodi:role="line">Nova compute</tspan><tspan
+             style="fill:#c8c8c8;fill-opacity:1"
+             id="tspan4361"
+             y="250.70927"
+             x="409.60806"
+             sodipodi:role="line">Neutron agents</tspan></text>
+      </g>
+      <g
+         id="g4363"
+         transform="translate(375.63672,-97.603556)">
+        <rect
+           style="opacity:1;fill:#922e2e;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4365"
+           width="75.482765"
+           height="22.312515"
+           x="192.97949"
+           y="284.4794" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="208.9057"
+           y="300.23526"
+           id="text4367"><tspan
+             sodipodi:role="line"
+             id="tspan4369"
+             x="208.9057"
+             y="300.23526"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">AMQP</tspan></text>
+        <rect
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4371"
+           width="76.969444"
+           height="23.799196"
+           x="192.23616"
+           y="283.73605" />
+      </g>
+      <g
+         transform="translate(375.9962,-71.929938)"
+         id="g4385">
+        <g
+           id="g4387">
+          <rect
+             style="opacity:1;fill:#922e2e;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect4389"
+             width="75.482765"
+             height="22.312515"
+             x="192.97949"
+             y="284.4794" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             x="203.05365"
+             y="301.09586"
+             id="text4391"><tspan
+               sodipodi:role="line"
+               id="tspan4393"
+               x="203.05365"
+               y="301.09586"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">RDBMS</tspan></text>
+          <rect
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect4395"
+             width="76.969444"
+             height="23.799196"
+             x="192.23616"
+             y="283.73605" />
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.21903396;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 502.35205,404.51379 H 304.71922"
+       id="path4420"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <rect
+       y="423.6936"
+       x="351.34665"
+       height="60.810173"
+       width="93.198448"
+       id="rect394"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect396"
+       width="93.198448"
+       height="60.810173"
+       x="347.59665"
+       y="419.9436" />
+    <text
+       transform="scale(0.72048295,1.3879579)"
+       id="text402"
+       y="319.29236"
+       x="484.11435"
+       style="font-style:normal;font-weight:normal;font-size:15.96067238px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:none;fill-opacity:1;stroke:none;stroke-width:1.10000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="fill:none;fill-opacity:1;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none"
+         y="319.29236"
+         x="484.11435"
+         id="tspan398"
+         sodipodi:role="line">Nova compute</tspan><tspan
+         style="fill:none;fill-opacity:1;stroke-width:1.10000002;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan400"
+         y="339.24319"
+         x="484.11435"
+         sodipodi:role="line">Neutron agents</tspan></text>
+    <rect
+       style="opacity:1;fill:#89d199;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect404"
+       width="75.482765"
+       height="22.312515"
+       x="356.45447"
+       y="426.61194" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="374.91119"
+       y="443.12952"
+       id="text408"><tspan
+         sodipodi:role="line"
+         id="tspan406"
+         x="374.91119"
+         y="443.12952"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">Nova</tspan></text>
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect410"
+       width="76.969444"
+       height="23.799196"
+       x="355.71115"
+       y="425.86859" />
+    <rect
+       y="451.77289"
+       x="356.4545"
+       height="22.312515"
+       width="75.482765"
+       id="rect412"
+       style="opacity:1;fill:#ff9600;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text416"
+       y="468.29047"
+       x="363.89923"
+       style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         y="468.29047"
+         x="363.89923"
+         id="tspan414"
+         sodipodi:role="line">Neutron</tspan></text>
+    <rect
+       y="451.02954"
+       x="355.71115"
+       height="23.799196"
+       width="76.969444"
+       id="rect418"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       id="g562"
+       transform="translate(0,154.93577)">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.83040583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 502.46797,268.27152 V 250.15189"
+         id="path472"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <g
+         id="g494"
+         transform="translate(200.94233,-213.93567)">
+        <g
+           id="g482"
+           style="fill:#c8c8c8;fill-opacity:1"
+           transform="matrix(0.65576553,0,0,0.7243674,-12.388184,261.24754)">
+          <rect
+             style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect474"
+             width="141.83122"
+             height="48.038212"
+             x="407.78265"
+             y="210.49057" />
+          <text
+             id="text480"
+             y="228.83427"
+             x="409.60806"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="fill:#c8c8c8;fill-opacity:1"
+               y="228.83427"
+               x="409.60806"
+               id="tspan476"
+               sodipodi:role="line">Nova compute</tspan><tspan
+               style="fill:#c8c8c8;fill-opacity:1"
+               id="tspan478"
+               y="250.70927"
+               x="409.60806"
+               sodipodi:role="line">Neutron agents</tspan></text>
+        </g>
+        <g
+           transform="translate(163.37796,97.029563)"
+           id="g492">
+          <rect
+             y="322.93289"
+             x="100.4063"
+             height="22.312515"
+             width="75.482765"
+             id="rect484"
+             style="opacity:1;fill:#ff9600;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1" />
+          <text
+             id="text488"
+             y="339.45047"
+             x="107.85104"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+               y="339.45047"
+               x="107.85104"
+               id="tspan486"
+               sodipodi:role="line">Neutron</tspan></text>
+          <rect
+             y="322.18954"
+             x="99.662956"
+             height="23.799196"
+             width="76.969444"
+             id="rect490"
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        </g>
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path496"
+         d="m 502.46797,250.58548 c 0,-15.0046 0,-15.17226 0,-15.17226"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.83040583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         id="g530"
+         transform="translate(-103.50072,85.78218)">
+        <g
+           id="g506"
+           style="fill:#c8c8c8;fill-opacity:1"
+           transform="matrix(0.65432596,0,0,1.1684557,293.13291,-63.197668)">
+          <rect
+             style="opacity:1;fill:#c8c8c8;fill-opacity:1;stroke:#000000;stroke-width:1.10201645;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect498"
+             width="141.83122"
+             height="48.038212"
+             x="407.78265"
+             y="210.49057" />
+          <text
+             id="text504"
+             y="228.83427"
+             x="409.60806"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#c8c8c8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="fill:#c8c8c8;fill-opacity:1"
+               y="228.83427"
+               x="409.60806"
+               id="tspan500"
+               sodipodi:role="line">Nova compute</tspan><tspan
+               style="fill:#c8c8c8;fill-opacity:1"
+               id="tspan502"
+               y="250.70927"
+               x="409.60806"
+               sodipodi:role="line">Neutron agents</tspan></text>
+        </g>
+        <g
+           id="g516"
+           transform="translate(375.63672,-97.603556)">
+          <rect
+             style="opacity:1;fill:#922e2e;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect508"
+             width="75.482765"
+             height="22.312515"
+             x="192.97949"
+             y="284.4794" />
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             x="208.9057"
+             y="300.23526"
+             id="text512"><tspan
+               sodipodi:role="line"
+               id="tspan510"
+               x="208.9057"
+               y="300.23526"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">AMQP</tspan></text>
+          <rect
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+             id="rect514"
+             width="76.969444"
+             height="23.799196"
+             x="192.23616"
+             y="283.73605" />
+        </g>
+        <g
+           transform="translate(375.9962,-71.929938)"
+           id="g528">
+          <g
+             id="g526">
+            <rect
+               style="opacity:1;fill:#922e2e;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:1.5, 4.5;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect518"
+               width="75.482765"
+               height="22.312515"
+               x="192.97949"
+               y="284.4794" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="203.05365"
+               y="301.09586"
+               id="text522"><tspan
+                 sodipodi:role="line"
+                 id="tspan520"
+                 x="203.05365"
+                 y="301.09586"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">RDBMS</tspan></text>
+            <rect
+               style="opacity:1;fill:none;fill-opacity:1;stroke:#707070;stroke-width:0.43752179;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect524"
+               width="76.969444"
+               height="23.799196"
+               x="192.23616"
+               y="283.73605" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g867"
+       transform="translate(0,-81.040992)">
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path861"
+         d="m 317.9136,304.87836 19.18287,26.35608 -17.83197,25.58842 -27.82868,0.25588 -17.83197,-27.63549 19.45306,-24.30901 z"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="285.22186"
+         y="337.20547"
+         id="text865"><tspan
+           sodipodi:role="line"
+           id="tspan863"
+           x="285.22186"
+           y="337.20547"
+           style="font-size:17.5px">WAN</tspan></text>
+    </g>
+    <g
+       transform="translate(0,73.535298)"
+       id="g875">
+      <path
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 317.9136,304.87836 19.18287,26.35608 -17.83197,25.58842 -27.82868,0.25588 -17.83197,-27.63549 19.45306,-24.30901 z"
+         id="path869"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccc" />
+      <text
+         id="text873"
+         y="337.20547"
+         x="285.22186"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:17.5px"
+           y="337.20547"
+           x="285.22186"
+           id="tspan871"
+           sodipodi:role="line">WAN</tspan></text>
+    </g>
+  </g>
+</svg>
