@@ -1,0 +1,200 @@
+\documentclass[a4paper,twoside]{article}
+
+\usepackage{RR}
+\usepackage{hyperref}
+%\usepackage[frenchb]{babel}
+%\usepackage[T1]{fontenc} % avec T1 comme option  d'encodage c'est ben mieux, surtout pour taper du français.
+\usepackage[utf8]{inputenc}
+\usepackage[table]{xcolor}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amsmath, amsthm}
+\usepackage{stmaryrd}
+\usepackage{lscape}
+
+\usepackage{url} \urlstyle{sf}%
+\usepackage{graphicx}%
+\usepackage{subfigure}
+\usepackage{listings}%
+
+\lstset{%
+  basicstyle=\scriptsize,%
+  numbers=left,
+  %columns=fullflexible,%
+  language=XML,%
+  %frame=shadowbox,
+    frame=lbtr,%
+  frameround=tttt,%
+  tabsize=2,
+  breaklines=true
+}%
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,positioning}
+\usepackage{array}
+\usepackage{xspace}
+
+\newcommand{\ie}[0]{{\em i.e.},\xspace}
+\newcommand{\vs}[0]{{\em vs.}\xspace}
+\newcommand{\eg}[0]{{\em e.g.},\xspace}
+\newcommand{\etal}[0]{{\em et al.}\xspace}
+\newcommand{\wrt}[0]{{\em w.r.t.}\xspace}
+\newcommand{\aka}[0]{{\em a.k.a.}\xspace}
+
+\sloppy
+
+%%% FORMAT DOCUMENT
+
+\def\textfraction{0}
+\def\floatpagefraction{1}
+\def\topnumber{3}
+\def\bottomnumber{3}
+\def\totalnumber{3}
+\def\topfraction{1}
+\def\bottomfraction{1}
+
+%%.
+\usepackage{bold-extra,graphicx,latexsym,mathrsfs,subfigure,xspace}
+
+\usepackage{color}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{ifthen}
+
+\usepackage{hyperref}
+
+\newcolumntype{M}[1]{>{\raggedleft}m{#1}}
+\newcommand{\discovery}{DISCOVERY\xspace}
+
+%% CT %%
+\newcommand{\ftodo}[2][\relax]  % \TODO[editor]{text} 
+  {\ensuremath{{}^{\mbox{\tiny\bf #1}}}~\textbf{#2}}
+
+\begin{document}
+
+\RRNo{XXXX}
+\RRdate{April 2016}
+
+\RRprojet{DISCOVERY IPL}
+
+% \author{Adrien L?bre\inst{1,3} \and Jonathan Pastor\inst{1,3} \and Marin Bertier \inst{2,3} \and Fr?d?ric Desprez\inst{3} \and Jonathan Rouzaud-Cornabas\inst{3} \and C?dric Tedeschi \inst{3,4}\and Paolo Anedda\inst{5} \and Gianluigi Zanetti\inst{5} 
+% \and Ramon Nou\inst{6} \and Toni Cortes\inst{6} \and Etienne Riviere\inst{7} \and Thomas Ropars\inst{8}}
+% \institute{LINA / Mines Nantes, France 
+% \and IRISA / INSA de Rennes, France
+% \and INRIA, France
+% \and IRISA / Universit? de Rennes 1, France
+% \and Center for Advanced Studies, Research and Development in Sardinia (CRS4), Italy
+% \and Barcelona Supercomputing Center (BSC), Spain
+% \and Universit? de Neuch?tel (UniNe), Switzerland
+% \and Ecole Polytechnique F?d?rale de Lausanne (EPFL), Switzerland} 
+
+%
+% Title and Authors
+%
+\RRauthor{
+A. Lebre\thanks[Inria]{Inria, France, Email: \url{FirstName.LastName@inria.fr}}\thanks[EMN]{Mines Nantes/LINA (UMR 6241), France.}%\inst{1} 
+\and 
+J. Pastor\thanksref{Inria}\thanksref{EMN} 
+\and 
+Frederic Desprez\thanksref{Inria}  
+}
+
+\authorhead{A. Lebre et al.}
+
+\RRtitle{Révisiter les mécanismes internes du système OpenStack en vue d'opérer des infrastructures de type nuage massivement distribuées}
+\RRetitle{
+A Ring to Rule Them All - Revising OpenStack Internals to Operate Massively Distributed Clouds}%\thanks{This report ....}}
+\titlehead{The DISCOVERY Initiative}
+
+%\RRnote {XXXX}
+
+\RRkeyword{Fog, Edge Computing, 
+Peer To Peer,
+Self-*,
+Sustainability,
+Efficiency,
+OpenStack, 
+Future Internet.
+}
+
+\RRmotcle{Calcul utilitaire basé sur la localité, systèmes pair-à-pair, self-*, durabilité,OpenStack 
+Internet du futur}
+
+%
+% Abstract
+%
+\RRabstract{
+
+  {\small 
+
+The deployment of micro/nano data-centers in network point of presence offers an opportunity to deliver a more sustainable and efficient infrastructure for Cloud Computing. Among the different challenges we need to address to favor the adoption of such a model, the development of a system in charge of turning such a complex and diverse network of resources into a collection of abstracted computing facilities that are convenient to administrate and use is critical.
+
+In this report, we introduce the premises of such a system. The novelty of our work is that instead of developing a system from scratch, we revised the OpenStack solution in order to operate such an infrastructure in a distributed manner leveraging P2P mechanisms. More precisely, we describe how we revised the Nova service by leveraging a distributed key/value store instead of the centralized SQL backend. We present experiments that validated the correct behavior of our prototype, while having promising performance using several clusters composed of servers of the Grid'5000 testbed. We believe that such a strategy is promising and paves the way to a first large-scale and WAN-wide IaaS manager.
+
+}
+}
+
+\RRresume{
+
+  {\small 
+
+La tendance actuelle pour supporter la demande croissante d'informatique
+utilitaire consiste à construire des centres de données de plus en plus grands,
+dans un nombre limité de lieux stratégiques. Cette approche permet sans aucun
+doute de satisfaire la demande actuelle tout en conservant une approche
+centralisée de la gestion de ces ressources, mais elle reste loin de pouvoir
+fournir des infrastructures répondant aux contraintes actuelles et futures en
+termes d’efficacité, de juridiction ou encore de durabilité.  L’objectif de
+l'initiative DISCOVERY\footnote{\url{http://beyondtheclouds.github.io}} est de
+concevoir le \emph{LUC OS},  un système de gestion distribuée des ressources qui permettra de
+tirer parti de n’importe quel n\oe ud réseau constituant la dorsale d’Internet
+afin de fournir une nouvelle génération d’informatique utilitaire, plus apte à
+prendre en compte la dispersion géographique des utilisateurs et leur demande
+toujours croissante. 
+
+Après avoir rappelé les objectifs de l'initiative DISCOVERY et expliqué
+pourquoi les approches type fédération ne sont pas adaptées pour opérer une
+infrastructure d'informatique utilitaire intégrée au réseau, nous présentons les
+prémisses de notre système.  Nous expliquerons notamment pourquoi et comment
+nous avons choisi de démarrer des travaux visant à revisiter la conception de
+la solution Openstack. De notre point de vue, choisir d'appuyer nos travaux sur
+cette solution est une stratégie judicieuse à la vue de la complexité des
+systèmes de gestion des plateformes IaaS et de la vélocité des solutions
+open-source. 
+}
+}
+
+\URRennes
+\makeRR
+
+%%%
+
+\input{introduction}
+
+\input{design}
+
+\input{openstack}
+
+\input{eval}
+ 
+
+\input{conclusion}
+
+%
+% Section: Acknowledgment
+%
+\section*{Acknowledgments}
+
+Since July 2015, the Discovery initiative is mainly supported through the Inria Project Labs program and the I/O labs, a joint lab between Inria and Orange Labs.
+Further information at \href{http://www.inria.fr/en/research/research-fields/inria-project-labs}{http://www.inria.fr/en/research/research-fields/inria-project-labs}
+%
+% Bibliography
+%
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+\end{document}

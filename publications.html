@@ -1,4 +1,3 @@
-
     <meta charset="utf-8">
     <title>Publications</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -184,11 +183,13 @@
 
         <p>To accommodate the ever-increasing demand for Utility Computing (UC) resources, while taking into account both energy and economical issues, the current trend consists in building larger and larger Data Centers in a few strategic locations. Although such an approach enables UC providers to cope with the actual demand while continuing to operate UC resources through centralized software system, it is far from delivering sustainable and efficient UC infrastructures for future needs.</p>
 
-        <p>The DISCOVERY initiative aims at exploring a new way of operating Utility Computing (UC) resources by leveraging any facilities available through the Internet in order to deliver widely distributed platforms that can better match the geographical dispersal of users as well as the ever increasing demand. Critical to the emergence of such locality-based UC (LUC) platforms is the availability of appropriate operating mechanisms. The main objective of DISCOVERY is to design, implement, demonstrate and promote the LUC Operating System (OS), a unified system in charge of turning a complex, extremely large-scale and widely distributed infrastructure into a collection of abstracted computing resources which is efficient, reliable, secure and at the same time friendly to operate and use.</p>
+        <p>The DISCOVERY initiative aims at exploring a new way of operating Utility Computing (UC) resources by leveraging any facilities available through the Internet in order to deliver widely distributed platforms that can better match the geographical dispersal of users as well as the ever increasing demand. Referred as Fog/Edge Computing, this paradigm shift is dictated by technological advances in the capacity and capabilities of both mobile networks and end-user devices, along with requirements for improved QoS and growing user concern and awareness of trust and privacy issues.
+<!-- Such an evolution toward a massively distributed federation of smaller data centers placed at the edge of the network backbones is motivated by the convergence of the Internet of Things (IoT) and the data center worlds.
+--> Among the obstacles to the adoption of this model is the development of a convenient and powerful IaaS system capable of managing a significant number of remote data-centers in a unified way.</p>
 
-        <p>To achieve this, the consortium is composed of experts in research areas such as large-scale infrastructure management systems, network and P2P algorithms. Moreover two key network operators, namely Orange and RENATER, the French NREN, are involved in the project.</p>
+        <p>To achieve this goal, the consortium is composed of experts in research areas such as large-scale infrastructure management systems, network and P2P algorithms. Moreover two key network operators, namely Orange and RENATER, the French NREN, are involved in the project.</p>
 
-        <p>By deploying and using such a LUC Operating System on backbones, our ultimate vision is to make possible to host/operate a large part of the Internet by its internal structure itself: A scalable set of resources delivered by any computing facilities forming the Internet, starting from the larger hubs operated by ISPs, government and academic institutions, to any idle resources that may be provided by end-users.</p> 
+        <p>By deploying and using resources directly available in the network, our ultimate vision is to make possible to host/operate a large part of the Internet by its internal structure itself: A scalable set of resources delivered by any computing facilities forming the Internet, starting from the larger hubs operated by ISPs, government and academic institutions, to any idle resources that may be provided by end-users.</p> 
 
       </div>
       
@@ -196,6 +197,16 @@
         <h4>Preliminary Publications</h4>
           
         <ol>
+         <li>
+          <a href="http://web.emn.fr/x-info/ascola/doku.php?id=internet:members:alebre08:overview/">Adrien Lebre</a>,
+          <a name=""></a>Anthony Simonet</a>,
+           and <a href="http://people.irisa.fr/Anne-Cecile.Orgerie/">Anne-Cécile Orgerie</a>.
+          <strong>Deploying Distributed Cloud Infrastructures: Who and at What Cost?</strong>.
+          In Proceedings of the fifth IEEE International Workshop on Cloud Computing Interclouds, Multiclouds, Federations, and Interoperability, 2016, <em>InterCloud 2016</em>
+          Berlin, May 2016.
+           <a href="https://hal.inria.fr/hal-01404594"><img align="middle" border="0" src="http://www.emn.fr/z-info/ascola/bib/Icons/www.gif"></a> 
+			  </li>
+			  <br>
           <li>
           <a href="http://www.emn.fr/z-info/ascola/bib/Author/LEBRE-A.html">Adrien Lebre</a>,
           <a name=""></a><a href="Jonathan Pastor"> Jonathan Pastor</a>,
@@ -226,7 +237,32 @@
         </ol>
         <br>
 
-        <h4>Virtual Machine Scheduler Related</h4>
+        <h4>OpenStack Related</h4>
+		  <ol> 
+          <li> Adrien Lebre, Jonathan Pastor, Anthony Simonet and Frederic Desprez.
+            <strong>Revising OpenStack to Operate Fog/Edge Computing Infrastructures</strong>.
+            <em>Proceedings of IEEE International Conference on  Cloud Engineering (IC2E) 2017</em>,
+            April 2017.
+             <a href="https://hal.inria.fr/hal-01273427v2"><img align="middle" border="0" src="http://www.emn.fr/z-info/ascola/bib/Icons/www.gif"></a> Keyword(s): OpenStack, Nova, P2P, Key Value Store, Redis
+          </li> 
+          <br> 
+           <li> Adrien Lebre, Jonathan Pastor and Frederic Desprez.
+            <strong>A Ring to Rule Them All - Revising OpenStack Internals to Operate Massively Distributed Clouds: The Discovery Initiative - Where Do We Are ?</strong>.
+            <em>Inria Technical Report, RT-0489</em>,
+            April 2016.
+             <a href="https://hal.inria.fr/hal-01320235"><img align="middle" border="0" src="http://www.emn.fr/z-info/ascola/bib/Icons/www.gif"></a> Keyword(s): OpenStack, Nova, P2P, Key Value Store, Redis
+          </li> 
+          <br> 
+          <li>Ayoub Bousselmi, Jean Francois Peltier, Abdelhadi Chari.
+            <strong>Experiments Towards an Openstack-based Massively Distributed Cloud Operating System</strong>.
+            In <em>Proceedings of the IEEE conference on Standards for Communications and Networking (CSCN 2016)</em>,
+            Berlin, Germany, Nov 2016.
+             <a href="http://cscn2016.ieee-cscn.org/progComing.php"><img align="middle" border="0" src="http://www.emn.fr/z-info/ascola/bib/Icons/www.gif"></a> Keyword(s): OpenStack, Neutron, software architecture.
+          </li> 
+        </ol>
+        </br>
+
+		  <h4>Virtual Machine Scheduler Related</h4>
         <ol>
           <li> 
             Adrien Lebre, Jonathan Pastor and Mario Südholt.
@@ -318,6 +354,7 @@ Netherlands, May 2013.
             reactivity.
           </li>
          </ol>
+         </br>
 
 	 <h4>Locality aware overlays</h4>
         <ol>
@@ -336,7 +373,9 @@ Netherlands, May 2013.
 	    vivaldi,
 	    reactivity.
           </li>
-       	</ol>
+        	</ol>
+         </br>
+
          <h4>Energy related</h4>
         <ol>
           <li>
@@ -365,7 +404,7 @@ Netherlands, May 2013.
           <div class="span5">
 				<br/>
             <h4>Since July 2015, the Discovery initiative is mainly supported through the <a href="http://www.inria.fr/en/research/research-teams/inria-project-labs">Inria Project Labs program</a> and the I/O labs, a joint lab between Inria and Orange Labs. </h4>
-            <p>The Discovery Consortium, © 2014-2015</p>
+            <p>The Discovery Consortium, © 2014-2017</p>
           </div>
           <div class="span3 offset1"> 
             <p class="text-center"><a href="http://www.inria.fr/en/"><img src="./images/inria-logo.jpg"></a></p>

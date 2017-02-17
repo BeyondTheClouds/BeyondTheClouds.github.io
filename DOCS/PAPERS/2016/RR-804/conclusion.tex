@@ -1,0 +1,54 @@
+%%%
+\section{Conclusion\label{sec:conclusion}}
+
+Distributing the management of Clouds is a solution to favor the adoption of the distributed cloud model. In this paper, we presented our view of how
+such distribution can be achieved by presenting the premises of the LUC Operating System.
+%We highlighted that it has  however a design cost
+%and it  should be  developed over  mature and efficient  solutions:
+We chose to develop it by leveraging the OpenStack solution. This choice
+presents two advantages. It minimizes the development efforts and maximizes the
+chance of being reused by a large community. As a proof-of-concept we presented
+a revised version of the Nova service that uses a NoSQL backend. We discussed
+few experiments validating the correct behavior and showed promising performance
+over 8 clusters.
+ 
+Our ongoing activities focus on two aspects. First, we expect
+to finalize the same modifications on the Glance image service soon and start to
+investigate also whether such a DB replacement can be achieved for Neutron. We
+highlight that we chose to concentrate our effort on Glance as it is a key
+element to operate an OpenStack IaaS platform. Indeed, while Neutron is becoming
+more and more important, the historical network mechanisms integrated in Nova
+are still available and intensively used. The second activity studies how it can
+be possible to restrain the visibility of some objects manipulated by the
+different controllers that have been deployed throughout the LUC infrastructure:
+%Indeed some Finally, having a wan-wide infrastructure can be source of
+%networking overheads:
+our POC manipulates objects that might be used by any instance of a service, no
+matter where it is deployed.
+%On the  other hand, some  objects may
+%benefit from a  restrained visibility:
+If a user has build an OpenStack project (tenant) that is based on few sites,
+appart from data-replication, there is no need for storing objects related to
+this project on external sites. Restraining the storage of such objects
+according to visibility rules would save network bandwidth and reduce
+overheads.% in addition to enabling users to settle policies for applications
+%such as privacy and efficient data-replication.
+
+Although delivering an efficient distributed version of OpenStack is a
+challenging task, we believe that addressing it is the key to go beyond
+classical brokering/federated approaches and to promote a new generation of
+cloud computing more sustainable and efficient. We are in touch with large
+groups such as Orange Labs and are currently discussing with the OpenStack
+foundation to propose the Rome/REDIS Library as an alternative to the
+SQLAlchemy/MySQL couple. Most of the materials presented in this article such as
+our prototype are available on the Discovery initiative website.
+
+%Indeed,
+%revising  OpenStack, in  order to  make  it natively  cooperative, would  enable
+%Internet  Service Providers  and other  institutions  in charge  of operating  a
+%network backbone  to build  an extreme-scale LUC  infrastructure with  a limited
+%additional cost.
+
+%% The  interest of important actors such as  Orange Labs that has
+%% officially announced its  support to the initiative is an  excellent sign of the
+%% importance of our action.       

@@ -1,0 +1,93 @@
+%%%
+\section{Introduction\label{sec:intro}}
+
+% - success of cloud computing.
+% - ever-growing demand of computing resources (CR) -> production of CR.
+% - economy of scale -> CR production is concentrated in mega datacenters.
+% - mega DCs -> critical needs in electricity and cooling.
+% - mega DCs in region with abundant and cheap electricity supply
+% - mega DCs in region with free cooling.
+To satisfy the escalating demand for Cloud Computing (CC) resources while realizing an economy of scale, the production of computing resources is concentrated in mega data centers (DCs) of ever-increasing size, where the number of physical resources that
+one DC can host is limited by the capacity of its energy supply and its cooling system. To meet these critical needs in terms of energy supply and
+cooling, the current trend is toward building DCs in regions with abundant and affordable electricity supplies or taking advantage of free cooling
+techniques available in regions close to the polar circle~\cite{greenpeace:2013}.
+
+% - ever-increasing DCs size
+%   -> more concentration of production (general)
+%     -> problems:
+%        * fault-tolerance (disasters).
+% - alternative: deconcentration of computing resources.
+% - federation of several clouds is a first is a solution for:
+%      - fault tolerance.
+%      - energy requirements.
+% - mega DCs or federation of clouds -> data/apps far from users.
+%   -> network overhead
+% - IEEE report: network traffic has been doubling every years
+% - example: CDNs decentralize the hosting of static resources.
+
+%% However,  concentrating  Mega-DCs  in  only  few  attractive  places  implies
+%% different  issues such  as  exceptional  phenomenon\footnote{\small On  March
+%% 2014, a large crack has been found  in the Wanapum Dame leading to emmergency
+%% procedures. This  hydrolic plan  supports the utility  power supply  to major
+%% data centers in central Washington.}: when a disaster happens in these areas,
+%% the  connectivity to  CC  resources  cannot not  be  guaranteed, thus  having
+%% dramatic  consequences  for   IT  services  that  were   depending  on  these
+%% ressources.  Second, due  to  the geographical  dispersal  of users,  hosting
+%% computing resources in a few locations  leads to a network overheads to reach
+%% DCs.  Such overhead  can  be a  cause  of preventing  the  adoption of  cloud
+%% computing by  latency critical applications  such as mobile computing  or big
+%% data ones.
+
+However, concentrating Mega-DCs in only few attractive places implies different issues. First, a disaster\footnote{On March 2014, a large crack has
+  been found in the Wanapum Dame leading to emmergency procedures. This hydrolic plan supports the utility power supply to major data centers in
+  central Washington.} in these areas would be dramatic for IT services the DCs host as the connectivity to CC resources would not be
+guaranteed. Second, in addition to jurisdiction concerns, hosting computing resources in a few locations leads to useless network overheads to reach
+each DC. Such overheads can prevent the adoption of Cloud Computing by several kind of applications such as mobile computing or Big Data ones.
+
+% - We propose: instead of concentrating production of computing resources:
+%    * leverage the concept of Micro/nano DC geographically spread.
+% - Operate these micro DCs with a cloud OS: instead of several Clouds OS that
+%   only use remote clouds, we propose a single Cloud OS that operate all of
+%   them in a distributed manner.
+% - Classical models (centralized, federations) -> not good (SPOF, does not
+%  operate efficiently).
+
+The concept of micro/nano DCs at the edge of the backbone~\cite{greenberg:2008} is a promising solution for the aforementioned concerns. However,
+operating multiple small DCs breaks somehow the idea of mutualization in terms of physical resources and administration simplicity, making this
+approach questionable. One way to enhance mutualization is to leverage existing network centers, starting from the core nodes of the network backbone
+to the different network access points (\aka. PoPs – Points of Presence) in charge of interconnecting public and private institutions. By hosting
+micro/nano DCs in PoPs, it becomes possible to mutualize resources that are mandatory to operate network/data centers while delivering widely
+distributed CC platforms better suited to cope with disasters and to match the geographical dispersal of users. % and their needs.
+A preliminary study has established the fundamentals of such an \emph{in-network distributed cloud} referred by the authors as the
+\emph{Locality-Based Utility Computing} (LUC) concept~\cite{lebre:beyond2013}. However, the question of how operating such an infrastructure still
+remains. Indeed, at this level of distribution, latency and fault tolerance become primary concerns, and collaboration between components that are
+hosted on different location must be organized wisely.
+
+%
+%
+% - Developing from scratch: herculean work.
+% - We should maximize the reuse of existing tools/concepts.
+% - To do so: 1) draw architectural summary; 2) identify challenges for the
+%   LUC-OS 3) instantiate it over OpenStack.
+%
+In this report, we propose to discuss some key-elements that motivate our choices to design and implement the \emph{LUC Operating System} (LUC-OS), a
+system in charge of turning a LUC infrastructure into a collection of abstracted computing facilities that are as convenient to administrate and that
+can be used in the same way as existing Infrastructure-as-a-Service (IaaS) managers~\cite{cloudstack,opennebula,openstack}. We explain, in particular,
+why federated approaches~\cite{buyya:intercloud} are not satisfactory enough to operate a LUC infrastructure and why designing a fully distributed
+system makes sense. Moreover, we describe the fundamental capabilities the LUC OS should deliver. Because they are similar to those provided by
+existing IaaS managers and because technically speaking it would be a non-sense to develop the system from scratch, we chose to instanciate the LUC OS
+concept on top of the OpenStack solution~\cite{openstack}.
+
+The main contribution is a proof of concept of the \emph{Nova} service (the OpenStack compute element) that has been distributed on top of a
+decentralized key/value store (KVS). By such a mean, it becomes possible to efficiently operate several geographical sites by a single OpenStack
+system. The correct functioning of this proof of concept has been validated via several experiments performed on top of Grid'5000~\cite{grid5000}. In
+addition to tackling both the scalability and distribution issues of the SQL database, our KVS proposal leads to promising performance. More than 80\%
+of the API requests are performed faster than with the SQL backend without doing any modification in the \emph{Nova} code.
+%For the last 20\%, we need
+%to und will require to dive deeper into OpenStack to understand all possible
+%performance degradations.
+
+The remaining of the report is as follows. Section~\ref{sec:design} explains our design choices. Section~\ref{sec:leveraging-openstack} describes
+OpenStack and how we revised it. The validation of our prototype focusing on the Nova service is presented in Section~\ref{sec:eval}. In
+Section~\ref{sec:ongoing_work}, we present the ongoing works towards a complete LUC~OS leveraging the OpenStack ecosystem. Finally
+Section~\ref{sec:conclusion} concludes and discusses future research and development actions.

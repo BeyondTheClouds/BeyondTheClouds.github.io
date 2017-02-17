@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>os_intro</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+ 
+      body { font-family: Open Sans, Arial, sans serif; color: #20201E; }
+
+      .remark-slide-content {
+        background-color: #F5F5DC;
+        padding: 0 3em;
+      }
+
+      h1, h2, h3 {
+          margin: 0.1em;
+          margin-bottom: 0.5em;
+          text-align: center;
+          font-weight: lighter;
+      }
+
+      img {
+          max-width: 100%;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+      }
+
+      a {
+        color: #A8A88B;
+        text-decoration: none;
+      }
+
+      .underline {
+          /*text-decoration: underline;*/
+      }
+
+      .naked .foot, .naked .remark-slide-number {
+          display: none;
+      }
+
+      .foot:not(.center) {
+          position: absolute;
+          bottom: 1em;
+          right: 1em;
+          left: auto;
+      }
+
+      .center .foot {
+          position: absolute;
+          bottom: 1em;
+          left: 1em;
+          right: auto;
+      }
+
+      .foot:after{
+          content: 'H.Coullon, C.Pérez, D.Pertin - 2017-02-07 - Discovery Seminar'
+      }
+
+      .text-content {
+          font-size: 1.2em;
+          background-color: #A8A88B;
+          background-color: #FFFFF5;
+          width: 100%;
+          height: 68%;
+          position: absolute;
+          left: 0px;
+          color: #333;
+          padding: 1em 2em;
+          box-sizing: border-box;
+      }
+      .text-content::after {
+          content: "";
+          background-color: #FFFFF5;
+          position: absolute;
+          bottom: -20px;
+          right: 3em;
+          width: 40px;
+          height: 40px;
+          transform: rotate(45deg);
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      #slide-intro {
+        background-image: url(img/os_background.png);
+        background-size: inherit;
+        color: white;
+      }
+
+      #slide-intro p {
+          top-margin: 4em;
+          line-height: 60%;
+          font-size: 90%;
+      }
+
+      #slide-microservices img {
+          width: 70%;
+          margin-bottom: 1.5em;
+      }
+
+      #slide-openstack img {
+          width: 70%;
+      }
+
+      #slide-nova img {
+          width: 43%;
+      }
+
+      #slide-scenario img {
+          /*width: 60%;
+          margin-bottom: 2.5em;*/
+      }
+
+      #slide-scenario h1 {
+          margin-bottom: 1em;
+      }
+
+      #slide-model img {
+          width: 30%;
+      }
+
+      #slide-table img {
+          width: 90%;
+      }
+
+      #slide-fog h1 {
+          margin-bottom: 1em;
+      }
+      #slide-fog img {
+          width: 90%;
+          margin-bottom: 1.5em;
+      }
+
+      #slide-ds img {
+          width: 80%;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        width: 50%;
+        float: left;
+	  }
+
+      .right-column {
+        width: 50%;
+        float: right;
+	  }
+
+      .left-column2 {
+        width: 70%;
+        float: left;
+	  }
+
+      .right-column2 {
+        width: 30%;
+        float: right;
+	  }
+
+      img[alt="model"] {
+          width: 60%;
+      }
+
+      img[alt="models"] {
+          width: 50%;
+      }
+
+      img[alt="renater"] {
+          width: 50%;
+      }
+
+      img[alt="deployment_scenario111"] {
+          width: 50%;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+layout: true
+
+
+---
+name: intro
+class: center, middle
+
+## OpenStack Deployment in a Fog Computing Context: A Survey
+
+.left-column[
+.center[
+Hélène Coullon, Dimitri Pertin
+
+Inria, IMT Atlantique, Nantes, France
+
+helene.coullon@inria.fr, dimitri.pertin@inria.fr
+]]
+.right-column[
+.center[Christian Pérez
+
+Inria, ENS, Lyon, France
+
+christian.perez@inria.fr
+]]
+
+.foot[]
+
+
+---
+name: microservices
+# Software architecture
+
+.left-column[
+![monolithic](./img/microservices_mono.svg)
+.center[Monolithic]
+* single entity
+* multi-tasks
+]
+.right-column[
+![microservices](./img/microservices_micro.svg)
+.center[Modular]
+* separation of concerns
+* multiple services
+* interconnected through interfaces
+]
+
+
+---
+name: ds
+# Distributed software
+
+.left-column[
+![distributed](./img/distributed_software.svg)
+]
+.right-column[
+* multiple services
+
+* distributed over multiple servers
+
+* interconnected by a network
+]
+
+
+---
+name: openstack
+# OpenStack
+
+![os_core_services](./img/os_core_services.svg)
+
+* IaaS software: Compute, Storage, Network
+
+* Modular architecture
+
+* Communication by REST APIs, Message Queues (AMQP) and Databases
+
+
+---
+name: nova
+# Example: Nova components
+
+![nova_components](./img/nova_components222.svg)
+
+* 12 services in nova (only four represented here)
+
+* **Control** (api, conductor, scheduler) vs **compute** services
+
+* 164 services in OpenStack (based on Kolla container images)
+
+
+---
+class: center, middle
+### How are deployed such components?
+
+---
+name: scenario
+# Deployment scenarios (1/3)
+
+![deployment_scenario1](./img/deployment-scenario1.svg)
+
+.center[Single controller, multiple compute nodes]
+???
+![deployment_scenario1](./img/deployment-scenario12.svg)
+![deployment_scenario3](./img/deployment-scenario3.svg)
+
+
+---
+name: scenario
+# Deployment scenarios (2/3)
+
+![deployment_scenario2](./img/deployment-scenario2.svg)
+
+.center[Multiple controllers, multiple compute nodes]
+???
+![deployment_scenario1](./img/deployment-scenario12.svg)
+![deployment_scenario3](./img/deployment-scenario3.svg)
+
+
+---
+name: scenario
+# Deployment scenarios (3/3)
+
+![deployment_scenario3](./img/deployment-scenario33.svg)
+
+.center[Multiple controllers, multiple compute nodes, mutiple regions]
+???
+![deployment_scenario1](./img/deployment-scenario12.svg)
+![deployment_scenario3](./img/deployment-scenario3.svg)
+
+
+---
+name: agenda
+# Agenda
+
+1. Application deployment model
+
+2. OpenStack deployment tools
+
+    * Kolla, Enos, Juju, Kubernetes, TripleO
+
+3. OpenStack deployment challenges for Fog Computing
+
+    * Fog Computing
+    * Challenges
+
+4. Future works
+
+    * Description language to deploy OpenStack for Fog Computing
+
+???
+name: problem
+# Problem and questions
+
+Problem: Multiple ways to deploy OpenStack for a given infrastructure
+
+Questions
+
+1. How to model an application deployment process?
+
+2. What are the state-of-the-art tools to deploy OpenStack?
+
+3. What are the challenges of deploying OpenStack in a complex infrastructure?
+
+    * in particular in a Fog computing infrastructure
+
+
+---
+class: center, middle
+
+# 1. Application deployment model
+
+.foot[]
+
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model0.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model1.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model2.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model3.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model4.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model5.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model6.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model7.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model8.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model9.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model10.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model11.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model12.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model13.svg)
+---
+name: model
+# Deployment model
+![deployment_model](./img/deployment_model14.svg)
+
+
+---
+class: center, middle
+
+# 2. OpenStack deployment tools
+
+.foot[]
+
+
+---
+name: models
+# 1. Kolla
+
+.left-column[
+![model](./img/deployment_model_kolla.svg)
+]
+.right-column[
+![models](./img/models_kolla.svg)
+]
+---
+name: models
+# 2. Enos
+
+.left-column[
+![model](./img/deployment_model_enos.svg)
+]
+.right-column[
+![models](./img/models_enos.svg)
+]
+---
+name: models
+# 3. Juju
+
+.left-column[
+![model](./img/deployment_model_juju.svg)
+]
+.right-column[
+![models](./img/models_juju.svg)
+]
+---
+name: models
+# 4. Kubernetes
+
+.left-column[
+![model](./img/deployment_model_kubernetes.svg)
+]
+.right-column[
+![models](./img/models_kubernetes.svg)
+]
+---
+name: models
+# 5. TripleO
+
+.left-column[
+![model](./img/deployment_model_tripleo.svg)
+]
+.right-column[
+![models](./img/models_tripleo.svg)
+]
+
+
+---
+name: table
+# Deployment tools
+
+
+|              | Kolla      | Enos       | Juju    | Kubernetes | TripleO     |
+|--------------|------------|------------|---------|------------|-------------|
+| Packaging    | containers | containers | scripts | containers | disk images |
+| Template     | -          | -          | ~       | ~          | +           |
+| Dependencies | -          | -          | ~       | -          | +           |
+| Placement    | -          | ~          | ~       | +          | +           |
+| Allocation   | -          | ~          | ~       | +          | +           |
+| Provisioning | -          | ~          | ~       | +          | +           |
+| Mon/Reconf   | -          | -          | ~       | ++         | +           |
+
+???
+![table](./img/icfec.png)
+
+
+---
+class: center, middle
+
+# 3. OpenStack deployment for Fog Computing
+
+.foot[]
+
+
+---
+name: fog
+# Fog Computing
+
+.left-column[
+![cloud](./img/cloud.svg)
+.center[Cloud computing]
+
+Bottleneck and high-latency for:
+* Internet of Object
+* Real-time application
+* Smart-cities
+* ...
+]
+.right-column[
+![fog](./img/fog2.svg)
+.center[Fog computing]
+]
+
+
+---
+name: fog
+# Fog Computing
+
+.left-column[
+![cloud](./img/cloud.svg)
+.center[Cloud computing]
+
+Bottleneck and high-latency for:
+* Internet of Object
+* Real-time application
+* Smart-cities
+* ...
+]
+.right-column[
+![fog](./img/fog.svg)
+.center[Fog computing]
+
+Intermediate layer at edge/core:
+* Heterogeneous resources
+* Large-scale
+* ...
+]
+
+
+---
+# Challenges (1/2)
+
+Resource heterogeneity
+
+* provisioning (manage multiple resources: bare-metal, VM, container)
+
+* packaging (multiple images)
+
+* resource manager (keep track of resources)
+
+Large-scale
+
+* decentralized services (not the case currently for OpenStack)
+
+* dependency graph (performance)
+
+* placement (performance, NP-hard)
+
+
+---
+# Challenges (2/2)
+
+Abstraction language
+
+* complex infrastructure
+
+    * declare service dependencies
+
+    * scaling rules
+
+* new constraints (hardware, locality/latency, energy, ...)
+
+Dynamic reconfiguration
+
+* recovering from failures
+
+* update 
+
+* auto-scaling
+
+* topology modification (moving mobile edge)
+
+
+---
+class: center, middle
+
+# 4. Future works
+
+.foot[]
+
+
+---
+# High abstraction language (1/2)
+
+* First step: Propose a DSL to automatically deploy applications
+
+    * e.g. automatically deploy OpenStack with *n* compute nodes
+
+    * managing automatically the number of regions
+
+    * managing automatically the component distribution
+
+    * based on given criteria
+
+![renater](./img/renater.gif.svg)
+
+
+---
+# High abstraction language (2/2)
+
+* Second step: Add reconfiguration capabilities
+
+    * redeployment
+
+    * fault-tolerance
+
+    * auto-scaling
+
+.left-column[
+![deployment_scenario3](./img/deployment-scenario33x.svg)
+]
+.right-column[
+![deployment_scenario111](./img/deployment-scenario2.svg)
+]
+
+
+
+---
+# Conclusion
+
+1. We gave a **model** of the application deployment process...
+
+2. as a base to **compare** the state-of-the-art tools to deploy OpenStack
+
+    * Kubernetes and TripleO showed great features
+
+3. We provided related Fog computing **challenges**
+
+4. We plan to focus on the research problem of designing a high
+**abstraction language** to:
+
+    * automatically deploy application
+   
+    * manage reconfiguration
+
+    * not limited to OpenStack
+
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
