@@ -1,0 +1,364 @@
+% Updated 2013 by Ronan-Alexandre Cherrueau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+% Copyright 2007 by Marco Barisione
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+\usepackage{calc} % \widthof
+\usefonttheme{serif} % By default, beamer uses sans serif font
+
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Template Options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Option titlepagelogo: logoUrl
+%% Logo to use in the alternative title page.
+\def\beamer@fancy@titlepagelogo{}
+\DeclareOptionBeamer{titlepagelogo}{%
+  \def\beamer@fancy@titlepagelogo{#1}}
+
+%% %% Option pageofpages: "/","of",...
+%% %% String used between the current page and the total page count.
+%% \def\beamer@decolines@pageofpages{/}
+%% \DeclareOptionBeamer{pageofpages}{%
+%%   \def\beamer@decolines@pageofpages{#1}}
+
+%% Option titleline: boolean
+%% Draw a line below the frame title.
+\DeclareOptionBeamer{titleline}[true]{%
+  \def\beamer@decolines@titleline{#1}}
+
+\def\beamer@fleuronfamily{}
+\def\beamer@thefleuron{}
+\DeclareOptionBeamer{fleuronfamily}{%
+  \def\beamer@fleuronfamily{#1}}
+
+\ExecuteOptionsBeamer{titleline=false}
+\ProcessOptionsBeamer
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% General Configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Tango Colors
+%% http://tango.freedesktop.org/static/cvs/tango-art-tools/palettes/Tango-Palette.svg
+\definecolor{butter1}{RGB}{252,233,79}
+\definecolor{butter2}{RGB}{237,212,0}
+\definecolor{butter3}{RGB}{196,160,0}
+
+\definecolor{chameleon1}{RGB}{138,226,52}
+\definecolor{chameleon2}{RGB}{115,210,22}
+\definecolor{chameleon3}{RGB}{78,154,6}
+
+\definecolor{orange1}{RGB}{252,175,62}
+\definecolor{orange2}{RGB}{245,121,0}
+\definecolor{orange3}{RGB}{206,92,0}
+
+\definecolor{skyblue1}{RGB}{114,159,207}
+\definecolor{skyblue2}{RGB}{52,101,164}
+\definecolor{skyblue3}{RGB}{32,74,135}
+
+\definecolor{plum1}{RGB}{173,127,168}
+\definecolor{plum2}{RGB}{117,80,123}
+\definecolor{plum3}{RGB}{92,53,102}
+
+\definecolor{chocolate1}{RGB}{233,185,110}
+\definecolor{chocolate2}{RGB}{193,125,17}
+\definecolor{chocolate3}{RGB}{143,89,2}
+
+\definecolor{scarletred1}{RGB}{239,41,41}
+\definecolor{scarletred2}{RGB}{204,0,0}
+\definecolor{scarletred3}{RGB}{164,0,0}
+
+\definecolor{aluminium1}{RGB}{238,238,236}
+\definecolor{aluminium2}{RGB}{211,215,207}
+\definecolor{aluminium3}{RGB}{186,189,182}
+\definecolor{aluminium4}{RGB}{136,138,133}
+\definecolor{aluminium5}{RGB}{85,87,83}
+\definecolor{aluminium6}{RGB}{46,52,54}
+
+\definecolor{revealjs1}{RGB}{139,124,105}
+\definecolor{revealjs2}{RGB}{81,72,61}
+\definecolor{revealjs3}{RGB}{240,241,235}
+
+%% Default Definition
+\colorlet{colorprimary}{revealjs1}
+\colorlet{colorsecondary}{scarletred2}
+\colorlet{colortertiary}{scarletred3}
+\colorlet{colorquaternary}{revealjs2}
+\colorlet{colorback}{revealjs3}
+
+\setbeamercolor*{palette primary}{fg=colorback,bg=colorsecondary}
+\setbeamercolor*{palette secondary}{fg=colorback,bg=colortertiary}
+\setbeamercolor*{palette tertiary}{fg=colorback,bg=colorquaternary}
+\setbeamercolor*{palette quaternary}{fg=aluminium6,bg=colorback}
+
+%% Colors.
+\setbeamercolor*{background canvas}{bg=revealjs3}
+\setbeamercolor*{line}{fg=colorback,bg=colortertiary}
+\setbeamercolor*{linemid}{parent=palette secondary}
+\setbeamercolor*{linebottom}{parent=palette tertiary}
+
+%% Solarized Color
+%% http://ethanschoonover.com/solarized
+\definecolor{solarized@base03}{HTML}{002B36}
+\definecolor{solarized@base02}{HTML}{073642}
+\definecolor{solarized@base01}{HTML}{586e75}
+\definecolor{solarized@base00}{HTML}{657b83}
+\definecolor{solarized@base0}{HTML}{839496}
+\definecolor{solarized@base1}{HTML}{93a1a1}
+\definecolor{solarized@base2}{HTML}{EEE8D5}
+\definecolor{solarized@base3}{HTML}{FDF6E3}
+\definecolor{solarized@yellow}{HTML}{B58900}
+\definecolor{solarized@orange}{HTML}{CB4B16}
+\definecolor{solarized@red}{HTML}{DC322F}
+\definecolor{solarized@magenta}{HTML}{D33682}
+\definecolor{solarized@violet}{HTML}{6C71C4}
+\definecolor{solarized@blue}{HTML}{268BD2}
+\definecolor{solarized@cyan}{HTML}{2AA198}
+\definecolor{solarized@green}{HTML}{859900}
+
+%% Hedaer height:
+%% Header height on each page.
+\newlength{\headerheight}
+\setlength{\headerheight}{.045\paperheight}
+
+%% Line height.
+\newlength{\beamer@lineup@height}
+\setlength{\beamer@lineup@height}{.02\paperheight}
+\newlength{\beamer@linemid@height}
+\setlength{\beamer@linemid@height}{.015\paperheight}
+\newlength{\beamer@linebottom@height}
+\setlength{\beamer@linebottom@height}{.001\paperheight}
+
+% Fleuron
+\newlength{\beamer@linelong}
+\newlength{\beamer@fleuronlong}
+\ifx\beamer@fleuronfamily\@empty%
+  \setlength{\beamer@linelong}{\textwidth}
+\else
+  \newfontfamily\beamer@thefleuronfamily{\beamer@fleuronfamily}
+  \def\beamer@thefleuron{\LARGE{\beamer@thefleuronfamily ❧}}
+  \setlength{\beamer@fleuronlong}{\widthof\beamer@thefleuron+3ex}
+  \setlength{\beamer@linelong}{
+    \dimexpr(\paperwidth-\beamer@leftmargin-\beamer@rightmargin-\beamer@fleuronlong+3ex)/2\relax}
+\fi
+
+%% Margins.
+\newlength{\beamer@fancy@normalmargin}
+\setlength{\beamer@fancy@normalmargin}{.06\paperwidth}
+\setbeamersize{text margin left=\beamer@fancy@normalmargin}
+\setbeamersize{text margin right=\beamer@fancy@normalmargin}
+\setlength\leftmargini{.6\beamer@fancy@normalmargin}
+\setlength\leftmarginii{.6\beamer@fancy@normalmargin}
+\setlength\leftmarginiii{.6\beamer@fancy@normalmargin}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% General Elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\lhlight[2][1-]{%
+  \visible<#1>{%
+    {\large\bfseries\textcolor{revealjs2}{#2}}
+  }
+}
+
+\newcommand\hlight[2][1-]{%
+  \begin{center}
+    \lhlight[#1]{#2}
+  \end{center}
+}
+
+%% Text Color
+\setbeamercolor*{title page header}{fg=revealjs2}
+\setbeamercolor*{normal text}{fg=aluminium6}
+\setbeamercolor*{titlelike}{fg=revealjs2}
+\setbeamercolor*{frametitle}{fg=revealjs2}
+\setbeamercolor*{framesubtitle}{fg=aluminium6}
+\setbeamercolor*{part title}{fg=aluminium6}
+
+\setbeamercolor*{alerted text}{fg=scarletred2}
+
+\setbeamercolor*{item}{fg=colorquaternary}
+\setbeamercolor*{section in toc}{fg=colorsecondary}
+\setbeamercolor*{caption name}{fg=colorsecondary}
+
+%% Block Color
+%% \setbeamercolor{block title}{fg=white,bg=colortertiary}
+\setbeamercolor{block title}{fg=white,bg=revealjs2}
+\setbeamercolor{block body}{fg=black,bg=colorprimary!20}
+
+%% Font
+\setbeamerfont{title}{       size=\Large                   }
+\setbeamerfont{frametitle}{  size=\Large, series=\bfseries }
+\setbeamerfont{institute}{  size=\small}
+\setbeamerfont{date}{  size=\tiny}
+% \setbeamerfont{alerted text}{size=\Large, series=\bfseries, family=\Fontii}
+
+%% Items: Circle
+\defbeamertemplate{itemize item}{circlealt}%
+                  {\small\raise.1ex\hbox{\donotcoloroutermaths$\bullet$}}
+\defbeamertemplate{itemize subitem}{circlealt}%
+                  {\small\raise.1ex\hbox{\donotcoloroutermaths$\circ$}}
+\defbeamertemplate{itemize subsubitem}{circlealt}%
+                  {\scriptsize\raise.1ex\hbox{\donotcoloroutermaths$\bullet$}}
+\setbeamertemplate{items}[circlealt]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Specific Elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Title page:
+%% Use this in a frame with the [plain] option.
+\defbeamertemplate*{title page}{fancy theme}[1][]
+{
+  {\parskip0pt\offinterlineskip%
+    \hbox{\hskip-\Gm@lmargin\hbox{\vbox{%
+          \@tempdima=\textwidth\textwidth=\paperwidth\hsize=\textwidth\def\\{,}\vbox{}\vskip-1.5ex%
+          % Title.
+          \begin{beamercolorbox}[wd=\paperwidth,ht=.4\paperheight,center,#1]{title page header}
+            \usebeamerfont{title}\myTitle{}\par%
+            \vspace{.05\paperheight}%
+            % Insert fleuron if any
+            \ifx\beamer@fleuronfamily\@empty%
+            \else
+            \textcolor{colortertiary}{\beamer@thefleuron}
+            \fi
+          \end{beamercolorbox}%
+          \vbox{}\vskip-\beamer@lineup@height%
+          \hbox{%
+            %% Insert ornaments arround fleuron if any
+            \ifx\beamer@fleuronfamily\@empty%
+              \begin{beamercolorbox}[wd=\beamer@leftmargin,ht=0.4pt,dp=0pt]{}%
+              \end{beamercolorbox}%
+              \begin{beamercolorbox}[wd=\beamer@linelong,ht=0.4pt,dp=0pt]{line}%
+              \end{beamercolorbox}%
+              \begin{beamercolorbox}[wd=\beamer@rightmargin,ht=0.4pt,dp=0pt]{}%
+              \end{beamercolorbox}%
+            \else
+              \begin{beamercolorbox}[wd=\beamer@leftmargin,ht=0.4pt,dp=0pt]{}%
+              \end{beamercolorbox}%
+              \begin{beamercolorbox}[wd=\beamer@linelong,ht=0.4pt,dp=0pt]{line}%
+              \end{beamercolorbox}%
+              \begin{beamercolorbox}[wd=\beamer@fleuronlong,ht=0.4pt,dp=0pt]{}%
+              \end{beamercolorbox}%
+              \begin{beamercolorbox}[wd=\beamer@linelong,ht=0.4pt,dp=0pt]{line}%
+              \end{beamercolorbox}%
+              \begin{beamercolorbox}[wd=\beamer@rightmargin,ht=0.4pt,dp=0pt]{}%
+              \end{beamercolorbox}%
+            \fi
+          }%
+      }}%
+      \hskip-\Gm@rmargin%
+  }}\hfil%
+  \vfill
+  %
+  % Authors, institute and date
+  %% \vskip1em\par
+  \par
+  %% Speaker name
+  \begin{beamercolorbox}[sep=6pt,center,#1]{author}
+    \usebeamerfont{author}\textbf{\myName{}}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=6pt,center,#1]{institute}
+    \usebeamerfont{institute}
+    \myDepartment{}\\
+  \end{beamercolorbox}
+  % Date
+  \begin{beamercolorbox}[sep=6pt,center,#1]{date}
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}%
+  \vfill
+  {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+}
+
+%% Frame Header
+%% \defbeamertemplate*{headline}{decolines theme}
+%% {
+%%   \leavevmode%
+%%   \hbox{%
+%%   \begin{beamercolorbox}[wd=\paperwidth,ht=\headerheight,dp=0pt]{page header}%
+%%   \end{beamercolorbox}%
+%%   } %
+%%   \vskip0pt%
+%% }
+
+%% Frame Footer.
+\defbeamertemplate*{footline}{decolines theme}
+{
+  \leavevmode%
+  % Page number.
+  \hbox{%
+    \begin{beamercolorbox}[wd=\beamer@leftmargin,ht=0ex,dp=0ex,center]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=\linewidth,ht=0ex,dp=0ex,right]{}%
+      \usebeamerfont{palette primary}\insertframenumber{} / \inserttotalframenumber%
+    \end{beamercolorbox}%
+  } %
+  \vbox{}\vskip3ex
+}
+
+% Frame title decoration
+\defbeamertemplate*{frametitle}{decolines theme}[1][left]%
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \vbox{}\vskip-1.25\beamer@leftmargin%
+  \begin{beamercolorbox}[sep=\beamer@leftmargin,#1,wd=\the\@tempdima]{}
+    \usebeamerfont{frametitle}\usebeamercolor{frametitle}%
+    \vbox{}\vskip0ex%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \strut\centering\insertframetitle\strut\par%
+        {%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+              {\usebeamerfont{framesubtitle}\usebeamercolor{framesubtitle}\insertframesubtitle\strut\par}%
+              \fi
+        }%
+        %\vskip-1ex%
+        \if@tempswa\else\vskip-\beamer@leftmargin\fi
+  \end{beamercolorbox}%
+  \def\beamer@decolines@truetext{true}%
+  \ifx\beamer@decolines@titleline\beamer@decolines@truetext%
+  \vskip-.5\beamer@leftmargin%
+  \begin{beamercolorbox}[wd=\textwidth,ht=0.4pt,dp=0ex]{linemid}%
+  \end{beamercolorbox}%
+  \fi
+}
+
+%% Frame title continuations, default
+\defbeamertemplate*{frametitle continuation}{decolines theme}{%
+  (\insertcontinuationcount)}
+
+%% \def\progressbar@progressbar{%
+
+%%   \progressbar@tmpcounta=\insertframenumber
+%%   \progressbar@tmpcountb=\inserttotalframenumber
+%%   \progressbar@tmpdim=\progressbar@pbwd
+%%   \multiply\progressbar@tmpdim by \progressbar@tmpcounta
+%%   \divide\progressbar@tmpdim by \progressbar@tmpcountb
+
+%%   \begin{tikzpicture}
+%%     \draw[pbblue!30,line width=\progressbar@pbht]
+%%     (0pt, 0pt) -- ++ (\progressbar@pbwd,0pt);
+
+%%     \filldraw[pbblue!30] %
+%%     (\the\dimexpr\progressbar@tmpdim-\progressbar@rcircle\relax, .5\progressbar@pbht) circle (\progressbar@rcircle);
+
+%%     \node[draw=pbblue!30,text width=3.5em,align=center,inner sep=1pt,
+%%       text=pbblue!70,anchor=east] at (0,0) {\insertframenumber/\inserttotalframenumber};
+%%   \end{tikzpicture}%
+%% }
+
+\mode<all>

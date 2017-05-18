@@ -1,0 +1,443 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt]{beamer}
+\input{enos-config.tex}
+
+\usepackage[absolute,overlay]{textpos}
+\usepackage{enumitem}
+\setenumerate[1]{%
+  label=\protect\usebeamerfont{enumerate item}%
+        \protect\usebeamercolor[fg]{enumerate item}%
+        \insertenumlabel.}
+\setitemize{label=\usebeamerfont*{itemize item}
+  \usebeamercolor[fg]{itemize item}
+  \usebeamertemplate{itemize item}}
+\setlist{noitemsep,topsep=5pt,parsep=5pt,partopsep=5pt}
+
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          titleline=true,% Show a line below the frame title.
+          titlepagelogo=figs/logo/all,% Logo for the first page.
+          fleuronfamily=EBGaramond, % fleuron font family ❧
+          ]{Ronana}
+
+% Set colors
+%% \colorlet{colorprimary}{scarletred1}
+%% \colorlet{colorsecondary}{scarletred2}
+%% \colorlet{colortertiary}{scarletred3}
+%% \colorlet{colorquaternary}{colortertiary!50!black}
+
+%% No navigation symbols
+\setbeamertemplate{navigation symbols}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Slides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Gray layer after pause
+%% \setbeamercovered{transparent}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Main Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t,plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The What ?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Context: number of commits, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{OpenStack}
+  \begin{textblock*}{.5\paperwidth}(.2cm,3cm)
+  	\centering\textbf{Industry standard} for creating public and private clouds
+  \end{textblock*}
+
+  \begin{textblock*}{.6\paperwidth}(.2cm,4.6cm)
+   \includegraphics[scale=.65]{figs/dashboard.png}
+  \end{textblock*}
+
+  \begin{textblock*}{6cm}(6.5cm,1.8cm)
+	 \includegraphics[scale=1.1,angle=350]{figs/os_metrics.png}
+  \end{textblock*}
+
+  %\Rightarrow{} every OpenStack is different
+\end{frame}
+
+%% Context: services
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{OpenStack}
+  	\centering\includegraphics[width=.8\paperwidth]{figs/os_big-tent.png}
+  \begin{itemize}
+	 \item \textbf{164 services} in OpenStack
+	 \item Some services are composed of \textbf{sub-services} (e.g. nova-scheduler,
+		nova-conductor, \dots)
+	 \item Most of which can be disabled/enabled depending on one's needs
+  \end{itemize}
+\end{frame}
+
+%% Context: topology
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Deployment topologies}
+  % 1st figure
+  \only<1-3>{
+  \begin{textblock*}{.3\paperwidth}(1cm, 1.8cm)
+	 \centering
+	 \includegraphics[height=3cm]{figs/deployment-scenario1.png}
+
+	 \scriptsize{Single controller, multiple compute nodes}
+  \end{textblock*}
+  }
+
+  % 2nd figure
+  \only<2-3>{
+  \begin{textblock*}{.3\paperwidth}(6.5cm, 1.8cm)
+	 \centering
+	 \includegraphics[height=3cm]{figs/deployment-scenario2.png}
+
+	 \scriptsize{Multiple controllers, multiple compute nodes}
+  \end{textblock*}
+  }
+
+  % 3rd figure
+  \only<3>{
+  \begin{textblock*}{.8\paperwidth}(1.0cm, 5.8cm)
+	 \centering
+	 \includegraphics[height=3.2cm]{figs/deployment-scenario3.png}
+
+	 \scriptsize{Multiple controllers, multiple compute nodes, multiple regions}
+  \end{textblock*}
+  }
+\end{frame}
+
+\begin{frame}{Motivation}
+
+  \textbf{Goals:}
+  \begin{itemize}
+		\small
+	 \item Favour \textbf{reproducible scientific evaluations}
+	 \item Automated \emph{Performance Regression Testing}
+	 \item Help developers evaluate their code with multiple setups and
+		topologies
+  \end{itemize}
+
+  \vspace{.3cm}
+  \visible<2-3>{
+  \textbf{Typical experimental workflow:}
+  \begin{enumerate}
+		\small
+	 \item Book and provision servers
+	 \item Deploy OpenStack
+	 \item Perform benchmarks
+	 \item Collect and save metrics
+	 \item Visualize \& share
+  \end{enumerate}
+  }
+
+  \visible<3>{
+	 \Rightarrow{} Automation \& reproducibility means \textbf{all these steps} must be
+	 \textbf{scripted}.
+  }
+\end{frame}
+
+
+%% Quoi personnelles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Contribution: Enos}
+  \emph{A holistic framework for scientific evaluations of OpenStack}
+  \vspace{.4cm}
+
+  \begin{itemize}
+	 \item Container based OpenStack deployment with Kolla-ansible-ansible
+    \item Rally benchmark (control plane)/Shaker benchmark (data plane)
+    \item Metrics collection with cAdvisor and collectd and stored in InfluxDB
+    \item Query metrics with Grafana
+    \item Query logs with Heka
+  \end{itemize}
+
+  Based on \textbf{high level specifications}
+\end{frame}
+
+\begin{frame}{Enos: a typical workflow}
+\begin{enumerate}
+\item \texttt{enos deploy}:
+  \begin{itemize}
+  \item Gets testbed resources
+  \item Deploys OpenStack
+  \item Populates OpenStack with cirros image, public/private network
+  \end{itemize}
+\item \texttt{enos bench}:
+  \begin{itemize}
+  \item Runs benchmarks
+  \item Measures CPU/RAM/Network consumption per site/node/service
+  \end{itemize}
+\item \texttt{enos backup}:
+  \begin{itemize}
+  \item Performs post-mortem analysis
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Enos Workflow}
+    \tableofcontents[
+      currentsection
+    ]
+  \end{frame}
+}
+
+\section{\texttt{enos deploy}}
+
+\begin{frame}[fragile]{\insertsectionhead}
+  A \emph{Provider} gets testbed resources
+  \begin{itemize}
+	 \item Resource: anything running a Docker daemon and Enos can \texttt{ssh} to.
+  \item Supports Grid'5000, VirtualBox, OpenStack and Chameleon
+  \item Easy to extend: \textasciitilde 500 LOC
+  \medskip
+  \begin{columns}
+    \footnotesize
+    \begin{column}{.3\textwidth}
+  \begin{lstlisting}
+provider: g5k
+resources:
+  paravance:
+    control: 1
+    network: 1
+    compute: 50
+  \end{lstlisting}
+    \end{column}
+    \begin{column}{.05\textwidth}
+      \Rightarrow
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \begin{enumerate}
+      \item Get 52 nodes from the paravance cluster;
+		\item \texttt{ssh} and install Python and Docker daemon;
+      \item Return a list of IP addresses to install OpenStack to.
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Topology control: \texttt{reservation.yaml}}
+  \begin{textblock*}{.4\paperwidth}(6cm,3cm)
+	 \includegraphics[scale=.5]{figs/topology_control.png}
+  \end{textblock*}
+  \begin{lstlisting}
+provider: g5k
+resources:
+  paravance:
+    control: 1
+    database: 1
+    nova-conductor: 1
+    network: 1
+    storage: 1
+    compute: 50
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Topology control: \texttt{inventory.yaml}}
+  \begin{textblock*}{.4\paperwidth}(6cm,3cm)
+	 \includegraphics[scale=.5]{figs/topology_control.png}
+  \end{textblock*}
+
+  \begin{lstlisting}[basicstyle=\ttfamily\small]
+[keystone:children]
+control
+
+[horizon:children]
+control
+
+[rabbitmq:children]
+control
+
+[mariadb:children]
+database
+
+...
+
+[nova-compute:children]
+compute
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Network control}
+  \begin{columns}
+    \begin{column}{.45\textwidth}
+      \begin{lstlisting}
+provider: g5k
+resources:
+  `\alert{grp1:}'
+    paravance:
+      control: 1
+      database: 1
+      nova-conductor: 1
+      network: 1
+      storage: 1
+  `\alert{grp2:}'
+    paravance:
+      compute: 50
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{.45\textwidth}
+      \begin{lstlisting}
+`\alert{network\_constraints:}'
+  `\alert{- src: grp1}'
+    `\alert{dst: grp2}'
+    `\alert{delay: 150ms}'
+    `\alert{rate: 100mbit}'
+    `\alert{symetric: true}'
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{OpenStack customization}
+  \begin{lstlisting}
+kolla:
+  openstack_release: 4.0.0
+
+patches:
+  - name: patch mariadb bootstrap
+    src: mariadb_bootstrap.yml
+    dst: kolla/ansible/roles/mariadb/tasks/bootstrap.yml
+    enabled: "yes"
+  - name: patch galera.cnf.j2
+    src: galera.cnf.j2
+    dst: kolla/ansible/roles/mariadb/templates/galera.cnf.j2
+    enabled: "yes"
+  - name: patch haproxy.cfg.j2
+    src: haproxy.cfg.j2
+    dst: kolla/ansible/roles/haproxy/templates/haproxy.cfg.j2
+    enabled: "yes"
+  \end{lstlisting}
+\end{frame}
+
+\section{\texttt{enos bench}}
+
+\begin{frame}[fragile]{\insertsectionhead}
+  Execute arbitrary Rally benchmark
+  \begin{lstlisting}
+rally:
+  enabled: true
+  args:
+    concurrency:
+      - 5
+      - 10
+    times:
+      - 100
+    scenarios
+      - name: boot and list servers
+        file: nova-boot-list-cc.yml
+  \end{lstlisting}
+  \bigskip
+  \texttt{\$ enos bench --workload=run.yml}
+\end{frame}
+
+%\begin{frame}{\insertsectionhead}
+%  \textit{for each scenario}
+%  \begin{itemize}
+%	 \item Execute benchmark
+%  \item Collect and store metrics
+%    CPU/RAM/Network consumption whatever the service is (cAdvisor).
+%  \item Generates reports
+%  \end{itemize}
+%\end{frame}
+
+\section{\texttt{enos backup}}
+\begin{frame}{\insertsectionhead}
+  \texttt{enos backup} produces a archive with ready-to-share results:
+  \begin{itemize}
+  \item Rally/Shaker reports
+  \item OpenStack logs
+  \item InfluxDB database filled with collected metrics
+  \item Grafana server for visualisation
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Measures Output}
+  \begin{center}
+  \includegraphics[width=\textwidth]{figs/grafana}
+  \end{center}
+\end{frame}
+
+%% \section{\texttt{enos info}}
+%\begin{frame}[fragile]{Interact with Enos}
+%  Enos fully exposes its state so you can add your own
+%  tasks/benchmarks.
+%  \bigskip
+%  {
+%    \scriptsize
+%  \begin{lstlisting}
+%$ enos info
+%
+%{
+%  'cinder_database_password': 'demo',
+%  ...
+%  'mariadb_password': 'demo',
+%  ...
+%  'vip': '10.24.61.254',
+%  'eths': ('eth0', 'eth1'),
+%  'provider_net': {'cidr': '10.24.0.0/18',
+%                   'start': '10.24.0.0',
+%                   'gateway': ...},
+%  'rsc': {'compute':[Host('paravance-16-kavlan-4.rennes.grid5000.fr'),
+%                     Host('paravance-15-kavlan-4.rennes.grid5000.fr')],
+%          'nova-conductor': ...}
+%}
+%  \end{lstlisting}
+%  }
+%\end{frame}
+
+\begin{frame}{Conclusion}
+  \textbf{Enos}
+  \begin{itemize}
+	 \item Complete solution to deploy and evaluate OpenStack
+		\url{https://github.com/BeyondTheClouds/enos}
+	 \item Integrated, reproducible and sharable
+	 \item Fine control over deployment topology and network
+	 \item Ready-to-use recipes:
+		\url{https://github.com/BeyondTheClouds/enos-scenarios}
+  \end{itemize}
+
+  \vspace{.4cm}
+  \textbf{Future works}
+  \begin{itemize}
+  \item Multiple Regions
+  \item WANwide OpenStack
+  \item OSProfiler Integration
+  \item Adapt to other complex software stacks
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Thank you}
+  \begin{textblock*}{\paperwidth}(0cm, 1.0cm)
+   \centering\includegraphics[scale=.7]{figs/discovery-sticker.png}
+  \end{textblock*}
+
+  \begin{textblock*}{.7\paperwidth}(1.5cm, 6.8cm)
+  \begin{columns}
+    \begin{column}{.65\textwidth}
+		Ronan-Alexandre.Cherrueau@inria.fr\\
+		Adrien.Lebre@inria.fr\\
+		Dimitri.Pertin@inria.fr
+    \end{column}
+    \begin{column}{.55\textwidth}
+		\underline{Anthony.Simonet@inria.fr}\\
+		Matthieu.Simonin@inria.fr
+    \end{column}
+  \end{columns}
+  \end{textblock*}
+\end{frame}
+
+\end{document}
