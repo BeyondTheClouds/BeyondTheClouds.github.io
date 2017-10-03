@@ -1,0 +1,227 @@
+\documentclass[a4paper,11pt]{article}
+
+% paquets perso
+%\usepackage{clavierFonte}
+%\usepackage{guillemets}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\newcommand{\fge}{\fg\ }
+
+
+% paquet / note EMN
+\usepackage{sujetProjet}
+
+\usepackage{pdfpages}
+
+\newcommand{\aegis}{\texttt{Aegis}}
+\newcommand{\api}{\texttt{API}}
+\newcommand{\cxf}{\texttt{Apache CXF}}
+\newcommand{\ccxf}{\texttt{CXF}}
+\newcommand{\corba}{\texttt{CORBA}}
+\newcommand{\emn}{EMN}
+\newcommand{\eclipse}{\texttt{Eclipse}}
+\newcommand{\gsi}{GSI}
+\newcommand{\discovery}{DisCoVery }
+\newcommand{\http}{\texttt{HTTP}}
+\newcommand{\java}{\texttt{Java}}
+\newcommand{\jaxb}{\texttt{JAXB}}
+\newcommand{\jaxws}{\texttt{JAX-WS}}
+\newcommand{\jaxrs}{\texttt{JAX-RS}}
+\newcommand{\jbi}{\texttt{JBI}}
+\newcommand{\jee}{\texttt{JEE}}
+\newcommand{\javaJEE}{\java{}/\jee{}}
+\newcommand{\jms}{\texttt{JMS}}
+\newcommand{\json}{\texttt{JSON}}
+\newcommand{\restful}{\texttt{RESTful}}
+\newcommand{\soap}{\texttt{SOAP}}
+\newcommand{\uv}{UV}
+\newcommand{\xml}{\texttt{XML}}
+
+
+
+
+\initTitre{UV \og Sensibilisation à la recherche \fge \\ OpenStack et schémas d'accès SQL}
+\initAbrevTitre{Projet Fog/Edge Computing}
+
+%\initSousTitre{}
+
+\initAuteurs{}
+
+%\initDate{22}{8}{2006}
+
+\initSousEntite{FIL}
+\initCodeSousEntite{FIL}
+
+%\initDestinataires{}
+
+%\initDiffusion{}
+
+%\initCodeNote{UV/}
+
+%\initVersionNote{1.0}
+
+%\initHistorique{}
+
+\pasIndentation
+
+\begin{document}
+
+\begin{couverture}
+  \afficherDate
+  \afficherTitre
+
+{\footnotesize
+  \begin{sujet}
+
+\afficherTuteur{%
+\href{mailto:adrien.lebre@inria.fr}{Adrien Lebre}
+}
+
+
+\afficherProjet{%
+ Fog/Edge Computing
+
+ \begin{quote}
+   OpenStack est une suite logiciel permettant d'opérer des
+   plateformes de Cloud Computing de type IaaS. Bien que le passage à
+   l'échelle (le terme de scalabilité est généralement utilisé) soit
+   un critère décisif lors du choix d'un système pour opérer ce genre
+   de plateforme, de nombreuses briques fondamentales constituants
+   OpenStack ne satisfont pas ce critère, notamment lorsque vient
+   s'associer au problème du passage à l'échelle celui de
+   géo-distribution.  L'initiative Discovery pilotée par l'équipe
+   ASCOLA éudie de manière approfondie le système OpenStack afin de
+   déterminer les principales faiblesses et proposer des modifications
+   permettant dy pallier.
+ 
+
+  Le travail proposé dans ce projet s'inscrit dans cette action. il consiste à:
+\begin{itemize}
+\item Comprendre les traces JSON retournées par l'outil EnOS, outil utilisé pour l'évaluation des performanes du système OpenStack ;
+\item Analyser ces traces de manière automatique afin de catégoriser les requêtes SQL réalisées par le système OpenStack ; 
+\item De proposer comme résultat de cette analyse un ensemble de métriques (quantité de données manipulées par chaque catégorie, périodicité des requêtes, ...).
+\end{itemize}
+
+   A plus gros grain, ce projet s'insère dans l'initiative
+\href{http://beyondtheclouds.github.io}{Discovery} pilotée par l'école. Le travail réalisé pourra donner lieu à une section dans un article de recherche. 
+ \end{quote}
+}
+
+\afficherSiteWeb{http://beyondtheclouds.github.io}
+
+\afficherIntitule{%
+  Analyse des accès SQL du système OpenStack
+  }
+
+\end{sujet}
+}
+\end{couverture}
+
+
+%\includepdf[pages=-, offset=2cm 0cm]{KeyCopyKey-projet.pdf}
+
+\begin{note}
+
+
+\paragraph*{Domaines}
+
+\begin{itemize}
+ \item Systèmes distribués
+ \item Cloud Computing (IaaS)
+ \item Python
+\end{itemize}
+
+\paragraph*{Compétences requises}
+
+\begin{itemize}
+ \item Fondamentaux Cloud Computing
+ \item Programmation objets/composants
+\end{itemize}
+
+\paragraph*{Compétences à acquérir}
+
+\begin{itemize}
+\item Expertise sur l'architecture OpenStack
+\item Sensibilisation à l'évaluation de performances de systèmes complexes
+\item Contribution à un projet \og~open source~\fg
+\item Programmation Python
+\end{itemize}
+
+\paragraph*{Contexte\\}
+Afin de supporter la demande croissante d'informatique utilitaire (UC:
+Utility Computing) tout en prenant en compte les aspects énergétiques
+et financiers, la tendance actuelle consiste à construire des centres
+de données (ou centrales numériques) de plus en plus grands dans un
+nombre limité de lieux stratégiques.  Cette approche permet sans aucun
+doute de satisfaire la demande tout en conservant une approche
+centralisée de la gestion de ces ressources mais elle reste loin de
+pouvoir fournir des infrastructures de calcul utilitaire efficaces et
+durables. L'initiative de recherche \discovery propose une approche
+radicalement différente permettant de prendre en compte la localité
+des demandes dès le départ. Pour ce faire, elle propose de tirer parti
+de tous les équipements disponibles sur l'Internet afin de fournir des
+infrastructures de calcul utilitaire qui permettront de part leur
+distribution de prendre en compte plus efficacement la dispersion
+géographique des utilisateurs et leur demande toujours croissante
+[1]. Un des aspects critique pour l'émergence de telles plates-formes
+de calcul utilitaire (peu à peu connues sous les termes Fog et Edge
+Computing) est la disponibilité de mécanismes de gestion appropriés
+exploitant les dernières contributions en terme d'algorithmiques
+distribués.  Des premiers travaux menés à l'école des Mines ont permis
+de valider plusieurs mécanismes via la mise en \oe uvre de prototypes
+experimentaux. Afin de passer du mode recherche à un mode plus
+industriel, nous avons commencé à regarder comment intégrer nos
+propositions au système OpenStack.
+
+
+
+\paragraph*{Problème: Les faiblesses dans la conception d'OpenStack\\}
+
+OpenStack est une suite logiciel permettant d'opérer des plateformes
+de Cloud Computing de type IaaS. Elle est aujourd'hui la solution
+\emph{Open Source} retenue et supportée par un grand nombre d'acteurs aussi
+bien académiques et industriels (850 institutions sont impliquées
+dans son développement, avec des acteurs de premier rangs tels que IBM,
+RedHat ou encore plus récemment Google).  Bien qu'une des règles
+fondamentales pour le développement du système a pour objectif
+d'adresser la problématique du passage à l'échelle de chaque
+composant, le système comprend plusieurs briques logicielles qui ne
+repondent pas à cette règle. A titre d'exemple, les travaux conduits à l'école ont identifié la base de
+données MySQL au sein du composant Nova. Bien qu'il soit possible comme nous l'avons montré de développer des prototypes
+au dessus des systèmes NoSQL [1] (ou plus récemment NewSQL), il est nécessaire de comprendre l'implication du modèle SQL au sein du code propre au système OpenStack.
+
+
+\paragraph*{Objectif\\}
+L'objectif du travail proposé dans ce projet vise à étendre la phase
+d'analyse post-mortem de l'outil
+EnOS\footnote{https://github.com/BeyondTheClouds/enos} [2] développé dans
+le cadre de l'initiative Discovery. Cet outil permet de
+deployer une infrastructure OpenStack au dessus d'une large varièté de
+plateformes experimentales grâce à la technologie Docker et Ansible.
+Une fois le système déployé (phase 1), il est possible d'éxecuter un ensemble de tests de performance (phase 2) et d'analyser les résultats de manière post-mortem (phase 3).
+L'objectif du projet est d'enrichir la phase d'analyse de manière à donner une vue synthétique des informations relatives aux accès SQL réalisés.
+
+Le projet sera articulé autour de trois volets (le dernier pouvant être vu comme un bonus):
+\begin{itemize}
+\item La lecture et la compréhension d'articles scientifiques et de documentation technique (référencés ci-après) ; 
+\item L'analyse des requêtes SQL contenues dans la trace JSON delivrée par EnOS (et plus précisement le module OSProfiler) ; 
+\item La mise en place d'une vue synthétique (de type dashboard) permettant de parcourir les informations collectées.  
+\end{itemize}
+
+\paragraph*{Méthodologie du projet\\}
+Ce projet sera réalisé suivant une méthode agile. Il devra impliquer une
+contribution au projet \emph{Open Source} EnOS.
+
+
+\paragraph*{Bibliographie:\\}
+%
+\texttt{[1]} Revising OpenStack to Operate Fog/Edge Computing infrastructure, Lebre et al., In Proceedings of the IEEE Internation conference IC2E, Vancouver, April 2017 - \url{https://hal.inria.fr/hal-01273427/}.
+
+\texttt{[2]}ENOS: a Holistic Framework for Conducting Scientific Evaluations of OpenStack, Cherrueau et al., in Proceedings of the IEEE/ACM Interntional Conference CCGRID, May 2017 - \url{https://hal.inria.fr/hal-01415522v2/}.
+
+\end{note}
+
+
+
+\end{document}

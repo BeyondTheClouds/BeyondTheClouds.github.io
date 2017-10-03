@@ -1,0 +1,236 @@
+% latexmk -pdf -pdflatex="lualatex %O %S" enos-slides.tex
+
+% ************************************************************************
+% Personal data and user ad-hoc commands
+% ************************************************************************
+\newcommand{\myName}{%
+  Ronan-Alexandre Cherrueau, Adrien Lebre,\newline Dimitri Pertin,
+  \underline{Anthony Simonet} and Matthieu
+  Simonin\xspace} % 2
+\newcommand{\myDepartment}{Inria, France} % 8
+\newcommand{\myTime}{\date\xspace} % 9
+\newcommand{\myTitle}{Enos: a Holistic Framework for Conducting
+  Scientific Evaluations of OpenStack} % 11
+\newcommand{\myVersion}{version 0.1\xspace}
+\date{May 14th, 2017}
+ \titlegraphic{%
+	\includegraphics[height=1.0cm]{figs/logo/inria.pdf}\hfill%
+	\includegraphics[height=1.2cm]{figs/logo/imta.png}\hfill%
+	\includegraphics[height=1.2cm]{figs/logo/ls2n.png}\hfill%
+	\includegraphics[height=1.5cm]{figs/discovery-sticker.png}\hfill%
+ }
+
+% ********************************************************************
+% Setup, finetuning, and useful commands
+% ********************************************************************
+\newcommand{\ie}{i.\,e.}
+\newcommand{\Ie}{I.\,e.}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\Eg}{E.\,g.}
+
+% ************************************************************************
+% Loading some handy packages
+% ************************************************************************
+%% \PassOptionsToPackage{utf8}{inputenc}
+%%  \usepackage{inputenc}
+\PassOptionsToPackage{english}{babel}
+\usepackage{babel}
+
+% ********************************************************************
+% General useful packages
+% ********************************************************************
+\PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
+	\usepackage{fontenc}
+\usepackage{xspace} % to get the spacing after macros right
+
+% ************************************************************************
+% code / listings
+% ************************************************************************
+\usepackage{listings}
+
+\lstdefinelanguage{proverif-pv}{
+classoffset=0,
+morekeywords={%
+  among,channel,choice,clauses,const,def,%
+  elimtrue,else,equation,equivalence,event,%
+  expand,fail,forall,free,fun,get,if,in,%
+  inj-event,insert,let,letfun,new,noninterf,%
+  not,nounif,or,otherwise,out,param,phase,%
+  pred,proba,process,proof,putbegin,query,%
+  reduc,set,suchthat,table,then,type,%
+  weaksecret,yield},
+otherkeywords={||,&&,->,<->,<=>,==>},
+emph={gather},
+sensitive=true,
+morecomment=[n]{(*}{*)},
+morestring=[b]",
+%rulesepcolor=\color{solarized@base03},
+numbers=left,
+classoffset=1,
+morekeywords={private,data,typeConverter,%
+  memberOptim,decompData,decompDataSelect,%
+  block,attacker,mess},
+keywordstyle=\bfseries\color{solarized@base00},
+classoffset=0
+}[keywords,comments,strings]
+
+
+\lstdefinelanguage{idris}[]{Haskell}{
+  morekeywords={total,auto,using,Refl,interface,%
+  implementation},
+  deletekeywords={intersect,List,Double,Bool,%
+  String,nub,fst,snd,not,Either,Maybe,Just,Nothing,%
+  either,index,last,id,Eq},
+  otherkeywords={=>,>>=},
+  morecomment=[l]{|||},
+  literate=
+    {[]}{{\bot}}2 {->}{→}1 {++}{{+\!\!+}}1
+    {<-}{{←}}1
+    ,
+  mathescape=true,% /!\ takes care of '\' inside a code
+}
+
+\lstdefinelanguage{javascript}{
+  keywords={typeof, new, true, false, catch, function, return, null,
+  catch, switch, var, if, in, while, do, else, case, break},
+  ndkeywords={class, export, boolean, throw, implements, import,
+  this},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+basicstyle=\ttfamily\small,
+numbers=none,%left,%
+numberstyle=\tiny\color{solarized@base01},
+keywordstyle=\bfseries\color{solarized@orange},
+stringstyle=\color{solarized@cyan},
+%% identifierstyle=\color{solarized@base03},
+commentstyle=\color{solarized@base01},
+%% emphstyle=\color{solarized@orange},
+emphstyle=\bfseries\color{solarized@orange},
+fontadjust=true,%
+keepspaces=true,%
+basewidth={0.58em, 0.53em},%
+breaklines=true,
+tabsize=2,%
+%framerule=0.3pt,%
+numbersep=1.5mm,%
+upquote=true, % straight quote instead of quotation mark
+extendedchars=true,
+aboveskip=0pt,
+belowskip=0pt,
+%% mathescape=true,% /!\ this put a mess in the sh code
+%% escapechar=★,%
+%% firstnumber=last,
+escapeinside={`}{'} % CR as escape char
+}
+
+
+% ************************************************************************
+% 6. PDFLaTeX, hyperreferences and citation backreferences
+% ************************************************************************
+% ********************************************************************
+% Using PDFLaTeX
+% ********************************************************************
+%% I got an error when having a pound `#' symbol in the first argument
+%% of an `\href' inside a footnote. The footnote tries to interpret
+%% it. The bigfoot package fixes the problem.
+%% http://tex.stackexchange.com/a/12860
+\PassOptionsToPackage{pdftex,hyperfootnotes=false,pdfpagelabels}{hyperref}
+	\usepackage{hyperref} % backref linktocpage pagebackref
+\pdfcompresslevel=9
+% \pdfadjustspacing=1
+
+% ********************************************************************
+% Hyperreferences
+% ********************************************************************
+\hypersetup{%
+    %draft,	% = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=false, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,%
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=revealjs1, citecolor=webgreen, %pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName, \myDepartment},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}
+
+
+% ********************************************************************
+% Last, but not least...
+% ********************************************************************
+\usepackage{ulem} %to strike out text
+\renewenvironment{quote}
+{\vspace{.25em}\itshape\list{}{\rightmargin\leftmargin}%
+\item\relax\textquotedblleft\ignorespaces}
+{\unskip\unskip\textquotedblright\endlist\vspace{.25em}}
+% ************************************************************************
+
+% ********************************************************************
+% Using different fonts
+% ********************************************************************
+
+%% Crimson: https://fontlibrary.org/en/font/crimson
+\usepackage[no-math]{fontspec}
+%% Scale to math text size
+\defaultfontfeatures{Scale=1.05 }
+%\newfontfamily\Fonti[
+%    Path              = /Users/msimonin/Library/Fonts/,
+%    Extension         = .otf,
+%    Ligatures         = TeX,
+%    UprightFont       = *-Roman,
+%    BoldFont          = *-Bold,
+%    ItalicFont        = *-Italic,
+%    BoldItalicFont    = *-BoldItalic
+%]{Crimson}
+%\newfontfamily\Fontii[
+%    Path              = /Users/msimonin/Library/Fonts/,
+%    Extension         = .otf,
+%    Ligatures         = TeX,
+%    WordSpace         = 1.3,
+%    ItalicFont        = Vollkorn-MediumItalic,
+%    BoldFont          = Vollkorn-Semibold,
+%    BoldItalicFont    = Vollkorn-SemiboldItalic
+%]{Vollkorn-Medium}
+%\newfontfamily\FontiiD[
+%    Path              = /Users/msimonin/Library/Fonts/,
+%    Extension         = .otf,
+%    Ligatures         = TeX,
+%    UprightFont       = *-Regular,
+%    BoldFont          = *-Bold,
+%    ItalicFont        = *-Italic,
+%    BoldItalicFont    = *-BoldItalic
+%]{Vollkorn}
+%\newfontfamily\Fontiii{Lato}
+%
+%\setmainfont[
+%    Path              = /Users/msimonin/Library/Fonts/,
+%    Extension         = .otf,
+%    Ligatures         = TeX,
+%    UprightFont       = *-Roman,
+%    BoldFont          = *-Bold,
+%    ItalicFont        = *-Italic,
+%    BoldItalicFont    = *-BoldItalic
+%]{Crimson}
+%
+%\setsansfont{Lato}
+%
+%\setmonofont[
+%    Path              = /Users/msimonin/Library/Fonts/,
+%    Extension         = .otf,
+%    Scale             = MatchLowercase,
+%    Ligatures         = TeX,
+%    UprightFont       = *-Regular,
+%    BoldFont          = *-Medium
+%]{FiraMono}%% \linespread{1.05} % a bit more for Palatino
