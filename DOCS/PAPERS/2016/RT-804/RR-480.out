@@ -1,0 +1,19 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Design Considerations}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{From Centralized to Distributed}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Cloud Capabilities}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Revising OpenStack}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Decentralizing the AMPQ Bus}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Decentralizing the Databases}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{From MySQL to REDIS, The Nova POC}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Experimental Validation}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Impact of REDIS w.r.t MySQL}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Time penalties}{subsection.4.1}% 11
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Networking penalties}{subsection.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Multi-site Scenarios}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Compatibility with Advanced Features}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{On-going Work}{}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Locality Challenges / cro DCs Segregation}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.2}{Revising Glance: The OpenStack Image Manager}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{OpenStack for Operating Massively Distributed Clouds}{}% 18
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 19

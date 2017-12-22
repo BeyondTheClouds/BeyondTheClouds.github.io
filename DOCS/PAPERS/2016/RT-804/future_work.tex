@@ -1,0 +1,96 @@
+
+%%%
+\section{OpenStack for Operating Massively Distributed Clouds\label{sec:perspective_work}}
+
+While advantages and opportunities of massively distributed clouds have been emphasized several years ago~\cite{church:2008, greenberg:2008},
+delivering an OpenStack that can natively be extended to distinct sites will create new opportunities.
+%Beyond the technical issues we should resolve to finalize our LUC OS, there are
+%few challenges that our community should tackle to be able to fully use the
+%technical capabilities offered by LUC infrastructures
+We present in this section the most important ones and also raise associated challenges (beyond the technical issues we should resolve to finalize our
+LUC OS) that our community should tackle to be able to fully use the technical capabilities offered by LUC infrastructures.
+
+%% Beyond the technical issues we should resolve to finalize our LUC OS, a first important
+%% challenge our community should shortly address to favor the adoption of such dynamic cloud
+%% infrastructures is related to the automatic installation/upgrade of the LUC OS (\ie our
+%% revised OpenStack software) throughout the different locations. In such a context,
+%% scalability and geo-distribution make the installation/upgrade process more difficult as
+%% it would probably require to relocate computations/data between locations in order to be
+%% able to update physical servers without impacting the execution of hosted
+%% applications. Another issue to investigate is whether it makes sense to extend a
+%% deployment between several network operators and how such extensions can be handled. We
+%% underline that even for such an extension (the term federation is probably more
+%% appropriated in this situation), the two OpenStack systems will join each other to form a
+%% single system. Of course security issues should also be addressed that are beyond the
+%% scope of this paper. 
+
+From the infrastructure point of view, a positive side-effect of our revised version of OpenStack is that it will natively allow the extension of a
+private cloud deployment with remote physical resources. Such a scenario is a strong advantage in comparison to the current hybrid offers as it does
+not break the notion of a single deployment operated by the same tenant. Each time a company will face a peak of activity, it will be possible to
+provision dedicated servers and attach them to the initial deployment. Those servers can either be provided by dedicated hosting services that have
+DCs close to the institution or by directly deploying transportable and containerized server rooms close to the private resources. This notion of
+\emph{WANwide elasticity} can be generalized as it will be possible to deploy such containerized server rooms whenever and wherever they will be
+mandatory. As examples, we can envision to temporarily deploy IT resources for sport events such as olympic games or for public safety purposes in
+case of disasters. Network/Telecom operators will also be able to deploy IT resources on their radio base stations they operate in order to deliver
+Fog/Edge computing solutions. The common thread in these use-cases is the possibility of extending an infrastructure wherever needed with additional
+resources, the only constraint being to be able to plug the different locations with a backbone that offers enough bandwidth and quality of service to
+satisfy network requirements. The major advantage is that such an extension is completely transparent for the administrators/users of the IaaS
+solution because they continue to supervise/use the infrastructure as they are used to. The associated challenge our community should shortly address
+to deliver such a \emph{Wanwide elasticity} is related to the automatic installation/upgrade of the LUC OS (\ie our revised OpenStack software)
+throughout different locations. In such a context, scalability and geo-distribution make the installation/upgrade process more difficult as it
+would probably require to relocate computations/data between locations in order to be able to update physical servers without impacting the execution
+of hosted applications. Another issue to investigate is whether it makes sense to extend a deployment between several network operators and how such
+extensions can be handled. We underline that even for such an extension (the term federation is probably more appropriated in this situation), the two
+OpenStack systems will join each other to form a single system. Of course security issues should also be addressed, but they are beyond the scope of this
+paper.
+
+From the software point of view, developers will be able to design new applications but also revise major cloud services in order to deliver more
+locality aware management of data, computation, and network resources. For instance, it will be possible to deploy on-demand Content Delivery Network
+solutions according to specific requirements. Cloud storage services could be revised to mitigate the overheads of transferring data from sources to
+the different locations where there are needed. New strategies can favor for instance a pulling mode instead of a pushing one. Nowadays data is
+mostly uploaded to the remote clouds without considering whether such data movements are effectively solicited or not. We expect that LUC
+infrastructures will enable data to stay as close as possible to the source that generates them and be transferred on the other side only when it will
+be solicited. Such strategies will mitigate the cost of transferring data in all social networks for instance. Similarly, developers will be able to
+deliver Hadoop-like strategies where computations are launched close to data sources. Such mechanisms will be shortly mandatory to handle the huge
+amount of data that Internet of Things will generate. However, delivering the LUC OS will not be sufficient to allow developers to implement such new
+services. Our community should start as soon as possible to revise and extend current interfaces (\aka Application Programming Interfaces). In
+particular, the new abstractions should allow applications to deal with geo-distribution opportunities and contextual information by using them to
+specify deployment/reconfigurations constraints or to develop advanced adaptation scenarios in order to satisfy for instance SLAs.
+
+Finally, the last opportunity we envision is related to the use of renewable energies to partially power each PoP of a LUC infrastructure. Similarly
+to follow-the-moon/follow-the sun approach, the use of several sites spread across a large territory will offer opportunities to optimize the use of
+distinct energy sources (solar panels, wind turbines). While such an opportunity has been already underlined~\cite{Berral:2014:BGC:2672596.2672694},
+the main advantage is once again related to the native capability of our revised OpenStack to federate distinct sites, allowing users to use such a
+widely distributed infrastructure in a transparent way while enabling administrators to balance resources in order to benefit from green energy
+sources when available (since the system is supervised by a single system we expect that the development of advanced load-balancing strategies
+throughout the different servers composing the infrastructure would be simplified).
+
+%%  + Quels sont les challenges/opportunités d'un cloud massivement distribué (SWOT)
+%%    - Strengths
+%%      + locality aware management of data, computation and network resources
+%%      + fault-tolerance (leveraging geo-distributed locations)
+%% + Scalability (additional resources can be added to the infrastructure whereever it is, the only constraint is to be able to plug those resources to the LUC infrastructure
+%%    - Weaknesses: 
+%%  - resource management complexity from the administrator viewpoint (no single view of the whole platform, maintenance of the hardware) 
+%%  => Contre balancer avec l'aspect fiabilité dans les forces
+%%       - Mutualization of resources is questionable and should be better investigated (economical/energy, on-going work) 
+%%       - security (in terms of Human presence) of micro DCs.
+%%       - network peering agreement (how can we extend a LUC infrastructure beyond one operator). 
+%%    - Opportunites: 
+%%      + Revise major cloud services to take benefit from the massively distributed clouds
+%%        - Cloud storage locality aware services
+%%        - CDN on demand (with particular topology) 
+%%     + Create new (and smarter) services (that needs computations capabilities closer to end-users) such as 
+%%       - public safety, deploy IT on demand and where it is mandatory and plug it to the whole infrastructure. 
+%%       - IOT  
+%%          + big computations can be performed as close as possible to the sensors)
+%%          + Use of sensors to create new services (smart cities)
+%%          +  Mobile computation and data management, cloudlet (i.e. virtual representation of the physical devices follows the localtion of the device, the cloudlet can benefit from the power of the LUC infrastructure while following the device)  
+%%          + Advanced data processing enabling the mitigation of data transfer (avoiding the movement of large and useless data items)
+%%         + Digital heater farm (Qarnot Computing / Aoterra) - http://www.qarnot-computing.com/technology  / https://www.cloudandheat.com/en/index.html
+%%     + Use of renewable energy (follow the moon, follow the sun, follow the wind, ...) 
+%%   - Threats: 
+%%      + Accouting, billing and monitoring 
+%%      + Ensure QoS
+%%      + Mise à jour de l'infrastructure (modificiation des couches logicielles à chaud
+%%     + Security of communications at every level of the stack. 
