@@ -16,8 +16,8 @@
 %% version 2003/12/01 or later.
 %% An archive of the software can be found at
 %%    ftp://ftp-sop.inria.fr/marelle/RR-INRIA
-\def\RRfiledate{2012/02/16}
-\def\RRfileversion{5.1c}
+\def\RRfiledate{2013/02/11}
+\def\RRfileversion{5.1f}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{RR}
        [\RRfiledate\space v\RRfileversion\space
@@ -82,6 +82,7 @@
 \authorhead{}
 \newcommand\RRNo[1]{\gdef\RR@No{#1}}
 \newcommand\RR@No{????}
+\let\RTNo\RRNo
 \newcommand\RR@month{\ifcase\the\month
  \or Janvier\or F\'evrier\or Mars\or Avril\or Mai\or Juin \or Juillet%
  \or Ao\^ut\or Septembre\or Octobre\or Novembre\or D\'ecembre\fi}
@@ -198,7 +199,7 @@
 \newcommand\URFuturs{\RRobsolete{URFuturs}}
 \newcommand\RCBordeaux{\gdef\RR@rc@name{bordeaux}
   \def\RR@rc{BORDEAUX -- SUD-OUEST}
-  \def\RR@adr{351, Cours de la Lib\'eration\\ B\^atiment A 29\\
+  \def\RR@adr{200 avenue de la Vieille Tour\\
      33405 Talence Cedex}}
 \newcommand\RCLille{\gdef\RR@rc@name{lille}
   \def\RR@rc{LILLE -- NORD EUROPE}
@@ -207,8 +208,8 @@
    59650 Villeneuve d'Ascq}}
 \newcommand\RCSaclay{\gdef\RR@rc@name{saclay}
    \def\RR@rc{SACLAY -- \^ILE-DE-FRANCE}
-   \def\RR@adr{Parc Orsay Universit\'e \\4 rue Jacques Monod\\
-      91893 Orsay Cedex}}
+   \def\RR@adr{1 rue Honor\'e d'Estienne d'Orves\\B\^atiment Alan Turing\\
+   Campus de l'\'Ecole Polytechnique\\91120 Palaiseau}}
 \newcommand\rr@frame{%
  \RR@atxy{0mm}{10mm}{\includegraphics{pagei}}
  \RR@atxy{38mm}{55mm}{\includegraphics[width=50mm]{logo-inria}}
@@ -279,7 +280,7 @@
       \theme@font \\[2mm]
       \RR@date\\[3mm] \RR@prjtype~\RR@projet}}}}
 \def\RR@fpmiddle{%
- \RR@atxy{38mm}{93mm}{\hbox{\vbox to 10cm{\hsize=14cm
+ \RR@atxy{38mm}{113mm}{\hbox{\vbox to 10cm{\hsize=14cm
    \begin{raggedright}
      \def\footnote##1{\relax}%
      \let\thanks\@nothanks

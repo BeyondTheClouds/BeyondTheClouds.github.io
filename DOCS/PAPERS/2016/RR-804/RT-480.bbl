@@ -1,0 +1,156 @@
+\begin{thebibliography}{10}
+
+\bibitem{grid5000}
+D.~Balouek, A.~Carpen~Amarie, G.~Charrier, F.~Desprez, E.~Jeannot,
+  E.~Jeanvoine, A.~Lebre, D.~Margery, N.~Niclausse, L.~Nussbaum, O.~Richard,
+  C.~P{\'e}rez, F.~Quesnel, C.~Rohr, and L.~Sarzyniec.
+\newblock {Adding Virtualization Capabilities to the {Grid'5000} Testbed}.
+\newblock In I.~Ivanov, M.~Sinderen, F.~Leymann, and T.~Shan, editors, {\em
+  Cloud Computing and Services Science}, volume 367 of {\em Communications in
+  Computer and Information Science}, pages 3--20. Springer International
+  Publishing, 2013.
+
+\bibitem{Berral:2014:BGC:2672596.2672694}
+J.~L. Berral, I.~n. Goiri, T.~D. Nguyen, R.~Gavald\'{a}, J.~Torres, and
+  R.~Bianchini.
+\newblock Building green cloud services at low cost.
+\newblock In {\em Proceedings of the 2014 IEEE 34th International Conference on
+  Distributed Computing Systems}, ICDCS '14, pages 449--460, Washington, DC,
+  USA, 2014. IEEE Computer Society.
+
+\bibitem{lebre:beyond2013}
+M.~Bertier, F.~Desprez, G.~Fedak, A.~Lebre, A.-C. Orgerie, J.~Pastor,
+  F.~Quesnel, J.~Rouzaud-Cornabas, and C.~Tedeschi.
+\newblock {Beyond the Clouds: How Should Next Generation Utility Computing
+  Infrastructures Be Designed?}
+\newblock In Z.~Mahmood, editor, {\em Cloud Computing}, Computer Communications
+  and Networks, pages 325--345. Springer International Publishing, 2014.
+
+\bibitem{buyya:intercloud}
+R.~Buyya, R.~Ranjan, and R.~N. Calheiros.
+\newblock {InterCloud: Utility-oriented Federation of Cloud Computing
+  Environments for Scaling of Application Services}.
+\newblock In {\em 10th Int. Conf. on Algorithms and Architectures for Parallel
+  Processing - Vol. Part I}, ICA3PP'10, pages 13--31, 2010.
+
+\bibitem{buyya:2010}
+R.~Buyya, R.~Ranjan, and R.~N. Calheiros.
+\newblock {Intercloud: Utility-Oriented Federation of Cloud Computing
+  Environments for Scaling of Application Services}.
+\newblock In {\em Algorithms and architectures for parallel processing}, pages
+  13--31. Springer, 2010.
+
+\bibitem{cascading-os}
+{Cascading OpenStack}.
+\newblock \url{https://wiki.openstack.org/wiki/OpenStack_cascading_solution}.
+
+\bibitem{cells}
+{Scaling solutions for OpenStack}.
+\newblock \url{http://docs.openstack.org/openstack-ops/content/scaling.html}.
+
+\bibitem{church:2008}
+K.~Church, A.~G. Greenberg, and J.~R. Hamilton.
+\newblock On delivering embarrassingly distributed cloud services.
+\newblock In {\em HotNets, Usenix}, pages 55--60. Citeseer, 2008.
+
+\bibitem{cloudstack}
+{CloudStack, Open Source Cloud Computing}.
+\newblock \url{http://cloudstack.apache.org}.
+
+\bibitem{decandia:dynamo}
+G.~DeCandia, D.~Hastorun, M.~Jampani, G.~Kakulapati, A.~Lakshman, A.~Pilchin,
+  S.~Sivasubramanian, P.~Vosshall, and W.~Vogels.
+\newblock {Dynamo: Amazon's Highly Available Key-Value Store}.
+\newblock In {\em ACM SIGOPS Operating Systems Review}, volume~41, pages
+  205--220. ACM, 2007.
+
+\bibitem{farahnakian:cloudcom14}
+F.~Farahnakian, P.~Liljeberg, T.~Pahikkala, J.~Plosila, and H.~Tenhunen.
+\newblock {Hierarchical VM Management Architecture for Cloud Data Centers}.
+\newblock In {\em 6th International Conf. on Cloud Computing Technology and
+  Science (CloudCom)}, pages 306--311, Dec 2014.
+
+\bibitem{feller:snooze}
+E.~Feller, L.~Rilling, and C.~Morin.
+\newblock {Snooze: A Scalable and Autonomic Virtual Machine Management
+  Framework for Private Clouds}.
+\newblock In {\em 12th IEEE/ACM Int. Symp. on Cluster, Cloud and Grid Computing
+  (Ccgrid 2012)}, pages 482--489, 2012.
+
+\bibitem{greenpeace:2013}
+J.~V.~H. Gary~Cook.
+\newblock {How Dirty is Your Data ?}
+\newblock Greenpeace International Report, 2013.
+
+\bibitem{greenberg:2008}
+A.~Greenberg, J.~Hamilton, D.~A. Maltz, and P.~Patel.
+\newblock {The Cost of a Cloud: Research Problems in Data Center Networks}.
+\newblock {\em ACM SIGCOMM Computer Communication Review}, 39(1):68--73, 2008.
+
+\bibitem{zeromq:2013}
+P.~Hintjens.
+\newblock {\em {ZeroMQ: Messaging for Many Applications}}.
+\newblock " O'Reilly Media, Inc.", 2013.
+
+\bibitem{houidi:2011}
+I.~Houidi, M.~Mechtri, W.~Louati, and D.~Zeghlache.
+\newblock {Cloud Service Delivery Across Multiple Cloud Platforms}.
+\newblock In {\em Services Computing (SCC), 2011 IEEE International Conference
+  on}, pages 741--742. IEEE, 2011.
+
+\bibitem{imbert:hal-00861886}
+M.~Imbert, L.~Pouilloux, J.~Rouzaud-Cornabas, A.~L{\`e}bre, and T.~Hirofuchi.
+\newblock {Using the EXECO Toolbox to Perform Automatic and Reproducible Cloud
+  Experiments}.
+\newblock In {\em {1st Int. Workshop on UsiNg and building ClOud Testbeds
+  (UNICO, collocated with IEEE CloudCom}}, Dec. 2013.
+
+\bibitem{kemme:vldb2010}
+B.~Kemme and G.~Alonso.
+\newblock {Database Replication: A Tale of Research Across Communities}.
+\newblock {\em Proc. VLDB Endow.}, 3(1-2):5--12, Sept. 2010.
+
+\bibitem{lakshman:2010}
+A.~Lakshman and P.~Malik.
+\newblock {Cassandra: A Decentralized Structured Storage System}.
+\newblock {\em ACM SIGOPS Operating Systems Review}, 44(2):35--40, 2010.
+
+\bibitem{loutas:2010}
+N.~Loutas, V.~Peristeras, T.~Bouras, E.~Kamateri, D.~Zeginis, and K.~Tarabanis.
+\newblock {Towards a Reference Architecture for Semantically Interoperable
+  Clouds}.
+\newblock In {\em Cloud Computing Technology and Science (CloudCom), 2010 IEEE
+  Second International Conference on}, pages 143--150. IEEE, 2010.
+
+\bibitem{moreno2012iaas}
+R.~Moreno-Vozmediano, R.~S. Montero, and I.~M. Llorente.
+\newblock {IaaS Cloud Architecture: From Virtualized Datacenters to Federated
+  Cloud Infrastructures}.
+\newblock {\em Computer}, 45(12):65--72, 2012.
+
+\bibitem{opennebula}
+{Open Source Data Center Virtualization}.
+\newblock \url{http://www.opennebula.org}.
+
+\bibitem{openstack}
+{The Open Source, Open Standards Cloud}.
+\newblock \url{http://www.openstack.org}.
+
+\bibitem{peng:2009}
+J.~Peng, X.~Zhang, Z.~Lei, B.~Zhang, W.~Zhang, and Q.~Li.
+\newblock {Comparison of Several Cloud Computing Platforms}.
+\newblock In {\em 2nd Int. Symp. on Information Science and Engineering
+  (ISISE)}, pages 23--27, 2009.
+
+\bibitem{activemq:2011}
+B.~Snyder, D.~Bosnanac, and R.~Davies.
+\newblock {\em {ActiveMQ in Action}}.
+\newblock Manning, 2011.
+
+\bibitem{weil2006ceph}
+S.~A. Weil, S.~A. Brandt, E.~L. Miller, D.~D. Long, and C.~Maltzahn.
+\newblock Ceph: A scalable, high-performance distributed file system.
+\newblock In {\em Proceedings of the 7th symposium on Operating systems design
+  and implementation}, pages 307--320. USENIX Association, 2006.
+
+\end{thebibliography}

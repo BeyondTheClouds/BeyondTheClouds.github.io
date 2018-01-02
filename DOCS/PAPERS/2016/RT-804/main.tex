@@ -1,0 +1,85 @@
+\documentclass{acm/acm_proc_article-sp}
+\makeatletter
+\def\@copyrightspace{\relax}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Accents français
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Todo notes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[textwidth=17mm]{todonotes}
+\newcommand{\customtodo}[4]{
+        \todo[color=#2,inline,size=\small]{
+                \ifx&#3&
+                        \textbf{#1} #4
+                \else
+                        \textbf{#1$\Rightarrow$#3} #4
+                \fi
+        }
+}
+\newcommand{\AL}[2][]{\customtodo{AL}{green!50}{#1}{#2}}
+\newcommand{\JP}[2][]{\customtodo{JP}{red!20}{#1}{#2}}
+\newcommand{\FD}[2][]{\customtodo{JP}{brown!20}{#1}{#2}}
+\newcommand{\LP}[2][]{\customtodo{MB}{orange!20}{#1}{#2}}
+
+\newcommand{\ie}[0]{{\em i.e.},\xspace}
+\newcommand{\vs}[0]{{\em vs.}\xspace}
+\newcommand{\eg}[0]{{\em e.g.},\xspace}
+\newcommand{\etal}[0]{{\em et al.}\xspace}
+\newcommand{\wrt}[0]{{\em w.r.t.}\xspace}
+\newcommand{\aka}[0]{{\em a.k.a.}\xspace}
+
+\sloppy
+
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{paralist}
+
+\begin{document}
+\title{The DISCOVERY Initiative}
+\subtitle{Overcoming Major Limitations of Traditional Server-Centric
+ Clouds by Operating  Massively Distributed IaaS Facilities}% by Leveraging OpenStack}
+
+\numberofauthors{4}
+\author{
+%
+% 1st. author
+% \alignauthor
+Adrien Lebre, Jonathan Pastor\\
+       \affaddr{ASCOLA Research Group}\\
+       \affaddr{Mines Nantes / Inria / LINA UMR 6241}\\
+       \affaddr{Nantes, France}\\
+% 3nd. author
+\alignauthor
+Frédéric Desprez\\
+       \affaddr{Corse Research Group}\\
+       \affaddr{Inria / LIG UMR 5217}\\
+       \affaddr{Grenoble, France}\\
+}
+
+\maketitle
+
+\input{abstract}
+
+%% Comment this line for submission
+%\listoftodos
+
+\input{introduction}
+
+\input{design}
+
+\input{openstack}
+
+%\input{eval}
+
+\input{conclusion}
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+\end{document}

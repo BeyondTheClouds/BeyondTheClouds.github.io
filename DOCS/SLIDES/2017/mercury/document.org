@@ -1,0 +1,465 @@
+# -*- org-bibtex-file: "bibliography.bib"; ispell-local-dictionary: "fr_FR" -*-
+#+TITLE: Rapport d'avancement de l'ADT Mercury
+#+AUTHOR: Ronan-Alexandre Cherrueau, Adrien Lèbre, Mathieu Simonin
+#+EMAIL: prénom.nom@inria.fr
+#+LANGUAGE: fr
+#+STARTUP: align
+#+STARTUP: entitiespretty
+#+OPTIONS: ^:{}
+#+OPTIONS: ':t email:t
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../timeline.css" />
+
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LaTeX_HEADER: \usepackage[AUTO]{babel}
+# #+LaTeX_HEADER: \usepackage{svg}
+
+#+MACRO: i18n /$1/ ($2)
+#+MACRO: eg /ex./,
+#+MACRO: ie /c.-à-d./,
+#+MACRO: etc /etc./
+#+MACRO: cfs /cf./\nbsp{}§[[#$1sec:$2]]
+#+MACRO: NEWLINE @@latex:\null@@ @@html:<br>@@
+
+* Présentation de l'ADT Mercury
+:PROPERTIES:
+:CUSTOM_ID: sec:intro
+:END:
+L'ADT Mercury soutient et assiste l'initiative
+Discovery[fn:discovery]. Une initiative qui étudie les infrastructures
+d'{{{i18n(informatique en nuage,cloud computing)}}} massivement
+distribuées dans de petits centres de données situés à la périphérie
+du réseau. Le dessein de telles infrastructures est double :
+premièrement, de s'affranchir des problèmes de conditionnement des
+centres de données lors du passage à l'échelle de l'infrastructure et
+deuxièmement, de limiter la latence en rapprochant les unités de
+calculs avec les utilisateurs. Cette infrastructure désignée sous le
+nom d'{{{i18n(informatique en périphérie,edge computing)}}} sert les
+besoins d'une nouvelle génération d'applications utilitaires. Des
+applications plus aptes à prendre en compte les demandes en ressources
+toujours croissantes et la dispersion géographique de ses
+utilisateurs. Les applications de conduite autonome, l'Internet des
+Objets, la diffusion de flux vidéos et la virtualisations des
+fonctionnalités réseaux (NFV) sont des exemples d'applications qui
+doivent être déployées en périphérie.
+
+Pour étudier les infrastructures d'informatique en périphérie,
+l'initiative Discovery analyse et révise le gestionnaire
+d'infrastructures OpenStack[fn:openstack]. OpenStack est un ensemble
+de services libres pour déployer et opérer une infrastructure
+d'informatique en nuage. Il met à disposition de ses utilisateurs des
+ressources de calculs ({{{ie}}} machines virtuelles avec Nova,
+conteneurs avec Magnum, machines physiques avec Ironic), des
+ressources de stockages ({{{ie}}} volumes disques avec Cinder et
+hébergement de fichiers avec Swift) et des ressources réseaux
+({{{eg}}} routeurs, commutateurs, {{{etc}}} avec Neutron).
+
+OpenStack est depuis quelques années la solution de fait pour gérer
+les infrastructures privée et publiques d'informatique en nuage. C'est
+aussi la solution qui se profile pour gérer les infrastructures
+d'informatique en périphérie. Malheureusement, bien que l'accent ait
+été mis sur le passage à l'échelle au cours du développement
+d'OpenStack, de nombreux services, comme la base de données
+relationnelle, ne satisfont pas ce critère. Ceci rend impossible, dans
+l'état actuel, la gestion de centaines de petits centres de données
+massivement distribués. De même, déployer et opérer des centres de
+données en périphéries oblige OpenStack à faire face à de fortes
+latences. Mais là encore, des services comme le bus de communications,
+deviennent inutilisables en présences de ces fortes latences. Il faut
+donc réviser le système OpenStack pour opérer de manière unifiée
+l'ensemble de ces centaines de petits centres de données situés en
+périphérie
+
+Dans ce contexte, l'ADT Mercury apporte son soutient à travers deux
+axes. Premièrement, fournir un support aux développements logiciels
+effectués dans le cadre de l'IPL. Deuxièmement, promouvoir le
+transfert des contributions logiciels vers la communauté OpenStack.
+
+* Plan de travail initial
+:PROPERTIES:
+:CUSTOM_ID: sec:tasks
+:END:
+Cette section présente la planification de l'ADT Mercury telle qu'elle
+fut définie initialement. La planification est décomposée en quatre
+tâches, elles-mêmes partagées en sous tâches. Une représentation
+graphique de la planification initiale est donnée en figure [[fig:gant]].
+
+#+ATTR_LATEX: :width .8\textwidth :placement [tb]
+#+CAPTION: Principaux jalons et ordonnancement des tâches
+#+NAME: fig:gant
+[[file:figs/gant.pdf]]
+
+** Valorisation des résultats de Discovery (Tâche 1)
+:PROPERTIES:
+:CUSTOM_ID: ssec:task1
+:END:
+Cette tâche regroupe les activités visant à valoriser les résultats de
+l'IPL Discovery. En particulier, reverser à la science les progrès
+fait par Discovery dans la compréhension et la réalisation d'un
+système qui gère une infrastructure d'informatique en périphérie.
+
+*** Distribution des mécanismes de bas niveau
+L'utilisation d'une base de données relationnelle ({{{ie}}} MySQL) et
+d'un bus de communications utilisant un service centralisé ({{{ie}}}
+RabbitMQ) sont deux points bloquants dans la création d'un OpenStack
+massivement distribué.{{{NEWLINE}}}
+
+/Distribution de la base de données./ Il s'agit de stabiliser et
+consolider la bibliothèque ~ROME~[fn:rome-lib] issue des travaux de
+thèse de Jonathan Pastor[[cite:Pas16]]. ~ROME~ est un adaptateur qui
+permet l'utilisation d'une base de données NoSQL de manière
+transparente à OpenStack. Nous estimons à 6 HM la stabilisation du
+code et l'intégration du service dans les composants de bases
+d'OpenStack, à savoir : Nova, Glance, Cinder et Neutron.{{{NEWLINE}}}
+
+/Distribution du bus de communications./ L'utilisation d'une solution
+sans bus de communications centralisé sera intégré de manière
+optionnelle dans la future version d'OpenStack. Cette solution est
+intéressante dans l'objectif de distribuer le bus de communication
+mais reste à être évaluée. La tâche vise à obtenir une évaluation
+complète de la solution ~ZeroMQ~[fn:zeromq] afin d'analyser sa
+viabilité dans le desiderata.
+
+*** Adaptation des APIs/services de plus haut niveau
+Les APIs et services d'OpenStack n'intègrent pas les notions de
+localité. La tâche "Architecture" de l'IPL Discovery vise à définir
+comment les notions de localité qui seront exposées dans les
+différents services d'OpenStack comme, par exemple, le gestionnaire
+d'images Glance ou le stockage des données Cinder. Cette tâche vise à
+implémenter, stabiliser et documenter les résultats de l'IPL dans ce
+domaine, notamment autour de la thèse en cours entre Orange Labs
+(Thierry Coupaye) et Inria (Frédéric Desprez) sur la gestion du cycle
+de vie des applications dans une infrastructure massivement répartie.
+
+*** Adaptation et implémentation de mécanismes transversaux
+Le desiderata comporte un certain nombres de mécanismes transversaux
+qui sont essentiels pour l'exploitation d'une infrastructure
+d'informatique en périphérie. Par exemple, la /supervision/ qui suit
+et analyse les opérations faite sur l'infrastructure, ou la
+/comptabilité/ qui suit les activités des utilisateurs sont deux
+mécanismes nécessaires à un gestionnaire d'infrastructure
+d'informatique en nuage. L'objectif de cette tâche est de stabiliser
+les développements qui vont être mis en œuvre autour de ces mécanismes
+dans le cadre de l'IPL Discovery, notamment dans le cadre de la thèse
+entre Orange (Karine Guillouard) et Inria (Adrien Lebre/Jérôme
+Francois) autour d'un outil de supervision programmable pour le
+desiderata ou encore de la thèse entre Orange (Marc Lacoste) et Inria
+(Mario Südholt) qui aborde les aspects transversaux liés à la
+sécurité.
+
+** Plate-forme de développements (Tâche 2)
+:PROPERTIES:
+:CUSTOM_ID: ssec:task2
+:END:
+Cette tâche se concentre sur la livraison de la pile logicielle
+nécessaire au desiderata. Elle est également un prétexte à la prise en
+main de l'écosystème OpenStack, son déploiement sur différents
+environnements et la mise en place d'une plate-forme de développement
+({{{eg}}} tests unitaires, d'intégrations).
+
+*** Prise en main de l'écosystème OpenStack
+Comme evoqué précédemment l'écosystème OpenStack est conséquent (deux
+millions de lignes de code, un cycle de développement court). Cette
+tâche cherche, sans se disperser, à (i) acquérir une bonne
+connaissance "utilisateur" des premiers services visés par le
+desiderata ({{{eg}}} APIs, configuration) ainsi que (ii) de bonnes
+compétences "développeur" ({{{eg}}} veille active, configuration d'un
+environement de développement). En partant du principe que l'ingénieur
+recruté n'est pas forcément familier avec les piles logiciels
+(écosystème OpenStack, Grid'5000, {{{etc}}}), il nous semble
+raisonnable de réserver au moins les deux premiers mois de l'ADT à la
+prise en main de ces divers environnements de travail.
+
+*** Mise en place de la plate-forme de tests et validation
+/Tempest/[fn::https://docs.openstack.org/tempest/latest/] est un
+projet de l'écosystème OpenStack visant à la centralisation des tests
+d'intégration des différents services. Il est utilisé pour évaluer le
+niveau de compatibilité de différentes installations d'OpenStack.
+C'est un outil essentiel pour (i) certifier de la compatibilité de
+l'installation d'OpenStack et (ii) valider l'intégration des nouvelles
+fonctionnalités du desiderata.
+
+*** Mise en place de la plate-forme d'évaluation des performances
+À l'instar de Tempest,
+/Rally/[fn::https://rally.readthedocs.io/en/latest/] est un outil de
+tests de la communauté OpenStack. Il offre un cadre standard
+d'évaluation des performances d'une installation OpenStack. Le but ici
+est de consolider l'expertise de Rally qui a été acquise dans l'équipe
+ASCOLA afin de pouvoir l'utiliser dans le cadre d'une évaluation plus
+générale et périodique du desiderata.
+
+*** Maintien d'un déploiement automatisé
+Réalisés de manière incrémentale au fur et à mesure de l'ADT, des
+scripts de déploiement (local et sur Grid'5000) automatisés du
+desiderata seront maintenus à jour. Il permettront soit de (i)
+maintenir un déploiement de la dernière version stable du desiderata,
+soit de (ii) déployer une installation qui repose sur les versions en
+cours de développement (incluant les prototypes de recherche réalisés
+par les chercheurs de l'IPL). C'est une tâche de fond qui, idéalement,
+facilitera la tâche 4.1 d'une part et tout autre évaluation du système
+à n'importe quel moment de l'ADT.
+
+** Transfert à la communauté OpenStack (Tâche 3)
+:PROPERTIES:
+:CUSTOM_ID: ssec:task3
+:END:
+L'une des ambitions de l'IPL Discovery est de faire d'Inria un acteur
+clé de la communauté OpenStack. Cette tâche constitue la pierre
+angulaire des échanges avec la communauté d'OpenStack. Elle s'appuie
+sur le groupe de travail {{{i18n(nuage massivement réparti,Fog Edge
+Massively Distributed Clouds --
+FEMDC[fn::https://wiki.openstack.org/wiki/Fog_Edge_Massively_Distributed_Clouds])}}}"
+créé sous l'égide de la fondation OpenStack. Ce groupe de travail
+permet d'envisager des échanges dans deux directions : de l'ADT vers
+le groupe de travail et de la communauté vers l'ADT/IPL. Le groupe de
+travail jouera alors le rôle de zone d'incubation agrégeant les
+contributions dans les deux directions avant de les proposer dans le
+code d'Openstack. Pour tous transferts envisagés vers OpenStack, nous
+pensons que le groupe de travail constituera un levier important
+permettant de crédibiliser les demandes.
+
+*** Promotion de Discovery à la communauté OpenStack
+C'est une tâche de fond consistant à alimenter et participer à
+l'animation du groupe de travail FEMDC ainsi qu'à participer aux
+diverses manifestations comme par exemple les sommets OpenStack.
+
+*** Transfert des contributions logicielles
+Les diverses contributions logicielles de l'ADT, concrétisant les
+travaux de l'IPL ont vocations à être transférer à la communauté
+OpenStack. Par exemple, des contacts avec Davanum Srinivas (Project
+Team Leader d'oslo - projet de bibliothèque commune) vont dans le sens
+d'une intégration de ~ROME~ dans la bibliothèque en tant qu'adaptateur
+optionnel (en remplacement de SQLAlchemy). Il est possible que
+certaines des contributions soient sujettes à débat au sein de la
+communauté OpenStack dû aux modifications internes qu'elles risquent
+de produire. En particulier, la modification des APIs haut niveau peut
+introduire des modifications qui s'immisceront assez profondément dans
+le cœur d'OpenStack. On peut donc s'attendre à ce que le temps
+d'incubation soit allongé pour ces contributions.
+
+** Banc de test et démonstrateur (Tâche 4)
+:PROPERTIES:
+:CUSTOM_ID: ssec:task4
+:END:
+Le but de cette tâche concerne le déploiement et le support du
+desiderata dans des situations réelles. Elle permet d'évaluer le
+système dans un environnement de pré-production en faisant tourner des
+applications qui illustrerons les intérêts de localité.
+
+*** Déploiement en pré-production
+RENATER et Orange se proposent de fournir un ensemble de ressources
+dans respectivement quatre et un point(s) de présence réseau sur
+lesquelles les applications cas d'usage seront déployées. La tâche
+consiste en un déploiement du système sur l'infrastructure des
+opérateurs et permettra le déploiement d'applications tierces. Cette
+tâche devra pouvoir profiter des résultats de la tâche 2.4.
+
+*** Cas d'usage 1 : application trois-tiers
+La première étape de validation concerne le déploiment d'une
+application 3-tiers comprenant un serveur web et une base de données.
+Ce type d'application correspond à la majorité des scénarios dans les
+environnement du nuage.
+
+*** Case d'usage 2 : application de visio-conférence
+Parmi les applications pouvant profiter de la notion de localité, les
+applications de vidéo-conférence sont un bon exemple. Développée par
+RENATER, l'application Rendez-Vous[fn:rdv] nous semble un bon candidat. La
+tâche consiste en un déploiement et l'évaluation de cette application
+sur le réseau de RENATER.
+
+* État d'avancement des travaux de l'ADT
+:PROPERTIES:
+:CUSTOM_ID: sec:work
+:END:
+** Distribution des mécanismes bas niveau d'OpenStack
+Cette section présente le travail fait et à faire sur la tâche 1
+({{{cfs(s,task1)}}}).
+
+*** Distribution de la base de données
+Le plan initial prévoit l'intégration de la bibliothèque ~ROME~
+développée par Jonathan Pastor durant sa thèse pour profiter de la
+distribution des bases de données NoSQL. Le statu actuel est
+d'utiliser une base de données dite /NewSQL/. Une base de données
+NewSQL offre les mêmes avantages de distribution qu'une base de
+données NoSQL, mais garantit en plus les propriétés ACID nécessaires à
+la réalisation d'une transaction. Ceci permet aux bases de données
+NewSQL d'interpréter les requêtes pareillement aux bases de données
+relationnelles, ce qui n'est pas le cas des bases de données NoSQL.
+L'intérêt pour le desiderata est de profiter des mêmes avantages que
+~ROME~ tout en simplifiant l'intégration dans OpenStack.
+
+Le choix a été fait d'utiliser la base de données NewSQL
+/CockroachDB/[fn:croachdb]. CockroachDB supporte le protocole
+PostgreSQL ce qui rend, théoriquement, son intégration dans OpenStack
+simple. Un premier examen mené sur le service Keystone montre que
+l'intégration de CockroachDB se fait en modifiant seulement quelques
+lignes[fn:openstack-cockroachdb-dev]. Il est important d'ajouter que
+ces quelques lignes sont actuellement en processus de relecture chez
+OpenStack pour être ajoutées dans la base de code de Keystone.
+
+Il est prévu, dans les mois à venir, de mener une campagne
+d'évaluation de performances sur un OpenStack dont la base de données
+est distribuée avec CockroachDB. Les résultats devraient être
+présentés lors du futur sommet OpenStack de mai 2018. L'intégration de
+CockroachDB dans d'autres services que Keystone sera envisagée ou non
+suite aux résultats de la campagne d'évaluation.
+
+*** Distribution du bus de communications
+Des analyses de performances réalisées sur un OpenStack large échelle
+[[cite:msimonin:os2016-2]] ont montré que le bus de communications
+centralisé était un frein majeur à l'obtention du desiderata. Des
+travaux sont en cours avec des collaborateurs de chez RedHat pour
+intégrer et évaluer une solution distribuée nommée
+/QPid-dispatch/[fn:qpid].
+
+Comme pour les résultats sur la base de données, il est prévu de
+présenter les résultats sur le bus de communications décentralisé lors
+du futur sommet OpenStack de mai 2018.
+
+*** Adaptation des APIs de plus haut niveau
+La notion de localité à réifier dans les API d'OpenStack n'a pas
+encore été traitée. Les réflexions sur cette question au sein de l'IPL
+Discovery n'ont pas encore débuté.
+
+** L'outil Enos pour conduire des évaluations scientifiques d'OpenStack
+La majeure partie des activités de l'ADT Mercury se sont concentrées
+autour de l'analyse d'OpenStack. OpenStack est un système très
+complexe, fait d'une centaine de services et composé de plus de vingt
+millions de lignes de code. C'est pourquoi, un outil pour analyser et
+comparer les performances de différentes configuration d'OpenStack
+s'est avéré primordial. D'abord pour examiner les changements que nous
+proposons au sein d'OpenStack. Ensuite, pour convaincre la communauté
+OpenStack de l'importance de ces changements.
+
+Cette outil se nomme /Enos/[fn:enos] (Experimental environment for
+OpenStack), un cadriciel qui repose sur la technologie des conteneurs
+pour déployer et évaluer un OpenStack de production sur n'importe quel
+banc de test. Enos fournit aux chercheurs un petit langage pour
+exprimer simplement une configuration d'OpenStack. Cette configuration
+décrit les services à installer, leur agencement sur un banc de test
+et potentiellement des contraintes en terme de bande passante et débit
+sur les communications inter-services. À partir de cette
+configuration, Enos récupère des ressources sur le banc de test
+(Grid'5000, VirtualBox ou Chameleon), déploie OpenStack et applique
+les limitations réseaux. Enfin, Enos peut effectuer des tests de
+performances et collecter les résultats de ces tests pour faire des
+analyses à posteriori.
+
+Enos à fait l'objet d'une publication CCGRID (short paper) et de
+présentations à des ateliers scientifiques
+[[cite:CLP+16]][[cite:alebre:cc2017]][[cite:cherrueau:cdays]], d'un travail dirigé
+[[cite:rcherrueau:rescom2017]] et de plusieurs présentations à des
+évènements organisés par OpenStack
+[[cite:alebre:od17]][[cite:alebre:os2017-2]][[cite:asimonet:od2016]][[cite:msimonin:os2016-2]].
+Enos est également utilisé par plusieurs organismes de recherche
+telles qu'Orange Labs, FBK[fn::http://create-net.fbk.eu/],
+UCSC[fn::https://www.soe.ucsc.edu/departments/computer-science] et le
+projet européen FED4Fire+[fn::https://www.fed4fire.eu/].
+
+Concrètement, Enos implémente en totalité les objectifs de la tâche 2
+({{{cfs(s,task2)}}}).
+
+** Contribution et redistribution à la communauté OpenStack
+La forte implication dans les groupes de travail OpenStack
+/performance/ et /FEMDC/ donne lieu à d'intéressantes discussions sur
+les emplois d'OpenStack. Ces discussions servent de matière au projet
+Enos pour conduire des campagnes d'évaluation de performance. Deux de
+ses campagnes ont été présentées aux sommets d'OpenStack.
+Premièrement, l'évaluation d'un OpenStack large échelle avec mille
+noeuds de calcul [[cite:msimonin:os2016-2]]. Et deuxièmement, l'évaluation
+d'un OpenStack qui opère des ressources de calculs situées à la
+périphérie du réseau et donc soumis à de forte latences
+[[cite:alebre:os2017-2]].
+
+Ces campagnes d'évaluation ont permis de /crédibiliser/ l'expertise
+d'Inria au sein de la communauté OpenStack. Pour preuve, l'initiative
+Discovery est mentionnée au même titre que l'/ETSI/ (European
+Telecommunications Standards Institute) sur la page d'OpenStack pour
+la gestion d'infrastructures en
+périphéries[fn::https://www.openstack.org/edge-computing/].
+
+Dans le cadre de l'ADT, plusieurs contributions aux codes d'OpenStack
+ont également été réalisées. Parmi ces contributions, plusieurs plans
+de tests ont été rédigés et redistribués au groupe de travail
+performance[fn::https://docs.openstack.org/developer/performance-docs/index.html].
+La plate-forme Grid'5000 est d'ailleurs maintenant considérée comme un
+banc de test officiel pour les tests de performance
+d'OpenStack[fn::https://docs.openstack.org/developer/performance-docs/labs/grid5000.html].
+
+L'outil de déploiement /OpenStack/Kolla/ a été étendu pour supporter
+le déploiement
+multi-régions[fn::https://docs.openstack.org/kolla-ansible/latest/user/multi-regions.html].
+Le déploiement multi-régions est un déploiement proposé par les APIs
+d'OpenStack pour que plusieurs OpenStack indépendants collaborent. Ce
+déploiement intéresse l'IPL Discovery, car il est le type de
+déploiement qui ressemble le plus à celui visé par le desiderata.
+Grâce à la modification fournit par Inria, il est maintenant possible
+d'évaluer les déploiements multi-régions avec Enos.
+
+Enfin, l'outil /OpenStack/Rally/, qui joue des scénarios d'utilisation
+sur un OpenStack, à été étendu avec l'outil /OpenStack/OSProfiler/
+pour réaliser du profilage de
+code[fn::http://docs.xrally.xyz/projects/openstack/en/latest/quick_start/tutorial/step_10_profiling_openstack_internals.html?highlight=osprofiler].
+OSProfiler instrumente le code d'OpenStack pour analyser dynamiquement
+son exécution. L'intérêt d'avoir OSProfiler dans Rally est de profiter
+des traces d'exécutions produites par OSProfiler pour extraire la
+logique derrière les scénarios d'utilisations d'OpenStack. Cette
+logique nous permet d'améliorer notre compréhension du système
+OpenStack.
+
+Tout ces pointeurs montrent que la promotion de Discovery et Inria au
+sein de la communauté OpenStack avance convenablement.
+
+** Démonstrateur
+Le desiderata n'est toujours pas implémenté. Notamment, les travaux en
+cours autour des bases de données NewSQL et du bus de communication
+décentralisé sont bloquants dans l'obtention du desiderata. Par
+conséquent, il n'existe pas encore de démonstrateur.
+
+* Conclusion et travaux à suivre
+Les travaux réalisés au sein de L'ADT Mercury participent à faire de
+Discovery/Inria un acteur visible dans la communauté OpenStack. Mieux,
+la fondation OpenStack définit maintenant Discovery comme l'un des
+acteurs principaux sur les questions autour de la gestion d'une
+infrastructure en périphérie. L'outil Enos, qui rend possible la
+comparaison de différentes configurations d'OpenStack, crédibilise les
+actions menées par l'IPL Discovery. Il confère également une position
+d'expert concernant les aspects de performances. Enfin, l'implication
+dans les groupes de travail performance et FEMDC permet maintenant à
+Discovery d'avoir un impacte sur les futurs décisions prises dans le
+développement du système OpenStack.
+
+Toutefois, ces interactions avec la communauté OpenStack absorbent
+tout le temps de l'ADT. OpenStack est un système complexe, fait de
+millions de lignes de code. Chaque contribution à un service passe par
+un processus d'élection qui freine l'émergence propre aux projets de
+recherche. C'est pourquoi, l'ADT Mercury n'a pas apporté son aide au
+développement des prototypes de recherche de l'IPL Discovery, alors
+que ce point était souhaité dans le plan de travail initial. Lors de
+la prochaine évaluation de l'IPL Discovery, la question sera posée de
+savoir si l'ADT Mercury doit persister dans ses interactions avec
+OpenStack, ou au contraire, favoriser l'aide aux développements des
+prototypes de recherches.
+
+* Références et communications
+#+LaTeX: \renewcommand\refname{\vskip -1cm}
+#+BIBLIOGRAPHY: bibliography plain limit:t
+
+* Footnotes
+[fn:qpid] https://review.openstack.org/#/c/491818/
+[fn:croachdb] https://github.com/cockroachdb/cockroach
+[fn:rdv] https://rendez-vous.renater.fr/
+[fn:zeromq] https://wiki.openstack.org/wiki/ZeroMQ
+[fn:rome-lib]  https://github.com/badock/rome
+[fn:discovery] [[https://beyondtheclouds.github.io/]]
+[fn:openstack] [[http://www.openstack.org/][openstack.org]]
+[fn:enos] https://github.com/BeyondTheClouds/enos
+[fn:openstack-cockroachdb-dev] https://github.com/BeyondTheClouds/openstack-cockroachdb-dev/
+
+* Notes                                                            :noexport:
+--
+Fog/Edge latency critique: conduite autonome, IoT, Streaming. Latency
+du à la distence avec le DC et le nombre de device qui communiques
+avec le DC. Également et surtout, applications NFV.
+audible
